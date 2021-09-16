@@ -3105,8 +3105,8 @@ void Spell::EffectTameCreature(SpellEffIndex /*effIndex*/)
     if (creatureTarget->IsPet())
         return;
 
-    if (m_caster->getClass() != CLASS_HUNTER)
-        return;
+    /*if (m_caster->getClass() != CLASS_HUNTER)
+        return;*/
 
     // cast finish successfully
     //SendChannelUpdate(0);

@@ -49,6 +49,8 @@ enum PaladinSpells
     SPELL_PALADIN_JUDGEMENT_OF_JUSTICE           = 20184,
     SPELL_PALADIN_JUDGEMENT_OF_LIGHT             = 20185,
     SPELL_PALADIN_JUDGEMENT_OF_WISDOM            = 20186,
+    SPELL_PALADIN_JUDGEMENT_OF_SHADOW            = 81002,
+    
 
     SPELL_PALADIN_GLYPH_OF_SALVATION             = 63225,
 
@@ -58,6 +60,7 @@ enum PaladinSpells
     SPELL_PALADIN_SANCTIFIED_WRATH_TALENT_R1     = 53375,
 
     SPELL_PALADIN_SEAL_OF_RIGHTEOUSNESS          = 25742,
+    SPELL_PALADIN_SEAL_OF_CORRUPTION             = 81000,
 
     SPELL_PALADIN_CONCENTRACTION_AURA            = 19746,
     SPELL_PALADIN_SANCTIFIED_RETRIBUTION_R1      = 31869,
@@ -1008,6 +1011,7 @@ public:
 // 53407 - Judgement of Justice
 // 20271 - Judgement of Light
 // 53408 - Judgement of Wisdom
+// 81001 - Judgement of Shadow
 class spell_pal_judgement : public SpellScriptLoader
 {
 public:
@@ -1295,6 +1299,61 @@ public:
     }
 };
 
+// 81000 - Seal of Corruption - melee proc dummy (addition ${$MWS*(0.022*$AP+0.044*$SPH)} damage)
+class spell_pal_seal_of_corruption : public SpellScriptLoader
+{
+public:
+    spell_pal_seal_of_corruption() : SpellScriptLoader("spell_pal_seal_of_corruption") { }
+
+    class spell_pal_seal_of_corruption_AuraScript : public AuraScript
+    {
+        PrepareAuraScript(spell_pal_seal_of_corruption_AuraScript);
+
+        bool Validate(SpellInfo const* /*spellInfo*/)
+        {
+            if (!sSpellMgr->GetSpellInfo(SPELL_PALADIN_SEAL_OF_CORRUPTION))
+                return false;
+            return true;
+        }
+
+        bool CheckProc(ProcEventInfo& eventInfo)
+        {
+            Unit* target = eventInfo.GetProcTarget();
+            if (!target)
+                return false;
+
+            return target->IsAlive() && !eventInfo.GetTriggerAuraSpell() && (eventInfo.GetDamageInfo()->GetDamage() || (eventInfo.GetHitMask() & PROC_EX_ABSORB));
+        }
+
+        void HandleProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
+        {
+            PreventDefaultAction();
+
+            float ap = GetTarget()->GetTotalAttackPowerValue(BASE_ATTACK);
+            int32 holy = GetTarget()->SpellBaseDamageBonusDone(SPELL_SCHOOL_MASK_SHADOW);
+            holy += eventInfo.GetProcTarget()->SpellBaseDamageBonusTaken(SPELL_SCHOOL_MASK_SHADOW);
+
+            // Xinef: Libram of Divine Purpose
+            if (AuraEffect* aurEff = GetTarget()->GetDummyAuraEffect(SPELLFAMILY_PALADIN, 2025, EFFECT_0))
+                holy += aurEff->GetAmount();
+
+            int32 bp = std::max<int32>(0, int32((ap * 0.022f + 0.044f * SPELL_SCHOOL_MASK_SHADOW) * GetTarget()->GetAttackTime(BASE_ATTACK) / 1000));
+            GetTarget()->CastCustomSpell(SPELL_PALADIN_SEAL_OF_CORRUPTION, SPELLVALUE_BASE_POINT0, bp, eventInfo.GetProcTarget(), true, NULL, aurEff);
+        }
+
+        void Register()
+        {
+            DoCheckProc += AuraCheckProcFn(spell_pal_seal_of_corruption_AuraScript::CheckProc);
+            OnEffectProc += AuraEffectProcFn(spell_pal_seal_of_corruption_AuraScript::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
+        }
+    };
+
+    AuraScript* GetAuraScript() const
+    {
+        return new spell_pal_seal_of_corruption_AuraScript();
+    }
+};
+
 void AddSC_paladin_spell_scripts()
 {
     // Ours
@@ -1321,8 +1380,10 @@ void AddSC_paladin_spell_scripts()
     new spell_pal_judgement("spell_pal_judgement_of_justice", SPELL_PALADIN_JUDGEMENT_OF_JUSTICE);
     new spell_pal_judgement("spell_pal_judgement_of_light", SPELL_PALADIN_JUDGEMENT_OF_LIGHT);
     new spell_pal_judgement("spell_pal_judgement_of_wisdom", SPELL_PALADIN_JUDGEMENT_OF_WISDOM);
+    new spell_pal_judgement("spell_pal_judgement_of_shadow", SPELL_PALADIN_JUDGEMENT_OF_SHADOW);
     new spell_pal_judgement_of_command();
     new spell_pal_lay_on_hands();
     new spell_pal_righteous_defense();
     new spell_pal_seal_of_righteousness();
+    new spell_pal_seal_of_corruption();
 }
