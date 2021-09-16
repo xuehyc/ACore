@@ -2,12 +2,12 @@
  * Originally written by Xinef - Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
 */
 
-#include "ScriptMgr.h"
-#include "ScriptedCreature.h"
-#include "vault_of_archavon.h"
-#include "SpellAuras.h"
 #include "PassiveAI.h"
 #include "Player.h"
+#include "ScriptedCreature.h"
+#include "ScriptMgr.h"
+#include "SpellAuras.h"
+#include "vault_of_archavon.h"
 
 enum Spells
 {
@@ -35,16 +35,7 @@ enum Events
     EVENT_FROZEN_ORB_STALKER            = 2,
     EVENT_CAST_WHITEOUT                 = 3,
     EVENT_CAST_WHITEOUT_GROUND_EFFECT   = 4,
-
-
 };
-
-enum Misc
-{
-    NPC_FROZEN_ORB                      = 38456,
-    NPC_FROZEN_ORB_STALKER              = 38461,
-};
-
 
 class boss_toravon : public CreatureScript
 {
@@ -63,7 +54,7 @@ public:
         EventMap events;
         SummonList summons;
 
-        void Reset()
+        void Reset() override
         {
             events.Reset();
             summons.DespawnAll();
@@ -81,14 +72,14 @@ public:
             }
         }
 
-        void AttackStart(Unit* who)
+        void AttackStart(Unit* who) override
         {
             if (me->HasAura(SPELL_STONED_AURA))
                 return;
             ScriptedAI::AttackStart(who);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) override
         {
             me->CastSpell(me, SPELL_FROZEN_MALLET, true);
 
@@ -100,21 +91,22 @@ public:
                 pInstance->SetData(EVENT_TORAVON, IN_PROGRESS);
         }
 
-        void JustDied(Unit*)
+        void JustDied(Unit*) override
         {
             if (pInstance)
             {
                 pInstance->SetData(EVENT_TORAVON, DONE);
                 pInstance->DoRemoveAurasDueToSpellOnPlayers(SPELL_WHITEOUT);
             }
+            summons.DespawnAll();
         }
 
-        void JustSummoned(Creature* cr)
+        void JustSummoned(Creature* cr) override
         {
             summons.Summon(cr);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) override
         {
             if (!UpdateVictim())
                 return;
@@ -149,9 +141,9 @@ public:
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const override
     {
-        return new boss_toravonAI(creature);
+        return GetVaultOfArchavonAI<boss_toravonAI>(creature);
     }
 };
 
@@ -168,34 +160,34 @@ public:
 
         uint32 switchTimer;
 
-        void Reset()
+        void Reset() override
         {
             switchTimer = 9000;
             me->CastSpell(me, SPELL_FROZEN_ORB_AURA, true);
             me->CastSpell(me, SPELL_FROZEN_ORB_DMG, true);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) override
         {
             me->SetInCombatWithZone();
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) override
         {
             switchTimer += diff;
             if (switchTimer >= 10000)
             {
                 switchTimer = 0;
-                me->getThreatManager().resetAllAggro();
+                me->getThreatMgr().resetAllAggro();
                 if (Player* player = SelectTargetFromPlayerList(100.0f))
                     me->AddThreat(player, 100000.0f);
             }
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const override
     {
-        return new npc_frozen_orbAI(creature);
+        return GetVaultOfArchavonAI<npc_frozen_orbAI>(creature);
     }
 };
 
@@ -210,23 +202,23 @@ public:
         {
         }
 
-        void Reset()
+        void Reset() override
         {
             me->CastSpell(me, SPELL_FROZEN_ORB_STALKER_VISUAL, true);
         }
 
-        void JustSummoned(Creature* cr)
+        void JustSummoned(Creature* cr) override
         {
             if (InstanceScript* pInstance = me->GetInstanceScript())
-                if (Creature* toravon = ObjectAccessor::GetCreature(*me, pInstance->GetData64(EVENT_TORAVON)))
+                if (Creature* toravon = ObjectAccessor::GetCreature(*me, pInstance->GetGuidData(EVENT_TORAVON)))
                     if (toravon->AI())
                         toravon->AI()->JustSummoned(cr);
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const override
     {
-        return new npc_frozen_orb_stalkerAI(creature);
+        return GetVaultOfArchavonAI<npc_frozen_orb_stalkerAI>(creature);
     }
 };
 

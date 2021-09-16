@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-GPL2
+ * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license, you may redistribute it and/or modify it under version 2 of the License, or (at your option), any later version.
  * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  */
@@ -10,32 +10,31 @@
 #include "LinkedReference/Reference.h"
 
 template<class OBJECT>
-class GridRefManager;
+class GridRefMgr;
 
 template<class OBJECT>
-class GridReference : public Reference<GridRefManager<OBJECT>, OBJECT>
+class GridReference : public Reference<GridRefMgr<OBJECT>, OBJECT>
 {
 protected:
-    void targetObjectBuildLink()
+    void targetObjectBuildLink() override
     {
         // called from link()
         this->getTarget()->insertFirst(this);
         this->getTarget()->incSize();
     }
-    void targetObjectDestroyLink()
+    void targetObjectDestroyLink() override
     {
         // called from unlink()
         if (this->isValid()) this->getTarget()->decSize();
     }
-    void sourceObjectDestroyLink()
+    void sourceObjectDestroyLink() override
     {
         // called from invalidate()
         this->getTarget()->decSize();
     }
 public:
-    GridReference() : Reference<GridRefManager<OBJECT>, OBJECT>() {}
-    ~GridReference() { this->unlink(); }
-    GridReference* next() { return (GridReference*)Reference<GridRefManager<OBJECT>, OBJECT>::next(); }
+    GridReference() : Reference<GridRefMgr<OBJECT>, OBJECT>() {}
+    ~GridReference() override { this->unlink(); }
+    GridReference* next() { return (GridReference*)Reference<GridRefMgr<OBJECT>, OBJECT>::next(); }
 };
 #endif
-

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-GPL2
+ * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license, you may redistribute it and/or modify it under version 2 of the License, or (at your option), any later version.
  * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  */
@@ -16,12 +16,12 @@ npc_plaguehound_tracker
 npc_apothecary_hanes
 EndContentData */
 
-#include "ScriptMgr.h"
-#include "ScriptedCreature.h"
-#include "ScriptedGossip.h"
-#include "ScriptedEscortAI.h"
 #include "PassiveAI.h"
 #include "Player.h"
+#include "ScriptedCreature.h"
+#include "ScriptedEscortAI.h"
+#include "ScriptedGossip.h"
+#include "ScriptMgr.h"
 #include "SpellInfo.h"
 
 // Ours
@@ -36,11 +36,11 @@ public:
         {
             me->SetDisableGravity(true);
             if (me->IsSummon())
-                if (Unit* owner = me->ToTempSummon()->GetSummoner())
+                if (Unit* owner = me->ToTempSummon()->GetSummonerUnit())
                     me->GetMotionMaster()->MovePoint(0, *owner);
         }
 
-        void MovementInform(uint32  /*type*/, uint32  /*id*/)
+        void MovementInform(uint32  /*type*/, uint32  /*id*/) override
         {
             if (Creature* cow = me->FindNearestCreature(24797, 5.0f, true))
             {
@@ -49,19 +49,19 @@ public:
                 cow->CastSpell(cow, 44460, true);
                 cow->DespawnOrUnsummon(10000);
                 if (me->IsSummon())
-                    if (Unit* owner = me->ToTempSummon()->GetSummoner())
+                    if (Unit* owner = me->ToTempSummon()->GetSummonerUnit())
                         owner->CastSpell(owner, 44463, true);
             }
         }
 
-        void SpellHit(Unit* caster, const SpellInfo* spellInfo)
+        void SpellHit(Unit* caster, const SpellInfo* spellInfo) override
         {
             if (caster && spellInfo->Id == 44454)
                 me->GetMotionMaster()->MovePoint(0, *caster);
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const override
     {
         return new npc_attracted_reef_bullAI(creature);
     }
@@ -79,13 +79,13 @@ public:
         uint32 timer;
         short phase;
 
-        void Reset()
+        void Reset() override
         {
             timer = 0;
             phase = 0;
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) override
         {
             if (timer >= 6000 && phase < 4)
             {
@@ -99,13 +99,13 @@ public:
             DoMeleeAttackIfReady();
         }
 
-        void setphase(short phase)
+        void setphase(short newPhase)
         {
-            Unit* summoner = me->ToTempSummon() ? me->ToTempSummon()->GetSummoner() : nullptr;
+            Unit* summoner = me->ToTempSummon() ? me->ToTempSummon()->GetSummonerUnit() : nullptr;
             if (!summoner || summoner->GetTypeId() != TYPEID_PLAYER)
                 return;
 
-            switch (phase)
+            switch (newPhase)
             {
                 case 1:
                     me->MonsterWhisper("You think that you can get rid of me through meditation?", summoner->ToPlayer());
@@ -130,12 +130,11 @@ public:
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const override
     {
         return new npc_your_inner_turmoilAI(creature);
     }
 };
-
 
 // Theirs
 /*######
@@ -157,7 +156,7 @@ class npc_apothecary_hanes : public CreatureScript
 public:
     npc_apothecary_hanes() : CreatureScript("npc_apothecary_hanes") { }
 
-    bool OnQuestAccept(Player* player, Creature* creature, Quest const* quest)
+    bool OnQuestAccept(Player* player, Creature* creature, Quest const* quest) override
     {
         if (quest->GetQuestId() == QUEST_TRAIL_OF_FIRE)
         {
@@ -172,19 +171,19 @@ public:
         npc_Apothecary_HanesAI(Creature* creature) : npc_escortAI(creature) { }
         uint32 PotTimer;
 
-        void Reset()
+        void Reset() override
         {
             SetDespawnAtFar(false);
             PotTimer = 10000; //10 sec cooldown on potion
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) override
         {
             if (Player* player = GetPlayerForEscort())
                 player->FailQuest(QUEST_TRAIL_OF_FIRE);
         }
 
-        void UpdateEscortAI(uint32 diff)
+        void UpdateEscortAI(uint32 diff) override
         {
             if (HealthBelowPct(75))
             {
@@ -199,7 +198,7 @@ public:
                 DoMeleeAttackIfReady();
         }
 
-        void WaypointReached(uint32 waypointId)
+        void WaypointReached(uint32 waypointId) override
         {
             Player* player = GetPlayerForEscort();
             if (!player)
@@ -249,7 +248,7 @@ public:
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const override
     {
         return new npc_Apothecary_HanesAI(creature);
     }
@@ -258,11 +257,6 @@ public:
 /*######
 ## npc_plaguehound_tracker
 ######*/
-
-enum Plaguehound
-{
-    QUEST_SNIFF_OUT_ENEMY        = 11253
-};
 
 class npc_plaguehound_tracker : public CreatureScript
 {
@@ -273,12 +267,11 @@ public:
     {
         npc_plaguehound_trackerAI(Creature* creature) : npc_escortAI(creature) { }
 
-        void Reset()
+        void Reset() override
         {
-            uint64 summonerGUID = 0;
-
+            ObjectGuid summonerGUID;
             if (me->IsSummon())
-                if (Unit* summoner = me->ToTempSummon()->GetSummoner())
+                if (Unit* summoner = me->ToTempSummon()->GetSummonerUnit())
                     if (summoner->GetTypeId() == TYPEID_PLAYER)
                         summonerGUID = summoner->GetGUID();
 
@@ -289,7 +282,7 @@ public:
             Start(false, false, summonerGUID);
         }
 
-        void WaypointReached(uint32 waypointId)
+        void WaypointReached(uint32 waypointId) override
         {
             if (waypointId != 26)
                 return;
@@ -298,7 +291,7 @@ public:
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const override
     {
         return new npc_plaguehound_trackerAI(creature);
     }

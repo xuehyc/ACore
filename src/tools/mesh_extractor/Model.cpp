@@ -5,7 +5,7 @@
  */
 
 #include "Model.h"
-#include "MPQManager.h"
+#include "MPQMgr.h"
 #include "Utils.h"
 
 Model::Model( std::string path ) : IsCollidable(false), IsBad(false)
@@ -70,4 +70,3 @@ void Model::ReadBoundingNormals()
     for (uint32 i = 0; i < Header.CountBoundingNormals; i++)
         Normals.push_back(Vector3::Read(Stream));
 }
-

@@ -1,32 +1,37 @@
 /*
- * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-GPL2
+ * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license, you may redistribute it and/or modify it under version 2 of the License, or (at your option), any later version.
  * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  */
 
-#include "ScriptMgr.h"
-#include "ScriptedCreature.h"
-#include "InstanceScript.h"
 #include "blackrock_depths.h"
+#include "InstanceScript.h"
+#include "ScriptMgr.h"
 
 #define TIMER_TOMBOFTHESEVEN    15000
 #define MAX_ENCOUNTER           6
 
 enum Creatures
 {
-    NPC_EMPEROR             = 9019,
-    NPC_PHALANX             = 9502,
-    NPC_ANGERREL            = 9035,
-    NPC_DOPEREL             = 9040,
-    NPC_HATEREL             = 9034,
-    NPC_VILEREL             = 9036,
-    NPC_SEETHREL            = 9038,
-    NPC_GLOOMREL            = 9037,
-    NPC_DOOMREL             = 9039,
-    NPC_MAGMUS              = 9938,
-    NPC_MOIRA               = 8929,
+    NPC_EMPEROR                 = 9019,
+    NPC_PHALANX                 = 9502,
+    NPC_ANGERREL                = 9035,
+    NPC_DOPEREL                 = 9040,
+    NPC_HATEREL                 = 9034,
+    NPC_VILEREL                 = 9036,
+    NPC_SEETHREL                = 9038,
+    NPC_GLOOMREL                = 9037,
+    NPC_DOOMREL                 = 9039,
+    NPC_MAGMUS                  = 9938,
+    NPC_MOIRA                   = 8929,
 
-    NPC_WATCHMAN_DOOMGRIP   = 9476,
+    NPC_WATCHMAN_DOOMGRIP       = 9476,
+
+    NPC_WEAPON_TECHNICIAN       = 8920,
+    NPC_DOOMFORGE_ARCANASMITH   = 8900,
+    NPC_RAGEREAVER_GOLEM        = 8906,
+    NPC_WRATH_HAMMER_CONSTRUCT  = 8907,
+    NPC_GOLEM_LORD_ARGELMACH    = 8983
 };
 
 enum GameObjects
@@ -54,12 +59,40 @@ enum GameObjects
     GO_CHEST_SEVEN          = 169243,
 };
 
+enum MiscData
+{
+    SPELL_STONED    = 10255
+};
+
+class RestoreAttack : public BasicEvent
+{
+public:
+    RestoreAttack(Creature* boss) : _boss(boss) {}
+
+    bool Execute(uint64 /*execTime*/, uint32 /*diff*/) override
+    {
+        _boss->SetReactState(REACT_AGGRESSIVE);
+        _boss->AI()->SetData(DATA_GOLEM_LORD_ARGELMACH_INIT, DONE);
+
+        if (Unit* victim = _boss->GetVictim())
+        {
+            _boss->SetTarget(victim->GetGUID());
+            _boss->GetMotionMaster()->MoveChase(victim);
+        }
+
+        return true;
+    }
+
+private:
+    Creature* _boss;
+};
+
 class instance_blackrock_depths : public InstanceMapScript
 {
 public:
     instance_blackrock_depths() : InstanceMapScript("instance_blackrock_depths", 230) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const
+    InstanceScript* GetInstanceScript(InstanceMap* map) const override
     {
         return new instance_blackrock_depths_InstanceMapScript(map);
     }
@@ -71,84 +104,56 @@ public:
         uint32 encounter[MAX_ENCOUNTER];
         std::string str_data;
 
-        uint64 EmperorGUID;
-        uint64 PhalanxGUID;
-        uint64 MagmusGUID;
-        uint64 MoiraGUID;
+        ObjectGuid EmperorGUID;
+        ObjectGuid PhalanxGUID;
+        ObjectGuid MagmusGUID;
+        ObjectGuid MoiraGUID;
 
-        uint64 GoArena1GUID;
-        uint64 GoArena2GUID;
-        uint64 GoArena3GUID;
-        uint64 GoArena4GUID;
-        uint64 GoShadowLockGUID;
-        uint64 GoShadowMechGUID;
-        uint64 GoShadowGiantGUID;
-        uint64 GoShadowDummyGUID;
-        uint64 GoBarKegGUID;
-        uint64 GoBarKegTrapGUID;
-        uint64 GoBarDoorGUID;
-        uint64 GoTombEnterGUID;
-        uint64 GoTombExitGUID;
-        uint64 GoLyceumGUID;
-        uint64 GoSFSGUID;
-        uint64 GoSFNGUID;
-        uint64 GoGolemNGUID;
-        uint64 GoGolemSGUID;
-        uint64 GoThroneGUID;
-        uint64 GoChestGUID;
-        uint64 GoSpectralChaliceGUID;
+        ObjectGuid GoArena1GUID;
+        ObjectGuid GoArena2GUID;
+        ObjectGuid GoArena3GUID;
+        ObjectGuid GoArena4GUID;
+        ObjectGuid GoShadowLockGUID;
+        ObjectGuid GoShadowMechGUID;
+        ObjectGuid GoShadowGiantGUID;
+        ObjectGuid GoShadowDummyGUID;
+        ObjectGuid GoBarKegGUID;
+        ObjectGuid GoBarKegTrapGUID;
+        ObjectGuid GoBarDoorGUID;
+        ObjectGuid GoTombEnterGUID;
+        ObjectGuid GoTombExitGUID;
+        ObjectGuid GoLyceumGUID;
+        ObjectGuid GoSFSGUID;
+        ObjectGuid GoSFNGUID;
+        ObjectGuid GoGolemNGUID;
+        ObjectGuid GoGolemSGUID;
+        ObjectGuid GoThroneGUID;
+        ObjectGuid GoChestGUID;
+        ObjectGuid GoSpectralChaliceGUID;
 
         uint32 BarAleCount;
         uint32 GhostKillCount;
-        uint64 TombBossGUIDs[7];
-        uint64 TombEventStarterGUID;
+        ObjectGuid TombBossGUIDs[7];
+        ObjectGuid TombEventStarterGUID;
         uint32 TombTimer;
         uint32 TombEventCounter;
         uint32 OpenedCoofers;
 
-        void Initialize()
+        GuidList ArgelmachAdds;
+        ObjectGuid ArgelmachGUID;
+
+        void Initialize() override
         {
             memset(&encounter, 0, sizeof(encounter));
 
-            EmperorGUID = 0;
-            PhalanxGUID = 0;
-            MagmusGUID = 0;
-            MoiraGUID = 0;
-
-            GoArena1GUID = 0;
-            GoArena2GUID = 0;
-            GoArena3GUID = 0;
-            GoArena4GUID = 0;
-            GoShadowLockGUID = 0;
-            GoShadowMechGUID = 0;
-            GoShadowGiantGUID = 0;
-            GoShadowDummyGUID = 0;
-            GoBarKegGUID = 0;
-            GoBarKegTrapGUID = 0;
-            GoBarDoorGUID = 0;
-            GoTombEnterGUID = 0;
-            GoTombExitGUID = 0;
-            GoLyceumGUID = 0;
-            GoSFSGUID = 0;
-            GoSFNGUID = 0;
-            GoGolemNGUID = 0;
-            GoGolemSGUID = 0;
-            GoThroneGUID = 0;
-            GoChestGUID = 0;
-            GoSpectralChaliceGUID = 0;
-
             BarAleCount = 0;
             GhostKillCount = 0;
-            TombEventStarterGUID = 0;
             TombTimer = TIMER_TOMBOFTHESEVEN;
             TombEventCounter = 0;
             OpenedCoofers = 0;
-
-            for (uint8 i = 0; i < 7; ++i)
-                TombBossGUIDs[i] = 0;
         }
 
-        void OnCreatureCreate(Creature* creature)
+        void OnCreatureCreate(Creature* creature) override
         {
             switch (creature->GetEntry())
             {
@@ -185,12 +190,26 @@ public:
                 case NPC_MAGMUS:
                     MagmusGUID = creature->GetGUID();
                     if (!creature->IsAlive())
-                        HandleGameObject(GetData64(DATA_THRONE_DOOR), true); // if Magmus is dead open door to last boss
+                        HandleGameObject(GetGuidData(DATA_THRONE_DOOR), true); // if Magmus is dead open door to last boss
+                    break;
+                case NPC_WEAPON_TECHNICIAN:
+                case NPC_DOOMFORGE_ARCANASMITH:
+                case NPC_RAGEREAVER_GOLEM:
+                case NPC_WRATH_HAMMER_CONSTRUCT:
+                    if (creature->IsAlive() && creature->GetPositionZ() < -51.5f && creature->GetPositionZ() > -55.f)
+                    {
+                        ArgelmachAdds.push_back(creature->GetGUID());
+                    }
+                    break;
+                case NPC_GOLEM_LORD_ARGELMACH:
+                    ArgelmachGUID = creature->GetGUID();
+                    break;
+                default:
                     break;
             }
         }
 
-        void OnGameObjectCreate(GameObject* go)
+        void OnGameObjectCreate(GameObject* go) override
         {
             switch (go->GetEntry())
             {
@@ -233,9 +252,9 @@ public:
                 case GO_TOMB_EXIT:
                     GoTombExitGUID = go->GetGUID();
                     if (GhostKillCount >= 7)
-                        HandleGameObject(0, true, go);
+                        HandleGameObject(ObjectGuid::Empty, true, go);
                     else
-                        HandleGameObject(0, false, go);
+                        HandleGameObject(ObjectGuid::Empty, false, go);
                     break;
                 case GO_LYCEUM:
                     GoLyceumGUID = go->GetGUID();
@@ -264,12 +283,23 @@ public:
             }
         }
 
-        void SetData64(uint32 type, uint64 data)
+        void OnUnitDeath(Unit* unit) override
         {
-#if defined(ENABLE_EXTRAS) && defined(ENABLE_EXTRA_LOGS)
-            sLog->outDebug(LOG_FILTER_TSCR, "TSCR: Instance Blackrock Depths: SetData64 update (Type: %u Data " UI64FMTD ")", type, data);
-#endif
+            switch (unit->GetEntry())
+            {
+                case NPC_WEAPON_TECHNICIAN:
+                case NPC_DOOMFORGE_ARCANASMITH:
+                case NPC_RAGEREAVER_GOLEM:
+                case NPC_WRATH_HAMMER_CONSTRUCT:
+                    ArgelmachAdds.remove(unit->GetGUID());
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        void SetGuidData(uint32 type, ObjectGuid data) override
+        {
             switch (type)
             {
                 case DATA_EVENSTARTER:
@@ -282,11 +312,9 @@ public:
             }
         }
 
-        void SetData(uint32 type, uint32 data)
+        void SetData(uint32 type, uint32 data) override
         {
-#if defined(ENABLE_EXTRAS) && defined(ENABLE_EXTRA_LOGS)
-            sLog->outDebug(LOG_FILTER_TSCR, "TSCR: Instance Blackrock Depths: SetData update (Type: %u Data %u)", type, data);
-#endif
+            LOG_DEBUG("scripts.ai", "TSCR: Instance Blackrock Depths: SetData update (Type: %u Data %u)", type, data);
 
             switch (type)
             {
@@ -323,6 +351,79 @@ public:
                             summon->SetTempSummonType(TEMPSUMMON_MANUAL_DESPAWN);
                     }
                     break;
+                case DATA_GOLEM_LORD_ARGELMACH_INIT:
+                {
+                    if (Creature* argelmach = instance->GetCreature(ArgelmachGUID))
+                    {
+                        GuidList adds = ArgelmachAdds;
+                        for (GuidList::const_iterator itr = adds.begin(); itr != adds.end();)
+                        {
+                            if (Creature* argelmachAdd = instance->GetCreature(*itr))
+                            {
+                                if (argelmachAdd->GetEntry() == NPC_WRATH_HAMMER_CONSTRUCT)
+                                {
+                                    argelmachAdd->RemoveAurasDueToSpell(SPELL_STONED);
+                                    argelmachAdd->AI()->AttackStart(argelmach->GetVictim());
+                                    itr = adds.erase(itr);
+                                }
+                                else if (argelmachAdd->GetEntry() == NPC_RAGEREAVER_GOLEM)
+                                {
+                                    if (argelmachAdd->IsWithinDist2d(argelmach, 10.f))
+                                    {
+                                        argelmachAdd->RemoveAurasDueToSpell(SPELL_STONED);
+                                        argelmachAdd->AI()->AttackStart(argelmach->GetVictim());
+                                        itr = adds.erase(itr);
+                                    }
+                                    else
+                                        ++itr;
+                                }
+                                else
+                                {
+                                    ++itr;
+                                }
+                            }
+                            else
+                            {
+                                ++itr;
+                            }
+                        }
+
+                        if (!adds.empty())
+                        {
+                            argelmach->SetReactState(REACT_PASSIVE);
+                            argelmach->SetTarget();
+                            argelmach->AI()->SetData(DATA_GOLEM_LORD_ARGELMACH_INIT, IN_PROGRESS);
+                        }
+                        else
+                        {
+                            argelmach->AI()->SetData(DATA_GOLEM_LORD_ARGELMACH_INIT, DONE);
+                        }
+                    }
+                    break;
+                }
+                case DATA_GOLEM_LORD_ARGELMACH_ADDS:
+                {
+                    if (Creature* argelmach = instance->GetCreature(ArgelmachGUID))
+                    {
+                        argelmach->HandleEmoteCommand(EMOTE_ONESHOT_SHOUT);
+                        argelmach->m_Events.AddEvent(new RestoreAttack(argelmach), argelmach->m_Events.CalculateTime(3000));
+
+                        for (ObjectGuid const& argelmachAddGUID : ArgelmachAdds)
+                        {
+                            if (Creature* argelmachAdd = instance->GetCreature(argelmachAddGUID))
+                            {
+                                if (!argelmachAdd->IsInCombat())
+                                {
+                                    argelmachAdd->RemoveAurasDueToSpell(SPELL_STONED);
+                                    argelmachAdd->AI()->AttackStart(argelmach->GetVictim());
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+                default:
+                    break;
             }
 
             if (data == DONE || GhostKillCount >= 7)
@@ -340,7 +441,7 @@ public:
             }
         }
 
-        uint32 GetData(uint32 type) const
+        uint32 GetData(uint32 type) const override
         {
             switch (type)
             {
@@ -365,7 +466,7 @@ public:
             return 0;
         }
 
-        uint64 GetData64(uint32 data) const
+        ObjectGuid GetGuidData(uint32 data) const override
         {
             switch (data)
             {
@@ -404,15 +505,16 @@ public:
                 case DATA_GO_CHALICE:
                     return GoSpectralChaliceGUID;
             }
-            return 0;
+
+            return ObjectGuid::Empty;
         }
 
-        std::string GetSaveData()
+        std::string GetSaveData() override
         {
             return str_data;
         }
 
-        void Load(const char* in)
+        void Load(const char* in) override
         {
             if (!in)
             {
@@ -474,7 +576,6 @@ public:
                 }
             }
             GhostKillCount = 0;
-            TombEventStarterGUID = 0;
             TombEventCounter = 0;
             TombTimer = TIMER_TOMBOFTHESEVEN;
             SetData(TYPE_TOMB_OF_SEVEN, NOT_STARTED);
@@ -492,10 +593,10 @@ public:
             DoRespawnGameObject(GoChestGUID, DAY);
             HandleGameObject(GoTombExitGUID, true);//event done, open exit door
             HandleGameObject(GoTombEnterGUID, true);//event done, open entrance door
-            TombEventStarterGUID = 0;
+            TombEventStarterGUID.Clear();
             SetData(TYPE_TOMB_OF_SEVEN, DONE);
         }
-        void Update(uint32 diff)
+        void Update(uint32 diff) override
         {
             if (TombEventStarterGUID && GhostKillCount < 7)
             {

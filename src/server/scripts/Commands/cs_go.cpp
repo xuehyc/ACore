@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-GPL2
+ * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license, you may redistribute it and/or modify it under version 2 of the License, or (at your option), any later version.
  * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  */
@@ -11,14 +11,14 @@ Comment: All go related commands
 Category: commandscripts
 EndScriptData */
 
-#include "ScriptMgr.h"
-#include "ObjectMgr.h"
-#include "MapManager.h"
-#include "TicketMgr.h"
 #include "Chat.h"
-#include "Language.h"
-#include "Player.h"
 #include "GameGraveyard.h"
+#include "Language.h"
+#include "MapMgr.h"
+#include "ObjectMgr.h"
+#include "Player.h"
+#include "ScriptMgr.h"
+#include "TicketMgr.h"
 
 class go_commandscript : public CommandScript
 {
@@ -101,7 +101,7 @@ public:
             {
                 std::string name = param1;
                 WorldDatabase.EscapeString(name);
-                whereClause << ", creature_template WHERE creature.id = creature_template.entry AND creature_template.name " _LIKE_ " '" << name << '\'';
+                whereClause << ", creature_template WHERE creature.id = creature_template.entry AND creature_template.name LIKE '" << name << '\'';
             }
             else
                 whereClause <<  "WHERE guid = '" << guid << '\'';
@@ -123,11 +123,11 @@ public:
         float z = fields[2].GetFloat();
         float ort = fields[3].GetFloat();
         int mapId = fields[4].GetUInt16();
-        uint32 guid = fields[5].GetUInt32();
+        ObjectGuid::LowType guid = fields[5].GetUInt32();
         uint32 id = fields[6].GetUInt32();
 
         // if creature is in same map with caster go at its current location
-        if (Creature* creature = ObjectAccessor::GetCreature(*player, MAKE_NEW_GUID(guid, id, HIGHGUID_UNIT)))
+        if (Creature* creature = ObjectAccessor::GetCreature(*player, ObjectGuid::Create<HighGuid::Unit>(id, guid)))
         {
             x = creature->GetPositionX();
             y = creature->GetPositionY();
@@ -135,7 +135,7 @@ public:
             ort = creature->GetOrientation();
         }
 
-        if (!MapManager::IsValidMapCoord(mapId, x, y, z, ort))
+        if (!MapMgr::IsValidMapCoord(mapId, x, y, z, ort))
         {
             handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, x, y, mapId);
             handler->SetSentErrorMessage(true);
@@ -180,7 +180,7 @@ public:
             return false;
         }
 
-        if (!MapManager::IsValidMapCoord(gy->Map, gy->x, gy->y, gy->z))
+        if (!MapMgr::IsValidMapCoord(gy->Map, gy->x, gy->y, gy->z))
         {
             handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, gy->x, gy->y, gy->Map);
             handler->SetSentErrorMessage(true);
@@ -222,7 +222,7 @@ public:
         float x = ((float)atof(gridX) - CENTER_GRID_ID + 0.5f) * SIZE_OF_GRIDS;
         float y = ((float)atof(gridY) - CENTER_GRID_ID + 0.5f) * SIZE_OF_GRIDS;
 
-        if (!MapManager::IsValidMapCoord(mapId, x, y))
+        if (!MapMgr::IsValidMapCoord(mapId, x, y))
         {
             handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, x, y, mapId);
             handler->SetSentErrorMessage(true);
@@ -282,7 +282,7 @@ public:
             return false;
         }
 
-        if (!MapManager::IsValidMapCoord(mapId, x, y, z, ort))
+        if (!MapMgr::IsValidMapCoord(mapId, x, y, z, ort))
         {
             handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, x, y, mapId);
             handler->SetSentErrorMessage(true);
@@ -327,7 +327,7 @@ public:
         }
 
         if ((node->x == 0.0f && node->y == 0.0f && node->z == 0.0f) ||
-                !MapManager::IsValidMapCoord(node->map_id, node->x, node->y, node->z))
+                !MapMgr::IsValidMapCoord(node->map_id, node->x, node->y, node->z))
         {
             handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, node->x, node->y, node->map_id);
             handler->SetSentErrorMessage(true);
@@ -372,7 +372,7 @@ public:
             return false;
         }
 
-        if (!MapManager::IsValidMapCoord(at->map, at->x, at->y, at->z))
+        if (!MapMgr::IsValidMapCoord(at->map, at->x, at->y, at->z))
         {
             handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, at->x, at->y, at->map);
             handler->SetSentErrorMessage(true);
@@ -442,7 +442,7 @@ public:
 
         Zone2MapCoordinates(x, y, zoneEntry->ID);
 
-        if (!MapManager::IsValidMapCoord(zoneEntry->mapid, x, y))
+        if (!MapMgr::IsValidMapCoord(zoneEntry->mapid, x, y))
         {
             handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, x, y, zoneEntry->mapid);
             handler->SetSentErrorMessage(true);
@@ -491,7 +491,7 @@ public:
         if (goZ)
         {
             z = (float)atof(goZ);
-            if (!MapManager::IsValidMapCoord(mapId, x, y, z))
+            if (!MapMgr::IsValidMapCoord(mapId, x, y, z))
             {
                 handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, x, y, mapId);
                 handler->SetSentErrorMessage(true);
@@ -500,7 +500,7 @@ public:
         }
         else
         {
-            if (!MapManager::IsValidMapCoord(mapId, x, y))
+            if (!MapMgr::IsValidMapCoord(mapId, x, y))
             {
                 handler->PSendSysMessage(LANG_INVALID_TARGET_COORD, x, y, mapId);
                 handler->SetSentErrorMessage(true);

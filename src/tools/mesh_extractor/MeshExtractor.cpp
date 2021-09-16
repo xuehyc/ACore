@@ -4,7 +4,7 @@
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  */
 
-#include "MPQManager.h"
+#include "MPQMgr.h"
 #include "WDT.h"
 #include "ContinentBuilder.h"
 #include "Cache.h"
@@ -20,7 +20,7 @@
 
 #include <set>
 
-MPQManager* MPQHandler;
+MPQMgr* MPQHandler;
 CacheClass* Cache;
 
 void ExtractMMaps(std::set<uint32>& mapIds, uint32 threads)
@@ -72,15 +72,15 @@ void ExtractDBCs()
     // Iterate over all available locales
     for (std::set<uint32>::iterator itr = MPQHandler->AvailableLocales.begin(); itr != MPQHandler->AvailableLocales.end(); ++itr)
     {
-        printf("Extracting DBCs for locale %s\n", MPQManager::Languages[*itr]);
+        printf("Extracting DBCs for locale %s\n", MPQMgr::Languages[*itr]);
         std::string path = baseDBCPath;
         if (*itr != uint32(MPQHandler->BaseLocale))
         {
-            path += std::string(MPQManager::Languages[*itr]) + "/";
+            path += std::string(MPQMgr::Languages[*itr]) + "/";
             Utils::CreateDir(path);
         }
 
-        std::string component = "component.wow-" + std::string(MPQManager::Languages[*itr]) + ".txt";
+        std::string component = "component.wow-" + std::string(MPQMgr::Languages[*itr]) + ".txt";
         // Extract the component file
         Utils::SaveToDisk(MPQHandler->GetFileFrom(component, MPQHandler->LocaleFiles[*itr]), path + component);
         // Extract the DBC files for the given locale
@@ -157,7 +157,7 @@ void ExtractGameobjectModels()
             if (numTris > 0)
             {
                 uint32 i = 0;
-                for (std::vector<Triangle<uint16> >::iterator itr2 = model.Triangles.begin(); itr2 != model.Triangles.end(); ++itr2, ++i)
+                for (std::vector<Triangle<uint16>>::iterator itr2 = model.Triangles.begin(); itr2 != model.Triangles.end(); ++itr2, ++i)
                 {
                     indices[i * 3 + 0] = itr2->V0;
                     indices[i * 3 + 1] = itr2->V1;
@@ -165,7 +165,6 @@ void ExtractGameobjectModels()
                 }
                 fwrite(indices, sizeof(uint16), numTris, output);
             }
-
 
             fwrite("VERT", 4, 1, output);
             wsize = sizeof(int) + sizeof(float) * 3 * numVerts;
@@ -229,7 +228,7 @@ void ExtractGameobjectModels()
                 uint32 mobaBatch = itr2->MOBALength / 12;
                 uint32* MobaEx = new uint32[mobaBatch * 4];
 
-                for(uint32 i = 8; i < itr2->MOBALength; i += 12)
+                for (uint32 i = 8; i < itr2->MOBALength; i += 12)
                     MobaEx[k++] = itr2->MOBA[i];
 
                 int mobaSizeGrp = mobaBatch * 4 + 4;
@@ -370,7 +369,7 @@ int main(int argc, char* argv[])
     }
 
     Cache = new CacheClass();
-    MPQHandler = new MPQManager();
+    MPQHandler = new MPQMgr();
     MPQHandler->Initialize();
 
     if (extractFlags & Constants::EXTRACT_FLAG_DBC)
@@ -400,7 +399,7 @@ int main(int argc, char* argv[])
         m_epos[2] = -end[0];
 
         //
-        dtQueryFilter m_filter;
+        dtQueryFilterExt m_filter;
         m_filter.setIncludeFlags(Constants::POLY_AREA_ROAD | Constants::POLY_AREA_TERRAIN);
         m_filter.setExcludeFlags(Constants::POLY_AREA_WATER);
 
