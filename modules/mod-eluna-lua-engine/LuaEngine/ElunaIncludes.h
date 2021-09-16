@@ -43,6 +43,8 @@
 #endif
 
 #if defined AZEROTHCORE
+#include "MapMgr.h"
+#else
 #include "MapManager.h"
 #endif
 
