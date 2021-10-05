@@ -1162,6 +1162,67 @@ void Player::UpdateArea(uint32 newArea)
     pvpInfo.IsInFFAPvPArea     = area && (area->flags & AREA_FLAG_ARENA);
     UpdateFFAPvPState(false);
 
+    if (sWorld->getBoolConfig(CONFIG_ADAPTIVE_LEVEL))
+    {
+        /*if (area->area_level == 0 && m_realLevel > 1) {
+        m_realLevel = getLevel();
+        GiveLevel(1);
+        }
+        else*/
+        if (area->area_level > 0)
+        {
+            if (getRealLevel() > area->area_level)
+            {
+                GiveAdaptiveLevel(area->area_level);
+            }
+            else
+            {
+                GiveAdaptiveLevel(getRealLevel());
+            }
+        }
+        else
+        {
+            CellCoord pair(Acore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+            Cell      cell(pair);
+            cell.SetNoCreate();
+
+            std::list<Creature*>                                              creatures;
+            Acore::AllHostileCreaturesInGrid                                creature_check(this);
+            Acore::CreatureListSearcher<Acore::AllHostileCreaturesInGrid>     creature_searcher(this, creatures, creature_check);
+
+            TypeContainerVisitor<Acore::CreatureListSearcher<Acore::AllHostileCreaturesInGrid>, GridTypeMapContainer> creature_visitor(creature_searcher);
+            cell.Visit(pair, creature_visitor, *GetMap(), *this, GetGridActivationRange());
+
+            if (!creatures.empty())
+            {
+                float _areaLevel = 0;
+                int   _count     = 0;
+                // TC_LOG_INFO("entities.player.character", "[LASYAN] %d creatures found", creatures.size());
+                for (std::list<Creature*>::iterator i = creatures.begin(); i != creatures.end(); ++i)
+                {
+                    Creature* const cre = *i;
+                    // if (cre->IsHostileToPlayers())
+                    if (cre->GetName().size() > 0)
+                    {
+                        _areaLevel += cre->getLevel();
+                        _count++;
+                        // TC_LOG_INFO("entities.player.character", "[LASYAN] %s %d ", cre->GetName(), cre->getLevel());
+                    }
+                }
+                _areaLevel /= _count;
+                // TC_LOG_INFO("entities.player.character", "[LASYAN] Give new level %f - %f - %f", _adaptativeLevel, floor(_adaptativeLevel), ceil(_adaptativeLevel));
+                if (getRealLevel() > _areaLevel)
+                {
+                    GiveAdaptiveLevel(_areaLevel);
+                }
+                else
+                {
+                    GiveAdaptiveLevel(getRealLevel());
+                }
+            }
+        }
+    }
+
     UpdateAreaDependentAuras(newArea);
 
     pvpInfo.IsInNoPvPArea = false;

@@ -937,13 +937,13 @@ bool Player::SatisfyQuestSkill(Quest const* qInfo, bool msg) const
 
 bool Player::SatisfyQuestLevel(Quest const* qInfo, bool msg) const
 {
-    if (getLevel() < qInfo->GetMinLevel())
+    if (getRealLevel() < qInfo->GetMinLevel())
     {
         if (msg)
             SendCanTakeQuestResponse(INVALIDREASON_QUEST_FAILED_LOW_LEVEL);
         return false;
     }
-    else if (qInfo->GetMaxLevel() > 0 && getLevel() > qInfo->GetMaxLevel())
+    else if (qInfo->GetMaxLevel() > 0 && getRealLevel() > qInfo->GetMaxLevel())
     {
         if (msg)
             SendCanTakeQuestResponse(INVALIDREASON_DONT_HAVE_REQ); // There doesn't seem to be a specific response for too high player level
@@ -1623,7 +1623,7 @@ QuestGiverStatus Player::GetQuestDialogStatus(Object* questgiver)
             {
                 if (SatisfyQuestLevel(quest, false))
                 {
-                    bool isLowLevel = (getLevel() > (GetQuestLevel(quest) + sWorld->getIntConfig(CONFIG_QUEST_LOW_LEVEL_HIDE_DIFF)));
+                    bool isLowLevel = (getRealLevel() > (GetQuestLevel(quest) + sWorld->getIntConfig(CONFIG_QUEST_LOW_LEVEL_HIDE_DIFF)));
 
                     if (quest->IsAutoComplete())
                     {
@@ -1650,6 +1650,8 @@ QuestGiverStatus Player::GetQuestDialogStatus(Object* questgiver)
                         }
                     }
                 }
+                else if (getAdaptiveLevel() <= (GetQuestLevel(quest) + sWorld->getIntConfig(CONFIG_QUEST_LOW_LEVEL_HIDE_DIFF)))
+                    result2 = DIALOG_STATUS_AVAILABLE;
                 else
                     result2 = DIALOG_STATUS_UNAVAILABLE;
             }

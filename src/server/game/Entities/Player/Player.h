@@ -27,6 +27,7 @@
 #include "WorldSession.h"
 #include <string>
 #include <vector>
+#include "World.h"
 
 struct CreatureTemplate;
 struct Mail;
@@ -2519,6 +2520,23 @@ public:
     std::string GetMapAreaAndZoneString();
     std::string GetCoordsMapAreaAndZoneString();
 
+    uint8 getLevel() const
+    {
+        return m_realLevel;
+    }
+    uint8 getRealLevel() const
+    {
+        return m_realLevel;
+    }
+    uint8 getAdaptiveLevel() const
+    {
+        if (sWorld->getBoolConfig(CONFIG_ADAPTIVE_LEVEL))
+            return m_adaptiveLevel;
+        else
+            return m_realLevel;
+    }
+    void GiveAdaptiveLevel(uint8 level);
+
     void SetFarSightDistance(float radius);
     void ResetFarSightDistance();
     Optional<float> GetFarSightDistance() const;
@@ -2862,6 +2880,8 @@ private:
     uint32 _pendingBindTimer;
 
     uint32 _activeCheats;
+
+    uint8 m_realLevel, m_adaptiveLevel;
 
     // duel health and mana reset attributes
     uint32 healthBeforeDuel;

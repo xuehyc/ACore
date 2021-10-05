@@ -4956,6 +4956,7 @@ bool Player::LoadFromDB(ObjectGuid playerGuid, CharacterDatabaseQueryHolder cons
     m_race = fields[3].GetUInt8(); // set real race
 
     SetUInt32Value(UNIT_FIELD_LEVEL, fields[6].GetUInt8());
+    m_realLevel = m_adaptiveLevel = fields[6].GetUInt8();
     SetUInt32Value(PLAYER_XP, fields[7].GetUInt32());
 
     _LoadIntoDataField(fields[66].GetCString(), PLAYER_EXPLORED_ZONES_1, PLAYER_EXPLORED_ZONES_SIZE);

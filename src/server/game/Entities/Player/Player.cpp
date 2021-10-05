@@ -565,7 +565,7 @@ bool Player::Create(ObjectGuid::LowType guidlow, CharacterCreateInfo* createInfo
     }
 
     SetUInt32Value(UNIT_FIELD_LEVEL, start_level);
-
+    m_realLevel = m_adaptiveLevel = start_level;
     InitRunes();
 
     SetUInt32Value(PLAYER_FIELD_COINAGE, sWorld->getIntConfig(CONFIG_START_PLAYER_MONEY));
@@ -2394,7 +2394,7 @@ void Player::GiveLevel(uint8 level)
     _ApplyAllLevelScaleItemMods(false);
 
     SetLevel(level);
-
+    m_realLevel = level;
     UpdateSkillsForLevel();
 
     // save base values (bonuses already included in stored stats
@@ -2627,6 +2627,110 @@ void Player::InitStatsForLevel(bool reapplyMods)
     // update level to hunter/summon pet
     if (Pet* pet = GetPet())
         pet->SynchronizeLevelWithOwner();
+}
+
+void Player::GiveAdaptiveLevel(uint8 level)
+{
+    if (level > m_realLevel)
+        level = m_realLevel;
+    uint8 oldLevel = getAdaptiveLevel();
+    if (level == oldLevel)
+        return;
+    if (abs(level - oldLevel) <= 3)
+        return;
+    m_adaptiveLevel = level;
+
+    /*if (Guild* guild = GetGuild())
+    guild->UpdateMemberData(this, GUILD_MEMBER_DATA_LEVEL, level);*/
+
+    PlayerLevelInfo info;
+    sObjectMgr->GetPlayerLevelInfo(getRace(), getClass(), level, &info);
+
+    PlayerClassLevelInfo classInfo;
+    sObjectMgr->GetPlayerClassLevelInfo(getClass(), level, &classInfo);
+
+    // send levelup info to client
+    /*WorldPacket data(SMSG_LEVELUP_INFO, (4 + 4 + MAX_POWERS * 4 + MAX_STATS * 4));
+    data << uint32(level);
+    data << uint32(int32(classInfo.basehealth) - int32(GetCreateHealth()));
+    // for (int i = 0; i < MAX_POWERS; ++i)                  // Powers loop (0-6)
+    data << uint32(int32(classInfo.basemana) - int32(GetCreateMana()));
+    data << uint32(0);
+    data << uint32(0);
+    data << uint32(0);
+    data << uint32(0);
+    data << uint32(0);
+    data << uint32(0);
+    // end for
+    for (uint8 i = STAT_STRENGTH; i < MAX_STATS; ++i)          // Stats loop (0-4)
+    data << uint32(int32(info.stats[i]) - GetCreateStat(Stats(i)));
+
+    GetSession()->SendPacket(&data);*/
+
+    // SetUInt32Value(PLAYER_NEXT_LEVEL_XP, sObjectMgr->GetXPForLevel(level));
+
+    // update level, max level of skills
+    // m_Played_time[PLAYED_TIME_LEVEL] = 0;                   // Level Played Time reset
+
+    _ApplyAllLevelScaleItemMods(false);
+
+    // SetLevel(level);
+
+    // UpdateSkillsForLevel();
+
+    // save base values (bonuses already included in stored stats
+    for (uint8 i = STAT_STRENGTH; i < MAX_STATS; ++i) SetCreateStat(Stats(i), info.stats[i]);
+
+    SetCreateHealth(classInfo.basehealth);
+    SetCreateMana(classInfo.basemana);
+
+    // InitTalentForLevel();
+    // InitTaxiNodesForLevel();
+    // InitGlyphsForLevel();
+
+    UpdateAllStats();
+
+    /*if (sWorld->getBoolConfig(CONFIG_ALWAYS_MAXSKILL)) // Max weapon skill when leveling up
+    UpdateSkillsToMaxSkillsForLevel();*/
+
+    // set current level health and mana/energy to maximum after applying all mods.
+    SetFullHealth();
+    SetPower(POWER_MANA, GetMaxPower(POWER_MANA));
+    SetPower(POWER_ENERGY, GetMaxPower(POWER_ENERGY));
+    if (GetPower(POWER_RAGE) > GetMaxPower(POWER_RAGE))
+        SetPower(POWER_RAGE, GetMaxPower(POWER_RAGE));
+    SetPower(POWER_FOCUS, 0);
+    SetPower(POWER_HAPPINESS, 0);
+
+    _ApplyAllLevelScaleItemMods(true);
+
+    // update level to hunter/summon pet
+    /*if (Pet* pet = GetPet())
+    pet->SynchronizeLevelWithOwner();*/
+
+    /*if (MailLevelReward const* mailReward = sObjectMgr->GetMailLevelReward(level, getRaceMask()))
+    {
+    /// @todo Poor design of mail system
+    SQLTransaction trans = CharacterDatabase.BeginTransaction();
+    MailDraft(mailReward->mailTemplateId).SendMailTo(trans, this, MailSender(MAIL_CREATURE, mailReward->senderEntry));
+    CharacterDatabase.CommitTransaction(trans);
+    }*/
+
+    // UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_REACH_LEVEL);
+
+    // Refer-A-Friend
+    /*if (GetSession()->GetRecruiterId())
+    if (level < sWorld->getIntConfig(CONFIG_MAX_RECRUIT_A_FRIEND_BONUS_PLAYER_LEVEL))
+    if (level % 2 == 0)
+    {
+    ++m_grantableLevels;
+
+    if (!HasByteFlag(PLAYER_FIELD_BYTES, 1, 0x01))
+    SetByteFlag(PLAYER_FIELD_BYTES, 1, 0x01);
+    }*/
+
+    // sScriptMgr->OnPlayerLevelChanged(this, oldLevel);
+    ChatHandler(GetSession()).PSendSysMessage("[AdaptiveLevel] Your level has been capped to %d", level);
 }
 
 void Player::SendInitialSpells()
@@ -5585,11 +5689,11 @@ void Player::CheckAreaExploreAndOutdoor()
             }
             else
             {
-                int32 diff = int32(getLevel()) - areaEntry->area_level;
+                int32  diff = int32(getAdaptiveLevel()) - areaEntry->area_level;
                 uint32 XP = 0;
                 if (diff < -5)
                 {
-                    XP = uint32(sObjectMgr->GetBaseXP(getLevel() + 5) * sWorld->getRate(RATE_XP_EXPLORE));
+                    XP = uint32(sObjectMgr->GetBaseXP(getAdaptiveLevel() + 5) * sWorld->getRate(RATE_XP_EXPLORE));
                 }
                 else if (diff > 5)
                 {

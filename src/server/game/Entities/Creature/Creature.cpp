@@ -3312,6 +3312,10 @@ float Creature::GetAttackDistance(Unit const* player) const
         return 0.0f;
 
     uint32 playerLevel = player->getLevelForTarget(this);
+    if (player->m_ControlledByPlayer && player->ToPlayer())
+    {
+        playerLevel = player->ToPlayer()->getAdaptiveLevel();
+    }
     uint32 creatureLevel = getLevelForTarget(player);
 
     int32 levelDiff = static_cast<int32>(playerLevel) - static_cast<int32>(creatureLevel);

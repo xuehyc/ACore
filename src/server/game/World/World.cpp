@@ -1407,6 +1407,9 @@ void World::LoadConfigSettings(bool reload)
     // Specifies if IP addresses can be logged to the database
     m_bool_configs[CONFIG_ALLOW_LOGGING_IP_ADDRESSES_IN_DATABASE] = sConfigMgr->GetOption<bool>("AllowLoggingIPAddressesInDatabase", true, true);
 
+    // Custom
+    m_bool_configs[CONFIG_ADAPTIVE_LEVEL]    = sConfigMgr->GetBoolDefault("Custom.AdaptiveLevel", false);
+
     // call ScriptMgr if we're reloading the configuration
     sScriptMgr->OnAfterConfigLoad(reload);
 }

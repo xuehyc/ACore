@@ -73,7 +73,7 @@ inline void KillRewarder::_InitGroupData()
             if (Player* member = itr->GetSource())
                 if ((_killer == member || member->IsAtGroupRewardDistance(_victim)))
                 {
-                    const uint8 lvl = member->getLevel();
+                    const uint8 lvl = member->getAdaptiveLevel();
                     if (member->IsAlive())
                     {
                         // 2.1. _count - number of alive group members within reward distance;
