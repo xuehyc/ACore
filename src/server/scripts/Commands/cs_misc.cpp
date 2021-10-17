@@ -1377,7 +1377,7 @@ public:
         Player* player = handler->GetSession()->GetPlayer();
         uint32 zone_id = player->GetZoneId();
 
-        GraveyardStruct const* graveyard = sGraveyard->GetClosestGraveyard(player->GetPositionX(), player->GetPositionY(), player->GetPositionZ(), player->GetMapId(), teamId);
+        GraveyardStruct const* graveyard = sGraveyard->GetClosestGraveyard(player, teamId);
 
         if (graveyard)
         {
@@ -3313,7 +3313,7 @@ public:
         }
 
         WorldPacket data(SMSG_PLAY_SOUND, 4);
-        data << uint32(soundId) << handler->GetSession()->GetPlayer()->GetGUID();
+        data << uint32(soundId);
         sWorld->SendGlobalMessage(&data);
 
         handler->PSendSysMessage(LANG_COMMAND_PLAYED_TO_ALL, soundId);

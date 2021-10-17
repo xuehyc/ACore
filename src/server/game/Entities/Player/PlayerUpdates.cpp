@@ -1536,6 +1536,7 @@ void Player::UpdatePvP(bool state, bool _override)
     }
 
     RemoveFlag(PLAYER_FLAGS, PLAYER_FLAGS_PVP_TIMER);
+    sScriptMgr->OnPlayerPVPFlagChange(this, state);
 }
 
 void Player::UpdatePotionCooldown(Spell* spell)
