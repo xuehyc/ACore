@@ -8,10 +8,12 @@ Modified world database: https://mega.nz/file/RgpHgSRQ#HdIBUaBzMLi426vSqJRMArhjU
 ### UI: use AzerothCore built-in database update system to keep the DB up to date.
 
 
-### Not implemented yet:
+### Need to do:
 - Level up already learned spells
 - Remove the base druid class talents and spells
-
+- Do some balance
+- Add DK spells
+- Better UI for classless system
 
 # ![logo](https://raw.githubusercontent.com/azerothcore/azerothcore.github.io/master/images/logo-github.png) AzerothCore
 
