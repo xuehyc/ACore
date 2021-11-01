@@ -1,3 +1,13 @@
+# This project based on AzerothCore mixed with AstoriaCore scripts
+
+## Required Stuff:
+Client mod: https://mega.nz/file/8wAX0IxT#GHsM5Z2Tv-wg_g4MA7PYLFMN0gfVDm8EgvsZHtDz4ho
+
+Modified world database: https://mega.nz/file/RgpHgSRQ#HdIBUaBzMLi426vSqJRMArhjUo_r5zKJw9IcmpvPFgU
+
+### UI: use AzerothCore built-in database update system to keep the DB up to date.
+
+
 # ![logo](https://raw.githubusercontent.com/azerothcore/azerothcore.github.io/master/images/logo-github.png) AzerothCore
 
 [![CodeFactor](https://www.codefactor.io/repository/github/azerothcore/azerothcore-wotlk/badge)](https://www.codefactor.io/repository/github/azerothcore/azerothcore-wotlk)
