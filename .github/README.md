@@ -8,6 +8,11 @@ Modified world database: https://mega.nz/file/RgpHgSRQ#HdIBUaBzMLi426vSqJRMArhjU
 ### UI: use AzerothCore built-in database update system to keep the DB up to date.
 
 
+### Not implemented yet:
+- Level up already learned spells
+- Remove the base druid class talents and spells
+
+
 # ![logo](https://raw.githubusercontent.com/azerothcore/azerothcore.github.io/master/images/logo-github.png) AzerothCore
 
 [![CodeFactor](https://www.codefactor.io/repository/github/azerothcore/azerothcore-wotlk/badge)](https://www.codefactor.io/repository/github/azerothcore/azerothcore-wotlk)
