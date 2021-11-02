@@ -56,8 +56,8 @@ public:
                 go->SetOwnerGUID(ObjectGuid::Empty);
 
                 for (int i = urand(0, 17); i < EQUIPMENT_SLOT_END; ++i)
-                    /* Equipment Set first */
 
+                    /* Equipment Set first */
                     for (uint8 i = urand(0, 17); i < EQUIPMENT_SLOT_END; ++i)
                     {
                         if (count >= 2) // if there is 2 or more items stop for
@@ -103,7 +103,6 @@ public:
                 }
 
                 /* Main bag and bagpacks */
-
                 for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; ++i)
                 {
                     if (Item* pItem = killed->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
