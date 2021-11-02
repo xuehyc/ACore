@@ -50,7 +50,6 @@ public:
         {
             uint32 prev = 0;
             uint32 count = 0;
-            Position pos = killed->GetPosition();
             if (GameObject* go = killer->SummonGameObject(GOB_CHEST, killed->GetPositionX(), killed->GetPositionY(), killed->GetPositionZ(), killed->GetOrientation(), 0.0f, 0.0f, 0.0f, 0.0f, 300))
             {
                 killer->AddGameObject(go);
@@ -153,6 +152,7 @@ public:
         }
     }
 };
+
 void AddSC_HighRiskSystems()
 {
     new HighRiskSystem();
