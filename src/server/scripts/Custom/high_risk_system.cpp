@@ -140,7 +140,6 @@ public:
                                 if (pItem->GetTemplate() && pItem->GetTemplate()->Quality < ITEM_QUALITY_UNCOMMON)
                                     continue;
 
-                                uint8 slot = pItem->GetSlot();
                                 ChatHandler(killed->GetSession()).PSendSysMessage("|cffDA70D6You have lost your |cffffffff|Hitem:%d:0:0:0:0:0:0:0:0|h[%s]|h|r", pItem->GetEntry(), pItem->GetTemplate()->Name1.c_str());
                                 LootStoreItem storeItem = LootStoreItem(pItem->GetEntry(), 0, 100, 0, LOOT_MODE_DEFAULT, 0, 1, 1);
                                 go->loot.AddItem(storeItem);
