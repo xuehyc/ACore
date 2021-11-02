@@ -39,7 +39,7 @@ public:
    // to the player variable to tell the compiler it is fine not to use it.
    void OnLogin(Player* player)
    {
-	   if (sConfigMgr->GetIntDefault("SoloLFG.Enable", true))
+       if (sConfigMgr->GetIntDefault("SoloLFG.Enable", true))
         {
             if (!sLFGMgr->IsTesting())
             {
@@ -51,6 +51,6 @@ public:
 
 void AddLfgSoloScripts()
 {
-	new lfg_solo_announce();
+    new lfg_solo_announce();
     new lfg_solo();
 }

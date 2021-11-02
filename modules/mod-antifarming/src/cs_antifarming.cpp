@@ -7,30 +7,30 @@ public:
     std::vector<ChatCommand> GetCommands() const override {
 
         static std::vector<ChatCommand> HelpDeleteSubCommandTable = {
-            { "all",		SEC_GAMEMASTER,		false,	&HandleHelpDeleteAllCommand,	"" },
-            { "ID",		    SEC_GAMEMASTER,		false,	&HandleHelpDeleteIDCommand,		"" }
+            { "all",        SEC_GAMEMASTER,        false,    &HandleHelpDeleteAllCommand,    "" },
+            { "ID",            SEC_GAMEMASTER,        false,    &HandleHelpDeleteIDCommand,        "" }
         };
 
         static std::vector<ChatCommand> HelpCommandSubTable = {
-            { "log",		SEC_GAMEMASTER,		false,	&HandleHelpLogCommand,		"" },
-            { "delete",		SEC_GAMEMASTER,		false,	NULL,		            	"",	HelpDeleteSubCommandTable }
+            { "log",        SEC_GAMEMASTER,        false,    &HandleHelpLogCommand,        "" },
+            { "delete",        SEC_GAMEMASTER,        false,    NULL,                        "",    HelpDeleteSubCommandTable }
         };
 
         static std::vector<ChatCommand> DeleteCommandSubTable = {
-            { "all",		SEC_GAMEMASTER,		true,	&HandleDeleteAllCommand,	"" },
-            { "ID",		    SEC_GAMEMASTER,		true,	&HandleDeleteIDCommand,		"" }
+            { "all",        SEC_GAMEMASTER,        true,    &HandleDeleteAllCommand,    "" },
+            { "ID",            SEC_GAMEMASTER,        true,    &HandleDeleteIDCommand,        "" }
         };
 
         static std::vector<ChatCommand> AFSSubCommandTable = {
-            { "log",		SEC_GAMEMASTER,		true,	&HandleLogCommand,		    "" },
-            { "delete",		SEC_ADMINISTRATOR,	true,	NULL,		            	"", DeleteCommandSubTable },
-            { "help",		SEC_GAMEMASTER,		false,	NULL,		            	"", HelpCommandSubTable }
+            { "log",        SEC_GAMEMASTER,        true,    &HandleLogCommand,            "" },
+            { "delete",        SEC_ADMINISTRATOR,    true,    NULL,                        "", DeleteCommandSubTable },
+            { "help",        SEC_GAMEMASTER,        false,    NULL,                        "", HelpCommandSubTable }
         };
 
 
         static std::vector<ChatCommand> commandTable =
         {
-            { "afs",	    SEC_GAMEMASTER,		true,	NULL,		            	"",	AFSSubCommandTable }
+            { "afs",        SEC_GAMEMASTER,        true,    NULL,                        "",    AFSSubCommandTable }
         };
         return commandTable;
     }

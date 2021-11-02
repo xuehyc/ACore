@@ -24,6 +24,6 @@ void AddSC_HighRiskSystems();
 // void Add${NameOfDirectory}Scripts()
 void AddCustomScripts()
 {
-	AddSC_HighRiskSystems();
+    AddSC_HighRiskSystems();
     // MyExampleScript()
 }

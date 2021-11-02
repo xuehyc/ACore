@@ -374,14 +374,14 @@ fail:
 #endif /* ARGON2_NO_THREADS */
 
 int fill_memory_blocks(argon2_instance_t *instance) {
-	if (instance == NULL || instance->lanes == 0) {
-	    return ARGON2_INCORRECT_PARAMETER;
+    if (instance == NULL || instance->lanes == 0) {
+        return ARGON2_INCORRECT_PARAMETER;
     }
 #if defined(ARGON2_NO_THREADS)
     return fill_memory_blocks_st(instance);
 #else
     return instance->threads == 1 ?
-			fill_memory_blocks_st(instance) : fill_memory_blocks_mt(instance);
+            fill_memory_blocks_st(instance) : fill_memory_blocks_mt(instance);
 #endif
 }
 
