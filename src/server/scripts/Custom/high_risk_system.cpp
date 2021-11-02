@@ -51,7 +51,6 @@ public:
             uint32 prev = 0;
             uint32 count = 0;
             Position pos = killed->GetPosition();
-            G3D::Quat rot = G3D::Matrix3::fromEulerAnglesZYX(pos.GetOrientation(), 0.f, 0.f);
             if (GameObject* go = killer->SummonGameObject(GOB_CHEST, killed->GetPositionX(), killed->GetPositionY(), killed->GetPositionZ(), killed->GetOrientation(), 0.0f, 0.0f, 0.0f, 0.0f, 300))
             {
                 killer->AddGameObject(go);
