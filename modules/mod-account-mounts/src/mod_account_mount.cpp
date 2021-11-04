@@ -52,10 +52,10 @@ public:
             {
                 auto sSpell = sSpellStore.LookupEntry(i);
                 if (sSpell->Effect[0] == SPELL_EFFECT_APPLY_AURA && sSpell->EffectApplyAuraName[0] == SPELL_AURA_MOUNTED)
-					pPlayer->learnSpell(sSpell->Id);
+                    pPlayer->learnSpell(sSpell->Id);
             }
         }
-	}
+    }
 };
 
 void AddAccountMountsScripts()

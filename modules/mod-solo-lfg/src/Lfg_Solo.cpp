@@ -37,20 +37,26 @@ public:
     
    // Docker Installation prevents warnings. In order to avoid the issue, we need to add __attribute__ ((unused)) 
    // to the player variable to tell the compiler it is fine not to use it.
-   void OnLogin(Player* player)
-   {
-	   if (sConfigMgr->GetIntDefault("SoloLFG.Enable", true))
-        {
-            if (!sLFGMgr->IsTesting())
-            {
-            sLFGMgr->ToggleTesting();
-            }
-        }
-   }
+
+    void OnLogin(Player* player)
+    {
+       if (sConfigMgr->GetIntDefault("SoloLFG.Enable", true))
+       {
+           if (!player)
+           {
+               return;
+           }
+
+           if (!sLFGMgr->IsTesting())
+           {
+               sLFGMgr->ToggleTesting();
+           }
+       }
+    }
 };
 
 void AddLfgSoloScripts()
 {
-	new lfg_solo_announce();
+    new lfg_solo_announce();
     new lfg_solo();
 }

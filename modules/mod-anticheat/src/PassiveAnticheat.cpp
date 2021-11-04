@@ -3,6 +3,6 @@
 
 void AddPassiveAnticheatScripts()
 {
-	startAnticheatScripts();
-	AddSC_anticheat_commandscript();
+    startAnticheatScripts();
+    AddSC_anticheat_commandscript();
 }
