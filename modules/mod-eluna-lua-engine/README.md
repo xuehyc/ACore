@@ -28,7 +28,7 @@ Optional: if you need to update Eluna to the latest version, you can `cd LuaEngi
 
 1. download [mod-eluna-lua-engine](https://github.com/azerothcore/mod-eluna-lua-engine/archive/master.zip)  
 2. extract it move the folder **mod-eluna-lua-engine** inside the **modules** folder of your azerothcore-wotlk sources
-3. download [Eluna](https://github.com/ElunaLuaEngine/Eluna/archive/master.zip) 
+3. download [Eluna](https://github.com/Azerothcore/Eluna/archive/master.zip) 
 4. extract it and move all the files inside the `Eluna-master` folder into the `mod-eluna-lua-engine/LuaEngine` folder. `LuaEngine.h` needs to be directly under `mod-eluna-lua-engine/LuaEngine` without any extra sub-folders.
 
 ### 2) Build
@@ -37,3 +37,18 @@ You need to run the cmake again and and rebuild the project.
 
 Eluna API : 
 [http://elunaluaengine.github.io/](http://elunaluaengine.github.io/)
+
+## How to update the Eluna version (for project mainteners)
+
+1) `cd` into `mod-eluna-lua-engine`
+2) `git checkout master`
+3) cd `LuaEngine`
+4) `git checkout master`
+5) `git pull`
+6) `cd ..` so you get back to `mod-eluna-lua-engine`
+7) `git checkout -b some-new-unique-branch-name`
+8) `git add LuaEngine`
+9) `git commit -m "feat: update Eluna version"`
+10) `git push`
+11) The terminal will tell you something like `fatal: The current branch some-new-unique-branch-name has no upstream branch.` and suggest the command to use, for example: `git push --set-upstream origin some-new-unique-branch-name`
+12) Open [the repo on Github](https://github.com/azerothcore/mod-eluna-lua-engine) and create a new PR

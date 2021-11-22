@@ -1,1 +1,0 @@
-﻿void AddSC_antifarming_commandscript();

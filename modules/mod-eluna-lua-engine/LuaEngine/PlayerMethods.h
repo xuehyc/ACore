@@ -1382,6 +1382,20 @@ namespace LuaPlayer
     }
 
     /**
+     * Returns a mailed [Item] by guid.
+     *
+     * @param ObjectGuid guid : an item guid
+     * @return [Item] item
+     */
+    int GetMailItem(lua_State* L, Player* player)
+    {
+        ObjectGuid guid = Eluna::CHECKVAL<ObjectGuid>(L, 2);
+
+        Eluna::Push(L, player->GetMItem(guid.GetCounter()));
+        return 1;
+    }
+
+    /**
      * Returns an [Item] from the player by entry.
      *
      * The item can be equipped, in bags or in bank.
@@ -1707,7 +1721,7 @@ namespace LuaPlayer
     {
         uint8 race = Eluna::CHECKVAL<uint8>(L, 2);
 
-#ifdef TRINITY
+#if defined TRINITY || AZEROTHCORE
         player->SetFactionForRace(race);
 #else
         player->setFactionForRace(race);
@@ -2268,10 +2282,8 @@ namespace LuaPlayer
     {
         Unit* unit = Eluna::CHECKOBJ<Unit>(L, 2);
 
-#ifdef TRINITY
+#if defined TRINITY || AZEROTHCORE
         AuctionHouseEntry const* ahEntry = AuctionHouseMgr::GetAuctionHouseEntry(unit->GetFaction());
-#elif AZEROTHCORE
-        AuctionHouseEntry const* ahEntry = AuctionHouseMgr::GetAuctionHouseEntry(unit->getFaction());
 #else
         AuctionHouseEntry const* ahEntry = AuctionHouseMgr::GetAuctionHouseEntry(unit);
 #endif
@@ -3727,6 +3739,17 @@ namespace LuaPlayer
 #endif
         return 0;
     }
+
+#if !defined(CLASSIC)
+    /**
+     * Remove cooldowns on spells that have less than 10 minutes of cooldown from the [Player], similarly to when you enter an arena.
+     */
+    int RemoveArenaSpellCooldowns(lua_State* /*L*/, Player* player)
+    {
+        player->RemoveArenaSpellCooldowns();
+        return 0;
+    }
+#endif
 
     /**
      * Resurrects the [Player].
