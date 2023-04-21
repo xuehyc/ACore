@@ -1,10 +1,9 @@
-#
+﻿#
 # AzerothCore
 #
 
 /conf/*
 !/conf/dist
-/modules/*
 !/modules/*.md
 !/modules/*.sh
 !/modules/CMakeLists.txt
