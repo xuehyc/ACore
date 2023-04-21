@@ -1,38 +1,53 @@
-##########################################
+﻿##########################################
 # Playerbot Configuration file           #
 ##########################################
 
+##########################################
+# 智能玩家机器人配置文件                 #
+##########################################
+
 # Enable or disable AI Playerbot
+# 启用或禁用智能玩家机器人
 AiPlayerbot.Enabled = 1
 
 # Enable random bot system
+# 启用随机机器人系统
 AiPlayerbot.RandomBotAutologin = 1
 
 # Log on all random bots on start
+# 在启动时登录所有的随机机器人
 AiPlayerbot.RandomBotLoginAtStartup = 1
 
 # Delete all random bot accounts (reset randombots)
+# 删除所有的随机机器人账号(重置随机机器人)
 AiPlayerbot.DeleteRandomBotAccounts = 0
 
 # auto-login all player alts as bots on player login
+# 在玩家登录时,自动登录玩家所有小号作为机器人
 AiPlayerbot.BotAutologin = 0
 
 # Guild Task system
+# 工会任务系统
 AiPlayerbot.EnableGuildTasks = 0
 
 # Enable LFG for random bots
+# 为机器人启用随机地下城查找器
 AiPlayerbot.RandomBotJoinLfg = 1
 
 # Enable dungeon suggestions for random bots
+# 为随机机器人启用地下城建议
 AiPlayerbot.RandomBotSuggestDungeons = 1
 
 # Enable dungeon suggestions in lower case randomly
+# 更低的随机几率为机器人启用地下城建议
 AiPlayerbot.SuggestDungeonsInLowerCaseRandomly = 0
 
 # Enable BG/Arena for random Bots
+# 为战场/竞技场启用随机机器人
 AiPlayerbot.RandomBotJoinBG = 1
 
 # Enable Auto join BG - bots randomly join WSG and 2v2 Arena if server is not lagging
+# 启动自动加入战场(如果服务器不卡,机器人随机加入战歌峡谷和2V2竞技场)
 AiPlayerbot.RandomBotAutoJoinBG = 0
 
 # Mark many quests <= Bot level as complete (slows down bot creation)
