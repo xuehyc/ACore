@@ -67,6 +67,7 @@
 #include "ObjectMgr.h"
 #include "Opcodes.h"
 #include "OutdoorPvPMgr.h"
+#include "QueryHolder.h"
 #include "PetitionMgr.h"
 #include "Player.h"
 #include "PlayerDump.h"
@@ -2344,6 +2345,8 @@ void World::Update(uint32 diff)
         ResetGuildCap();
     }
 
+    sScriptMgr->OnPlayerbotUpdate(diff);
+
     // pussywizard:
     // acquire mutex now, this is kind of waiting for listing thread to finish it's work (since it can't process next packet)
     // so we don't have to do it in every packet that modifies auctions
@@ -2496,6 +2499,7 @@ void World::Update(uint32 diff)
         CharacterDatabase.KeepAlive();
         LoginDatabase.KeepAlive();
         WorldDatabase.KeepAlive();
+        sScriptMgr->OnDatabasesKeepAlive();
     }
 
     {
@@ -2841,6 +2845,8 @@ void World::ShutdownServ(uint32 time, uint32 options, uint8 exitcode, const std:
         _shutdownTimer = time;
         ShutdownMsg(true, nullptr, reason);
     }
+
+    sScriptMgr->OnPlayerbotLogoutBots();
 
     sScriptMgr->OnShutdownInitiate(ShutdownExitCode(exitcode), ShutdownMask(options));
 }
@@ -3291,6 +3297,12 @@ uint64 World::getWorldState(uint32 index) const
 void World::ProcessQueryCallbacks()
 {
     _queryProcessor.ProcessReadyCallbacks();
+    _queryHolderProcessor.ProcessReadyCallbacks();
+}
+
+SQLQueryHolderCallback& World::AddQueryHolderCallback(SQLQueryHolderCallback&& callback)
+{
+    return _queryHolderProcessor.AddCallback(std::move(callback));
 }
 
 void World::RemoveOldCorpses()
