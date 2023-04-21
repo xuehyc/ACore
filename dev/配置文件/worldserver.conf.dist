@@ -1,4 +1,4 @@
-################################################
+﻿################################################
 # AzerothCore World Server configuration file #
 ################################################
 [worldserver]
@@ -106,9 +106,9 @@ TempDir = ""
 #                     "127.0.0.1;3306;acore;acore;acore_world"      - (WorldDatabaseInfo)
 #                     "127.0.0.1;3306;acore;acore;acore_characters" - (CharacterDatabaseInfo)
 
-LoginDatabaseInfo     = "127.0.0.1;3306;acore;acore;acore_auth"
-WorldDatabaseInfo     = "127.0.0.1;3306;acore;acore;acore_world"
-CharacterDatabaseInfo = "127.0.0.1;3306;acore;acore;acore_characters"
+LoginDatabaseInfo     = "127.0.0.1;3306;root;root;acore_auth"
+WorldDatabaseInfo     = "127.0.0.1;3306;root;root;acore_world"
+CharacterDatabaseInfo = "127.0.0.1;3306;root;root;acore_characters"
 
 #
 #    Database.Reconnect.Seconds
