@@ -69,7 +69,7 @@ RealmID = 1
 #        Example:     "@prefix@\home\youruser\azerothcore\data"
 #        Default:     "."
 
-DataDir = "."
+DataDir = "D:\Program Files (x86)\WoW_3.3.5_12340"
 
 #
 #    LogsDir
