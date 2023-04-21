@@ -1,7 +1,12 @@
-锘縭em 娉ㄦ剰姝ゆ壒澶勭悊,蹇呴』璁剧疆鏂囨湰鏍煎紡涓篈NSI,涓嶇劧涔辩爜,鏃犳硶姝ｅ父鎵ц
-copy /Y "D:\Program Files (x86)\WOWDIY\ACore\dev\閰嶇疆鏂囦欢\bnetserver.conf.dist" "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Debug\bin\"
-copy /Y "D:\Program Files (x86)\WOWDIY\ACore\dev\閰嶇疆鏂囦欢\worldserver.conf.dist" "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Debug\bin"
+rem 注意此批处理,必须设置文本格式为ANSI,不然乱码,无法正常执行
+
+mkdir "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Debug\bin\configs\"
+mkdir "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Release\bin\configs\"
 
 
-copy /Y "D:\Program Files (x86)\WOWDIY\ACore\dev\閰嶇疆鏂囦欢\bnetserver.conf.dist" "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Release\bin"
-copy /Y "D:\Program Files (x86)\WOWDIY\ACore\dev\閰嶇疆鏂囦欢\worldserver.conf.dist" "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Release\bin"
+copy /Y "D:\Program Files (x86)\WOWDIY\ACore\dev\配置文件\bnetserver.conf.dist" "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Debug\bin\configs\bnetserver.conf"
+copy /Y "D:\Program Files (x86)\WOWDIY\ACore\dev\配置文件\worldserver.conf.dist" "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Debug\bin\configs\worldserver.conf"
+
+
+copy /Y "D:\Program Files (x86)\WOWDIY\ACore\dev\配置文件\bnetserver.conf.dist" "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Release\bin\configs\bnetserver.conf"
+copy /Y "D:\Program Files (x86)\WOWDIY\ACore\dev\配置文件\worldserver.conf.dist" "D:\Program Files (x86)\WOWDIY\ACore\out\build\x64-Release\bin\configs\worldserver.conf"
