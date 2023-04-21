@@ -10,7 +10,7 @@
 (https://github.com/azerothcore/azerothcore-wotlk)<br>
 本核心是在TC的master分支久经折腾后另开的。<br>
 期望从低版本中找点成就感,哈哈!<br>
-目前计划搞搞LUA,搞搞MOD啥的。<br>
+目前计划搞搞LUA,玩玩MOD啥的。<br>
 
 如果后续还有热情的话,可能会搞个主题啥的,以后再说。<br>
 
