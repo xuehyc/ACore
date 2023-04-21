@@ -13,7 +13,12 @@
       "variables": [
         {
           "name": "TOOLS_BUILD",
-          "value": "all",
+          "value": "none",
+          "type": "STRING"
+        },
+        {
+          "name": "MODULES",
+          "value": "static",
           "type": "STRING"
         }
       ]
