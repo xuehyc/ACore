@@ -13,6 +13,7 @@ AiPlayerbot.Enabled = 1
 # Enable random bot system
 # 启用随机机器人系统
 AiPlayerbot.RandomBotAutologin = 1
+# 随机机器人自动登录
 
 # Log on all random bots on start
 # 在启动时登录所有的随机机器人
@@ -51,32 +52,47 @@ AiPlayerbot.RandomBotJoinBG = 1
 AiPlayerbot.RandomBotAutoJoinBG = 0
 
 # Mark many quests <= Bot level as complete (slows down bot creation)
+# 标记大量小于机器人等级的任务为已完成(降低机器人创建速度)
 AiPlayerbot.PreQuests = 0
 
 # Random bot count
+# 随机机器人数量
 AiPlayerbot.MinRandomBots = 50
+# 最少的机器人数量
 AiPlayerbot.MaxRandomBots = 200
+# 最大的机器人数量
 AiPlayerbot.RandomBotMinLevel = 1
+# 随机机器人的最小等级
 AiPlayerbot.RandomBotMaxLevel = 80
+# 随机机器人的最大等级
 
 # Accounts to create for random bots
+# 为随机机器人创建的账号
 AiPlayerbot.RandomBotAccountPrefix = "rndbot"
+# 随机智能机器人的账号前缀
 AiPlayerbot.RandomBotAccountCount = 200
+# 随机智能机器人的账号数量
 
 # Random bot guild count
+# 随机机器人工会数量
 AiPlayerbot.RandomBotGuildCount = 20
 
 # Delete all random bot guilds
+# 删除所有的随机机器人工会
 AiPlayerbot.DeleteRandomBotGuilds = 0
 
 # Random bot arena team count
+# 随机机器人竞技场队伍数量
 AiPlayerbot.RandomBotArenaTeamCount = 20
 
 # Delete all random bot arena teams
+# 删除机机器人竞技场队伍
 AiPlayerbot.DeleteRandomBotArenaTeams = 0
 
 # Change random bot has lower gear
+# 更换装备评分低的机器人
 AiPlayerbot.RandomGearLoweringChance = 0.15
+#几率,如0.15表示15%
 
 # Chance random bot has max level on first randomize (default 0.15)
 AiPlayerbot.RandomBotMaxLevelChance = 0.15
