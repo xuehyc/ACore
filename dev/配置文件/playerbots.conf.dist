@@ -70,8 +70,8 @@ AiPlayerbot.RandomBotMaxLevel = 80
 # 为随机机器人创建的账号
 AiPlayerbot.RandomBotAccountPrefix = "rndbot"
 # 随机智能机器人的账号前缀
-AiPlayerbot.RandomBotAccountCount = 200
-# 随机智能机器人的账号数量
+AiPlayerbot.RandomBotAccountCount = 1
+# 随机智能机器人的账号数量(默认:200)
 
 # Random bot guild count
 # 随机机器人工会数量
