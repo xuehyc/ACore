@@ -1,98 +1,98 @@
-ï»¿##########################################
+##########################################
 # Playerbot Configuration file           #
 ##########################################
 
 ##########################################
-# æ™ºèƒ½ç©å®¶æœºå™¨äººé…ç½®æ–‡ä»¶                 #
+# ÖÇÄÜÍæ¼Ò»úÆ÷ÈËÅäÖÃÎÄ¼ş                 #
 ##########################################
 
 # Enable or disable AI Playerbot
-# å¯ç”¨æˆ–ç¦ç”¨æ™ºèƒ½ç©å®¶æœºå™¨äºº
-AiPlayerbot.Enabled = 1
+# ÆôÓÃ»ò½ûÓÃÖÇÄÜÍæ¼Ò»úÆ÷ÈË
+AiPlayerbot.Enabled = 0
 
 # Enable random bot system
-# å¯ç”¨éšæœºæœºå™¨äººç³»ç»Ÿ
+# ÆôÓÃËæ»ú»úÆ÷ÈËÏµÍ³
 AiPlayerbot.RandomBotAutologin = 1
-# éšæœºæœºå™¨äººè‡ªåŠ¨ç™»å½•
+# Ëæ»ú»úÆ÷ÈË×Ô¶¯µÇÂ¼
 
 # Log on all random bots on start
-# åœ¨å¯åŠ¨æ—¶ç™»å½•æ‰€æœ‰çš„éšæœºæœºå™¨äºº
+# ÔÚÆô¶¯Ê±µÇÂ¼ËùÓĞµÄËæ»ú»úÆ÷ÈË
 AiPlayerbot.RandomBotLoginAtStartup = 1
 
 # Delete all random bot accounts (reset randombots)
-# åˆ é™¤æ‰€æœ‰çš„éšæœºæœºå™¨äººè´¦å·(é‡ç½®éšæœºæœºå™¨äºº)
+# É¾³ıËùÓĞµÄËæ»ú»úÆ÷ÈËÕËºÅ(ÖØÖÃËæ»ú»úÆ÷ÈË)
 AiPlayerbot.DeleteRandomBotAccounts = 0
 
 # auto-login all player alts as bots on player login
-# åœ¨ç©å®¶ç™»å½•æ—¶,è‡ªåŠ¨ç™»å½•ç©å®¶æ‰€æœ‰å°å·ä½œä¸ºæœºå™¨äºº
+# ÔÚÍæ¼ÒµÇÂ¼Ê±,×Ô¶¯µÇÂ¼Íæ¼ÒËùÓĞĞ¡ºÅ×÷Îª»úÆ÷ÈË
 AiPlayerbot.BotAutologin = 0
 
 # Guild Task system
-# å·¥ä¼šä»»åŠ¡ç³»ç»Ÿ
+# ¹¤»áÈÎÎñÏµÍ³
 AiPlayerbot.EnableGuildTasks = 0
 
 # Enable LFG for random bots
-# ä¸ºæœºå™¨äººå¯ç”¨éšæœºåœ°ä¸‹åŸæŸ¥æ‰¾å™¨
+# Îª»úÆ÷ÈËÆôÓÃËæ»úµØÏÂ³Ç²éÕÒÆ÷
 AiPlayerbot.RandomBotJoinLfg = 1
 
 # Enable dungeon suggestions for random bots
-# ä¸ºéšæœºæœºå™¨äººå¯ç”¨åœ°ä¸‹åŸå»ºè®®
+# ÎªËæ»ú»úÆ÷ÈËÆôÓÃµØÏÂ³Ç½¨Òé
 AiPlayerbot.RandomBotSuggestDungeons = 1
 
 # Enable dungeon suggestions in lower case randomly
-# æ›´ä½çš„éšæœºå‡ ç‡ä¸ºæœºå™¨äººå¯ç”¨åœ°ä¸‹åŸå»ºè®®
+# ¸üµÍµÄËæ»ú¼¸ÂÊÎª»úÆ÷ÈËÆôÓÃµØÏÂ³Ç½¨Òé
 AiPlayerbot.SuggestDungeonsInLowerCaseRandomly = 0
 
 # Enable BG/Arena for random Bots
-# ä¸ºæˆ˜åœº/ç«æŠ€åœºå¯ç”¨éšæœºæœºå™¨äºº
+# ÎªÕ½³¡/¾º¼¼³¡ÆôÓÃËæ»ú»úÆ÷ÈË
 AiPlayerbot.RandomBotJoinBG = 1
 
 # Enable Auto join BG - bots randomly join WSG and 2v2 Arena if server is not lagging
-# å¯åŠ¨è‡ªåŠ¨åŠ å…¥æˆ˜åœº(å¦‚æœæœåŠ¡å™¨ä¸å¡,æœºå™¨äººéšæœºåŠ å…¥æˆ˜æ­Œå³¡è°·å’Œ2V2ç«æŠ€åœº)
+# Æô¶¯×Ô¶¯¼ÓÈëÕ½³¡(Èç¹û·şÎñÆ÷²»¿¨,»úÆ÷ÈËËæ»ú¼ÓÈëÕ½¸èÏ¿¹ÈºÍ2V2¾º¼¼³¡)
 AiPlayerbot.RandomBotAutoJoinBG = 0
 
 # Mark many quests <= Bot level as complete (slows down bot creation)
-# æ ‡è®°å¤§é‡å°äºæœºå™¨äººç­‰çº§çš„ä»»åŠ¡ä¸ºå·²å®Œæˆ(é™ä½æœºå™¨äººåˆ›å»ºé€Ÿåº¦)
+# ±ê¼Ç´óÁ¿Ğ¡ÓÚ»úÆ÷ÈËµÈ¼¶µÄÈÎÎñÎªÒÑÍê³É(½µµÍ»úÆ÷ÈË´´½¨ËÙ¶È)
 AiPlayerbot.PreQuests = 0
 
 # Random bot count
-# éšæœºæœºå™¨äººæ•°é‡
+# Ëæ»ú»úÆ÷ÈËÊıÁ¿
 AiPlayerbot.MinRandomBots = 50
-# æœ€å°‘çš„æœºå™¨äººæ•°é‡
+# ×îÉÙµÄ»úÆ÷ÈËÊıÁ¿
 AiPlayerbot.MaxRandomBots = 200
-# æœ€å¤§çš„æœºå™¨äººæ•°é‡
+# ×î´óµÄ»úÆ÷ÈËÊıÁ¿
 AiPlayerbot.RandomBotMinLevel = 1
-# éšæœºæœºå™¨äººçš„æœ€å°ç­‰çº§
+# Ëæ»ú»úÆ÷ÈËµÄ×îĞ¡µÈ¼¶
 AiPlayerbot.RandomBotMaxLevel = 80
-# éšæœºæœºå™¨äººçš„æœ€å¤§ç­‰çº§
+# Ëæ»ú»úÆ÷ÈËµÄ×î´óµÈ¼¶
 
 # Accounts to create for random bots
-# ä¸ºéšæœºæœºå™¨äººåˆ›å»ºçš„è´¦å·
+# ÎªËæ»ú»úÆ÷ÈË´´½¨µÄÕËºÅ
 AiPlayerbot.RandomBotAccountPrefix = "rndbot"
-# éšæœºæ™ºèƒ½æœºå™¨äººçš„è´¦å·å‰ç¼€
+# Ëæ»úÖÇÄÜ»úÆ÷ÈËµÄÕËºÅÇ°×º
 AiPlayerbot.RandomBotAccountCount = 1
-# éšæœºæ™ºèƒ½æœºå™¨äººçš„è´¦å·æ•°é‡(é»˜è®¤:200)
+# Ëæ»úÖÇÄÜ»úÆ÷ÈËµÄÕËºÅÊıÁ¿(Ä¬ÈÏ:200)
 
 # Random bot guild count
-# éšæœºæœºå™¨äººå·¥ä¼šæ•°é‡
+# Ëæ»ú»úÆ÷ÈË¹¤»áÊıÁ¿
 AiPlayerbot.RandomBotGuildCount = 20
 
 # Delete all random bot guilds
-# åˆ é™¤æ‰€æœ‰çš„éšæœºæœºå™¨äººå·¥ä¼š
+# É¾³ıËùÓĞµÄËæ»ú»úÆ÷ÈË¹¤»á
 AiPlayerbot.DeleteRandomBotGuilds = 0
 
 # Random bot arena team count
-# éšæœºæœºå™¨äººç«æŠ€åœºé˜Ÿä¼æ•°é‡
+# Ëæ»ú»úÆ÷ÈË¾º¼¼³¡¶ÓÎéÊıÁ¿
 AiPlayerbot.RandomBotArenaTeamCount = 20
 
 # Delete all random bot arena teams
-# åˆ é™¤æœºæœºå™¨äººç«æŠ€åœºé˜Ÿä¼
+# É¾³ı»ú»úÆ÷ÈË¾º¼¼³¡¶ÓÎé
 AiPlayerbot.DeleteRandomBotArenaTeams = 0
 
 # Change random bot has lower gear
-# æ›´æ¢è£…å¤‡è¯„åˆ†ä½çš„æœºå™¨äºº
+# ¸ü»»×°±¸ÆÀ·ÖµÍµÄ»úÆ÷ÈË
 AiPlayerbot.RandomGearLoweringChance = 0.15
-#å‡ ç‡,å¦‚0.15è¡¨ç¤º15%
+#¼¸ÂÊ,Èç0.15±íÊ¾15%
 
 # Chance random bot has max level on first randomize (default 0.15)
 AiPlayerbot.RandomBotMaxLevelChance = 0.15
