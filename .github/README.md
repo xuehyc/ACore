@@ -10,15 +10,16 @@
 (https://github.com/azerothcore/azerothcore-wotlk)<br>
 本核心是在TC的master分支久经折腾后另开的。<br>
 期望从低版本中找点成就感,哈哈!<br>
+毕竟低版本的自定义自由度出奇地高。<br>
 目前计划搞搞LUA,玩玩MOD啥的。<br>
 
-如果后续还有热情的话,可能会搞个主题啥的,以后再说。<br>
+如果后续还有热情的话,可能会搞搞模型，弄个主题啥的,以后再说。<br>
 
 如有对高版本感兴趣的也可以去看看作者的另一个项目：<br>
 https://github.com/xuehyc/XCore/
 
 
-PS：<br>
+再PS：<br>
 研究这个的初衷是基于兴趣爱好,后来一堆人找我问这问那,实在累人。<br>
 所以不再进群,也不闲聊。遇到问题自己多找资料解决吧，ChatGPT也是个不错的选择。<br>
 Github上的代码交流还是欢迎的,仅限Github上提交<br>
