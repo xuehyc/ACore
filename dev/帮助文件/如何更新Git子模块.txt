@@ -1,0 +1,32 @@
+﻿https://blog.csdn.net/bglmmz/article/details/127755543
+Git submodule update，如何更新子模块
+当主项目中用Git管理源代码，并且项目中用submodule方式引入了子模块，当子模块更新代码后，在主项目中如何更新子模块最新代码呢？
+
+1. 如果是第一次pull子项目代码，则执行：
+
+git submodule init
+
+2. 然后执行：
+
+git submodule update --remote --recursive
+
+这个命令，只是更新子模块的branch和commit id信息，并不会pull新代码，所以：
+
+3. 然后，进入主项目中子项目的目录，执行：
+
+git pull
+
+4. 后续，如果主项目所引用的子项目的branch发生了变化，则在第3步时执行：
+
+git fetch
+
+git checkout submodule_newBranch submodule_newBranch
+
+git pull
+
+另：
+
+在第4步中，在 git fetch 之后，如果使用的用jetbrain的IDE工具，比如IDEA / GoLand等，它们会管理远程仓库，此时可以通过点击右下角的branch弹出窗口，来选择需要checkout子项目哪个分支。 
+————————————————
+版权声明：本文为CSDN博主「bglmmz」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/bglmmz/article/details/127755543
