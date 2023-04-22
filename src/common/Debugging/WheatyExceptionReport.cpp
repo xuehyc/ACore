@@ -1,4 +1,4 @@
-//==========================================
+﻿//==========================================
 // Matt Pietrek
 // MSDN Magazine, 2002
 // FILE: WheatyExceptionReport.CPP
@@ -222,7 +222,8 @@ LONG WINAPI WheatyExceptionReport::WheatyUnhandledExceptionFilter(
 
 void __cdecl WheatyExceptionReport::WheatyCrtHandler(wchar_t const* /*expression*/, wchar_t const* /*function*/, wchar_t const* /*file*/, unsigned int /*line*/, uintptr_t /*pReserved*/)
 {
-    RaiseException(EXCEPTION_ACCESS_VIOLATION, 0, 0, nullptr);
+    //RaiseException(EXCEPTION_ACCESS_VIOLATION, 0, 0, nullptr);//为减少报错,我添加的
+    // In order to reduce error report,I added this.
 }
 
 BOOL WheatyExceptionReport::_GetProcessorName(TCHAR* sProcessorName, DWORD maxcount)
