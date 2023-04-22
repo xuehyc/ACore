@@ -101,3 +101,6 @@ local.properties
 # ==================
 /out/build/x64-Debug
 /.vs
+
+#NPCBots
+!/data/sql/custom/db_world/
