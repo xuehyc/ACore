@@ -1,4 +1,4 @@
-name: windows-build
+name: windows-build-mip
 on:
   push:
     tags:        
@@ -41,7 +41,6 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          export CCUSTOMOPTIONS=" -DMODULE_MOD-INDIVIDUAL-PROGRESSION=disabled"
           export CTOOLS_BUILD=all
           ./acore.sh compiler build
       # - name: Dry run authserver

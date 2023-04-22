@@ -50,10 +50,13 @@ enum ThorimSpells
     SPELL_SIF_TRANSFORM                     = 64778,
     SPELL_SIF_CHANNEL_HOLOGRAM              = 64324,
     SPELL_FROSTBOLT                         = 62601,
+    SPELL_FROSTBOLT_10                      = 62583,
     SPELL_FROSTBOLT_VALLEY                  = 62604,
+    SPELL_FROSTBOLT_VALLEY_10               = 62580,
     SPELL_BLIZZARD_10                       = 62577,
     SPELL_BLIZZARD_25                       = 62603,
     SPELL_FROST_NOVA                        = 62605,
+    SPELL_FROST_NOVA_10                     = 62597,
 
     // DARK RUNE ACOLYTE
     SPELL_GREATER_HEAL_10                   = 62334,
@@ -308,6 +311,7 @@ enum Misc
     ACTION_SIF_START_DOMINION   = 5,
     ACTION_SIF_TRANSFORM        = 6,
     ACTION_IRON_HONOR_DIED      = 7,
+    ACTION_BUG_CHECK            = 8,
 
     EVENT_PHASE_START           = 1,
     EVENT_PHASE_RING            = 2,
@@ -347,6 +351,7 @@ public:
         bool _hardMode;
         bool _isHitAllowed;
         bool _isAlly;
+        bool _isBUG;
         uint8 _trashCounter;
 
         InstanceScript* m_pInstance;
@@ -462,6 +467,7 @@ public:
             _hardMode = false;
             _isArenaEmpty = false;
             _hitByLightning = false;
+            _isBUG = true;
 
             if (Player* t = SelectTargetFromPlayerList(1000))
                 if (t->GetTeamId() == TEAM_HORDE)
@@ -498,10 +504,28 @@ public:
                     events.SetPhase(EVENT_PHASE_START);
                     events.ScheduleEvent(EVENT_THORIM_START_PHASE1, 20s);
                     _trashCounter = 0;
+                    _isBUG = false;
                 }
             }
             else if (param == ACTION_ALLOW_HIT)
                 _isHitAllowed = true;
+            if (param == ACTION_BUG_CHECK)
+            {
+                if (_isBUG)
+                {
+                    const Map::PlayerList& bug = me->GetMap()->GetPlayers();
+                    for (Map::PlayerList::const_iterator itr = bug.begin(); itr != bug.end(); ++itr)
+                        if (Player* p = itr->GetSource())
+                        {
+                            Unit::Kill(me, p); //秒杀BUG玩家
+                            p->TeleportTo(603, 2071.022f, -102.656f, 412.3f, 5.576f);
+                            std::string pname = p->GetPlayerName();
+                            LOG_ERROR("module", "{}尝试BUG托里姆,杀", pname.c_str());
+                        }
+                    summons.DespawnAll();
+                    SpawnAllNPCs();
+                }
+            }
         }
 
         void KilledUnit(Unit* victim) override
@@ -556,6 +580,9 @@ public:
                 if (Player* player = GetArenaPlayer())
                     me->AddThreat(player, 1000.0f);
             }
+
+            if (who && who->GetPositionZ() > 430 && who->GetTypeId() == TYPEID_PLAYER)
+                damage = 0;
 
             if (damage >= me->GetHealth())
             {
@@ -862,7 +889,7 @@ public:
                     events.ScheduleEvent(EVENT_SIF_BLIZZARD, 15s);
                     break;
                 case EVENT_SIF_FROSTBOLT_VALLEY:
-                    me->CastSpell(me, SPELL_FROSTBOLT_VALLEY, false);
+                    me->CastSpell(me, Is25ManRaid() ? SPELL_FROSTBOLT_VALLEY : SPELL_FROSTBOLT_VALLEY_10, false);
                     events.Repeat(13s);
                     return;
                 case EVENT_SIF_BLIZZARD:
@@ -878,7 +905,7 @@ public:
                     return;
                 case EVENT_SIF_FROST_NOVA_CAST:
                     _allowCast = true;
-                    me->CastSpell(me, SPELL_FROST_NOVA, false);
+                    me->CastSpell(me, Is25ManRaid() ? SPELL_FROST_NOVA : SPELL_FROST_NOVA_10, false);
                     return;
             }
 
@@ -886,7 +913,7 @@ public:
             if (_allowCast)
                 if (Player* target = SelectTargetFromPlayerList(70))
                 {
-                    me->CastSpell(target, SPELL_FROSTBOLT, false);
+                    me->CastSpell(target, Is25ManRaid() ? SPELL_FROSTBOLT : SPELL_FROSTBOLT_10, false);
                     me->StopMoving();
                 }
         }
@@ -1250,6 +1277,8 @@ public:
 
         void JustEngagedWith(Unit*  /*who*/) override
         {
+
+
             if (me->GetEntry() == NPC_IRON_RING_GUARD)
             {
                 events.ScheduleEvent(EVENT_IR_GUARD_IMPALE, 12s);
@@ -1272,6 +1301,13 @@ public:
             }
 
             me->CallForHelp(25);
+        }
+
+        void JustDied(Unit*) override
+        {
+            if (me->GetInstanceScript())
+                if (Creature* cr = ObjectAccessor::GetCreature(*me, me->GetInstanceScript()->GetGuidData(TYPE_THORIM)))
+                    cr->AI()->DoAction(ACTION_BUG_CHECK);
         }
 
         void UpdateAI(uint32 diff) override

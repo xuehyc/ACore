@@ -345,8 +345,12 @@ public:
         {
             Talk(SAY_KJ_DEATH);
             instance->SetBossState(DATA_KILJAEDEN, DONE);
-            if (Creature* controller = ObjectAccessor::GetCreature(*me, instance->GetGuidData(NPC_KILJAEDEN_CONTROLLER)))
-                Unit::Kill(controller, controller);
+            if (Creature* controller = ObjectAccessor::GetCreature(*me, instance->GetGuidData(NPC_KILJAEDEN_CONTROLLER))) {
+                if (Unit* player = SelectTarget(SelectTargetMethod::Random, 0, 100.0f, true))
+                    Unit::Kill(player, controller);
+                else
+                    controller->KillSelf();
+            }
         }
 
         void DoAction(int32 param) override
@@ -398,7 +402,10 @@ public:
             switch (events2.ExecuteEvent())
             {
                 case EVENT_KILL_SELF:
-                    me->KillSelf();
+                    if (Unit* player = SelectTarget(SelectTargetMethod::Random, 0, 100.0f, true))
+                        Unit::Kill(player, me);
+                    else
+                        me->KillSelf();
                     break;
                 case EVENT_REBIRTH:
                     me->SetVisible(true);

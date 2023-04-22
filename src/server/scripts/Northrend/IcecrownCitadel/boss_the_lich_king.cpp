@@ -833,7 +833,7 @@ public:
                     _bFordringMustFallYell = true;
                     if (Creature* tirion = ObjectAccessor::GetCreature(*me, instance->GetGuidData(DATA_HIGHLORD_TIRION_FORDRING)))
                     {
-                        tirion->Yell("The Lich King must fall!", LANG_UNIVERSAL);
+                        tirion->Yell("巫妖王必须死！", LANG_UNIVERSAL);
                         tirion->PlayDirectSound(17389);
                     }
                 }
@@ -981,7 +981,9 @@ public:
                     for (Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
                         if (Player* player = itr->GetSource())
                             if (player->GetPositionZ() < 700.0f)
-                                Unit::Kill(me, player);
+                                //救赎之魂fix
+                                if (!player->HasAura(27792))
+                                    Unit::Kill(me, player);
             }
             else
                 _positionCheckTimer -= diff;

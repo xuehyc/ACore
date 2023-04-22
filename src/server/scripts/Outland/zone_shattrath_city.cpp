@@ -41,7 +41,7 @@ EndContentData */
 ## npc_raliq_the_drunk
 ######*/
 
-#define GOSSIP_RALIQ            "You owe Sim'salabim money. Hand them over or die!"
+#define GOSSIP_RALIQ            "你欠萨萨拉比姆的钱。把钱交出来，否则就得死!"
 
 enum Raliq
 {
@@ -270,7 +270,7 @@ public:
 # npc_zephyr
 ######*/
 
-#define GOSSIP_HZ "Take me to the Caverns of Time."
+#define GOSSIP_HZ "送我去时光之穴。"
 
 class npc_zephyr : public CreatureScript
 {

@@ -212,6 +212,21 @@ public:
         InstanceScript* pInstance;
         uint8 _phase;
 
+        bool IsInRoom()
+        {
+            if (me->GetExactDist(1586.6f, 119.3f, 427.2f) > 86.0f)
+            {
+                const Map::PlayerList& pl = me->GetMap()->GetPlayers();
+                for (Map::PlayerList::const_iterator itr = pl.begin(); itr != pl.end(); ++itr)
+                    if (Player* p = itr->GetSource())
+                        if (p->IsAlive() && !p->IsGameMaster() && p->GetExactDist(1586.6f, 119.3f, 427.2f) < 200.0f && !p->IsImmunedToDamageOrSchool(SPELL_SCHOOL_MASK_ALL))
+                            Unit::Kill(me, p); //秒杀BUG玩家
+                EnterEvadeMode();
+                return false;
+            }
+            return true;
+        }
+
         void Reset() override
         {
             me->SetLootMode(0);
@@ -331,6 +346,9 @@ public:
 
         void UpdateAI(uint32 diff) override
         {
+            if (!IsInRoom())
+                return;
+
             if (!UpdateVictim())
                 return;
 
@@ -345,7 +363,7 @@ public:
                     events.Repeat(15s, 20s);
                     break;
                 case EVENT_STATIC_DISRUPTION:
-                    if (Unit* pTarget = SelectTarget(SelectTargetMethod::MinDistance, 0, 0, true))
+                    if (Unit* pTarget = SelectTarget(SelectTargetMethod::MaxDistance, 0, 0, true))
                         me->CastSpell(pTarget, SPELL_STATIC_DISRUPTION, false);
 
                     events.Repeat(20s, 40s);
@@ -403,6 +421,21 @@ public:
         SummonList summons;
         EventMap events;
         uint8 _phase;
+
+        bool IsInRoom()
+        {
+            if (me->GetExactDist(1586.6f, 119.3f, 427.2f) > 86.0f)
+            {
+                const Map::PlayerList& pl = me->GetMap()->GetPlayers();
+                for (Map::PlayerList::const_iterator itr = pl.begin(); itr != pl.end(); ++itr)
+                    if (Player* p = itr->GetSource())
+                        if (p->IsAlive() && !p->IsGameMaster() && p->GetExactDist(1586.6f, 119.3f, 427.2f) < 200.0f && !p->IsImmunedToDamageOrSchool(SPELL_SCHOOL_MASK_ALL))
+                            Unit::Kill(me, p); //秒杀BUG玩家
+                EnterEvadeMode();
+                return false;
+            }
+            return true;
+        }
 
         void Reset() override
         {
@@ -500,6 +533,9 @@ public:
 
         void UpdateAI(uint32 diff) override
         {
+            if (!IsInRoom())
+                return;
+
             if (!UpdateVictim())
                 return;
 
@@ -616,6 +652,21 @@ public:
         uint32 _channelTimer;
 
         bool _stunnedAchievement;
+
+        bool IsInRoom()
+        {
+            if (me->GetExactDist(1586.6f, 119.3f, 427.2f) > 86.0f)
+            {
+                const Map::PlayerList& pl = me->GetMap()->GetPlayers();
+                for (Map::PlayerList::const_iterator itr = pl.begin(); itr != pl.end(); ++itr)
+                    if (Player* p = itr->GetSource())
+                        if (p->IsAlive() && !p->IsGameMaster() && p->GetExactDist(1586.6f, 119.3f, 427.2f) < 200.0f && !p->IsImmunedToDamageOrSchool(SPELL_SCHOOL_MASK_ALL))
+                            Unit::Kill(me, p); //秒杀BUG玩家
+                EnterEvadeMode();
+                return false;
+            }
+            return true;
+        }
 
         void Reset() override
         {
@@ -738,6 +789,9 @@ public:
 
         void UpdateAI(uint32 diff) override
         {
+            if (!IsInRoom())
+                return;
+
             if (!me->IsInCombat() && me->GetReactState() == REACT_AGGRESSIVE)
             {
                 _channelTimer += diff;

@@ -434,20 +434,26 @@ namespace lfg
             else if (ar)
             {
                 // Check required items
+                // If there are multiple items, only one of them is required. for example: Blessed Medallion of Karabor
+                uint32 itemlockData = 0;
+                if (!(ar->items.empty()))
+                    itemlockData = LFG_LOCKSTATUS_MISSING_ITEM;
                 for (const ProgressionRequirement* itemRequirement : ar->items)
                 {
                     if (!itemRequirement->checkLeaderOnly || !group || group->GetLeaderGUID() == player->GetGUID())
                     {
                         if (itemRequirement->faction == TEAM_NEUTRAL || itemRequirement->faction == player->GetTeamId(true))
                         {
-                            if (!player->HasItemCount(itemRequirement->id, 1))
+                            if (player->HasItemCount(itemRequirement->id, 1))
                             {
-                                lockData = LFG_LOCKSTATUS_MISSING_ITEM;
+                                itemlockData = 0;
                                 break;
                             }
                         }
                     }
                 }
+                if (itemlockData == LFG_LOCKSTATUS_MISSING_ITEM)
+                    lockData = LFG_LOCKSTATUS_MISSING_ITEM;
 
                 //Check for quests
                 for (const ProgressionRequirement* questRequirement : ar->quests)
@@ -626,7 +632,7 @@ namespace lfg
             {
                 joinData.result = LFG_JOIN_USING_BG_SYSTEM;
             }
-            else if (player->HasAura(LFG_SPELL_DUNGEON_DESERTER))
+            else if (player->HasAura(LFG_SPELL_DUNGEON_DESERTER) || (player->HasAura(9454)))
             {
                 joinData.result = LFG_JOIN_DESERTER;
             }
@@ -645,7 +651,7 @@ namespace lfg
                     {
                         if (Player* plrg = itr->GetSource())
                         {
-                            if (plrg->HasAura(LFG_SPELL_DUNGEON_DESERTER))
+                            if (plrg->HasAura(LFG_SPELL_DUNGEON_DESERTER) || (plrg->HasAura(9454)))
                             {
                                 joinData.result = LFG_JOIN_PARTY_DESERTER;
                             }
@@ -708,7 +714,7 @@ namespace lfg
 
             // Xinef: Check dungeon cooldown only for random dungeons
             // Xinef: Moreover check this only if dungeon is not started, afterwards its obvious that players will have the cooldown
-            if (joinData.result == LFG_JOIN_OK && !isContinue && rDungeonId)
+            if (joinData.result == LFG_JOIN_OK && !isContinue)
             {
                 if (player->HasAura(LFG_SPELL_DUNGEON_COOLDOWN)) // xinef: added !isContinue
                     joinData.result = LFG_JOIN_RANDOM_COOLDOWN;

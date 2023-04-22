@@ -77,6 +77,19 @@ public:
             return false;
         }
 
+        auto cretureLocale = sObjectMgr->GetCreatureLocale(creatureId);
+        std::string name;
+
+        if (cretureLocale)
+        {
+            name = cretureLocale->Name[handler->GetSessionDbcLocale()];
+        }
+
+        if (name.empty() && cInfo)
+        {
+            name = cInfo->Name;
+        }
+
         uint32 count = countArg.value_or(10);
 
         if (count == 0)
@@ -127,9 +140,9 @@ public:
                         for (std::unordered_multimap<uint32, Creature*>::const_iterator itr = creBounds.first; itr != creBounds.second;)
                         {
                             if (handler->GetSession())
-                                handler->PSendSysMessage(LANG_CREATURE_LIST_CHAT, guid, guid, cInfo->Name.c_str(), x, y, z, mapId, itr->second->GetGUID().ToString().c_str(), itr->second->IsAlive() ? "*" : " ");
+                                handler->PSendSysMessage(LANG_CREATURE_LIST_CHAT, guid, guid, name.c_str(), x, y, z, mapId, itr->second->GetGUID().ToString().c_str(), itr->second->IsAlive() ? "*" : " ");
                             else
-                                handler->PSendSysMessage(LANG_CREATURE_LIST_CONSOLE, guid, cInfo->Name.c_str(), x, y, z, mapId, itr->second->GetGUID().ToString().c_str(), itr->second->IsAlive() ? "*" : " ");
+                                handler->PSendSysMessage(LANG_CREATURE_LIST_CONSOLE, guid, name.c_str(), x, y, z, mapId, itr->second->GetGUID().ToString().c_str(), itr->second->IsAlive() ? "*" : " ");
                             ++itr;
                         }
                         liveFound = true;
@@ -139,9 +152,9 @@ public:
                 if (!liveFound)
                 {
                     if (handler->GetSession())
-                        handler->PSendSysMessage(LANG_CREATURE_LIST_CHAT, guid, guid, cInfo->Name.c_str(), x, y, z, mapId, "", "");
+                        handler->PSendSysMessage(LANG_CREATURE_LIST_CHAT, guid, guid, name.c_str(), x, y, z, mapId, "", "");
                     else
-                        handler->PSendSysMessage(LANG_CREATURE_LIST_CONSOLE, guid, cInfo->Name.c_str(), x, y, z, mapId, "", "");
+                        handler->PSendSysMessage(LANG_CREATURE_LIST_CONSOLE, guid, name.c_str(), x, y, z, mapId, "", "");
                 }
             }
             while (result->NextRow());
@@ -354,6 +367,22 @@ public:
         return true;
     }
 
+    static void LocalizeGameObject(const int localeIndex, std::string &gameobjectName, uint32 entry)
+    {
+        std::wstring wnamepart;
+
+        GameObjectLocale const* gameObjectInfo = sObjectMgr->GetGameObjectLocale(entry);
+        if (!gameObjectInfo)
+            return;
+
+        if (gameObjectInfo->Name.size() > localeIndex && !gameObjectInfo->Name[localeIndex].empty())
+        {
+            const std::string title = gameObjectInfo->Name[localeIndex];
+            if (Utf8FitTo(title, wnamepart))
+                gameobjectName = title;
+        }
+    }
+
     static bool HandleListObjectCommand(ChatHandler* handler, Variant<Hyperlink<gameobject_entry>, uint32> gameObjectId, Optional<uint32> countArg)
     {
         GameObjectTemplate const* gInfo = sObjectMgr->GetGameObjectTemplate(gameObjectId);
@@ -406,6 +435,8 @@ public:
                 else
                     thisMap = sMapMgr->FindBaseNonInstanceMap(mapId);
 
+                std::string name = gInfo->name;
+                LocalizeGameObject(handler->GetSessionDbLocaleIndex(), name, gInfo->entry);
                 // If map found, try to find active version of this object
                 if (thisMap)
                 {
@@ -415,9 +446,9 @@ public:
                         for (std::unordered_multimap<uint32, GameObject*>::const_iterator itr = goBounds.first; itr != goBounds.second;)
                         {
                             if (handler->GetSession())
-                                handler->PSendSysMessage(LANG_GO_LIST_CHAT, guid, entry, guid, gInfo->name.c_str(), x, y, z, mapId, itr->second->GetGUID().ToString().c_str(), itr->second->isSpawned() ? "*" : " ");
+                                handler->PSendSysMessage(LANG_GO_LIST_CHAT, guid, entry, guid, name.c_str(), x, y, z, mapId, itr->second->GetGUID().ToString().c_str(), itr->second->isSpawned() ? "*" : " ");
                             else
-                                handler->PSendSysMessage(LANG_GO_LIST_CONSOLE, guid, gInfo->name.c_str(), x, y, z, mapId, itr->second->GetGUID().ToString().c_str(), itr->second->isSpawned() ? "*" : " ");
+                                handler->PSendSysMessage(LANG_GO_LIST_CONSOLE, guid, name.c_str(), x, y, z, mapId, itr->second->GetGUID().ToString().c_str(), itr->second->isSpawned() ? "*" : " ");
                             ++itr;
                         }
                         liveFound = true;
@@ -427,9 +458,9 @@ public:
                 if (!liveFound)
                 {
                     if (handler->GetSession())
-                        handler->PSendSysMessage(LANG_GO_LIST_CHAT, guid, entry, guid, gInfo->name.c_str(), x, y, z, mapId, "", "");
+                        handler->PSendSysMessage(LANG_GO_LIST_CHAT, guid, entry, guid, name.c_str(), x, y, z, mapId, "", "");
                     else
-                        handler->PSendSysMessage(LANG_GO_LIST_CONSOLE, guid, gInfo->name.c_str(), x, y, z, mapId, "", "");
+                        handler->PSendSysMessage(LANG_GO_LIST_CONSOLE, guid, name.c_str(), x, y, z, mapId, "", "");
                 }
             }
             while (result->NextRow());

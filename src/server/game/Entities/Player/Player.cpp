@@ -6971,7 +6971,7 @@ void Player::_ApplyWeaponDamage(uint8 slot, ItemTemplate const* proto, ScalingSt
         float maxDamage = proto->Damage[i].DamageMax;
 
         // If set dpsMod in ScalingStatValue use it for min (70% from average), max (130% from average) damage
-        if (ssv)
+        if (ssv && minDamage > 0.f)
         {
             int32 extraDPS = ssv->getDPSMod(ScalingStatValue);
             if (extraDPS)
@@ -12581,7 +12581,7 @@ void Player::AutoUnequipOffhandIfNeed(bool force /*= false*/)
         offItem->SaveToDB(trans);                                // recursive and not have transaction guard into self, item not in inventory and can be save standalone
 
         std::string subject = GetSession()->GetAcoreString(LANG_NOT_EQUIPPED_ITEM);
-        MailDraft(subject, "There were problems with equipping one or several items").AddItem(offItem).SendMailTo(trans, this, MailSender(this, MAIL_STATIONERY_GM), MAIL_CHECK_MASK_COPIED);
+        MailDraft(subject, "装备一件或几件物品时出现问题").AddItem(offItem).SendMailTo(trans, this, MailSender(this, MAIL_STATIONERY_GM), MAIL_CHECK_MASK_COPIED);
 
         CharacterDatabase.CommitTransaction(trans);
     }
@@ -13778,7 +13778,15 @@ void Player::_LoadSkills(PreparedQueryResult result)
             SkillRaceClassInfoEntry const* rcEntry = GetSkillRaceClassInfo(skill, getRace(), getClass());
             if (!rcEntry)
             {
-                LOG_ERROR("entities.player", "Character {} has skill {} that does not exist.", GetGUID().ToString(), skill);
+                LOG_ERROR("entities.player", "Character {} has skill {} that does not exist.Deleted by miao", GetGUID().ToString(), skill);
+                //CharacterDatabase.Query("DELETE FROM character_skills WHERE guid = {} AND skill = {}", GetGUID().ToString(), skill);
+                CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHARACTER_SKILL);
+
+                stmt->SetData(0, GetGUID().GetCounter());
+                stmt->SetData(1, skill);
+
+                CharacterDatabase.Execute(stmt);
+
                 continue;
             }
 
@@ -15657,7 +15665,7 @@ bool Player::AddItem(uint32 itemId, uint32 count)
     if (count == 0 || dest.empty())
     {
         // -- TODO: Send to mailbox if no space
-        ChatHandler(GetSession()).PSendSysMessage("You don't have any space in your bags.");
+        ChatHandler(GetSession()).PSendSysMessage("你的背包满了。");
         return false;
     }
 

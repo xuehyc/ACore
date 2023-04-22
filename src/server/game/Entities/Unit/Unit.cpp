@@ -1349,7 +1349,7 @@ SpellCastResult Unit::CastCustomSpell(uint32 spellId, CustomSpellValues const& v
     SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(spellId);
     if (!spellInfo)
     {
-        LOG_ERROR("entities.unit", "CastSpell: unknown spell {} by caster {}", spellId, GetGUID().ToString());
+        // LOG_ERROR("entities.unit", "CastSpell: unknown spell {} by caster {}", spellId, GetGUID().ToString());
         return SPELL_FAILED_SPELL_UNAVAILABLE;
     }
 
@@ -3853,13 +3853,15 @@ float Unit::GetUnitParryChance() const
     {
         if (ToCreature()->isWorldBoss())
             chance = 13.4f; // + 0.6 by skill diff
-        else if (GetCreatureType() == CREATURE_TYPE_HUMANOID)
+        else if (GetCreatureType() == CREATURE_TYPE_HUMANOID) {
             //npcbot - custom parry chance instead of bunch of auras
-            if (IsNPCBot())
+            if (IsNPCBot()) {
                 chance = ToCreature()->GetCreatureParryChance();
-            else
-            //end npcbot
-            chance = 5.0f;
+            } else {
+                //end npcbot
+                chance = 5.0f;
+            }
+        }
 
         // Xinef: if aura is present, type should not matter
         chance += GetTotalAuraModifier(SPELL_AURA_MOD_PARRY_PERCENT);
@@ -6901,7 +6903,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
 
                             target = this;
                             if (roll_chance_i(10))
-                                ToPlayer()->Say("This is Madness!", LANG_UNIVERSAL); /// @todo: It should be moved to database, shouldn't it?
+                                ToPlayer()->Say("这太疯狂了！", LANG_UNIVERSAL); // TODO: It should be moved to database, shouldn't it?
                             break;
                         }
                     // Sunwell Exalted Caster Neck (??? neck)
@@ -20636,7 +20638,7 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 8571;
                     }
                 }
-                else if (Player::TeamIdForRace(GetRace()) == ALLIANCE)
+                else if (Player::TeamIdForRace(GetRace()) == TEAM_ALLIANCE)
                     return 892;
                 else
                     return 8571;
@@ -20715,16 +20717,16 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 2289;
                     }
                 }
-                else if (Player::TeamIdForRace(GetRace()) == ALLIANCE)
+                else if (Player::TeamIdForRace(GetRace()) == TEAM_ALLIANCE)
                     return 2281;
                 else
                     return 2289;
             case FORM_FLIGHT:
-                if (Player::TeamIdForRace(GetRace()) == ALLIANCE)
+                if (Player::TeamIdForRace(GetRace()) == TEAM_ALLIANCE)
                     return 20857;
                 return 20872;
             case FORM_FLIGHT_EPIC:
-                if (Player::TeamIdForRace(GetRace()) == ALLIANCE)
+                if (Player::TeamIdForRace(GetRace()) == TEAM_ALLIANCE)
                     return 21243;
                 return 21244;
             default:

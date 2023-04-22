@@ -884,7 +884,7 @@ public:
                     {
                         if( Creature* c = instance->GetCreature(NPC_JaraxxusGUID) )
                         {
-                            c->Yell("Banished to the Nether!", LANG_UNIVERSAL);
+                            c->Yell("被逐入虚空吧！", LANG_UNIVERSAL);
                             c->PlayDirectSound(16146, 0);
                             if( Creature* f = instance->GetCreature(NPC_FizzlebangGUID) )
                             {
@@ -1347,7 +1347,7 @@ public:
                         {
                             c->AI()->Talk(SAY_STAGE_4_06);
                             c->SummonCreature(NPC_ARGENT_MAGE, Locs[LOC_MAGE].GetPositionX(), Locs[LOC_MAGE].GetPositionY(), Locs[LOC_MAGE].GetPositionZ(), Locs[LOC_MAGE].GetOrientation());
-                            c->SummonGameObject(195682, 668.15f, 134.57f, 142.12f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 630000000);
+                            //c->SummonGameObject(195682, 668.15f, 134.57f, 142.12f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 630000000);
                         }
 
                         events.RescheduleEvent(EVENT_SCENE_502, 20000);

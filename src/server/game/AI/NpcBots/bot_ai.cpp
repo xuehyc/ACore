@@ -798,8 +798,8 @@ bool bot_ai::doCast(Unit* victim, uint32 spellId, TriggerCastFlags flags)
         !m_botSpellInfo->HasEffect(SPELL_EFFECT_RESURRECT_NEW) &&
         !m_botSpellInfo->HasEffect(SPELL_EFFECT_SELF_RESURRECT))
     {
-        LOG_ERROR("npcbots", "bot_ai::doCast(): {} (bot class {}) tried to cast spell {} on a dead target {}",
-            me->GetName().c_str(), _botclass, spellId, victim->GetName().c_str());
+        // LOG_ERROR("npcbots", "bot_ai::doCast(): {} (bot class {}) tried to cast spell {} on a dead target {}",
+        //     me->GetName().c_str(), _botclass, spellId, victim->GetName().c_str());
         //return false;
     }
 
@@ -7608,7 +7608,9 @@ bool bot_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/, uint32
                         if (obj)
                         {
                             std::ostringstream msg;
-                            msg << obj->GetGOInfo()->name << " (" << LocalizedNpcText(player, BOT_TEXT_DISTANCE_SHORT) << " = " << player->GetExactDist(obj) << ")";
+                            auto name = obj->GetGOInfo()->name;
+                            _LocalizeGameObject(master, name, obj->GetEntry());
+                            msg << name << " (" << LocalizedNpcText(player, BOT_TEXT_DISTANCE_SHORT) << " = " << player->GetExactDist(obj) << ")";
                             AddGossipItemFor(player, GOSSIP_ICON_CHAT, msg.str().c_str(), GOSSIP_SENDER_CLASS_ACTION, GOSSIP_ACTION_INFO_DEF + ++count);
                         }
 
