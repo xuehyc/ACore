@@ -4142,7 +4142,7 @@ Metric.OverallStatusInterval = 1
 #        Default:     1 - enable
 #                     0 - disable
 
-NpcBot.Enable = 1
+NpcBot.Enable = 0
 
 #
 #    NpcBot.MaxBots
