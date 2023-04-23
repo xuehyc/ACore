@@ -178,9 +178,13 @@ if (player:GetLevel()>80)
 
 今天教程就到这里 接下来就是慢慢的熟悉函数的用法咯 诸如 player:GetPlayerIP()等用法
 另外送上最最常用的一个函数
-[/color][color=#000]
-local query = WorldDBQuery("SELECT * FROM item_template where entry = 117")local entry = 0if (query) then     entry = query:GetInt32(0)end[/color]
-[color=#000]
+
+local query = WorldDBQuery("SELECT * FROM item_template where entry = 117")
+local entry = 0
+if (query)
+then
+entry = query:GetInt32(0)
+end
 
 
 就是获取数据库的信息
