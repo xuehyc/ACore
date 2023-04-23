@@ -1,0 +1,190 @@
+﻿https://uiwow.com/thread-45-1-1.html?_dsign=ea4ad69a
+[未归类主题(有空慢慢分)] [eluna]wow服务端lua脚本一小时速成攻略
+
+好久没写过东西了 趁着没事就写写一点小东西吧
+
+先声明下 本人木有学过编程或者其他啥的,基本通过百度来自学的,所以有什么错误的地方...那不是挺正常的嘛
+
+首先呢 需要了解wow的lua是怎么个东西
+其实吧,我也说不清楚.. 总之就是可以让你对有Eluna引擎的魔兽世界服务端进行二次开发的东西就是了
+
+一般lua脚本是放进去服务端的lua_scripts文件夹中,然后重启服务端(或者输入命令.reload eluna)来生效
+具体什么功用,就看脚本怎么写的了
+
+嗯 说了这么多 还是正题吧
+
+lua其实挺简单的 首先数据类型比较简洁 只有下面的6种 算起来其实是7种
+number float string table function UserData nil
+数字 浮点数(小数点) 字符 表格 函数 用户数据 空(之前漏了,当然这个其实也没啥的)
+
+数字就是123456啦
+
+local a = 123
+
+
+浮点数 那就小数 1.23456之类的
+local b = 2.33333
+
+字符就是 "我这是在干嘛" 这样的 要用""包住
+local c = "这是字符串"
+
+表格就是类似数组的东西 tb = {1,2,3,4,5,6}  那么tb[1]的值就是1了 tb[2]的值就是2
+local d = {1,2,3,4,5,6}
+
+function(函数,不是三角函数 0.0) 下面的栗子就是一个叫a的函数 当然是空的什么也没有(函数就理解为一个存放一系列命令的容器吧...暂时)
+function a()--没内容,这是一个空的function(函数) 而这个函数名字就是a--另外lua中注释符号是"--" 双横线 表示这行是注释 程序执行的时候会跳过--这一行
+end
+
+userdata用户数据,这玩意略复杂 基本是宿主程序(wow的话那就是worldserver.exe咯)提供的
+一般常用的就是player 啊 creature等 (我说的是wow的lua里)
+--wow的eluna里面比较常用的就是player等等的了player:GetName()--获取玩家的游戏名字player:GetLevel()--获取玩家的等级--等等等.....--后面会有说明具体有什么语句的
+
+
+知道这些了 下面了解wow eluna的运行原理
+
+首先 脚本需要一个东西 名叫 注册函数 的东西 ,当然太专业了 看不懂 那么换个名字 触发器 这个好懂了吧
+
+简而言之 脚本具体干嘛用的 就是看触发器的触发时机和触发后做什么了
+
+举个栗子
+
+function shengji(event, player, oldLevel)
+player:ModifyMoney(10000)
+player:SendBroadcastMessage("升级奖励1金")
+end  
+RegisterPlayerEvent(13, shengji)
+
+
+这个脚本的作用就是玩家升级的时候奖励1G 并聊天窗口提示黄字 升级奖励1金
+那么先来看最后一句
+
+
+RegisterPlayerEvent这句话就是注册函数(也就是我所说的触发器)
+这个触发器的含义就是当玩家升级的时候 后面呢 有个 shengji 看到我上面箭头指向了么
+也就是说当玩家升级的时候 就会执行
+
+function shengji(event, player, oldLevel)--这是定义的一个叫 shengji 的函数,用来被触发器触发 (前面有说过函数(function)你们暂时理解为一个包包,它里面用来放置一系列命令的以end结束)
+player:ModifyMoney(10000)
+player:SendBroadcastMessage("升级奖励1金")
+end
+
+
+
+这个部分的内容
+
+第一句 是定义的一个叫 shengji 的函数,用来被触发器触发 (前面有说过函数(function)你们暂时理解为一个包包,它里面用来放置一系列命令的以end结束)
+第二 奖励1G(多大方啊...)
+第三句 聊天窗口提示 升级奖励一金
+end 不用说了吧 结束这个函数
+
+函数结构 :
+function 函数名(参数[有些木有的]) 中间写要执行的东西 end
+
+那么实际的服务端用一次看看
+
+简单把 这就搞定一个脚本了 嗯 虽然很渣
+
+比较重要的一点 lua是从上往下执行的
+如果刚刚的脚本改成这样
+
+RegisterPlayerEvent(13, shengji)function shengji(event, player, oldLevel)
+player:ModifyMoney(10000)
+player:SendBroadcastMessage("升级奖励1金")
+end
+
+
+
+
+
+
+果断出现红字了 因为lua是从上面往下执行的 然后触发器里面的 shengji 还没来得及定义呢(因为它在下面啊亲,所以触发器搜索这个叫shengji的函数的时候搜索不到,就会提示红字出错)
+所以服务端就找不到这个函数了 所以基本原则1:触发器一般放函数的后面
+当然你把触发器都放脚本最最最最后面就肯定没问题的了 (我表示我就这么弄的)
+
+
+第一个脚本弄好了 那么他有什么问题呢
+首先呢 函数没有做到局部化
+嗯 我改改脚本
+
+执行看看
+毫!无!错!误!
+第一个脚本没有触发器 第二个脚本有触发器 但是没有具体要做什么的function 但是服务器执行的时候没有报错
+因为第一个脚本的function 没有声明局部化  所以在所有的脚本中全局都可用了
+这种情况就会容易导致这个脚本A会不小心用到了脚本B的参数或者其他什么的了
+我们要避免这种情况,所以如果你希望函数只在本脚本内使用的话
+那么这就是下面要说的了 基本原则2:函数局部化
+函数局部化的关键字是 local
+那么
+
+
+这样就能保证 shengji这个函数不会被别的脚本使用了 只对这个脚本生效
+
+
+以下内容需要积分高于 10 才可浏览
+
+到这里你会问 那些触发器怎么知道是什么意思
+在这里 祭出最终法宝      http://eluna.emudevs.com/Global/index.html
+在接近底部那里   带 Register 的都是触发器
+比如这个就是玩家事件的触发器       http://eluna.emudevs.com/Global/RegisterPlayerEvent.html
+之前的例子里面的  RegisterPlayerEvent(13, shengji)  中的13  在↑↑↑这个地址找到13的那行
+PLAYER_EVENT_ON_LEVEL_CHANGE            =     13,       // (event, player, oldLevel)你这么聪明 相信不用我说的了吧...
+红色部分 就是这个触发器所能提供的参数 所以上面的function shengji(event, player, oldLevel)
+很直观有木有
+13不说了,免得说我在怀疑你的智商....
+蓝色的 相信你看不懂....也该懂得百度吧....      直译就是 玩家事件_在等级改变 的时候
+
+
+
+还是分割线
+
+以下内容需要积分高于 10 才可浏览
+
+(event, player, oldLevel) 这几个玩意,是可以直接在函数中拿来用的,当然最最最有用的就是player了 这个是userdata
+字面的意思就是玩家 也就是说这个player(玩家)是不小心触发了这个触发器的玩家,当然在后台代码中 这个player 就是代表了他  你可以对他做任何事情,包括xxx(删号) 0.0
+那么你具体能对他做什么事情呢..... 咳咳 还是法宝   http://eluna.emudevs.com/Player/index.html
+还是栗子
+
+
+yell 是让玩家大喊的命令 嗯 相信仔细的同学就发现了 player:GetName().."真是厉害,经历了999999死1生,终于升了一级."
+字符要用""括起来 然后函数连接符号是..
+这里的栗子player:GerName() 就是取得玩家的名字 然后..连接符 接上后面的那句话
+看图吧......
+
+如果是服务器上的真是让人羞耻.....
+
+
+
+接下来说啥来着
+
+嗯 说下判断吧 很简单的
+语法
+if (判断) then
+干嘛干嘛
+else
+否则干嘛干嘛
+end
+
+其中else不是必要的
+
+
+
+这就是一个简单的判定了
+
+判定玩家名字叫不叫啦啦 不叫就不给奖励
+或者 if (player:GetLevel()~=80) 这是判定不等于80 ~= 就是不等于号
+if (player:GetLevel()>80)
+这些没啥好说的
+
+
+今天教程就到这里 接下来就是慢慢的熟悉函数的用法咯 诸如 player:GetPlayerIP()等用法
+另外送上最最常用的一个函数
+[/color][color=#000]
+local query = WorldDBQuery("SELECT * FROM item_template where entry = 117")local entry = 0if (query) then     entry = query:GetInt32(0)end[/color]
+[color=#000]
+
+
+就是获取数据库的信息
+
+
+如果你能从这个文章中学会到东西,我希望你能分享给别的爱好者,并分享学习过程中的作品或者经验.
+ps 转载请注明出处谢谢
