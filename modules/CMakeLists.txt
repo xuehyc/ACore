@@ -1,4 +1,4 @@
-#
+﻿#
 # This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
 #
 # This file is free software; as a special exception the author gives
@@ -52,7 +52,7 @@ foreach(scriptName ${AC_ADD_SCRIPTS_LIST})
 endforeach()
 
 function(ConfigureElunaModule moduleName)
-  set(MOD_ELUNA_FOUND 1 PARENT_SCOPE)
+  #set(MOD_ELUNA_FOUND 1 PARENT_SCOPE)#DAMN,HERE!
   GetPathToModuleSource(${SOURCE_MODULE} MODULE_SOURCE_PATH)
   set(MOD_ELUNA_PATH ${MODULE_SOURCE_PATH} PARENT_SCOPE)
 
