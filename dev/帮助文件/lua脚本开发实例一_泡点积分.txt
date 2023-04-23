@@ -1,0 +1,237 @@
+﻿https://uiwow.com/thread-1295-1-1.html?_dsign=685185d5
+
+[未归类主题(有空慢慢分)] [eluna]魔兽世界lua脚本开发实例一:泡点积分
+
+
+嗯嗯，依然是梦神的帖子，梦神没有发出来，就都便宜我了污哈哈哈～
+
+
+
+福利
+
+
+如果你完全不懂lua或者Eluna引擎的同学可以先看这玩意
+
+[eluna]wow服务端lua脚本一小时速成攻略
+
+如果你本身就会lua,那下面的基本瞄一眼你基本就会写了
+
+如果你不会,这点不用担心,因为以前我写那个泡点积分的时候也是一点也不会
+反正如果你看完上面的帖子的话,那么你起码比我以前开始写泡点的时候的水平还高那么好几个档次 真心实话 - -  那时候我连local那些都不懂呢
+
+总之 想要学习这个eluna的..那么首先就需要耐心了 要不厌其烦的reload eluna 还要善于思考 0.0
+
+嗯 还有...工欲善其事必先利其器,这里推荐使用notepad++来书写lua脚本..
+
+
+这里的实例都比较简单,基于以前我写的一些脚本来写的 相对比较简单吧
+
+还是进正题吧 首先呢 要做一个什么东西 首先需要构思 具体怎么实现,流程等等等 (我觉得很重要)
+
+我这里说的构思是说的是实现方式 起码是你需要做的什么东西 你要怎么去做....
+因为不能实现的设想只能是空想 0.0
+
+那么回到泡点积分吧
+首先 我们将会面对一些问题
+如何领取 -> 玩家使用积分宝石领取
+怎么防止重复领取 -> 玩家领取了之后记录数据
+怎么计算玩家在线时间 -> 总在线时间 - 已领取所记录的时间 = 奖励的时间
+
+那么开始写吧
+
+首先 新建文本文件 改名字online.lua
+notepad++打开
+本帖隐藏的内容
+首先我们是使用积分宝石领取 ,那么也就是说 使用积分物品后会触发领取积分的这个过程
+触发条件:使用积分物品
+触发后:领取积分操作
+
+所以触发器写物品事件 RegisterItemEvent
+其中 2 是什么看之前的帖子就知道了
+    ITEM_EVENT_ON_USE                               = 2,    // (event, player, item, target) - Can return false to stop the spell casting
+local function jf (event, player, item, target)
+end
+RegisterItemEvent(70010,2,jf)
+
+
+其中70010是物品的entry,也就是说物品70010使用的时候会触发jf这个 function
+
+那么jf的function要做什么操作 就看你怎么写了
+
+lua文件先放着
+首先 我们需要先在数据库加点料 建立表格或者给原表加字段 当然我推荐前者
+
+
+
+
+那么接着写lua
+local function jf (event, player, item, target)
+        local AllTime = player:GetTotalPlayedTime()--这个是获取玩家总在线的时间 并赋值到变量 AllTime 中
+        local UseTime = 0 --定义一个变量 记录玩家已经兑换掉的在线时间
+        local query = CharDBQuery("select guid,jf_time from characters_jf where guid = "..player:GetGUIDLow())
+        if (query==nil) then
+                --这是判断能不能从数据库中根据玩家的guid查询到积分领取数据,如果不能查询到,那么就插入一条新数据
+                CharDBExecute("insert into characters_jf (Guid,jf_time) values ("..player:GetGUIDLow()..", 0)")
+                --因为既然玩家数据库中没数据了 那么usetime就肯定是0了 所以UseTime不需要重新赋值 保持0即可
+        else
+                --因为上面是判定能不能在数据库中找到数据,上面的情况是找不到的时候插入新数据
+                --那么这里else(否则)就是能找到数据的情况了
+                UseTime = query:GetInt32(1) --把数据库中找到的数值赋值到UseTime中(ps 代码中 0 表示数据库表格第一列,1表示第二列 其他如此类推)
+        end
+end
+RegisterItemEvent(70010,2,jf)
+
+
+
+现在查询数据库的操作已经好了 那么接下来就是算法
+
+算法前面已经想过了 :
+总在线时间 - 已领取所记录的时间 = 奖励的时间
+也就是
+AllTime - UseTime = 可以奖励的时间
+        --计算能奖励的时间 并且定义一个变量 RewardTime 存放有多少时间是可以奖励的
+        local RewardTime = AllTime - UseTime
+
+
+那么接下来是决定多少分钟奖励多少的问题咯
+嗯 那就10分钟奖励1积分把..
+10分钟 = 10 * 60秒
+那么
+        --计算可以奖励多少个积分 总时间/10分钟/60秒
+        local RewardItemCount = math.modf(RewardTime/60/10)
+
+
+math.modf 是lua自带的方法 可以取数值整数部分 (因为上面的算出来肯定不是整数嘛..)
+
+既然算出来了 那么就该奖励了
+        --奖励积分物品
+        player:AddItem(70002,RewardItemCount)
+
+
+
+奖励完了 那么 当然还要写入数据库里面 防止倍重复领取
+--写入数据库时间
+        CharDBExecute("update characters_jf set jf_time = "..AllTime.." where guid = "..player:GetGUIDLow()..";")
+
+
+
+到目前为止的完整代码
+
+local function Rewardjf (event, player, item, target)
+        local AllTime = player:GetTotalPlayedTime()--这个是获取玩家总在线的时间 并赋值到变量 AllTime 中
+        local UseTime = 0 --定义一个变量 记录玩家已经兑换掉的在线时间
+        local query = CharDBQuery("select guid,jf_time from characters_jf where guid = "..player:GetGUIDLow()..";")
+        if (query==nil) then
+                --这是判断能不能从数据库中根据玩家的guid查询到积分领取数据,如果不能查询到,那么就插入一条新数据
+                CharDBExecute("insert into characters_jf (Guid,jf_time) values ("..player:GetGUIDLow()..", 0);")
+                --因为既然玩家数据库中没数据了 那么usetime就肯定是0了 所以UseTime不需要重新赋值 保持0即可
+        else
+                --因为上面是判定能不能在数据库中找到数据,上面的情况是找不到的时候插入新数据
+                --那么这里else(否则)就是能找到数据的情况了
+                UseTime = query:GetInt32(1) --把数据库中找到的数值赋值到UseTime中(ps 代码中 0 表示数据库表格第一列,1表示第二列 其他如此类推)
+        end
+        --计算能奖励的时间 定义一个变量 RewardTime 存放有多少时间是可以奖励的
+        local RewardTime = AllTime - UseTime
+        --计算可以奖励多少个积分 总时间/10分钟/60秒
+        local RewardItemCount = math.modf(RewardTime/60/10)
+        --奖励积分物品
+        player:AddItem(70002,RewardItemCount)
+        --写入数据库时间
+        CharDBExecute("update characters_jf set jf_time = "..AllTime.." where guid = "..player:GetGUIDLow()..";")
+end
+RegisterItemEvent(70010,2,Rewardjf)
+
+
+
+那么先进去游戏测试下
+
+
+成功领取 而且二次点击领取不了
+
+看起来是成功了 但是呢 仔细的话就会发现
+玩家每次点击都会更改数据库记录的时间 导致只要不足10分钟
+那么累计的时间每次点击领取的物品都会被更改  
+所以这里 我们就需要加一个判断了
+if (RewardItemCount > 0) then
+                --奖励积分物品
+                player:AddItem(70002,RewardItemCount)
+                --写入数据库时间
+                CharDBExecute("update characters_jf set jf_time = "..AllTime.." where guid = "..player:GetGUIDLow()..";")
+        else
+                player:SendBroadcastMessage("在线时间不足10分钟哦~")
+        end
+
+
+只有奖励物品的数量大于1的时候 才会领取得到物品 同时才会更新数据库数据
+(小于0是不可能的了 - - 还有一种情况就是等于0 那就是在线时间不足10分钟可以领取的时间了)
+
+
+到此 基本没什么问题了
+local function Rewardjf (event, player, item, target)
+        local AllTime = player:GetTotalPlayedTime()--这个是获取玩家总在线的时间 并赋值到变量 AllTime 中
+        local UseTime = 0 --定义一个变量 记录玩家已经兑换掉的在线时间
+        local query = CharDBQuery("select guid,jf_time from characters_jf where guid = "..player:GetGUIDLow()..";")
+        if (query==nil) then
+                --这是判断能不能从数据库中根据玩家的guid查询到积分领取数据,如果不能查询到,那么就插入一条新数据
+                CharDBExecute("insert into characters_jf (Guid,jf_time) values ("..player:GetGUIDLow()..", 0);")
+                --因为既然玩家数据库中没数据了 那么usetime就肯定是0了 所以UseTime不需要重新赋值 保持0即可
+        else
+                --因为上面是判定能不能在数据库中找到数据,上面的情况是找不到的时候插入新数据
+                --那么这里else(否则)就是能找到数据的情况了
+                UseTime = query:GetInt32(1) --把数据库中找到的数值赋值到UseTime中(ps 代码中 0 表示数据库表格第一列,1表示第二列 其他如此类推)
+        end
+        --计算能奖励的时间 定义一个变量 RewardTime 存放有多少时间是可以奖励的
+        local RewardTime = AllTime - UseTime
+        --计算可以奖励多少个积分 总时间/10分钟/60秒
+        local RewardItemCount = math.modf(RewardTime/60/10)
+        if (RewardItemCount > 0) then
+                --奖励积分物品
+                player:AddItem(70002,RewardItemCount)
+                --写入数据库时间
+                CharDBExecute("update characters_jf set jf_time = "..AllTime.." where guid = "..player:GetGUIDLow()..";")
+        else
+                player:SendBroadcastMessage("在线时间不足10分钟哦~")
+        end
+end
+RegisterItemEvent(70010,2,Rewardjf)
+
+
+
+当然我们还可以优化下把一些设置用变量替换 最终
+local ItemEntry = 70010 --用来领取积分的宝石id
+local JFtime = 10 --每多少分钟奖励1积分
+local RewardItemEntry = 70002 --奖励的物品的id
+local function Rewardjf (event, player, item, target)
+        local AllTime = player:GetTotalPlayedTime()--这个是获取玩家总在线的时间 并赋值到变量 AllTime 中
+        local UseTime = 0 --定义一个变量 记录玩家已经兑换掉的在线时间
+        local query = CharDBQuery("select guid,jf_time from characters_jf where guid = "..player:GetGUIDLow()..";")
+        if (query==nil) then
+                --这是判断能不能从数据库中根据玩家的guid查询到积分领取数据,如果不能查询到,那么就插入一条新数据
+                CharDBExecute("insert into characters_jf (Guid,jf_time) values ("..player:GetGUIDLow()..", 0);")
+                --因为既然玩家数据库中没数据了 那么usetime就肯定是0了 所以UseTime不需要重新赋值 保持0即可
+        else
+                --因为上面是判定能不能在数据库中找到数据,上面的情况是找不到的时候插入新数据
+                --那么这里else(否则)就是能找到数据的情况了
+                UseTime = query:GetInt32(1) --把数据库中找到的数值赋值到UseTime中(ps 代码中 0 表示数据库表格第一列,1表示第二列 其他如此类推)
+        end
+        --计算能奖励的时间 定义一个变量 RewardTime 存放有多少时间是可以奖励的
+        local RewardTime = AllTime - UseTime
+        --计算可以奖励多少个积分 总时间/10分钟/60秒
+        local RewardItemCount = math.modf(RewardTime/60/JFtime)
+        if (RewardItemCount > 0) then
+                --奖励积分物品
+                player:AddItem(RewardItemEntry,RewardItemCount)
+                --写入数据库时间
+                CharDBExecute("update characters_jf set jf_time = "..AllTime.." where guid = "..player:GetGUIDLow()..";")
+        else
+                local tempTime = JFtime * 60 - RewardTime
+                player:SendBroadcastMessage("在线时间不足10分钟哦,还差".. math.modf(tempTime/60).."分"..math.fmod(tempTime,60).."秒钟即可领取奖励")
+        end
+end
+RegisterItemEvent(ItemEntry,2,Rewardjf)
+
+
+这样是不是好看了点呢
+
+
+到此 这简单的栗子结束了
