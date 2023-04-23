@@ -1,4 +1,4 @@
-local NpcId = 123
+﻿local NpcId = 123
 
 local function OnGossipHello(event, player, unit)
     player:GossipMenuAddItem(0, "Test Weather", 1, 1)
@@ -15,5 +15,7 @@ local function OnGossipSelect(event, plr, unit, sender, action, code)
     end
 end
 
-RegisterCreatureGossipEvent(NpcId, 1, OnHello)
-RegisterCreatureGossipEvent(NpcId, 2, OnSelect)
+--RegisterCreatureGossipEvent(NpcId, 1, OnHello)  --org
+RegisterCreatureGossipEvent(NpcId, 1, OnGossipHello)
+--RegisterCreatureGossipEvent(NpcId, 2, OnSelect) --org
+RegisterCreatureGossipEvent(NpcId, 2, OnGossipSelect)
