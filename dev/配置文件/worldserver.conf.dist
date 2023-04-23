@@ -1,4 +1,4 @@
-################################################
+﻿################################################
 # AzerothCore World Server configuration file #
 ################################################
 [worldserver]
@@ -4510,3 +4510,8 @@ NpcBot.WanderingBots.BG.Enable = 0
 
 #
 ###################################################################################################
+
+
+#控制台经常报Not enough random bot accounts available. Need *(数量,通常是6,因为我把playerbot账号数量设为1) more!!
+#为了减少干扰,添加了下面这个参数,设为1,则不显示提示
+Playerbot.Announce.Not_enough_random_bot_accounts_available.disable=1
