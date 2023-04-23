@@ -182,8 +182,7 @@ if (player:GetLevel()>80)
 local query = WorldDBQuery("SELECT * FROM item_template where entry = 117")
 local entry = 0
 if (query)
-then
-entry = query:GetInt32(0)
+    then entry = query:GetInt32(0)
 end
 
 
