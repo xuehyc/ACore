@@ -5,6 +5,7 @@ local function GMLogin (event, player)
         print "GM log in..."
         SendWorldMessage("Lord |CFFFF0303"..player:GetName().."|r is among us.")
 	end
+    print "A player logged in."
 end
 
 local function GMLogout (event, player)
@@ -12,6 +13,7 @@ local function GMLogout (event, player)
         print "GM log out..."
         SendWorldMessage("Lord |CFFFF0303"..player:GetName().."|r gone.")
     end
+    print "A player logged out."
 end
 
 RegisterPlayerEvent(3, GMLogin)
