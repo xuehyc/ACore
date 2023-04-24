@@ -1,4 +1,4 @@
-################################################
+ï»¿################################################
 # AzerothCore World Server configuration file #
 ################################################
 [worldserver]
@@ -4512,6 +4512,6 @@ NpcBot.WanderingBots.BG.Enable = 0
 ###################################################################################################
 
 
-#¿ØÖÆÌ¨¾­³£±¨Not enough random bot accounts available. Need *(ÊıÁ¿,Í¨³£ÊÇ6,ÒòÎªÎÒ°ÑplayerbotÕËºÅÊıÁ¿ÉèÎª1) more!!
-#ÎªÁË¼õÉÙ¸ÉÈÅ,Ìí¼ÓÁËÏÂÃæÕâ¸ö²ÎÊı,ÉèÎª1,Ôò²»ÏÔÊ¾ÌáÊ¾
+#æ§åˆ¶å°ç»å¸¸æŠ¥Not enough random bot accounts available. Need *(æ•°é‡,ä¹‹å‰é€šå¸¸æ˜¯6,å› ä¸ºæˆ‘æŠŠplayerbotè´¦å·æ•°é‡è®¾ä¸º1) more!!
+#ä¸ºäº†å‡å°‘å¹²æ‰°,æ·»åŠ äº†ä¸‹é¢è¿™ä¸ªå‚æ•°,è®¾ä¸º1,åˆ™ä¸æ˜¾ç¤ºæç¤º
 Playerbot.Announce.Not_enough_random_bot_accounts_available.disable=1
