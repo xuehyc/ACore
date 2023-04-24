@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -292,7 +292,7 @@ bool Utf8toWStr(char const* utf8str, size_t csize, wchar_t* wstr, size_t& wsize)
     {
         // Replace the converted string with an error message if there is enough space
         // Otherwise just return an empty string
-        const wchar_t* errorMessage = L"An error occurred converting string from UTF-8 to WStr";
+        const wchar_t* errorMessage = L"An error occurred converting string from UTF-8 to WStr\n";
         std::size_t errorMessageLength = std::char_traits<wchar_t>::length(errorMessage);
         if (wsize >= errorMessageLength)
         {
