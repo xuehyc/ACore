@@ -4,18 +4,18 @@ local function GMLogin (event, player)
     if player:GetGMRank() > 1 then
         print "GM log in..."
         SendWorldMessage("Lord |CFFFF0303"..player:GetName().."|r is among us.")
-	end
     else
         print "A player logged in."
+    end
 end
 
 local function GMLogout (event, player)
     if player:GetGMRank() > 1 then
         print "GM log out..."
         SendWorldMessage("Lord |CFFFF0303"..player:GetName().."|r gone.")
-    end
     else
         print "A player logged out."
+    end
 end
 
 RegisterPlayerEvent(3, GMLogin)
