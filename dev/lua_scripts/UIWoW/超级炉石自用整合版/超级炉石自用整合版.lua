@@ -7,6 +7,8 @@
 print(">>Script: TeleportStone loading...OK")
 
 --菜单所有者 --默认炉石6948
+local language = en --设置显示语言,en为英文,cn为中文
+
 local itemEntry	=6948
 --阵营
 local TEAM_ALLIANCE=0
@@ -116,7 +118,10 @@ function ST.SummonNPC(player, entry)
 	local lastTime,nowTime=(ST[guid] or 0),os.time()
 
 	if(player:IsInCombat())then
-		player:SendAreaTriggerMessage("不能在战斗中召唤。")
+        if(language==cn)then
+		    player:SendAreaTriggerMessage("不能在战斗中召唤。")--中文版输出
+        if(language==en)then
+            player:SendAreaTriggerMessage("Can not summon in battle.")--英文版输出
 	else
 		if(nowTime>lastTime)then
 			local map=player:GetMap()
