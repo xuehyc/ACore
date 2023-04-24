@@ -1,11 +1,16 @@
---[[
+﻿--[[
     - Redeemer script:
+    - 救世主脚本:
     
     This script allows players to redeem predetermined 
     codes given out during events etc.
-    
+    本脚本允许玩家赎回事先确定的、已经给出的事件代码等
+
+
     Codes are stored in its own table in the character database,
     as well as the rewards that are tied to the said code.
+    代码被存储在它自己的表中，该表位于角色数据库中，
+    同样奖励被绑定到已经输出的代码中。
     
     Once a code is redeemed, it will be marked as
     redeemed in the database, as well as what player
