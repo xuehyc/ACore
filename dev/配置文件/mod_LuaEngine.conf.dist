@@ -27,7 +27,7 @@
 
 Eluna.Enabled = true
 Eluna.TraceBack = false
-Eluna.ScriptPath = "lua_scripts"
+Eluna.ScriptPath = "D:\Program Files (x86)\WOWDIY\ACore\dev\lua_scripts"
 Eluna.PlayerAnnounceReload = false
 
 
