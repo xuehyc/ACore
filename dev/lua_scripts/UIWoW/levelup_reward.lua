@@ -1,7 +1,7 @@
 ﻿function levelup_reward(event, player, oldLevel)    --升级奖励金币
---player:ModifyMoney(10000) --奖励1金
---oldLevel=getuint32(oldLevel)
+--player:ModifyMoney(10000) --奖励1金,原版
 
+--oldLevel=getuint32(oldLevel)
 --尝试更换数据类型,之前会报字符串转数值错误(错误如下:)
 --lua_scripts/UIWoW/levelup_reward.lua:14(行号): attempt to perform arithmetic on a string value
 
