@@ -1,15 +1,15 @@
 ﻿--print "---------- GM Login/Logout Module Loading---"
 
 local function GMLogin (event, player)
-    print "GM log in..."
     if player:GetGMRank() > 1 then
+        print "GM log in..."
         SendWorldMessage("Lord |CFFFF0303"..player:GetName().."|r is among us.")
 	end
 end
 
 local function GMLogout (event, player)
-    print "GM log out..."
     if player:GetGMRank() > 1 then
+        print "GM log out..."
         SendWorldMessage("Lord |CFFFF0303"..player:GetName().."|r gone.")
     end
 end
