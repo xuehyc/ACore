@@ -1,3 +1,4 @@
+﻿--SQL尚未导入
 function RollEnchant(item)
         rarityRoll = math.random(100)
         local itemClass = ""
