@@ -1,3 +1,5 @@
+﻿--抢红包系统
+
 ---by ljq5555
 local itemcd = 6948 --物品ID
 local systemname = '红包系统' --功能名称
