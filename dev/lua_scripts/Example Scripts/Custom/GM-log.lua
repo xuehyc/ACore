@@ -1,4 +1,4 @@
-﻿print "---------- GM Login/Logout Module Loading---"
+﻿--print "---------- GM Login/Logout Module Loading---"
 
 local function GMLogin (event, player)
     print "GM log in..."
@@ -17,4 +17,4 @@ end
 RegisterPlayerEvent(3, GMLogin)
 RegisterPlayerEvent(4, GMLogout)
 
-print "---------- GM Login/Logout Module Loaded---"
+print "---------- GM Login/Logout Module Loaded ---"
