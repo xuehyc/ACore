@@ -1,5 +1,5 @@
 ﻿
-print(">> loading BossReward.lua")
+print("[Eluna]:>> loading BossReward.lua")
 
 local BossStore = {
                     [81001] = {45624, 40753, 47241, 49426, 1},

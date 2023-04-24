@@ -1,8 +1,6 @@
---[[
---BOSS击杀公告lua
+﻿--[[
+--特定BOSS击杀公告lua
 ]]--
-
-print("PolarisCore LUA>>Kill_Whole.lua Loaded")
 
 --需要通报的BOSS集合
 local boss = {  16152,15687,15688,15689,15690,15691,16457,
@@ -109,3 +107,5 @@ RegisterPlayerEvent(33, EnterCombat)
 RegisterPlayerEvent(34, LeaveCombat)
 RegisterPlayerEvent(7, KilledCreature)
 
+print("[Eluna]:PolarisCore LUA>>Kill_Whole.lua Loaded")
+--print("BOSS击杀公告已加载")  --乱码

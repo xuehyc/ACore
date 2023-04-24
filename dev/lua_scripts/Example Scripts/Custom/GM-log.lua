@@ -21,4 +21,5 @@ end
 RegisterPlayerEvent(3, GMLogin)
 RegisterPlayerEvent(4, GMLogout)
 
-print "---------- GM Login/Logout Module Loaded ---"
+--print "---------- GM Login/Logout Module Loaded ---"--org
+print "[Eluna]:GM Login/Logout Module Loaded"
