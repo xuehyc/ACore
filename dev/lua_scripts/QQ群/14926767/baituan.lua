@@ -1,4 +1,5 @@
 ﻿--百团大战?
+--古拉巴什竞技场大乱斗
 local SMSG_INIT_WORLD_STATES = 0x2C2 --3.3.5
 local SMSG_UPDATE_WORLD_STATE = 0x2C3 --3.3.5
 
