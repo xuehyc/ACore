@@ -16,3 +16,5 @@ end
 
 RegisterPlayerEvent(3, GMLogin)
 RegisterPlayerEvent(4, GMLogout)
+
+print "---------- GM Login/Logout Module Loaded---"
