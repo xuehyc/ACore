@@ -833,6 +833,8 @@ local Stone={
 }
 
 local Menu={
+    --中文版
+    --[[
 	[MMENU]={--主菜单
 		{MENU, "|TInterface/ICONS/Spell_Arcane_PortalIronForge:35:35|t地图传送", 	TPMENU,			GOSSIP_ICON_BATTLE},
 		{MENU, "|TInterface/ICONS/Spell_Arcane_PortalOrgrimmar:35:35|t|cffff0000副本传送", 	TPMENU+0xe0,			GOSSIP_ICON_BATTLE},
@@ -843,6 +845,21 @@ local Menu={
 		{MENU, "|TInterface/ICONS/INV_Misc_Book_09:35:35|tGM|cFF548B54※|r功能",		GMMENU,		GOSSIP_ICON_TABARD},
 		{TP,   "|TInterface/ICONS/Achievement_Reputation_08:35:35|t|cffff0000商业中心|r(|cff0000ff商人广场|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE},
 	},
+    ]]
+
+    --英文版
+    [MMENU]={--主菜单
+		{MENU, "|TInterface/ICONS/Spell_Arcane_PortalIronForge:35:35|tMapTele", 	TPMENU,			GOSSIP_ICON_BATTLE},
+		{MENU, "|TInterface/ICONS/Spell_Arcane_PortalOrgrimmar:35:35|t|cffff0000InstanceTele", 	TPMENU+0xe0,			GOSSIP_ICON_BATTLE},
+		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:35:35|t|cff0000ffHeartStoneFunction", 	TBMENU,	GOSSIP_ICON_TAXI,},
+		{MENU, "|TInterface/ICONS/Spell_Arcane_Rune:35:35|t|cFF9932CCSkillTrain|r", 	TBMENU+0x20,	GOSSIP_ICON_VENDOR},
+		{MENU, "|TInterface/ICONS/INV_Misc_Book_09:35:35|t|cFFB22222DoubleEnhance|r",		ENCMENU,		GOSSIP_ICON_TRAINER},
+		{MENU, "|TInterface/ICONS/INV_Misc_Book_09:35:35|t|cFF7FFF00OtherFunction",		MMENU+0x10,		GOSSIP_ICON_TABARD},
+		{MENU, "|TInterface/ICONS/INV_Misc_Book_09:35:35|tGM|cFF548B54※|rFunctions",		GMMENU,		GOSSIP_ICON_TABARD},
+		{TP,   "|TInterface/ICONS/Achievement_Reputation_08:35:35|t|cffff0000BusinessCenter|r(|cff0000ffVendorsSquare|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE},
+	},
+
+
     [TBMENU]={--炉石功能
 	    {FUNC, "|TInterface/ICONS/Achievement_Reputation_08:35:35|t目标瞬移",   Stone.GoSelectPlayer,	GOSSIP_ICON_TAXI,          false,"是否瞬移到目标身边 ?"},
 		{FUNC, "|TInterface/ICONS/INV_Misc_Rune_02:35:35|t记录炉石", 	Stone.SetHome,	GOSSIP_ICON_TAXI,          false,"是否记录当前|cFFF0F000位置|r ?"},
