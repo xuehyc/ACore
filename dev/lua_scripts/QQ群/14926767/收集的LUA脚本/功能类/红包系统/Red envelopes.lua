@@ -10,7 +10,7 @@ local minItemCount = 10 --最少发送货币数量
 local minMoney = 10 --最少发送金币数量 单位金
 local Levelexp = {5, 1}
 local paihangbang = 10 --排行榜显示最大人数
-local minlevel = 10 --抢红包的最低等级
+local minlevel = 1 --抢红包的最低等级(默认10级)
 --每最小单位积累的经验值 影响排行榜
 local level = {
     [1] = {'|cFFFF0000小气鬼|r', 0},
