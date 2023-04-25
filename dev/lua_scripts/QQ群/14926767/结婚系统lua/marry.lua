@@ -1,4 +1,4 @@
----by 有爱 ljq5555
+﻿---by 有爱 ljq5555
 ---by:ayase 消耗物品或者金币的lua(世界聊天)
 CharDBExecute(
     [[
@@ -55,7 +55,8 @@ marry.ClassName = {
     [11] = '|cffFF7D0A' --德鲁伊
 }
 ------------------结婚系统配置---------------------------------
-marry.servername = '|CFFE55BB0[天丫魔兽]|r'
+--marry.servername = '|CFFE55BB0[天丫魔兽]|r'
+marry.servername = '|CFFE55BB0[小女孩的魔兽世界]|r'
  ---服务器名称
 marry.name = '姻缘殿'
 marry.marryClassName = {
