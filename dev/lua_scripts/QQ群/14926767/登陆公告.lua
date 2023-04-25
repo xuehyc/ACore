@@ -1,4 +1,4 @@
-print(">>Script: LoginNotice loading...OK")
+﻿print(">>Script: LoginNotice loading...OK")
 
 local TEAM_ALLIANCE=0
 local TEAM_HORDE=1
@@ -49,7 +49,7 @@ local function PlayerLogin(event, player)--玩家登录
 	player:SendBroadcastMessage("欢迎来到|cFF0070d0魔兽世界巫妖王之怒|r,本游戏纯仿官方设定!")
 	player:SendBroadcastMessage("使用了最新|cFFF000A0AZ核心+LUA插件+NPCBots|r,轻松游戏体验!")
 	player:SendBroadcastMessage("游戏整体所有|cFFFF0000修复高达99%|r,真正的1:1官方怀旧体验")
-	print("Player is Login. GUID:"..player:GetGUIDLow())
+	print("Player is Login. GUID:"..player:GetGUIDLow()..player:GetName())
 end
 
 -- local function PlayerLogout(event, player)--玩家登出
