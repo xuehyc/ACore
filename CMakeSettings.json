@@ -20,6 +20,26 @@
           "name": "MODULES",
           "value": "static",
           "type": "STRING"
+        },
+        {
+          "name": "Boost_LIBRARY_DIR_RELEASE",
+          "value": "",
+          "type": "PATH"
+        },
+        {
+          "name": "Boost_DIR",
+          "value": "",
+          "type": "PATH"
+        },
+        {
+          "name": "Boost_THREAD_LIBRARY_RELEASE",
+          "value": "",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "Boost_INCLUDE_DIR",
+          "value": "D:/Program Files (x86)/boost_1_75_0",
+          "type": "PATH"
         }
       ]
     }
