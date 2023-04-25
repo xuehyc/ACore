@@ -1,3 +1,4 @@
+﻿--非常夸张的登录公告
 print(">>myscript: huanying...OK   .my fang139842")
 local lm                = 0
 local bl                = 1
