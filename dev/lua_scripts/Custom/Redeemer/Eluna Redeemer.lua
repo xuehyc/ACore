@@ -91,8 +91,9 @@ function Redeemer.LoadCache(event)
             };
         until not Query:NextRow()
         print("[Eluna Redeemer]: Cache initialized. Loaded "..Query:GetRowCount().." results.")
-    else
-        print("[Eluna Redeemer]: Cache initialized. No results found.")
+    --else
+        --print("[Eluna Redeemer]: Cache initialized. No results found.")
+        --输出太多,注释上方两句
     end
 end
 
