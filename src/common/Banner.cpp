@@ -24,7 +24,7 @@ void Acore::Banner::Show(std::string_view applicationName, void(*log)(std::strin
     log(Acore::StringFormatFmt("{} ({})", GitRevision::GetFullVersion(), applicationName));
     log("<Ctrl-C> to stop.\n");
     log("XGirl Self Development and improvement Edition.");
-    log("ACore,小女孩自研ELUNA_NPCBOT效率版.");
+    log("ACore,小女孩自研NPCBot_Eluna效率版.");
     log("Maybe God is a girl...\n");
 
     log("     ACore 3.3.5a  -  https://github.com/xuehyc/ACore\n");
