@@ -841,7 +841,7 @@ local Menu={
 		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:35:35|t|cff0000ff炉石功能", 	TBMENU,	GOSSIP_ICON_TAXI,},
 		{MENU, "|TInterface/ICONS/Spell_Arcane_Rune:35:35|t|cFF9932CC技能训练|r", 	TBMENU+0x20,	GOSSIP_ICON_VENDOR},
 		{MENU, "|TInterface/ICONS/INV_Misc_Book_09:35:35|t|cFFB22222双重附魔|r",		ENCMENU,		GOSSIP_ICON_TRAINER},
-		{MENU, "|TInterface/ICONS/INV_Misc_Book_09:35:35|t|cFF7FFF00其他功能",		MMENU+0x10,		GOSSIP_ICON_TABARD},
+		{MENU, "|TInterface/ICONS/INV_Misc_Book_09:35:35|t|c00722FFF其他功能",		MMENU+0x10,		GOSSIP_ICON_TABARD},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别
 		{MENU, "|TInterface/ICONS/INV_Misc_Book_09:35:35|tGM|cFF548B54※|r功能",		GMMENU,		GOSSIP_ICON_TABARD},
 		{TP,   "|TInterface/ICONS/Achievement_Reputation_08:35:35|t|cffff0000商业中心|r(|cff0000ff商人广场|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE},
 	},
