@@ -1,3 +1,4 @@
+﻿require("ezCollections")
 local invTypeEnumToName =
 {
     [0] = "INVTYPE_NON_EQUIP",

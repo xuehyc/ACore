@@ -1,8 +1,8 @@
--- Load enUS localization regardless of client locale, so that if localization for client's locale is missing, we won't get plenty of Lua errors
+﻿-- Load enUS localization regardless of client locale, so that if localization for client's locale is missing, we won't get plenty of Lua errors
 -- if GetLocale() ~= "enGB" and GetLocale() ~= "enUS" then
 --     return;
 -- end
-
+require("ezCollections")
 function ezCollections:GetPetInfo(spellID)
     local info = ezCollections.Pets[spellID];
     if info then

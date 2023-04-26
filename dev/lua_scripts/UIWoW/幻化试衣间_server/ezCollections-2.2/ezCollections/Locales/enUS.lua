@@ -1,3 +1,4 @@
+﻿require("AceLocale-3.0")
 local ADDON_NAME = ...;
 
 local L = LibStub("AceLocale-3.0"):NewLocale(ADDON_NAME, "enUS", true);

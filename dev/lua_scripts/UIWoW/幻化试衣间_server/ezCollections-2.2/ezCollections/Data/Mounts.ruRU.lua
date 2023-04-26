@@ -1,4 +1,5 @@
--- Load localization only if it matches the client locale
+﻿-- Load localization only if it matches the client locale
+require("Locale")
 if GetLocale() ~= "ruRU" then
     return;
 end
