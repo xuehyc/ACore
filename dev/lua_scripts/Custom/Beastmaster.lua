@@ -1,4 +1,4 @@
-local Beastmaster = {
+﻿local Beastmaster = {
     entry = 823, -- Beastmaster entry.
     maxObj = 13, -- 13 = Max amt. of menu objects.
 }
@@ -81,7 +81,7 @@ function Beastmaster.LoadCache()
         until not Query:NextRow()
         print("[Eluna Beastmaster]: Cache initialized. Loaded "..Query:GetRowCount().." tameable beasts.")
     else
-        print("[Eluna Beastmaster]: Cache initialized. No results found.")
+        print("\n[Eluna Beastmaster]: Cache initialized. No results found.")
     end
 end
 
