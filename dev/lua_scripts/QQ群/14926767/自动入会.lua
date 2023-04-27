@@ -1,4 +1,4 @@
-﻿print('loading AutoJoinGuildOnLogin')
+﻿print('AutoJoinGuildOnLogin loading...')
 ----自动加入工会
 local guildid = {
     --自动加入的工会名称
@@ -27,4 +27,4 @@ function AutoJoinGuildOnLogin(event, player)
 end
 RegisterPlayerEvent(3, AutoJoinGuildOnLogin)
 --注册玩家登陆事件,在玩家登陆角色的时候触发，3代表是登陆，AutoJoinGuildOnLogin 代表需要出发的具体代码
-print('AutoJoinGuildOnLogin loaded ')   --控制台打印一行文字，调试的时候经常用 print(xxx)
+print('AutoJoinGuildOnLogin loaded.')   --控制台打印一行文字，调试的时候经常用 print(xxx)

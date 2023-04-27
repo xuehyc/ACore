@@ -232,4 +232,4 @@ end
 RegisterPlayerEvent(5,BigBag.Start)
 RegisterPlayerGossipEvent(50024,2,BigBag.pGossipSelect_OutPutGossip)
 --CreateLuaEvent(BigBag.UpdateDB,BigBag.UpdateTime, 0)
-print("BigBag sytem added")
+print("BigBag sytem loaded.")
