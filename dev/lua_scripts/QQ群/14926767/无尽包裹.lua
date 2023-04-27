@@ -1,4 +1,4 @@
-﻿print("\nBigBag sytem loading")
+﻿print("BigBag sytem loading")
 --无尽包裹
 
 local BigBag = {}
