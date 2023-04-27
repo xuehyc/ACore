@@ -1,10 +1,11 @@
-
+ï»¿print("BigBag sytem loading")
+--æ— å°½åŒ…è£¹
 
 local BigBag = {}
-BigBag.InPutSpellId = 90015        --°ÑÎïÆ·Êä½ø²Ö¿â
-BigBag.OutPutSpellId = 90016    --°ÑÎïÆ·Êä³ö²Ö¿â
-BigBag.NextPage = 10
-BigBag.UpdateTime = 300000
+BigBag.InPutSpellId     = 90015     --æŠŠç‰©å“è¾“è¿›ä»“åº“
+BigBag.OutPutSpellId    = 90016     --æŠŠç‰©å“è¾“å‡ºä»“åº“
+BigBag.NextPage         = 10        --æ¯ä¸€é¡µæ˜¾ç¤ºç‰©å“æ•°é‡
+BigBag.UpdateTime       = 300000
 
 
 BigBag.DB = {}
@@ -17,7 +18,7 @@ function BigBag.loadDB()
         `itementry` int(10) NOT NULL,
         `Count` int(10) NOT NULL,
         PRIMARY KEY (`Pguid`,`itementry`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÎŞ¾¡°üÊı¾İ´¢´æ';
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='æ— å°½åŒ…æ•°æ®å‚¨å­˜';
         ]])
     CharDBExecute("DELETE FROM character_bigbag WHERE count=0")
 
@@ -36,8 +37,8 @@ function BigBag.Start(_,p,sp,_)
         if p:IsInCombat()==false then 
             BigBag.InPutGossip(p)
         else
-            p:SendAreaTriggerMessage("|cFFFF0000Õ½¶·ÖĞ²»¿ÉÒÔÊ¹ÓÃ~|R")
-            p:SendBroadcastMessage("|cFFFF0000Õ½¶·ÖĞ²»¿ÉÒÔÊ¹ÓÃ~|R")
+            p:SendAreaTriggerMessage("|cFFFF0000æˆ˜æ–—ä¸­ä¸å¯ä»¥ä½¿ç”¨~|R")
+            p:SendBroadcastMessage("|cFFFF0000æˆ˜æ–—ä¸­ä¸å¯ä»¥ä½¿ç”¨~|R")
             return false
         end
     elseif sp:GetEntry() == BigBag.OutPutSpellId then
@@ -45,19 +46,19 @@ function BigBag.Start(_,p,sp,_)
             BigBag.pSelectGossip[pGuid] = {["Class"] = -1,["page"] = 0,["OutputCount"] = 1}
             BigBag.OutPutGossip(p)
         else
-            p:SendAreaTriggerMessage("|cFFFF0000Õ½¶·ÖĞ²»¿ÉÒÔÊ¹ÓÃ~|R")
-            p:SendBroadcastMessage("|cFFFF0000Õ½¶·ÖĞ²»¿ÉÒÔÊ¹ÓÃ~|R")
+            p:SendAreaTriggerMessage("|cFFFF0000æˆ˜æ–—ä¸­ä¸å¯ä»¥ä½¿ç”¨~|R")
+            p:SendBroadcastMessage("|cFFFF0000æˆ˜æ–—ä¸­ä¸å¯ä»¥ä½¿ç”¨~|R")
             return false
         end
     end
 end
 
 BigBag.ClassName = {
-        [0] = "ÏûºÄÆ·",[1] = "ÈİÆ÷",[2] = "ÎäÆ÷",
-        [3] = "Öé±¦",[4] = "»¤¼×",[5] = "²ÄÁÏ",
-        [6] = "µ¯Ò©",[7] = "ÉÌÆ·",[9] = "Åä·½",
-        [11] = "¼ı´ü",[12] = "ÈÎÎñ",[13] = "Ô¿³×",
-        [14] = "ÓÀ¾Ã",[15] = "ÆäËû",[16] = "µñÎÄ",}
+        [0] = "æ¶ˆè€—å“",[1] = "å®¹å™¨",[2] = "æ­¦å™¨",
+        [3] = "ç å®",[4] = "æŠ¤ç”²",[5] = "ææ–™",
+        [6] = "å¼¹è¯",[7] = "å•†å“",[9] = "é…æ–¹",
+        [11] = "ç®­è¢‹",[12] = "ä»»åŠ¡",[13] = "é’¥åŒ™",
+        [14] = "æ°¸ä¹…",[15] = "å…¶ä»–",[16] = "é›•æ–‡",}
 
 function BigBag.OutPutGossip(p)
     local pGuid = p:GetGUIDLow()
@@ -77,7 +78,7 @@ function BigBag.OutPutGossip(p)
         for _,_ in pairs(BigBag.pData[pGuid][BigBag.pSelectGossip[pGuid].Class]) do
             gossipNum = gossipNum + 1
         end
-        p:GossipMenuAddItem(10,"µã»÷ÉèÖÃÃ¿´ÎÈ¡³öµÄÊıÁ¿: "..BigBag.pSelectGossip[pGuid].OutputCount,1,17,true)
+        p:GossipMenuAddItem(10,"ç‚¹å‡»è®¾ç½®æ¯æ¬¡å–å‡ºçš„æ•°é‡: "..BigBag.pSelectGossip[pGuid].OutputCount,1,17,true)
         local visible = 0
         for id,count in pairs(BigBag.pData[pGuid][BigBag.pSelectGossip[pGuid].Class]) do
             if visible >= page * BigBag.NextPage and visible < BigBag.NextPage * (page + 1) then
@@ -94,15 +95,15 @@ function BigBag.OutPutGossip(p)
             visible = visible + 1
         end
         if gossipNum > 0 and gossipNum - page * BigBag.NextPage > BigBag.NextPage then
-            p:GossipMenuAddItem(10,"ÏÂÒ»Ò³",1,19)
+            p:GossipMenuAddItem(10,"ä¸‹ä¸€é¡µ",1,19)
         end
         if page>0 then
-            p:GossipMenuAddItem(10,"ÉÏÒ»Ò³",1,18)
+            p:GossipMenuAddItem(10,"ä¸Šä¸€é¡µ",1,18)
         end
         if gossipNum == 0 then
-            p:GossipMenuAddItem(10,"ÎŞÎïÆ·",0,20)
+            p:GossipMenuAddItem(10,"æ— ç‰©å“",0,20)
         end
-        p:GossipMenuAddItem(10,"·µ»Ø",0,20)
+        p:GossipMenuAddItem(10,"è¿”å›",0,20)
     end
     p:GossipSendMenu(1,p,50024)
 end
@@ -141,8 +142,8 @@ function BigBag.pGossipSelect_OutPutGossip(_,p,_,_,ItemOrIntid,Count,_)
         --[[if string.find(Count,"%d+") then
                 Count = tonumber(Count)
                 if Count < 0 then
-                    p:SendAreaTriggerMessage("|cFFFF0000Òì³£ĞĞÎª£¬·£¿î"..Count * -1 .."G£¬ÒÑ¾­¼Çµ½Ğ¡±¾×ÓÁË£¬µÈ×ÅÎÒËãÕË°É¡£|R")
-                    p:SendBroadcastMessage("|cFFFF0000Òì³£ĞĞÎª£¬·£¿î"..Count * -1 .."G£¬ÒÑ¾­¼Çµ½Ğ¡±¾×ÓÁË£¬µÈ×ÅÎÒËãÕË°É¡£|R")
+                    p:SendAreaTriggerMessage("|cFFFF0000å¼‚å¸¸è¡Œä¸ºï¼Œç½šæ¬¾"..Count * -1 .."Gï¼Œå·²ç»è®°åˆ°å°æœ¬å­äº†ï¼Œç­‰ç€æˆ‘ç®—è´¦å§ã€‚|R")
+                    p:SendBroadcastMessage("|cFFFF0000å¼‚å¸¸è¡Œä¸ºï¼Œç½šæ¬¾"..Count * -1 .."Gï¼Œå·²ç»è®°åˆ°å°æœ¬å­äº†ï¼Œç­‰ç€æˆ‘ç®—è´¦å§ã€‚|R")
                     p:ModifyMoney(Count*10000)
                     file:write(os.date().."\t".. p:GetGUIDLow().."\t"..itemId.."\t"..Count.."\n")
                     file:flush()
@@ -155,12 +156,12 @@ function BigBag.pGossipSelect_OutPutGossip(_,p,_,_,ItemOrIntid,Count,_)
                     p:AddItem(itemId,BigBag.pSelectGossip[pGuid].OutputCount)
                     p:SaveToDB()
                 else
-                    p:SendAreaTriggerMessage("|cFFFF0000È¡³öµÄÊıÁ¿´óÓÚÄãÑ¡ÖĞÎïÆ·µÄµş¶ÑÊıÁ¿¡£|R")
-                    p:SendBroadcastMessage("|cFFFF0000È¡³öµÄÊıÁ¿´óÓÚÄãÑ¡ÖĞÎïÆ·µÄµş¶ÑÊıÁ¿¡£|R")
+                    p:SendAreaTriggerMessage("|cFFFF0000å–å‡ºçš„æ•°é‡å¤§äºä½ é€‰ä¸­ç‰©å“çš„å å †æ•°é‡ã€‚|R")
+                    p:SendBroadcastMessage("|cFFFF0000å–å‡ºçš„æ•°é‡å¤§äºä½ é€‰ä¸­ç‰©å“çš„å å †æ•°é‡ã€‚|R")
                 end
         --[[else
-                p:SendAreaTriggerMessage("|cFFFF0000ÇëÊäÈëÊıÖµ¡£|R")
-                p:SendBroadcastMessage("|cFFFF0000ÇëÊäÈëÊıÖµ¡£|R")
+                p:SendAreaTriggerMessage("|cFFFF0000è¯·è¾“å…¥æ•°å€¼ã€‚|R")
+                p:SendBroadcastMessage("|cFFFF0000è¯·è¾“å…¥æ•°å€¼ã€‚|R")
             end
         ]]--
             --p:GossipComplete()
@@ -188,14 +189,14 @@ function BigBag.InPutGossip(p)
             if BigBag.pData[pGuid][itemClass][itemEntry]==nil then
                 BigBag.pData[pGuid][itemClass][itemEntry] = 0
             end
-            p:SendBroadcastMessage("|cFFFF0000³É¹¦´æÈëÎïÆ·|r"..GetItemLink(itemEntry).."|cFFFF0000x"..Count.."ÖÁÎŞ¾¡°ü¹üÖĞ¡£|R")
+            p:SendBroadcastMessage("|cFFFF0000æˆåŠŸå­˜å…¥ç‰©å“|r"..GetItemLink(itemEntry).."|cFFFF0000x"..Count.."è‡³æ— å°½åŒ…è£¹ä¸­ã€‚|R")
             BigBag.pData[pGuid][itemClass][itemEntry] = BigBag.pData[pGuid][itemClass][itemEntry] + Count
             CharDBExecute(string.format("REPLACE INTO character_bigbag (pGuid,Class,ItemEntry,Count) VALUES (%s,%s,%s,%s)",pGuid,itemClass,itemEntry,BigBag.pData[pGuid][itemClass][itemEntry]))
             p:RemoveItem(item,Count)
             p:SaveToDB()
         else
-            p:SendAreaTriggerMessage("|cFFFF0000×°±¸°ó¶¨µÄÎïÆ·ÒÑ¾­×°±¸¹ıºó²»ÄÜ´æÈëÎŞ¾¡°ü¹ü¡£|R")
-            p:SendBroadcastMessage("|cFFFF0000×°±¸°ó¶¨µÄÎïÆ·ÒÑ¾­×°±¸¹ıºó²»ÄÜ´æÈëÎŞ¾¡°ü¹ü¡£|R")
+            p:SendAreaTriggerMessage("|cFFFF0000è£…å¤‡ç»‘å®šçš„ç‰©å“å·²ç»è£…å¤‡è¿‡åä¸èƒ½å­˜å…¥æ— å°½åŒ…è£¹ã€‚|R")
+            p:SendBroadcastMessage("|cFFFF0000è£…å¤‡ç»‘å®šçš„ç‰©å“å·²ç»è£…å¤‡è¿‡åä¸èƒ½å­˜å…¥æ— å°½åŒ…è£¹ã€‚|R")
         end
     end
 end
@@ -231,3 +232,4 @@ end
 RegisterPlayerEvent(5,BigBag.Start)
 RegisterPlayerGossipEvent(50024,2,BigBag.pGossipSelect_OutPutGossip)
 --CreateLuaEvent(BigBag.UpdateDB,BigBag.UpdateTime, 0)
+print("BigBag sytem added")
