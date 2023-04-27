@@ -1,4 +1,5 @@
-﻿function levelup_reward(event, player, oldLevel)    --升级奖励金币
+﻿print('levelup_reward module loading...') 
+function levelup_reward(event, player, oldLevel)    --升级奖励金币
 player:ModifyMoney(10000) --奖励1金,原版
 
 --oldLevel=getuint32(oldLevel)--报错
@@ -16,3 +17,4 @@ player:SendBroadcastMessage("You owned some Gold for your levelup.")
 --player:SendBroadcastMessage("升级奖励1金")
 end  
 RegisterPlayerEvent(13, levelup_reward)
+print('levelup_reward module loaded.') 
