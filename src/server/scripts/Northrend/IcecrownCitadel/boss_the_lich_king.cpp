@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -61,6 +61,7 @@ enum Texts
     SAY_TIRION_INTRO_2              = 1,
     SAY_TIRION_OUTRO_1              = 2,
     SAY_TIRION_OUTRO_2              = 3,
+    SAY_TIRION_OUTRO_3              = 4,
 
     // Terenas Menethil (outro)
     SAY_TERENAS_OUTRO_1             = 0,
@@ -343,6 +344,7 @@ enum MiscData
 {
     LIGHT_SNOWSTORM             = 2490,
     LIGHT_SOULSTORM             = 2508,
+    EQUIP_ASHBRINGER            = 13262,
     MUSIC_FROZEN_THRONE         = 17457,
     MUSIC_SPECIAL               = 17458, // Summon Shambling Horror, Remorseless Winter, Quake, Summon Val'kyr Periodic, Harvest Soul, Vile Spirits
     MUSIC_FURY_OF_FROSTMOURNE   = 17459,
@@ -835,6 +837,7 @@ public:
                     {
                         tirion->Yell("巫妖王必须死！", LANG_UNIVERSAL);
                         tirion->PlayDirectSound(17389);
+                        tirion->AI()->Talk(SAY_TIRION_OUTRO_3);
                     }
                 }
             }
@@ -981,7 +984,7 @@ public:
                     for (Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
                         if (Player* player = itr->GetSource())
                             if (player->GetPositionZ() < 700.0f)
-                                //救赎之魂fix
+                                //����֮��fix
                                 if (!player->HasAura(27792))
                                     Unit::Kill(me, player);
             }
@@ -1356,7 +1359,7 @@ public:
             {
                 // remove glow on ashbringer and tirion
                 me->RemoveAllAuras();
-                SetEquipmentSlots(true);
+                SetEquipmentSlots(false, EQUIP_ASHBRINGER);
             }
         }
 
@@ -1597,7 +1600,7 @@ public:
                             lichKing->SetImmuneToNPC(false);
                             me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_ONESHOT_NONE);
                             me->RemoveAllAuras();
-                            SetEquipmentSlots(true);
+                            SetEquipmentSlots(false, EQUIP_ASHBRINGER);
                             me->Attack(lichKing, true);
                             me->GetMotionMaster()->MovePoint(0, 512.16f, -2120.25f, 840.86f);
                         }
