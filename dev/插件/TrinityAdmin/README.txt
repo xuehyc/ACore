@@ -1,5 +1,5 @@
-TrinityAdminTrinity、Stygian服务端&3.3.5客户端(99%汉化亲测)
-
+﻿TrinityAdminTrinity、Stygian服务端&3.3.5客户端(99%汉化亲测)
+https://uiwow.com/thread-6394-1-2.html?_dsign=532d1e98
 *****************************************************************************
 TRINITYADMIN WILL NOT WORK IF YOU DONT FOLLOW THESE INSTRUCTIONS
 *****************************************************************************
