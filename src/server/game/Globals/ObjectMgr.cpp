@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -8843,10 +8843,10 @@ void ObjectMgr::LoadCreatureOutfits()
         switch (co.gender)
         {
             case GENDER_FEMALE:
-                _creatureTemplateStore[entry].Modelid1 = rEntry->model_f;
+                _creatureTemplateStore[entry].Modelid1 = rEntry->FemaleDisplayID;//FemaleDisplayID-->model_f
                 break;
             case GENDER_MALE:
-                _creatureTemplateStore[entry].Modelid1 = rEntry->model_m;
+                _creatureTemplateStore[entry].Modelid1 = rEntry->MaleDisplayID;//MaleDisplayID-->model_m
                 break;
             default:
                 LOG_ERROR("server.loading", ">> Creature entry {} in `creature_template_outfits` has invalid gender {}", entry, uint32(co.gender));

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1468,9 +1468,9 @@ public:
     virtual void SetNativeGender(Gender gender) { setGender(gender); }
 
     //npcbot: compatibility accessors
-    [[nodiscard]] inline uint8 GetRace(bool original = false) const { return getRace(original); }
-    [[nodiscard]] inline uint32 GetRaceMask() const { return getRaceMask(); }
-    [[nodiscard]] inline uint8 GetClass() const { return getClass(); }
+    //[[nodiscard]] inline uint8 GetRace(bool original = false) const { return getRace(original); }
+    //[[nodiscard]] inline uint32 GetRaceMask() const { return getRaceMask(); }
+    //[[nodiscard]] inline uint8 GetClass() const { return getClass(); }
     [[nodiscard]] inline uint32 GetClassMask() const { return getClassMask(); }
     [[nodiscard]] inline uint8 GetGender() const { return getGender(); }
     inline void SetPowerType(Powers power) { setPowerType(power); }
