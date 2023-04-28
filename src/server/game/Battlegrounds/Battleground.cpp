@@ -913,7 +913,21 @@ void Battleground::EndBattleground(PvPTeamId winnerTeamId)
         bnext = bitr;
         ++bnext;
         if (bitr->first.IsCreature())
-            RemoveBotAtLeave(bitr->first);
+        {
+            if (Creature const* bot = BotDataMgr::FindBot(bitr->first.GetEntry()))
+            {
+                if (!bot->IsAlive())
+                    BotMgr::ReviveBot(const_cast<Creature*>(bot));
+                else
+                {
+                    bot->GetBotAI()->UnsummonAll();
+                    const_cast<Creature*>(bot)->InterruptNonMeleeSpells(true);
+                    const_cast<Creature*>(bot)->RemoveAllControlled();
+                    const_cast<Creature*>(bot)->SetUnitFlag(UNIT_FLAG_IMMUNE);
+                    const_cast<Creature*>(bot)->AddUnitState(UNIT_STATE_STUNNED);
+                }
+            }
+        }
     }
     //end npcbot
 
