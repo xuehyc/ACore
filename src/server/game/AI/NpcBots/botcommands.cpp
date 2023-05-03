@@ -681,6 +681,7 @@ public:
         wpc->SetMaxPower(POWER_MANA, uint32(wp->GetLinks().size()));
         wpc->SetPower(POWER_MANA, wpc->GetMaxPower(POWER_MANA));
         wpc->SetObjectScale(10.0f);
+        wpc->m_serverSideVisibilityDetect.SetValue(SERVERSIDE_VISIBILITY_GM, wpc->m_serverSideVisibility.GetValue(SERVERSIDE_VISIBILITY_GM));
         return wpc;
     }
 
@@ -2777,7 +2778,7 @@ public:
             return false;
         }
 
-        if (!(creInfo->flags_extra & CREATURE_FLAG_EXTRA_NPCBOT))
+        if (!creInfo->IsNPCBot())
         {
             handler->PSendSysMessage("生物ID %u 不是NPCBot!", id);
             handler->SetSentErrorMessage(true);
@@ -2968,7 +2969,7 @@ public:
             return false;
         }
 
-        if (!(creInfo->flags_extra & CREATURE_FLAG_EXTRA_NPCBOT))
+        if (!creInfo->IsNPCBot())
         {
             handler->PSendSysMessage("生物 %u 不是NPCBot!", id);
             handler->SetSentErrorMessage(true);
