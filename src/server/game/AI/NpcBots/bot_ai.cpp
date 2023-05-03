@@ -1,4 +1,4 @@
-#include "Battleground.h"
+﻿#include "Battleground.h"
 #include "BattlegroundAB.h"
 #include "BattlegroundWS.h"
 #include "bot_ai.h"
@@ -1970,7 +1970,7 @@ void bot_ai::_listAuras(Player const* player, Unit const* unit) const
     ChatHandler ch(player->GetSession());
     std::ostringstream botstring;
     botstring.setf(std::ios_base::fixed);
-    uint32 const bot_pet_player_class = unit->GetTypeId() == TYPEID_PLAYER ? unit->GetClass() : unit->ToCreature()->GetBotAI()->GetBotClass();
+    uint32 const bot_pet_player_class = unit->GetTypeId() == TYPEID_PLAYER ? unit->getClass() : unit->ToCreature()->GetBotAI()->GetBotClass();
     botstring << unit->GetName() << " (" << LocalizedNpcText(player, BOT_TEXT_CLASS) << ": " << uint32(bot_pet_player_class) << "), ";
     if (unit->GetTypeId() == TYPEID_PLAYER)
         botstring << LocalizedNpcText(player, BOT_TEXT_PLAYER);
@@ -5337,7 +5337,7 @@ uint32 bot_ai::_selectMountSpell() const
                     myMountSpellId = useSlowMount ? BOT_WARLOCK_MOUNT : BOT_WARLOCK_FAST_MOUNT;
                     break;
                 case BOT_CLASS_PALADIN:
-                    if (me->GetRace() == RACE_BLOODELF)
+                    if (me->getRace() == RACE_BLOODELF)
                         myMountSpellId = useSlowMount ? BOT_BE_PALLY_MOUNT : BOT_BE_PALLY_FAST_MOUNT;
                     else
                         myMountSpellId = useSlowMount ? BOT_ALLI_PALLY_MOUNT : BOT_ALLI_PALLY_FAST_MOUNT;
@@ -5374,7 +5374,7 @@ uint32 bot_ai::_selectMountSpell() const
                 static const MountArray MOUNTS_100_DRAENEI = { BOT_MOUNT_DRAENEI_100_1, BOT_MOUNT_DRAENEI_100_2, BOT_MOUNT_DRAENEI_100_3 };
 
                 Optional<MountArray> myMounts;
-                switch (me->GetRace())
+                switch (me->getRace())
                 {
                     case RACE_HUMAN:         myMounts = useSlowMount ? MOUNTS_60_HUMAN : MOUNTS_100_HUMAN;       break;
                     case RACE_ORC:           myMounts = useSlowMount ? MOUNTS_60_ORC : MOUNTS_100_ORC;           break;
@@ -5401,9 +5401,9 @@ uint32 bot_ai::_selectMountSpell() const
             static const MountArray MOUNTS_280_HORDE = { BOT_MOUNT_FLY_HORDE_280_1, BOT_MOUNT_FLY_HORDE_280_2, BOT_MOUNT_FLY_HORDE_280_3 };
 
             Optional<MountArray> myMounts;
-            if (me->GetRaceMask() & RACEMASK_ALLIANCE)
+            if (me->getRaceMask() & RACEMASK_ALLIANCE)
                 myMounts = useSlowMount ? MOUNTS_150_ALLIANCE : MOUNTS_280_ALLIANCE;
-            else if (me->GetRaceMask() & RACEMASK_HORDE)
+            else if (me->getRaceMask() & RACEMASK_HORDE)
                 myMounts = useSlowMount ? MOUNTS_150_HORDE : MOUNTS_280_HORDE;
 
             if (myMounts)
@@ -10263,7 +10263,7 @@ void bot_ai::BreakCC(uint32 diff)
             return;
     }
 
-    uint8 myrace = me->GetRace();
+    uint8 myrace = me->getRace();
 
     //Racial 6) Every Man for Himself
     if (myrace == RACE_HUMAN && IsSpellReady(RACIAL_EVERY_MAN_FOR_HIMSELF, diff, false) && CCed(me, true) &&
@@ -10285,7 +10285,7 @@ void bot_ai::BreakCC(uint32 diff)
             return;
     }
     //Racial 7) Escape Artist
-    if (me->GetRace() == RACE_GNOME && IsSpellReady(RACIAL_ESCAPE_ARTIST, diff, false) && CCed(me, true) &&
+    if (me->getRace() == RACE_GNOME && IsSpellReady(RACIAL_ESCAPE_ARTIST, diff, false) && CCed(me, true) &&
         !me->HasAuraType(SPELL_AURA_MOD_STEALTH) &&
         (me->IsInCombat() || !me->getAttackers().empty()) && Rand() < 40 && !IsCasting() &&
         (me->GetLevel() < 60 || !IsSpellReady(PVPTRINKET, diff, false)) &&
@@ -10299,7 +10299,7 @@ void bot_ai::BreakCC(uint32 diff)
 void bot_ai::CheckRacials(uint32 diff)
 {
     //At this point checked CCed and pots
-    uint8 myrace = me->GetRace();
+    uint8 myrace = me->getRace();
     //Racial 1) Tauren (War Stomp)
     if (myrace == RACE_TAUREN && IsSpellReady(RACIAL_WARSTOMP, diff, false) &&
         (!IsTank() || me->GetShapeshiftForm() == FORM_NONE) &&
@@ -13462,7 +13462,7 @@ void bot_ai::DefaultInit()
 
 void bot_ai::ApplyRacials()
 {
-    uint8 myrace = me->GetRace();
+    uint8 myrace = me->getRace();
     switch (myrace)
     {
         case RACE_HUMAN:
@@ -13531,7 +13531,7 @@ void bot_ai::ApplyRacials()
                 InitSpellMap(RaceSpellForClass(myrace, _botclass), true, false);
             break;
         default:
-            //TC_LOG_ERROR("entities.player", "bot_ai::ApplyRacePassives(): unknown race %u for bot %s (%u)", uint32(me->GetRace()), me->GetName().c_str(), me->GetEntry());
+            //TC_LOG_ERROR("entities.player", "bot_ai::ApplyRacePassives(): unknown race %u for bot %s (%u)", uint32(me->getRace()), me->GetName().c_str(), me->GetEntry());
             return;
     }
 }
@@ -14730,7 +14730,7 @@ void bot_ai::JustDied(Unit* u)
         LOG_DEBUG("npcbots", "{} {} id {} class {} level {} WAS KILLED BY {} {} id {} class {} level {} on their way to {}!",
             IsWanderer() ? "Wandering bot" : "Bot", me->GetName().c_str(), me->GetEntry(), uint32(_botclass), uint32(me->GetLevel()),
             (u->IsPlayer() ? "player" : u->IsNPCBot() ? u->ToCreature()->GetBotAI()->IsWanderer() ? "wandering bot" : "bot" : u->IsNPCBotPet() ? "botpet" : "creature"),
-            u->GetName().c_str(), u->GetEntry(), uint32(u->GetClass()), uint32(u->GetLevel()),
+            u->GetName().c_str(), u->GetEntry(), uint32(u->getClass()), uint32(u->GetLevel()),
             IsWanderer() ? _travel_node_cur->GetName().c_str() : "''");
     }
 
@@ -14757,14 +14757,14 @@ void bot_ai::KilledUnit(Unit* u)
                 LOG_DEBUG("npcbots", "Wandering bot {} id {} class {} level {} KILLED {} {} id {} class {} level {} on their way to {}!",
                     me->GetName().c_str(), me->GetEntry(), uint32(_botclass), uint32(me->GetLevel()),
                     (u->IsPlayer() ? "player" : u->IsNPCBot() ? u->ToCreature()->GetBotAI()->IsWanderer() ? "wandering bot" : "bot" : u->IsNPCBotPet() ? "botpet" : "creature"),
-                    u->GetName().c_str(), u->GetEntry(), uint32(u->GetClass()), uint32(u->GetLevel()),
+                    u->GetName().c_str(), u->GetEntry(), uint32(u->getClass()), uint32(u->GetLevel()),
                     _travel_node_cur->GetName().c_str());
             }
             else if (u->IsNPCBot() && u->ToCreature()->GetBotAI()->IsWanderer())
             {
                 LOG_DEBUG("npcbots", "Bot {} id {} class {} level {} KILLED wandering bot {} id {} class {} level {} on their way to {}!",
                     me->GetName().c_str(), me->GetEntry(), uint32(_botclass), uint32(me->GetLevel()),
-                    u->GetName().c_str(), u->GetEntry(), uint32(u->GetClass()), uint32(u->GetLevel()),
+                    u->GetName().c_str(), u->GetEntry(), uint32(u->getClass()), uint32(u->GetLevel()),
                     IsWanderer() ? _travel_node_cur->GetName().c_str() : "''");
             }
         }
@@ -16449,7 +16449,7 @@ bool bot_ai::GlobalUpdate(uint32 diff)
         */
         //Faction
         //ensure master is not controlled
-        ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(master->GetRace());
+        ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(master->getRace());
         uint32 fac = rEntry ? rEntry->FactionID : 0;
         if (me->GetFaction() != master->GetFaction() && master->GetFaction() == fac)
         {
@@ -18193,7 +18193,7 @@ uint8 bot_ai::GetPlayerRace() const
         }
     }
 
-    return me->GetRace();
+    return me->getRace();
 }
 
 uint8 bot_ai::GetBotComboPoints() const

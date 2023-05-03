@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1228,7 +1228,7 @@ void Guild::HandleRoster(WorldSession* session)
 
         memberData.Status = member.GetFlags();
         memberData.Level = member.GetLevel();
-        memberData.ClassID = member.GetClass();
+        memberData.ClassID = member.getClass();
         memberData.Gender = member.GetGender();
 
         memberData.Name = member.GetName();

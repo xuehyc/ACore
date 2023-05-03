@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -317,14 +317,14 @@ void WorldSession::HandleWhoOpcode(WorldPacket& recvData)
         }
 
         // check if class matches classmask
-        uint8 class_ = target.GetClass();
+        uint8 class_ = target.getClass();
         if (!(classmask & (1 << class_)))
         {
             continue;
         }
 
         // check if race matches racemask
-        uint32 race = target.GetRace();
+        uint32 race = target.getRace();
         if (!(racemask & (1 << race)))
         {
             continue;

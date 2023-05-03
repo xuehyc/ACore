@@ -23,7 +23,7 @@ local itemEntry	=6948
     end
 	
 	function Tele_Select(event, player, item, sender, intid, code)
-    local plyr = player:GetRace()
+    local plyr = player:getRace()
     local x, y, z, o = player:GetX(), player:GetY(), player:GetZ(), player:GetO()
      
     --Go Home 

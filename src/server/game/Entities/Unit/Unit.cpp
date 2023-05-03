@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -18015,11 +18015,11 @@ void Unit::ClearReactive(ReactiveType reactive)
                 ModifyAuraState(AURA_STATE_DEFENSE, false);
             break;
         case REACTIVE_HUNTER_PARRY:
-            if (GetClass() == CLASS_HUNTER && HasAuraState(AURA_STATE_HUNTER_PARRY))
+            if (getClass() == CLASS_HUNTER && HasAuraState(AURA_STATE_HUNTER_PARRY))
                 ModifyAuraState(AURA_STATE_HUNTER_PARRY, false);
             break;
         case REACTIVE_OVERPOWER:
-            if (GetClass() == CLASS_WARRIOR)
+            if (getClass() == CLASS_WARRIOR)
                 ClearComboPoints();
             break;
         default:
@@ -20637,7 +20637,7 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
         {
             case FORM_CAT:
                 // Based on master's Hair color
-                if (GetRace() == RACE_NIGHTELF)
+                if (getRace() == RACE_NIGHTELF)
                 {
                     uint8 hairColor = player->GetByteValue(PLAYER_BYTES, 3);
                     switch (hairColor)
@@ -20658,7 +20658,7 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                     }
                 }
                 // Based on master's Skin color
-                else if (GetRace() == RACE_TAUREN)
+                else if (getRace() == RACE_TAUREN)
                 {
                     uint8 skinColor = player->GetByteValue(PLAYER_BYTES, 0);
                     // Male master
@@ -20710,14 +20710,14 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 8571;
                     }
                 }
-                else if (Player::TeamIdForRace(GetRace()) == TEAM_ALLIANCE)
+                else if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
                     return 892;
                 else
                     return 8571;
             case FORM_DIREBEAR:
             case FORM_BEAR:
                 // Based on Hair color
-                if (GetRace() == RACE_NIGHTELF)
+                if (getRace() == RACE_NIGHTELF)
                 {
                     uint8 hairColor = player->GetByteValue(PLAYER_BYTES, 3);
                     switch (hairColor)
@@ -20737,7 +20737,7 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                     }
                 }
                 // Based on Skin color
-                else if (GetRace() == RACE_TAUREN)
+                else if (getRace() == RACE_TAUREN)
                 {
                     uint8 skinColor = player->GetByteValue(PLAYER_BYTES, 0);
                     // Male
@@ -20789,16 +20789,16 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 2289;
                     }
                 }
-                else if (Player::TeamIdForRace(GetRace()) == TEAM_ALLIANCE)
+                else if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
                     return 2281;
                 else
                     return 2289;
             case FORM_FLIGHT:
-                if (Player::TeamIdForRace(GetRace()) == TEAM_ALLIANCE)
+                if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
                     return 20857;
                 return 20872;
             case FORM_FLIGHT_EPIC:
-                if (Player::TeamIdForRace(GetRace()) == TEAM_ALLIANCE)
+                if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
                     return 21243;
                 return 21244;
             default:

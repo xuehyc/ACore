@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "botmgr.h"
 #include "botspell.h"
 #include "bottext.h"
@@ -1059,7 +1059,7 @@ public:
             Unit* attacker = me->GetVictim();
             if (attacker)
             {
-                if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->GetClass() == CLASS_ROGUE :
+                if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->getClass() == CLASS_ROGUE :
                     attacker->ToCreature()->GetBotClass() == BOT_CLASS_ROGUE) ||
                     attacker->HasInvisibilityAura() || attacker->HasStealthAura())
                 {
@@ -1080,7 +1080,7 @@ public:
                     if (me->GetDistance(attacker) > 15)
                         continue;
 
-                    if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->GetClass() == CLASS_ROGUE :
+                    if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->getClass() == CLASS_ROGUE :
                         attacker->ToCreature()->GetBotClass() == BOT_CLASS_ROGUE) ||
                         attacker->HasInvisibilityAura() || attacker->HasStealthAura())
                     {
@@ -1097,7 +1097,7 @@ public:
             attacker = master->GetVictim();
             if (attacker && me->GetDistance(attacker) < 30)
             {
-                if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->GetClass() == CLASS_ROGUE :
+                if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->getClass() == CLASS_ROGUE :
                     attacker->ToCreature()->GetBotClass() == BOT_CLASS_ROGUE) ||
                     attacker->HasInvisibilityAura() || attacker->HasStealthAura())
                 {
@@ -1122,7 +1122,7 @@ public:
                     if (master->GetDistance(attacker) > 15 || me->GetDistance(attacker) > 30)
                         continue;
 
-                    if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->GetClass() == CLASS_ROGUE :
+                    if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->getClass() == CLASS_ROGUE :
                         attacker->ToCreature()->GetBotClass() == BOT_CLASS_ROGUE) ||
                         attacker->HasInvisibilityAura() || attacker->HasStealthAura())
                     {
@@ -1146,7 +1146,7 @@ public:
                 attacker = tPlayer->GetVictim();
                 if (attacker && me->GetDistance(attacker) < 30)
                 {
-                    if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->GetClass() == CLASS_ROGUE :
+                    if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->getClass() == CLASS_ROGUE :
                         attacker->ToCreature()->GetBotClass() == BOT_CLASS_ROGUE) ||
                         attacker->HasInvisibilityAura() || attacker->HasStealthAura())
                     {
@@ -1164,7 +1164,7 @@ public:
                     if (tPlayer->GetDistance(attacker) > 15 || me->GetDistance(attacker) > 30)
                         continue;
 
-                    if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->GetClass() == CLASS_ROGUE :
+                    if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->getClass() == CLASS_ROGUE :
                         attacker->ToCreature()->GetBotClass() == BOT_CLASS_ROGUE) ||
                         attacker->HasInvisibilityAura() || attacker->HasStealthAura())
                     {
@@ -1194,7 +1194,7 @@ public:
                     attacker = u->GetVictim();
                     if (attacker && me->GetDistance(attacker) < 30)
                     {
-                        if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->GetClass() == CLASS_ROGUE :
+                        if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->getClass() == CLASS_ROGUE :
                             attacker->ToCreature()->GetBotClass() == BOT_CLASS_ROGUE) ||
                             attacker->HasInvisibilityAura() || attacker->HasStealthAura())
                         {
@@ -1212,7 +1212,7 @@ public:
                         if (u->GetDistance(attacker) > 15 || me->GetDistance(attacker) > 30)
                             continue;
 
-                        if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->GetClass() == CLASS_ROGUE :
+                        if ((attacker->GetTypeId() == TYPEID_PLAYER ? attacker->getClass() == CLASS_ROGUE :
                             attacker->ToCreature()->GetBotClass() == BOT_CLASS_ROGUE) ||
                             attacker->HasInvisibilityAura() || attacker->HasStealthAura())
                         {
@@ -1989,7 +1989,7 @@ public:
             {
                 if ((master->GetGroup() && master->GetGroup()->isRaidGroup()) || master->GetNpcBotsCount() >= 10)
                     entry = BOT_PET_WOLF; //raid pet
-                else if (!IsMeleeClass(master->GetClass()))
+                else if (!IsMeleeClass(master->getClass()))
                     entry = urand(BOT_PET_TENACITY_START, BOT_PET_TENACITY_END);
                 else if (sWorld->IsFFAPvPRealm() || sWorld->IsPvPRealm())
                     entry = urand(BOT_PET_CUNNING_START, BOT_PET_CUNNING_END);

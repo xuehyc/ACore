@@ -1,4 +1,4 @@
-#include "BattlegroundMgr.h"
+﻿#include "BattlegroundMgr.h"
 #include "BattlegroundQueue.h"
 #include "bot_ai.h"
 #include "botdatamgr.h"
@@ -2350,7 +2350,7 @@ int32 BotDataMgr::GetBotBaseReputation(Creature const* bot, FactionEntry const* 
     if (bot->IsNPCBotPet())
         bot = bot->GetBotPetAI()->GetPetsOwner();
 
-    uint32 raceMask = bot->GetFaction() == 14 ? 0 : bot->GetRaceMask();
+    uint32 raceMask = bot->GetFaction() == 14 ? 0 : bot->getRaceMask();
     uint32 classMask = bot->GetClassMask();
 
     int32 minRep = 42999;

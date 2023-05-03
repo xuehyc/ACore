@@ -1,4 +1,4 @@
----by 有爱 ljq5555
+﻿---by 有爱 ljq5555
 ---by:ayase 消耗物品或者金币的lua(世界聊天)
 CharDBExecute(
     [[
@@ -346,7 +346,7 @@ function marry.Tele_Select1(event, player, item, sender, intid, code)
                         ",'" ..
                             player:GetName() ..
                                 "','" ..
-                                    player:GetRace() ..
+                                    player:getRace() ..
                                         "', '" ..
                                             marry.TeamName[player:GetTeam()] ..
                                                 "', " ..
@@ -362,7 +362,7 @@ function marry.Tele_Select1(event, player, item, sender, intid, code)
                                                                                         marryed:GetClass()
                                                                                     ] ..
                                                                                         "','" ..
-                                                                                            player:GetRace() .. "');"
+                                                                                            player:getRace() .. "');"
             )
 
             player:SendBroadcastMessage('您的申请已提交，请等待对方同意')

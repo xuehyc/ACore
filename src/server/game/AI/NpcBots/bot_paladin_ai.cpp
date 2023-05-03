@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "botmgr.h"
 #include "bottext.h"
 #include "bottraits.h"
@@ -685,7 +685,7 @@ public:
         bool HOPTarget(Unit* target, uint32 /*diff*/)
         {
             if (target == me ||
-                (target->GetTypeId() == TYPEID_PLAYER ? target->GetClass() == BOT_CLASS_PALADIN :
+                (target->GetTypeId() == TYPEID_PLAYER ? target->getClass() == BOT_CLASS_PALADIN :
                 target->ToCreature()->GetBotClass() == BOT_CLASS_PALADIN))
                 return false; //paladins should use their own damn bubble
             if (target->HasAuraTypeWithMiscvalue(SPELL_AURA_SCHOOL_IMMUNITY, 1) ||
@@ -846,7 +846,7 @@ public:
             {
                 u = itr->GetSource();
                 if (!u || !u->IsInWorld() || me->GetMap() != u->FindMap() || !u->IsAlive() || !u->IsInCombat() ||
-                    IsTank(u) || (IsTankingClass(u->GetClass()) && !me->GetMap()->IsRaid()) || me->GetDistance(u) > 30)
+                    IsTank(u) || (IsTankingClass(u->getClass()) && !me->GetMap()->IsRaid()) || me->GetDistance(u) > 30)
                     continue;
 
                 if (HOSTarget(u, diff))
@@ -1104,11 +1104,11 @@ public:
             uint32 RIGHT = GetSpell(SEAL_OF_RIGHTEOUSNESS_1);
             uint32 WISDOM = GetSpell(SEAL_OF_WISDOM_1);
             uint32 JUSTICE = GetSpell(SEAL_OF_JUSTICE_1);
-            uint32 VENGEANCE = (me->GetRaceMask() & RACEMASK_ALLIANCE) ? GetSpell(SEAL_OF_VENGEANCE_1) : GetSpell(SEAL_OF_CORRUPTION_1);
+            uint32 VENGEANCE = (me->getRaceMask() & RACEMASK_ALLIANCE) ? GetSpell(SEAL_OF_VENGEANCE_1) : GetSpell(SEAL_OF_CORRUPTION_1);
 
             if (VENGEANCE && victim &&
                 (victim->GetMaxHealth() > me->GetMaxHealth() * (2 + victim->getAttackers().size() / 2) ||
-                victim->GetClass() == CLASS_ROGUE))
+                victim->getClass() == CLASS_ROGUE))
                 COMMAND = VENGEANCE;
 
             uint32 SEAL = 0;
@@ -1190,16 +1190,16 @@ public:
                     return;
             }
             if (CONCENTRATION_AURA && !(mask & SPECIFIC_AURA_CONCENTRATION) &&
-                (master->GetClass() == BOT_CLASS_MAGE || master->GetClass() == BOT_CLASS_PRIEST ||
-                master->GetClass() == BOT_CLASS_WARLOCK || master->GetClass() == BOT_CLASS_DRUID ||
-                (!IAmFree() && master->GetClass() == BOT_CLASS_PALADIN) || pureHealer))
+                (master->getClass() == BOT_CLASS_MAGE || master->getClass() == BOT_CLASS_PRIEST ||
+                master->getClass() == BOT_CLASS_WARLOCK || master->getClass() == BOT_CLASS_DRUID ||
+                (!IAmFree() && master->getClass() == BOT_CLASS_PALADIN) || pureHealer))
             {
                 if (doCast(me, CONCENTRATION_AURA))
                     return;
             }
             if (RETRIBUTION_AURA &&
                 (!(mask & SPECIFIC_AURA_RETRIBUTION) || idMap[RETRIBUTION_AURA_1] < RETRIBUTION_AURA) &&
-                (IsMeleeClass(master->GetClass()) || IsMelee()))
+                (IsMeleeClass(master->getClass()) || IsMelee()))
             {
                 if (doCast(me, RETRIBUTION_AURA))
                     return;
@@ -1274,9 +1274,9 @@ public:
 
             uint8 Class = 0;
             if (target->GetTypeId() == TYPEID_PLAYER)
-                Class = target->GetClass();
+                Class = target->getClass();
             else if (Creature* cre = target->ToCreature())
-                Class = cre->GetBotAI() ? cre->GetBotAI()->GetBotClass() : cre->GetClass();
+                Class = cre->GetBotAI() ? cre->GetBotAI()->GetBotClass() : cre->getClass();
 
             switch (Class)
             {
@@ -1477,7 +1477,7 @@ public:
                 mytar->GetTypeId() == TYPEID_UNIT && !mytar->IsControlledByPlayer() &&
                 !CCed(mytar) && HasRole(BOT_ROLE_DPS) && !mytar->HasAuraType(SPELL_AURA_MOD_TAUNT) &&
                 (!IsTank(u) || (IsTank() && GetHealthPCT(u) < 30 && GetHealthPCT(me) > 67)) &&
-                ((!IsTankingClass(u->GetClass()) && GetHealthPCT(u) < 80) || IsTank()) &&
+                ((!IsTankingClass(u->getClass()) && GetHealthPCT(u) < 80) || IsTank()) &&
                 IsInBotParty(u) && Rand() < 50)
             {
                 if (doCast(mytar, GetSpell(HAND_OF_RECKONING_1)))
@@ -1499,7 +1499,7 @@ public:
             //RIGHTEOUS DEFENSE //No GCD
             if (IsSpellReady(RIGHTEOUS_DEFENSE_1, diff, false) && !IAmFree() && u && u != me && IsTank() &&
                 me->GetDistance(u) < 40 && mytar->GetTypeId() == TYPEID_UNIT && !mytar->IsControlledByPlayer() &&
-                !IsTankingClass(u->GetClass()) && GetHealthPCT(u) < 80 &&
+                !IsTankingClass(u->getClass()) && GetHealthPCT(u) < 80 &&
                 !CCed(mytar) && !mytar->HasAuraType(SPELL_AURA_MOD_TAUNT) &&
                 (!IsTank(u) || (GetHealthPCT(u) < 30 && GetHealthPCT(me) > 67)) &&
                 IsInBotParty(u) && Rand() < 20 + 30 * u->getAttackers().size())
@@ -2469,7 +2469,7 @@ public:
             InitSpellMap(SEAL_OF_RIGHTEOUSNESS_1);
             InitSpellMap(SEAL_OF_WISDOM_1);
             InitSpellMap(SEAL_OF_JUSTICE_1);
-            InitSpellMap((me->GetRaceMask() & RACEMASK_ALLIANCE) ? SEAL_OF_VENGEANCE_1 : SEAL_OF_CORRUPTION_1);
+            InitSpellMap((me->getRaceMask() & RACEMASK_ALLIANCE) ? SEAL_OF_VENGEANCE_1 : SEAL_OF_CORRUPTION_1);
             InitSpellMap(DIVINE_INTERVENTION_1);
             InitSpellMap(DIVINE_PROTECTION_1);
             InitSpellMap(DIVINE_SHIELD_1);

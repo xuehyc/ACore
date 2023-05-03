@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "bot_GridNotifiers.h"
 #include "botmgr.h"
 #include "botspell.h"
@@ -252,7 +252,7 @@ public:
                 return;
 
             static auto frenzy_pred_player = [this](Unit const* pl) -> bool {
-                return (pl->GetVictim() && pl->IsInCombat() && IsMeleeClass(pl->GetClass()) && !IsTank(pl) &&
+                return (pl->GetVictim() && pl->IsInCombat() && IsMeleeClass(pl->getClass()) && !IsTank(pl) &&
                     me->GetDistance(pl) < 30 && pl->GetDistance(pl->GetVictim()) < 15 &&
                     pl->getAttackers().empty() && !CCed(pl, true) &&
                     !pl->HasAuraType(SPELL_AURA_PERIODIC_DAMAGE) && pl->GetHealth() >= me->GetMaxHealth());

@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "botmgr.h"
 #include "botspell.h"
 #include "bottraits.h"
@@ -315,8 +315,8 @@ public:
                             u = nullptr;
                             continue;
                         }
-                        if (u->GetClass() == CLASS_PRIEST || u->GetClass() == CLASS_PALADIN ||
-                            u->GetClass() == CLASS_DRUID || u->GetClass() == CLASS_SHAMAN)
+                        if (u->getClass() == CLASS_PRIEST || u->getClass() == CLASS_PALADIN ||
+                            u->getClass() == CLASS_DRUID || u->getClass() == CLASS_SHAMAN)
                             break;
                     }
                     if (!u)
@@ -1735,7 +1735,7 @@ public:
                     entry = BOT_PET_IMP;
                 else if (me->GetLevel() >= 10 && IsTank())
                     entry = BOT_PET_VOIDWALKER;
-                else if (me->GetLevel() >= 20 && !IsMeleeClass(master->GetClass()))
+                else if (me->GetLevel() >= 20 && !IsMeleeClass(master->getClass()))
                     entry = BOT_PET_SUCCUBUS;
                 else if (me->GetLevel() >= 10)
                     entry = BOT_PET_VOIDWALKER;

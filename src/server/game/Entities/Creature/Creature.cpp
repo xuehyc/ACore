@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -3964,7 +3964,7 @@ bool Creature::LoadBotCreatureFromDB(ObjectGuid::LowType spawnId, Map* map, bool
 
 uint8 Creature::GetBotClass() const
 {
-    return bot_AI ? bot_AI->GetBotClass() : GetClass();
+    return bot_AI ? bot_AI->GetBotClass() : getClass();
 }
 
 Player* Creature::GetBotOwner() const

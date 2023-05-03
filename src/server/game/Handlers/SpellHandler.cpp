@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -687,7 +687,7 @@ void WorldSession::HandleMirrorImageDataRequest(WorldPacket& recvData)
             data << uint32(unit->GetNativeDisplayId()); // displayId
             data << uint8(it->second.race);             // race
             data << uint8(it->second.gender);           // gender
-            data << uint8(unit->GetClass());            // class
+            data << uint8(unit->getClass());            // class
             data << uint8(it->second.skin);             // skin
             data << uint8(it->second.face);             // face
             data << uint8(it->second.hair);             // hair
@@ -719,7 +719,7 @@ void WorldSession::HandleMirrorImageDataRequest(WorldPacket& recvData)
             WorldPacket data(SMSG_MIRRORIMAGE_DATA, 68);
             data << guid;
             data << uint32(bot->GetDisplayId());                                       // displayId
-            data << uint8(bot->GetRace());                                             // race
+            data << uint8(bot->getRace());                                             // race
             data << uint8(appearData ? appearData->gender : (uint8)bot->GetGender());  // gender
             data << uint8(bot->GetBotAI()->GetPlayerClass());                          // class
             data << uint8(appearData ? appearData->skin : 0);                          // skin

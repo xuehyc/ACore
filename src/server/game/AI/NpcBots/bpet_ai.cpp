@@ -1,4 +1,4 @@
-#include "bpet_ai.h"
+﻿#include "bpet_ai.h"
 #include "bot_GridNotifiers.h"
 #include "botmgr.h"
 #include "Log.h"
@@ -936,7 +936,7 @@ void bot_pet_ai::SetPetStats(bool force)
                 break;
         }
         //Command (Racial)
-        if (petOwner->GetRace() == RACE_ORC)
+        if (petOwner->getRace() == RACE_ORC)
             amount += 5;
         physdam->ChangeAmount(amount);
     }
@@ -984,7 +984,7 @@ void bot_pet_ai::SetPetStats(bool force)
                 break;
         }
         //Command (Racial)
-        if (petOwner->GetRace() == RACE_ORC)
+        if (petOwner->getRace() == RACE_ORC)
             amount += 5;
         spelldam->ChangeAmount(amount);
     }
@@ -2254,7 +2254,7 @@ bool bot_pet_ai::GlobalUpdate(uint32 diff)
         */
         //Faction
         //ensure master is not controlled
-        ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(petOwner->GetBotOwner()->GetRace());
+        ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(petOwner->GetBotOwner()->getRace());
         uint32 fac = rEntry ? rEntry->FactionID : 0;
         if (me->GetFaction() != petOwner->GetBotOwner()->GetFaction() && petOwner->GetBotOwner()->GetFaction() == fac)
         {

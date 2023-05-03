@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "botcommon.h"
 #include "botdatamgr.h"
 #include "botgossip.h"
@@ -93,8 +93,8 @@ public:
                         {
                             if (!bot->IsAlive() || bot->IsTempBot() || bot->IsWandererBot() || bot->GetBotAI()->GetBotOwnerGuid() || bot->HasAura(BERSERK))
                                 continue;
-                            if (BotMgr::FilterRaces() && bot->GetBotClass() < BOT_CLASS_EX_START && (bot->GetRaceMask() & RACEMASK_ALL_PLAYABLE) &&
-                                !(bot->GetRaceMask() & ((player->GetRaceMask() & RACEMASK_ALLIANCE) ? RACEMASK_ALLIANCE : RACEMASK_HORDE)))
+                            if (BotMgr::FilterRaces() && bot->GetBotClass() < BOT_CLASS_EX_START && (bot->getRaceMask() & RACEMASK_ALL_PLAYABLE) &&
+                                !(bot->getRaceMask() & ((player->getRaceMask() & RACEMASK_ALLIANCE) ? RACEMASK_ALLIANCE : RACEMASK_HORDE)))
                                 continue;
 
                             ++npcbot_count_per_class[bot->GetBotClass()];
@@ -186,8 +186,8 @@ public:
                         bot_ai const* ai = bot->GetBotAI();
                         if (bot->GetBotClass() != botclass || !bot->IsAlive() || ai->IsTempBot() || bot->IsWandererBot() || ai->GetBotOwnerGuid() || bot->HasAura(BERSERK))
                             continue;
-                        if (BotMgr::FilterRaces() && botclass < BOT_CLASS_EX_START && (bot->GetRaceMask() & RACEMASK_ALL_PLAYABLE) &&
-                            !(bot->GetRaceMask() & ((player->GetRaceMask() & RACEMASK_ALLIANCE) ? RACEMASK_ALLIANCE : RACEMASK_HORDE)))
+                        if (BotMgr::FilterRaces() && botclass < BOT_CLASS_EX_START && (bot->getRaceMask() & RACEMASK_ALL_PLAYABLE) &&
+                            !(bot->getRaceMask() & ((player->getRaceMask() & RACEMASK_ALLIANCE) ? RACEMASK_ALLIANCE : RACEMASK_HORDE)))
                             continue;
 
                         std::ostringstream message1;
@@ -195,7 +195,7 @@ public:
 
                         std::ostringstream info_ostr;
                         uint32 raceTextId;
-                        switch (bot->GetRace())
+                        switch (bot->getRace())
                         {
                             case RACE_HUMAN:        raceTextId = BOT_TEXT_RACE_HUMAN;   break;
                             case RACE_ORC:          raceTextId = BOT_TEXT_RACE_ORC;     break;

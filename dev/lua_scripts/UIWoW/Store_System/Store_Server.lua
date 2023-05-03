@@ -1,4 +1,4 @@
--- The below config options can be changed to suit your needs.
+﻿-- The below config options can be changed to suit your needs.
 -- Anything not in the config options requires changes to the code below,
 -- do so at your own discretion.
 
@@ -116,7 +116,7 @@ function SHOP_UI.DeductCurrency(player, currencyId, amount)
 	if(CURRENCY_TYPES[currencyType] == "GOLD") then
 		if(player:GetCoinage() < amount * 10000) then
 			player:SendAreaTriggerMessage("|cFFFF0000"..CONFIG.strings.insufficientFunds.." "..currencyName.."|r")
-			player:PlayDirectSound(GetSoundEffect("notEnoughMoney", player:GetRace(), player:GetGender()), player)
+			player:PlayDirectSound(GetSoundEffect("notEnoughMoney", player:getRace(), player:GetGender()), player)
 			return false
 		end
 		
@@ -127,7 +127,7 @@ function SHOP_UI.DeductCurrency(player, currencyId, amount)
 	if(CURRENCY_TYPES[currencyType] == "ITEM_TOKEN") then
 		if not(player:HasItem(currencyData, amount)) then
 			player:SendAreaTriggerMessage("|cFFFF0000"..CONFIG.strings.insufficientFunds.." "..currencyName.."|r")
-			player:PlayDirectSound(GetSoundEffect("notEnoughMoney", player:GetRace(), player:GetGender()), player)
+			player:PlayDirectSound(GetSoundEffect("notEnoughMoney", player:getRace(), player:GetGender()), player)
 			return false
 		end
 		
@@ -207,7 +207,7 @@ function SHOP_UI.MountHandler(player, data)
 	-- check if player already has the spells learned
 	if(knownCount == rewardCount) then
 		player:SendAreaTriggerMessage("|cFFFF0000"..CONFIG.strings.alreadyKnown.." mount|r")
-		player:PlayDirectSound(GetSoundEffect("cantLearn", player:GetRace(), player:GetGender()), player)
+		player:PlayDirectSound(GetSoundEffect("cantLearn", player:getRace(), player:GetGender()), player)
 		return false
 	end
 	
@@ -245,7 +245,7 @@ function SHOP_UI.PetHandler(player, data)
 	-- check if player already has the spells learned
 	if(knownCount == rewardCount) then
 		player:SendAreaTriggerMessage("|cFFFF0000"..CONFIG.strings.alreadyKnown.." pet|r")
-		player:PlayDirectSound(GetSoundEffect("cantLearn", player:GetRace(), player:GetGender()), player)
+		player:PlayDirectSound(GetSoundEffect("cantLearn", player:getRace(), player:GetGender()), player)
 		return false
 	end
 	
@@ -313,7 +313,7 @@ function SHOP_UI.LevelHandler(player, data)
 	if(data[KEYS.service.flags] == 1) then
 		if(player:GetLevel() >= data[KEYS.service.reward_1]) then
 			player:SendAreaTriggerMessage("|cFFFF0000"..CONFIG.strings.tooHighLevel.."|r")
-			player:PlayDirectSound(GetSoundEffect("cantUse", player:GetRace(), player:GetGender()), player)
+			player:PlayDirectSound(GetSoundEffect("cantUse", player:getRace(), player:GetGender()), player)
 			return false
 		end
 	end
@@ -349,7 +349,7 @@ function SHOP_UI.TitleHandler(player, data)
 	-- Check whether or not the player already has the specified title
 	if(player:HasTitle(data[KEYS.service.reward_1])) then
 		player:SendAreaTriggerMessage("|cFFFF0000"..CONFIG.strings.alreadyKnown.." title|r")
-		player:PlayDirectSound(GetSoundEffect("cantLearn", player:GetRace(), player:GetGender()), player)
+		player:PlayDirectSound(GetSoundEffect("cantLearn", player:getRace(), player:GetGender()), player)
 		return false
 	end
 	

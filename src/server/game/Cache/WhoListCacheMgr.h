@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -45,8 +45,8 @@ public:
     TeamId GetTeamId() const { return _team; }
     AccountTypes GetSecurity() const { return _security; }
     uint8 GetLevel() const { return _level; }
-    uint8 GetClass() const { return _class; }
-    uint8 GetRace() const { return _race; }
+    uint8 getClass() const { return _class; }
+    uint8 getRace() const { return _race; }
     uint32 GetZoneId() const { return _zoneid; }
     uint8 GetGender() const { return _gender; }
     bool IsVisible() const { return _visible; }

@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "botmgr.h"
 #include "botspell.h"
 #include "bottext.h"
@@ -463,9 +463,9 @@ public:
                 uint8 tCount = 0;
                 //fear master's attackers
                 if (!m_attackers.empty() &&
-                    ((master->GetClass() != BOT_CLASS_DEATH_KNIGHT &&
-                    master->GetClass() != BOT_CLASS_WARRIOR &&
-                    master->GetClass() != BOT_CLASS_PALADIN) ||
+                    ((master->getClass() != BOT_CLASS_DEATH_KNIGHT &&
+                    master->getClass() != BOT_CLASS_WARRIOR &&
+                    master->getClass() != BOT_CLASS_PALADIN) ||
                     GetHealthPCT(master) < 70))
                 {
                     for (Unit::AttackerSet::const_iterator iter = m_attackers.begin(); iter != m_attackers.end(); ++iter)
@@ -517,7 +517,7 @@ public:
             if (IsSpellReady(TAUNT_1, diff, false) && u && u != me && Rand() < 50 && dist < 30 &&
                 mytar->CanHaveThreatList() && !CCed(mytar) && !mytar->HasAuraType(SPELL_AURA_MOD_TAUNT) &&
                 (!IsTank(u) || (IsTank() && GetHealthPCT(u) < 30 && GetHealthPCT(me) > 67)) &&
-                ((!IsTankingClass(u->GetClass()) && (GetHealthPCT(u) < 80 || _inStance(2))) || IsTank()) &&
+                ((!IsTankingClass(u->getClass()) && (GetHealthPCT(u) < 80 || _inStance(2))) || IsTank()) &&
                 IsInBotParty(u) &&
                 (_inStance(2) || (stancetimer <= diff && stanceChange(diff, 2))))
             {
@@ -584,7 +584,7 @@ public:
                         return;
                 }
                 if (u && u != me && !IsSpellReady(TAUNT_1, diff, false) && !IsTank(u) && !CCed(mytar) && dist < 9 &&
-                    (!IsTankingClass(u->GetClass()) || IsTank()) && IsInBotParty(u))
+                    (!IsTankingClass(u->getClass()) || IsTank()) && IsInBotParty(u))
                 {
                     if (doCast(me, GetSpell(CHALLENGING_SHOUT_1)))
                         return;
@@ -602,7 +602,7 @@ public:
             //MOCKING BLOW
             if (IsSpellReady(MOCKING_BLOW_1, diff) && can_do_normal && HasRole(BOT_ROLE_DPS) && Rand() < 70 && u && u != me &&
                 !IsTank(u) && dist < 5 && rage >= rcost(MOCKING_BLOW_1) &&
-                !CCed(mytar) && (!IsTankingClass(u->GetClass()) || IsTank()) && IsInBotParty(u) &&
+                !CCed(mytar) && (!IsTankingClass(u->getClass()) || IsTank()) && IsInBotParty(u) &&
                 (_inStance(4) || (stancetimer <= diff && stanceChange(diff, 4))))
             {
                 if (doCast(mytar, GetSpell(MOCKING_BLOW_1)))
@@ -744,7 +744,7 @@ public:
             }
             //DEMORALIZING SHOUT
             if (IsSpellReady(DEMORALIZING_SHOUT_1, diff) && can_do_normal && Rand() < 15 + 25 * IsTank() && dist < 10 &&
-                (mytar->GetClass() == CLASS_WARRIOR || mytar->GetClass() == CLASS_ROGUE ||
+                (mytar->getClass() == CLASS_WARRIOR || mytar->getClass() == CLASS_ROGUE ||
                 (mytar->GetTypeId() == TYPEID_UNIT && mytar->ToCreature()->GetCreatureTemplate()->rank != CREATURE_ELITE_NORMAL)) &&
                 mytar->GetHealth() > me->GetMaxHealth() / 8 * (1 + mytar->getAttackers().size()) &&
                 rage >= rcost(DEMORALIZING_SHOUT_1) &&
@@ -828,7 +828,7 @@ public:
             //REND
             if (IsSpellReady(REND_1, diff) && can_do_normal && HasRole(BOT_ROLE_DPS) && Rand() < 80 &&
                 mytar->GetHealth() > me->GetMaxHealth() / 4 * (1 + mytar->getAttackers().size()) &&
-                (isArms || mytar->GetClass() == CLASS_ROGUE || mytar->GetShapeshiftForm() == FORM_CAT) &&
+                (isArms || mytar->getClass() == CLASS_ROGUE || mytar->GetShapeshiftForm() == FORM_CAT) &&
                 dist < 5 && rage >= rcost(REND_1) && mytar->GetCreatureType() != CREATURE_TYPE_MECHANICAL &&
                 !(mytar->GetTypeId() == TYPEID_UNIT &&
                 (mytar->ToCreature()->GetCreatureTemplate()->MechanicImmuneMask & (1<<(MECHANIC_BLEED-1)))) &&
@@ -1037,7 +1037,7 @@ public:
                     Player* pPlayer = itr->GetSource();
                     if (!pPlayer || !pPlayer->IsInWorld()) continue;
                     if (me->GetMapId() != pPlayer->GetMapId()) continue;
-                    if (pPlayer->IsAlive() && IsTankingClass(pPlayer->GetClass()) && me->GetDistance(pPlayer) < 30 &&
+                    if (pPlayer->IsAlive() && IsTankingClass(pPlayer->getClass()) && me->GetDistance(pPlayer) < 30 &&
                         !pPlayer->HasAura(VIGILANCE) && !pPlayer->HasAura(DAMAGE_REDUCTION))
                     {
                         u = pPlayer;

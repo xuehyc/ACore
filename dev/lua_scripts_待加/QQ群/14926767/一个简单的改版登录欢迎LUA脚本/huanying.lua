@@ -69,7 +69,7 @@ local function my_xinxi(Player)
     else
         ghxx = Player:GetGuildName(gonghui_00)
     end
-    return string.format("\n|cFFFF33FF%s\n|cFF33FF33DUANG,DUANG,DUANG....特大消息\n|cFF33FF33伟大的【|cFFFF0033%s】|cFF33FF33上线了\n|cFF33FF33他的等级是：|cFFFF0033【%s】\n|cFF33FF33他的IP地址是：|cFFFF0033【%s】\n|cFF33FF33他的阵营是：|cFFFF0033【%s】\n|cFF33FF33他的竞技场点数是：|cFFFF0033【%s】\n".."|cFF33FF33他的职业是："..my_zy[Player:GetClass()].."\n|cFF33FF33他的种族是："..my_zz[Player:GetRace()].."\n|cFF33FF33他的铜币数量是：|cFFFF0033【%s】\n|cFFFF33FF他的工会叫：|cFFFF0033【%s】\n|cFFFF33FF%s",fuhao,myname,level,ipdizhi,zhenying,jjcdianshu,jinbi,ghxx,fuhao)
+    return string.format("\n|cFFFF33FF%s\n|cFF33FF33DUANG,DUANG,DUANG....特大消息\n|cFF33FF33伟大的【|cFFFF0033%s】|cFF33FF33上线了\n|cFF33FF33他的等级是：|cFFFF0033【%s】\n|cFF33FF33他的IP地址是：|cFFFF0033【%s】\n|cFF33FF33他的阵营是：|cFFFF0033【%s】\n|cFF33FF33他的竞技场点数是：|cFFFF0033【%s】\n".."|cFF33FF33他的职业是："..my_zy[Player:GetClass()].."\n|cFF33FF33他的种族是："..my_zz[Player:getRace()].."\n|cFF33FF33他的铜币数量是：|cFFFF0033【%s】\n|cFFFF33FF他的工会叫：|cFFFF0033【%s】\n|cFFFF33FF%s",fuhao,myname,level,ipdizhi,zhenying,jjcdianshu,jinbi,ghxx,fuhao)
 end
 local function shangxian(event,Player)
     SendWorldMessage(my_xinxi(Player))

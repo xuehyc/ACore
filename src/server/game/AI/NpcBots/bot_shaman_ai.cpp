@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "botmgr.h"
 #include "bottext.h"
 #include "bottraits.h"
@@ -379,7 +379,7 @@ public:
 
             BloodlustCheckTimer = 3000;
 
-            uint32 BLOODLUST = (me->GetRaceMask() & RACEMASK_ALLIANCE) ? HEROISM_1 : BLOODLUST_1;
+            uint32 BLOODLUST = (me->getRaceMask() & RACEMASK_ALLIANCE) ? HEROISM_1 : BLOODLUST_1;
             if (!IsSpellReady(BLOODLUST, diff))
                 return;
 
@@ -398,7 +398,7 @@ public:
 
             //BLOODLUST = GetSpell(BLOODLUST); //not ranked
 
-            uint32 sateSpell = (me->GetRaceMask() & RACEMASK_ALLIANCE) ? EXHAUSTION_AURA : SATED_AURA;
+            uint32 sateSpell = (me->getRaceMask() & RACEMASK_ALLIANCE) ? EXHAUSTION_AURA : SATED_AURA;
             Unit::AuraEffectList const& dummies = me->GetAuraEffectsByType(SPELL_AURA_DUMMY);
             for (Unit::AuraEffectList::const_iterator itr = dummies.begin(); itr != dummies.end(); ++itr)
             {
@@ -828,7 +828,7 @@ public:
                 {
                     bool cast = false;
 
-                    if (!IsMelee() && HasRole(BOT_ROLE_DPS|BOT_ROLE_HEAL) && !IsMeleeClass(master->GetClass()))
+                    if (!IsMelee() && HasRole(BOT_ROLE_DPS|BOT_ROLE_HEAL) && !IsMeleeClass(master->getClass()))
                         cast = true;
                     else if (!GetSpell(WINDFURY_TOTEM_1)) //disabled
                         cast = true;
@@ -852,7 +852,7 @@ public:
                 {
                     bool cast = false;
 
-                    if ((IsMelee() && HasRole(BOT_ROLE_DPS)) || (!IAmFree() && IsMeleeClass(master->GetClass())))
+                    if ((IsMelee() && HasRole(BOT_ROLE_DPS)) || (!IAmFree() && IsMeleeClass(master->getClass())))
                         cast = true;
                     else if (!GetSpell(WRATH_OF_AIR_TOTEM_1)) //disabled or not available yet
                         cast = true;
@@ -2388,8 +2388,8 @@ public:
             //TODO: gets overriden in Spell::EffectSummonType (end)
             //Without setting creator correctly it will be impossible to use summon X elemental totems
             summon->SetCreator(me);
-            //summon->SetDisplayId(sObjectMgr->GetModelForTotem(SummonSlot(slot+1), Races(me->GetRace())));
-            summon->SetDisplayId(TotemModelsForRace[slot][std::min<uint8>(me->GetRace(), MAX_RACES-1)-1]);
+            //summon->SetDisplayId(sObjectMgr->GetModelForTotem(SummonSlot(slot+1), Races(me->getRace())));
+            summon->SetDisplayId(TotemModelsForRace[slot][std::min<uint8>(me->getRace(), MAX_RACES-1)-1]);
             summon->SetFaction(me->GetFaction());
             summon->SetPvP(me->IsPvP());
             summon->SetOwnerGUID(master->GetGUID());
@@ -2562,7 +2562,7 @@ public:
             InitSpellMap(PURGE_1);
             InitSpellMap(WIND_SHEAR_1);
             InitSpellMap(HEX_1);
-            InitSpellMap((me->GetRaceMask() & RACEMASK_ALLIANCE) ? HEROISM_1 : BLOODLUST_1); //at least race is constant
+            InitSpellMap((me->getRaceMask() & RACEMASK_ALLIANCE) ? HEROISM_1 : BLOODLUST_1); //at least race is constant
 
             InitSpellMap(GHOST_WOLF_1);
 

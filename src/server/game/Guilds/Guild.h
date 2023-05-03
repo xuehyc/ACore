@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -335,7 +335,7 @@ public: // pussywizard: public class Member
         uint64 GetLogoutTime() const { return m_logoutTime; }
         std::string GetPublicNote() const { return m_publicNote; }
         std::string GetOfficerNote() const { return m_officerNote; }
-        uint8 GetClass() const { return m_class; }
+        uint8 getClass() const { return m_class; }
         uint8 GetLevel() const { return m_level; }
         uint8 GetGender() const { return m_gender; }
         uint8 GetFlags() const { return m_flags; }
