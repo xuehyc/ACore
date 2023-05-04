@@ -1,3 +1,4 @@
+﻿--https://uiwow.com/thread-17445-1-1.html?_dsign=380b398c
 --[[信息：
 	[女娲的彩色石]超级炉石  （Teleport stone）
 	修改日期：2023-04-30
