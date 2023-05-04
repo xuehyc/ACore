@@ -333,7 +333,7 @@ end
 		-- {FUNC, "召唤钓鱼训练师", 	ST.SummonNPCFishing,	    GOSSIP_ICON_TRAINER},
 local function ResetPlayer(player, flag, text)
 	player:SetAtLoginFlag(flag)
-	player:SendAreaTriggerMessage("你现在返回角色选择或者重新登录角色，即可进行修改"..text.."。")
+	player:SendAreaTriggerMessage("返回角色选择或者重新登录角色，即可进行修改"..text.."。")
 	--player:SendAreaTriggerMessage("正在返回选择角色菜单")
 end
 
