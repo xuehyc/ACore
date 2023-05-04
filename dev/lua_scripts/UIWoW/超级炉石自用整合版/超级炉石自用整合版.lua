@@ -317,20 +317,7 @@ end
 function ST.SummonNPCFishing(player)
 	ST.SummonNPC(player, ST.NPCID514)
 end
-		-- {FUNC, "召唤炼金训练师", 	ST.SummonNPCAlchemy,	    GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤锻造训练师", 	ST.SummonNPCBlacksmithing,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤附魔训练师", 	ST.SummonNPCEnchanting,	    GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤工程训练师", 	ST.SummonNPCEngineering,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤草药训练师", 	ST.SummonNPCHerbalism,	    GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤铭文训练师", 	ST.SummonNPCInscription,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤珠宝训练师", 	ST.SummonNPCJewelcrafting,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤皮甲训练师", 	ST.SummonNPCLeatherworking,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤采矿训练师", 	ST.SummonNPCMining,	        GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤剥皮训练师", 	ST.SummonNPCSkinning,	    GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤裁缝训练师", 	ST.SummonNPCTailoring,	    GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤烹饪训练师", 	ST.SummonNPCCooking,	    GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤急救训练师", 	ST.SummonNPCFirstAid,	    GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤钓鱼训练师", 	ST.SummonNPCFishing,	    GOSSIP_ICON_TRAINER},
+		
 local function ResetPlayer(player, flag, text)
 	player:SetAtLoginFlag(flag)
 	player:SendAreaTriggerMessage("返回角色选择或者重新登录角色，即可进行修改"..text.."。")
@@ -1206,7 +1193,7 @@ local Menu={
 		{FUNC, "召唤急救训练师", 	ST.SummonNPCFirstAid,	    GOSSIP_ICON_TRAINER},
 		{FUNC, "召唤钓鱼训练师", 	ST.SummonNPCFishing,	    GOSSIP_ICON_TRAINER},
 	},
-	
+
 	[BUYMENU+0x10]={-- 材料商
         {FUNC, "召唤传家宝商人", 	ST.SummonNPC_4001001,	GOSSIP_ICON_TRAINER},
         {FUNC, "召唤盗贼雕文商人", 	ST.SummonNPC_4001002,	GOSSIP_ICON_TRAINER},
@@ -1242,32 +1229,32 @@ local Menu={
     },
 	
     [ENCMENU+0x100] = {-- 主手1
-        {ENC, "攻强+110", 3827, EQUIPMENT_SLOT_MAINHAND},
-        {ENC, "法强+81", 3854, EQUIPMENT_SLOT_MAINHAND},
-        {ENC, "命中+25，爆击+25", 3788, EQUIPMENT_SLOT_MAINHAND},
-        {ENC, "破冰武器",  3239, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "邪恶武器",  1899, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "死亡霜冻",  3273, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "作战专家",  2675, EQUIPMENT_SLOT_MAINHAND},
-        {ENC, "生命偷取",  1898, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "生命护卫",  3241, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "巨人杀手",  3251, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "屠魔"    ,   912, EQUIPMENT_SLOT_MAINHAND},	
-		{MENU, "下一页", ENCMENU+0x1100,GOSSIP_ICON_BATTLE},
+        {ENC, "攻强+110",             3827,                EQUIPMENT_SLOT_MAINHAND},
+        {ENC, "法强+81",              3854,                EQUIPMENT_SLOT_MAINHAND},
+        {ENC, "命中+25，爆击+25",     3788,                EQUIPMENT_SLOT_MAINHAND},
+        {ENC, "破冰武器",             3239,                EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "邪恶武器",             1899,                EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "死亡霜冻",             3273,                EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "作战专家",             2675,                EQUIPMENT_SLOT_MAINHAND},
+        {ENC, "生命偷取",             1898,                EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "生命护卫",             3241,                EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "巨人杀手",             3251,                EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "屠魔"    ,             912,                 EQUIPMENT_SLOT_MAINHAND},	
+		{MENU, "下一页",              ENCMENU+0x1100,      GOSSIP_ICON_BATTLE},
     },
     [ENCMENU+0x1100]={-- 主手2
-		{ENC, "狂暴"    ,  3789, EQUIPMENT_SLOT_MAINHAND},
-        {ENC, "斩杀"    ,  3225, EQUIPMENT_SLOT_MAINHAND},
-        {ENC, "猫鼬"    ,  2673, EQUIPMENT_SLOT_MAINHAND},
-        {ENC, "黑魔法"  ,  3790, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "精金神铁武器链", 3223, EQUIPMENT_SLOT_MAINHAND},--缴械时间-50%,招架+15
-		{ENC, "泰坦神铁武器链", 3731, EQUIPMENT_SLOT_MAINHAND},--缴械时间-50%,命中+28
-		{ENC, "毒皮毒药",  1003, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "速效药膏",  3769, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "致命药膏",  3771, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "致伤药膏",  3773, EQUIPMENT_SLOT_MAINHAND},
-		{ENC, "麻醉药膏",  3774, EQUIPMENT_SLOT_MAINHAND},
-		{MENU, "下一页", ENCMENU+0x2100,GOSSIP_ICON_BATTLE},
+		{ENC, "狂暴"    ,             3789,                 EQUIPMENT_SLOT_MAINHAND},
+        {ENC, "斩杀"    ,             3225,                 EQUIPMENT_SLOT_MAINHAND},
+        {ENC, "猫鼬"    ,             2673,                 EQUIPMENT_SLOT_MAINHAND},
+        {ENC, "黑魔法"  ,             3790,                 EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "精金神铁武器链",       3223,                 EQUIPMENT_SLOT_MAINHAND},--缴械时间-50%,招架+15
+		{ENC, "泰坦神铁武器链",       3731,                 EQUIPMENT_SLOT_MAINHAND},--缴械时间-50%,命中+28
+		{ENC, "毒皮毒药",             1003,                 EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "速效药膏",             3769,                 EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "致命药膏",             3771,                 EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "致伤药膏",             3773,                 EQUIPMENT_SLOT_MAINHAND},
+		{ENC, "麻醉药膏",             3774,                 EQUIPMENT_SLOT_MAINHAND},
+		{MENU, "下一页",              ENCMENU+0x2100,       GOSSIP_ICON_BATTLE},
     },		
     [ENCMENU+0x2100]={-- 主手3
 		{ENC, "火舌武器",  3781, EQUIPMENT_SLOT_MAINHAND},
