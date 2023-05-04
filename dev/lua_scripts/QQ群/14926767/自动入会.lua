@@ -1,4 +1,4 @@
-﻿print('AutoJoinGuildOnLogin loading...')
+﻿--print('AutoJoinGuildOnLogin loading...')
 ----自动加入工会
 local guildid = {
     --自动加入的工会名称

@@ -4,7 +4,7 @@
 	修改日期：2021-01-20
 	功能：除了传送，还有召唤NPC，其他更多功能
 ]]--
-print(">>Script: TeleportStone loading...OK")
+--print(">>Script: TeleportStone loading...OK")
 
 --菜单所有者 --默认炉石6948
 local language = en --设置显示语言,en为英文,cn为中文
@@ -1692,3 +1692,4 @@ end
 
 RegisterItemGossipEvent(itemEntry, 1, Stone.ShowGossip)
 RegisterItemGossipEvent(itemEntry, 2, Stone.SelectGossip)
+print("TeleportStone loaded.")

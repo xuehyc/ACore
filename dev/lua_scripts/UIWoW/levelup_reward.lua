@@ -1,4 +1,4 @@
-﻿print('levelup_reward module loading...') 
+﻿--print('levelup_reward module loading...') 
 function levelup_reward(event, player, oldLevel)    --升级奖励金币
 --player:ModifyMoney(10000) --奖励1金,原版
 
