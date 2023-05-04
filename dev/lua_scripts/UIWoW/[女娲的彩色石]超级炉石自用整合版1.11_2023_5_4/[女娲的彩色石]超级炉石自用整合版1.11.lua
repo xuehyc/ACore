@@ -926,7 +926,7 @@ local Stone={--炉石主程序
 		RunCommand(".gm on")
 	end,
 ]]--eluna对GM命令支持很差
---暴雪付费功能	
+--付费功能	
 	--[[登录标志
 	AT_LOGIN_RENAME            = 0x01,
     AT_LOGIN_RESET_SPELLS      = 0x02,
@@ -1822,7 +1822,7 @@ local Menu={--菜单页面
 		{FUNC, "|TInterface/ICONS/inv_scroll_11:35:35|t|cff3F636C修改名字",		Stone.ResetName,	GOSSIP_ICON_CHAT,		false,"是否修改名字？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
 		{FUNC, "|TInterface/ICONS/Ability_Rogue_Disguise:35:35|t|cff3F636C改变容貌",		Stone.ResetFace,	GOSSIP_ICON_CHAT,		false,"是否重置容貌？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
 		{FUNC, "|TInterface/ICONS/achievement_worldevent_brewmaster:35:35|t|cff3F636C变更种族",		Stone.ResetRace,	GOSSIP_ICON_CHAT,		false,"是否变更种族？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
-		{FUNC, "|TInterface/ICONS/spell_nature_mirrorimage:35:35|t|cff3F636C叛变阵营",		Stone.ResetFaction,	GOSSIP_ICON_CHAT,		false,"是否叛变阵营？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
+		{FUNC, "|TInterface/ICONS/spell_nature_mirrorimage:35:35|t|cff3F636C叛变阵营",		Stone.ResetFaction,	GOSSIP_ICON_CHAT,		false,"是否改变阵营？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
 		--AZ原端用该项目worldserver.exe会报错跳出--{FUNC, "|TInterface/ICONS/Ability_Ambush:35:35|t返回选择角色", 	Stone.Logout,			GOSSIP_ICON_INTERACT_1,	false,"返回选择角色界面 ？"},
 		--AZ原端用该项目worldserver.exe会报错跳出--{FUNC, "|TInterface/ICONS/Ability_Ambush:35:35|t|cFF800000不保存角色|r",Stone.LogoutNosave,GOSSIP_ICON_INTERACT_1,false,"|cFFe60000不保存角色，并返回选择角色界面 ？|r"},
 	},
