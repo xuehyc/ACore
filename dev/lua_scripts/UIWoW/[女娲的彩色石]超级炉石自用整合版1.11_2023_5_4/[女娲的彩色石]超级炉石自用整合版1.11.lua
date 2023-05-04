@@ -1500,7 +1500,7 @@ local Menu={--菜单页面
 		{MENU, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:35:35|t|cFF32CD99幻化功能|r",		MMENU+0x20,		GOSSIP_ICON_TABARD},
 		{MENU, "|TInterface/ICONS/Trade_Engraving:35:35|t|cFFB22222双重附魔|r",		ENCMENU,		GOSSIP_ICON_TABARD},
 		{MENU, "|TInterface/ICONS/inv_misc_food_15:35:35|t|c00722FFF便捷功能",		MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别
-		{MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:35:35|t|cFF548B54暴雪付费|r",		GMMENU,		GOSSIP_ICON_MONEY_BAG},
+		{MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:35:35|t|cFF548B54付费功能|r",		GMMENU,		GOSSIP_ICON_MONEY_BAG},
 		{TP,   "|TInterface/ICONS/inv_misc_coin_02:35:35|t|cffe60000城市广场|r (|cff0070d0商业中心|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},
 	},
 
@@ -1818,7 +1818,7 @@ local Menu={--菜单页面
 		{FUNC, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:35:35|t|cFF32CD99召唤幻化大师|r", 	ST.SummonNPCds,	GOSSIP_ICON_TAXI},
 	},
 
-	[GMMENU]={--GM菜单 --暴雪付费功能
+	[GMMENU]={--GM菜单 --付费功能
 		{FUNC, "|TInterface/ICONS/inv_scroll_11:35:35|t|cff3F636C修改名字",		Stone.ResetName,	GOSSIP_ICON_CHAT,		false,"是否修改名字？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
 		{FUNC, "|TInterface/ICONS/Ability_Rogue_Disguise:35:35|t|cff3F636C改变容貌",		Stone.ResetFace,	GOSSIP_ICON_CHAT,		false,"是否重置容貌？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
 		{FUNC, "|TInterface/ICONS/achievement_worldevent_brewmaster:35:35|t|cff3F636C变更种族",		Stone.ResetRace,	GOSSIP_ICON_CHAT,		false,"是否变更种族？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
