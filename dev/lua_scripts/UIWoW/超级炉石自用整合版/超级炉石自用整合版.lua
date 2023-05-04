@@ -151,7 +151,7 @@ function ST.SummonNPC(player, entry)
 end
 
 
-		--{FUNC, "召唤传家宝商人", 	ST.SummonNPCcj,	GOSSIP_ICON_VENDOR},
+		--{FUNC, "召唤传家宝商人", 	    ST.SummonNPCcj,	    GOSSIP_ICON_VENDOR},
 		--{FUNC, "召唤战士雕文商人", 	ST.SummonNPCwor,	GOSSIP_ICON_VENDOR},
 		--{FUNC, "召唤小德雕文商人", 	ST.SummonNPChun,	GOSSIP_ICON_VENDOR},
 		--{FUNC, "召唤萨满雕文商人", 	ST.SummonNPCsha,	GOSSIP_ICON_VENDOR},
@@ -159,9 +159,9 @@ end
 		--{FUNC, "召唤牧师雕文商人", 	ST.SummonNPCpri,	GOSSIP_ICON_VENDOR},
 		--{FUNC, "召唤圣骑雕文商人", 	ST.SummonNPCwar,	GOSSIP_ICON_VENDOR},
 		--{FUNC, "召唤盗贼雕文商人", 	ST.SummonNPCrog,	GOSSIP_ICON_VENDOR},
-		--{FUNC, "召唤法师雕文商人", 	ST.SummonNPCmag,	    GOSSIP_ICON_VENDOR},
+		--{FUNC, "召唤法师雕文商人", 	ST.SummonNPCmag,	GOSSIP_ICON_VENDOR},
 		--{FUNC, "召唤小德雕文商人", 	ST.SummonNPCdru,	GOSSIP_ICON_VENDOR},
-		--{FUNC, "召唤死骑雕文商人", 	ST.SummonNPCdk,	GOSSIP_ICON_VENDOR},
+		--{FUNC, "召唤死骑雕文商人", 	ST.SummonNPCdk,	    GOSSIP_ICON_VENDOR},
 
 function ST.SummonNPC_4001001(player)
 	ST.SummonNPC(player, 190001)
@@ -319,20 +319,20 @@ end
 function ST.SummonNPCFishing(player)
 	ST.SummonNPC(player, ST.NPCID514)
 end
-		-- {FUNC, "召唤炼金训练师", 	ST.SummonNPCAlchemy,	GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤炼金训练师", 	ST.SummonNPCAlchemy,	    GOSSIP_ICON_TRAINER},
 		-- {FUNC, "召唤锻造训练师", 	ST.SummonNPCBlacksmithing,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤附魔训练师", 	ST.SummonNPCEnchanting,	GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤附魔训练师", 	ST.SummonNPCEnchanting,	    GOSSIP_ICON_TRAINER},
 		-- {FUNC, "召唤工程训练师", 	ST.SummonNPCEngineering,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤草药训练师", 	ST.SummonNPCHerbalism,	GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤草药训练师", 	ST.SummonNPCHerbalism,	    GOSSIP_ICON_TRAINER},
 		-- {FUNC, "召唤铭文训练师", 	ST.SummonNPCInscription,	GOSSIP_ICON_TRAINER},
 		-- {FUNC, "召唤珠宝训练师", 	ST.SummonNPCJewelcrafting,	GOSSIP_ICON_TRAINER},
 		-- {FUNC, "召唤皮甲训练师", 	ST.SummonNPCLeatherworking,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤采矿训练师", 	ST.SummonNPCMining,	    GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤剥皮训练师", 	ST.SummonNPCSkinning,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤裁缝训练师", 	ST.SummonNPCTailoring,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤烹饪训练师", 	ST.SummonNPCCooking,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤急救训练师", 	ST.SummonNPCFirstAid,	GOSSIP_ICON_TRAINER},
-		-- {FUNC, "召唤钓鱼训练师", 	ST.SummonNPCFishing,	GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤采矿训练师", 	ST.SummonNPCMining,	        GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤剥皮训练师", 	ST.SummonNPCSkinning,	    GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤裁缝训练师", 	ST.SummonNPCTailoring,	    GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤烹饪训练师", 	ST.SummonNPCCooking,	    GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤急救训练师", 	ST.SummonNPCFirstAid,	    GOSSIP_ICON_TRAINER},
+		-- {FUNC, "召唤钓鱼训练师", 	ST.SummonNPCFishing,	    GOSSIP_ICON_TRAINER},
 local function ResetPlayer(player, flag, text)
 	player:SetAtLoginFlag(flag)
 	player:SendAreaTriggerMessage("你现在返回角色选择或者重新登录角色，即可进行修改"..text.."。")
