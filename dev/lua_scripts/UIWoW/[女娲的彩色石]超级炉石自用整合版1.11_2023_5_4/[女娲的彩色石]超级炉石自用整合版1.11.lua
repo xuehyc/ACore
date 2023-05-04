@@ -1525,11 +1525,11 @@ local Menu={--菜单页面
 	},
 
 	[SKLMENU]={--技能训练主菜单
+        {MENU, "|TInterface/ICONS/inv_glyph_majormage.jpg:35:35|t【|cFFB22222召唤:随身雕文商人|r】", 	SKLMENU+0x30,	GOSSIP_ICON_VENDOR},
 		{MENU,  "|TInterface/ICONS/inv_crate_05:35:35|t【|cff2E8B57传送:训练假人|r】",	 SKLMENU+0x60,	GOSSIP_ICON_BATTLE},
 		{MENU, "|TInterface/ICONS/inv_misc_book_09:35:35|t【|cFF9932CC传送:职业训练师|r】",    				SKLMENU+0x10,		GOSSIP_ICON_TAXI},
 		{MENU, "|TInterface/ICONS/inv_sword_05:35:35|t【|cFF9932CC传送:武器训练师|r】", 	SKLMENU+0x20,	GOSSIP_ICON_TAXI},
 		{MENU, "|TInterface/ICONS/spell_nature_swiftness:35:35|t【|cFF9932CC传送:骑术训练师|r】", 	SKLMENU+0x70,	GOSSIP_ICON_TAXI},
-		{MENU, "|TInterface/ICONS/inv_glyph_majormage.jpg:35:35|t【|cFFB22222召唤:随身雕文商人|r】", 	SKLMENU+0x30,	GOSSIP_ICON_VENDOR},
 		{FUNC, "|TInterface/ICONS/Spell_Deathknight_ClassIcon:35:35|t【|cFFB22222提升武器熟练度|r】",	Stone.WSkillsToMax,	GOSSIP_ICON_TRAINER,	false,"确认提升武器熟练度？"},
 		{FUNC, "|TInterface/ICONS/ability_marksmanship:35:35|t【|cffC71585重置天赋|r】",	Stone.ResetTalents,	GOSSIP_ICON_TRAINER,	false,"确认重置天赋？"},
 		{FUNC, "|TInterface/ICONS/ability_hunter_beastcall:35:35|t【|cffC71585重置宠物天赋|r】",	Stone.ResetPetTalents,	GOSSIP_ICON_TRAINER,	false,"确认重置宠物天赋？"},
