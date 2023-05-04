@@ -459,7 +459,7 @@ local Stone={
 				player:SendBroadcastMessage("你所在的当前副本无法解除绑定。")
 			end
 		end
-		player:SendAreaTriggerMessage("已经解除所有副本的绑定")
+		player:SendAreaTriggerMessage("已经解除所有副本的绑定。")
 		player:SendBroadcastMessage("已经解除所有副本的绑定。")
 	end,
 
@@ -535,7 +535,7 @@ local Stone={
 			 return
 		end
 		player:Teleport(data[1],data[2],data[3],data[4],data[5])
-        player:SendBroadcastMessage("传送成功.")
+        player:SendBroadcastMessage("传送成功。")
 	end,
 
 	TBPoint2=function(player)
@@ -556,7 +556,7 @@ local Stone={
 			 return
 		end
 		player:Teleport(data[1],data[2],data[3],data[4],data[5])
-        player:SendBroadcastMessage("传送成功.")
+        player:SendBroadcastMessage("传送成功。")
 	end,
 
 	TBPoint3=function(player)
@@ -577,7 +577,7 @@ local Stone={
 			 return
 		end
 		player:Teleport(data[1],data[2],data[3],data[4],data[5])
-        player:SendBroadcastMessage("传送成功.")
+        player:SendBroadcastMessage("传送成功。")
 	end,
 
 	TBPoint4=function(player)
@@ -598,7 +598,7 @@ local Stone={
 			 return
 		end
 		player:Teleport(data[1],data[2],data[3],data[4],data[5])
-        player:SendBroadcastMessage("传送成功.")
+        player:SendBroadcastMessage("传送成功。")
 	end,
 
 	TBPoint5=function(player)
@@ -619,7 +619,7 @@ local Stone={
 			 return
 		end
 		player:Teleport(data[1],data[2],data[3],data[4],data[5])
-        player:SendBroadcastMessage("传送成功.")
+        player:SendBroadcastMessage("传送成功。")
 	end,
 
 	SY01=function(player)--商业技能熟练度
