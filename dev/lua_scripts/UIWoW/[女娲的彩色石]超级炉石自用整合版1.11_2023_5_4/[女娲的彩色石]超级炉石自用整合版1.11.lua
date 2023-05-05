@@ -2006,7 +2006,7 @@ local Menu={--菜单页面
 	},
 
 	[TPDRMENU+0x10]={--经典旧世界副本
-		{TP, "|TInterface/ICONS/achievement_boss_ragnaros:35:35|t[|cFFFF6600团队|r]|cFFCC0033熔火之心",		230,	1126.64,	-459.94,	-102.535,	3.46095,	TEAM_NONE,	50,	100000},
+		{TP, "|TInterface/ICONS/achievement_boss_ragnaros:35:35|t[|cFFFF6600团队|r]|cFFCC0033熔火之心",		230,	1126.64,	-459.94,	-102.535,	3.46095,	TEAM_NONE,	50,	100000},--倒数第2个参数,为进入等级
 		{TP, "|TInterface/ICONS/achievement_boss_nefarion:35:35|t[|cFFFF6600团队|r]|cFFCC0033黑翼之巢",		229,	152.451,	-474.881,	116.84,		0.001073,	TEAM_NONE,	60,	100000},
 		{TP, "|TInterface/ICONS/achievement_boss_hakkar:35:35|t[|cFFFF6600团队|r]|cFFCC0033祖尔格拉布",		0,		-11916.7,	-1215.72,	92.289,		4.72454,	TEAM_NONE,	50,	100000},
 		{TP, "|TInterface/ICONS/achievement_boss_ossiriantheunscarred:35:35|t[|cFFFF6600团队|r]|cFFCC0033安其拉废墟",		1,		-8409.82,	1499.06,	27.7179,	2.51868,	TEAM_NONE,	50,	100000},
