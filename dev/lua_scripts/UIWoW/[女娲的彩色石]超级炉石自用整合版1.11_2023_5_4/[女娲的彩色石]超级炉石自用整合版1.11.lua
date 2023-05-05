@@ -1507,7 +1507,7 @@ local Menu={--菜单页面
 
     [TBMENU]={--炉石功能
 		{FUNC, "|TInterface/ICONS/INV_Misc_Rune_01:35:35|t|cFFB22222炉石传回", 	Stone.GoHome,	GOSSIP_ICON_TAXI,		  false,"是否穿越回|cFFF0F000记录位置|r ？"},
-		{FUNC, "|TInterface/ICONS/inv_misc_rune_08:35:35|t|cFFB22222记录炉石", 	Stone.SetHome,	GOSSIP_ICON_TAXI,          false,"是否记录|cFFF0F000当前位置|r为炉石点 ？"},
+		{FUNC, "|TInterface/ICONS/inv_misc_rune_08:35:35|t|cFFB22222记录炉石", 	Stone.SetHome,	GOSSIP_ICON_TAXI,         false,"是否记录|cFFF0F000当前位置|r为炉石点 ？"},
 		{MENU, "|TInterface/ICONS/INV_Misc_Rune_06:35:35|t|cffe60000定点传送|r", 	 TBMENU+0x10,			GOSSIP_ICON_TAXI},
 		{FUNC, "|TInterface/ICONS/spell_arcane_blink:35:35|t|cff2F4F4F目标瞬移",   Stone.GoSelectPlayer,	GOSSIP_ICON_TAXI,          false,"是否瞬移到目标身边 ？"},
 	},	
