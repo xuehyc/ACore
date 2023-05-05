@@ -1771,7 +1771,7 @@ local Menu={--菜单页面
 	},
 
 
-	[MMENU+0x10]={--其他功能
+	[MMENU+0x10]={--便捷功能
 		--{FUNC, "|TInterface/ICONS/achievement_leader_tyrande_whisperwind:35:35|t|cff3F636C召唤歌剧院管理员|r", 	ST.SummonNPC_sound,	GOSSIP_ICON_TAXI},--自制播音员，外发时注释掉
 		--{FUNC, "|TInterface/ICONS/Ysera_mortal:35:35|t|cff3F636C召唤伊瑟拉|r", 	ST.SummonNPC_Ysera,	GOSSIP_ICON_TAXI},--自制NPC，外发时注释掉
 		--{FUNC, "|TInterface/ICONS/inv_misc_coin_01:35:35|t|cff3F636CGM模式", 		Stone.GmOnMod,	GOSSIP_ICON_VENDOR},--eluna不能支持GM命令
