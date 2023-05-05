@@ -1802,14 +1802,14 @@ local Menu={--菜单页面
 		{FUNC, "|TInterface/ICONS/inv_fabric_moonrag_01:35:35|t|cff3F636C月亮井", 		ST.SummonTradeObject_MoonWell,	GOSSIP_ICON_MONEY_BAG},
 	},
 			--[[
-						--GOSSIP_ICON 菜单图标
+					--GOSSIP_ICON 菜单图标
 					local GOSSIP_ICON_CHAT            = 0                    -- 对话，空泡泡
 					local GOSSIP_ICON_VENDOR          = 1                    -- 货物，袋子
 					local GOSSIP_ICON_TAXI            = 2                    -- 传送，翅膀
 					local GOSSIP_ICON_TRAINER         = 3                    -- 训练，书
-					local GOSSIP_ICON_INTERACT_1    	= 4                    -- 复活，齿轮
+					local GOSSIP_ICON_INTERACT_1      = 4                    -- 复活，齿轮
 					local GOSSIP_ICON_INTERACT_2      = 5                    -- 设为我的家，齿轮
-					local GOSSIP_ICON_MONEY_BAG   	= 6                    -- 钱袋，包和金币
+					local GOSSIP_ICON_MONEY_BAG   	  = 6                    -- 钱袋，包和金币
 					local GOSSIP_ICON_TALK            = 7                    -- 申请，说话泡泡+黑色点
 					local GOSSIP_ICON_TABARD          = 8                    -- 工会，战袍
 					local GOSSIP_ICON_BATTLE          = 9                    -- 加入战场，双剑交叉
