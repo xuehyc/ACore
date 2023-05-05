@@ -1499,8 +1499,9 @@ local Menu={--菜单页面
 		{MENU, "|TInterface/ICONS/inv_misc_ogrepinata:35:35|t|cFF9932CC技能训练|r", 	                    SKLMENU,	    GOSSIP_ICON_TRAINER},
 		{MENU, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:35:35|t|cFF32CD99幻化功能|r",		MMENU+0x20,		GOSSIP_ICON_TABARD},
 		{MENU, "|TInterface/ICONS/Trade_Engraving:35:35|t|cFFB22222双重附魔|r",		                        ENCMENU,		GOSSIP_ICON_TABARD},
-		{MENU, "|TInterface/ICONS/inv_misc_food_15:35:35|t|c00722FFF便捷功能",		                        MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 --rxjh_app_ico_32_32,后加的热血江湖程序图标
-		{MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:35:35|t|cFF548B54付费功能|r",	                GMMENU,		    GOSSIP_ICON_MONEY_BAG},
+		{MENU, "|TInterface/ICONS/inv_misc_food_15:35:35|t|c00722FFF便捷功能",		                        MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
+        {MENU, "|TInterface/ICONS/rxjh_app_ico_32_32:35:35|t|c00722FFF热血江湖",		                    MMENU+0x10,		GOSSIP_ICON_TALK},--热血江湖程序图标
+        {MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:35:35|t|cFF548B54付费功能|r",	                GMMENU,		    GOSSIP_ICON_MONEY_BAG},
 		{TP,   "|TInterface/ICONS/inv_misc_coin_02:35:35|t|cffe60000城市广场|r (|cff0070d0商业中心|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},
 	},
 
