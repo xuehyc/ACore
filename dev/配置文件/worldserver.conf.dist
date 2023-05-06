@@ -365,7 +365,8 @@ ChangeWeatherInterval = 600000
 #        Description: Time (in milliseconds) for player save interval.
 #        Default:     900000 - (15 min)
 
-PlayerSaveInterval = 60000
+PlayerSaveInterval = 10000
+# Now is 10s
 
 #
 #    PlayerSave.Stats.MinLevel
