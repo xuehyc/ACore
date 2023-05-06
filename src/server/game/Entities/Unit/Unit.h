@@ -1466,6 +1466,9 @@ public:
     //[[nodiscard]] inline uint8 GetRace(bool original = false) const { return getRace(original); }
     //[[nodiscard]] inline uint32 getRaceMask() const { return getRaceMask(); }
     //[[nodiscard]] inline uint8 getClass() const { return getClass(); }
+    [[nodiscard]] inline uint8 GetRace(bool original = false) const { return getRace(original); }
+    [[nodiscard]] inline uint32 GetRaceMask() const { return getRaceMask(); }
+    [[nodiscard]] inline uint8 GetClass() const { return getClass(); }
     [[nodiscard]] inline uint32 GetClassMask() const { return getClassMask(); }
     [[nodiscard]] inline uint8 GetGender() const { return getGender(); }
     inline void SetPowerType(Powers power) { setPowerType(power); }
