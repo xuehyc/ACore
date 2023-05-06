@@ -1496,8 +1496,9 @@ local Stone={--炉石主程序
 
 local Menu={--菜单页面
 	[MMENU]={--主菜单
-        {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},
         {MENU, "|TInterface/ICONS/inv_misc_food_15:32:32|t|c00722FFF便捷功能",		                        MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
+        {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},
+        
         {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送", 	                            TPMENU,			GOSSIP_ICON_TAXI},
 		
 		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:32:32|t|cff0070d0炉石功能", 	                            TBMENU,	        GOSSIP_ICON_TAXI,},
