@@ -1,16 +1,17 @@
 ﻿--[[
 斗气系统LUA---击杀指定怪物获得斗气值，分配给角色属性
+根据此脚本,正在尝试将其修改成热血江湖的加点系统
 ]]--
-
 
 print(">>Script: douqixitong.lua Loading...OK")
 
-local itemEntry     =79001      --物品ID.惯例是带使用性质的
+local itemEntry     =6948         --物品ID.惯例是带使用性质的    --79001,原先 --6948,炉石    --25454,发光的孢子球   --25456,发光的孢子
 local guaiwu        ={1488, };  --斗气值怪物ID--自己设置
 local czitem        =65501      --重置需要的物品
-local czitemcount   =5          --重置需要的物品数量
+local czitemcount   =5          --重置需要的物品数量,根据热血江湖的设置可以使用长白山参来洗点,小长白山参一次只能洗1点 小长白丹(100元宝)大长白丹(400元宝)都可以洗气功点
 local douqizhiCount =1000       --每杀一只怪获得斗气值的数量
-local xiaofeicount  =5000       --加点消费的斗气值数量
+local douqizhiCount_level =1    --每升一级获得斗气值的数量,根据热血江湖系统,35级前获得1点,之后获得两点
+local xiaofeicount  =5          --加点消费的斗气值数量,原先为5000
 local shuxingcount  =1000       --每次加点增加的属性值（请注意..这儿的值跟DBC是相关联的）
 
 local spell_liliang     =99901  --力量
@@ -46,28 +47,34 @@ local function guaiwuDQ(event, killer, enemy)   --此处是杀怪给斗气值的
 	end
 end
 
-local function LevelDQ(event, player, oldLevel)   --此处是我尝试添加的升级给斗气值的模块
-    local douqizhi=CharDBQuery("SELECT * FROM characters_douqi WHERE guid="..killer:GetGUIDLow()..";")	--查询斗气值	
+local function LevelDQ(event, player, oldLevel)   --此处是我尝试添加的热血江湖式升级给气功点的模块
+    local douqizhi=CharDBQuery("SELECT * FROM characters_douqi WHERE guid="..player:GetGUIDLow()..";")	--查询斗气值	
 	    if (douqizhi==nil) then --斗气值为空
-		    CharDBExecute("INSERT INTO characters_douqi VALUES ("..killer:GetGUIDLow()..", 0, 0, 0, 0, 0, 0, 0, 0);")
+		    CharDBExecute("INSERT INTO characters_douqi VALUES ("..player:GetGUIDLow()..", 0, 0, 0, 0, 0, 0, 0, 0);")
 			player:SaveToDB()
-			player:SendBroadcastMessage("初次击杀初始化存档")
-		end		    
-		CharDBExecute("UPDATE characters_douqi SET douqizhi=douqizhi+"..douqizhiCount.." WHERE guid="..killer:GetGUIDLow()..";")
+			player:SendBroadcastMessage("已初始化热血江湖气功系统.")
+		
+        else
+        if(oldLevel>34) then
+            douqizhiCount_level = 2 --超过35级给2个气功点
+        end
+        end
+
+		CharDBExecute("UPDATE characters_douqi SET douqizhi=douqizhi+"..douqizhiCount_level.." WHERE guid="..player:GetGUIDLow()..";")
 		player:SaveToDB()
-		player:SendBroadcastMessage("你升级获得"..douqizhiCount.."点斗气值.")   
-	end
+		player:SendBroadcastMessage("恭喜你升级了,获得"..douqizhiCount_level.."点可分配气功点数,请打开气功点数界面分配气功点.")   
+	
 end
 
 local function Douqi_AddGoss(event, player, item, target,intid)
 	douqizhi=CharDBQuery("SELECT * FROM characters_douqi WHERE guid="..player:GetGUIDLow()..";")
 	if (douqizhi==nil) then
-	    player:SendBroadcastMessage("对不起.你无法使用.因为你目前没有斗气值")
-		player:SendAreaTriggerMessage("|CFF00FFFF对不起.你无法使用.因为你目前没有斗气值|r")
+	    player:SendBroadcastMessage("对不起.你无法使用.因为你目前没有可分配的气功点数")
+		player:SendAreaTriggerMessage("|CFF00FFFF对不起.你无法使用.因为你目前没有没有可分配的气功点数|r")
 	else
 	    player:GossipClearMenu()
 	    player:SaveToDB()
-	    player:GossipMenuAddItem(8,"|CFF00FFFF斗气系统-当前角色斗气值|r：\n（|CFFFF0000"..math.modf(douqizhi:GetUInt32(2)*5+douqizhi:GetUInt32(3)*5+douqizhi:GetUInt32(4)*5+douqizhi:GetUInt32(5)*5+douqizhi:GetUInt32(6)*5+douqizhi:GetUInt32(7)*5+douqizhi:GetUInt32(8)*5).."/"..douqizhi:GetUInt32(1).."|r）\n(已分配点数/共剩余点数)\n消耗|CFFFF0000"..xiaofeicount.."|r点斗气值.提升|CFFFF00001000|r点属性|r\n|cff0000ff点击下列对应菜单可提升角色的属性",1,0)
+	    player:GossipMenuAddItem(8,"|CFF00FFFF热血江湖气功点数系统-当前角色可分配气功点数|r：\n（|CFFFF0000"..math.modf(douqizhi:GetUInt32(2)*5+douqizhi:GetUInt32(3)*5+douqizhi:GetUInt32(4)*5+douqizhi:GetUInt32(5)*5+douqizhi:GetUInt32(6)*5+douqizhi:GetUInt32(7)*5+douqizhi:GetUInt32(8)*5).."/"..douqizhi:GetUInt32(1).."|r）\n(已分配点数/共剩余点数)\n消耗|CFFFF0000"..xiaofeicount.."|r点斗气值.提升|CFFFF00001000|r点属性|r\n|cff0000ff点击下列对应菜单可提升角色的属性",1,0)
 	    player:GossipMenuAddItem(5,"当前-|cFF009933力量:|r [|CFFFF0000"..douqizhi:GetUInt32(2).."|r] ---|cff0000ff确认|r",1,1)		
 	    player:GossipMenuAddItem(5,"当前-|cFF009933敏捷:|r [|CFFFF0000"..douqizhi:GetUInt32(3).."|r] ---|cff0000ff确认|r",1,2)	
 	    player:GossipMenuAddItem(5,"当前-|cFF009933耐力:|r [|CFFFF0000"..douqizhi:GetUInt32(4).."|r] ---|cff0000ff确认|r",1,3)	
