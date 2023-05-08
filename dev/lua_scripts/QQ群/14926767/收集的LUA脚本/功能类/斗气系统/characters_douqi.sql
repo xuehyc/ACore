@@ -1,4 +1,4 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
 Source Server         : AFK
@@ -18,7 +18,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for characters_douqi
 -- ----------------------------
-DROP TABLE IF EXISTS `characters_douqi`;
+--DROP TABLE IF EXISTS `characters_douqi`;
 CREATE TABLE `characters_douqi` (
   `guid` int(10) NOT NULL,
   `douqizhi` int(30) NOT NULL DEFAULT '0',
