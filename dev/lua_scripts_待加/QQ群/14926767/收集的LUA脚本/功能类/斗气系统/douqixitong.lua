@@ -1,32 +1,32 @@
---[[
+﻿--[[
 斗气系统LUA---击杀指定怪物获得斗气值，分配给角色属性
 ]]--
 
 
 print(">>Script: douqixitong.lua Loading...OK")
 
-local itemEntry=79001------------------------------物品ID.惯例是带使用性质的
-local guaiwu={1488, };-------------------------斗气值怪物ID--自己设置
-local czitem=65501      -----------重置需要的物品
-local czitemcount=5     -----------重置需要的物品数量
-local douqizhiCount=1000 -----------每杀一只怪获得斗气值的数量
-local xiaofeicount=5000----------------------加点消费的斗气值数量
-local shuxingcount=1000----------------------每次加点增加的属性值（请注意..这儿的值跟DBC是相关联的）
+local itemEntry     =79001      --物品ID.惯例是带使用性质的
+local guaiwu        ={1488, };  --斗气值怪物ID--自己设置
+local czitem        =65501      --重置需要的物品
+local czitemcount   =5          --重置需要的物品数量
+local douqizhiCount =1000       --每杀一只怪获得斗气值的数量
+local xiaofeicount  =5000       --加点消费的斗气值数量
+local shuxingcount  =1000       --每次加点增加的属性值（请注意..这儿的值跟DBC是相关联的）
 
-local spell_liliang=99901-------------------力量
-local spell_liliangup=99902
-local spell_minjie=99903--------------------敏捷
-local spell_minjieup=99904
-local spell_naili=99905---------------------耐力
-local spell_nailiup=99906
-local spell_zhili=99907---------------------智力
-local spell_zhiliup=99908
-local spell_jingshen=99909------------------精神
-local spell_jingshenup=99910
-local spell_gongqiang=98001-----------------攻强
-local spell_gongqiangup=98003
-local spell_faqiang=98002-------------------法强
-local spell_faqiangup=98004
+local spell_liliang     =99901  --力量
+local spell_liliangup   =99902
+local spell_minjie      =99903  --敏捷
+local spell_minjieup    =99904
+local spell_naili       =99905  --耐力
+local spell_nailiup     =99906
+local spell_zhili       =99907  --智力
+local spell_zhiliup     =99908
+local spell_jingshen    =99909  --精神
+local spell_jingshenup  =99910
+local spell_gongqiang   =98001  --攻强
+local spell_gongqiangup =98003
+local spell_faqiang     =98002  --法强
+local spell_faqiangup   =98004
 
 local douqizhi=nil
 
@@ -229,9 +229,7 @@ local function Douqi_seleGoss(event,player,item,target,intid)
 		end
 	end		
 end
-
-
-			
+		
 RegisterPlayerEvent(7, guaiwuDQ)
 RegisterItemGossipEvent(itemEntry, 1, Douqi_AddGoss)
 RegisterItemGossipEvent(itemEntry, 2, Douqi_seleGoss)
