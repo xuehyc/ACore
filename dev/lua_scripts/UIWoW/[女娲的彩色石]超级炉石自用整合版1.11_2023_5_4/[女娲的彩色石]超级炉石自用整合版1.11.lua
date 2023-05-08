@@ -116,7 +116,7 @@
 --print(">>Script: TeleportStone loading...OK")
 
 --菜单入口 --默认炉石itemID 6948
-local itemEntry	=6948           --  -1
+local itemEntry	=-1--6948           --  -1
 
 --定点传送功能数据库建立acore_characters.tp表
 CharDBQuery([[
