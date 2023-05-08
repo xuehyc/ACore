@@ -30,7 +30,7 @@ local spell_faqiangup   =98004
 
 local douqizhi=nil
 
-local function guaiwuDQ(event, killer, enemy)
+local function guaiwuDQ(event, killer, enemy)   --此处是杀怪给斗气值的模块
     local douqizhi=CharDBQuery("SELECT * FROM characters_douqi WHERE guid="..killer:GetGUIDLow()..";")	
 	for k,v in pairs (guaiwu) do
 	    if (douqizhi==nil and enemy:GetEntry()==v) then
@@ -43,6 +43,19 @@ local function guaiwuDQ(event, killer, enemy)
 				   killer:SaveToDB()
 				   killer:SendBroadcastMessage("你击杀斗气怪物，获得"..douqizhiCount.."点斗气值.")
 		    end			   
+	end
+end
+
+local function LevelDQ(event, player, oldLevel)   --此处是我尝试添加的升级给斗气值的模块
+    local douqizhi=CharDBQuery("SELECT * FROM characters_douqi WHERE guid="..killer:GetGUIDLow()..";")	--查询斗气值	
+	    if (douqizhi==nil) then --斗气值为空
+		    CharDBExecute("INSERT INTO characters_douqi VALUES ("..killer:GetGUIDLow()..", 0, 0, 0, 0, 0, 0, 0, 0);")
+			player:SaveToDB()
+			player:SendBroadcastMessage("初次击杀初始化存档")
+		end		    
+		CharDBExecute("UPDATE characters_douqi SET douqizhi=douqizhi+"..douqizhiCount.." WHERE guid="..killer:GetGUIDLow()..";")
+		player:SaveToDB()
+		player:SendBroadcastMessage("你升级获得"..douqizhiCount.."点斗气值.")   
 	end
 end
 
@@ -230,7 +243,8 @@ local function Douqi_seleGoss(event,player,item,target,intid)
 	end		
 end
 		
-RegisterPlayerEvent(7, guaiwuDQ)
+--RegisterPlayerEvent(7, guaiwuDQ)--暂时不想使用杀怪给斗气模块
+RegisterPlayerEvent(13, LevelDQ)
 RegisterItemGossipEvent(itemEntry, 1, Douqi_AddGoss)
 RegisterItemGossipEvent(itemEntry, 2, Douqi_seleGoss)
 
