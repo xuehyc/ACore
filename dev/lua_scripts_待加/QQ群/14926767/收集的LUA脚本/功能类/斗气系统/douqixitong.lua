@@ -6,7 +6,7 @@
 print(">>Script: douqixitong.lua Loading...OK")
 
 local itemEntry     =-1       --物品ID.惯例是带使用性质的    --79001,原先 --6948,炉石    --25454,发光的孢子球   --25456,发光的孢子
-local guaiwu        ={1488, };  --斗气值怪物ID--自己设置
+local guaiwu        ={1488, };  --斗气值怪物ID--自己设置,目前未设置
 local czitem        =65501      --重置需要的物品
 local czitemcount   =5          --重置需要的物品数量,根据热血江湖的设置可以使用长白山参来洗点,小长白山参一次只能洗1点 小长白丹(100元宝)大长白丹(400元宝)都可以洗气功点
 local douqizhiCount =1000       --每杀一只怪获得斗气值的数量
@@ -70,7 +70,7 @@ local function Douqi_AddGoss(event, player, item, target,intid)
 	douqizhi=CharDBQuery("SELECT * FROM characters_douqi WHERE guid="..player:GetGUIDLow()..";")
 	if (douqizhi==nil) then
 	    player:SendBroadcastMessage("对不起.你无法使用.因为你目前没有可分配的气功点数")
-		player:SendAreaTriggerMessage("|CFF00FFFF对不起.你无法使用.因为你目前没有没有可分配的气功点数|r")
+		player:SendAreaTriggerMessage("|CFF00FFFF对不起.你无法使用.因为你目前没有没有可分配的气功点数|r")    --此处是显示在屏幕中间,浅蓝色比较好看的提示
 	else
 	    player:GossipClearMenu()
 	    player:SaveToDB()
@@ -253,7 +253,7 @@ end
 --RegisterPlayerEvent(7, guaiwuDQ)--暂时不想使用杀怪给斗气模块
 RegisterPlayerEvent(13, LevelDQ)
 RegisterItemGossipEvent(itemEntry, 1, Douqi_AddGoss)
-RegisterItemGossipEvent(itemEntry, 2, Douqi_seleGoss)
+--RegisterItemGossipEvent(itemEntry, 2, Douqi_seleGoss)
 
 
 
