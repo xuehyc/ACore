@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -14,21 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* ScriptData
-SDName: Shattrath_City
-SD%Complete: 100
-SDComment: Quest support: 10004, 10009, 10211. Flask vendors, Teleport to Caverns of Time
-SDCategory: Shattrath City
-EndScriptData */
-
-/* ContentData
-npc_raliq_the_drunk
-npc_salsalabim
-npc_shattrathflaskvendors
-npc_zephyr
-npc_kservant
-EndContentData */
 
 #include "Player.h"
 #include "ScriptMgr.h"
@@ -270,7 +255,7 @@ public:
 # npc_zephyr
 ######*/
 
-#define GOSSIP_HZ "送我去时光之穴。"
+#define GOSSIP_HZ "����ȥʱ��֮Ѩ��"
 
 class npc_zephyr : public CreatureScript
 {
@@ -436,8 +421,6 @@ public:
 
 void AddSC_shattrath_city()
 {
-    new npc_raliq_the_drunk();
-    new npc_salsalabim();
     new npc_shattrathflaskvendors();
     new npc_zephyr();
     new npc_kservant();

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -14,22 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* ScriptData
-SDName: Terokkar_Forest
-SD%Complete: 85
-SDComment: Quest support: 9889, 10009, 10873, 10896, 10898, 11096, 10052, 10051. Skettis->Ogri'la Flight
-SDCategory: Terokkar Forest
-EndScriptData */
-
-/* ContentData
-npc_unkor_the_ruthless
-npc_rotting_forest_rager
-npc_netherweb_victim
-npc_floon
-npc_isla_starmane
-npc_slim
-EndContentData */
 
 #include "Group.h"
 #include "Player.h"
@@ -732,10 +716,10 @@ public:
 /*######
 ## go_skull_pile
 ######*/
-#define GOSSIP_S_DARKSCREECHER_AKKARAI         "召唤黑暗尖啸者阿克卡莱"
-#define GOSSIP_S_KARROG         "召唤卡尔洛格"
-#define GOSSIP_S_GEZZARAK_THE_HUNTRESS         "召唤猎手吉萨拉克"
-#define GOSSIP_S_VAKKIZ_THE_WINDRAGER         "召唤风怒者瓦克奇斯"
+#define GOSSIP_S_DARKSCREECHER_AKKARAI         "�ٻ��ڰ���Х�߰��˿���"
+#define GOSSIP_S_KARROG         "�ٻ��������"
+#define GOSSIP_S_GEZZARAK_THE_HUNTRESS         "�ٻ����ּ�������"
+#define GOSSIP_S_VAKKIZ_THE_WINDRAGER         "�ٻ���ŭ���߿���˹"
 
 class go_skull_pile : public GameObjectScript
 {
@@ -840,7 +824,6 @@ void AddSC_terokkar_forest()
     // Theirs
     new npc_unkor_the_ruthless();
     new npc_rotting_forest_rager();
-    new npc_floon();
     new npc_isla_starmane();
     new go_skull_pile();
     new npc_slim();
