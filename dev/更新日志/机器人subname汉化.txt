@@ -1,0 +1,77 @@
+﻿mysql> update creature_template set subname='战士机器人' where subname='Warrior Bot';
+Query OK, 40 rows affected
+Rows matched: 40  Changed: 40  Warnings: 0
+
+mysql> update creature_template set subname='圣骑士机器人' where subname='Paladin Bot';
+Query OK, 24 rows affected
+Rows matched: 24  Changed: 24  Warnings: 0
+
+mysql> update creature_template set subname='猎人机器人' where subname='Hunter Bot';
+Query OK, 39 rows affected
+Rows matched: 39  Changed: 39  Warnings: 0
+
+mysql> update creature_template set subname='法师机器人' where subname='Mage Bot';
+Query OK, 36 rows affected
+Rows matched: 36  Changed: 36  Warnings: 0
+
+mysql> update creature_template set subname='德鲁伊机器人' where subname='Druid Bot';
+Query OK, 18 rows affected
+Rows matched: 18  Changed: 18  Warnings: 0
+
+mysql> update creature_template set subname='死亡骑士机器人' where subname='Death Knight Bot';
+Query OK, 15 rows affected
+Rows matched: 15  Changed: 15  Warnings: 0
+
+mysql> update creature_template set subname='破法者机器人' where subname='Spell Breaker Bot';
+Query OK, 5 rows affected
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> update creature_template set subname='黑暗游侠机器人' where subname='Dark Ranger Bot';
+Query OK, 5 rows affected
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> update creature_template set subname='通灵者机器人' where subname='Necromancer Bot';
+Query OK, 5 rows affected
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> update creature_template set subname='海妖机器人' where subname='Sea Witch Bot';
+Query OK, 5 rows affected
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> update creature_template set subname='机器人雇佣提供者' where subname='Bots for hire';
+Query OK, 1 row affected
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update creature_template set subname='盗贼机器人' where subname='Rogue Bot';
+Query OK, 31 rows affected
+Rows matched: 31  Changed: 31  Warnings: 0
+
+mysql> update creature_template set subname='牧师机器人' where subname='Priest Bot';
+Query OK, 40 rows affected
+Rows matched: 40  Changed: 40  Warnings: 0
+
+mysql> update creature_template set subname='萨满机器人' where subname='Shaman Bot';
+Query OK, 14 rows affected
+Rows matched: 14  Changed: 14  Warnings: 0
+
+mysql> update creature_template set subname='术士机器人' where subname='Warlock Bot';
+Query OK, 27 rows affected
+Rows matched: 27  Changed: 27  Warnings: 0
+
+mysql> update creature_template set subname='剑圣机器人' where subname='Blademaster Bot';
+Query OK, 2 rows affected
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update creature_template set subname='黑曜毁灭者器人' where subname='Obsidian Destroyer Bot';
+Query OK, 2 rows affected
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update creature_template set subname='大法师器人' where subname='Archmage Bot';
+Query OK, 1 row affected
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update creature_template set subname='恐惧魔王器人' where subname='Dreadlord Bot';
+Query OK, 5 rows affected
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> 
