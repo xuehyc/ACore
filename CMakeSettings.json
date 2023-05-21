@@ -40,6 +40,21 @@
           "name": "Boost_INCLUDE_DIR",
           "value": "D:/Program Files (x86)/boost_1_75_0",
           "type": "PATH"
+        },
+        {
+          "name": "MYSQL_EXECUTABLE",
+          "value": "D:/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "MYSQL_INCLUDE_DIR",
+          "value": "D:/Program Files/MySQL/MySQL Server 8.0/include",
+          "type": "PATH"
+        },
+        {
+          "name": "MYSQL_LIBRARY",
+          "value": "D:/Program Files/MySQL/MySQL Server 8.0/lib/libmysql.lib",
+          "type": "FILEPATH"
         }
       ]
     }
