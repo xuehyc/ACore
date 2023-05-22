@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -217,6 +217,7 @@ struct BattlegroundObjectInfo
 enum ArenaType : uint8
 {
     ARENA_TYPE_NONE                 = 0,
+    ARENA_TYPE_1v1                  = 1,//I
     ARENA_TYPE_2v2                  = 2,
     ARENA_TYPE_3v3                  = 3,
     ARENA_TYPE_5v5                  = 5

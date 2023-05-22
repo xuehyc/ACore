@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -39,6 +39,35 @@ template<typename T, class S> struct Finder
     Finder(T val, T S::* idMember) : val_(val), idMember_(idMember) {}
     bool operator()(const std::pair<int, S>& obj) { return obj.second.*idMember_ == val_; }
 };
+
+class Tokenizer //I DID
+{
+public:
+    typedef std::vector<char const*> StorageType;
+
+    typedef StorageType::size_type size_type;
+
+    typedef StorageType::const_iterator const_iterator;
+    typedef StorageType::reference reference;
+    typedef StorageType::const_reference const_reference;
+
+public:
+    Tokenizer(const std::string& src, char const sep, uint32 vectorReserve = 0);
+    ~Tokenizer() { delete[] m_str; }
+
+    const_iterator begin() const { return m_storage.begin(); }
+    const_iterator end() const { return m_storage.end(); }
+
+    size_type size() const { return m_storage.size(); }
+
+    reference operator [] (size_type i) { return m_storage[i]; }
+    const_reference operator [] (size_type i) const { return m_storage[i]; }
+
+private:
+    char* m_str;
+    StorageType m_storage;
+};
+
 
 void stripLineInvisibleChars(std::string& src);
 

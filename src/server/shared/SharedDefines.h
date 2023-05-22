@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -3623,6 +3623,7 @@ enum BattlegroundQueueTypeId : uint8
     BATTLEGROUND_QUEUE_2v2       = 8,
     BATTLEGROUND_QUEUE_3v3       = 9,
     BATTLEGROUND_QUEUE_5v5       = 10,
+    BATTLEGROUND_QUEUE_1v1       = 11,//I
     MAX_BATTLEGROUND_QUEUE_TYPES = 20,
 };
 

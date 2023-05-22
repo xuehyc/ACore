@@ -1,4 +1,4 @@
-#
+﻿#
 # This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
 #
 # This file is free software; as a special exception the author gives
@@ -226,7 +226,7 @@ list(REMOVE_DUPLICATES SCRIPT_MODULE_PRIVATE_SCRIPTLOADER)
 add_library(scripts STATIC
   ScriptLoader.h
   ${SCRIPT_MODULE_PRIVATE_SCRIPTLOADER}
-  ${PRIVATE_SOURCES_SCRIPTS})
+  ${PRIVATE_SOURCES_SCRIPTS} "Custom/1v1arena/npc_arena1v1.cpp")
 
 target_link_libraries(scripts
   PRIVATE
