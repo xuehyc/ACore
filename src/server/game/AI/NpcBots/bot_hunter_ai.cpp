@@ -712,8 +712,8 @@ public:
             Spell const* spell = me->GetCurrentSpell(CURRENT_GENERIC_SPELL);
             if (spell && spell->GetSpellInfo()->Id == GetSpell(SCARE_BEAST_1))
             {
-                if (spell->m_targets.GetUnitTarget() &&
-                    spell->m_targets.GetUnitTarget()->HasAuraType(SPELL_AURA_MOD_FEAR))
+                Unit const* target = ObjectAccessor::GetUnit(*me, spell->m_targets.GetObjectTargetGUID());
+                if (target && target->HasAuraType(SPELL_AURA_MOD_FEAR))
                     me->InterruptSpell(CURRENT_GENERIC_SPELL);
             }
 
@@ -782,10 +782,12 @@ public:
 
             StartAttack(mytar, IsMelee());
 
+            CheckAttackState();
+            if (!me->IsAlive())
+                return;
+
             Counter(diff);
             CheckTranquil(diff);
-
-            MoveBehind(mytar);
 
             float dist = me->GetDistance(mytar);
             float maxRangeLong = me->GetLevel() >= 10 ? 51.f : 45.f;

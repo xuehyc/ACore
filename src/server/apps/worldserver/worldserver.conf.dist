@@ -4290,6 +4290,17 @@ NpcBot.Mult.Damage.SpellBreaker      = 1.0
 NpcBot.Mult.Damage.DarkRanger        = 1.0
 NpcBot.Mult.Damage.Necromancer       = 1.0
 NpcBot.Mult.Damage.SeaWitch          = 1.0
+NpcBot.Mult.Damage.CryptLord         = 1.0
+
+#
+#    NpcBot.Mult.Damage.Levels
+#        Description: Multipliers for bots' damage by level: 0-9, 10-19, 20,29, ... , 70-79, 80+.
+#                     At least 9 values required.
+#        Default:     1.0
+#        Minimum:     0.1
+#        Maximum:    10.0
+
+NpcBot.Mult.Damage.Levels = 1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
 
 #
 #    NpcBot.Enable.Dungeon
@@ -4432,6 +4443,15 @@ NpcBot.Transmog.UseEquipmentSlots = 0
 NpcBot.Gossip.ShowEquipmentListItems = 0
 
 #
+#    NpcBot.GearBank.Enable
+#        Description: Enable unlimited extra gear storage (accessible through gossip menu).
+#        Note: Unlimited storage creates an 'unlimited bags' exploit, you have been warned.
+#        Default:     0 - (Disabled)
+#                     1 - (Enabled)
+
+NpcBot.GearBank.Enable = 0
+
+#
 #    NpcBot.NewClasses.<Class>.Enable
 #        Description: Allow players to hire bots of non-standard classes.
 #        Note:        Some bot abilities may be unbalanced or game breaking.
@@ -4443,6 +4463,7 @@ NpcBot.Gossip.ShowEquipmentListItems = 0
 #                     1 - (NpcBot.NewClasses.DarkRanger.Enable)
 #                     1 - (NpcBot.NewClasses.Necromancer.Enable)
 #                     1 - (NpcBot.NewClasses.SeaWitch.Enable)
+#                     1 - (NpcBot.NewClasses.CryptLord.Enable)
 
 NpcBot.NewClasses.Blademaster.Enable       = 1
 NpcBot.NewClasses.ObsidianDestroyer.Enable = 1
@@ -4452,6 +4473,7 @@ NpcBot.NewClasses.SpellBreaker.Enable      = 1
 NpcBot.NewClasses.DarkRanger.Enable        = 1
 NpcBot.NewClasses.Necromancer.Enable       = 1
 NpcBot.NewClasses.SeaWitch.Enable          = 1
+NpcBot.NewClasses.CryptLord.Enable         = 1
 
 #
 #    NpcBot.Stats.Limits.Enable

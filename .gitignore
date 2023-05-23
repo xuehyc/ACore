@@ -102,4 +102,5 @@ local.properties
 /.vs
 
 #NPCBots
+!/data/sql/custom/db_characters/
 !/data/sql/custom/db_world/

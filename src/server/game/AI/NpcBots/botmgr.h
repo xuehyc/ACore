@@ -91,6 +91,7 @@ class AC_GAME_API BotMgr
         static bool ShowEquippedCloak();
         static bool ShowEquippedHelm();
         static bool SendEquipListItems();
+        static bool IsGearBankEnabled();
         static bool IsTransmogEnabled();
         static bool MixArmorClasses();
         static bool MixWeaponClasses();
@@ -126,6 +127,7 @@ class AC_GAME_API BotMgr
         static float GetBotWandererHPMod();
         static float GetBotWandererSpeedMod();
         static float GetBotDamageModByClass(uint8 botclass);
+        static float GetBotDamageModByLevel(uint8 botlevel);
 
         static void Initialize();
         static void ReloadConfig();
@@ -137,6 +139,7 @@ class AC_GAME_API BotMgr
         static void OnBotSpellInterrupt(Unit const* caster, CurrentSpellTypes spellType);
         static void OnBotSpellGo(Unit const* caster, Spell const* spell, bool ok = true);
         static void OnBotOwnerSpellGo(Unit const* caster, Spell const* spell, bool ok = true);
+        static void OnBotChannelFinish(Unit const* caster, Spell const* spell);
         static void OnVehicleSpellGo(Unit const* caster, Spell const* spell, bool ok = true);
         static void OnVehicleAttackedBy(Unit* attacker, Unit const* victim);
         static void OnBotDamageTaken(Unit* attacker, Unit* victim, uint32 damage, CleanDamage const* cleanDamage, DamageEffectType damagetype, SpellInfo const* spellInfo);
