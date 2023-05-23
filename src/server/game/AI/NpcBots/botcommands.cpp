@@ -308,18 +308,18 @@ private:
     static void ReportVisualRanges(ChatHandler* handler)
     {
 #define FILL_VISUALS_REPORT2(s,r) s \
-    << get_race_name(r) << " ��:" \
-    << " Ƥ�� 0-" << uint32(GetMaxVisual<PlayerVisuals::Skins, r, GENDER_MALE>()) \
-    << " ���� 0-" << uint32(GetMaxVisual<PlayerVisuals::Faces, r, GENDER_MALE>()) \
-    << " ���� 0-" << uint32(GetMaxVisual<PlayerVisuals::HairStyles, r, GENDER_MALE>()) \
-    << " ��ɫ 0-" << uint32(GetMaxVisual<PlayerVisuals::HairColors, r, GENDER_MALE>()) \
-    << " ���� 0-" << uint32(GetMaxVisual<PlayerVisuals::Features, r, GENDER_MALE>()) \
-    << "\n" << get_race_name(r) << " Ů:" \
-    << " Ƥ�� 0-" << uint32(GetMaxVisual<PlayerVisuals::Skins, r, GENDER_FEMALE>()) \
-    << " ���� 0-" << uint32(GetMaxVisual<PlayerVisuals::Faces, r, GENDER_FEMALE>()) \
-    << " ���� 0-" << uint32(GetMaxVisual<PlayerVisuals::HairStyles, r, GENDER_FEMALE>()) \
-    << " ��ɫ 0-" << uint32(GetMaxVisual<PlayerVisuals::HairColors, r, GENDER_FEMALE>()) \
-    << " ���� 0-" << uint32(GetMaxVisual<PlayerVisuals::Features, r, GENDER_FEMALE>())
+    << get_race_name(r) << " 男:" \
+    << " 皮肤 0-" << uint32(GetMaxVisual<PlayerVisuals::Skins, r, GENDER_MALE>()) \
+    << " 脸型 0-" << uint32(GetMaxVisual<PlayerVisuals::Faces, r, GENDER_MALE>()) \
+    << " 发型 0-" << uint32(GetMaxVisual<PlayerVisuals::HairStyles, r, GENDER_MALE>()) \
+    << " 发色 0-" << uint32(GetMaxVisual<PlayerVisuals::HairColors, r, GENDER_MALE>()) \
+    << " 特征 0-" << uint32(GetMaxVisual<PlayerVisuals::Features, r, GENDER_MALE>()) \
+    << "\n" << get_race_name(r) << " 女:" \
+    << " 皮肤 0-" << uint32(GetMaxVisual<PlayerVisuals::Skins, r, GENDER_FEMALE>()) \
+    << " 脸型 0-" << uint32(GetMaxVisual<PlayerVisuals::Faces, r, GENDER_FEMALE>()) \
+    << " 发型 0-" << uint32(GetMaxVisual<PlayerVisuals::HairStyles, r, GENDER_FEMALE>()) \
+    << " 发色 0-" << uint32(GetMaxVisual<PlayerVisuals::HairColors, r, GENDER_FEMALE>()) \
+    << " 特征 0-" << uint32(GetMaxVisual<PlayerVisuals::Features, r, GENDER_FEMALE>())
 
         handler->SendSysMessage("Ranges:");
         for (uint8 race : { RACE_HUMAN, RACE_DWARF, RACE_NIGHTELF, RACE_GNOME, RACE_DRAENEI, RACE_ORC, RACE_UNDEAD_PLAYER, RACE_TAUREN, RACE_TROLL, RACE_BLOODELF })
@@ -469,17 +469,17 @@ private:
     {
         switch (race)
         {
-            case RACE_HUMAN:        return "����";
-            case RACE_ORC:          return "����";
-            case RACE_DWARF:        return "����";
-            case RACE_NIGHTELF:     return "��ҹ����";
-            case RACE_UNDEAD_PLAYER:return "��������";
-            case RACE_TAUREN:       return "ţͷ��";
-            case RACE_GNOME:        return "٪��";
-            case RACE_TROLL:        return "��ħ";
-            case RACE_BLOODELF:     return "Ѫ����";
-            case RACE_DRAENEI:      return "������";
-            default:                return "δ֪����";
+            case RACE_HUMAN:        return "人类";
+            case RACE_ORC:          return "兽人";
+            case RACE_DWARF:        return "矮人";
+            case RACE_NIGHTELF:     return "暗夜精灵";
+            case RACE_UNDEAD_PLAYER:return "被遗忘者";
+            case RACE_TAUREN:       return "牛头人";
+            case RACE_GNOME:        return "侏儒";
+            case RACE_TROLL:        return "巨魔";
+            case RACE_BLOODELF:     return "血精灵";
+            case RACE_DRAENEI:      return "德莱尼";
+            default:                return "未知种族";
         }
     };
 
@@ -487,17 +487,17 @@ private:
     {
         switch (class_)
         {
-            case CLASS_WARRIOR:     return "սʿ";
-            case CLASS_PALADIN:     return "ʥ��ʿ";
-            case CLASS_HUNTER:      return "����";
-            case CLASS_ROGUE:       return "Ǳ����";
-            case CLASS_PRIEST:      return "��ʦ";
-            case CLASS_DEATH_KNIGHT:return "������ʿ";
-            case CLASS_SHAMAN:      return "������˾";
-            case CLASS_MAGE:        return "��ʦ";
-            case CLASS_WARLOCK:     return "��ʿ";
-            case CLASS_DRUID:       return "��³��";
-            default:                return "δְ֪ҵ";
+            case CLASS_WARRIOR:     return "战士";
+            case CLASS_PALADIN:     return "圣骑士";
+            case CLASS_HUNTER:      return "猎人";
+            case CLASS_ROGUE:       return "潜行者";
+            case CLASS_PRIEST:      return "牧师";
+            case CLASS_DEATH_KNIGHT:return "死亡骑士";
+            case CLASS_SHAMAN:      return "萨满祭司";
+            case CLASS_MAGE:        return "法师";
+            case CLASS_WARLOCK:     return "术士";
+            case CLASS_DRUID:       return "德鲁伊";
+            default:                return "未知职业";
         }
     };
 
@@ -1533,10 +1533,10 @@ public:
         if (!file_str || (!force_kick && sWorld->GetPlayerCount() > 0))
         {
             handler->SendSysMessage(".npcbot dump load");
-            handler->SendSysMessage("����'.npcbot dump write'������ı���SQL�ļ�����NPCBots��");
+            handler->SendSysMessage("从用'.npcbot dump write'命令创建的备份SQL文件导入NPCBots。");
             handler->SendSysMessage("Syntax: .npcbot dump load #file_name [#force_kick_all]");
             if (!force_kick && sWorld->GetPlayerCount() > 0)
-                handler->SendSysMessage("ȷ������ǰû��������ߡ�");
+                handler->SendSysMessage("确保导入前没有玩家在线。");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -1552,24 +1552,24 @@ public:
         switch (NPCBotsDump().Load(*file_str))
         {
             case BOT_DUMP_SUCCESS:
-                handler->SendSysMessage("����ɹ���");
-                handler->SendSysMessage("���ڷ�������������������Է�ֹ���ݿ��𻵡�");
+                handler->SendSysMessage("导入成功。");
+                handler->SendSysMessage("现在服务器将被重新启动，以防止数据库损坏。");
                 sWorld->ShutdownServ(4, SHUTDOWN_MASK_RESTART, 70);
                 break;
             case BOT_DUMP_FAIL_FILE_NOT_EXIST:
-                handler->PSendSysMessage("�޷���%s���ļ�������!", file_str->c_str());
+                handler->PSendSysMessage("无法打开%s或文件不存在!", file_str->c_str());
                 handler->SetSentErrorMessage(true);
                 return false;
             case BOT_DUMP_FAIL_FILE_CORRUPTED:
-                handler->SendSysMessage("�ļ����������Լ��ʧ��!");
+                handler->SendSysMessage("文件数据完整性检查失败!");
                 handler->SetSentErrorMessage(true);
                 return false;
             case BOT_DUMP_FAIL_DATA_OCCUPIED:
-                handler->PSendSysMessage("������%s�еı����������еı����ͻ!", file_str->c_str());
+                handler->PSendSysMessage("包含在%s中的表数据与现有的表项冲突!", file_str->c_str());
                 handler->SetSentErrorMessage(true);
                 return false;
             default:
-                handler->SendSysMessage("����!");
+                handler->SendSysMessage("错误!");
                 handler->SetSentErrorMessage(true);
                 return false;
         }
@@ -1593,22 +1593,22 @@ public:
         switch (NPCBotsDump().Write(*file_str))
         {
             case BOT_DUMP_SUCCESS:
-                handler->SendSysMessage("�����ɹ�");
+                handler->SendSysMessage("导出成功");
                 break;
             case BOT_DUMP_FAIL_FILE_ALREADY_EXISTS:
-                handler->PSendSysMessage("�ļ� %s �Ѵ���!", file_str->c_str());
+                handler->PSendSysMessage("文件 %s 已存在!", file_str->c_str());
                 handler->SetSentErrorMessage(true);
                 return false;
             case BOT_DUMP_FAIL_CANT_WRITE_TO_FILE:
-                handler->SendSysMessage("�޷�д���ļ�!");
+                handler->SendSysMessage("无法写入文件!");
                 handler->SetSentErrorMessage(true);
                 return false;
             case BOT_DUMP_FAIL_INCOMPLETE:
-                handler->SendSysMessage("����δ���!");
+                handler->SendSysMessage("导出未完成!");
                 handler->SetSentErrorMessage(true);
                 return false;
             default:
-                handler->SendSysMessage("����!");
+                handler->SendSysMessage("错误!");
                 handler->SetSentErrorMessage(true);
                 return false;
         }
@@ -1622,7 +1622,7 @@ public:
         if (!owner->HaveBot() || !bot_name || !spell_name)
         {
             handler->SendSysMessage(".npcbot order cast #bot_name #spell_underscored_name #[target_token]");
-            handler->SendSysMessage("����NPCBot����ʩչһ������");
+            handler->SendSysMessage("命令NPCBot立即施展一个法术");
             return true;
         }
 
@@ -1645,24 +1645,24 @@ public:
         {
             if (!bot->IsInWorld())
             {
-                handler->PSendSysMessage("NPCBot %s ������!", bot_name->c_str());
+                handler->PSendSysMessage("NPCBot %s 不存在!", bot_name->c_str());
                 return true;
             }
             if (!bot->IsAlive())
             {
-                handler->PSendSysMessage("%s ������!", bot->GetName().c_str());
+                handler->PSendSysMessage("%s 已死亡!", bot->GetName().c_str());
                 return true;
             }
 
             base_spell = bot->GetBotAI()->GetBaseSpell(*spell_name, handler->GetSessionDbcLocale());
             if (!base_spell)
             {
-                handler->PSendSysMessage("%sû����Ϊ'%s'�ķ���!", bot->GetName().c_str(), spell_name->c_str());
+                handler->PSendSysMessage("%s没有名为'%s'的法术!", bot->GetName().c_str(), spell_name->c_str());
                 return true;
             }
             if (!canBotUseSpell(bot, base_spell))
             {
-                handler->PSendSysMessage("%s's %s ��δ����!", bot->GetName().c_str(), sSpellMgr->GetSpellInfo(base_spell)->SpellName[handler->GetSessionDbcLocale()]);
+                handler->PSendSysMessage("%s's %s 还未就绪!", bot->GetName().c_str(), sSpellMgr->GetSpellInfo(base_spell)->SpellName[handler->GetSessionDbcLocale()]);
                 return true;
             }
         }
@@ -1681,7 +1681,7 @@ public:
             uint8 bot_class = BotMgr::BotClassByClassName(class_name);
             if (bot_class == BOT_CLASS_NONE)
             {
-                handler->PSendSysMessage("δ֪NPCBot���ֻ�ְҵ %s!", class_name.c_str());
+                handler->PSendSysMessage("未知NPCBot名字或职业 %s!", class_name.c_str());
                 return true;
             }
 
@@ -1689,7 +1689,7 @@ public:
 
             if (cBots.empty())
             {
-                handler->PSendSysMessage("û���ҵ�ְҵΪ %u ��NPCBot!", bot_class);
+                handler->PSendSysMessage("没有找到职业为 %u 的NPCBot!", bot_class);
                 return true;
             }
 
@@ -1702,7 +1702,7 @@ public:
 
             if (!base_spell)
             {
-                handler->PSendSysMessage("��%u��NPCBot��û�м���'%s'!", cBots.size(), spell_name->c_str());
+                handler->PSendSysMessage("这%u个NPCBot都没有技能'%s'!", cBots.size(), spell_name->c_str());
                 return true;
             }
 
@@ -1732,35 +1732,35 @@ public:
 
             if (!bot)
             {
-                handler->PSendSysMessage("��%u��NPCBot��������ʹ�ü���%s!", cBots.size(), spell_name->c_str());
+                handler->PSendSysMessage("这%u个NPCBot都还不能使用技能%s!", cBots.size(), spell_name->c_str());
                 return true;
             }
         }
 
         ObjectGuid target_guid;
-        if (!target_token || target_token == "bot" || target_token == "self" || target_token == "������" || target_token == "�Լ�")
+        if (!target_token || target_token == "bot" || target_token == "self" || target_token == "机器人" || target_token == "自己")
             target_guid = bot->GetGUID();
-        else if (target_token == "me" || target_token == "master" || target_token == "��" || target_token == "����")
+        else if (target_token == "me" || target_token == "master" || target_token == "我" || target_token == "主人")
             target_guid = owner->GetGUID();
-        else if (target_token == "mypet" || target_token == "�ҵĳ���")
+        else if (target_token == "mypet" || target_token == "我的宠物")
             target_guid = owner->GetPetGUID();
-        else if (target_token == "myvehicle" || target_token == "�ҵ��ؾ�")
+        else if (target_token == "myvehicle" || target_token == "我的载具")
             target_guid = owner->GetVehicle() ? owner->GetVehicleBase()->GetGUID() : ObjectGuid::Empty;
-        else if (target_token == "target" || target_token == "Ŀ��")
+        else if (target_token == "target" || target_token == "目标")
             target_guid = bot->GetTarget();
-        else if (target_token == "mytarget" || target_token == "�ҵ�Ŀ��")
+        else if (target_token == "mytarget" || target_token == "我的目标")
             target_guid = owner->GetTarget();
         else
         {
-            handler->PSendSysMessage("��Ч��target_token '%s'!", *target_token);
-            handler->SendSysMessage("���õ�target_token:\n    '','bot','self', 'me','master', 'mypet', 'myvehicle', 'target', 'mytarget', '������', '�Լ�', '��', '����', '�ҵĳ���', '�ҵ��ؾ�', 'Ŀ��', '�ҵ�Ŀ��'");
+            handler->PSendSysMessage("无效的target_token '%s'!", *target_token);
+            handler->SendSysMessage("可用的target_token:\n    '','bot','self', 'me','master', 'mypet', 'myvehicle', 'target', 'mytarget', '机器人', '自己', '我', '主人', '我的宠物', '我的载具', '目标', '我的目标'");
             return true;
         }
 
         Unit* target = target_guid ? ObjectAccessor::GetUnit(*owner, target_guid) : nullptr;
         if (!target || !bot->FindMap() || target->FindMap() != bot->FindMap())
         {
-            handler->PSendSysMessage("��Ч��Ŀ�� '%s'!", target ? target->GetName().c_str() : "δ֪����");
+            handler->PSendSysMessage("无效的目标 '%s'!", target ? target->GetName().c_str() : "未知名字");
             return true;
         }
 
@@ -1837,7 +1837,7 @@ public:
         }
 
         handler->SendSysMessage(".npcbot eject");
-        handler->SendSysMessage("�Ƴ���ѡ�ؾ��ϵ�NPCBot�����û��ѡ���ؾߣ����Ƴ��κ��ؾ��ϵ�����NPCBot��");
+        handler->SendSysMessage("移除所选载具上的NPCBot，如果没有选择载具，则移除任何载具上的所有NPCBot。");
         handler->SetSentErrorMessage(true);
         return false;
     }
@@ -1849,14 +1849,14 @@ public:
         if (!owner->HaveBot() || !dist)
         {
             handler->SendSysMessage(".npcbot distance #[attack] #newdist");
-            handler->SendSysMessage("����NPCBot�ĸ���/��������");
+            handler->SendSysMessage("设置NPCBot的跟随/攻击距离");
             return true;
         }
 
         uint8 newdist = uint8(std::min<int32>(std::max<int32>(*dist, 0), 100));
         owner->GetBotMgr()->SetBotFollowDist(newdist);
 
-        handler->PSendSysMessage("NPCBot�ĸ������������Ϊ %u", uint32(newdist));
+        handler->PSendSysMessage("NPCBot的跟随距离已设置为 %u", uint32(newdist));
         return true;
     }
 
@@ -1866,13 +1866,13 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot distance attack short");
-            handler->SendSysMessage("����NPCBot�Ĺ�������");
+            handler->SendSysMessage("设置NPCBot的攻击距离");
             return true;
         }
 
         owner->GetBotMgr()->SetBotAttackRangeMode(BOT_ATTACK_RANGE_SHORT);
 
-        handler->SendSysMessage("NPCBot�Ĺ�������������Ϊ 'short'");
+        handler->SendSysMessage("NPCBot的攻击距离已设置为 'short'");
         return true;
     }
 
@@ -1882,13 +1882,13 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot distance attack long");
-            handler->SendSysMessage("����NPCBot�Ĺ�������");
+            handler->SendSysMessage("设置NPCBot的攻击距离");
             return true;
         }
 
         owner->GetBotMgr()->SetBotAttackRangeMode(BOT_ATTACK_RANGE_LONG);
 
-        handler->SendSysMessage("NPCBot�Ĺ�������������Ϊ 'long'");
+        handler->SendSysMessage("NPCBot的攻击距离已设置为 'long'");
         return true;
     }
 
@@ -1899,14 +1899,14 @@ public:
         if (!owner->HaveBot() || !dist)
         {
             handler->SendSysMessage(".npcbot distance attack #newdist");
-            handler->SendSysMessage("����NPCBot�Ĺ�������");
+            handler->SendSysMessage("设置NPCBot的攻击距离");
             return true;
         }
 
         uint8 newdist = uint8(std::min<int32>(std::max<int32>(*dist, 0), 50));
         owner->GetBotMgr()->SetBotAttackRangeMode(BOT_ATTACK_RANGE_EXACT, newdist);
 
-        handler->PSendSysMessage("NPCBot�Ĺ�������������Ϊ %u", uint32(newdist));
+        handler->PSendSysMessage("NPCBot的攻击距离已设置为 %u", uint32(newdist));
         return true;
     }
 
@@ -1919,14 +1919,14 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot hide");
-            handler->SendSysMessage("��ʱ������ӵ�е�NPCBots");
+            handler->SendSysMessage("暂时隐藏你拥有的NPCBots");
             //handler->SendSysMessage("You have no bots!");
             handler->SetSentErrorMessage(true);
             return false;
         }
         if (!owner->IsAlive())
         {
-            handler->GetSession()->SendNotification("��������");
+            handler->GetSession()->SendNotification("你已死亡");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -1938,7 +1938,7 @@ public:
         }
 
         owner->GetBotMgr()->SetBotsHidden(true);
-        handler->SendSysMessage("NPCBots������");
+        handler->SendSysMessage("NPCBots已隐藏");
         return true;
     }
 
@@ -1948,26 +1948,26 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot unhide | show");
-            handler->SendSysMessage("ȡ��������ӵ�е�NPCBots");
+            handler->SendSysMessage("取消隐藏你拥有的NPCBots");
             //handler->SendSysMessage("You have no bots!");
             handler->SetSentErrorMessage(true);
             return false;
         }
         if (!owner->IsAlive())
         {
-            handler->GetSession()->SendNotification("��������");
+            handler->GetSession()->SendNotification("你已死亡");
             handler->SetSentErrorMessage(true);
             return false;
         }
         if (owner->GetBotMgr()->IsPartyInCombat() && (owner->IsPvP() || owner->IsFFAPvP()))
         {
-            handler->GetSession()->SendNotification("��PvPս�����㲻��������");
+            handler->GetSession()->SendNotification("在PvP战斗中你不能这样做");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         owner->GetBotMgr()->SetBotsHidden(false);
-        handler->SendSysMessage("NPCBots��ȡ������");
+        handler->SendSysMessage("NPCBots已取消隐藏");
         return true;
     }
 
@@ -1979,7 +1979,7 @@ public:
         if (!guid || !owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot kill | suicide");
-            handler->SendSysMessage("�����NPCBotsֱ�������������ѡ���Լ����������NPCBots����������");
+            handler->SendSysMessage("让你的NPCBots直接死亡。如果你选择自己，你的所有NPCBots都会死亡。");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -1995,7 +1995,7 @@ public:
             return true;
         }
 
-        handler->SendSysMessage("�����ѡ�����һ��NPCBot�����Լ�");
+        handler->SendSysMessage("你必须选择你的一个NPCBot或你自己");
         handler->SetSentErrorMessage(true);
         return false;
     }
@@ -2041,17 +2041,17 @@ public:
     {
         static auto return_syntax = [](ChatHandler* chandler) -> bool {
             chandler->SendSysMessage("Syntax: .npcbot sendto #names...");
-            chandler->SendSysMessage("�ñ�ѡ�е�NPCBots�ȴ�30�룬�ȴ������һ��Ŀ�귨������ָ������λ�á�");
-            chandler->SendSysMessage("������Ϊ70��");
+            chandler->SendSysMessage("让被选中的NPCBots等待30秒，等待你的下一个目标法术，以指定传送位置。");
+            chandler->SendSysMessage("最大距离为70码");
             chandler->SetSentErrorMessage(true);
             return false;
         };
 
         static auto return_success = [](ChatHandler* chandler, Variant<std::string, uint32> name_or_count) -> bool {
             if (name_or_count.holds_alternative<uint32>())
-                chandler->PSendSysMessage("�����һ��Ŀ�귨������%u��NPCBots���͵�λ��...", name_or_count.get<uint32>());
+                chandler->PSendSysMessage("你的下一个目标法术将把%u个NPCBots传送到位置...", name_or_count.get<uint32>());
             else
-                chandler->PSendSysMessage("�����һ��Ŀ�귨������%s���͵�λ��...", name_or_count.get<std::string>().c_str());
+                chandler->PSendSysMessage("你的下一个目标法术将把%s传送到位置...", name_or_count.get<std::string>().c_str());
             return true;
         };
 
@@ -2089,7 +2089,7 @@ public:
 
         if (count == 0)
         {
-            handler->PSendSysMessage("�޷�����%u��NPCBots!", uint32(names->size()));
+            handler->PSendSysMessage("无法传送%u个NPCBots!", uint32(names->size()));
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2101,18 +2101,18 @@ public:
     {
         static auto return_syntax = [](ChatHandler* chandler) -> bool {
             chandler->SendSysMessage("Syntax: .npcbot sendto last #names...");
-            chandler->SendSysMessage("ʹ��ѡ�е�/ָ�����ֵ�NPCBots�ص����Ǳ����͵�ǰһ��λ�á�");
-            chandler->SendSysMessage("�⽫ȡ����ǰ�Ĵ��͵ȴ�״̬");
-            chandler->SendSysMessage("������Ϊ70��");
+            chandler->SendSysMessage("使被选中的/指定名字的NPCBots回到他们被发送的前一个位置。");
+            chandler->SendSysMessage("这将取消当前的传送等待状态");
+            chandler->SendSysMessage("最大距离为70码");
             chandler->SetSentErrorMessage(true);
             return false;
         };
 
         static auto return_success = [](ChatHandler* chandler, Variant<std::string, uint32> name_or_count) -> bool {
             if (name_or_count.holds_alternative<uint32>())
-                chandler->PSendSysMessage("����%u ��NPCBots��ǰһ��λ��...", name_or_count.get<uint32>());
+                chandler->PSendSysMessage("传送%u 个NPCBots到前一个位置...", name_or_count.get<uint32>());
             else
-                chandler->PSendSysMessage("���� %s ��ǰһ��λ��...", name_or_count.get<std::string>().c_str());
+                chandler->PSendSysMessage("传送 %s 到前一个位置...", name_or_count.get<std::string>().c_str());
             return true;
         };
 
@@ -2150,7 +2150,7 @@ public:
 
         if (count == 0)
         {
-            handler->PSendSysMessage("�޷�����%u��NPCBots!", uint32(names->size()));
+            handler->PSendSysMessage("无法传送%u个NPCBots!", uint32(names->size()));
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2162,17 +2162,17 @@ public:
     {
         static auto return_syntax = [](ChatHandler* chandler) -> bool {
             chandler->SendSysMessage("Syntax: .npcbot sendto point set #number #names...");
-            chandler->SendSysMessage("ͨ�����#number ��ѡ��/�������ֵ�NPCBots�ĵ�ǰλ�ñ��Ϊ���͵�");
-            chandler->PSendSysMessage("���͵��ű����� 1 ... %u ��Χ��", uint32(MAX_SEND_POINTS));
+            chandler->SendSysMessage("通过编号#number 将选定/给定名字的NPCBots的当前位置标记为传送点");
+            chandler->PSendSysMessage("传送点编号必须在 1 ... %u 范围内", uint32(MAX_SEND_POINTS));
             chandler->SetSentErrorMessage(true);
             return false;
         };
 
         static auto return_success = [&](ChatHandler* chandler, Variant<std::string, uint32> name_or_count) -> bool {
             if (name_or_count.holds_alternative<uint32>())
-                chandler->PSendSysMessage("��Ǵ��͵� %u �� %u ��NPCBots", *point_id, name_or_count.get<uint32>());
+                chandler->PSendSysMessage("标记传送点 %u 给 %u 个NPCBots", *point_id, name_or_count.get<uint32>());
             else
-                chandler->PSendSysMessage("��Ǵ��͵� %u �� %s", *point_id, name_or_count.get<std::string>().c_str());
+                chandler->PSendSysMessage("标记传送点 %u 给 %s", *point_id, name_or_count.get<std::string>().c_str());
             return true;
         };
 
@@ -2210,7 +2210,7 @@ public:
 
         if (count == 0)
         {
-            handler->PSendSysMessage("�޷�Ϊ�κ� %u ��NPCBots��Ǵ��͵㣡", uint32(names->size()));
+            handler->PSendSysMessage("无法为任何 %u 个NPCBots标记传送点！", uint32(names->size()));
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2222,18 +2222,18 @@ public:
     {
         static auto return_syntax = [](ChatHandler* chandler) -> bool {
             chandler->SendSysMessage("Syntax: .npcbot sendto point #number #names...");
-            chandler->SendSysMessage("ʹѡ��/�������ֵ�NPCBots�ƶ�����ǰ��#number ���õĵ�");
-            chandler->SendSysMessage("�⽫ȡ����ǰ���͵ȴ�״̬");
-            chandler->SendSysMessage("������Ϊ 70 ��");
+            chandler->SendSysMessage("使选定/给定名字的NPCBots移动到先前由#number 设置的点");
+            chandler->SendSysMessage("这将取消当前传送等待状态");
+            chandler->SendSysMessage("最大距离为 70 码");
             chandler->SetSentErrorMessage(true);
             return false;
         };
 
         static auto return_success = [&](ChatHandler* chandler, Variant<std::string, uint32> name_or_count) -> bool {
             if (name_or_count.holds_alternative<uint32>())
-                chandler->PSendSysMessage("�ƶ� %u ��NPCBots�����͵� %u...", name_or_count.get<uint32>(), *point_id);
+                chandler->PSendSysMessage("移动 %u 个NPCBots到传送点 %u...", name_or_count.get<uint32>(), *point_id);
             else
-                chandler->PSendSysMessage("�ƶ� %s �����͵� %u...", name_or_count.get<std::string>().c_str(), *point_id);
+                chandler->PSendSysMessage("移动 %s 到传送点 %u...", name_or_count.get<std::string>().c_str(), *point_id);
             return true;
         };
 
@@ -2271,7 +2271,7 @@ public:
 
         if (count == 0)
         {
-            handler->PSendSysMessage("�޷��ƶ� %u ��NPCBots", uint32(names->size()));
+            handler->PSendSysMessage("无法移动 %u 个NPCBots", uint32(names->size()));
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2287,7 +2287,7 @@ public:
         if (!guid || !owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot recall");
-            handler->SendSysMessage("ǿ��NPCBotsֱ���ƶ�������ߡ�ѡ��һ�������ƶ���NPCBot����ѡ�����Լ����ƶ�����NPCBots");
+            handler->SendSysMessage("强制NPCBots直接移动到你身边。选择一个你想移动的NPCBot或者选择你自己来移动所有NPCBots");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2309,7 +2309,7 @@ public:
             return true;
         }
 
-        handler->SendSysMessage("�����ѡ�����һ��NPCBot�����Լ�");
+        handler->SendSysMessage("你必须选择你的一个NPCBot或你自己");
         handler->SetSentErrorMessage(true);
         return false;
     }
@@ -2351,19 +2351,19 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot recall teleport");
-            handler->SendSysMessage("ǿ��NPCBots���͵�����ߡ�");
+            handler->SendSysMessage("强制NPCBots传送到你身边。");
             handler->SetSentErrorMessage(true);
             return false;
         }
         if (!owner->IsAlive())
         {
-            handler->GetSession()->SendNotification("��������");
+            handler->GetSession()->SendNotification("你已死亡");
             handler->SetSentErrorMessage(true);
             return false;
         }
         if (owner->GetBotMgr()->IsPartyInCombat() && (owner->IsPvP() || owner->IsFFAPvP()))
         {
-            handler->GetSession()->SendNotification("��PvPս�����㲻��������");
+            handler->GetSession()->SendNotification("在PvP战斗中你不能这样做");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2379,7 +2379,7 @@ public:
         if (!unit || unit->GetTypeId() != TYPEID_UNIT || !flag)
         {
             handler->SendSysMessage(".npcbot toggle flags #flag");
-            handler->SendSysMessage("����һ����������");
+            handler->SendSysMessage("这是一个调试命令");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2387,20 +2387,20 @@ public:
         uint32 setFlags = 0;
         switch (*flag)
         {
-            case 6:
-                setFlags = UNIT_FLAG_UNK_6;
-                break;
-            case 14:
-                setFlags = UNIT_FLAG_CANNOT_SWIM;
-                break;
-            case 15:
-                setFlags = UNIT_FLAG_SWIMMING;
-                break;
-            case 16:
-                setFlags = UNIT_FLAG_NON_ATTACKABLE_2;
-                break;
-            default:
-                break;
+        case 6:
+            setFlags = UNIT_FLAG_UNK_6;
+            break;
+        case 14:
+            setFlags = UNIT_FLAG_CANNOT_SWIM;
+            break;
+        case 15:
+            setFlags = UNIT_FLAG_SWIMMING;
+            break;
+        case 16:
+            setFlags = UNIT_FLAG_NON_ATTACKABLE_2;
+            break;
+        default:
+            break;
         }
 
         if (!setFlags)
@@ -2418,8 +2418,8 @@ public:
         if (!ubot || !factionStr)
         {
             handler->SendSysMessage(".npcbot set faction #faction");
-            handler->SendSysMessage("Ϊѡ����NPCBot������Ӫ�����������ݿ��У�");
-            handler->SendSysMessage("ʹ��'a'��'h'��'m'��'f'��Ϊ����������Ӫ����Ϊ���ˡ����䡢����������˶��е��⣩�����ѣ��������˶��Ѻã���");
+            handler->SendSysMessage("为选定的NPCBot设置阵营（保存在数据库中）");
+            handler->SendSysMessage("使用'a'、'h'、'm'或'f'作为参数，将阵营设置为联盟、部落、怪物（对所有人都有敌意）或朋友（对所有人都友好）。");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2427,7 +2427,7 @@ public:
         Creature* bot = ubot->ToCreature();
         if (!bot || !bot->IsNPCBot() || !bot->IsFreeBot())
         {
-            handler->SendSysMessage("�����ѡ��û�б���Ӷ��NPCBot");
+            handler->SendSysMessage("你必须选择没有被雇佣的NPCBot");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2459,7 +2459,7 @@ public:
         BotDataMgr::UpdateNpcBotData(bot->GetEntry(), NPCBOT_UPDATE_FACTION, &factionId);
         bot->GetBotAI()->ReInitFaction();
 
-        handler->PSendSysMessage("%s����Ӫ����Ϊ%u", bot->GetName().c_str(), factionId);
+        handler->PSendSysMessage("%s的阵营设置为%u", bot->GetName().c_str(), factionId);
         return true;
     }
 
@@ -2470,7 +2470,7 @@ public:
         if (!ubot || !charVal)
         {
             handler->SendSysMessage(".npcbot set owner #guid | #name");
-            handler->SendSysMessage("ʹ��GUID�����ֽ�ѡ����NPCBot���µ���������߰󶨣����������ݿ��е������ߡ�");
+            handler->SendSysMessage("使用GUID或名字将选定的NPCBot与新的玩家所有者绑定，并更新数据库中的所有者。");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2478,14 +2478,14 @@ public:
         Creature* bot = ubot->ToCreature();
         if (!bot || !bot->IsNPCBot() || bot->GetBotAI()->IsWanderer())
         {
-            handler->SendSysMessage("�����ѡ��һ�����е�NPCBot");
+            handler->SendSysMessage("你必须选择一个空闲的NPCBot");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (bot->GetBotAI()->GetBotOwnerGuid())
         {
-            handler->SendSysMessage("���NPCBot�Ѿ���������");
+            handler->SendSysMessage("这个NPCBot已经由主人了");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2505,7 +2505,7 @@ public:
 
         if (!guidlow || !found)
         {
-            handler->SendSysMessage("δ�ҵ����");
+            handler->SendSysMessage("未找到玩家");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2514,7 +2514,7 @@ public:
         bot->GetBotAI()->ReinitOwner();
         //bot->GetBotAI()->Reset();
 
-        handler->PSendSysMessage("%s����������%s (guidlow: %u)", bot->GetName().c_str(), characterName.c_str(), guidlow);
+        handler->PSendSysMessage("%s的新主人是%s (guidlow: %u)", bot->GetName().c_str(), characterName.c_str(), guidlow);
         return true;
     }
 
@@ -2525,7 +2525,7 @@ public:
         if (!ubot || !spec)
         {
             handler->SendSysMessage(".npcbot set spec #specnumber");
-            handler->SendSysMessage("�ı���ѡNPCBot���츳����");
+            handler->SendSysMessage("改变所选NPCBot的天赋参数");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2533,14 +2533,14 @@ public:
         Creature* bot = ubot->ToCreature();
         if (!bot || !bot->IsNPCBot())
         {
-            handler->SendSysMessage("�����ѡ��һ��NPCBot");
+            handler->SendSysMessage("你必须选择一个NPCBot");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (!bot_ai::IsValidSpecForClass(bot->GetBotClass(), *spec))
         {
-            handler->PSendSysMessage("%s ����ְҵ %u ����Ч��!",
+            handler->PSendSysMessage("%s 对于职业 %u 是无效的!",
                 bot_ai::LocalizedNpcText(chr, bot_ai::TextForSpec(*spec)), uint32(bot->GetBotClass()));
             handler->SetSentErrorMessage(true);
             return false;
@@ -2548,7 +2548,7 @@ public:
 
         bot->GetBotAI()->SetSpec(*spec);
 
-        handler->PSendSysMessage("%s�����츳������%u", bot->GetName().c_str(), uint32(*spec));
+        handler->PSendSysMessage("%s的新天赋参数是%u", bot->GetName().c_str(), uint32(*spec));
         return true;
     }
 
@@ -2608,19 +2608,19 @@ public:
 
         if (botclass == BOT_CLASS_NONE || botclass >= BOT_CLASS_END)
         {
-            handler->PSendSysMessage("δְ֪ҵID %u", uint32(*botclass));
+            handler->PSendSysMessage("未知职业ID %u", uint32(*botclass));
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (teamid && *teamid > uint8(TEAM_NEUTRAL))
         {
-            handler->PSendSysMessage("δ֪��Ӫ %u", uint32(*teamid));
+            handler->PSendSysMessage("未知阵营 %u", uint32(*teamid));
             handler->SetSentErrorMessage(true);
             return false;
         }
 
-        handler->PSendSysMessage("��ְҵID %u ����NPCBots...", uint32(*botclass));
+        handler->PSendSysMessage("按职业ID %u 查找NPCBots...", uint32(*botclass));
 
         uint8 localeIndex = handler->GetSessionDbLocaleIndex();
         CreatureTemplateContainer const* ctc = sObjectMgr->GetCreatureTemplates();
@@ -2689,18 +2689,18 @@ public:
             std::string_view raceName;
             switch (race)
             {
-                case RACE_HUMAN:        raceName = "����";       break;
-                case RACE_ORC:          raceName = "����";       break;
-                case RACE_DWARF:        raceName = "����";       break;
-                case RACE_NIGHTELF:     raceName = "��ҹ����";   break;
-                case RACE_UNDEAD_PLAYER:raceName = "��������";   break;
-                case RACE_TAUREN:       raceName = "ţͷ��";     break;
-                case RACE_GNOME:        raceName = "٪��";       break;
-                case RACE_TROLL:        raceName = "��ħ";       break;
-                case RACE_BLOODELF:     raceName = "Ѫ����";     break;
-                case RACE_DRAENEI:      raceName = "������";     break;
-                case RACE_NONE:         raceName = "û������";   break;
-                default:                raceName = "δ֪����";   break;
+            case RACE_HUMAN:        raceName = "人类";       break;
+            case RACE_ORC:          raceName = "兽人";       break;
+            case RACE_DWARF:        raceName = "矮人";       break;
+            case RACE_NIGHTELF:     raceName = "暗夜精灵";   break;
+            case RACE_UNDEAD_PLAYER:raceName = "被遗忘者";   break;
+            case RACE_TAUREN:       raceName = "牛头人";     break;
+            case RACE_GNOME:        raceName = "侏儒";       break;
+            case RACE_TROLL:        raceName = "巨魔";       break;
+            case RACE_BLOODELF:     raceName = "血精灵";     break;
+            case RACE_DRAENEI:      raceName = "德莱尼";     break;
+            case RACE_NONE:         raceName = "没有种族";   break;
+            default:                raceName = "未知种族";   break;
             }
 
             handler->PSendSysMessage("%d - |cffffffff|Hcreature_entry:%d|h[%s]|h|r %s", itr->id, itr->id, itr->name.c_str(), raceName);
@@ -2716,7 +2716,7 @@ public:
         if (!ubot)
         {
             handler->SendSysMessage(".npcbot delete");
-            handler->SendSysMessage("����������ݿ���ɾ��ѡ����NPCBot");
+            handler->SendSysMessage("从世界和数据库中删除选定的NPCBot");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2724,7 +2724,7 @@ public:
         Creature* bot = ubot->ToCreature();
         if (!bot || !bot->IsNPCBot())
         {
-            handler->SendSysMessage("û��ѡ����NPCBot");
+            handler->SendSysMessage("没有选定的NPCBot");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2744,7 +2744,7 @@ public:
             chr->GetGUID();
         if (!bot->GetBotAI()->UnEquipAll(receiver))
         {
-            handler->PSendSysMessage("%s�޷����ĳЩװ��������ɾ��NPCBot֮ǰɾ��װ��!", bot->GetName().c_str());
+            handler->PSendSysMessage("%s无法解除某些装备。请在删除NPCBot之前删除装备!", bot->GetName().c_str());
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2760,7 +2760,7 @@ public:
 
         BotDataMgr::UpdateNpcBotData(bot->GetEntry(), NPCBOT_UPDATE_ERASE);
 
-        handler->PSendSysMessage("NPCBot %s ɾ���ɹ�", bot->GetName().c_str());
+        handler->PSendSysMessage("NPCBot %s 删除成功", bot->GetName().c_str());
         return true;
     }
 
@@ -2769,7 +2769,7 @@ public:
         if (!creature_id)
         {
             handler->SendSysMessage(".npcbot delete id");
-            handler->SendSysMessage("ʹ������ID�������DB��ɾ��NPCBot");
+            handler->SendSysMessage("使用生物ID从世界和DB中删除NPCBot");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2777,7 +2777,7 @@ public:
         Creature const* bot = BotDataMgr::FindBot(*creature_id);
         if (!bot)
         {
-            handler->PSendSysMessage("NPCBot %u ������!", *creature_id);
+            handler->PSendSysMessage("NPCBot %u 不存在!", *creature_id);
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2800,13 +2800,13 @@ public:
                 chr ? chr->GetGUID() : ObjectGuid::Empty;
             if (receiver == ObjectGuid::Empty)
             {
-                handler->PSendSysMessage("�޷��ӿ���̨ɾ��NPCBot %s����װ������û����ҿ��Թ黹! ֻ������Ϸ��ɾ�����NPCBot��", bot->GetName().c_str());
+                handler->PSendSysMessage("无法从控制台删除NPCBot %s：有装备，但没有玩家可以归还! 只能在游戏中删除这个NPCBot。", bot->GetName().c_str());
                 handler->SetSentErrorMessage(true);
                 return false;
             }
             if (!bot->GetBotAI()->UnEquipAll(receiver))
             {
-                handler->PSendSysMessage("%s�޷����ĳЩװ��������ɾ��NPCBot֮ǰɾ��װ��!", bot->GetName().c_str());
+                handler->PSendSysMessage("%s无法解除某些装备。请在删除NPCBot之前删除装备!", bot->GetName().c_str());
                 handler->SetSentErrorMessage(true);
                 return false;
             }
@@ -2823,7 +2823,7 @@ public:
 
         BotDataMgr::UpdateNpcBotData(bot->GetEntry(), NPCBOT_UPDATE_ERASE);
 
-        handler->PSendSysMessage("NPCBot %s ɾ���ɹ�", bot->GetName().c_str());
+        handler->PSendSysMessage("NPCBot %s 删除成功", bot->GetName().c_str());
         return true;
     }
 
@@ -2836,7 +2836,7 @@ public:
                     if (HandleNpcBotDeleteByIdCommand(handler, creature_id))
                         ++count;
 
-        handler->PSendSysMessage("%u ������NPCBots��ɾ��", count);
+        handler->PSendSysMessage("%u 个自由NPCBots已删除", count);
         return true;
     }
 
@@ -2848,7 +2848,7 @@ public:
         if ((!creature && !creVal) || player->GetMap()->Instanceable())
         {
             handler->SendSysMessage(".npcbot move");
-            handler->SendSysMessage("��NPCBot�ƶ������λ�á����������ͼ");
+            handler->SendSysMessage("将NPCBot移动到你的位置。仅限世界地图");
             handler->SendSysMessage("Syntax: .npcbot move [#ID]");
             handler->SetSentErrorMessage(true);
             return false;
@@ -2863,21 +2863,21 @@ public:
         CreatureTemplate const* creInfo = sObjectMgr->GetCreatureTemplate(id);
         if (!creInfo)
         {
-            handler->PSendSysMessage("����ID %u ������!", id);
+            handler->PSendSysMessage("生物ID %u 不存在!", id);
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (!creInfo->IsNPCBot())
         {
-            handler->PSendSysMessage("����ID %u ����NPCBot!", id);
+            handler->PSendSysMessage("生物ID %u 不是NPCBot!", id);
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (!BotDataMgr::SelectNpcBotData(id))
         {
-            handler->PSendSysMessage("NPCBot %u û�б�����!", id);
+            handler->PSendSysMessage("NPCBot %u 没有被生成!", id);
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -2909,7 +2909,7 @@ public:
         if (bot->GetBotAI()->IAmFree() && bot->IsInWorld() && !bot->IsInCombat() && bot->IsAlive())
             BotMgr::TeleportBot(const_cast<Creature*>(bot), player->GetMap(), player);
 
-        handler->PSendSysMessage("NPCBot %u (guid %u) ���ƶ�", id, lowguid);
+        handler->PSendSysMessage("NPCBot %u (guid %u) 已移动", id, lowguid);
         return true;
     }
 
@@ -2921,21 +2921,21 @@ public:
             else
             {
                 handler->SendSysMessage(".npcbot createnew");
-                handler->SendSysMessage("����һ���µ�NPCBot������Ŀ");
+                handler->SendSysMessage("创建一个新的NPCBot生物条目");
                 handler->SendSysMessage("Syntax: .npcbot createnew #name #class ##race ##gender ##skin ##face ##hairstyle ##haircolor ##features ##[sound_variant = {{1,2,3}}]");
-                handler->SendSysMessage("����ǲ��ܸı���۵�ְҵ�����еĶ����������ʡ�ԡ�");
-                handler->SendSysMessage("ʹ��'.npcbot createnew ranges'����ʾ����������Ӿ�Լ����");
+                handler->SendSysMessage("如果是不能改变外观的职业，所有的额外参数必须省略。");
+                handler->SendSysMessage("使用'.npcbot createnew ranges'来显示所有种族的视觉约束。");
             }
             handler->SetSentErrorMessage(true);
             return false;
         };
         static auto const ret_err_invalid_arg = [](ChatHandler* handler, char const* argname, Optional<uint8> argval = {}) {
-            handler->PSendSysMessage("��Ч�� %s%s!", argname, argval ?  (" " + std::to_string(*argval)).c_str() : "");
+            handler->PSendSysMessage("无效的 %s%s!", argname, argval ? (" " + std::to_string(*argval)).c_str() : "");
             handler->SetSentErrorMessage(true);
             return false;
         };
         static auto const ret_err_invalid_args_for = [](ChatHandler* handler, char const* argname1, char const* argname2) {
-            handler->PSendSysMessage("��Ч�Ĳ������� %s '%s'!", argname1, argname2);
+            handler->PSendSysMessage("无效的参数对于 %s '%s'!", argname1, argname2);
             handler->SetSentErrorMessage(true);
             return false;
         };
@@ -3039,7 +3039,7 @@ public:
         if (!creVal)
         {
             handler->SendSysMessage(".npcbot spawn");
-            handler->SendSysMessage("�������������µ�NPCBot. �����ʹ������ID����shift�����������ӡ�");
+            handler->SendSysMessage("在世界中生成新的NPCBot. 你可以使用生物ID或者shift单击生物链接。");
             handler->SendSysMessage("Syntax: .npcbot spawn #entry");
             handler->SetSentErrorMessage(true);
             return false;
@@ -3055,22 +3055,22 @@ public:
 
         if (!creInfo)
         {
-            handler->PSendSysMessage("���� %u ������!", id);
+            handler->PSendSysMessage("生物 %u 不存在!", id);
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (!creInfo->IsNPCBot())
         {
-            handler->PSendSysMessage("���� %u ����NPCBot!", id);
+            handler->PSendSysMessage("生物 %u 不是NPCBot!", id);
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (BotDataMgr::SelectNpcBotData(id))
         {
-            handler->PSendSysMessage("NPCBot %u �Ѵ����� `characters_npcbot` ����!", id);
-            handler->SendSysMessage("�����������NPCBot�ƶ���һ���µ�λ�ã�ʹ��'.npcbot move'����");
+            handler->PSendSysMessage("NPCBot %u 已存在于 `characters_npcbot` 表中!", id);
+            handler->SendSysMessage("如果你想把这个NPCBot移动到一个新的位置，使用'.npcbot move'命令");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3082,7 +3082,7 @@ public:
         PreparedQueryResult res2 = WorldDatabase.Query(stmt);
         if (res2)
         {
-            handler->PSendSysMessage("NPCBot %u �Ѵ����� `creature` ����!", id);
+            handler->PSendSysMessage("NPCBot %u 已存在于 `creature` 表中!", id);
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3091,7 +3091,7 @@ public:
 
         if (/*Transport* trans = */chr->GetTransport())
         {
-            handler->SendSysMessage("�޷����ؾ�������NPCBots!");
+            handler->SendSysMessage("无法在载具上生成NPCBots!");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3104,7 +3104,7 @@ public:
 
         if (map->Instanceable())
         {
-            handler->SendSysMessage("�޷��ڸ���������NPCBots!");
+            handler->SendSysMessage("无法在副本上生成NPCBots!");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3113,7 +3113,7 @@ public:
         if (!creature->Create(map->GenerateLowGuid<HighGuid::Unit>(), map, chr->GetPhaseMaskForSpawn(), id, 0, chr->GetPositionX(), chr->GetPositionY(), chr->GetPositionZ(), chr->GetOrientation()))
         {
             delete creature;
-            handler->SendSysMessage("����û�б�����!");
+            handler->SendSysMessage("生物没有被创造!");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3122,7 +3122,7 @@ public:
         if (!_botExtras)
         {
             delete creature;
-            handler->PSendSysMessage("û���ҵ�NPCBot %u��ְҵ/��������!", id);
+            handler->PSendSysMessage("没有找到NPCBot %u的职业/种族数据!", id);
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3136,14 +3136,14 @@ public:
         if (!creature->LoadBotCreatureFromDB(db_guid, map))
         {
             delete creature;
-            handler->SendSysMessage("�޷������ݿ����NPCBot!");
+            handler->SendSysMessage("无法从数据库加载NPCBot!");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         sObjectMgr->AddCreatureToGrid(db_guid, sObjectMgr->GetCreatureData(db_guid));
 
-        handler->SendSysMessage("NPCBot���ɳɹ�");
+        handler->SendSysMessage("NPCBot生成成功");
         return true;
     }
 
@@ -3153,10 +3153,10 @@ public:
         NpcBotRegistry const& all_bots = BotDataMgr::GetExistingNPCBots();
         std::stringstream ss;
         if (all_bots.empty())
-            ss << "û�ҵ������ɵ�NPCBots!";
+            ss << "没找到已生成的NPCBots!";
         else
         {
-            ss << "���� " << uint32(all_bots.size()) << " ��NPCBots:";
+            ss << "发现 " << uint32(all_bots.size()) << " 个NPCBots:";
             uint32 counter = 0;
             for (Creature const* bot : all_bots)
             {
@@ -3167,12 +3167,12 @@ public:
                 GetBotClassNameAndColor(bot->GetBotClass(), bot_color_str, bot_class_str);
 
                 AreaTableEntry const* zone = sAreaTableStore.LookupEntry(bot->GetBotAI()->GetLastZoneId() ? bot->GetBotAI()->GetLastZoneId() : bot->GetZoneId());
-                std::string zone_name = zone ? zone->area_name[handler->GetSession() ? handler->GetSessionDbLocaleIndex() : 0] : "δ֪����";
+                std::string zone_name = zone ? zone->area_name[handler->GetSession() ? handler->GetSessionDbLocaleIndex() : 0] : "未知区域";
 
                 ss << "\n" << counter << ") " << bot->GetEntry() << ": "
                     << bot->GetName() << " - |c" << bot_color_str << bot_class_str << "|r - "
-                    << "�ȼ� " << uint32(bot->GetLevel()) << " - \"" << zone_name << "\" - "
-                    << (bot->IsFreeBot() ? (bot->GetBotAI()->GetBotOwnerGuid() ? "δ���� (�ѹ�Ӷ)" : "����") : "�Ѽ���");
+                    << "等级 " << uint32(bot->GetLevel()) << " - \"" << zone_name << "\" - "
+                    << (bot->IsFreeBot() ? (bot->GetBotAI()->GetBotOwnerGuid() ? "未激活 (已雇佣)" : "自由") : "已激活");
             }
         }
 
@@ -3192,10 +3192,10 @@ public:
                 free_bots.push_back(bot);
         std::stringstream ss;
         if (free_bots.empty())
-            ss << "û�ҵ����ɵ�NPCBots!";
+            ss << "没找到自由的NPCBots!";
         else
         {
-            ss << "���� " << uint32(free_bots.size()) << " �����ɵ�NPCBots:";
+            ss << "发现 " << uint32(free_bots.size()) << " 个自由的NPCBots:";
             uint32 counter = 0;
             for (Creature const* bot : free_bots)
             {
@@ -3206,12 +3206,12 @@ public:
                 GetBotClassNameAndColor(bot->GetBotClass(), bot_color_str, bot_class_str);
 
                 AreaTableEntry const* zone = sAreaTableStore.LookupEntry(bot->GetBotAI()->GetLastZoneId() ? bot->GetBotAI()->GetLastZoneId() : bot->GetZoneId());
-                std::string zone_name = zone ? zone->area_name[handler->GetSession() ? handler->GetSessionDbLocaleIndex() : 0] : "δ֪����";
+                std::string zone_name = zone ? zone->area_name[handler->GetSession() ? handler->GetSessionDbLocaleIndex() : 0] : "未知区域";
 
                 ss << '\n' << counter << ") " << bot->GetEntry() << ": "
                     << bot->GetName() << " - |c" << bot_color_str << bot_class_str << "|r - "
-                    << "�ȼ� " << uint32(bot->GetLevel()) << " - \"" << zone_name << '"'
-                    << (bot->GetBotAI()->HasRealEquipment() ? " |cff00ffff(��װ��!)|r" : "");
+                    << "等级 " << uint32(bot->GetLevel()) << " - \"" << zone_name << '"'
+                    << (bot->GetBotAI()->HasRealEquipment() ? " |cff00ffff(有装备!)|r" : "");
             }
         }
 
@@ -3290,7 +3290,7 @@ public:
             }
 
             handler->SendSysMessage(".npcbot info");
-            handler->SendSysMessage("�г���ѡ���ӵ�е�ÿ���ȼ���NPCBot������������Զ��Լ�����ĺ���ʹ��������ܡ�");
+            handler->SendSysMessage("列出所选玩家拥有的每个等级的NPCBot的数量。你可以对自己和你的好友使用这个功能。");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3443,7 +3443,7 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot command standstill");
-            handler->SendSysMessage("��ʹ���NPCBotsֹͣ�����ж��������־�ֹ״̬");
+            handler->SendSysMessage("迫使你的NPCBots停止所有行动，并保持静止状态");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3453,12 +3453,12 @@ public:
         if (target && owner->GetBotMgr()->GetBot(target->GetGUID()))
         {
             target->ToCreature()->GetBotAI()->SetBotCommandState(BOT_COMMAND_STAY);
-            msg = target->GetName() + "������״̬����Ϊ'STAY'";
+            msg = target->GetName() + "的命令状态设置为'STAY'";
         }
         else
         {
             owner->GetBotMgr()->SendBotCommandState(BOT_COMMAND_STAY);
-            msg = "NPCBots������״̬����Ϊ'STAY'";
+            msg = "NPCBots的命令状态设置为'STAY'";
         }
 
         handler->SendSysMessage(msg.c_str());
@@ -3472,7 +3472,7 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot command stopfully");
-            handler->SendSysMessage("��ʹ���NPCBotsֹͣ�����ж�");
+            handler->SendSysMessage("迫使你的NPCBots停止所有行动");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3482,12 +3482,12 @@ public:
         if (target && owner->GetBotMgr()->GetBot(target->GetGUID()))
         {
             target->ToCreature()->GetBotAI()->SetBotCommandState(BOT_COMMAND_FULLSTOP);
-            msg = target->GetName() + "������״̬����Ϊ'FULLSTOP'";
+            msg = target->GetName() + "的命令状态设置为'FULLSTOP'";
         }
         else
         {
             owner->GetBotMgr()->SendBotCommandState(BOT_COMMAND_FULLSTOP);
-            msg = "NPCBots������״̬����Ϊ'FULLSTOP'";
+            msg = "NPCBots的命令状态设置为'FULLSTOP'";
         }
 
         handler->SendSysMessage(msg.c_str());
@@ -3501,7 +3501,7 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot command follow");
-            handler->SendSysMessage("���ֹͣ������NPCBots�ٴθ�����");
+            handler->SendSysMessage("如果停止，允许NPCBots再次跟随你");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3511,12 +3511,12 @@ public:
         if (target && owner->GetBotMgr()->GetBot(target->GetGUID()))
         {
             target->ToCreature()->GetBotAI()->SetBotCommandState(BOT_COMMAND_FOLLOW);
-            msg = target->GetName() + "������״̬����Ϊ'FOLLOW'";
+            msg = target->GetName() + "的命令状态设置为'FOLLOW'";
         }
         else
         {
             owner->GetBotMgr()->SendBotCommandState(BOT_COMMAND_FOLLOW);
-            msg = "NPCBots������״̬����Ϊ'FOLLOW'";
+            msg = "NPCBots的命令状态设置为'FOLLOW'";
         }
 
         handler->SendSysMessage(msg.c_str());
@@ -3530,7 +3530,7 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot command walk");
-            handler->SendSysMessage("Ϊ���NPCBots�л�����ģʽ");
+            handler->SendSysMessage("为你的NPCBots切换行走模式");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3540,12 +3540,12 @@ public:
         if (!isWalking)
         {
             owner->GetBotMgr()->SendBotCommandState(BOT_COMMAND_WALK);
-            msg = "NPCBots������ģʽ�л�Ϊ'WALK'";
+            msg = "NPCBots的行走模式切换为'WALK'";
         }
         else
         {
             owner->GetBotMgr()->SendBotCommandStateRemove(BOT_COMMAND_WALK);
-            msg = "NPCBots������ģʽ�л�Ϊ'RUN'";
+            msg = "NPCBots的行走模式切换为'RUN'";
         }
 
         handler->SendSysMessage(msg.c_str());
@@ -3559,7 +3559,7 @@ public:
         if (!owner->HaveBot())
         {
             handler->SendSysMessage(".npcbot command nogossip");
-            handler->SendSysMessage("����NPCBots�����Ĺ���");
+            handler->SendSysMessage("开关NPCBots的闲聊功能");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3569,12 +3569,12 @@ public:
         if (!isNoGossipEnabled)
         {
             owner->GetBotMgr()->SendBotCommandState(BOT_COMMAND_NOGOSSIP);
-            msg = "NPCBots�����Ĺ����ѹر�";
+            msg = "NPCBots的闲聊功能已关闭";
         }
         else
         {
             owner->GetBotMgr()->SendBotCommandStateRemove(BOT_COMMAND_NOGOSSIP);
-            msg = "NPCBots�����Ĺ����Ѵ�";
+            msg = "NPCBots的闲聊功能已打开";
         }
 
         handler->SendSysMessage(msg.c_str());
@@ -3585,16 +3585,16 @@ public:
     {
         static auto return_syntax = [](ChatHandler* chandler) -> bool {
             chandler->SendSysMessage(".npcbot command rebind [#names...]");
-            chandler->SendSysMessage("���°�ѡ����/ָ�����ֵ�δ�󶨵�NPCBot");
+            chandler->SendSysMessage("重新绑定选定的/指定名字的未绑定的NPCBot");
             chandler->SetSentErrorMessage(true);
             return false;
         };
 
         static auto return_success = [](ChatHandler* chandler, Variant<std::string, uint32> name_or_count) -> bool {
             if (name_or_count.holds_alternative<uint32>())
-                chandler->PSendSysMessage("�ɹ����°� %u ��NPCBots", name_or_count.get<uint32>());
+                chandler->PSendSysMessage("成功重新绑定 %u 个NPCBots", name_or_count.get<uint32>());
             else
-                chandler->PSendSysMessage("�ɹ����°� %s", name_or_count.get<std::string>().c_str());
+                chandler->PSendSysMessage("成功重新绑定 %s", name_or_count.get<std::string>().c_str());
             return true;
         };
 
@@ -3613,7 +3613,7 @@ public:
             {
                 if (mgr->RebindBot(const_cast<Creature*>(bot)) != BOT_ADD_SUCCESS)
                 {
-                    handler->PSendSysMessage("����ĳ��ԭ�����°� %s ʧ����!", bot->GetName().c_str());
+                    handler->PSendSysMessage("由于某种原因，重新绑定 %s 失败了!", bot->GetName().c_str());
                     handler->SetSentErrorMessage(true);
                     return false;
                 }
@@ -3640,7 +3640,7 @@ public:
             {
                 if (mgr->RebindBot(const_cast<Creature*>(bot)) != BOT_ADD_SUCCESS)
                 {
-                    handler->PSendSysMessage("����ĳ��ԭ�����°� %s ʧ����!", name.c_str());
+                    handler->PSendSysMessage("由于某种原因，重新绑定 %s 失败了!", name.c_str());
                     handler->SetSentErrorMessage(true);
                     continue;
                 }
@@ -3650,7 +3650,7 @@ public:
 
         if (count == 0)
         {
-            handler->PSendSysMessage("�޷����°� %u ��NPCBots�е��κ�һ��!", uint32(names->size()));
+            handler->PSendSysMessage("无法重新绑定 %u 个NPCBots中的任何一个!", uint32(names->size()));
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3662,16 +3662,16 @@ public:
     {
         static auto return_syntax = [](ChatHandler* chandler) -> bool {
             chandler->SendSysMessage(".npcbot command unbind [#names...]");
-            chandler->SendSysMessage("��ʱ�ͷ�ѡ��/�������ֵ�NPCBots�������˽�����ԭλ���ȴ����°�");
+            chandler->SendSysMessage("暂时释放选定/给定名字的NPCBots。机器人将返回原位并等待重新绑定");
             chandler->SetSentErrorMessage(true);
             return false;
         };
 
         static auto return_success = [](ChatHandler* chandler, Variant<std::string, uint32> name_or_count) -> bool {
             if (name_or_count.holds_alternative<uint32>())
-                chandler->PSendSysMessage("�ɹ���� %u ��NPCBots", name_or_count.get<uint32>());
+                chandler->PSendSysMessage("成功解绑 %u 个NPCBots", name_or_count.get<uint32>());
             else
-                chandler->PSendSysMessage("�ɹ���� %s", name_or_count.get<std::string>().c_str());
+                chandler->PSendSysMessage("成功解绑 %s", name_or_count.get<std::string>().c_str());
             return true;
         };
 
@@ -3709,7 +3709,7 @@ public:
 
         if (count == 0)
         {
-            handler->PSendSysMessage("�޷������ %u ��NPCBots�е��κ�һ��!", uint32(names->size()));
+            handler->PSendSysMessage("无法解除绑定 %u 个NPCBots中的任何一个!", uint32(names->size()));
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3724,8 +3724,7 @@ public:
         if (!u)
         {
             handler->SendSysMessage(".npcbot remove");
-            handler->SendSysMessage("Frees selected npcbot from it's owner. Select player to remove all npcbots");
-            handler->SendSysMessage("移除选定的npcbot,选择玩家将移除所有npcbot");
+            handler->SendSysMessage("将选定的NPCBot从它的主人那里解雇。选择玩家来解雇所有Npcbots");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3739,15 +3738,15 @@ public:
 
                 if (!master->HaveBot())
                 {
-                    handler->SendSysMessage("NPCBots��ͳɹ�");
+                    handler->SendSysMessage("NPCBots解雇成功");
                     handler->SetSentErrorMessage(true);
                     return true;
                 }
-                handler->SendSysMessage("һ����NPCBotsû�б����!");
+                handler->SendSysMessage("一部分NPCBots没有被解雇!");
                 handler->SetSentErrorMessage(true);
                 return false;
             }
-            handler->SendSysMessage("û���ҵ�NPCBots!");
+            handler->SendSysMessage("没有找到NPCBots!");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3759,16 +3758,16 @@ public:
             master->GetBotMgr()->RemoveBot(cre->GetGUID(), BOT_REMOVE_DISMISS);
             if (master->GetBotMgr()->GetBot(cre->GetGUID()) == nullptr)
             {
-                handler->SendSysMessage("NPCBot��ͳɹ�");
+                handler->SendSysMessage("NPCBot解雇成功");
                 handler->SetSentErrorMessage(true);
                 return true;
             }
-            handler->SendSysMessage("NPCBotû�б���ͣ�ԭ��δ֪!");
+            handler->SendSysMessage("NPCBot没有被解雇，原因未知!");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
-        handler->SendSysMessage("�����ѡ����һ��ѱ���Ӷ��NPCBot");
+        handler->SendSysMessage("你必须选择玩家或已被雇佣的NPCBot");
         handler->SetSentErrorMessage(true);
         return false;
     }
@@ -3780,7 +3779,7 @@ public:
         if (!u)
         {
             handler->SendSysMessage(".npcbot revive");
-            handler->SendSysMessage("ʹѡ����NPCBot��������ұ�ѡ�У���ʹ��ѡ�е���ҵ�����NPCBot���");
+            handler->SendSysMessage("使选定的NPCBot复活。如果玩家被选中，则使被选中的玩家的所有NPCBot复活。");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3789,13 +3788,13 @@ public:
         {
             if (!master->HaveBot())
             {
-                handler->PSendSysMessage("%sû��NPCBots!", master->GetName().c_str());
+                handler->PSendSysMessage("%s没有NPCBots!", master->GetName().c_str());
                 handler->SetSentErrorMessage(true);
                 return false;
             }
 
             master->GetBotMgr()->ReviveAllBots();
-            handler->SendSysMessage("NPCBots�Ѹ���");
+            handler->SendSysMessage("NPCBots已复活");
             return true;
         }
         else if (Creature* bot = u->ToCreature())
@@ -3804,18 +3803,18 @@ public:
             {
                 if (bot->IsAlive())
                 {
-                    handler->PSendSysMessage("%s��û��", bot->GetName().c_str());
+                    handler->PSendSysMessage("%s还没死", bot->GetName().c_str());
                     handler->SetSentErrorMessage(true);
                     return false;
                 }
 
                 BotMgr::ReviveBot(bot, (bot->GetBotOwner() == owner) ? owner->ToUnit() : bot->ToUnit());
-                handler->PSendSysMessage("%s �Ѹ���", bot->GetName().c_str());
+                handler->PSendSysMessage("%s 已复活", bot->GetName().c_str());
                 return true;
             }
         }
 
-        handler->SendSysMessage("�����ѡ����һ�NPCBot");
+        handler->SendSysMessage("你必须选择玩家或NPCBot");
         handler->SetSentErrorMessage(true);
         return false;
     }
@@ -3828,7 +3827,7 @@ public:
         if (!cre || cre->GetTypeId() != TYPEID_UNIT)
         {
             handler->SendSysMessage(".npcbot add");
-            handler->SendSysMessage("��Ӷѡ�е�����NPCBot");
+            handler->SendSysMessage("雇佣选中的自由NPCBot");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3836,7 +3835,7 @@ public:
         Creature* bot = cre->ToCreature();
         if (!bot || !bot->IsNPCBot() || bot->GetBotAI()->GetBotOwnerGuid() || bot->GetBotAI()->IsWanderer())
         {
-            handler->SendSysMessage("�����ѡ������NPCBot");
+            handler->SendSysMessage("你必须选择自由NPCBot");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3847,11 +3846,11 @@ public:
 
         if (owner->GetBotMgr()->AddBot(bot) == BOT_ADD_SUCCESS)
         {
-            handler->PSendSysMessage("%s ���������NPCBot��", bot->GetName().c_str());
+            handler->PSendSysMessage("%s 现在是你的NPCBot了", bot->GetName().c_str());
             return true;
         }
 
-        handler->SendSysMessage("��ӶNPCBotʧ�ܣ�ԭ��δ֪!");
+        handler->SendSysMessage("雇佣NPCBot失败，原因未知!");
         handler->SetSentErrorMessage(true);
         return false;
     }
@@ -3861,9 +3860,9 @@ public:
         LOG_INFO("misc", "Re-Loading config settings...");
         sWorld->LoadConfigSettings(true);
         sMapMgr->InitializeVisibilityDistanceInfo();
-        handler->SendGlobalGMSysMessage("World���������¼��ء�");
+        handler->SendGlobalGMSysMessage("World配置已重新加载。");
         BotMgr::ReloadConfig();
-        handler->SendGlobalGMSysMessage("NPCBot���������¼��ء�");
+        handler->SendGlobalGMSysMessage("NPCBot配置已重新加载。");
         return true;
     }
 };
