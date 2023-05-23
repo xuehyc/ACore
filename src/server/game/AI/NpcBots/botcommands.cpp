@@ -3724,7 +3724,8 @@ public:
         if (!u)
         {
             handler->SendSysMessage(".npcbot remove");
-            handler->SendSysMessage("��ѡ����NPCBot���������������͡�ѡ��������������Npcbots");
+            handler->SendSysMessage("Frees selected npcbot from it's owner. Select player to remove all npcbots");
+            handler->SendSysMessage("移除选定的npcbot,选择玩家将移除所有npcbot");
             handler->SetSentErrorMessage(true);
             return false;
         }
