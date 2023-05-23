@@ -2063,11 +2063,6 @@ void Creature::setDeathState(DeathState s, bool despawn)
 
     if (s == JUST_DIED)
     {
-        //npcbot
-        if (bot_AI)
-            bot_AI->UnsummonAll();
-        //end npcbot
-
         _lastDamagedTime.reset();
 
         m_corpseRemoveTime = GameTime::GetGameTime().count() + m_corpseDelay;
@@ -3890,7 +3885,7 @@ std::string Creature::GetDebugInfo() const
 //NPCBOT
 bool Creature::LoadBotCreatureFromDB(ObjectGuid::LowType spawnId, Map* map, bool addToMap, bool generated, uint32 entry, Position const* pos)
 {
-    CreatureData const* data = sObjectMgr->GetCreatureData(spawnId);
+    CreatureData const* data = generated ? nullptr : sObjectMgr->GetCreatureData(spawnId);
     if (!data)
     {
         if (!generated)
