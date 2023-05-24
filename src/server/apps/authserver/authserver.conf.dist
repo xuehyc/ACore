@@ -1,4 +1,4 @@
-###############################################
+﻿###############################################
 # AzerothCore Auth Server configuration file #
 ###############################################
 [authserver]
@@ -219,7 +219,7 @@ AllowLoggingIPAddressesInDatabase = 1
 #                                                                           Unix/Linux)
 #        Default:     "127.0.0.1;3306;acore;acore;acore_auth"
 
-LoginDatabaseInfo = "127.0.0.1;3306;acore;acore;acore_auth"
+LoginDatabaseInfo = "127.0.0.1;3306;root;root;acore_auth"
 
 #
 #    Database.Reconnect.Seconds
