@@ -1066,6 +1066,13 @@ public:
     explicit Player(WorldSession* session);
     ~Player() override;
 
+    //gs
+    uint32 GS;
+
+    //前缀
+    std::string namePrefix;
+    std::string nameSuffix;
+
     void CleanupsBeforeDelete(bool finalCleanup = true) override;
 
     void AddToWorld() override;
