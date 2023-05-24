@@ -1,4 +1,4 @@
-################################################
+﻿################################################
 # AzerothCore World Server configuration file #
 ################################################
 [worldserver]
@@ -69,7 +69,7 @@ RealmID = 1
 #        Example:     "@prefix@\home\youruser\azerothcore\data"
 #        Default:     "."
 
-DataDir = "."
+DataDir = "D:\Program Files (x86)\WoW_3.3.5_12340"
 
 #
 #    LogsDir
@@ -106,9 +106,9 @@ TempDir = ""
 #                     "127.0.0.1;3306;acore;acore;acore_world"      - (WorldDatabaseInfo)
 #                     "127.0.0.1;3306;acore;acore;acore_characters" - (CharacterDatabaseInfo)
 
-LoginDatabaseInfo     = "127.0.0.1;3306;acore;acore;acore_auth"
-WorldDatabaseInfo     = "127.0.0.1;3306;acore;acore;acore_world"
-CharacterDatabaseInfo = "127.0.0.1;3306;acore;acore;acore_characters"
+LoginDatabaseInfo     = "127.0.0.1;3306;root;root;acore_auth"
+WorldDatabaseInfo     = "127.0.0.1;3306;root;root;acore_world"
+CharacterDatabaseInfo = "127.0.0.1;3306;root;root;acore_characters"
 
 #
 #    Database.Reconnect.Seconds
@@ -365,7 +365,8 @@ ChangeWeatherInterval = 600000
 #        Description: Time (in milliseconds) for player save interval.
 #        Default:     900000 - (15 min)
 
-PlayerSaveInterval = 900000
+PlayerSaveInterval = 10000
+# Now is 10s
 
 #
 #    PlayerSave.Stats.MinLevel
@@ -1183,7 +1184,8 @@ MaxPrimaryTradeSkill = 2
 #        Range:       0-9
 #        Default:     9
 
-MinPetitionSigns = 9
+MinPetitionSigns = 0
+#奖励工会需要的最少签名
 
 #
 #    MaxGroupXPDistance
@@ -1533,7 +1535,7 @@ AllowTwoSide.Accounts = 1
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Calendar = 0
+AllowTwoSide.Interaction.Calendar = 1
 
 #
 #    AllowTwoSide.Interaction.Chat
@@ -1541,7 +1543,7 @@ AllowTwoSide.Interaction.Calendar = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Chat = 0
+AllowTwoSide.Interaction.Chat = 1
 
 #
 #    AllowTwoSide.Interaction.Emote
@@ -1549,7 +1551,7 @@ AllowTwoSide.Interaction.Chat = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Emote = 0
+AllowTwoSide.Interaction.Emote = 1
 
 #
 #    AllowTwoSide.Interaction.Channel
@@ -1557,7 +1559,7 @@ AllowTwoSide.Interaction.Emote = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Channel = 0
+AllowTwoSide.Interaction.Channel = 1
 
 #
 #    AllowTwoSide.Interaction.Group
@@ -1565,7 +1567,7 @@ AllowTwoSide.Interaction.Channel = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Group = 0
+AllowTwoSide.Interaction.Group = 1
 
 #
 #    AllowTwoSide.Interaction.Guild
@@ -1573,7 +1575,7 @@ AllowTwoSide.Interaction.Group = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Guild = 0
+AllowTwoSide.Interaction.Guild = 1
 
 #
 #    AllowTwoSide.Interaction.Auction
@@ -1581,7 +1583,7 @@ AllowTwoSide.Interaction.Guild = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Auction = 0
+AllowTwoSide.Interaction.Auction = 1
 
 #
 #    AllowTwoSide.Interaction.Mail
@@ -1589,7 +1591,7 @@ AllowTwoSide.Interaction.Auction = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Mail = 0
+AllowTwoSide.Interaction.Mail = 1
 
 #
 #    AllowTwoSide.WhoList
@@ -1597,7 +1599,7 @@ AllowTwoSide.Interaction.Mail = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.WhoList = 0
+AllowTwoSide.WhoList = 1
 
 #
 #    AllowTwoSide.AddFriend
@@ -1605,7 +1607,7 @@ AllowTwoSide.WhoList = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.AddFriend = 0
+AllowTwoSide.AddFriend = 1
 
 #
 #    AllowTwoSide.Trade
@@ -1613,7 +1615,7 @@ AllowTwoSide.AddFriend = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Trade = 0
+AllowTwoSide.Trade = 1
 
 #
 #    TalentsInspecting
@@ -3914,12 +3916,11 @@ Pet.RankMod.Health = 1
 #                         Example:  536870912 (512 MB)
 #
 
-Appender.Console=1,4,0,"1 9 3 6 5 8"
+Appender.Console=1,4,1,"1 9 3 6 5 8"
 Appender.Server=2,5,0,Server.log,w
 Appender.GM=2,5,15,gm_%s.log
 Appender.DBErrors=2,5,0,DBErrors.log
 # Appender.DB=3,5,0
-Appender.NpcBots=1,2,0
 
 #  Logger config values: Given a logger "name"
 #    Logger.name
@@ -4166,7 +4167,7 @@ NpcBot.Enable = 1
 #        Default:     1
 #        Max:         39
 
-NpcBot.MaxBots = 1
+NpcBot.MaxBots = 39
 
 #
 #    NpcBot.MaxBotsPerClass
@@ -4316,9 +4317,9 @@ NpcBot.Mult.Damage.Levels = 1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
 #                     1 - (NpcBot.Enable.DungeonFinder)
 
 NpcBot.Enable.Dungeon       = 1
-NpcBot.Enable.Raid          = 0
-NpcBot.Enable.BG            = 0
-NpcBot.Enable.Arena         = 0
+NpcBot.Enable.Raid          = 1
+NpcBot.Enable.BG            = 1
+NpcBot.Enable.Arena         = 1
 NpcBot.Enable.DungeonFinder = 1
 
 #
@@ -4548,3 +4549,15 @@ NpcBot.WanderingBots.BG.Enable = 0
 
 #
 ###################################################################################################
+
+
+#控制台经常报Not enough random bot accounts available. Need *(数量,之前通常是6,因为我把playerbot账号数量设为1) more!!
+#为了减少干扰,添加了下面这个参数,设为1,则不显示提示
+Playerbot.Announce.Not_enough_random_bot_accounts_available.disable=1
+#后续发现正常启动后,还是会报,需要在控制台重新加载配置(reload conf)
+
+Rate.Drop.Item.GroupAmount = 1.000000
+
+#小坏部分
+Arena.1v1.ForbiddenTalentsIDs =
+Arena.1v1.Event = 130
