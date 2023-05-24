@@ -4556,8 +4556,6 @@ NpcBot.WanderingBots.BG.Enable = 0
 Playerbot.Announce.Not_enough_random_bot_accounts_available.disable=1
 #后续发现正常启动后,还是会报,需要在控制台重新加载配置(reload conf)
 
-Rate.Drop.Item.GroupAmount = 1.000000
-
 #小坏部分
 Arena.1v1.ForbiddenTalentsIDs =
 Arena.1v1.Event = 130
