@@ -194,45 +194,26 @@ private:
     {
         switch (botclass)
         {
-            case BOT_CLASS_WARRIOR:     bot_color_str = "ffc79c6e"; bot_class_str = "Warrior";            break;
-            case BOT_CLASS_PALADIN:     bot_color_str = "fff58cba"; bot_class_str = "Paladin";            break;
-            case BOT_CLASS_HUNTER:      bot_color_str = "ffabd473"; bot_class_str = "Hunter";             break;
-            case BOT_CLASS_ROGUE:       bot_color_str = "fffff569"; bot_class_str = "Rogue";              break;
-            case BOT_CLASS_PRIEST:      bot_color_str = "ffffffff"; bot_class_str = "Priest";             break;
-            case BOT_CLASS_DEATH_KNIGHT:bot_color_str = "ffc41f3b"; bot_class_str = "Death Knight";       break;
-            case BOT_CLASS_SHAMAN:      bot_color_str = "ff0070de"; bot_class_str = "Shaman";             break;
-            case BOT_CLASS_MAGE:        bot_color_str = "ff69ccf0"; bot_class_str = "Mage";               break;
-            case BOT_CLASS_WARLOCK:     bot_color_str = "ff9482c9"; bot_class_str = "Warlock";            break;
-            case BOT_CLASS_DRUID:       bot_color_str = "ffff7d0a"; bot_class_str = "Druid";              break;
-            case BOT_CLASS_BM:          bot_color_str = "ffa10015"; bot_class_str = "Blademaster";        break;
-            case BOT_CLASS_SPHYNX:      bot_color_str = "ff29004a"; bot_class_str = "Obsidian Destroyer"; break;
-            case BOT_CLASS_ARCHMAGE:    bot_color_str = "ff028a99"; bot_class_str = "Archmage";           break;
-            case BOT_CLASS_DREADLORD:   bot_color_str = "ff534161"; bot_class_str = "Dreadlord";          break;
-            case BOT_CLASS_SPELLBREAKER:bot_color_str = "ffcf3c1f"; bot_class_str = "Spellbreaker";       break;
-            case BOT_CLASS_DARK_RANGER: bot_color_str = "ff3e255e"; bot_class_str = "Dark Ranger";        break;
-            case BOT_CLASS_NECROMANCER: bot_color_str = "ff9900cc"; bot_class_str = "Necromancer";        break;
-            case BOT_CLASS_SEA_WITCH:   bot_color_str = "ff40d7a9"; bot_class_str = "Sea Witch";          break;
-            case BOT_CLASS_CRYPT_LORD:  bot_color_str = "ff19782b"; bot_class_str = "Crypt Lord";         break;
-            default:                    bot_color_str = "ffffffff"; bot_class_str = "Unknown";            break;
-            /*case BOT_CLASS_WARRIOR:     bot_color_str = "ffc79c6e"; bot_class_str = "战士";                break;
-            case BOT_CLASS_PALADIN:     bot_color_str = "fff58cba"; bot_class_str = "圣骑士";              break;
-            case BOT_CLASS_HUNTER:      bot_color_str = "ffabd473"; bot_class_str = "猎人";                break;
-            case BOT_CLASS_ROGUE:       bot_color_str = "fffff569"; bot_class_str = "潜行者";              break;
-            case BOT_CLASS_PRIEST:      bot_color_str = "ffffffff"; bot_class_str = "牧师";                break;
-            case BOT_CLASS_DEATH_KNIGHT:bot_color_str = "ffc41f3b"; bot_class_str = "死亡骑士";            break;
-            case BOT_CLASS_SHAMAN:      bot_color_str = "ff0070de"; bot_class_str = "萨满祭司";            break;
-            case BOT_CLASS_MAGE:        bot_color_str = "ff69ccf0"; bot_class_str = "法师";                break;
-            case BOT_CLASS_WARLOCK:     bot_color_str = "ff9482c9"; bot_class_str = "术士";                break;
-            case BOT_CLASS_DRUID:       bot_color_str = "ffff7d0a"; bot_class_str = "德鲁伊";              break;
-            case BOT_CLASS_BM:          bot_color_str = "ffa10015"; bot_class_str = "剑圣";                break;
-            case BOT_CLASS_SPHYNX:      bot_color_str = "ff29004a"; bot_class_str = "黑曜石毁灭者";        break;
-            case BOT_CLASS_ARCHMAGE:    bot_color_str = "ff028a99"; bot_class_str = "大法师";              break;
-            case BOT_CLASS_DREADLORD:   bot_color_str = "ff534161"; bot_class_str = "恐惧魔王";            break;
-            case BOT_CLASS_SPELLBREAKER:bot_color_str = "ffcf3c1f"; bot_class_str = "破法者";              break;
-            case BOT_CLASS_DARK_RANGER: bot_color_str = "ff3e255e"; bot_class_str = "黑暗游侠";            break;
-            case BOT_CLASS_NECROMANCER: bot_color_str = "ff9900cc"; bot_class_str = "死灵法师";            break;
-            case BOT_CLASS_SEA_WITCH:   bot_color_str = "ff40d7a9"; bot_class_str = "海妖";                break;
-            default:                    bot_color_str = "ffffffff"; bot_class_str = "地穴领主";            break;*/
+            case BOT_CLASS_WARRIOR:     bot_color_str = "ffc79c6e"; bot_class_str = "战士";            break;
+            case BOT_CLASS_PALADIN:     bot_color_str = "fff58cba"; bot_class_str = "圣骑士";          break;
+            case BOT_CLASS_HUNTER:      bot_color_str = "ffabd473"; bot_class_str = "猎人";            break;
+            case BOT_CLASS_ROGUE:       bot_color_str = "fffff569"; bot_class_str = "潜行者";          break;
+            case BOT_CLASS_PRIEST:      bot_color_str = "ffffffff"; bot_class_str = "牧师";            break;
+            case BOT_CLASS_DEATH_KNIGHT:bot_color_str = "ffc41f3b"; bot_class_str = "死亡骑士";        break;
+            case BOT_CLASS_SHAMAN:      bot_color_str = "ff0070de"; bot_class_str = "萨满祭司";        break;
+            case BOT_CLASS_MAGE:        bot_color_str = "ff69ccf0"; bot_class_str = "法师";            break;
+            case BOT_CLASS_WARLOCK:     bot_color_str = "ff9482c9"; bot_class_str = "术士";            break;
+            case BOT_CLASS_DRUID:       bot_color_str = "ffff7d0a"; bot_class_str = "德鲁伊";          break;
+            case BOT_CLASS_BM:          bot_color_str = "ffa10015"; bot_class_str = "剑圣";            break;
+            case BOT_CLASS_SPHYNX:      bot_color_str = "ff29004a"; bot_class_str = "黑曜石毁灭者";    break;
+            case BOT_CLASS_ARCHMAGE:    bot_color_str = "ff028a99"; bot_class_str = "大法师";          break;
+            case BOT_CLASS_DREADLORD:   bot_color_str = "ff534161"; bot_class_str = "恐惧魔王";        break;
+            case BOT_CLASS_SPELLBREAKER:bot_color_str = "ffcf3c1f"; bot_class_str = "破法者";          break;
+            case BOT_CLASS_DARK_RANGER: bot_color_str = "ff3e255e"; bot_class_str = "黑暗游侠";        break;
+            case BOT_CLASS_NECROMANCER: bot_color_str = "ff9900cc"; bot_class_str = "死灵法师";        break;
+            case BOT_CLASS_SEA_WITCH:   bot_color_str = "ff40d7a9"; bot_class_str = "海妖";            break;
+            case BOT_CLASS_CRYPT_LORD:  bot_color_str = "ff19782b"; bot_class_str = "地穴领主";        break;
+            default:                    bot_color_str = "ffffffff"; bot_class_str = "未知职业";        break;            
         }
     }
 
@@ -1581,7 +1562,7 @@ public:
     {
         if (!file_str)
         {
-            handler->SendSysMessage(".npcbot dump write\n�������ɵ�NPCBots������һ��SQL�ļ���\nSyntax: .npcbot dump write #file_name");
+            handler->SendSysMessage(".npcbot dump write\n将已生成的NPCBots导出到一个SQL文件中\nSyntax: .npcbot dump write #file_name");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -3370,61 +3351,37 @@ public:
                 char const* bclass;
                 switch (i)
                 {
-                    case BOT_CLASS_WARRIOR:         bclass = "Warriors";        break;
-                    case BOT_CLASS_PALADIN:         bclass = "Paladins";        break;
-                    case BOT_CLASS_MAGE:            bclass = "Mages";           break;
-                    case BOT_CLASS_PRIEST:          bclass = "Priests";         break;
-                    case BOT_CLASS_WARLOCK:         bclass = "Warlocks";        break;
-                    case BOT_CLASS_DRUID:           bclass = "Druids";          break;
-                    case BOT_CLASS_DEATH_KNIGHT:    bclass = "Death Knights";   break;
-                    case BOT_CLASS_ROGUE:           bclass = "Rogues";          break;
-                    case BOT_CLASS_SHAMAN:          bclass = "Shamans";         break;
-                    case BOT_CLASS_HUNTER:          bclass = "Hunters";         break;
-                    case BOT_CLASS_BM:              bclass = "Blademasters";    break;
-                    case BOT_CLASS_SPHYNX:          bclass = "Destroyers";      break;
-                    case BOT_CLASS_ARCHMAGE:        bclass = "Archmagi";        break;
-                    case BOT_CLASS_DREADLORD:       bclass = "Dreadlords";      break;
-                    case BOT_CLASS_SPELLBREAKER:    bclass = "Spell Breakers";  break;
-                    case BOT_CLASS_DARK_RANGER:     bclass = "Dark Rangers";    break;
-                    case BOT_CLASS_NECROMANCER:     bclass = "Necromancers";    break;
-                    case BOT_CLASS_SEA_WITCH:       bclass = "Sea Witches";     break;
-                    case BOT_CLASS_CRYPT_LORD:      bclass = "Crypt Lords";     break;
-                    default:                        bclass = "Unknown Class";   break;
+                    case BOT_CLASS_WARRIOR:         bclass = "战士";        break;
+                    case BOT_CLASS_PALADIN:         bclass = "圣骑士";      break;
+                    case BOT_CLASS_MAGE:            bclass = "法师";        break;
+                    case BOT_CLASS_PRIEST:          bclass = "牧师";        break;
+                    case BOT_CLASS_WARLOCK:         bclass = "术士";        break;
+                    case BOT_CLASS_DRUID:           bclass = "德鲁伊";      break;
+                    case BOT_CLASS_DEATH_KNIGHT:    bclass = "死亡骑士";    break;
+                    case BOT_CLASS_ROGUE:           bclass = "潜行者";      break;
+                    case BOT_CLASS_SHAMAN:          bclass = "萨满祭司";    break;
+                    case BOT_CLASS_HUNTER:          bclass = "猎人";        break;
+                    case BOT_CLASS_BM:              bclass = "剑圣";        break;
+                    case BOT_CLASS_SPHYNX:          bclass = "毁灭者";      break;
+                    case BOT_CLASS_ARCHMAGE:        bclass = "大法师";      break;
+                    case BOT_CLASS_DREADLORD:       bclass = "恐惧魔王";    break;
+                    case BOT_CLASS_SPELLBREAKER:    bclass = "破法者";      break;
+                    case BOT_CLASS_DARK_RANGER:     bclass = "黑暗游侠";    break;
+                    case BOT_CLASS_NECROMANCER:     bclass = "死灵法师";    break;
+                    case BOT_CLASS_SEA_WITCH:       bclass = "海妖";        break;
+                    case BOT_CLASS_CRYPT_LORD:      bclass = "地穴领主";    break;
+                    default:                        bclass = "未知职业";    break;
                 }
-                handler->PSendSysMessage("%s: %u (alive: %u)", bclass, count, alivecount);
+                handler->PSendSysMessage("%s: %u (存活: %u)", bclass, count, alivecount);
             }
         }
-            /*char const* bclass;
-            switch (i)
-            {
-                case BOT_CLASS_WARRIOR:         bclass = "战士";             break;
-                case BOT_CLASS_PALADIN:         bclass = "圣骑士";           break;
-                case BOT_CLASS_MAGE:            bclass = "法师";             break;
-                case BOT_CLASS_PRIEST:          bclass = "牧师";             break;
-                case BOT_CLASS_WARLOCK:         bclass = "术士";             break;
-                case BOT_CLASS_DRUID:           bclass = "德鲁伊";           break;
-                case BOT_CLASS_DEATH_KNIGHT:    bclass = "死亡骑士";         break;
-                case BOT_CLASS_ROGUE:           bclass = "潜行者";           break;
-                case BOT_CLASS_SHAMAN:          bclass = "萨满祭司";         break;
-                case BOT_CLASS_HUNTER:          bclass = "猎人";             break;
-                case BOT_CLASS_BM:              bclass = "剑圣";             break;
-                case BOT_CLASS_SPHYNX:          bclass = "毁灭者";           break;
-                case BOT_CLASS_ARCHMAGE:        bclass = "大法师";           break;
-                case BOT_CLASS_DREADLORD:       bclass = "恐惧魔王";         break;
-                case BOT_CLASS_SPELLBREAKER:    bclass = "破法者";           break;
-                case BOT_CLASS_DARK_RANGER:     bclass = "黑暗游侠";         break;
-                case BOT_CLASS_NECROMANCER:     bclass = "死灵法师";         break;
-                case BOT_CLASS_SEA_WITCH:       bclass = "海妖";             break;
-                default:                        bclass = "未知职业";         break;
-            }
-            handler->PSendSysMessage("%s: %u (存活: %u)", bclass, count, alivecount);
-        }*/
+        handler->PSendSysMessage("%u 未激活的机器人:", uint32(guidvec.size()));
 
-        handler->PSendSysMessage("%u inactive bots:", uint32(guidvec.size()));
         /*if (guidvec.empty())
             return true;
 
         handler->PSendSysMessage("%u未绑定的NPCBots:", uint32(guidvec.size()));*/
+
         for (ObjectGuid guid : guidvec)
         {
             Creature const* bot = BotDataMgr::FindBot(guid.GetEntry());
