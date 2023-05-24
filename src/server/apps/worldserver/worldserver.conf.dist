@@ -1,4 +1,4 @@
-ï»¿################################################
+################################################
 # AzerothCore World Server configuration file #
 ################################################
 [worldserver]
@@ -1185,7 +1185,7 @@ MaxPrimaryTradeSkill = 2
 #        Default:     9
 
 MinPetitionSigns = 0
-#å¥–åŠ±å·¥ä¼šéœ€è¦çš„æœ€å°‘ç­¾å
+#½±Àø¹¤»áĞèÒªµÄ×îÉÙÇ©Ãû
 
 #
 #    MaxGroupXPDistance
@@ -3950,7 +3950,7 @@ Logger.sql.sql=2,Console DBErrors
 Logger.sql=4,Console Server
 Logger.time.update=4,Console Server
 Logger.module=4,Console Server
-Logger.npcbots=2,NpcBots Server
+#Logger.npcbots=2,NpcBots Server
 
 #Logger.achievement=4,Console Server
 #Logger.addon=4,Console Server
@@ -4551,11 +4551,11 @@ NpcBot.WanderingBots.BG.Enable = 0
 ###################################################################################################
 
 
-#æ§åˆ¶å°ç»å¸¸æŠ¥Not enough random bot accounts available. Need *(æ•°é‡,ä¹‹å‰é€šå¸¸æ˜¯6,å› ä¸ºæˆ‘æŠŠplayerbotè´¦å·æ•°é‡è®¾ä¸º1) more!!
-#ä¸ºäº†å‡å°‘å¹²æ‰°,æ·»åŠ äº†ä¸‹é¢è¿™ä¸ªå‚æ•°,è®¾ä¸º1,åˆ™ä¸æ˜¾ç¤ºæç¤º
+#¿ØÖÆÌ¨¾­³£±¨Not enough random bot accounts available. Need *(ÊıÁ¿,Ö®Ç°Í¨³£ÊÇ6,ÒòÎªÎÒ°ÑplayerbotÕËºÅÊıÁ¿ÉèÎª1) more!!
+#ÎªÁË¼õÉÙ¸ÉÈÅ,Ìí¼ÓÁËÏÂÃæÕâ¸ö²ÎÊı,ÉèÎª1,Ôò²»ÏÔÊ¾ÌáÊ¾
 Playerbot.Announce.Not_enough_random_bot_accounts_available.disable=1
-#åç»­å‘ç°æ­£å¸¸å¯åŠ¨å,è¿˜æ˜¯ä¼šæŠ¥,éœ€è¦åœ¨æ§åˆ¶å°é‡æ–°åŠ è½½é…ç½®(reload conf)
+#ºóĞø·¢ÏÖÕı³£Æô¶¯ºó,»¹ÊÇ»á±¨,ĞèÒªÔÚ¿ØÖÆÌ¨ÖØĞÂ¼ÓÔØÅäÖÃ(reload conf)
 
-#å°åéƒ¨åˆ†
+#Ğ¡»µ²¿·Ö
 Arena.1v1.ForbiddenTalentsIDs =
 Arena.1v1.Event = 130
