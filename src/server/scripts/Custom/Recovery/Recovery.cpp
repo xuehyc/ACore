@@ -1,268 +1,268 @@
-#pragma execution_character_set("utf-8")
-#include "Recovery.h"
-#include "../GCAddon/GCAddon.h"
-#include "../CommonFunc/CommonFunc.h"
-#include "../String/myString.h"
-#include "..\..\server\scripts\Custom\Reward\Reward.h"
-std::unordered_map<uint32/*entry*/, RecoveryTemplate> RecoveryMap;
-std::unordered_map<uint32/*categoryId*/, std::string/*categoryName*/> RecoveryCategoryMap;
-
-void Recovery::Load()
-{
-	RecoveryMap.clear();
-	RecoveryCategoryMap.clear();
-
-	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-        "SELECT ŒÔ∆∑ID,∑÷◊ÈID,Ω±¿¯ª˝∑÷ ˝¡ø,ŒÔ∆∑, ˝¡ø,Ω±¿¯ƒ£∞ÂID FROM _ŒÔ∆∑_ªÿ ’" :
-		"SELECT entry,categoryId,rewToken FROM _recovery");
-	if (result)
-	{
-		do
-		{
-            Field* fields = result->Fetch();
-            uint32 entry = fields[0].GetUInt32();
-            RecoveryTemplate Temp;
-            Temp.categoryId = fields[1].GetUInt32();
-            Temp.rewToken = fields[2].GetFloat();
-            Temp.rewitem = fields[3].GetUInt32();
-            Temp.rewcunt = fields[4].GetUInt32();
-            Temp.rewid = fields[5].GetUInt32();
-			RecoveryMap.insert(std::make_pair(entry, Temp));
-		} while (result->NextRow());
-	}
-	
-	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-		"SELECT ∑÷◊ÈID,∑÷◊È√˚≥∆ FROM _ŒÔ∆∑_ªÿ ’∑÷◊È" :
-		"SELECT categoryId,categoryName FROM _recovery_category");
-	if (result)
-	{
-		do
-		{
-			Field* fields = result->Fetch();
-			uint32 categoryId			= fields[0].GetUInt32();
-			std::string categoryName	= fields[1].GetString();
-			RecoveryCategoryMap.insert(std::make_pair(categoryId, categoryName));
-		} while (result->NextRow());
-	}
-}
-
-std::string Recovery::GetDes(uint32 entry)
-{
-	const ItemTemplate * temp = sObjectMgr->GetItemTemplate(entry);
-	if (!temp)
-		return "";
-
-	std::ostringstream oss;
-	std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
-
-	if (iter != RecoveryMap.end())
-		return "|cFF00FF00°∏ø…ªÿ ’°π|r\n";
-
-	return "";
-}
-
-void Recovery::GetItemInfo(uint32 entry, uint32 count, uint32 &categoryId, float &tokenAmount)
-{
-	const ItemTemplate * temp = sObjectMgr->GetItemTemplate(entry);
-	if (!temp)
-		return;
-
-	std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
-
-	if (iter != RecoveryMap.end())
-	{
-		categoryId = iter->second.categoryId;
-		tokenAmount = count * iter->second.rewToken;
-	}
-}
-
-uint32 Recovery::GetCategoryId(uint32 entry)
-{
-	const ItemTemplate * temp = sObjectMgr->GetItemTemplate(entry);
-	if (!temp)
-		return 0;
-
-	std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
-
-	if (iter != RecoveryMap.end())
-		return iter->second.categoryId;
-
-	return 0;
-}
-
-uint32 Recovery::GetTokenAmount(Player* player, uint32 categoryId)
-{
-	float tokenAmount = 0;
-
-	//÷˜±≥∞¸
-	for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
-		if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
-		{
-			uint32 entry = item->GetEntry();
-			uint32 count = item->GetCount();
-			uint32 _categoryId = 0;
-			float _tokenAmount = 0;
-			GetItemInfo(entry, count, _categoryId, _tokenAmount);
-			if (_categoryId == categoryId)
-				tokenAmount += _tokenAmount;
-		}
-
-	//∂ÓÕ‚»˝∏ˆ±≥∞¸
-	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
-		if (Bag* pBag = player->GetBagByPos(i))
-			for (uint32 j = 0; j < pBag->GetBagSize(); j++)
-				if (Item* item = player->GetItemByPos(i, j))
-				{
-					uint32 entry = item->GetEntry();
-					uint32 count = item->GetCount();
-					uint32 _categoryId = 0;
-					float _tokenAmount = 0;
-					GetItemInfo(entry, count, _categoryId, _tokenAmount);
-					if (_categoryId == categoryId)
-						tokenAmount += _tokenAmount;
-				}
-
-	return uint32(tokenAmount);
-}
-
-bool Recovery::HasCategoryItem(Player* player, uint32 categoryId)
-{
-	uint32 flag = false;
-
-	//÷˜±≥∞¸
-	for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
-		if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
-		{
-			uint32 entry = item->GetEntry();
-			uint32 count = item->GetCount();
-			uint32 _categoryId = 0;
-			float _tokenAmount = 0;
-			GetItemInfo(entry, count, _categoryId, _tokenAmount);
-			if (_categoryId == categoryId)
-				flag = true;
-		}
-
-	if (flag)
-		return true;
-
-	//∂ÓÕ‚»˝∏ˆ±≥∞¸
-	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
-		if (Bag* pBag = player->GetBagByPos(i))
-			for (uint32 j = 0; j < pBag->GetBagSize(); j++)
-				if (Item* item = player->GetItemByPos(i, j))
-				{
-					uint32 entry = item->GetEntry();
-					uint32 count = item->GetCount();
-					uint32 _categoryId = 0;
-					float _tokenAmount = 0;
-					GetItemInfo(entry, count, _categoryId, _tokenAmount);
-					if (_categoryId == categoryId)
-						flag = true;
-				}
-
-	return flag;
-}
-
-void Recovery::OpenPanel(Player* player)
-{
-	std::ostringstream oss;
-	oss << "0#";
-	for (std::unordered_map<uint32, std::string>::iterator iter = RecoveryCategoryMap.begin(); iter != RecoveryCategoryMap.end(); iter++)
-		if (HasCategoryItem(player, iter->first))
-			oss << iter->first << "-" << iter->second << ":";
-	
-	sGCAddon->SendPacketTo(player, "GC_S_RECOVERY", oss.str());
-}
-
-void Recovery::SendCategoryMsg(Player* player, uint32 categoryId)
-{
-	std::ostringstream oss;
-	oss << "1#" << GetTokenAmount(player, categoryId) << "#";
-
-	//÷˜±≥∞¸
-	for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
-		if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
-		{
-			uint32 entry = item->GetEntry();
-			uint32 count = item->GetCount();
-			if (GetCategoryId(entry) == categoryId)
-				oss << entry << "-" << count << ":";
-		}
-
-	//∂ÓÕ‚»˝∏ˆ±≥∞¸
-	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
-		if (Bag* pBag = player->GetBagByPos(i))
-			for (uint32 j = 0; j < pBag->GetBagSize(); j++)
-				if (Item* item = player->GetItemByPos(i, j))
-				{
-					uint32 entry = item->GetEntry();
-					uint32 count = item->GetCount();
-					if (GetCategoryId(entry) == categoryId)
-						oss << entry << "-" << count << ":";
-				}
-
-	sGCAddon->SendPacketTo(player, "GC_S_RECOVERY", oss.str());
-}
-
-void Recovery::Action(Player* player, uint32 categoryId)
-{
-	uint32 tokenAmount = 0;
-
-	//÷˜±≥∞¸
-	for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
-		if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
-		{
-			uint32 entry = item->GetEntry();
-			uint32 count = item->GetCount();
-			uint32 _categoryId = 0;
-			float _tokenAmount = 0;
-			GetItemInfo(entry, count, _categoryId, _tokenAmount);
-			if (_categoryId == categoryId)
-			{
-                std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
-                if (iter != RecoveryMap.end())
-                {
-                    if (iter->second.rewitem && iter->second.rewcunt)
-                        player->AddItem(iter->second.rewitem, iter->second.rewcunt * count);
-                    if (iter->second.rewid)
-                        sRew->Rew(player, iter->second.rewid, count);
-                }
-				player->DestroyItem(INVENTORY_SLOT_BAG_0, i, true);
-				tokenAmount += _tokenAmount;
-			}
-		}
-
-	//∂ÓÕ‚»˝∏ˆ±≥∞¸
-	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
-		if (Bag* pBag = player->GetBagByPos(i))
-			for (uint32 j = 0; j < pBag->GetBagSize(); j++)
-				if (Item* item = player->GetItemByPos(i, j))
-				{
-					uint32 entry = item->GetEntry();
-					uint32 count = item->GetCount();
-					uint32 _categoryId = 0;
-					float _tokenAmount = 0;
-					GetItemInfo(entry, count, _categoryId, _tokenAmount);
-					if (_categoryId == categoryId)
-					{
-                        std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
-                        if (iter != RecoveryMap.end())
-                        {
-                            if (iter->second.rewitem && iter->second.rewcunt)
-                                player->AddItem(iter->second.rewitem, iter->second.rewcunt * count);
-                            if (iter->second.rewid)
-                                sRew->Rew(player, iter->second.rewid, count);
-                        }
-
-						player->DestroyItem(i, j, true);
-						tokenAmount += _tokenAmount;
-					}
-				}
-
-	OpenPanel(player);
-
-	ChatHandler(player->GetSession()).PSendSysMessage("ªÿ ’ŒÔ∆∑ªÒµ√[%s] X %u", sString->GetText(CORE_STR_TYPES(STR_TOKEN)), tokenAmount);
-	sCF->UpdateTokenAmount(player, tokenAmount, true, "[ªÿ ’]Ω±¿¯");
-
-	sCF->CompleteQuest(player, 30002);
-}
+Ôªø//#pragma execution_character_set("utf-8")
+//#include "Recovery.h"
+//#include "../GCAddon/GCAddon.h"
+//#include "../CommonFunc/CommonFunc.h"
+//#include "../String/myString.h"
+//#include "..\..\server\scripts\Custom\Reward\Reward.h"
+//std::unordered_map<uint32/*entry*/, RecoveryTemplate> RecoveryMap;
+//std::unordered_map<uint32/*categoryId*/, std::string/*categoryName*/> RecoveryCategoryMap;
+//
+//void Recovery::Load()
+//{
+//	RecoveryMap.clear();
+//	RecoveryCategoryMap.clear();
+//
+//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//        "SELECT Áâ©ÂìÅID,ÂàÜÁªÑID,Â•ñÂä±ÁßØÂàÜÊï∞Èáè,Áâ©ÂìÅ,Êï∞Èáè,Â•ñÂä±Ê®°ÊùøID FROM _Áâ©ÂìÅ_ÂõûÊî∂" :
+//		"SELECT entry,categoryId,rewToken FROM _recovery");
+//	if (result)
+//	{
+//		do
+//		{
+//            Field* fields = result->Fetch();
+//            uint32 entry = fields[0].GetUInt32();
+//            RecoveryTemplate Temp;
+//            Temp.categoryId = fields[1].GetUInt32();
+//            Temp.rewToken = fields[2].GetFloat();
+//            Temp.rewitem = fields[3].GetUInt32();
+//            Temp.rewcunt = fields[4].GetUInt32();
+//            Temp.rewid = fields[5].GetUInt32();
+//			RecoveryMap.insert(std::make_pair(entry, Temp));
+//		} while (result->NextRow());
+//	}
+//	
+//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//		"SELECT ÂàÜÁªÑID,ÂàÜÁªÑÂêçÁß∞ FROM _Áâ©ÂìÅ_ÂõûÊî∂ÂàÜÁªÑ" :
+//		"SELECT categoryId,categoryName FROM _recovery_category");
+//	if (result)
+//	{
+//		do
+//		{
+//			Field* fields = result->Fetch();
+//			uint32 categoryId			= fields[0].GetUInt32();
+//			std::string categoryName	= fields[1].GetString();
+//			RecoveryCategoryMap.insert(std::make_pair(categoryId, categoryName));
+//		} while (result->NextRow());
+//	}
+//}
+//
+//std::string Recovery::GetDes(uint32 entry)
+//{
+//	const ItemTemplate * temp = sObjectMgr->GetItemTemplate(entry);
+//	if (!temp)
+//		return "";
+//
+//	std::ostringstream oss;
+//	std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
+//
+//	if (iter != RecoveryMap.end())
+//		return "|cFF00FF00„ÄåÂèØÂõûÊî∂„Äç|r\n";
+//
+//	return "";
+//}
+//
+//void Recovery::GetItemInfo(uint32 entry, uint32 count, uint32 &categoryId, float &tokenAmount)
+//{
+//	const ItemTemplate * temp = sObjectMgr->GetItemTemplate(entry);
+//	if (!temp)
+//		return;
+//
+//	std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
+//
+//	if (iter != RecoveryMap.end())
+//	{
+//		categoryId = iter->second.categoryId;
+//		tokenAmount = count * iter->second.rewToken;
+//	}
+//}
+//
+//uint32 Recovery::GetCategoryId(uint32 entry)
+//{
+//	const ItemTemplate * temp = sObjectMgr->GetItemTemplate(entry);
+//	if (!temp)
+//		return 0;
+//
+//	std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
+//
+//	if (iter != RecoveryMap.end())
+//		return iter->second.categoryId;
+//
+//	return 0;
+//}
+//
+//uint32 Recovery::GetTokenAmount(Player* player, uint32 categoryId)
+//{
+//	float tokenAmount = 0;
+//
+//	//‰∏ªËÉåÂåÖ
+//	for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
+//		if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
+//		{
+//			uint32 entry = item->GetEntry();
+//			uint32 count = item->GetCount();
+//			uint32 _categoryId = 0;
+//			float _tokenAmount = 0;
+//			GetItemInfo(entry, count, _categoryId, _tokenAmount);
+//			if (_categoryId == categoryId)
+//				tokenAmount += _tokenAmount;
+//		}
+//
+//	//È¢ùÂ§ñ‰∏â‰∏™ËÉåÂåÖ
+//	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
+//		if (Bag* pBag = player->GetBagByPos(i))
+//			for (uint32 j = 0; j < pBag->GetBagSize(); j++)
+//				if (Item* item = player->GetItemByPos(i, j))
+//				{
+//					uint32 entry = item->GetEntry();
+//					uint32 count = item->GetCount();
+//					uint32 _categoryId = 0;
+//					float _tokenAmount = 0;
+//					GetItemInfo(entry, count, _categoryId, _tokenAmount);
+//					if (_categoryId == categoryId)
+//						tokenAmount += _tokenAmount;
+//				}
+//
+//	return uint32(tokenAmount);
+//}
+//
+//bool Recovery::HasCategoryItem(Player* player, uint32 categoryId)
+//{
+//	uint32 flag = false;
+//
+//	//‰∏ªËÉåÂåÖ
+//	for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
+//		if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
+//		{
+//			uint32 entry = item->GetEntry();
+//			uint32 count = item->GetCount();
+//			uint32 _categoryId = 0;
+//			float _tokenAmount = 0;
+//			GetItemInfo(entry, count, _categoryId, _tokenAmount);
+//			if (_categoryId == categoryId)
+//				flag = true;
+//		}
+//
+//	if (flag)
+//		return true;
+//
+//	//È¢ùÂ§ñ‰∏â‰∏™ËÉåÂåÖ
+//	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
+//		if (Bag* pBag = player->GetBagByPos(i))
+//			for (uint32 j = 0; j < pBag->GetBagSize(); j++)
+//				if (Item* item = player->GetItemByPos(i, j))
+//				{
+//					uint32 entry = item->GetEntry();
+//					uint32 count = item->GetCount();
+//					uint32 _categoryId = 0;
+//					float _tokenAmount = 0;
+//					GetItemInfo(entry, count, _categoryId, _tokenAmount);
+//					if (_categoryId == categoryId)
+//						flag = true;
+//				}
+//
+//	return flag;
+//}
+//
+//void Recovery::OpenPanel(Player* player)
+//{
+//	std::ostringstream oss;
+//	oss << "0#";
+//	for (std::unordered_map<uint32, std::string>::iterator iter = RecoveryCategoryMap.begin(); iter != RecoveryCategoryMap.end(); iter++)
+//		if (HasCategoryItem(player, iter->first))
+//			oss << iter->first << "-" << iter->second << ":";
+//	
+//	sGCAddon->SendPacketTo(player, "GC_S_RECOVERY", oss.str());
+//}
+//
+//void Recovery::SendCategoryMsg(Player* player, uint32 categoryId)
+//{
+//	std::ostringstream oss;
+//	oss << "1#" << GetTokenAmount(player, categoryId) << "#";
+//
+//	//‰∏ªËÉåÂåÖ
+//	for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
+//		if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
+//		{
+//			uint32 entry = item->GetEntry();
+//			uint32 count = item->GetCount();
+//			if (GetCategoryId(entry) == categoryId)
+//				oss << entry << "-" << count << ":";
+//		}
+//
+//	//È¢ùÂ§ñ‰∏â‰∏™ËÉåÂåÖ
+//	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
+//		if (Bag* pBag = player->GetBagByPos(i))
+//			for (uint32 j = 0; j < pBag->GetBagSize(); j++)
+//				if (Item* item = player->GetItemByPos(i, j))
+//				{
+//					uint32 entry = item->GetEntry();
+//					uint32 count = item->GetCount();
+//					if (GetCategoryId(entry) == categoryId)
+//						oss << entry << "-" << count << ":";
+//				}
+//
+//	sGCAddon->SendPacketTo(player, "GC_S_RECOVERY", oss.str());
+//}
+//
+//void Recovery::Action(Player* player, uint32 categoryId)
+//{
+//	uint32 tokenAmount = 0;
+//
+//	//‰∏ªËÉåÂåÖ
+//	for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
+//		if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
+//		{
+//			uint32 entry = item->GetEntry();
+//			uint32 count = item->GetCount();
+//			uint32 _categoryId = 0;
+//			float _tokenAmount = 0;
+//			GetItemInfo(entry, count, _categoryId, _tokenAmount);
+//			if (_categoryId == categoryId)
+//			{
+//                std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
+//                if (iter != RecoveryMap.end())
+//                {
+//                    if (iter->second.rewitem && iter->second.rewcunt)
+//                        player->AddItem(iter->second.rewitem, iter->second.rewcunt * count);
+//                    if (iter->second.rewid)
+//                        sRew->Rew(player, iter->second.rewid, count);
+//                }
+//				player->DestroyItem(INVENTORY_SLOT_BAG_0, i, true);
+//				tokenAmount += _tokenAmount;
+//			}
+//		}
+//
+//	//È¢ùÂ§ñ‰∏â‰∏™ËÉåÂåÖ
+//	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
+//		if (Bag* pBag = player->GetBagByPos(i))
+//			for (uint32 j = 0; j < pBag->GetBagSize(); j++)
+//				if (Item* item = player->GetItemByPos(i, j))
+//				{
+//					uint32 entry = item->GetEntry();
+//					uint32 count = item->GetCount();
+//					uint32 _categoryId = 0;
+//					float _tokenAmount = 0;
+//					GetItemInfo(entry, count, _categoryId, _tokenAmount);
+//					if (_categoryId == categoryId)
+//					{
+//                        std::unordered_map<uint32, RecoveryTemplate>::iterator iter = RecoveryMap.find(entry);
+//                        if (iter != RecoveryMap.end())
+//                        {
+//                            if (iter->second.rewitem && iter->second.rewcunt)
+//                                player->AddItem(iter->second.rewitem, iter->second.rewcunt * count);
+//                            if (iter->second.rewid)
+//                                sRew->Rew(player, iter->second.rewid, count);
+//                        }
+//
+//						player->DestroyItem(i, j, true);
+//						tokenAmount += _tokenAmount;
+//					}
+//				}
+//
+//	OpenPanel(player);
+//
+//	ChatHandler(player->GetSession()).PSendSysMessage("ÂõûÊî∂Áâ©ÂìÅËé∑Âæó[%s] X %u", sString->GetText(CORE_STR_TYPES(STR_TOKEN)), tokenAmount);
+//	sCF->UpdateTokenAmount(player, tokenAmount, true, "[ÂõûÊî∂]Â•ñÂä±");
+//
+//	sCF->CompleteQuest(player, 30002);
+//}

@@ -1,278 +1,278 @@
-#pragma execution_character_set("utf-8")
-#include "../PrecompiledHeaders/ScriptPCH.h"
-#include "../CommonFunc/CommonFunc.h"
-
-
-class NPC_Quest : public CreatureScript
-{
-public:
-	NPC_Quest() : CreatureScript("NPC_Quest") { }
-	struct NPC_QuestAI : public ScriptedAI
-	{
-		NPC_QuestAI(Creature* creature) : ScriptedAI(creature) {}
-
-		void Reset() override {}
-		void UpdateAI(uint32 diff) override
-		{
-
-		}
-	};
-	CreatureAI* GetAI(Creature* creature) const
-	{
-		return new NPC_QuestAI(creature);
-	}
-	//Ω” ‹»ŒŒÒ
-	bool OnQuestAccept(Player* player, Creature* creature, Quest const* quest)
-	{
-		switch (quest->GetQuestId())
-		{
-		break;
-		//Ù‰¥‰Àƒ¡˙
-		case 100001:
-			player->SetPhaseMask(1, true);//chatHandler.cpp /sleep
-			player->RemoveAura(35838);
-			break;
-		default:
-			break;
-		}
-		return false;
-	}
-	//ÕÍ≥…»ŒŒÒ
-	bool OnQuestReward(Player* player, Creature* creature, Quest const* quest, uint32)
-	{
-		switch (quest->GetQuestId())
-		{
-			//Ù‰¥‰Àƒ¡˙
-		case 100001:
-			player->SetPhaseMask(1, true);
-			player->RemoveAura(35838);
-			break;
-		default:
-			break;
-		}
-		return true;
-	}
-};
-
-//≥È»°√Œ˜ »ŒŒÒ
-
-enum Events
-{
-	EVENT_CALL_Y = 1,
-
-	EVENT_Y_SAY1 = 2,//“¡¿ºƒ·ø‚Àπ:Ω∆ª´µƒæ´¡È£¨ƒ„√«…Ëœ¬ø…∂Òµƒ»¶Ã◊∑‚”°¡ÀŒ“£¨œ÷‘⁄”÷“™¿¥»°–¶Œ“µƒ√¥£ø√Œ˜ ±©æ˝æ¯≤ªª·∂‘ƒ„√«±∞π™«¸œ•£°
-	EVENT_REMULUS_SAY1 = 3,// ÿª§’ﬂ¿◊ƒ∑¬ÂÀπ£∫“¡¿ºƒ·ø‚Àπ£¨ƒ„‘¯”√√Œ˜ ÷Æ¡¶’€ƒ•¡ÀŒﬁ ˝Œﬁπºµƒ ‹∫¶’ﬂ£¨’‚ «∂‘ƒ„”¶”–µƒ≥Õ∑££¨œ÷‘⁄£¨ƒ„”–“ª∏ˆ◊‘Œ“æ» Íµƒª˙ª·
-	EVENT_REMULUS_SAY2 = 4, // ÿª§’ﬂ¿◊ƒ∑¬ÂÀπ£∫ƒ„±ÿ–Î¥”’‚∞—Ω£÷–ÕÍ»´≥È»°≥ˆ≤–¥Êµƒ√Œ˜ ”°º«£¨≤¢∑¢ ƒ≤ª‘Ÿ≤–∫¶∞¨‘Û¿≠ÀπµƒŒﬁπº…˙√¸£¨∑Ò‘ÚŒ“Ω´»√ƒ„œ›»Î”¿æ√µƒ≥¡ÀØ°£
-	EVENT_Y_SAY2 = 5,//“¡¿ºƒ·ø‚Àπ:Œ“°≠¥”¶ƒ„µƒ“™«Û£¨µ´’‚∏ˆ ƒ—‘÷–≤ª∞¸¿®∂‘ƒ„µƒ≥∫ﬁ£¨Œ““ª∂®ª·»√ƒ„∏∂≥ˆ¥˙º€µƒ£°
-	EVENT_REMULUS_SAY3 = 6, // ÿª§’ﬂ¿◊ƒ∑¬ÂÀπ£∫Œ“Õ¨“‚£¨Œ“ª·‘⁄’‚“ª÷±µ»◊≈ƒ„°£ƒ«√¥£¨ø™ º∞…
-
-	EVENT_HOLD_SWORD = 7,
-	EVENT_CLEAN_SOWRD = 8,
-	EVENT_CALL_4_DK = 9,
-
-	//ø‚∂˚À˛◊»π´æÙ960020 ≈Æ≤ÆæÙ≤º¿ÕÁ—øÀÀπ960021 …™¿Ô“ÆøÀæÙ ø960022 »Œƒ¥˜∂˚ƒ–æÙ960023 “¡¿ºƒ·ø‚Àπ960016
-	EVENT_K_SAY = 10,
-	EVENT_N_SAY = 11,
-	EVENT_S_SAY = 12,
-	EVENT_R_SAY1 = 13,
-	EVENT_Y_SAY3 = 14,
-	EVENT_R_SAY2 = 15,
-	EVENT_R_SAY3 = 16,
-	EVENT_Y_SAY4 = 17,
-	EVENT_KILL_4_DK = 18,
-	EVENT_Y_LEAVE = 19,
-	EVENT_DONE = 20
-
-};
-
-bool PureSwordStartFlag = false;
-
-class npc_remulus : public CreatureScript
-{
-public:
-	npc_remulus() : CreatureScript("npc_remulus") { }
-
-
-	bool OnGossipHello(Player *player, Creature *creature)
-	{
-		if (PureSwordStartFlag) return true;
-		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "»√Œ“√«ø™ º", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
-		player->SEND_GOSSIP_MENU(player->GetGossipTextId(creature), creature->GetGUID());
-		return true;
-	}
-	bool OnGossipSelect(Player *player, Creature *creature, uint32 sender, uint32 action)
-	{
-		player->PlayerTalkClass->ClearMenus();
-		PureSwordStartFlag = true;
-		player->CLOSE_GOSSIP_MENU();
-		return true;
-	}
-	struct npc_remulusAI : public ScriptedAI
-	{
-		npc_remulusAI(Creature* creature) : ScriptedAI(creature) {}
-
-		Creature *k, *n, *s, *r, *y;//ø‚∂˚À˛◊»π´æÙ960020 ≈Æ≤ÆæÙ≤º¿ÕÁ—øÀÀπ960021 …™¿Ô“ÆøÀæÙ ø960022 »Œƒ¥˜∂˚ƒ–æÙ960023 “¡¿ºƒ·ø‚Àπ960016
-
-
-		void Reset() override
-		{
-
-		}
-		void UpdateAI(uint32 diff) override
-		{
-			if (PureSwordStartFlag)
-			{
-				PureSwordStartFlag = false;
-				_events.ScheduleEvent(EVENT_CALL_Y, 2000);
-				sWorld->SendGlobalText(" ¬º˛ø™ º", NULL);
-			}
-			_events.Update(diff);
-
-			while (uint32 eventId = _events.ExecuteEvent())
-			{
-				switch (eventId)
-				{
-				case EVENT_CALL_Y:
-					y = me->SummonCreature(960016, me->GetPositionX(), me->GetPositionY() + 100, me->GetPositionZ() + 70, 0, TEMPSUMMON_TIMED_DESPAWN, 180000);
-					if (y)
-					{
-						y->GetMotionMaster()->MovePoint(0, me->GetPositionX(), me->GetPositionY() + 40, me->GetPositionZ() + 15, false);
-					}
-					_events.ScheduleEvent(EVENT_Y_SAY1, 16000);
-					break;
-				case EVENT_Y_SAY1:
-					if (y = me->FindNearestCreature(960016, 200.0f))
-					{
-						y->MonsterYell(" «À≠‘⁄’ŸªΩŒ“£ø", LANG_UNIVERSAL, NULL);
-						y->MonsterSay("Ω∆ª´µƒæ´¡È£¨ƒ„√«…Ëœ¬ø…∂Òµƒ»¶Ã◊∑‚”°¡ÀŒ“£¨œ÷‘⁄”÷“™¿¥»°–¶Œ“µƒ√¥£ø√Œ˜ ±©æ˝æ¯≤ªª·∂‘ƒ„√«±∞π™«¸œ•£°", LANG_UNIVERSAL, NULL);
-
-					}
-					me->AddAura(63771, me);
-					_events.ScheduleEvent(EVENT_REMULUS_SAY1, 5000);
-					break;
-				case EVENT_REMULUS_SAY1:
-					me->MonsterSay("“¡¿ºƒ·ø‚Àπ£¨ƒ„‘¯”√√Œ˜ ÷Æ¡¶’€ƒ•¡ÀŒﬁ ˝Œﬁπºµƒ ‹∫¶’ﬂ£¨’‚ «∂‘ƒ„”¶”–µƒ≥Õ∑££¨œ÷‘⁄£¨ƒ„”–“ª∏ˆ◊‘Œ“æ» Íµƒª˙ª·°£", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_REMULUS_SAY2, 5000);
-					break;
-				case EVENT_REMULUS_SAY2:
-					me->MonsterSay("ƒ„±ÿ–Î¥”’‚∞—Ω£÷–ÕÍ»´≥È»°≥ˆ≤–¥Êµƒ√Œ˜ ”°º«£¨≤¢∑¢ ƒ≤ª‘Ÿ≤–∫¶∞¨‘Û¿≠ÀπµƒŒﬁπº…˙√¸£¨∑Ò‘ÚŒ“Ω´»√ƒ„œ›»Î”¿æ√µƒ≥¡ÀØ°£", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_Y_SAY2, 5000);
-					break;
-				case EVENT_Y_SAY2:
-					if (y = me->FindNearestCreature(960016, 200.0f))
-						y->MonsterSay("Œ“°≠¥”¶ƒ„µƒ“™«Û£¨µ´’‚∏ˆ ƒ—‘÷–≤ª∞¸¿®∂‘ƒ„µƒ≥∫ﬁ£¨Œ““ª∂®ª·»√ƒ„∏∂≥ˆ¥˙º€µƒ£°", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_REMULUS_SAY3, 5000);
-					break;
-				case EVENT_REMULUS_SAY3:
-					me->MonsterSay("Œ“Õ¨“‚£¨Œ“ª·‘⁄’‚“ª÷±µ»◊≈ƒ„°£ƒ«√¥£¨ø™ º∞…°£", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_CLEAN_SOWRD, 5000);
-					break;
-				case EVENT_CLEAN_SOWRD:
-				{
-					me->SummonCreature(960019, me->GetPositionX() + 1.5, me->GetPositionY() + 1, me->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN, 15000);
-					me->SummonCreature(960019, me->GetPositionX() + 1.5, me->GetPositionY() + 1, me->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN, 15000);
-
-					std::list<Creature*> triggerlist;
-					me->GetCreatureListWithEntryInGrid(triggerlist, 960019, 200.0f);
-
-					for (std::list<Creature*>::iterator itr = triggerlist.begin(); itr != triggerlist.end(); ++itr)
-					{
-						if (Creature* target = (*itr)->FindNearestCreature(960016, 200.0f))
-							(*itr)->CastSpell(target, 43151);
-					}
-				}
-				_events.ScheduleEvent(EVENT_CALL_4_DK, 18000);
-				break;
-				case EVENT_CALL_4_DK:
-
-					//ø‚∂˚À˛◊»π´æÙ960020 ≈Æ≤ÆæÙ≤º¿ÕÁ—øÀÀπ960021 …™¿Ô“ÆøÀæÙ ø960022 »Œƒ¥˜∂˚ƒ–æÙ960023 “¡¿ºƒ·ø‚Àπ960016
-
-					me->SummonCreature(960020, me->GetPositionX() + 3, me->GetPositionY() + 15, me->GetPositionZ(), me->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 120000);
-					me->SummonCreature(960021, me->GetPositionX() + 1, me->GetPositionY() + 15, me->GetPositionZ(), me->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 120000);
-					me->SummonCreature(960022, me->GetPositionX() - 1, me->GetPositionY() + 15, me->GetPositionZ(), me->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 120000);
-					me->SummonCreature(960023, me->GetPositionX() - 3, me->GetPositionY() + 16, me->GetPositionZ(), me->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 120000);
-					_events.ScheduleEvent(EVENT_K_SAY, 5000);
-					break;
-				case EVENT_K_SAY:
-					if (k = me->FindNearestCreature(960020, 200.0f))
-						k->MonsterSay("÷’”⁄≥ˆ¿¥¡À£¨Œ“∂º±ª •π‚÷Æ¡¶—π∆»µƒ ‹≤ª¡À¡À°£", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_N_SAY, 5000);
-					break;
-				case EVENT_N_SAY:
-					if (n = me->FindNearestCreature(960021, 200.0f))
-						n->MonsterSay("∏√À¿µƒ£¨ «À≠æªªØ¡Àª“Ω˝ π’ﬂ£°", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_S_SAY, 5000);
-					break;
-				case EVENT_S_SAY:
-					if (s = me->FindNearestCreature(960022, 200.0f))
-						s->MonsterSay("Œ““™∞«¡Àƒ«º“ªÔµƒ∆§”√¿¥◊∞ ŒŒ“µƒ¬Ì∞∞£°", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_R_SAY1, 5000);
-					break;
-				case EVENT_R_SAY1:
-					if (r = me->FindNearestCreature(960023, 200.0f))
-						r->MonsterSay("∂º±Àµ¡À£¨ø¥ø¥—€«∞µƒ «À≠£¨√Œ˜ ±©æ˝°™“¡¿ºƒ·ø‚Àπ£¨Œ™ ≤√¥Œ“√«ª·‘⁄’‚¿Ô£¨ƒ„”÷ «¿¥∏… ≤√¥µƒ°£", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_Y_SAY3, 5000);
-					break;
-				case EVENT_Y_SAY3:
-					if (y = me->FindNearestCreature(960016, 200.0f))
-						y->MonsterSay("’Ê «”ﬁ¥¿Õ∏∂•£¨ƒ„√«÷ª≤ªπ˝ «ƒ«Àƒ∏ˆ∑œŒÔ≤–¥Êµƒ“‚ ∂∞’¡À£¨ « ±∫Ú¡ÀΩ·’‚º˛ ¬¡À°£", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_R_SAY2, 5000);
-					break;
-				case EVENT_R_SAY2:
-					if (r = me->FindNearestCreature(960023, 200.0f))
-						r->MonsterSay("ƒ„“—æ≠±≥≈—¡ÀÃÏ‘÷æ¸Õ≈√¥£øŒ◊—˝Õı≤ªª·∑≈π˝ƒ„µƒ°£", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_Y_SAY4, 5000);
-					break;
-				case EVENT_Y_SAY4:
-					if (y = me->FindNearestCreature(960016, 200.0f))
-						y->MonsterSay("ƒ„√«÷ª≤ªπ˝ «µ±≥ıŒ“¥Õ”Ëƒ„√«÷˜◊”µƒ“ªÀø√Œ˜ ÷Æ¡¶∞’¡À£¨’‚∏˘±æÀ„≤ª…œ±≥≈—£¨Œ“÷ª≤ªπ˝ «∞—¡¶¡ø ’ªÿ∂¯“—°£ÃÏ∆ÙÀƒ∆Ô øµƒ¡¶¡øª·Ω¯“ª≤Ω±ªœ˜»ı°£", LANG_UNIVERSAL, NULL);
-					_events.ScheduleEvent(EVENT_KILL_4_DK, 5000);
-					break;
-				case EVENT_KILL_4_DK:
-					if (y = me->FindNearestCreature(960016, 200.0f))
-					{
-						if (k = me->FindNearestCreature(960020, 200.0f)) k->setDeathState(JUST_DIED);
-						if (n = me->FindNearestCreature(960021, 200.0f))
-						{
-							y->CastSpell(n, 74768);
-							n->CastSpell(n, 67043);
-							n->setDeathState(JUST_DIED);
-						}
-						if (s = me->FindNearestCreature(960022, 200.0f)) s->setDeathState(JUST_DIED);
-						if (r = me->FindNearestCreature(960023, 200.0f)) r->setDeathState(JUST_DIED);
-					}
-					_events.ScheduleEvent(EVENT_Y_LEAVE, 2000);
-					break;
-				case EVENT_Y_LEAVE:
-					if (y = me->FindNearestCreature(960016, 200.0f))
-					{
-						y->MonsterYell("ÿ¨√Œ”¿≤ª÷’Ω·...", LANG_UNIVERSAL, NULL);
-						y->RemoveFromWorld();
-					}
-					_events.ScheduleEvent(EVENT_DONE, 5000);
-					break;
-				case EVENT_DONE:
-					me->MonsterYell("¥¯◊≈ƒ„µƒ◊‘∏∫”¿‘∂¿Îø™’‚∏ˆ ¿ΩÁ£°", LANG_UNIVERSAL, NULL);
-					me->RemoveAura(63771);
-					sWorld->SendGlobalText(" ¬º˛Ω· ¯", NULL);
-					break;
-				default:
-					break;
-				}
-			}
-		}
-	private:
-		EventMap _events;
-	};
-	CreatureAI* GetAI(Creature* creature) const
-	{
-		return new npc_remulusAI(creature);
-	}
-};
-
-
-void AddSC_Quest_Scripts()
-{
-	new NPC_Quest();
-	new npc_remulus();
-}
+Ôªø//#pragma execution_character_set("utf-8")
+//#include "../PrecompiledHeaders/ScriptPCH.h"
+//#include "../CommonFunc/CommonFunc.h"
+//
+//
+//class NPC_Quest : public CreatureScript
+//{
+//public:
+//	NPC_Quest() : CreatureScript("NPC_Quest") { }
+//	struct NPC_QuestAI : public ScriptedAI
+//	{
+//		NPC_QuestAI(Creature* creature) : ScriptedAI(creature) {}
+//
+//		void Reset() override {}
+//		void UpdateAI(uint32 diff) override
+//		{
+//
+//		}
+//	};
+//	CreatureAI* GetAI(Creature* creature) const
+//	{
+//		return new NPC_QuestAI(creature);
+//	}
+//	//Êé•Âèó‰ªªÂä°
+//	bool OnQuestAccept(Player* player, Creature* creature, Quest const* quest)
+//	{
+//		switch (quest->GetQuestId())
+//		{
+//		break;
+//		//Áø°Áø†ÂõõÈæô
+//		case 100001:
+//			player->SetPhaseMask(1, true);//chatHandler.cpp /sleep
+//			player->RemoveAura(35838);
+//			break;
+//		default:
+//			break;
+//		}
+//		return false;
+//	}
+//	//ÂÆåÊàê‰ªªÂä°
+//	bool OnQuestReward(Player* player, Creature* creature, Quest const* quest, uint32)
+//	{
+//		switch (quest->GetQuestId())
+//		{
+//			//Áø°Áø†ÂõõÈæô
+//		case 100001:
+//			player->SetPhaseMask(1, true);
+//			player->RemoveAura(35838);
+//			break;
+//		default:
+//			break;
+//		}
+//		return true;
+//	}
+//};
+//
+////ÊäΩÂèñÊ¢¶È≠á‰ªªÂä°
+//
+//enum Events
+//{
+//	EVENT_CALL_Y = 1,
+//
+//	EVENT_Y_SAY1 = 2,//‰ºäÂÖ∞Â∞ºÂ∫ìÊñØ:Áã°ÁåæÁöÑÁ≤æÁÅµÔºå‰Ω†‰ª¨ËÆæ‰∏ãÂèØÊÅ∂ÁöÑÂúàÂ•óÂ∞ÅÂç∞‰∫ÜÊàëÔºåÁé∞Âú®ÂèàË¶ÅÊù•ÂèñÁ¨ëÊàëÁöÑ‰πàÔºüÊ¢¶È≠áÊö¥ÂêõÁªù‰∏ç‰ºöÂØπ‰Ω†‰ª¨ÂçëË∫¨Â±àËÜùÔºÅ
+//	EVENT_REMULUS_SAY1 = 3,//ÂÆàÊä§ËÄÖÈõ∑ÂßÜÊ¥õÊñØÔºö‰ºäÂÖ∞Â∞ºÂ∫ìÊñØÔºå‰Ω†ÊõæÁî®Ê¢¶È≠á‰πãÂäõÊäòÁ£®‰∫ÜÊó†Êï∞Êó†ËæúÁöÑÂèóÂÆ≥ËÄÖÔºåËøôÊòØÂØπ‰Ω†Â∫îÊúâÁöÑÊÉ©ÁΩöÔºåÁé∞Âú®Ôºå‰Ω†Êúâ‰∏Ä‰∏™Ëá™ÊàëÊïëËµéÁöÑÊú∫‰ºö
+//	EVENT_REMULUS_SAY2 = 4, //ÂÆàÊä§ËÄÖÈõ∑ÂßÜÊ¥õÊñØÔºö‰Ω†ÂøÖÈ°ª‰ªéËøôÊääÂâë‰∏≠ÂÆåÂÖ®ÊäΩÂèñÂá∫ÊÆãÂ≠òÁöÑÊ¢¶È≠áÂç∞ËÆ∞ÔºåÂπ∂ÂèëË™ì‰∏çÂÜçÊÆãÂÆ≥ËâæÊ≥ΩÊãâÊñØÁöÑÊó†ËæúÁîüÂëΩÔºåÂê¶ÂàôÊàëÂ∞ÜËÆ©‰Ω†Èô∑ÂÖ•Ê∞∏‰πÖÁöÑÊ≤âÁù°„ÄÇ
+//	EVENT_Y_SAY2 = 5,//‰ºäÂÖ∞Â∞ºÂ∫ìÊñØ:Êàë‚Ä¶Á≠îÂ∫î‰Ω†ÁöÑË¶ÅÊ±ÇÔºå‰ΩÜËøô‰∏™Ë™ìË®Ä‰∏≠‰∏çÂåÖÊã¨ÂØπ‰Ω†ÁöÑ‰ªáÊÅ®ÔºåÊàë‰∏ÄÂÆö‰ºöËÆ©‰Ω†‰ªòÂá∫‰ª£‰ª∑ÁöÑÔºÅ
+//	EVENT_REMULUS_SAY3 = 6, //ÂÆàÊä§ËÄÖÈõ∑ÂßÜÊ¥õÊñØÔºöÊàëÂêåÊÑèÔºåÊàë‰ºöÂú®Ëøô‰∏ÄÁõ¥Á≠âÁùÄ‰Ω†„ÄÇÈÇ£‰πàÔºåÂºÄÂßãÂêß
+//
+//	EVENT_HOLD_SWORD = 7,
+//	EVENT_CLEAN_SOWRD = 8,
+//	EVENT_CALL_4_DK = 9,
+//
+//	//Â∫ìÂ∞îÂ°îÂÖπÂÖ¨Áàµ960020 Â•≥‰ºØÁàµÂ∏ÉÂä≥Áº™ÂÖãÊñØ960021 ÁëüÈáåËÄ∂ÂÖãÁàµÂ£´960022 ÁëûÊñáÊà¥Â∞îÁî∑Áàµ960023 ‰ºäÂÖ∞Â∞ºÂ∫ìÊñØ960016
+//	EVENT_K_SAY = 10,
+//	EVENT_N_SAY = 11,
+//	EVENT_S_SAY = 12,
+//	EVENT_R_SAY1 = 13,
+//	EVENT_Y_SAY3 = 14,
+//	EVENT_R_SAY2 = 15,
+//	EVENT_R_SAY3 = 16,
+//	EVENT_Y_SAY4 = 17,
+//	EVENT_KILL_4_DK = 18,
+//	EVENT_Y_LEAVE = 19,
+//	EVENT_DONE = 20
+//
+//};
+//
+//bool PureSwordStartFlag = false;
+//
+//class npc_remulus : public CreatureScript
+//{
+//public:
+//	npc_remulus() : CreatureScript("npc_remulus") { }
+//
+//
+//	bool OnGossipHello(Player *player, Creature *creature)
+//	{
+//		if (PureSwordStartFlag) return true;
+//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "ËÆ©Êàë‰ª¨ÂºÄÂßã", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
+//		player->SEND_GOSSIP_MENU(player->GetGossipTextId(creature), creature->GetGUID());
+//		return true;
+//	}
+//	bool OnGossipSelect(Player *player, Creature *creature, uint32 sender, uint32 action)
+//	{
+//		player->PlayerTalkClass->ClearMenus();
+//		PureSwordStartFlag = true;
+//		player->CLOSE_GOSSIP_MENU();
+//		return true;
+//	}
+//	struct npc_remulusAI : public ScriptedAI
+//	{
+//		npc_remulusAI(Creature* creature) : ScriptedAI(creature) {}
+//
+//		Creature *k, *n, *s, *r, *y;//Â∫ìÂ∞îÂ°îÂÖπÂÖ¨Áàµ960020 Â•≥‰ºØÁàµÂ∏ÉÂä≥Áº™ÂÖãÊñØ960021 ÁëüÈáåËÄ∂ÂÖãÁàµÂ£´960022 ÁëûÊñáÊà¥Â∞îÁî∑Áàµ960023 ‰ºäÂÖ∞Â∞ºÂ∫ìÊñØ960016
+//
+//
+//		void Reset() override
+//		{
+//
+//		}
+//		void UpdateAI(uint32 diff) override
+//		{
+//			if (PureSwordStartFlag)
+//			{
+//				PureSwordStartFlag = false;
+//				_events.ScheduleEvent(EVENT_CALL_Y, 2000);
+//				sWorld->SendGlobalText("‰∫ã‰ª∂ÂºÄÂßã", NULL);
+//			}
+//			_events.Update(diff);
+//
+//			while (uint32 eventId = _events.ExecuteEvent())
+//			{
+//				switch (eventId)
+//				{
+//				case EVENT_CALL_Y:
+//					y = me->SummonCreature(960016, me->GetPositionX(), me->GetPositionY() + 100, me->GetPositionZ() + 70, 0, TEMPSUMMON_TIMED_DESPAWN, 180000);
+//					if (y)
+//					{
+//						y->GetMotionMaster()->MovePoint(0, me->GetPositionX(), me->GetPositionY() + 40, me->GetPositionZ() + 15, false);
+//					}
+//					_events.ScheduleEvent(EVENT_Y_SAY1, 16000);
+//					break;
+//				case EVENT_Y_SAY1:
+//					if (y = me->FindNearestCreature(960016, 200.0f))
+//					{
+//						y->MonsterYell("ÊòØË∞ÅÂú®Âè¨Âî§ÊàëÔºü", LANG_UNIVERSAL, NULL);
+//						y->MonsterSay("Áã°ÁåæÁöÑÁ≤æÁÅµÔºå‰Ω†‰ª¨ËÆæ‰∏ãÂèØÊÅ∂ÁöÑÂúàÂ•óÂ∞ÅÂç∞‰∫ÜÊàëÔºåÁé∞Âú®ÂèàË¶ÅÊù•ÂèñÁ¨ëÊàëÁöÑ‰πàÔºüÊ¢¶È≠áÊö¥ÂêõÁªù‰∏ç‰ºöÂØπ‰Ω†‰ª¨ÂçëË∫¨Â±àËÜùÔºÅ", LANG_UNIVERSAL, NULL);
+//
+//					}
+//					me->AddAura(63771, me);
+//					_events.ScheduleEvent(EVENT_REMULUS_SAY1, 5000);
+//					break;
+//				case EVENT_REMULUS_SAY1:
+//					me->MonsterSay("‰ºäÂÖ∞Â∞ºÂ∫ìÊñØÔºå‰Ω†ÊõæÁî®Ê¢¶È≠á‰πãÂäõÊäòÁ£®‰∫ÜÊó†Êï∞Êó†ËæúÁöÑÂèóÂÆ≥ËÄÖÔºåËøôÊòØÂØπ‰Ω†Â∫îÊúâÁöÑÊÉ©ÁΩöÔºåÁé∞Âú®Ôºå‰Ω†Êúâ‰∏Ä‰∏™Ëá™ÊàëÊïëËµéÁöÑÊú∫‰ºö„ÄÇ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_REMULUS_SAY2, 5000);
+//					break;
+//				case EVENT_REMULUS_SAY2:
+//					me->MonsterSay("‰Ω†ÂøÖÈ°ª‰ªéËøôÊääÂâë‰∏≠ÂÆåÂÖ®ÊäΩÂèñÂá∫ÊÆãÂ≠òÁöÑÊ¢¶È≠áÂç∞ËÆ∞ÔºåÂπ∂ÂèëË™ì‰∏çÂÜçÊÆãÂÆ≥ËâæÊ≥ΩÊãâÊñØÁöÑÊó†ËæúÁîüÂëΩÔºåÂê¶ÂàôÊàëÂ∞ÜËÆ©‰Ω†Èô∑ÂÖ•Ê∞∏‰πÖÁöÑÊ≤âÁù°„ÄÇ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_Y_SAY2, 5000);
+//					break;
+//				case EVENT_Y_SAY2:
+//					if (y = me->FindNearestCreature(960016, 200.0f))
+//						y->MonsterSay("Êàë‚Ä¶Á≠îÂ∫î‰Ω†ÁöÑË¶ÅÊ±ÇÔºå‰ΩÜËøô‰∏™Ë™ìË®Ä‰∏≠‰∏çÂåÖÊã¨ÂØπ‰Ω†ÁöÑ‰ªáÊÅ®ÔºåÊàë‰∏ÄÂÆö‰ºöËÆ©‰Ω†‰ªòÂá∫‰ª£‰ª∑ÁöÑÔºÅ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_REMULUS_SAY3, 5000);
+//					break;
+//				case EVENT_REMULUS_SAY3:
+//					me->MonsterSay("ÊàëÂêåÊÑèÔºåÊàë‰ºöÂú®Ëøô‰∏ÄÁõ¥Á≠âÁùÄ‰Ω†„ÄÇÈÇ£‰πàÔºåÂºÄÂßãÂêß„ÄÇ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_CLEAN_SOWRD, 5000);
+//					break;
+//				case EVENT_CLEAN_SOWRD:
+//				{
+//					me->SummonCreature(960019, me->GetPositionX() + 1.5, me->GetPositionY() + 1, me->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN, 15000);
+//					me->SummonCreature(960019, me->GetPositionX() + 1.5, me->GetPositionY() + 1, me->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN, 15000);
+//
+//					std::list<Creature*> triggerlist;
+//					me->GetCreatureListWithEntryInGrid(triggerlist, 960019, 200.0f);
+//
+//					for (std::list<Creature*>::iterator itr = triggerlist.begin(); itr != triggerlist.end(); ++itr)
+//					{
+//						if (Creature* target = (*itr)->FindNearestCreature(960016, 200.0f))
+//							(*itr)->CastSpell(target, 43151);
+//					}
+//				}
+//				_events.ScheduleEvent(EVENT_CALL_4_DK, 18000);
+//				break;
+//				case EVENT_CALL_4_DK:
+//
+//					//Â∫ìÂ∞îÂ°îÂÖπÂÖ¨Áàµ960020 Â•≥‰ºØÁàµÂ∏ÉÂä≥Áº™ÂÖãÊñØ960021 ÁëüÈáåËÄ∂ÂÖãÁàµÂ£´960022 ÁëûÊñáÊà¥Â∞îÁî∑Áàµ960023 ‰ºäÂÖ∞Â∞ºÂ∫ìÊñØ960016
+//
+//					me->SummonCreature(960020, me->GetPositionX() + 3, me->GetPositionY() + 15, me->GetPositionZ(), me->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 120000);
+//					me->SummonCreature(960021, me->GetPositionX() + 1, me->GetPositionY() + 15, me->GetPositionZ(), me->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 120000);
+//					me->SummonCreature(960022, me->GetPositionX() - 1, me->GetPositionY() + 15, me->GetPositionZ(), me->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 120000);
+//					me->SummonCreature(960023, me->GetPositionX() - 3, me->GetPositionY() + 16, me->GetPositionZ(), me->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 120000);
+//					_events.ScheduleEvent(EVENT_K_SAY, 5000);
+//					break;
+//				case EVENT_K_SAY:
+//					if (k = me->FindNearestCreature(960020, 200.0f))
+//						k->MonsterSay("Áªà‰∫éÂá∫Êù•‰∫ÜÔºåÊàëÈÉΩË¢´Âú£ÂÖâ‰πãÂäõÂéãËø´ÁöÑÂèó‰∏ç‰∫Ü‰∫Ü„ÄÇ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_N_SAY, 5000);
+//					break;
+//				case EVENT_N_SAY:
+//					if (n = me->FindNearestCreature(960021, 200.0f))
+//						n->MonsterSay("ËØ•Ê≠ªÁöÑÔºåÊòØË∞ÅÂáÄÂåñ‰∫ÜÁÅ∞ÁÉ¨‰ΩøËÄÖÔºÅ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_S_SAY, 5000);
+//					break;
+//				case EVENT_S_SAY:
+//					if (s = me->FindNearestCreature(960022, 200.0f))
+//						s->MonsterSay("ÊàëË¶ÅÊâí‰∫ÜÈÇ£ÂÆ∂‰ºôÁöÑÁöÆÁî®Êù•Ë£ÖÈ•∞ÊàëÁöÑÈ©¨ÈûçÔºÅ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_R_SAY1, 5000);
+//					break;
+//				case EVENT_R_SAY1:
+//					if (r = me->FindNearestCreature(960023, 200.0f))
+//						r->MonsterSay("ÈÉΩÂà´ËØ¥‰∫ÜÔºåÁúãÁúãÁúºÂâçÁöÑÊòØË∞ÅÔºåÊ¢¶È≠áÊö¥Âêõ‚Äî‰ºäÂÖ∞Â∞ºÂ∫ìÊñØÔºå‰∏∫‰ªÄ‰πàÊàë‰ª¨‰ºöÂú®ËøôÈáåÔºå‰Ω†ÂèàÊòØÊù•Âπ≤‰ªÄ‰πàÁöÑ„ÄÇ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_Y_SAY3, 5000);
+//					break;
+//				case EVENT_Y_SAY3:
+//					if (y = me->FindNearestCreature(960016, 200.0f))
+//						y->MonsterSay("ÁúüÊòØÊÑöË†¢ÈÄèÈ°∂Ôºå‰Ω†‰ª¨Âè™‰∏çËøáÊòØÈÇ£Âõõ‰∏™Â∫üÁâ©ÊÆãÂ≠òÁöÑÊÑèËØÜÁΩ¢‰∫ÜÔºåÊòØÊó∂ÂÄô‰∫ÜÁªìËøô‰ª∂‰∫ã‰∫Ü„ÄÇ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_R_SAY2, 5000);
+//					break;
+//				case EVENT_R_SAY2:
+//					if (r = me->FindNearestCreature(960023, 200.0f))
+//						r->MonsterSay("‰Ω†Â∑≤ÁªèËÉåÂèõ‰∫ÜÂ§©ÁÅæÂÜõÂõ¢‰πàÔºüÂ∑´Â¶ñÁéã‰∏ç‰ºöÊîæËøá‰Ω†ÁöÑ„ÄÇ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_Y_SAY4, 5000);
+//					break;
+//				case EVENT_Y_SAY4:
+//					if (y = me->FindNearestCreature(960016, 200.0f))
+//						y->MonsterSay("‰Ω†‰ª¨Âè™‰∏çËøáÊòØÂΩìÂàùÊàëËµê‰∫à‰Ω†‰ª¨‰∏ªÂ≠êÁöÑ‰∏Ä‰∏ùÊ¢¶È≠á‰πãÂäõÁΩ¢‰∫ÜÔºåËøôÊ†πÊú¨ÁÆó‰∏ç‰∏äËÉåÂèõÔºåÊàëÂè™‰∏çËøáÊòØÊääÂäõÈáèÊî∂ÂõûËÄåÂ∑≤„ÄÇÂ§©ÂêØÂõõÈ™ëÂ£´ÁöÑÂäõÈáè‰ºöËøõ‰∏ÄÊ≠•Ë¢´ÂâäÂº±„ÄÇ", LANG_UNIVERSAL, NULL);
+//					_events.ScheduleEvent(EVENT_KILL_4_DK, 5000);
+//					break;
+//				case EVENT_KILL_4_DK:
+//					if (y = me->FindNearestCreature(960016, 200.0f))
+//					{
+//						if (k = me->FindNearestCreature(960020, 200.0f)) k->setDeathState(JUST_DIED);
+//						if (n = me->FindNearestCreature(960021, 200.0f))
+//						{
+//							y->CastSpell(n, 74768);
+//							n->CastSpell(n, 67043);
+//							n->setDeathState(JUST_DIED);
+//						}
+//						if (s = me->FindNearestCreature(960022, 200.0f)) s->setDeathState(JUST_DIED);
+//						if (r = me->FindNearestCreature(960023, 200.0f)) r->setDeathState(JUST_DIED);
+//					}
+//					_events.ScheduleEvent(EVENT_Y_LEAVE, 2000);
+//					break;
+//				case EVENT_Y_LEAVE:
+//					if (y = me->FindNearestCreature(960016, 200.0f))
+//					{
+//						y->MonsterYell("Âô©Ê¢¶Ê∞∏‰∏çÁªàÁªì...", LANG_UNIVERSAL, NULL);
+//						y->RemoveFromWorld();
+//					}
+//					_events.ScheduleEvent(EVENT_DONE, 5000);
+//					break;
+//				case EVENT_DONE:
+//					me->MonsterYell("Â∏¶ÁùÄ‰Ω†ÁöÑËá™Ë¥üÊ∞∏ËøúÁ¶ªÂºÄËøô‰∏™‰∏ñÁïåÔºÅ", LANG_UNIVERSAL, NULL);
+//					me->RemoveAura(63771);
+//					sWorld->SendGlobalText("‰∫ã‰ª∂ÁªìÊùü", NULL);
+//					break;
+//				default:
+//					break;
+//				}
+//			}
+//		}
+//	private:
+//		EventMap _events;
+//	};
+//	CreatureAI* GetAI(Creature* creature) const
+//	{
+//		return new npc_remulusAI(creature);
+//	}
+//};
+//
+//
+//void AddSC_Quest_Scripts()
+//{
+//	new NPC_Quest();
+//	new npc_remulus();
+//}

@@ -1,499 +1,499 @@
-#pragma execution_character_set("utf-8")
-#include "CharMod.h"
-#include "../../FunctionCollection/FunctionCollection.h"
-#include "../../Switch/Switch.h"
-#include "../../Requirement/Requirement.h"
-
-std::vector<CharStatTemplate> CharStatVec;
-std::vector<StaticStatTemplate> StaticStatVec;
-std::vector<uint32> AltClassSpellVec;
-
-void CharMod::Load()
-{
-	CharStatVec.clear();
-	QueryResult result = WorldDatabase.PQuery(
-		//		0			1			2			3			4			5			6				7			8
-		"SELECT Ö°ÒµË÷Òý,ÎïÀíÉËº¦PVP±¶ÂÊ,·¨ÊõÉËº¦PVP±¶ÂÊ,ÖÎÁÆÐ§¹ûPVP±¶ÂÊ,»¤¼×ÖµÉÏÏÞ,¶ãÉÁ°Ù·Ö±ÈÉÏÏÞ,ÕÐ¼Ü°Ù·Ö±ÈÉÏÏÞ,¸ñµ²°Ù·Ö±ÈÉÏÏÞ,±¬»÷°Ù·Ö±ÈÉÏÏÞ,"
-		//		9			10				11			12				13				14				15				16			17				18				19				20			21
-		"¶îÍâ¾«Éñ×ª·¨ÉË, ¶îÍâ¾«Éñ×ªÖÎÁÆ, ¶îÍâÖÇÁ¦×ª·¨ÉË, ¶îÍâÖÇÁ¦×ªÖÎÁÆ, ¶îÍâÁ¦Á¿×ª¹¥Ç¿, ¶îÍâÃô½Ý×ª¹¥Ç¿, ¶îÍâ¾«Éñ×ª¹¥Ç¿, ¶îÍâÖÇÁ¦×ª¹¥Ç¿, ¶îÍâÁ¦Á¿×ª·¨ÉË, ¶îÍâÃô½Ý×ª·¨ÉË, ¶îÍâÁ¦Á¿×ªÖÎÁÆ, ¶îÍâÃô½Ý×ªÖÎÁÆ,¼õÉË°Ù·Ö±È,"
-		//		22			23				24				25		26			27		28			29				30
-		"ÎïÀíÉËº¦PVE±¶ÂÊ,·¨ÊõÉËº¦PVE±¶ÂÊ,ÖÎÁÆÐ§¹ûPVE±¶ÂÊ,¼±ËÙµÈ¼¶ÉÏÏÞ,ÉúÃüÖµÉÏÏÞ,·¨Á¦ÖµÉÏÏÞ,ÎïÀíÉËº¦ÉÏÏÞ,·¨ÊõÉËº¦ÉÏÏÞ,ÖÎÁÆÐ§¹ûÉÏÏÞ FROM _ÊôÐÔµ÷Õû_Ö°Òµ");
-
-	if (result)
-	{
-		do
-		{
-			Field* fields = result->Fetch();
-			CharStatTemplate CharStatTemp;
-			CharStatTemp.classIndex		= fields[0].GetUInt8();
-			CharStatTemp.meleePVPDmgMod	= fields[1].GetFloat();
-			CharStatTemp.spellPVPDmgMod	= fields[2].GetFloat();
-			CharStatTemp.healPVPMod		= fields[3].GetFloat();
-			CharStatTemp.armorLimit		= fields[4].GetFloat();
-			CharStatTemp.dodgeLimit		= fields[5].GetFloat();
-			CharStatTemp.parryLimit		= fields[6].GetFloat();
-			CharStatTemp.blockLimit		= fields[7].GetFloat();
-			CharStatTemp.critLimit		= fields[8].GetFloat();
-			CharStatTemp.spirit2SP		= fields[9].GetFloat();
-			CharStatTemp.spirit2Heal	= fields[10].GetFloat();
-			CharStatTemp.intellect2SP	= fields[11].GetFloat();
-			CharStatTemp.intellect2Heal = fields[12].GetFloat();
-			CharStatTemp.strength2AP	= fields[13].GetFloat();
-			CharStatTemp.agility2AP		= fields[14].GetFloat();
-
-			CharStatTemp.spirit2AP		= fields[15].GetFloat();
-			CharStatTemp.intellect2AP	= fields[16].GetFloat();
-			CharStatTemp.strength2SP	= fields[17].GetFloat();
-			CharStatTemp.agility2SP		= fields[18].GetFloat();
-			CharStatTemp.strength2Heal	= fields[19].GetFloat();
-			CharStatTemp.agility2Heal	= fields[20].GetFloat();
-
-			CharStatTemp.reduceDmgMod	= fields[21].GetFloat();
-
-			CharStatTemp.meleePVEDmgMod = fields[22].GetFloat();
-			CharStatTemp.spellPVEDmgMod = fields[23].GetFloat();
-			CharStatTemp.healPVEMod		= fields[24].GetFloat();
-
-			CharStatTemp.hasteLimit		= fields[25].GetUInt32();
-			CharStatTemp.hpLimit		= fields[26].GetUInt32();
-			CharStatTemp.manaLimit		= fields[27].GetUInt32();
-			CharStatTemp.meleeDmgLimit	= fields[28].GetUInt32();
-			CharStatTemp.spellDmgLimit	= fields[29].GetUInt32();
-			CharStatTemp.healLimit		= fields[30].GetUInt32();
-
-			CharStatVec.push_back(CharStatTemp);
-		} while (result->NextRow());
-	}
-
-	StaticStatVec.clear();
-
-	AltClassSpellVec.clear();
-	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ¼¼ÄÜID FROM __×ªÖ°±£Áô¼¼ÄÜ" :
-		"SELECT spellid FROM _alt_class_spells"))
-	{
-		do
-		{
-			Field* fields = result->Fetch();
-			AltClassSpellVec.push_back(fields[0].GetUInt32());
-		} while (result->NextRow());
-	}
-	
-
-	SessionMap const& smap = sWorld->GetAllSessions();
-	for (SessionMap::const_iterator i = smap.begin(); i != smap.end(); ++i)
-		if (Player* player = i->second->GetPlayer())
-		{
-			ModLimit(player);
-			ModStats(player);
-		}	
-}
-
-float CharMod::GetLimit(StatLimitTypes type, uint8 classIndex)
-{
-	uint32 len = CharStatVec.size();
-	for (size_t i = 0; i < len; i++)
-	{
-		if (classIndex == CharStatVec[i].classIndex)
-		{
-			switch (type)
-			{
-			case LIMIT_ARMOR:
-				return CharStatVec[i].armorLimit;
-			case LIMIT_DODGE:
-				return CharStatVec[i].dodgeLimit;
-			case LIMIT_PARRY:
-				return CharStatVec[i].parryLimit;
-			case LIMIT_BLOCK:
-				return CharStatVec[i].blockLimit;
-			case LIMIT_CRIT:
-				return CharStatVec[i].critLimit;
-			case LIMIT_HASTE:
-				return CharStatVec[i].hasteLimit;
-			case LIMIT_HP:
-				return CharStatVec[i].hpLimit;
-			case LIMIT_MANA:
-				return CharStatVec[i].manaLimit;
-			case LIMIT_MELEEDMG:
-				return CharStatVec[i].meleeDmgLimit;
-			case LIMIT_SPELLDMG:
-				return CharStatVec[i].spellDmgLimit;
-			case LIMIT_HEAL:
-				return CharStatVec[i].healLimit;
-			}
-		}
-	}
-	return 1000000.0f;
-}
-
-float CharMod::GetMod(StatModTypes type, uint8 classIndex)
-{
-	uint32 len = CharStatVec.size();
-	for (size_t i = 0; i < len; i++)
-	{
-		if (classIndex == CharStatVec[i].classIndex)
-		{
-			switch (type)
-			{
-			case CHAR_MOD_PVP_MELEE_DMG:
-				return CharStatVec[i].meleePVPDmgMod;
-			case CHAR_MOD_PVP_SPELL_DMG:
-				return CharStatVec[i].spellPVPDmgMod;
-			case CHAR_MOD_PVP_HEAL:
-				return CharStatVec[i].healPVPMod;
-			case CHAR_MOD_PVE_MELEE_DMG:
-				return CharStatVec[i].meleePVEDmgMod;
-			case CHAR_MOD_PVE_SPELL_DMG:
-				return CharStatVec[i].spellPVEDmgMod;
-			case CHAR_MOD_PVE_HEAL:
-				return CharStatVec[i].healPVEMod;
-			case CHAR_MOD_REDUCE_DMG:
-				return CharStatVec[i].reduceDmgMod;
-			}
-		}
-	}
-	return 1.0f;
-}
-
-float CharMod::GetValue(SwitchStatTypes type, uint8 classIndex)
-{
-	uint32 len = CharStatVec.size();
-	for (size_t i = 0; i < len; i++)
-	{
-		if (classIndex == CharStatVec[i].classIndex)
-		{
-			switch (type)
-			{
-			case SWITCH_SPIRIT2SP:
-				return CharStatVec[i].spirit2SP;
-			case SWITCH_SPIRIT2HEAL:
-				return CharStatVec[i].spirit2Heal;
-			case SWITCH_INTELLECT2SP:
-				return CharStatVec[i].intellect2SP;
-			case SWITCH_INTELLECT2HEAL:
-				return CharStatVec[i].intellect2Heal;
-			case SWITCH_STRENGTH2AP:
-				return CharStatVec[i].strength2AP;
-			case SWITCH_AGILITY2AP:
-				return CharStatVec[i].agility2AP;
-
-			case SWITCH_SPIRIT2AP:
-				return  CharStatVec[i].spirit2AP;
-			case SWITCH_INTELLECT2AP:
-				return  CharStatVec[i].intellect2AP;
-			case SWITCH_STRENGTH2SP:
-				return  CharStatVec[i].strength2SP;
-			case SWITCH_AGILITY2SP:
-				return  CharStatVec[i].agility2SP;
-			case SWITCH_STRENGTH2HEAL:
-				return  CharStatVec[i].strength2Heal;
-			case SWITCH_AGILITY2HEAL:
-				return  CharStatVec[i].agility2Heal;
-
-			}
-		}
-	}
-	return 0.0f;
-}
-
-int32 CharMod::GetExtraSP(Player* player)
-{
-	float intellectValue = player->GetTotalStatValue(Stats(STAT_INTELLECT));
-	float spiritValue = player->GetTotalStatValue(Stats(STAT_SPIRIT));
-	float strengthValue = player->GetTotalStatValue(Stats(STAT_STRENGTH));
-	float agilityValue = player->GetTotalStatValue(Stats(STAT_AGILITY));
-
-	return int32(player->p_sp + intellectValue * player->p_intellect2SP + spiritValue * player->p_spirit2SP + strengthValue * player->p_strength2SP + agilityValue * player->p_agility2SP);
-}
-int32 CharMod::GetExtraAP(Player* player)
-{
-	float strengthValue = player->GetTotalStatValue(Stats(STAT_STRENGTH));
-	float agilityValue = player->GetTotalStatValue(Stats(STAT_AGILITY));
-	float intellectValue = player->GetTotalStatValue(Stats(STAT_INTELLECT));
-	float spiritValue = player->GetTotalStatValue(Stats(STAT_SPIRIT));
-
-	return int32(player->p_ap + strengthValue * player->p_strength2AP + agilityValue * player->p_agility2AP + intellectValue * player->p_intellect2AP + spiritValue * player->p_spirit2AP);
-}
-
-int32 CharMod::GetExtraHeal(Player* player)
-{
-	float intellectValue = player->GetTotalStatValue(Stats(STAT_INTELLECT));
-	float spiritValue = player->GetTotalStatValue(Stats(STAT_SPIRIT));
-	float strengthValue = player->GetTotalStatValue(Stats(STAT_STRENGTH));
-	float agilityValue = player->GetTotalStatValue(Stats(STAT_AGILITY));
-
-	return int32(player->p_heal + intellectValue * player->p_intellect2Heal + spiritValue * player->p_spirit2Heal + strengthValue * player->p_strength2Heal + agilityValue * player->p_agility2Heal);
-}
-
-void CharMod::ModLimit(Player* player)
-{
-	player->p_intellect2SP = GetValue(SWITCH_INTELLECT2SP, player->getClass());
-	player->p_spirit2SP = GetValue(SWITCH_SPIRIT2SP, player->getClass());
-	player->p_intellect2Heal = GetValue(SWITCH_INTELLECT2HEAL, player->getClass());
-	player->p_spirit2Heal = GetValue(SWITCH_SPIRIT2HEAL, player->getClass());
-	player->p_strength2AP = GetValue(SWITCH_STRENGTH2AP, player->getClass());
-	player->p_agility2AP = GetValue(SWITCH_AGILITY2AP, player->getClass());
-
-
-	player->p_agility2SP = GetValue(SWITCH_AGILITY2SP, player->getClass());
-	player->p_strength2SP = GetValue(SWITCH_STRENGTH2SP, player->getClass());
-	player->p_intellect2AP = GetValue(SWITCH_INTELLECT2AP, player->getClass());
-	player->p_spirit2AP = GetValue(SWITCH_SPIRIT2AP, player->getClass());
-	player->p_agility2Heal = GetValue(SWITCH_AGILITY2HEAL, player->getClass());
-	player->p_strength2Heal = GetValue(SWITCH_STRENGTH2HEAL, player->getClass());
-
-	player->p_PVP_meleeDmgMod = GetMod(CHAR_MOD_PVP_MELEE_DMG, player->getClass());
-	player->p_PVP_spellDmgMod = GetMod(CHAR_MOD_PVP_SPELL_DMG, player->getClass());
-	player->p_PVP_healMod = GetMod(CHAR_MOD_PVP_HEAL, player->getClass());
-	player->p_PVE_meleeDmgMod = GetMod(CHAR_MOD_PVE_MELEE_DMG, player->getClass());
-	player->p_PVE_spellDmgMod = GetMod(CHAR_MOD_PVE_SPELL_DMG, player->getClass());
-	player->p_PVE_healMod = GetMod(CHAR_MOD_PVE_HEAL, player->getClass());
-	player->p_reduceDmgMod = GetMod(CHAR_MOD_REDUCE_DMG, player->getClass());
-
-	player->p_armorLimit = GetLimit(LIMIT_ARMOR, player->getClass());
-	player->p_dodgeLimit = GetLimit(LIMIT_DODGE, player->getClass());
-	player->p_parryLimit = GetLimit(LIMIT_PARRY, player->getClass());
-	player->p_blockLimit = GetLimit(LIMIT_BLOCK, player->getClass());
-	player->p_critLimit = GetLimit(LIMIT_CRIT, player->getClass());
-
-	player->p_hasteLimit = GetLimit(LIMIT_HASTE, player->getClass());
-	player->p_hpLimit = GetLimit(LIMIT_HP, player->getClass());
-	player->p_manaLimit = GetLimit(LIMIT_MANA, player->getClass());
-	player->p_meleeDmgLimit = GetLimit(LIMIT_MELEEDMG, player->getClass());
-	player->p_spellDmgLimit = GetLimit(LIMIT_SPELLDMG, player->getClass());
-	player->p_healLimit = GetLimit(LIMIT_HEAL, player->getClass());
-
-
-	player->UpdateAllStats();
-}
-void CharMod::ModStats(Player* player)
-{
-	bool exsit = false;
-
-	for (auto itr = StaticStatVec.begin(); itr != StaticStatVec.end(); itr++)
-	{
-		if (itr->map == player->GetMapId() && itr->vip == player->vipLevel)// && player->getClass() == itr->_class)
-		{
-			player->StaticStatsMap = itr->StaticStatsMap;
-			player->StaticCombatRatingMap = itr->StaticCombatRatingMap;
-			player->StaticHealth = itr->StaticHealth;
-			player->StaticSpellPower = itr->StaticSpellPower;
-			player->StaticHealPower = itr->StaticHealPower;
-			player->StaticRangeAttackPower = itr->StaticRangeAttackPower;
-			player->StaticAttackPower = itr->StaticAttackPower;
-			exsit = true;
-		}
-	}
-
-	if (!exsit)
-	{
-		player->StaticStatsMap.clear();
-		player->StaticCombatRatingMap.clear();
-		player->StaticHealth = 0;
-		player->StaticSpellPower = 0;
-		player->StaticHealPower = 0;
-		player->StaticRangeAttackPower = 0;
-		player->StaticAttackPower = 0;
-	}
-
-	player->UpdateAllStats();
-}
-
-
-bool CharMod::CheckFamily(Player* player, uint32 SpellFamily)
-{
-	switch (player->getClass())
-	{
-	case CLASS_WARRIOR:
-		return SpellFamily == SPELLFAMILY_WARRIOR;
-	case CLASS_PALADIN:
-		return SpellFamily == SPELLFAMILY_PALADIN;
-	case CLASS_HUNTER:
-		return SpellFamily == SPELLFAMILY_HUNTER;
-	case CLASS_ROGUE:
-		return SpellFamily == SPELLFAMILY_ROGUE;
-	case CLASS_PRIEST:
-		return SpellFamily == SPELLFAMILY_PRIEST;
-	case CLASS_DEATH_KNIGHT:
-		return SpellFamily == SPELLFAMILY_DEATHKNIGHT;
-	case CLASS_SHAMAN:
-		return SpellFamily == SPELLFAMILY_SHAMAN;
-	case CLASS_MAGE:
-		return SpellFamily == SPELLFAMILY_MAGE;
-	case CLASS_WARLOCK:
-		return SpellFamily == SPELLFAMILY_WARLOCK;
-	case CLASS_DRUID:
-		return SpellFamily == SPELLFAMILY_DRUID;
-	}
-
-	return false;
-}
-
-bool CharMod::CheckSkill(SpellInfo const* spellInfo)
-{
-	return
-		spellInfo->IsAbilityOfSkillType(SKILL_ALCHEMY) ||			//Á¶½ð
-		spellInfo->IsAbilityOfSkillType(SKILL_BLACKSMITHING) ||		//¶ÍÔì
-		spellInfo->IsAbilityOfSkillType(SKILL_COOKING) ||			//Åëâ¿
-		spellInfo->IsAbilityOfSkillType(SKILL_ENCHANTING) ||		//¸½Ä§
-		spellInfo->IsAbilityOfSkillType(SKILL_ENGINEERING) ||		//¹¤³Ì
-		spellInfo->IsAbilityOfSkillType(SKILL_FIRST_AID) ||			//¼±¾È
-		spellInfo->IsAbilityOfSkillType(SKILL_HERBALISM) ||			//²ÝÒ©
-		spellInfo->IsAbilityOfSkillType(SKILL_LEATHERWORKING) ||	//ÖÆÆ¤
-		spellInfo->IsAbilityOfSkillType(SKILL_INSCRIPTION) ||		//ÃúÎÄ
-		spellInfo->IsAbilityOfSkillType(SKILL_TAILORING) ||			//²Ã·ì
-		spellInfo->IsAbilityOfSkillType(SKILL_MINING) ||			//ÍÚ¿ó
-		spellInfo->IsAbilityOfSkillType(SKILL_FISHING) ||			//µöÓã
-		spellInfo->IsAbilityOfSkillType(SKILL_SKINNING) ||			//°þÆ¤
-		spellInfo->IsAbilityOfSkillType(SKILL_JEWELCRAFTING) ||		//Öé±¦
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_HORSE) ||		//ÆïÊõ
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_WOLF) ||
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_TIGER) ||
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_RAM) ||
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_RAPTOR) ||
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_MECHANOSTRIDER) ||
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_UNDEAD_HORSE) ||
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_KODO) ||
-		spellInfo->IsAbilityOfSkillType(SKILL_RIDING) ||
-		spellInfo->HasAura(SPELL_AURA_MOUNTED) ||					//×øÆï
-		spellInfo->IsAbilityOfSkillType(SKILL_COMPANIONS);			//Ð¡³èÎï
-}
-
-void CharMod::ModClass(Player* player, uint8 targetClass)
-{
-	player->CLOSE_GOSSIP_MENU();
-	
-	uint32 reqId = sSwitch->GetValue(ST_ALT_CLASS);
-
-	if (!sReq->Check(player, reqId))
-		return;
-
-	sReq->Des(player, reqId);
-
-	uint32 bytes0 = 0;
-	bytes0 |= player->getRace(); 
-	bytes0 |= targetClass << 8; 
-	bytes0 |= player->getGender() << 16;
-
-	ChrClassesEntry const* cEntry = sChrClassesStore.LookupEntry(targetClass);
-	if (cEntry && cEntry->powerType < MAX_POWERS)
-		bytes0 |= cEntry->powerType << 24;
-
-	player->SetUInt32Value(UNIT_FIELD_BYTES_0, bytes0);
-
-	PlayerSpellMap spellMap = player->GetSpellMap();
-
-	for (PlayerSpellMap::const_iterator iter = spellMap.begin(); iter != spellMap.end(); ++iter)
-		if (SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(iter->first))
-			if(!CheckSkill(spellInfo))
-				if (AltClassSpellVec.empty() || std::find(AltClassSpellVec.begin(), AltClassSpellVec.end(), iter->first) == AltClassSpellVec.end())
-					player->removeSpell(iter->first, SPEC_MASK_ALL, false);
-
-	player->learnDefaultSpells();
-	player->learnQuestRewardedSpells();
-
-	player->resetTalents(true);
-	player->SendTalentsInfoData(false);
-
-
-	for (uint32 id = 0; id < sSkillLineStore.GetNumRows(); id++)
-	{
-
-		SkillLineEntry const* pSkill = sSkillLineStore.LookupEntry(id);
-		if (!pSkill)
-			continue;
-
-		if (pSkill->categoryId != SKILL_CATEGORY_CLASS)
-			continue;
-
-		player->SetSkill(id, 0, 0, 0);
-	}
-
-
-	if (targetClass == CLASS_DEATH_KNIGHT)
-		player->InitRunes();
-
-	//CharacterDatabase.PExecute("update characters set class=%u where guid =%u", targetClass, player->GetGUIDLow()); //¸üÐÂ×ªÖ°ºóµÄÖ°Òµ
-	CharacterDatabase.PExecute("delete from character_glyphs where guid =%u", player->GetGUIDLow()); // É¾³ýµñÎÄ
-	CharacterDatabase.PExecute("delete from character_pet where owner =%u", player->GetGUIDLow());//É¾³ý³èÎï
-
-	//Customize(GetGUID(), getGender(), 1, 1, 1, 1, 1);
-	sWorld->UpdateGlobalPlayerData(player->GetGUIDLow(), PLAYER_UPDATE_DATA_CLASS, "", 0, 0, 0, targetClass);
-	player->GetSession()->KickPlayer();
-}
-
-std::string CharMod::GetClassName1(uint32 _class)
-{
-	switch (_class)
-	{
-	case CLASS_WARRIOR:
-		return "[Õ½Ê¿]";
-	case CLASS_PALADIN:
-		return "[Ê¥ÆïÊ¿]";
-	case CLASS_HUNTER:
-		return "[ÁÔÈË]";
-	case CLASS_ROGUE:
-		return "[µÁÔô]";
-	case CLASS_PRIEST:
-		return "[ÄÁÊ¦]";
-	case CLASS_DEATH_KNIGHT:
-		return "[ËÀÍöÆïÊ¿]";
-	case CLASS_SHAMAN:
-		return "[ÈøÂú¼ÀË¾]";
-	case CLASS_MAGE:
-		return "[·¨Ê¦]";
-	case CLASS_WARLOCK:
-		return "[ÊõÊ¿]";
-	case CLASS_DRUID:
-		return "[µÂÂ³ÒÁ]";
-	default:
-		return "";
-	}
-}
-
-void CharMod::AddGossip(Player* player, Object* obj)
-{
-	uint8 race = player->getRace();
-	uint8 _class = player->getClass();
-
-	for (size_t i = CLASS_WARRIOR; i <= CLASS_DRUID; i++)
-	{
-		if (i == 10 || _class == i)
-			continue;
-
-		PlayerInfo const* info = sObjectMgr->GetPlayerInfo(race, i);
-
-		if (!info)
-			continue;
-
-		std::string name = GetClassName1(i);
-		player->ADD_GOSSIP_ITEM_EXTENDED(0, "×ªÖ° -> " + name, SENDER_ALT_CLASS, i, sReq->Notice(player, sSwitch->GetValue(ST_ALT_CLASS), "×ªÖ°Îª", name), 0, false);
-	}
-
-	if (obj->ToCreature())
-		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
-	else
-		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
-}
-
-class CharModPlayerScript : public PlayerScript
-{
-public:
-	CharModPlayerScript() : PlayerScript("CharModPlayerScript") {}
-
-	void OnLogin(Player* player)
-	{
-		sCharMod->ModLimit(player);
-	}
-
-	void OnMapChanged(Player* player) 
-	{
-		sCharMod->ModStats(player);
-	}
-};
-
-
-void AddSC_CharModPlayerScript()
-{
-	new CharModPlayerScript();
-}
+ï»¿//#pragma execution_character_set("utf-8")
+//#include "CharMod.h"
+//#include "../../FunctionCollection/FunctionCollection.h"
+//#include "../../Switch/Switch.h"
+//#include "../../Requirement/Requirement.h"
+//
+//std::vector<CharStatTemplate> CharStatVec;
+//std::vector<StaticStatTemplate> StaticStatVec;
+//std::vector<uint32> AltClassSpellVec;
+//
+//void CharMod::Load()
+//{
+//	CharStatVec.clear();
+//	QueryResult result = WorldDatabase.PQuery(
+//		//		0			1			2			3			4			5			6				7			8
+//		"SELECT èŒä¸šç´¢å¼•,ç‰©ç†ä¼¤å®³PVPå€çŽ‡,æ³•æœ¯ä¼¤å®³PVPå€çŽ‡,æ²»ç–—æ•ˆæžœPVPå€çŽ‡,æŠ¤ç”²å€¼ä¸Šé™,èº²é—ªç™¾åˆ†æ¯”ä¸Šé™,æ‹›æž¶ç™¾åˆ†æ¯”ä¸Šé™,æ ¼æŒ¡ç™¾åˆ†æ¯”ä¸Šé™,çˆ†å‡»ç™¾åˆ†æ¯”ä¸Šé™,"
+//		//		9			10				11			12				13				14				15				16			17				18				19				20			21
+//		"é¢å¤–ç²¾ç¥žè½¬æ³•ä¼¤, é¢å¤–ç²¾ç¥žè½¬æ²»ç–—, é¢å¤–æ™ºåŠ›è½¬æ³•ä¼¤, é¢å¤–æ™ºåŠ›è½¬æ²»ç–—, é¢å¤–åŠ›é‡è½¬æ”»å¼º, é¢å¤–æ•æ·è½¬æ”»å¼º, é¢å¤–ç²¾ç¥žè½¬æ”»å¼º, é¢å¤–æ™ºåŠ›è½¬æ”»å¼º, é¢å¤–åŠ›é‡è½¬æ³•ä¼¤, é¢å¤–æ•æ·è½¬æ³•ä¼¤, é¢å¤–åŠ›é‡è½¬æ²»ç–—, é¢å¤–æ•æ·è½¬æ²»ç–—,å‡ä¼¤ç™¾åˆ†æ¯”,"
+//		//		22			23				24				25		26			27		28			29				30
+//		"ç‰©ç†ä¼¤å®³PVEå€çŽ‡,æ³•æœ¯ä¼¤å®³PVEå€çŽ‡,æ²»ç–—æ•ˆæžœPVEå€çŽ‡,æ€¥é€Ÿç­‰çº§ä¸Šé™,ç”Ÿå‘½å€¼ä¸Šé™,æ³•åŠ›å€¼ä¸Šé™,ç‰©ç†ä¼¤å®³ä¸Šé™,æ³•æœ¯ä¼¤å®³ä¸Šé™,æ²»ç–—æ•ˆæžœä¸Šé™ FROM _å±žæ€§è°ƒæ•´_èŒä¸š");
+//
+//	if (result)
+//	{
+//		do
+//		{
+//			Field* fields = result->Fetch();
+//			CharStatTemplate CharStatTemp;
+//			CharStatTemp.classIndex		= fields[0].GetUInt8();
+//			CharStatTemp.meleePVPDmgMod	= fields[1].GetFloat();
+//			CharStatTemp.spellPVPDmgMod	= fields[2].GetFloat();
+//			CharStatTemp.healPVPMod		= fields[3].GetFloat();
+//			CharStatTemp.armorLimit		= fields[4].GetFloat();
+//			CharStatTemp.dodgeLimit		= fields[5].GetFloat();
+//			CharStatTemp.parryLimit		= fields[6].GetFloat();
+//			CharStatTemp.blockLimit		= fields[7].GetFloat();
+//			CharStatTemp.critLimit		= fields[8].GetFloat();
+//			CharStatTemp.spirit2SP		= fields[9].GetFloat();
+//			CharStatTemp.spirit2Heal	= fields[10].GetFloat();
+//			CharStatTemp.intellect2SP	= fields[11].GetFloat();
+//			CharStatTemp.intellect2Heal = fields[12].GetFloat();
+//			CharStatTemp.strength2AP	= fields[13].GetFloat();
+//			CharStatTemp.agility2AP		= fields[14].GetFloat();
+//
+//			CharStatTemp.spirit2AP		= fields[15].GetFloat();
+//			CharStatTemp.intellect2AP	= fields[16].GetFloat();
+//			CharStatTemp.strength2SP	= fields[17].GetFloat();
+//			CharStatTemp.agility2SP		= fields[18].GetFloat();
+//			CharStatTemp.strength2Heal	= fields[19].GetFloat();
+//			CharStatTemp.agility2Heal	= fields[20].GetFloat();
+//
+//			CharStatTemp.reduceDmgMod	= fields[21].GetFloat();
+//
+//			CharStatTemp.meleePVEDmgMod = fields[22].GetFloat();
+//			CharStatTemp.spellPVEDmgMod = fields[23].GetFloat();
+//			CharStatTemp.healPVEMod		= fields[24].GetFloat();
+//
+//			CharStatTemp.hasteLimit		= fields[25].GetUInt32();
+//			CharStatTemp.hpLimit		= fields[26].GetUInt32();
+//			CharStatTemp.manaLimit		= fields[27].GetUInt32();
+//			CharStatTemp.meleeDmgLimit	= fields[28].GetUInt32();
+//			CharStatTemp.spellDmgLimit	= fields[29].GetUInt32();
+//			CharStatTemp.healLimit		= fields[30].GetUInt32();
+//
+//			CharStatVec.push_back(CharStatTemp);
+//		} while (result->NextRow());
+//	}
+//
+//	StaticStatVec.clear();
+//
+//	AltClassSpellVec.clear();
+//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//		"SELECT æŠ€èƒ½ID FROM __è½¬èŒä¿ç•™æŠ€èƒ½" :
+//		"SELECT spellid FROM _alt_class_spells"))
+//	{
+//		do
+//		{
+//			Field* fields = result->Fetch();
+//			AltClassSpellVec.push_back(fields[0].GetUInt32());
+//		} while (result->NextRow());
+//	}
+//	
+//
+//	SessionMap const& smap = sWorld->GetAllSessions();
+//	for (SessionMap::const_iterator i = smap.begin(); i != smap.end(); ++i)
+//		if (Player* player = i->second->GetPlayer())
+//		{
+//			ModLimit(player);
+//			ModStats(player);
+//		}	
+//}
+//
+//float CharMod::GetLimit(StatLimitTypes type, uint8 classIndex)
+//{
+//	uint32 len = CharStatVec.size();
+//	for (size_t i = 0; i < len; i++)
+//	{
+//		if (classIndex == CharStatVec[i].classIndex)
+//		{
+//			switch (type)
+//			{
+//			case LIMIT_ARMOR:
+//				return CharStatVec[i].armorLimit;
+//			case LIMIT_DODGE:
+//				return CharStatVec[i].dodgeLimit;
+//			case LIMIT_PARRY:
+//				return CharStatVec[i].parryLimit;
+//			case LIMIT_BLOCK:
+//				return CharStatVec[i].blockLimit;
+//			case LIMIT_CRIT:
+//				return CharStatVec[i].critLimit;
+//			case LIMIT_HASTE:
+//				return CharStatVec[i].hasteLimit;
+//			case LIMIT_HP:
+//				return CharStatVec[i].hpLimit;
+//			case LIMIT_MANA:
+//				return CharStatVec[i].manaLimit;
+//			case LIMIT_MELEEDMG:
+//				return CharStatVec[i].meleeDmgLimit;
+//			case LIMIT_SPELLDMG:
+//				return CharStatVec[i].spellDmgLimit;
+//			case LIMIT_HEAL:
+//				return CharStatVec[i].healLimit;
+//			}
+//		}
+//	}
+//	return 1000000.0f;
+//}
+//
+//float CharMod::GetMod(StatModTypes type, uint8 classIndex)
+//{
+//	uint32 len = CharStatVec.size();
+//	for (size_t i = 0; i < len; i++)
+//	{
+//		if (classIndex == CharStatVec[i].classIndex)
+//		{
+//			switch (type)
+//			{
+//			case CHAR_MOD_PVP_MELEE_DMG:
+//				return CharStatVec[i].meleePVPDmgMod;
+//			case CHAR_MOD_PVP_SPELL_DMG:
+//				return CharStatVec[i].spellPVPDmgMod;
+//			case CHAR_MOD_PVP_HEAL:
+//				return CharStatVec[i].healPVPMod;
+//			case CHAR_MOD_PVE_MELEE_DMG:
+//				return CharStatVec[i].meleePVEDmgMod;
+//			case CHAR_MOD_PVE_SPELL_DMG:
+//				return CharStatVec[i].spellPVEDmgMod;
+//			case CHAR_MOD_PVE_HEAL:
+//				return CharStatVec[i].healPVEMod;
+//			case CHAR_MOD_REDUCE_DMG:
+//				return CharStatVec[i].reduceDmgMod;
+//			}
+//		}
+//	}
+//	return 1.0f;
+//}
+//
+//float CharMod::GetValue(SwitchStatTypes type, uint8 classIndex)
+//{
+//	uint32 len = CharStatVec.size();
+//	for (size_t i = 0; i < len; i++)
+//	{
+//		if (classIndex == CharStatVec[i].classIndex)
+//		{
+//			switch (type)
+//			{
+//			case SWITCH_SPIRIT2SP:
+//				return CharStatVec[i].spirit2SP;
+//			case SWITCH_SPIRIT2HEAL:
+//				return CharStatVec[i].spirit2Heal;
+//			case SWITCH_INTELLECT2SP:
+//				return CharStatVec[i].intellect2SP;
+//			case SWITCH_INTELLECT2HEAL:
+//				return CharStatVec[i].intellect2Heal;
+//			case SWITCH_STRENGTH2AP:
+//				return CharStatVec[i].strength2AP;
+//			case SWITCH_AGILITY2AP:
+//				return CharStatVec[i].agility2AP;
+//
+//			case SWITCH_SPIRIT2AP:
+//				return  CharStatVec[i].spirit2AP;
+//			case SWITCH_INTELLECT2AP:
+//				return  CharStatVec[i].intellect2AP;
+//			case SWITCH_STRENGTH2SP:
+//				return  CharStatVec[i].strength2SP;
+//			case SWITCH_AGILITY2SP:
+//				return  CharStatVec[i].agility2SP;
+//			case SWITCH_STRENGTH2HEAL:
+//				return  CharStatVec[i].strength2Heal;
+//			case SWITCH_AGILITY2HEAL:
+//				return  CharStatVec[i].agility2Heal;
+//
+//			}
+//		}
+//	}
+//	return 0.0f;
+//}
+//
+//int32 CharMod::GetExtraSP(Player* player)
+//{
+//	float intellectValue = player->GetTotalStatValue(Stats(STAT_INTELLECT));
+//	float spiritValue = player->GetTotalStatValue(Stats(STAT_SPIRIT));
+//	float strengthValue = player->GetTotalStatValue(Stats(STAT_STRENGTH));
+//	float agilityValue = player->GetTotalStatValue(Stats(STAT_AGILITY));
+//
+//	return int32(player->p_sp + intellectValue * player->p_intellect2SP + spiritValue * player->p_spirit2SP + strengthValue * player->p_strength2SP + agilityValue * player->p_agility2SP);
+//}
+//int32 CharMod::GetExtraAP(Player* player)
+//{
+//	float strengthValue = player->GetTotalStatValue(Stats(STAT_STRENGTH));
+//	float agilityValue = player->GetTotalStatValue(Stats(STAT_AGILITY));
+//	float intellectValue = player->GetTotalStatValue(Stats(STAT_INTELLECT));
+//	float spiritValue = player->GetTotalStatValue(Stats(STAT_SPIRIT));
+//
+//	return int32(player->p_ap + strengthValue * player->p_strength2AP + agilityValue * player->p_agility2AP + intellectValue * player->p_intellect2AP + spiritValue * player->p_spirit2AP);
+//}
+//
+//int32 CharMod::GetExtraHeal(Player* player)
+//{
+//	float intellectValue = player->GetTotalStatValue(Stats(STAT_INTELLECT));
+//	float spiritValue = player->GetTotalStatValue(Stats(STAT_SPIRIT));
+//	float strengthValue = player->GetTotalStatValue(Stats(STAT_STRENGTH));
+//	float agilityValue = player->GetTotalStatValue(Stats(STAT_AGILITY));
+//
+//	return int32(player->p_heal + intellectValue * player->p_intellect2Heal + spiritValue * player->p_spirit2Heal + strengthValue * player->p_strength2Heal + agilityValue * player->p_agility2Heal);
+//}
+//
+//void CharMod::ModLimit(Player* player)
+//{
+//	player->p_intellect2SP = GetValue(SWITCH_INTELLECT2SP, player->getClass());
+//	player->p_spirit2SP = GetValue(SWITCH_SPIRIT2SP, player->getClass());
+//	player->p_intellect2Heal = GetValue(SWITCH_INTELLECT2HEAL, player->getClass());
+//	player->p_spirit2Heal = GetValue(SWITCH_SPIRIT2HEAL, player->getClass());
+//	player->p_strength2AP = GetValue(SWITCH_STRENGTH2AP, player->getClass());
+//	player->p_agility2AP = GetValue(SWITCH_AGILITY2AP, player->getClass());
+//
+//
+//	player->p_agility2SP = GetValue(SWITCH_AGILITY2SP, player->getClass());
+//	player->p_strength2SP = GetValue(SWITCH_STRENGTH2SP, player->getClass());
+//	player->p_intellect2AP = GetValue(SWITCH_INTELLECT2AP, player->getClass());
+//	player->p_spirit2AP = GetValue(SWITCH_SPIRIT2AP, player->getClass());
+//	player->p_agility2Heal = GetValue(SWITCH_AGILITY2HEAL, player->getClass());
+//	player->p_strength2Heal = GetValue(SWITCH_STRENGTH2HEAL, player->getClass());
+//
+//	player->p_PVP_meleeDmgMod = GetMod(CHAR_MOD_PVP_MELEE_DMG, player->getClass());
+//	player->p_PVP_spellDmgMod = GetMod(CHAR_MOD_PVP_SPELL_DMG, player->getClass());
+//	player->p_PVP_healMod = GetMod(CHAR_MOD_PVP_HEAL, player->getClass());
+//	player->p_PVE_meleeDmgMod = GetMod(CHAR_MOD_PVE_MELEE_DMG, player->getClass());
+//	player->p_PVE_spellDmgMod = GetMod(CHAR_MOD_PVE_SPELL_DMG, player->getClass());
+//	player->p_PVE_healMod = GetMod(CHAR_MOD_PVE_HEAL, player->getClass());
+//	player->p_reduceDmgMod = GetMod(CHAR_MOD_REDUCE_DMG, player->getClass());
+//
+//	player->p_armorLimit = GetLimit(LIMIT_ARMOR, player->getClass());
+//	player->p_dodgeLimit = GetLimit(LIMIT_DODGE, player->getClass());
+//	player->p_parryLimit = GetLimit(LIMIT_PARRY, player->getClass());
+//	player->p_blockLimit = GetLimit(LIMIT_BLOCK, player->getClass());
+//	player->p_critLimit = GetLimit(LIMIT_CRIT, player->getClass());
+//
+//	player->p_hasteLimit = GetLimit(LIMIT_HASTE, player->getClass());
+//	player->p_hpLimit = GetLimit(LIMIT_HP, player->getClass());
+//	player->p_manaLimit = GetLimit(LIMIT_MANA, player->getClass());
+//	player->p_meleeDmgLimit = GetLimit(LIMIT_MELEEDMG, player->getClass());
+//	player->p_spellDmgLimit = GetLimit(LIMIT_SPELLDMG, player->getClass());
+//	player->p_healLimit = GetLimit(LIMIT_HEAL, player->getClass());
+//
+//
+//	player->UpdateAllStats();
+//}
+//void CharMod::ModStats(Player* player)
+//{
+//	bool exsit = false;
+//
+//	for (auto itr = StaticStatVec.begin(); itr != StaticStatVec.end(); itr++)
+//	{
+//		if (itr->map == player->GetMapId() && itr->vip == player->vipLevel)// && player->getClass() == itr->_class)
+//		{
+//			player->StaticStatsMap = itr->StaticStatsMap;
+//			player->StaticCombatRatingMap = itr->StaticCombatRatingMap;
+//			player->StaticHealth = itr->StaticHealth;
+//			player->StaticSpellPower = itr->StaticSpellPower;
+//			player->StaticHealPower = itr->StaticHealPower;
+//			player->StaticRangeAttackPower = itr->StaticRangeAttackPower;
+//			player->StaticAttackPower = itr->StaticAttackPower;
+//			exsit = true;
+//		}
+//	}
+//
+//	if (!exsit)
+//	{
+//		player->StaticStatsMap.clear();
+//		player->StaticCombatRatingMap.clear();
+//		player->StaticHealth = 0;
+//		player->StaticSpellPower = 0;
+//		player->StaticHealPower = 0;
+//		player->StaticRangeAttackPower = 0;
+//		player->StaticAttackPower = 0;
+//	}
+//
+//	player->UpdateAllStats();
+//}
+//
+//
+//bool CharMod::CheckFamily(Player* player, uint32 SpellFamily)
+//{
+//	switch (player->getClass())
+//	{
+//	case CLASS_WARRIOR:
+//		return SpellFamily == SPELLFAMILY_WARRIOR;
+//	case CLASS_PALADIN:
+//		return SpellFamily == SPELLFAMILY_PALADIN;
+//	case CLASS_HUNTER:
+//		return SpellFamily == SPELLFAMILY_HUNTER;
+//	case CLASS_ROGUE:
+//		return SpellFamily == SPELLFAMILY_ROGUE;
+//	case CLASS_PRIEST:
+//		return SpellFamily == SPELLFAMILY_PRIEST;
+//	case CLASS_DEATH_KNIGHT:
+//		return SpellFamily == SPELLFAMILY_DEATHKNIGHT;
+//	case CLASS_SHAMAN:
+//		return SpellFamily == SPELLFAMILY_SHAMAN;
+//	case CLASS_MAGE:
+//		return SpellFamily == SPELLFAMILY_MAGE;
+//	case CLASS_WARLOCK:
+//		return SpellFamily == SPELLFAMILY_WARLOCK;
+//	case CLASS_DRUID:
+//		return SpellFamily == SPELLFAMILY_DRUID;
+//	}
+//
+//	return false;
+//}
+//
+//bool CharMod::CheckSkill(SpellInfo const* spellInfo)
+//{
+//	return
+//		spellInfo->IsAbilityOfSkillType(SKILL_ALCHEMY) ||			//ç‚¼é‡‘
+//		spellInfo->IsAbilityOfSkillType(SKILL_BLACKSMITHING) ||		//é”»é€ 
+//		spellInfo->IsAbilityOfSkillType(SKILL_COOKING) ||			//çƒ¹é¥ª
+//		spellInfo->IsAbilityOfSkillType(SKILL_ENCHANTING) ||		//é™„é­”
+//		spellInfo->IsAbilityOfSkillType(SKILL_ENGINEERING) ||		//å·¥ç¨‹
+//		spellInfo->IsAbilityOfSkillType(SKILL_FIRST_AID) ||			//æ€¥æ•‘
+//		spellInfo->IsAbilityOfSkillType(SKILL_HERBALISM) ||			//è‰è¯
+//		spellInfo->IsAbilityOfSkillType(SKILL_LEATHERWORKING) ||	//åˆ¶çš®
+//		spellInfo->IsAbilityOfSkillType(SKILL_INSCRIPTION) ||		//é“­æ–‡
+//		spellInfo->IsAbilityOfSkillType(SKILL_TAILORING) ||			//è£ç¼
+//		spellInfo->IsAbilityOfSkillType(SKILL_MINING) ||			//æŒ–çŸ¿
+//		spellInfo->IsAbilityOfSkillType(SKILL_FISHING) ||			//é’“é±¼
+//		spellInfo->IsAbilityOfSkillType(SKILL_SKINNING) ||			//å‰¥çš®
+//		spellInfo->IsAbilityOfSkillType(SKILL_JEWELCRAFTING) ||		//ç å®
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_HORSE) ||		//éª‘æœ¯
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_WOLF) ||
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_TIGER) ||
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_RAM) ||
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_RAPTOR) ||
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_MECHANOSTRIDER) ||
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_UNDEAD_HORSE) ||
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_KODO) ||
+//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING) ||
+//		spellInfo->HasAura(SPELL_AURA_MOUNTED) ||					//åéª‘
+//		spellInfo->IsAbilityOfSkillType(SKILL_COMPANIONS);			//å°å® ç‰©
+//}
+//
+//void CharMod::ModClass(Player* player, uint8 targetClass)
+//{
+//	player->CLOSE_GOSSIP_MENU();
+//	
+//	uint32 reqId = sSwitch->GetValue(ST_ALT_CLASS);
+//
+//	if (!sReq->Check(player, reqId))
+//		return;
+//
+//	sReq->Des(player, reqId);
+//
+//	uint32 bytes0 = 0;
+//	bytes0 |= player->getRace(); 
+//	bytes0 |= targetClass << 8; 
+//	bytes0 |= player->getGender() << 16;
+//
+//	ChrClassesEntry const* cEntry = sChrClassesStore.LookupEntry(targetClass);
+//	if (cEntry && cEntry->powerType < MAX_POWERS)
+//		bytes0 |= cEntry->powerType << 24;
+//
+//	player->SetUInt32Value(UNIT_FIELD_BYTES_0, bytes0);
+//
+//	PlayerSpellMap spellMap = player->GetSpellMap();
+//
+//	for (PlayerSpellMap::const_iterator iter = spellMap.begin(); iter != spellMap.end(); ++iter)
+//		if (SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(iter->first))
+//			if(!CheckSkill(spellInfo))
+//				if (AltClassSpellVec.empty() || std::find(AltClassSpellVec.begin(), AltClassSpellVec.end(), iter->first) == AltClassSpellVec.end())
+//					player->removeSpell(iter->first, SPEC_MASK_ALL, false);
+//
+//	player->learnDefaultSpells();
+//	player->learnQuestRewardedSpells();
+//
+//	player->resetTalents(true);
+//	player->SendTalentsInfoData(false);
+//
+//
+//	for (uint32 id = 0; id < sSkillLineStore.GetNumRows(); id++)
+//	{
+//
+//		SkillLineEntry const* pSkill = sSkillLineStore.LookupEntry(id);
+//		if (!pSkill)
+//			continue;
+//
+//		if (pSkill->categoryId != SKILL_CATEGORY_CLASS)
+//			continue;
+//
+//		player->SetSkill(id, 0, 0, 0);
+//	}
+//
+//
+//	if (targetClass == CLASS_DEATH_KNIGHT)
+//		player->InitRunes();
+//
+//	//CharacterDatabase.PExecute("update characters set class=%u where guid =%u", targetClass, player->GetGUIDLow()); //æ›´æ–°è½¬èŒåŽçš„èŒä¸š
+//	CharacterDatabase.PExecute("delete from character_glyphs where guid =%u", player->GetGUIDLow()); // åˆ é™¤é›•æ–‡
+//	CharacterDatabase.PExecute("delete from character_pet where owner =%u", player->GetGUIDLow());//åˆ é™¤å® ç‰©
+//
+//	//Customize(GetGUID(), getGender(), 1, 1, 1, 1, 1);
+//	sWorld->UpdateGlobalPlayerData(player->GetGUIDLow(), PLAYER_UPDATE_DATA_CLASS, "", 0, 0, 0, targetClass);
+//	player->GetSession()->KickPlayer();
+//}
+//
+//std::string CharMod::GetClassName1(uint32 _class)
+//{
+//	switch (_class)
+//	{
+//	case CLASS_WARRIOR:
+//		return "[æˆ˜å£«]";
+//	case CLASS_PALADIN:
+//		return "[åœ£éª‘å£«]";
+//	case CLASS_HUNTER:
+//		return "[çŒŽäºº]";
+//	case CLASS_ROGUE:
+//		return "[ç›—è´¼]";
+//	case CLASS_PRIEST:
+//		return "[ç‰§å¸ˆ]";
+//	case CLASS_DEATH_KNIGHT:
+//		return "[æ­»äº¡éª‘å£«]";
+//	case CLASS_SHAMAN:
+//		return "[è¨æ»¡ç¥­å¸]";
+//	case CLASS_MAGE:
+//		return "[æ³•å¸ˆ]";
+//	case CLASS_WARLOCK:
+//		return "[æœ¯å£«]";
+//	case CLASS_DRUID:
+//		return "[å¾·é²ä¼Š]";
+//	default:
+//		return "";
+//	}
+//}
+//
+//void CharMod::AddGossip(Player* player, Object* obj)
+//{
+//	uint8 race = player->getRace();
+//	uint8 _class = player->getClass();
+//
+//	for (size_t i = CLASS_WARRIOR; i <= CLASS_DRUID; i++)
+//	{
+//		if (i == 10 || _class == i)
+//			continue;
+//
+//		PlayerInfo const* info = sObjectMgr->GetPlayerInfo(race, i);
+//
+//		if (!info)
+//			continue;
+//
+//		std::string name = GetClassName1(i);
+//		player->ADD_GOSSIP_ITEM_EXTENDED(0, "è½¬èŒ -> " + name, SENDER_ALT_CLASS, i, sReq->Notice(player, sSwitch->GetValue(ST_ALT_CLASS), "è½¬èŒä¸º", name), 0, false);
+//	}
+//
+//	if (obj->ToCreature())
+//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//	else
+//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//}
+//
+//class CharModPlayerScript : public PlayerScript
+//{
+//public:
+//	CharModPlayerScript() : PlayerScript("CharModPlayerScript") {}
+//
+//	void OnLogin(Player* player)
+//	{
+//		sCharMod->ModLimit(player);
+//	}
+//
+//	void OnMapChanged(Player* player) 
+//	{
+//		sCharMod->ModStats(player);
+//	}
+//};
+//
+//
+//void AddSC_CharModPlayerScript()
+//{
+//	new CharModPlayerScript();
+//}

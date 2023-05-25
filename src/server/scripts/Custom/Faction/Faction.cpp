@@ -1,211 +1,211 @@
-#pragma execution_character_set("utf-8")
-#include "Faction.h"
-#include "../CommonFunc/CommonFunc.h"
-#include "../Reward/Reward.h"
-#include "../Requirement/Requirement.h"
-#include "../Switch/Switch.h"
-#include "../String/myString.h"
-#include "../CharNameMod/CharNameMod.h"
-#include "../FunctionCollection/FunctionCollection.h"
-#include "../CustomEvent/Event.h"
-#include "../MainFunc/MainFunc.h"
-
-std::map<uint32, FactionTemplate> FactionDataMap;
-
-void Faction::Load()
-{
-	FactionDataMap.clear();
-
-	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		//		0				1				2		3					4		5
-		"SELECT ×Ô¶¨ÒåÕóÓªID, ×Ô¶¨ÒåÕóÓªÃû³Æ, ²Ëµ¥ÎÄ±¾, ¼ÓÈëÕóÓª½±ÀøÄ£°åID, Ãû×Öºó×º,ÍË³öÕóÓªÐèÇóÄ£°åID FROM __×Ô¶¨ÒåÕóÓª" :
-		//		0			1		2		3		4		5
-		"SELECT faction, name, gossipText, rewId, suffix,quitReqId FROM _faction");
-	
-	if (result)
-	{
-		do
-		{
-			Field* fields = result->Fetch();
-			uint32 faction = fields[0].GetUInt32();
-
-			FactionTemplate Temp;
-			Temp.name = fields[1].GetString();
-			Temp.gossipText = fields[2].GetString();
-			Temp.rewId = fields[3].GetUInt32();
-			Temp.suffix = fields[4].GetString();
-			Temp.quitReqId = fields[5].GetUInt32();
-			FactionDataMap.insert(std::make_pair(faction, Temp));
-
-		} while (result->NextRow());
-	}
-}
-
-std::string Faction::GetName(uint32 faction)
-{
-	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
-
-	if (iter != FactionDataMap.end())
-		return iter->second.name;
-
-	return "[ÎÞ]";
-}
-
-std::string Faction::GetGosstipText(uint32 faction)
-{
-	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
-
-	if (iter != FactionDataMap.end())
-		return iter->second.gossipText;
-
-	return "";
-}
-
-uint32 Faction::GetRewId(uint32 faction)
-{
-	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
-
-	if (iter != FactionDataMap.end())
-		return iter->second.rewId;
-
-	return 0;
-}
-
-uint32 Faction::GetReqId(uint32 faction)
-{
-	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
-
-	if (iter != FactionDataMap.end())
-		return iter->second.quitReqId;
-
-	return 0;
-}
-
-std::string Faction::GetSuffix(uint32 faction)
-{
-	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
-
-	if (iter != FactionDataMap.end())
-		return iter->second.suffix;
-
-	return "";
-}
-
-void Faction::Join(Player* player, uint32 faction)
-{
-	if (player->InEvent())
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("ÊÂ¼þÖÐ²»ÄÜ¼ÓÈëÃÅÅÉ£¡");
-		return;
-	}
-	
-	if (faction == 0)
-	{
-		//ÍË³ö
-		uint32 reqId = GetReqId(player->faction);
-
-		if (!sReq->Check(player, reqId))
-			return;
-
-		sReq->Des(player, reqId);
-	}
-	else
-	{
-		//¼ÓÈë
-		uint32 rewId = GetRewId(faction);
-		sRew->Rew(player, rewId);
-	}
-
-	player->faction = faction;	
-	CharacterDatabase.PExecute("UPDATE characters SET faction = %u WHERE guid = %u", faction, player->GetGUIDLow());
-	sCharNameMod->UpdateSuffix(player, GetSuffix(faction));
-}
-
-
-void Faction::AddGossip(Player* player, Object* obj)
-{
-	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(player->faction);
-
-	if (iter != FactionDataMap.end())
-	{
-		std::string text = "|cff0033FF" + iter->second.name + "|r";
-		player->ADD_GOSSIP_ITEM(0, text, SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + iter->first);
-	}	
-
-	for (std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.begin(); iter != FactionDataMap.end(); iter++)
-	{
-		if (iter->first != player->faction)
-		{
-			std::string text = iter->second.name;
-
-			if (player->faction != 0) 
-				text = "|cffFF0000" + iter->second.name + "|r";
-
-			player->ADD_GOSSIP_ITEM(0, text, SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + iter->first);
-		}	
-	}
-
-	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
-}
-
-void Faction::Action(Player*player, uint32 action, Object*obj)
-{
-	if (action > 2 * GOSSIP_ACTION_INFO_DEF)
-	{
-		uint32 faction = action - 2 * GOSSIP_ACTION_INFO_DEF;
-
-		if (faction == player->faction)
-		{
-			Join(player, 0);
-			ChatHandler(player->GetSession()).PSendSysMessage("ÍË³ö%s", GetName(faction).c_str());
-		}
-		else
-		{
-			Join(player, faction);
-			ChatHandler(player->GetSession()).PSendSysMessage("¼ÓÈë%s", GetName(faction).c_str());
-		}
-
-		player->CLOSE_GOSSIP_MENU();
-	}
-	else if (action > GOSSIP_ACTION_INFO_DEF)
-	{
-		uint32 faction = action - GOSSIP_ACTION_INFO_DEF;
-		std::string name = GetName(faction);
-
-		player->ADD_GOSSIP_ITEM(0, GetGosstipText(faction), SENDER_FACTION, GOSSIP_ACTION_INFO_DEF);
-
-		if (player->faction == faction)
-		{
-			std::string gossipText = ">> ÍË³ö" + name;
-			std::string noticeText = "È·¶¨ÍË³ö" + name + "Âð£¿";
-			player->ADD_GOSSIP_ITEM_EXTENDED(0, gossipText, SENDER_FACTION, 2 * GOSSIP_ACTION_INFO_DEF + player->faction, noticeText, 0, false);
-		}
-		else if (player->faction == 0)
-		{
-			std::string gossipText = ">> ¼ÓÈë" + name;
-			std::string noticeText = "È·¶¨¼ÓÈë" + name + "Âð£¿";
-			player->ADD_GOSSIP_ITEM_EXTENDED(0, gossipText, SENDER_FACTION, 2 * GOSSIP_ACTION_INFO_DEF + action - GOSSIP_ACTION_INFO_DEF, noticeText, 0, false);
-		}
-			
-		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
-	}
-	else
-		sMF->AddGossip(player, obj, 0);
-}
-
-class FactionScript : PlayerScript
-{
-public:
-	FactionScript() : PlayerScript("FactionScript") {}
-
-	void OnLogin(Player* player)
-	{
-		if (QueryResult result = CharacterDatabase.PQuery("SELECT faction FROM characters WHERE guid = %u", player->GetGUIDLow()))
-			player->faction = result->Fetch()[0].GetUInt32();
-	}
-};
-
-void AddSC_FactionScript()
-{
-	new FactionScript();
-}
+ï»¿//#pragma execution_character_set("utf-8")
+//#include "Faction.h"
+//#include "../CommonFunc/CommonFunc.h"
+//#include "../Reward/Reward.h"
+//#include "../Requirement/Requirement.h"
+//#include "../Switch/Switch.h"
+//#include "../String/myString.h"
+//#include "../CharNameMod/CharNameMod.h"
+//#include "../FunctionCollection/FunctionCollection.h"
+//#include "../CustomEvent/Event.h"
+//#include "../MainFunc/MainFunc.h"
+//
+//std::map<uint32, FactionTemplate> FactionDataMap;
+//
+//void Faction::Load()
+//{
+//	FactionDataMap.clear();
+//
+//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//		//		0				1				2		3					4		5
+//		"SELECT è‡ªå®šä¹‰é˜µè¥ID, è‡ªå®šä¹‰é˜µè¥åç§°, èœå•æ–‡æœ¬, åŠ å…¥é˜µè¥å¥–åŠ±æ¨¡æ¿ID, åå­—åŽç¼€,é€€å‡ºé˜µè¥éœ€æ±‚æ¨¡æ¿ID FROM __è‡ªå®šä¹‰é˜µè¥" :
+//		//		0			1		2		3		4		5
+//		"SELECT faction, name, gossipText, rewId, suffix,quitReqId FROM _faction");
+//	
+//	if (result)
+//	{
+//		do
+//		{
+//			Field* fields = result->Fetch();
+//			uint32 faction = fields[0].GetUInt32();
+//
+//			FactionTemplate Temp;
+//			Temp.name = fields[1].GetString();
+//			Temp.gossipText = fields[2].GetString();
+//			Temp.rewId = fields[3].GetUInt32();
+//			Temp.suffix = fields[4].GetString();
+//			Temp.quitReqId = fields[5].GetUInt32();
+//			FactionDataMap.insert(std::make_pair(faction, Temp));
+//
+//		} while (result->NextRow());
+//	}
+//}
+//
+//std::string Faction::GetName(uint32 faction)
+//{
+//	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
+//
+//	if (iter != FactionDataMap.end())
+//		return iter->second.name;
+//
+//	return "[æ— ]";
+//}
+//
+//std::string Faction::GetGosstipText(uint32 faction)
+//{
+//	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
+//
+//	if (iter != FactionDataMap.end())
+//		return iter->second.gossipText;
+//
+//	return "";
+//}
+//
+//uint32 Faction::GetRewId(uint32 faction)
+//{
+//	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
+//
+//	if (iter != FactionDataMap.end())
+//		return iter->second.rewId;
+//
+//	return 0;
+//}
+//
+//uint32 Faction::GetReqId(uint32 faction)
+//{
+//	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
+//
+//	if (iter != FactionDataMap.end())
+//		return iter->second.quitReqId;
+//
+//	return 0;
+//}
+//
+//std::string Faction::GetSuffix(uint32 faction)
+//{
+//	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(faction);
+//
+//	if (iter != FactionDataMap.end())
+//		return iter->second.suffix;
+//
+//	return "";
+//}
+//
+//void Faction::Join(Player* player, uint32 faction)
+//{
+//	if (player->InEvent())
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("äº‹ä»¶ä¸­ä¸èƒ½åŠ å…¥é—¨æ´¾ï¼");
+//		return;
+//	}
+//	
+//	if (faction == 0)
+//	{
+//		//é€€å‡º
+//		uint32 reqId = GetReqId(player->faction);
+//
+//		if (!sReq->Check(player, reqId))
+//			return;
+//
+//		sReq->Des(player, reqId);
+//	}
+//	else
+//	{
+//		//åŠ å…¥
+//		uint32 rewId = GetRewId(faction);
+//		sRew->Rew(player, rewId);
+//	}
+//
+//	player->faction = faction;	
+//	CharacterDatabase.PExecute("UPDATE characters SET faction = %u WHERE guid = %u", faction, player->GetGUIDLow());
+//	sCharNameMod->UpdateSuffix(player, GetSuffix(faction));
+//}
+//
+//
+//void Faction::AddGossip(Player* player, Object* obj)
+//{
+//	std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.find(player->faction);
+//
+//	if (iter != FactionDataMap.end())
+//	{
+//		std::string text = "|cff0033FF" + iter->second.name + "|r";
+//		player->ADD_GOSSIP_ITEM(0, text, SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + iter->first);
+//	}	
+//
+//	for (std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.begin(); iter != FactionDataMap.end(); iter++)
+//	{
+//		if (iter->first != player->faction)
+//		{
+//			std::string text = iter->second.name;
+//
+//			if (player->faction != 0) 
+//				text = "|cffFF0000" + iter->second.name + "|r";
+//
+//			player->ADD_GOSSIP_ITEM(0, text, SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + iter->first);
+//		}	
+//	}
+//
+//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//}
+//
+//void Faction::Action(Player*player, uint32 action, Object*obj)
+//{
+//	if (action > 2 * GOSSIP_ACTION_INFO_DEF)
+//	{
+//		uint32 faction = action - 2 * GOSSIP_ACTION_INFO_DEF;
+//
+//		if (faction == player->faction)
+//		{
+//			Join(player, 0);
+//			ChatHandler(player->GetSession()).PSendSysMessage("é€€å‡º%s", GetName(faction).c_str());
+//		}
+//		else
+//		{
+//			Join(player, faction);
+//			ChatHandler(player->GetSession()).PSendSysMessage("åŠ å…¥%s", GetName(faction).c_str());
+//		}
+//
+//		player->CLOSE_GOSSIP_MENU();
+//	}
+//	else if (action > GOSSIP_ACTION_INFO_DEF)
+//	{
+//		uint32 faction = action - GOSSIP_ACTION_INFO_DEF;
+//		std::string name = GetName(faction);
+//
+//		player->ADD_GOSSIP_ITEM(0, GetGosstipText(faction), SENDER_FACTION, GOSSIP_ACTION_INFO_DEF);
+//
+//		if (player->faction == faction)
+//		{
+//			std::string gossipText = ">> é€€å‡º" + name;
+//			std::string noticeText = "ç¡®å®šé€€å‡º" + name + "å—ï¼Ÿ";
+//			player->ADD_GOSSIP_ITEM_EXTENDED(0, gossipText, SENDER_FACTION, 2 * GOSSIP_ACTION_INFO_DEF + player->faction, noticeText, 0, false);
+//		}
+//		else if (player->faction == 0)
+//		{
+//			std::string gossipText = ">> åŠ å…¥" + name;
+//			std::string noticeText = "ç¡®å®šåŠ å…¥" + name + "å—ï¼Ÿ";
+//			player->ADD_GOSSIP_ITEM_EXTENDED(0, gossipText, SENDER_FACTION, 2 * GOSSIP_ACTION_INFO_DEF + action - GOSSIP_ACTION_INFO_DEF, noticeText, 0, false);
+//		}
+//			
+//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//	}
+//	else
+//		sMF->AddGossip(player, obj, 0);
+//}
+//
+//class FactionScript : PlayerScript
+//{
+//public:
+//	FactionScript() : PlayerScript("FactionScript") {}
+//
+//	void OnLogin(Player* player)
+//	{
+//		if (QueryResult result = CharacterDatabase.PQuery("SELECT faction FROM characters WHERE guid = %u", player->GetGUIDLow()))
+//			player->faction = result->Fetch()[0].GetUInt32();
+//	}
+//};
+//
+//void AddSC_FactionScript()
+//{
+//	new FactionScript();
+//}

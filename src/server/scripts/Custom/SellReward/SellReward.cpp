@@ -1,70 +1,70 @@
-#pragma execution_character_set("utf-8")
-#include "SellReward.h"
-#include "../Custom/Reward/Reward.h"
-#include "../ItemMod/ItemMod.h"
-#include "../Requirement/Requirement.h"
-#include "../Command/CustomCommand.h"
-#include "../ItemMod/NoPatchItem.h"
-
-//ÊÛÂôÎïÆ·Ê±¸øÓèËæ»ú½±Àø
-void SellReward::Reward(Player* player, Item* pItem)
-{
-	uint32 rewId = sNoPatchItem->GetSellRewId(pItem);
-
-	if (rewId != 0)
-	{
-		sRew->Rew(player, rewId, pItem->GetCount());
-		return;
-	}
-	
-	uint32 chance = 0;
-	std::string command = "";
-
-	sItemMod->GetSaleInfo(pItem->GetEntry(), rewId, chance, command);
-
-	if (urand(1, 100) <= chance)
-		sRew->Rew(player, rewId, pItem->GetCount());
-
-	sCustomCommand->DoCommand(player, command);
-}
-//¿É»ñµÃËæ»úÊÛÂô½±ÀøµÄÎïÆ·²»ÄÜÍË»¹
-bool SellReward::CanRefund(Player* player, Item* pItem)
-{
-	if (sNoPatchItem->GetSellRewId(pItem) != 0)
-	{
-		player->GetSession()->SendNotification("¿É»ñµÃËæ»úÊÛÂô½±ÀøµÄÎïÆ·²»ÄÜÍË»¹£¡");
-		return false;
-	}
-
-	uint32 len = ItemSaleVec.size();
-
-	for (uint32 i = 0; i < len; i++)
-	{
-		if (ItemSaleVec[i].entry == pItem->GetEntry())
-		{
-			player->GetSession()->SendNotification("¿É»ñµÃËæ»úÊÛÂô½±ÀøµÄÎïÆ·²»ÄÜÍË»¹£¡");
-			return false;
-		}
-	}
-	return true;
-}
-
-//ÎïÆ·Ôö¼ÓÃèÊö
-std::string SellReward::GetSellDes(uint32 entry)
-{
-	uint32 rewId = 0;
-	uint32 chance = 0;
-	std::string command = "";
-
-	sItemMod->GetSaleInfo(entry, rewId, chance, command);
-
-	if (rewId == 0)
-		return "";
-
-	std::ostringstream oss;
-	oss << "|cFF00FF00¡¸ÊÛÂô |cFFFFCC00";
-	oss << chance;
-	oss << "%|r |cFF00FF00¼¸ÂÊ»ñµÃ¡¹|r\n";
-	oss << sRew->GetDescription(rewId);
-	return oss.str();
-}
+ï»¿//#pragma execution_character_set("utf-8")
+//#include "SellReward.h"
+//#include "../Custom/Reward/Reward.h"
+//#include "../ItemMod/ItemMod.h"
+//#include "../Requirement/Requirement.h"
+//#include "../Command/CustomCommand.h"
+//#include "../ItemMod/NoPatchItem.h"
+//
+////å”®å–ç‰©å“æ—¶ç»™äºˆéšæœºå¥–åŠ±
+//void SellReward::Reward(Player* player, Item* pItem)
+//{
+//	uint32 rewId = sNoPatchItem->GetSellRewId(pItem);
+//
+//	if (rewId != 0)
+//	{
+//		sRew->Rew(player, rewId, pItem->GetCount());
+//		return;
+//	}
+//	
+//	uint32 chance = 0;
+//	std::string command = "";
+//
+//	sItemMod->GetSaleInfo(pItem->GetEntry(), rewId, chance, command);
+//
+//	if (urand(1, 100) <= chance)
+//		sRew->Rew(player, rewId, pItem->GetCount());
+//
+//	sCustomCommand->DoCommand(player, command);
+//}
+////å¯è·å¾—éšæœºå”®å–å¥–åŠ±çš„ç‰©å“ä¸èƒ½é€€è¿˜
+//bool SellReward::CanRefund(Player* player, Item* pItem)
+//{
+//	if (sNoPatchItem->GetSellRewId(pItem) != 0)
+//	{
+//		player->GetSession()->SendNotification("å¯è·å¾—éšæœºå”®å–å¥–åŠ±çš„ç‰©å“ä¸èƒ½é€€è¿˜ï¼");
+//		return false;
+//	}
+//
+//	uint32 len = ItemSaleVec.size();
+//
+//	for (uint32 i = 0; i < len; i++)
+//	{
+//		if (ItemSaleVec[i].entry == pItem->GetEntry())
+//		{
+//			player->GetSession()->SendNotification("å¯è·å¾—éšæœºå”®å–å¥–åŠ±çš„ç‰©å“ä¸èƒ½é€€è¿˜ï¼");
+//			return false;
+//		}
+//	}
+//	return true;
+//}
+//
+////ç‰©å“å¢åŠ æè¿°
+//std::string SellReward::GetSellDes(uint32 entry)
+//{
+//	uint32 rewId = 0;
+//	uint32 chance = 0;
+//	std::string command = "";
+//
+//	sItemMod->GetSaleInfo(entry, rewId, chance, command);
+//
+//	if (rewId == 0)
+//		return "";
+//
+//	std::ostringstream oss;
+//	oss << "|cFF00FF00ã€Œå”®å– |cFFFFCC00";
+//	oss << chance;
+//	oss << "%|r |cFF00FF00å‡ ç‡è·å¾—ã€|r\n";
+//	oss << sRew->GetDescription(rewId);
+//	return oss.str();
+//}

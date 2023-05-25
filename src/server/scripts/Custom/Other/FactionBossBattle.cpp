@@ -1,202 +1,202 @@
-#pragma execution_character_set("utf-8")
-#include "../PrecompiledHeaders/ScriptPCH.h"
-#include "../CommonFunc/CommonFunc.h"
-#include "../CustomEvent/Event.h"
-
-//LMÈı¸öBOSSµÄentry
-#define A_A_ENTRY 200000
-#define A_B_ENTRY 200001
-#define A_C_ENTRY 200002
-
-//BLÈı¸öBOSSµÄentry
-#define H_A_ENTRY 200003
-#define H_B_ENTRY 200004
-#define H_C_ENTRY 200005
-
-//ÊÂ¼şID
-#define FACTION_BOSS_BATTLE_EVENTID 100
-
-//»ñÈ¡½±ÀøËùĞèµÄÉËº¦ºÍÖÎÁÆ
-#define DAMAGE_FOR_REWARD 500000
-#define HEAL_FOR_REWARD 500000
-#define KILLS_FOR_REWARD 100
-#define KILLEDS_FOR_REWARD 100
-
-//½±ÀøµÄ±¦ÏäID
-#define FACTION_BOSS_BATTLE_CHESTID 200000
-
-//ÇëÌá¹©ÊÂ¼ş¿ªÊ¼Ê±LMºÍBL×ø±ê
-//ÇëÌá¹©ÊÂ¼ş½áÊøÊ±´«ËÍ×ø±ê
-
-
-
-class FactionBossTrigger : public CreatureScript
-{
-public:
-	FactionBossTrigger() : CreatureScript("FactionBossTrigger") { }
-
-	struct FactionBossTriggerAI : public ScriptedAI
-	{
-		FactionBossTriggerAI(Creature* creature) : ScriptedAI(creature), Summons(me){}
-		SummonList Summons;
-
-		void InitializeAI() override
-		{
-			me->SummonCreatureGroup(1);
-		}
-
-		void Reset() override
-		{
-			Summons.DespawnAll();
-		}
-
-		void JustSummoned(Creature* summoned) override
-		{
-			Summons.Summon(summoned);
-			switch (summoned->GetEntry())
-			{
-			case A_A_ENTRY:
-			case H_A_ENTRY:
-				break;
-			case A_B_ENTRY:
-			case H_B_ENTRY:
-			case A_C_ENTRY:
-			case H_C_ENTRY:
-				//summoned->SetReactState(REACT_PASSIVE);
-				//summoned->SetVisible(false);
-				//summoned->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
-				break;
-			default:
-				break;
-			}
-		}
-
-		void SummonedCreatureDespawn(Creature* summoned) override
-		{
-			Summons.Despawn(summoned);
-		}
-
-		void SummonedCreatureDies(Creature* summon, Unit* killer)
-		{
-			switch (summon->GetEntry())
-			{
-			case A_A_ENTRY:
-				SetCreatureActive(A_B_ENTRY);
-				break;
-			case H_A_ENTRY:
-				SetCreatureActive(H_B_ENTRY);
-				break;
-			case A_B_ENTRY:
-				SetCreatureActive(A_C_ENTRY);
-				break;
-			case H_B_ENTRY:
-				SetCreatureActive(H_C_ENTRY);
-				break;
-			case A_C_ENTRY:
-			case H_C_ENTRY:
-				RewardWinTeam(killer);
-				if (sGameEventMgr->IsActiveEvent(FACTION_BOSS_BATTLE_EVENTID))
-					sGameEventMgr->StopEvent(FACTION_BOSS_BATTLE_EVENTID,true);
-			default:
-				break;
-			}
-		}
-		void UpdateAI(uint32 diff) override
-		{
-		
-			
-		}
-
-		void JustDied(Unit* /*killer*/){}
-
-
-		void SetCreatureActive(uint32 entry)
-		{
-			if (Creature* creature = GetClosestCreatureWithEntry(me, entry, 200))
-			{
-				creature->SetReactState(REACT_AGGRESSIVE);
-				creature->SetVisible(true);
-				creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
-			}
-		}
-
-		void RewardWinTeam(Unit* killer)
-		{
-			Summons.DespawnAll();
-
-			Player * player;
-
-			if (killer->GetTypeId() == TYPEID_PLAYER)
-				player = killer->ToPlayer();
-			else if (killer->GetOwner()->GetTypeId() == TYPEID_PLAYER)
-				player = killer->GetOwner()->ToPlayer();
-
-			if (player)
-			{
-				SessionMap const& smap = sWorld->GetAllSessions();
-				for (SessionMap::const_iterator iter = smap.begin(); iter != smap.end(); ++iter)
-					if (Player* pl = iter->second->GetPlayer())
-						if (pl->GetSession())
-						{
-					
-								if (pl->GetTeamId() != player->GetTeamId())
-									continue;
-
-								pl->AddItem(FACTION_BOSS_BATTLE_CHESTID, 1);
-						}
-			}
-		}
-
-	private:
-		EventMap _events;
-	};
-	CreatureAI* GetAI(Creature* creature) const
-	{
-		return new FactionBossTriggerAI(creature);
-	}
-};
-
-
-
-class FactionBossPlayerScript : public PlayerScript
-{
-public:
-	FactionBossPlayerScript() : PlayerScript("FactionBossPlayerScript") {}
-	void OnCreatureKill(Player* killer, Creature* killed) 
-	{
-		if (!sGameEventMgr->IsActiveEvent(FACTION_BOSS_BATTLE_EVENTID) && (killed->GetEntry() != 200000 || killed->GetEntry() != 200001))
-			return;	
-
-		Player * player = killed->GetLootRecipient();
-
-		if (!player)
-			return;	
-		
-		/*
-		if (killer->GetTypeId() == TYPEID_PLAYER)
-			player = killer->ToPlayer();
-		else if (killer->GetOwner()->GetTypeId() == TYPEID_PLAYER)
-			player = killer->GetOwner()->ToPlayer();
-			*/
-		
-		SessionMap const& smap = sWorld->GetAllSessions();
-		for (SessionMap::const_iterator iter = smap.begin(); iter != smap.end(); ++iter)
-			if (Player* pl = iter->second->GetPlayer())
-				if (pl->GetSession())
-				{
-					
-						if (pl->GetTeamId() != player->GetTeamId())
-							continue;
-						pl->AddItem(FACTION_BOSS_BATTLE_CHESTID, 1);							
-				}
-
-		sGameEventMgr->StopEvent(FACTION_BOSS_BATTLE_EVENTID, true);
-		sWorld->SendServerMessage(SERVER_MSG_STRING, "ÄÏº£ÕòÕ½ÒÛ½áÊø£¡");
-	}
-};
-
-void AddSC_FactionBOSS_BATTLE()
-{
-	//new FactionBossTrigger();
-	//new FactionBossPlayerScript();
-}
+ï»¿//#pragma execution_character_set("utf-8")
+//#include "../PrecompiledHeaders/ScriptPCH.h"
+//#include "../CommonFunc/CommonFunc.h"
+//#include "../CustomEvent/Event.h"
+//
+////LMä¸‰ä¸ªBOSSçš„entry
+//#define A_A_ENTRY 200000
+//#define A_B_ENTRY 200001
+//#define A_C_ENTRY 200002
+//
+////BLä¸‰ä¸ªBOSSçš„entry
+//#define H_A_ENTRY 200003
+//#define H_B_ENTRY 200004
+//#define H_C_ENTRY 200005
+//
+////äº‹ä»¶ID
+//#define FACTION_BOSS_BATTLE_EVENTID 100
+//
+////è·å–å¥–åŠ±æ‰€éœ€çš„ä¼¤å®³å’Œæ²»ç–—
+//#define DAMAGE_FOR_REWARD 500000
+//#define HEAL_FOR_REWARD 500000
+//#define KILLS_FOR_REWARD 100
+//#define KILLEDS_FOR_REWARD 100
+//
+////å¥–åŠ±çš„å®ç®±ID
+//#define FACTION_BOSS_BATTLE_CHESTID 200000
+//
+////è¯·æä¾›äº‹ä»¶å¼€å§‹æ—¶LMå’ŒBLåæ ‡
+////è¯·æä¾›äº‹ä»¶ç»“æŸæ—¶ä¼ é€åæ ‡
+//
+//
+//
+//class FactionBossTrigger : public CreatureScript
+//{
+//public:
+//	FactionBossTrigger() : CreatureScript("FactionBossTrigger") { }
+//
+//	struct FactionBossTriggerAI : public ScriptedAI
+//	{
+//		FactionBossTriggerAI(Creature* creature) : ScriptedAI(creature), Summons(me){}
+//		SummonList Summons;
+//
+//		void InitializeAI() override
+//		{
+//			me->SummonCreatureGroup(1);
+//		}
+//
+//		void Reset() override
+//		{
+//			Summons.DespawnAll();
+//		}
+//
+//		void JustSummoned(Creature* summoned) override
+//		{
+//			Summons.Summon(summoned);
+//			switch (summoned->GetEntry())
+//			{
+//			case A_A_ENTRY:
+//			case H_A_ENTRY:
+//				break;
+//			case A_B_ENTRY:
+//			case H_B_ENTRY:
+//			case A_C_ENTRY:
+//			case H_C_ENTRY:
+//				//summoned->SetReactState(REACT_PASSIVE);
+//				//summoned->SetVisible(false);
+//				//summoned->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
+//				break;
+//			default:
+//				break;
+//			}
+//		}
+//
+//		void SummonedCreatureDespawn(Creature* summoned) override
+//		{
+//			Summons.Despawn(summoned);
+//		}
+//
+//		void SummonedCreatureDies(Creature* summon, Unit* killer)
+//		{
+//			switch (summon->GetEntry())
+//			{
+//			case A_A_ENTRY:
+//				SetCreatureActive(A_B_ENTRY);
+//				break;
+//			case H_A_ENTRY:
+//				SetCreatureActive(H_B_ENTRY);
+//				break;
+//			case A_B_ENTRY:
+//				SetCreatureActive(A_C_ENTRY);
+//				break;
+//			case H_B_ENTRY:
+//				SetCreatureActive(H_C_ENTRY);
+//				break;
+//			case A_C_ENTRY:
+//			case H_C_ENTRY:
+//				RewardWinTeam(killer);
+//				if (sGameEventMgr->IsActiveEvent(FACTION_BOSS_BATTLE_EVENTID))
+//					sGameEventMgr->StopEvent(FACTION_BOSS_BATTLE_EVENTID,true);
+//			default:
+//				break;
+//			}
+//		}
+//		void UpdateAI(uint32 diff) override
+//		{
+//		
+//			
+//		}
+//
+//		void JustDied(Unit* /*killer*/){}
+//
+//
+//		void SetCreatureActive(uint32 entry)
+//		{
+//			if (Creature* creature = GetClosestCreatureWithEntry(me, entry, 200))
+//			{
+//				creature->SetReactState(REACT_AGGRESSIVE);
+//				creature->SetVisible(true);
+//				creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
+//			}
+//		}
+//
+//		void RewardWinTeam(Unit* killer)
+//		{
+//			Summons.DespawnAll();
+//
+//			Player * player;
+//
+//			if (killer->GetTypeId() == TYPEID_PLAYER)
+//				player = killer->ToPlayer();
+//			else if (killer->GetOwner()->GetTypeId() == TYPEID_PLAYER)
+//				player = killer->GetOwner()->ToPlayer();
+//
+//			if (player)
+//			{
+//				SessionMap const& smap = sWorld->GetAllSessions();
+//				for (SessionMap::const_iterator iter = smap.begin(); iter != smap.end(); ++iter)
+//					if (Player* pl = iter->second->GetPlayer())
+//						if (pl->GetSession())
+//						{
+//					
+//								if (pl->GetTeamId() != player->GetTeamId())
+//									continue;
+//
+//								pl->AddItem(FACTION_BOSS_BATTLE_CHESTID, 1);
+//						}
+//			}
+//		}
+//
+//	private:
+//		EventMap _events;
+//	};
+//	CreatureAI* GetAI(Creature* creature) const
+//	{
+//		return new FactionBossTriggerAI(creature);
+//	}
+//};
+//
+//
+//
+//class FactionBossPlayerScript : public PlayerScript
+//{
+//public:
+//	FactionBossPlayerScript() : PlayerScript("FactionBossPlayerScript") {}
+//	void OnCreatureKill(Player* killer, Creature* killed) 
+//	{
+//		if (!sGameEventMgr->IsActiveEvent(FACTION_BOSS_BATTLE_EVENTID) && (killed->GetEntry() != 200000 || killed->GetEntry() != 200001))
+//			return;	
+//
+//		Player * player = killed->GetLootRecipient();
+//
+//		if (!player)
+//			return;	
+//		
+//		/*
+//		if (killer->GetTypeId() == TYPEID_PLAYER)
+//			player = killer->ToPlayer();
+//		else if (killer->GetOwner()->GetTypeId() == TYPEID_PLAYER)
+//			player = killer->GetOwner()->ToPlayer();
+//			*/
+//		
+//		SessionMap const& smap = sWorld->GetAllSessions();
+//		for (SessionMap::const_iterator iter = smap.begin(); iter != smap.end(); ++iter)
+//			if (Player* pl = iter->second->GetPlayer())
+//				if (pl->GetSession())
+//				{
+//					
+//						if (pl->GetTeamId() != player->GetTeamId())
+//							continue;
+//						pl->AddItem(FACTION_BOSS_BATTLE_CHESTID, 1);							
+//				}
+//
+//		sGameEventMgr->StopEvent(FACTION_BOSS_BATTLE_EVENTID, true);
+//		sWorld->SendServerMessage(SERVER_MSG_STRING, "å—æµ·é•‡æˆ˜å½¹ç»“æŸï¼");
+//	}
+//};
+//
+//void AddSC_FactionBOSS_BATTLE()
+//{
+//	//new FactionBossTrigger();
+//	//new FactionBossPlayerScript();
+//}

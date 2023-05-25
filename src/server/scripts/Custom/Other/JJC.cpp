@@ -1,354 +1,354 @@
-/*
-The Zxtreme - Dev Core
-*/
-#pragma execution_character_set("utf-8")
-#include <cstring>
-#include <string.h>
-#include "ObjectMgr.h"
-#include "ScriptMgr.h"
-#include "ArenaTeam.h"
-#include "ArenaTeamMgr.h"
-#include "World.h"
-
-enum enus
-{
-    ARENA_MAX_RESULTS = 10,
-    ARENA_2V2_LADDER = GOSSIP_ACTION_INFO_DEF + 1,
-    ARENA_3V3_LADDER = GOSSIP_ACTION_INFO_DEF + 2,
-    ARENA_5V5_LADDER = GOSSIP_ACTION_INFO_DEF + 3,
-    ARENA_GOODBYE = GOSSIP_ACTION_INFO_DEF + 4,
-    ARENA_START_TEAM_LOOKUP = GOSSIP_ACTION_INFO_DEF + 5,
-    ARENA_HELP = GOSSIP_ACTION_INFO_DEF + 9999,
-};
-
-class arena_top_teams : public CreatureScript
-{
-    private:
-    uint32 optionToTeamType(uint32 option) 
-    {
-        uint32 teamType;
-        switch(option)
-        {
-            case ARENA_2V2_LADDER: 
-                teamType = 2;
-            break;
-                    
-            case ARENA_3V3_LADDER:
-                teamType = 3; 
-            break;
-                
-            case ARENA_5V5_LADDER:
-                teamType = 1; 
-            break;
-        }
-        return teamType;
-    }
-        
-    uint32 teamTypeToOption(uint32 teamType) 
-    {
-        uint32 option;
-        switch(teamType) 
-        {
-            case 2: 
-                option = ARENA_2V2_LADDER; 
-            break;
-                    
-            case 3: 
-                option = ARENA_3V3_LADDER; 
-            break;
-                    
-            case 5: 
-                option = ARENA_5V5_LADDER; 
-            break;
-        }
-        return option;
-    }
-        
-    std::string raceToString(uint8 race) 
-    {
-        std::string race_s = "Unknown";
-        switch (race)
-        {
-            case RACE_HUMAN:            
-                race_s = "»À¿‡";       
-            break;
-                
-            case RACE_ORC:              
-                race_s = " ﬁ»À";         
-            break;
-                
-            case RACE_DWARF:           
-                race_s = "∞´»À";       
-            break;
-                
-            case RACE_NIGHTELF:         
-                race_s = "∞µ“πæ´¡È";   
-            break;
-                
-            case RACE_UNDEAD_PLAYER:   
-                race_s = "Õˆ¡È";      
-            break;
-                
-            case RACE_TAUREN:          
-                race_s = "≈£Õ∑»À";      
-            break;
-                
-            case RACE_GNOME:            
-                race_s = "Gnome";       
-            break;
-                
-            case RACE_TROLL:            
-                race_s = "æﬁƒß";       
-            break;
-                
-            case RACE_BLOODELF:         
-                race_s = "—™æ´¡È";   
-            break;
-                
-            case RACE_DRAENEI:          
-                race_s = "µ¬¿≥ƒ·";     
-            break;
-        }
-        return race_s;
-    }
-        
-    std::string classToString(uint8 Class) 
-    {
-        std::string Class_s = "Unknown";
-        switch (Class)
-        {
-            case CLASS_WARRIOR:         
-                Class_s = "’Ω ø";        
-            break;
-                
-            case CLASS_PALADIN:        
-                Class_s = " •∆Ô ø";       
-            break;
-                
-            case CLASS_HUNTER:         
-                Class_s = "¡‘»À";        
-            break;
-                
-            case CLASS_ROGUE:          
-                Class_s = "µ¡‘Ù";          
-            break;
-                
-            case CLASS_PRIEST:
-                Class_s = "ƒ¡ ¶";
-            break;
-                
-            case CLASS_DEATH_KNIGHT:
-                Class_s = "À¿Õˆ∆Ô ø";
-            break;
-                
-            case CLASS_SHAMAN: 
-                Class_s = "»¯¬˙";       
-            break;
-                
-            case CLASS_MAGE: 
-                Class_s = "∑® ¶";          
-            break;
-                
-            case CLASS_WARLOCK: 
-                Class_s = " ı ø";       
-            break;
-                
-            case CLASS_DRUID:          
-                Class_s = "µ¬¬≥“¡";          
-            break;
-        }
-        return Class_s;
-    }
-        
-    std::string getWinPercent(uint32 wins, uint32 losses)
-    {
-        uint32 totalGames = wins + losses;
-        if (totalGames == 0)
-            return "0%";
-            
-        std::stringstream buf;
-        uint32 percentage = (wins * 100) / totalGames;
-        buf << percentage << "%";
-        return buf.str();
-    }
-
-    public:
-        arena_top_teams() : CreatureScript("arena_top_teams"){}
-        
-    bool OnGossipHello(Player *player, Creature *creature)
-    {
-        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\spell_chargepositive:26|t|r æ∫ºº≥°≈≈√˚?", GOSSIP_SENDER_MAIN, ARENA_HELP);
-        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_2v2_7:26|t|r æ∫ºº≥°2v2", GOSSIP_SENDER_MAIN, ARENA_2V2_LADDER);
-        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_3v3_7:26|t|r æ∫ºº≥°3v3", GOSSIP_SENDER_MAIN, ARENA_3V3_LADDER);
-        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_5v5_7:26|t|r æ∫ºº≥°1v1", GOSSIP_SENDER_MAIN, ARENA_5V5_LADDER);
-        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\spell_chargenegative:26|t|r ∑µªÿ", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
-        player->SEND_GOSSIP_MENU(90085, creature->GetGUID());
-        return true;
-    }
-        
-    bool OnGossipSelect(Player* player, Creature* creature, uint32 /*uiSender*/, uint32 uiAction) 
-    {
-        player->PlayerTalkClass->ClearMenus();
-        switch(uiAction) 
-        {
-            case ARENA_GOODBYE:
-            {
-                player->PlayerTalkClass->SendCloseGossip();
-                break;
-            }
-
-            case ARENA_HELP:
-            {
-				ChatHandler(player->GetSession()).PSendSysMessage("|cffff6060[Information]:|r ’‚∏ˆNPCœ‘ æ∑˛ŒÒ∆˜µƒΩ«∂∑ ø (Top 10).ºÚµ•µƒµ„ª˜Õ≈∂”√˚≥∆∫Õø¥µΩÕ≈∂”œ∏Ω⁄");
-																		  
-				break;
-
-			}
-
-			case ARENA_2V2_LADDER:
-			case ARENA_5V5_LADDER:
-			case ARENA_3V3_LADDER:
-            {
-                uint32 teamType = optionToTeamType(uiAction);
-                QueryResult result = CharacterDatabase.PQuery("SELECT arenaTeamId, name, rating FROM arena_team WHERE type = '%u' ORDER BY rating DESC LIMIT %u;", teamType, ARENA_MAX_RESULTS);
-                    
-                if(!result) 
-                {
-                    player->ADD_GOSSIP_ITEM(7, "∑µªÿ", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
-                    player->SEND_GOSSIP_MENU(1, creature->GetGUID());
-                } 
-                else
-                {
-                    std::string name;
-                    uint32 teamId, rating, rank = 1;
-                    player->ADD_GOSSIP_ITEM(0,"∂•º∂æ∫ºº≥°√˚µ• - Ω«∂∑ ø:", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
-                    do 
-                    {
-                        Field *fields = result->Fetch();
-                        teamId = fields[0].GetUInt32();
-                        name = fields[1].GetString();
-                        rating = fields[2].GetUInt32();
-                            
-                        std::stringstream buffer;
-                        buffer << rank << ". " << name;
-                        buffer << ": " << "|cFF1E90FF" << rating << "|r" << " ∆¿º∂!";
-                        player->ADD_GOSSIP_ITEM(4, buffer.str(), GOSSIP_SENDER_MAIN, ARENA_START_TEAM_LOOKUP + teamId);
-                            
-                        rank++;
-                    } 
-                    while(result->NextRow());
-                    player->ADD_GOSSIP_ITEM(7, "∑µªÿ", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
-                    player->SEND_GOSSIP_MENU(90086, creature->GetGUID());
-                }
-                break;
-            }
-            
-            default:
-            {
-                if (uiAction > ARENA_START_TEAM_LOOKUP) 
-                {
-                    uint32 teamId = uiAction - ARENA_START_TEAM_LOOKUP;
-					QueryResult result = CharacterDatabase.PQuery("SELECT name, rating, seasonWins, seasonGames - seasonWins, weekWins, weekGames - weekWins, rank, captainGuid , type FROM arena_team WHERE arenaTeamId = '%u'", teamId);
-                        
-                    if(!result) 
-                    {
-                        player->GetSession()->SendNotification("æ∫ºº≥°∂”Œ¥’“µΩ...");
-                        player->PlayerTalkClass->SendCloseGossip();
-                        return true;
-                    }
-                        
-                    Field *fields = result->Fetch();
-                    std::string name = fields[0].GetString();
-                    uint32 rating = fields[1].GetUInt32();
-                    uint32 seasonWins = fields[2].GetUInt32();
-                    uint32 seasonLosses = fields[3].GetUInt32();
-                    uint32 weekWins = fields[4].GetUInt32();
-                    uint32 weekLosses = fields[5].GetUInt32();
-                    uint32 rank = fields[6].GetUInt32();
-                    uint32 captainGuid = fields[7].GetUInt32();
-                    uint32 type = fields[8].GetUInt32();
-                    uint32 parentOption = teamTypeToOption(type);
-                        
-                    std::string seasonWinPercentage = getWinPercent(seasonWins, seasonLosses);
-                    std::string weekWinPercentage = getWinPercent(weekWins, weekLosses);
-                        
-                    std::stringstream buf;
-                    buf << "’Ω∂”√˚◊÷: " << "|cFF1E90FF" << name << "|r";
-                    player->ADD_GOSSIP_ITEM(7, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
-                    buf.str("");
-                    
-                    buf << "µ»º∂: " << "|cFF1E90FF" << rating << "|r" << " (≈≈√˚: " << "|cFF1E90FF" << rank << "|r" << ", Type: " << "|cFF1E90FF" << type << "v" << type << "|r"")";
-                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
-                    buf.str("");
-                    
-                    buf << "±æ÷‹: " << "|cFF1E90FF" << weekWins << "-" << weekLosses << "|r"" (" << "|cFF1E90FF" << weekWinPercentage << "|r" << "win)"; 
-                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
-                    buf.str("");
-                    
-                    buf << "»´»¸ºæ: " << "|cFF1E90FF" << seasonWins << "-" << seasonLosses << "|r" << " (" << "|cFF1E90FF" << seasonWinPercentage << "|r" << " win)"; 
-                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
-                        
-                    QueryResult members = CharacterDatabase.PQuery("SELECT  a.guid, a.personalRating, a.weekWins, a.weekGames - a.weekWins, a.seasonWins, a.seasonGames - a.seasonWins, c.name, c.race, c.class, c.level FROM arena_team_member a LEFT JOIN characters c ON c.guid = a.guid WHERE arenaTeamId = '%u' ORDER BY a.guid = '%u' DESC, a.seasonGames DESC, c.name ASC", teamId, captainGuid);
-                    if(!members) 
-                    {
-                        player->ADD_GOSSIP_ITEM(7, "√ª”–∑¢œ÷Õ≈∂”≥…‘±°≠£ø", GOSSIP_SENDER_MAIN, parentOption);
-                    } 
-                    else 
-                    {
-                        uint32 memberPos = 1;
-                        uint32 memberCount = members->GetRowCount();
-                        uint32 guid, personalRating, level;
-                        std::string name, race, Class;
-                            
-                        buf.str("");
-                        buf << "      --- " << memberCount << " Õ≈∂”" << ((memberCount == 1) ? " ≥…‘±" : " ≥…‘±") << " ∑¢œ÷" << " ---";
-                        player->ADD_GOSSIP_ITEM(0, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
-                        do 
-                        {
-                            fields = members->Fetch();
-                            guid = fields[0].GetUInt32();
-                            personalRating = fields[1].GetUInt32();
-                            weekWins= fields[2].GetUInt32();
-                            weekLosses = fields[3].GetUInt32();
-                            seasonWins = fields[4].GetUInt32();
-                            seasonLosses = fields[5].GetUInt32();
-                            name = fields[6].GetString();
-                            race = raceToString(fields[7].GetUInt8());
-                            Class = classToString(fields[8].GetUInt8());
-                            level = fields[9].GetUInt32();
-                                
-                            seasonWinPercentage = getWinPercent(seasonWins, seasonLosses);
-                            weekWinPercentage = getWinPercent(weekWins, weekLosses);
-                                
-                            buf.str(""); 
-                            buf << memberPos << ". "; 
-                            if (guid == captainGuid) 
-                                buf <<  "∂” ∂”≥§ ";
-                                
-                            
-                            buf << race << " " << Class << ", " << "|cFF1E90FF" << personalRating << "|r" << " ∏ˆ»Àµ»º∂!";
-                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
-                            buf.str("");
-                            
-                            buf << " §¿˚: " << "|cFF1E90FF" << weekWins << "-" << weekLosses << "|r" << " (" << "|cFF1E90FF" << weekWinPercentage << "|r" << "  §¿˚), " << "|cFF1E90FF" << (weekWins + weekLosses) << "|r" << " played!"; 
-                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
-                            buf.str("");
-                            
-                            buf << "»¸ºæ: " << "|cFF1E90FF" << seasonWins << "-" << seasonLosses << "|r" << " (" << "|cFF1E90FF" << seasonWinPercentage << "|r" << "  §¿˚), " << "|cFF1E90FF" << (seasonWins + seasonLosses) << "|r" << " played!"; 
-                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
-                            memberPos++;
-                        } 
-                        while(members->NextRow());
-                    }
-                    player->SEND_GOSSIP_MENU(90087, creature->GetGUID());
-                }
-            }
-        }
-        return true;
-    }
-};
-
-void AddSC_arena_top_teams()
-{
-    new arena_top_teams();
-}
+Ôªø///*
+//The Zxtreme - Dev Core
+//*/
+//#pragma execution_character_set("utf-8")
+//#include <cstring>
+//#include <string.h>
+//#include "ObjectMgr.h"
+//#include "ScriptMgr.h"
+//#include "ArenaTeam.h"
+//#include "ArenaTeamMgr.h"
+//#include "World.h"
+//
+//enum enus
+//{
+//    ARENA_MAX_RESULTS = 10,
+//    ARENA_2V2_LADDER = GOSSIP_ACTION_INFO_DEF + 1,
+//    ARENA_3V3_LADDER = GOSSIP_ACTION_INFO_DEF + 2,
+//    ARENA_5V5_LADDER = GOSSIP_ACTION_INFO_DEF + 3,
+//    ARENA_GOODBYE = GOSSIP_ACTION_INFO_DEF + 4,
+//    ARENA_START_TEAM_LOOKUP = GOSSIP_ACTION_INFO_DEF + 5,
+//    ARENA_HELP = GOSSIP_ACTION_INFO_DEF + 9999,
+//};
+//
+//class arena_top_teams : public CreatureScript
+//{
+//    private:
+//    uint32 optionToTeamType(uint32 option) 
+//    {
+//        uint32 teamType;
+//        switch(option)
+//        {
+//            case ARENA_2V2_LADDER: 
+//                teamType = 2;
+//            break;
+//                    
+//            case ARENA_3V3_LADDER:
+//                teamType = 3; 
+//            break;
+//                
+//            case ARENA_5V5_LADDER:
+//                teamType = 1; 
+//            break;
+//        }
+//        return teamType;
+//    }
+//        
+//    uint32 teamTypeToOption(uint32 teamType) 
+//    {
+//        uint32 option;
+//        switch(teamType) 
+//        {
+//            case 2: 
+//                option = ARENA_2V2_LADDER; 
+//            break;
+//                    
+//            case 3: 
+//                option = ARENA_3V3_LADDER; 
+//            break;
+//                    
+//            case 5: 
+//                option = ARENA_5V5_LADDER; 
+//            break;
+//        }
+//        return option;
+//    }
+//        
+//    std::string raceToString(uint8 race) 
+//    {
+//        std::string race_s = "Unknown";
+//        switch (race)
+//        {
+//            case RACE_HUMAN:            
+//                race_s = "‰∫∫Á±ª";       
+//            break;
+//                
+//            case RACE_ORC:              
+//                race_s = "ÂÖΩ‰∫∫";         
+//            break;
+//                
+//            case RACE_DWARF:           
+//                race_s = "ÁüÆ‰∫∫";       
+//            break;
+//                
+//            case RACE_NIGHTELF:         
+//                race_s = "ÊöóÂ§úÁ≤æÁÅµ";   
+//            break;
+//                
+//            case RACE_UNDEAD_PLAYER:   
+//                race_s = "‰∫°ÁÅµ";      
+//            break;
+//                
+//            case RACE_TAUREN:          
+//                race_s = "ÁâõÂ§¥‰∫∫";      
+//            break;
+//                
+//            case RACE_GNOME:            
+//                race_s = "Gnome";       
+//            break;
+//                
+//            case RACE_TROLL:            
+//                race_s = "Â∑®È≠î";       
+//            break;
+//                
+//            case RACE_BLOODELF:         
+//                race_s = "Ë°ÄÁ≤æÁÅµ";   
+//            break;
+//                
+//            case RACE_DRAENEI:          
+//                race_s = "Âæ∑Ëé±Â∞º";     
+//            break;
+//        }
+//        return race_s;
+//    }
+//        
+//    std::string classToString(uint8 Class) 
+//    {
+//        std::string Class_s = "Unknown";
+//        switch (Class)
+//        {
+//            case CLASS_WARRIOR:         
+//                Class_s = "ÊàòÂ£´";        
+//            break;
+//                
+//            case CLASS_PALADIN:        
+//                Class_s = "Âú£È™ëÂ£´";       
+//            break;
+//                
+//            case CLASS_HUNTER:         
+//                Class_s = "Áåé‰∫∫";        
+//            break;
+//                
+//            case CLASS_ROGUE:          
+//                Class_s = "ÁõóË¥º";          
+//            break;
+//                
+//            case CLASS_PRIEST:
+//                Class_s = "ÁâßÂ∏à";
+//            break;
+//                
+//            case CLASS_DEATH_KNIGHT:
+//                Class_s = "Ê≠ª‰∫°È™ëÂ£´";
+//            break;
+//                
+//            case CLASS_SHAMAN: 
+//                Class_s = "Ëê®Êª°";       
+//            break;
+//                
+//            case CLASS_MAGE: 
+//                Class_s = "Ê≥ïÂ∏à";          
+//            break;
+//                
+//            case CLASS_WARLOCK: 
+//                Class_s = "ÊúØÂ£´";       
+//            break;
+//                
+//            case CLASS_DRUID:          
+//                Class_s = "Âæ∑È≤Å‰ºä";          
+//            break;
+//        }
+//        return Class_s;
+//    }
+//        
+//    std::string getWinPercent(uint32 wins, uint32 losses)
+//    {
+//        uint32 totalGames = wins + losses;
+//        if (totalGames == 0)
+//            return "0%";
+//            
+//        std::stringstream buf;
+//        uint32 percentage = (wins * 100) / totalGames;
+//        buf << percentage << "%";
+//        return buf.str();
+//    }
+//
+//    public:
+//        arena_top_teams() : CreatureScript("arena_top_teams"){}
+//        
+//    bool OnGossipHello(Player *player, Creature *creature)
+//    {
+//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\spell_chargepositive:26|t|r Á´ûÊäÄÂú∫ÊéíÂêç?", GOSSIP_SENDER_MAIN, ARENA_HELP);
+//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_2v2_7:26|t|r Á´ûÊäÄÂú∫2v2", GOSSIP_SENDER_MAIN, ARENA_2V2_LADDER);
+//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_3v3_7:26|t|r Á´ûÊäÄÂú∫3v3", GOSSIP_SENDER_MAIN, ARENA_3V3_LADDER);
+//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_5v5_7:26|t|r Á´ûÊäÄÂú∫1v1", GOSSIP_SENDER_MAIN, ARENA_5V5_LADDER);
+//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\spell_chargenegative:26|t|r ËøîÂõû", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
+//        player->SEND_GOSSIP_MENU(90085, creature->GetGUID());
+//        return true;
+//    }
+//        
+//    bool OnGossipSelect(Player* player, Creature* creature, uint32 /*uiSender*/, uint32 uiAction) 
+//    {
+//        player->PlayerTalkClass->ClearMenus();
+//        switch(uiAction) 
+//        {
+//            case ARENA_GOODBYE:
+//            {
+//                player->PlayerTalkClass->SendCloseGossip();
+//                break;
+//            }
+//
+//            case ARENA_HELP:
+//            {
+//				ChatHandler(player->GetSession()).PSendSysMessage("|cffff6060[Information]:|r Ëøô‰∏™NPCÊòæÁ§∫ÊúçÂä°Âô®ÁöÑËßíÊñóÂ£´ (Top 10).ÁÆÄÂçïÁöÑÁÇπÂáªÂõ¢ÈòüÂêçÁß∞ÂíåÁúãÂà∞Âõ¢ÈòüÁªÜËäÇ");
+//																		  
+//				break;
+//
+//			}
+//
+//			case ARENA_2V2_LADDER:
+//			case ARENA_5V5_LADDER:
+//			case ARENA_3V3_LADDER:
+//            {
+//                uint32 teamType = optionToTeamType(uiAction);
+//                QueryResult result = CharacterDatabase.PQuery("SELECT arenaTeamId, name, rating FROM arena_team WHERE type = '%u' ORDER BY rating DESC LIMIT %u;", teamType, ARENA_MAX_RESULTS);
+//                    
+//                if(!result) 
+//                {
+//                    player->ADD_GOSSIP_ITEM(7, "ËøîÂõû", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
+//                    player->SEND_GOSSIP_MENU(1, creature->GetGUID());
+//                } 
+//                else
+//                {
+//                    std::string name;
+//                    uint32 teamId, rating, rank = 1;
+//                    player->ADD_GOSSIP_ITEM(0,"È°∂Á∫ßÁ´ûÊäÄÂú∫ÂêçÂçï - ËßíÊñóÂ£´:", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
+//                    do 
+//                    {
+//                        Field *fields = result->Fetch();
+//                        teamId = fields[0].GetUInt32();
+//                        name = fields[1].GetString();
+//                        rating = fields[2].GetUInt32();
+//                            
+//                        std::stringstream buffer;
+//                        buffer << rank << ". " << name;
+//                        buffer << ": " << "|cFF1E90FF" << rating << "|r" << " ËØÑÁ∫ß!";
+//                        player->ADD_GOSSIP_ITEM(4, buffer.str(), GOSSIP_SENDER_MAIN, ARENA_START_TEAM_LOOKUP + teamId);
+//                            
+//                        rank++;
+//                    } 
+//                    while(result->NextRow());
+//                    player->ADD_GOSSIP_ITEM(7, "ËøîÂõû", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
+//                    player->SEND_GOSSIP_MENU(90086, creature->GetGUID());
+//                }
+//                break;
+//            }
+//            
+//            default:
+//            {
+//                if (uiAction > ARENA_START_TEAM_LOOKUP) 
+//                {
+//                    uint32 teamId = uiAction - ARENA_START_TEAM_LOOKUP;
+//					QueryResult result = CharacterDatabase.PQuery("SELECT name, rating, seasonWins, seasonGames - seasonWins, weekWins, weekGames - weekWins, rank, captainGuid , type FROM arena_team WHERE arenaTeamId = '%u'", teamId);
+//                        
+//                    if(!result) 
+//                    {
+//                        player->GetSession()->SendNotification("Á´ûÊäÄÂú∫ÈòüÊú™ÊâæÂà∞...");
+//                        player->PlayerTalkClass->SendCloseGossip();
+//                        return true;
+//                    }
+//                        
+//                    Field *fields = result->Fetch();
+//                    std::string name = fields[0].GetString();
+//                    uint32 rating = fields[1].GetUInt32();
+//                    uint32 seasonWins = fields[2].GetUInt32();
+//                    uint32 seasonLosses = fields[3].GetUInt32();
+//                    uint32 weekWins = fields[4].GetUInt32();
+//                    uint32 weekLosses = fields[5].GetUInt32();
+//                    uint32 rank = fields[6].GetUInt32();
+//                    uint32 captainGuid = fields[7].GetUInt32();
+//                    uint32 type = fields[8].GetUInt32();
+//                    uint32 parentOption = teamTypeToOption(type);
+//                        
+//                    std::string seasonWinPercentage = getWinPercent(seasonWins, seasonLosses);
+//                    std::string weekWinPercentage = getWinPercent(weekWins, weekLosses);
+//                        
+//                    std::stringstream buf;
+//                    buf << "ÊàòÈòüÂêçÂ≠ó: " << "|cFF1E90FF" << name << "|r";
+//                    player->ADD_GOSSIP_ITEM(7, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                    buf.str("");
+//                    
+//                    buf << "Á≠âÁ∫ß: " << "|cFF1E90FF" << rating << "|r" << " (ÊéíÂêç: " << "|cFF1E90FF" << rank << "|r" << ", Type: " << "|cFF1E90FF" << type << "v" << type << "|r"")";
+//                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                    buf.str("");
+//                    
+//                    buf << "Êú¨Âë®: " << "|cFF1E90FF" << weekWins << "-" << weekLosses << "|r"" (" << "|cFF1E90FF" << weekWinPercentage << "|r" << "win)"; 
+//                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                    buf.str("");
+//                    
+//                    buf << "ÂÖ®ËµõÂ≠£: " << "|cFF1E90FF" << seasonWins << "-" << seasonLosses << "|r" << " (" << "|cFF1E90FF" << seasonWinPercentage << "|r" << " win)"; 
+//                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                        
+//                    QueryResult members = CharacterDatabase.PQuery("SELECT  a.guid, a.personalRating, a.weekWins, a.weekGames - a.weekWins, a.seasonWins, a.seasonGames - a.seasonWins, c.name, c.race, c.class, c.level FROM arena_team_member a LEFT JOIN characters c ON c.guid = a.guid WHERE arenaTeamId = '%u' ORDER BY a.guid = '%u' DESC, a.seasonGames DESC, c.name ASC", teamId, captainGuid);
+//                    if(!members) 
+//                    {
+//                        player->ADD_GOSSIP_ITEM(7, "Ê≤°ÊúâÂèëÁé∞Âõ¢ÈòüÊàêÂëò‚Ä¶Ôºü", GOSSIP_SENDER_MAIN, parentOption);
+//                    } 
+//                    else 
+//                    {
+//                        uint32 memberPos = 1;
+//                        uint32 memberCount = members->GetRowCount();
+//                        uint32 guid, personalRating, level;
+//                        std::string name, race, Class;
+//                            
+//                        buf.str("");
+//                        buf << "      --- " << memberCount << " Âõ¢Èòü" << ((memberCount == 1) ? " ÊàêÂëò" : " ÊàêÂëò") << " ÂèëÁé∞" << " ---";
+//                        player->ADD_GOSSIP_ITEM(0, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                        do 
+//                        {
+//                            fields = members->Fetch();
+//                            guid = fields[0].GetUInt32();
+//                            personalRating = fields[1].GetUInt32();
+//                            weekWins= fields[2].GetUInt32();
+//                            weekLosses = fields[3].GetUInt32();
+//                            seasonWins = fields[4].GetUInt32();
+//                            seasonLosses = fields[5].GetUInt32();
+//                            name = fields[6].GetString();
+//                            race = raceToString(fields[7].GetUInt8());
+//                            Class = classToString(fields[8].GetUInt8());
+//                            level = fields[9].GetUInt32();
+//                                
+//                            seasonWinPercentage = getWinPercent(seasonWins, seasonLosses);
+//                            weekWinPercentage = getWinPercent(weekWins, weekLosses);
+//                                
+//                            buf.str(""); 
+//                            buf << memberPos << ". "; 
+//                            if (guid == captainGuid) 
+//                                buf <<  "Èòü ÈòüÈïø ";
+//                                
+//                            
+//                            buf << race << " " << Class << ", " << "|cFF1E90FF" << personalRating << "|r" << " ‰∏™‰∫∫Á≠âÁ∫ß!";
+//                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                            buf.str("");
+//                            
+//                            buf << "ËÉúÂà©: " << "|cFF1E90FF" << weekWins << "-" << weekLosses << "|r" << " (" << "|cFF1E90FF" << weekWinPercentage << "|r" << " ËÉúÂà©), " << "|cFF1E90FF" << (weekWins + weekLosses) << "|r" << " played!"; 
+//                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                            buf.str("");
+//                            
+//                            buf << "ËµõÂ≠£: " << "|cFF1E90FF" << seasonWins << "-" << seasonLosses << "|r" << " (" << "|cFF1E90FF" << seasonWinPercentage << "|r" << " ËÉúÂà©), " << "|cFF1E90FF" << (seasonWins + seasonLosses) << "|r" << " played!"; 
+//                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                            memberPos++;
+//                        } 
+//                        while(members->NextRow());
+//                    }
+//                    player->SEND_GOSSIP_MENU(90087, creature->GetGUID());
+//                }
+//            }
+//        }
+//        return true;
+//    }
+//};
+//
+//void AddSC_arena_top_teams()
+//{
+//    new arena_top_teams();
+//}

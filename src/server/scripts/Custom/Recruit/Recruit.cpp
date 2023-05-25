@@ -1,850 +1,850 @@
-#pragma execution_character_set("utf-8")
-#include "../PrecompiledHeaders/ScriptPCH.h"
-#include "Recruit.h"
-#include "Pet.h"
-#include "GuildMgr.h"
-#include "../Custom/Requirement/Requirement.h"
-#include "../Custom/Reward/Reward.h"
-#include "../CommonFunc/CommonFunc.h"
-
-#define RECRUIT_MENU_ID 8000
-
-std::vector <RecruitTemplate> RecruitInfo;
-std::vector<RecruitOrDissTemplate> RecruitOrDissVec;
-std::unordered_map<uint32, RucruitLootShareTemplate> RecruitLootMap;
-
-void Recruit::PopMsg(Player* player, uint32 menuId, std::string text)
-{
-	WorldPacket data(SMSG_GOSSIP_MESSAGE, 100);
-	data << uint64(player->GetGUID());
-	data << uint32(menuId);
-	data << uint32(1);
-	data << uint32(1);
-	data << uint32(1);
-	data << uint8(1);
-	data << uint8(0);
-	data << uint32(0);
-	data << "¹«¸æ";
-	data << text;
-	player->GetSession()->SendPacket(&data);
-}
-
-bool Recruit::IsRecruited(Player* player)
-{
-	for (size_t i = 0; i < RecruitInfo.size(); i++)
-	{
-		if (player->GetGUIDLow() == RecruitInfo[i].friendGUIDLow)
-			return true;
-	}
-
-	return false;
-}
-
-bool Recruit::IsRecruitYourRecruiter(uint32 recruiterGUIDLow, uint32 friendGUIDLow)
-{
-	for (size_t i = 0; i < RecruitInfo.size(); i++)
-	{
-		if (friendGUIDLow == RecruitInfo[i].recruiterGUIDLow)
-		{
-			for (size_t j = 0; j < RecruitInfo.size(); j++)
-			{
-				if (recruiterGUIDLow == RecruitInfo[i].friendGUIDLow)
-				{
-					return false;
-				}
-			}
-		}
-	}
-
-	return true;
-}
-
-uint32 Recruit::GetFriendAmount(Player* recruiter)
-{
-	uint32 friendAmount = 0;
-	for (size_t i = 0; i < RecruitInfo.size(); i++)
-	{
-		if (recruiter->GetGUIDLow() == RecruitInfo[i].recruiterGUIDLow)
-			friendAmount++;
-	}
-	return friendAmount;
-}
-
-bool Recruit::RecruitAcceptOrCancel(Player*player, uint32 menuId)
-{
-	if (menuId != RECRUIT_MENU_ID)
-		return false;
-
-	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(player->recruiterGUIDLow, 0, HIGHGUID_PLAYER));
-	if (player && recruiter)
-	{
-		sReq->Des(recruiter, GetRecReqId());
-		sRew->Rew(recruiter, GetRewId1());
-		sRew->Rew(player, GetRewId2());
-
-		RecruitTemplate RecruitTemp;
-		RecruitTemp.recruiterGUIDLow = player->recruiterGUIDLow;
-		RecruitTemp.friendGUIDLow = player->GetGUIDLow();
-
-		RecruitInfo.push_back(RecruitTemp);
-
-		if (UpdateRecruitDB(player->recruiterGUIDLow, player->GetGUIDLow()))
-			if (player->getLevel() < GetInsLevel())
-				player->SetLevel(GetInsLevel(), true);
-
-		std::ostringstream oss;
-		oss << "|cFFFF1717[ÕÐÄ¼ÏµÍ³]|r´óµÀÎÞÇéÈËÓÐÇé£¬[ÕÐÄ¼Õß]|cFF0177EC" << sCF->GetNameLink(recruiter) << "|rÓë|cFF0177EC" << sCF->GetNameLink(player) << "|r½¨Á¢»ï°é¹ØÏµ";
-		sWorld->SendScreenMessage(oss.str().c_str());
-		sCF->CompleteQuest(recruiter, 30003);
-	}
-
-	return true;
-}
-
-bool Recruit::UpdateRecruitDB(uint32 recruiterGUIDLow, uint32 friendGUIDLow)
-{
-	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterGUIDLow, 0, HIGHGUID_PLAYER));
-	Player* pFriend = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(friendGUIDLow, 0, HIGHGUID_PLAYER));
-
-	if (!pFriend || !recruiter) 
-		return false;
-
-	CharacterDatabase.DirectPExecute("INSERT INTO character_recruit(recruiter,friend,recruiterGUID,friendGUID,friendPlayedTime) VALUES ('%s','%s','%u','%u','%u')", recruiter->GetName().c_str(), pFriend->GetName().c_str(), recruiterGUIDLow, friendGUIDLow, pFriend->GetTotalPlayedTime());
-
-	return true;
-}
-
-void Recruit::Load()
-{
-	RecruitInfo.clear();
-	QueryResult result1 = CharacterDatabase.PQuery("SELECT recruiterGUID,friendGUID,friendPlayedTime,timeRewarded1,timeRewarded2,timeRewarded3 from character_recruit");
-	if (result1)
-	{
-		do
-		{
-			Field* fields = result1->Fetch();
-			RecruitTemplate RecruitTemp;
-			RecruitTemp.recruiterGUIDLow = fields[0].GetUInt32();
-			RecruitTemp.friendGUIDLow = fields[1].GetUInt32();
-			RecruitTemp.friendPlayedTime = fields[2].GetUInt32();
-			RecruitTemp.timeRewarded1 = fields[3].GetBool();
-			RecruitTemp.timeRewarded2 = fields[4].GetBool();
-			RecruitTemp.timeRewarded3 = fields[5].GetBool();
-			RecruitInfo.push_back(RecruitTemp);
-		} while (result1->NextRow());
-	}
-
-	RecruitOrDissVec.clear();
-	QueryResult result2 = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		//			0				1				2				3						4						5			6					7					8					9					10						11						12					13
-		"SELECT ÕÐÄ¼ÐèÇóÄ£°åID,ÕÐÄ¼Õß½±ÀøÄ£°åID,±»ÕÐÄ¼Õß½±ÀøÄ£°åID,ÕÐÄ¼Õß½â³ýÕÐÄ¼ÐèÇóÄ£°åID,±»ÕÐÄ¼Õß½â³ýÕÐÄ¼ÐèÇóÄ£°åID,ÕÐÄ¼ÊýÁ¿ÉÏÏÞ,ÊÇ·ñÔÊÐí¿çÕóÓªÕÐÄ¼,±»ÕÐÄ¼ÕßÁ¢¼´ÌáÉýµÈ¼¶,ÕÐÄ¼Õß»ñÈ¡½±ÀøÀÛ¼ÆÊ±¼ä1,ÕÐÄ¼Õß»ñÈ¡½±ÀøÄ£°åID1,ÕÐÄ¼Õß»ñÈ¡½±ÀøÀÛ¼ÆÊ±¼ä2,ÕÐÄ¼Õß»ñÈ¡½±ÀøÄ£°åID2,ÕÐÄ¼Õß»ñÈ¡½±ÀøÀÛ¼ÆÊ±¼ä3,ÕÐÄ¼Õß»ñÈ¡½±ÀøÄ£°åID3 FROM __ÕÐÄ¼" :
-		//			0	1		2		3		4			5			6				7			8			9			10			11				12			13
-		"SELECT reqId,rewId1,rewId2,disReqId1,disReqId2,playersLimit,allowCrossFaction,insLevel,timeForRew1,timeForRewId1,timeForRew2,timeForRewId2,timeForRew3,timeForRewId3 FROM _recruit");
-	if (result2)
-	{
-		do
-		{
-			Field* fields = result2->Fetch();
-			RecruitOrDissTemplate RecruitOrDissTemp;
-			RecruitOrDissTemp.recruitReqId = fields[0].GetUInt32();
-			RecruitOrDissTemp.rewId1 = fields[1].GetUInt32();
-			RecruitOrDissTemp.rewId2 = fields[2].GetUInt32();
-			RecruitOrDissTemp.disReqId1 = fields[3].GetUInt32();
-			RecruitOrDissTemp.disReqId2 = fields[4].GetUInt32();
-			RecruitOrDissTemp.playersLimit = fields[5].GetUInt32();
-			RecruitOrDissTemp.crossFaction = fields[6].GetBool();
-			RecruitOrDissTemp.insLevel = fields[7].GetUInt32();
-			RecruitOrDissTemp.timeForRew1 = fields[8].GetUInt32();
-			RecruitOrDissTemp.timeForRewId1 = fields[9].GetUInt32();
-			RecruitOrDissTemp.timeForRew2 = fields[10].GetUInt32();
-			RecruitOrDissTemp.timeForRewId2 = fields[11].GetUInt32();
-			RecruitOrDissTemp.timeForRew3 = fields[12].GetUInt32();
-			RecruitOrDissTemp.timeForRewId3 = fields[13].GetUInt32();
-			RecruitOrDissVec.push_back(RecruitOrDissTemp);
-		} while (result2->NextRow());
-	}
-
-	RecruitLootMap.clear();
-	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-		"SELECT ÎïÆ·ID,¹²ÏíÊýÁ¿ÉÏÏÞ, ¹²Ïí¼¸ÂÊ,±»ÕÐÄ¼ÕßÍ¬Ê±»ñÈ¡½±Àø¼¸ÂÊ,±»ÕÐÄ¼ÕßÍ¬Ê±»ñÈ¡½±ÀøÎïÆ·ÉÏÏÞ FROM __ÕÐÄ¼_µôÂä¹²Ïí" :
-		"SELECT entry,shareCountLimit, shareChance,rewChanceOnShare,rewCountLimit FROM _recruit_lootshare");
-	if (result)
-	{
-		do
-		{
-			Field* fields = result->Fetch();
-
-			uint32 entry = fields[0].GetUInt32();
-
-			RucruitLootShareTemplate Temp;
-			Temp.shareCountLimit	= fields[1].GetUInt32();
-			Temp.shareChance		= fields[2].GetFloat();
-			Temp.rewChanceOnShare	= fields[3].GetFloat();
-			Temp.rewCountLimit		= fields[4].GetUInt32();
-			RecruitLootMap.insert(std::make_pair(entry, Temp));
-		} while (result->NextRow());
-	}
-
-}
-
-GlobalPlayerData const* Recruit::GetRecruiterData(Player* player)
-{
-	if (!player)
-		return NULL;
-
-	uint32 recruiterGUIDLow = 0;
-
-	for (uint32 i = 0; i < RecruitInfo.size(); i++)
-	{
-		if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
-		{
-			recruiterGUIDLow = RecruitInfo[i].recruiterGUIDLow;
-			break;
-		}
-	}
-
-	GlobalPlayerData const* recruiterPlayerData = sWorld->GetGlobalPlayerData(recruiterGUIDLow);
-
-	if (!recruiterPlayerData)
-		return NULL;
-
-	return recruiterPlayerData;
-}
-
-void Recruit::GetFriendsDataList(std::vector<GlobalPlayerData const*> &friendsDataList, Player* player)
-{
-	friendsDataList.clear();
-
-	if (!player)
-		return;
-
-	for (uint32 i = 0; i < RecruitInfo.size(); i++)
-	{
-		if (RecruitInfo[i].recruiterGUIDLow == player->GetGUIDLow())
-		{
-			GlobalPlayerData const* friendPlayerData = sWorld->GetGlobalPlayerData(RecruitInfo[i].friendGUIDLow);
-			if (friendPlayerData)
-				friendsDataList.push_back(friendPlayerData);
-		}
-	}
-}
-
-void Recruit::DismissRecruit(uint32 recruiterGUIDLow, uint32 friendGUIDLow)
-{
-	CharacterDatabase.DirectPExecute("DELETE FROM character_recruit WHERE recruiterGUID = %u AND friendGUID = %u", recruiterGUIDLow, friendGUIDLow);
-
-	for (std::vector<RecruitTemplate>::iterator itr = RecruitInfo.begin(); itr != RecruitInfo.end();)
-	{
-		if (itr->friendGUIDLow == friendGUIDLow && itr->recruiterGUIDLow == recruiterGUIDLow)
-			itr = RecruitInfo.erase(itr);	
-		else
-			++itr;
-	}
-}
-
-void Recruit::RecruitItemReward(Player* player, Item* newItem, uint32 count)
-{
-	if (!newItem)
-		return;
-
-	uint32 entry = newItem->GetEntry();
-	uint32 recruiterItemCount = 0;
-	uint32 followerItemCount = 0;
-
-	GetItemCount(entry, count, recruiterItemCount, followerItemCount);
-
-	if (!recruiterItemCount)
-		return;
-
-	GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
-
-	if (!recruiterPlayerData) 
-		return;
-
-	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterPlayerData->guidLow, 0, HIGHGUID_PLAYER));
-
-	if (recruiter)
-	{
-		std::string itemlink = sCF->GetItemLink(newItem->GetEntry());
-		ChatHandler(recruiter->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÄã»ñµÃ|cFF0177EC%s|rµÄ¹²ÏíµôÂä%s X %u", sCF->GetNameLink(player).c_str(), itemlink.c_str(), recruiterItemCount);
-		recruiter->AddItem(entry, recruiterItemCount);
-
-		if (followerItemCount)
-		{
-			player->AddItem(entry, followerItemCount);
-			ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|r|cFF0177EC%s|r»ñµÃÄãµÄ¹²ÏíµôÂä%s X %u£¬²¢ÇÒÄã»ñµÃ¶îÍâ½±Àø%s X %u", sCF->GetNameLink(recruiter).c_str(), itemlink.c_str(), recruiterItemCount, itemlink.c_str(), followerItemCount);
-		}
-	}		
-}
-
-void Recruit::RecruitMoneyReward(Player* player, uint32 count)
-{
-	uint32 recruiterItemCount = 0;
-	uint32 followerItemCount = 0;
-
-	GetItemCount(0, count, recruiterItemCount, followerItemCount);
-
-	if (!recruiterItemCount)
-		return;
-
-	GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
-	if (!recruiterPlayerData) return;
-
-	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterPlayerData->guidLow, 0, HIGHGUID_PLAYER));
-
-	if (recruiter)
-	{
-		recruiter->ModifyMoney(count);
-
-		WorldPacket data(SMSG_LOOT_MONEY_NOTIFY, 4 + 1);
-		data << uint32(count);
-		data << uint8(1);
-		recruiter->GetSession()->SendPacket(&data);
-	}
-
-}
-
-void Recruit::RecruitXPReward(Player* player, uint32 xp, Unit* _victim, float _groupRate, Group* _group)
-{
-	uint32 recruiterItemCount = 0;
-	uint32 followerItemCount = 0;
-
-	GetItemCount(2, xp, recruiterItemCount, followerItemCount);
-
-	if (!recruiterItemCount)
-		return;
-
-	GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
-	if (!recruiterPlayerData) 
-		return;
-
-	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterPlayerData->guidLow, 0, HIGHGUID_PLAYER));
-
-	if (recruiter)
-	{
-		recruiter->GiveXP(xp, _victim, _groupRate);
-		if (Pet* pet = recruiter->GetPet())
-			pet->GivePetXP(_group ? xp / 2 : xp);
-	}
-}
-
-void Recruit::RecruitHonorReward(Player* player, uint32 honor)
-{
-	uint32 recruiterItemCount = 0;
-	uint32 followerItemCount = 0;
-
-	GetItemCount(1, honor, recruiterItemCount, followerItemCount);
-
-	if (!recruiterItemCount)
-		return;
-
-	GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
-	if (!recruiterPlayerData) return;
-
-	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterPlayerData->guidLow, 0, HIGHGUID_PLAYER));
-
-	if (recruiter)
-	{
-		recruiter->ModifyHonorPoints(honor);
-		recruiter->ApplyModUInt32Value(PLAYER_FIELD_TODAY_CONTRIBUTION, honor, true);
-	}
-}
-
-
-void Recruit::GetItemCount(uint32 entry, uint32 itemCount, uint32 &recruiterItemCount, uint32 &followerItemCount)
-{
-	std::unordered_map<uint32, RucruitLootShareTemplate>::iterator iter = RecruitLootMap.find(entry);
-
-	if (iter != RecruitLootMap.end())
-		if (frand(0, 100) <= iter->second.shareChance)
-		{
-			recruiterItemCount = std::min(itemCount, iter->second.shareCountLimit);
-
-			if (frand(0, 100) <= iter->second.rewChanceOnShare)
-				followerItemCount = std::min(itemCount, iter->second.rewCountLimit);
-		}
-
-}
-
-void Recruit::RecruitTelePort(Player* player, uint32 targetGUIDLow)
-{
-	if (Player* target = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(targetGUIDLow, 0, HIGHGUID_PLAYER)))
-	{
-		if (target->InBattleground())
-		{
-			player->GetSession()->SendNotification("´«ËÍÊ§°Ü£¬Ä¿±êÔÚÕ½³¡ÖÐ£¡");
-			return;
-		}
-			
-		if (target->GetMap()->IsDungeon())
-		{
-			player->GetSession()->SendNotification("´«ËÍÊ§°Ü£¬Ä¿±êÔÚ¸±±¾ÖÐ£¡");
-			return;
-		}
-
-		player->TeleportTo(target->GetWorldLocation());
-	}else
-		player->GetSession()->SendNotification("´«ËÍÄ¿±ê²»ÔÚÏß£¡");
-}
-
-
-uint32 Recruit::GetRecReqId()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].recruitReqId;
-	return 0;
-}
-uint32 Recruit::GetRewId1()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].rewId1;
-	return 0;
-}
-uint32 Recruit::GetRewId2()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].rewId2;
-	return 0;
-}
-uint32 Recruit::GetDissReqId1()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].disReqId1;
-	return 0;
-}
-uint32 Recruit::GetDissReqId2()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].disReqId2;
-	return 0;
-}
-uint32 Recruit::GetPlayersLimit()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].playersLimit;
-	return 0;
-}
-bool Recruit::CrossFaction()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].crossFaction;
-	return false;
-}
-uint32 Recruit::GetInsLevel()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].insLevel;
-	return 0;
-}
-uint32 Recruit::GetTimeForRew1()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].timeForRew1;
-	return 0;
-}
-uint32 Recruit::GetTimeForRewId1()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].timeForRewId1;
-	return 0;
-}
-
-uint32 Recruit::GetTimeForRew2()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].timeForRew2;
-	return 0;
-}
-uint32 Recruit::GetTimeForRewId2()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].timeForRewId2;
-	return 0;
-}
-uint32 Recruit::GetTimeForRew3()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].timeForRew3;
-	return 0;
-}
-uint32 Recruit::GetTimeForRewId3()
-{
-	if (!RecruitOrDissVec.empty())
-		return RecruitOrDissVec[0].timeForRewId3;
-	return 0;
-}
-
-class RecruitWorldScript : public WorldScript
-{
-public:
-	RecruitWorldScript() : WorldScript("RecruitWorldScript") {}
-
-	void OnAfterConfigLoad(bool /*reload*/)
-	{
-		sRecruit->Load();
-	}
-};
-
-class RecruitPlayerScript : PlayerScript
-{
-public:
-	RecruitPlayerScript() : PlayerScript("RecruitPlayerScript") {}
-	void OnLogin(Player* player) override
-	{
-
-		GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
-
-		if (!recruiterPlayerData)
-			return;
-
-		uint32 playedTime = 0;
-		bool hasReward1 = false;
-		bool hasReward2 = false;
-		bool hasReward3 = false;
-		uint32 recruiterGUIDLow = 0;
-		for (uint32 i = 0; i < RecruitInfo.size(); i++)
-		{
-			if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
-			{
-				playedTime = RecruitInfo[i].friendPlayedTime;
-				hasReward1 = RecruitInfo[i].timeRewarded1;
-				hasReward2 = RecruitInfo[i].timeRewarded2;
-				hasReward3 = RecruitInfo[i].timeRewarded3;
-
-				recruiterGUIDLow = RecruitInfo[i].recruiterGUIDLow;
-
-				break;
-			}
-		}
-		
-		if (!hasReward1 && (player->GetTotalPlayedTime() - playedTime > sRecruit->GetTimeForRew1()) && (sRecruit->GetTimeForRew1() > 0))
-		{	
-			sRecruit->UpdateHasRewad(player, 1);
-			std::ostringstream oss;
-			oss << "\n\nÕâÊÇÀ´×ÔÍæ¼Ò[|cFFFF1717" << player->GetName() << "|r]µÄµÚÒ»´ÎÕÐÄ¼½±Àø\n\n×£ÄãÔÚ°¬ÔóÀ­Ë¹µÄÃ°ÏÕÖ®ÂÃ³äÂúÀÖÈ¤£¡";
-			sRew->MailRew(player, recruiterGUIDLow, sRecruit->GetTimeForRewId1(), "ÕÐÄ¼½±Àø(Ò»)", oss.str());
-		}
-		if (!hasReward2 && (player->GetTotalPlayedTime() - playedTime > sRecruit->GetTimeForRew2()) && (sRecruit->GetTimeForRew2() > 0))
-		{
-			sRecruit->UpdateHasRewad(player, 2);
-			std::ostringstream oss;
-			oss << "\n\nÕâÊÇÀ´×ÔÍæ¼Ò[|cFFFF1717" << player->GetName() << "|r]µÄµÚ¶þ´ÎÕÐÄ¼½±Àø\n\n×£ÄãÔÚ°¬ÔóÀ­Ë¹µÄÃ°ÏÕÖ®ÂÃ³äÂúÀÖÈ¤£¡";		
-			sRew->MailRew(player, recruiterGUIDLow, sRecruit->GetTimeForRewId2(), "ÕÐÄ¼½±Àø(¶þ)", oss.str());
-		}
-		if (!hasReward3 && (player->GetTotalPlayedTime() - playedTime > sRecruit->GetTimeForRew3()) && (sRecruit->GetTimeForRew3() > 0))
-		{
-			sRecruit->UpdateHasRewad(player, 3);
-			std::ostringstream oss;
-			oss << "n\nÕâÊÇÀ´×ÔÍæ¼Ò[|cFFFF1717" << player->GetName() << "|r]µÄµÚÈý´ÎÕÐÄ¼½±Àø\n\n×£ÄãÔÚ°¬ÔóÀ­Ë¹µÄÃ°ÏÕÖ®ÂÃ³äÂúÀÖÈ¤£¡";	
-			sRew->MailRew(player, recruiterGUIDLow, sRecruit->GetTimeForRewId3(), "ÕÐÄ¼½±Àø(Èý)", oss.str());
-		}
-	}
-};
-
-
-void Recruit::UpdateHasRewad(Player* player, uint32 flag)
-{
-	uint32 len = RecruitInfo.size();
-	for (uint32 i = 0; i < len; i++)
-		if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
-		{
-			player->GetSession()->SendNotification("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÕÐÄ¼ÄãµÄÈËÒÑ»ñµÃ½±Àø");
-			switch (flag)
-			{
-			case 1:
-				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded1 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
-				RecruitInfo[i].timeRewarded1 = true;
-				break;
-			case 2:
-				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded2 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
-				RecruitInfo[i].timeRewarded2 = true;
-				break;
-			case 3:
-
-				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded3 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
-				RecruitInfo[i].timeRewarded3 = true;
-				break;
-			default:
-				break;
-			}
-		}
-}
-
-void AddSC_RECRUIT()
-{
-	new RecruitWorldScript();
-	new RecruitPlayerScript();
-}
-
-
-void Recruit::AddMainMenu(Player* player, Object* obj)
-{
-	player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "ÕÐÄ¼ÐÂµÄ»ï°é", SENDER_RECRUIT_NEW, GOSSIP_ACTION_INFO_DEF, "", 0, true);
-	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "½â³ýÕÐÄ¼¹ØÏµ", SENDER_RECRUIT_CHAR_DISS_LIST, GOSSIP_ACTION_INFO_DEF);
-	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "²é¿´ÕÐÄ¼ÐÅÏ¢", SENDER_RECRUIT_CHAR_INFO_LIST, GOSSIP_ACTION_INFO_DEF);
-	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Ö§Ô®ÔÚÏß»ï°é", SENDER_RECRUIT_CHAR_TELE_LIST, GOSSIP_ACTION_INFO_DEF);
-	if (obj->ToCreature())
-		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
-	else
-		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
-}
-bool Recruit::AddSubMenuOrDoAction(Player* player, Object* obj, uint32 sender, uint32 action)
-{
-	player->PlayerTalkClass->ClearMenus();
-	switch (sender)
-	{
-	case SENDER_RECRUIT_CHAR_INFO_LIST:
-	{
-		if (GetRecruiterData(player))
-		{
-			std::ostringstream oss;
-
-			uint64 recruiterGUID = MAKE_NEW_GUID(GetRecruiterData(player)->guidLow, 0, HIGHGUID_PLAYER);
-
-			if (ObjectAccessor::FindPlayerInOrOutOfWorld(recruiterGUID))
-				oss << "[|cFF0177ECÔÚÏß|r]";
-			else
-				oss << "[|cFFFF1717ÀëÏß|r]";
-			oss << "|cFFFF1717";
-			oss << GetRecruiterData(player)->name;
-			oss << "|r";
-			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, GetRecruiterData(player)->guidLow);
-		}
-
-		std::vector<GlobalPlayerData const*> friendsDataList;
-		GetFriendsDataList(friendsDataList, player);
-
-		for (size_t i = 0; i < friendsDataList.size(); i++)
-		{
-			std::ostringstream oss;
-			uint64 friendGUID = MAKE_NEW_GUID(friendsDataList[i]->guidLow, 0, HIGHGUID_PLAYER);
-
-			if (ObjectAccessor::FindPlayerInOrOutOfWorld(friendGUID))
-				oss << "[|cFF0177ECÔÚÏß|r]";
-			else
-				oss << "[|cFFFF1717ÀëÏß|r]";
-
-			oss << "|cFF0177EC";
-			oss << friendsDataList[i]->name;
-			oss << "|r";
-			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, friendsDataList[i]->guidLow);
-		}
-		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
-	}
-	break;
-
-	case SENDER_RECRUIT_CHAR_INFO:
-	{
-		GlobalPlayerData const* playerData = sWorld->GetGlobalPlayerData(action);
-
-		if (playerData)
-		{
-			std::ostringstream oss;
-			oss << "Ãû×Ö£º" << playerData->name << "\n";
-			oss << "µÈ¼¶ :" << playerData->level << "\n";;
-			oss << "¹«»á :" << sGuildMgr->GetGuildNameById(playerData->guildId) << "\n";
-			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, action);
-		}
-	}
-	break;
-
-	case SENDER_RECRUIT_CHAR_DISS_LIST:
-	{
-		if (GetRecruiterData(player))
-		{
-			std::ostringstream oss;
-
-			uint64 recruiterGUID = MAKE_NEW_GUID(GetRecruiterData(player)->guidLow, 0, HIGHGUID_PLAYER);
-
-			if (ObjectAccessor::FindPlayerInOrOutOfWorld(recruiterGUID))
-				oss << "[|cFF0177ECÔÚÏß|r]";
-			else
-				oss << "[|cFFFF1717ÀëÏß|r]";
-
-			oss << "|cFFFF1717";
-			oss << GetRecruiterData(player)->name;
-			oss << "|r";
-			player->ADD_GOSSIP_ITEM_EXTENDED(0, oss.str(), SENDER_RECRUIT_CHAR_DISMISS, 0, sReq->Notice(player, GetDissReqId2(), "ÒÆ³ý", "ÕÐÄ¼¹ØÏµ"), sReq->Golds(GetDissReqId2()), false);
-		}
-
-		std::vector<GlobalPlayerData const*> friendsDataList;
-
-		GetFriendsDataList(friendsDataList, player);
-
-		for (size_t i = 0; i < friendsDataList.size(); i++)
-		{
-			std::ostringstream oss;
-			uint64 friendGUID = MAKE_NEW_GUID(friendsDataList[i]->guidLow, 0, HIGHGUID_PLAYER);
-
-			if (ObjectAccessor::FindPlayerInOrOutOfWorld(friendGUID))
-				oss << "[|cFF0177ECÔÚÏß|r]";
-			else
-				oss << "[|cFFFF1717ÀëÏß|r]";
-
-			oss << "|cFF0177EC";
-			oss << friendsDataList[i]->name;
-			oss << "|r";
-
-			player->ADD_GOSSIP_ITEM_EXTENDED(0, oss.str(), SENDER_RECRUIT_CHAR_DISMISS, friendsDataList[i]->guidLow, sReq->Notice(player, GetDissReqId1(), "ÒÆ³ý", "ÕÐÄ¼¹ØÏµ"), sReq->Golds(GetDissReqId1()), false);
-		}
-		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
-	}
-	break;
-	case SENDER_RECRUIT_CHAR_DISMISS:
-	{
-		if (action == 0)
-		{
-			if (sReq->Check(player, GetDissReqId2()))
-			{
-				sReq->Des(player, GetDissReqId2());
-				DismissRecruit(GetRecruiterData(player)->guidLow, player->GetGUID());
-			}
-		}
-		else
-		{
-			if (sReq->Check(player, GetDissReqId1()))
-			{
-				sReq->Des(player, GetDissReqId1());
-				DismissRecruit(player->GetGUIDLow(), action);
-			}
-		}
-
-		player->CLOSE_GOSSIP_MENU();
-	}
-	break;
-	case SENDER_RECRUIT_CHAR_TELE_LIST:
-	{
-		if (GetRecruiterData(player))
-		{
-			std::ostringstream oss;
-
-			uint64 recruiterGUID = MAKE_NEW_GUID(GetRecruiterData(player)->guidLow, 0, HIGHGUID_PLAYER);
-
-			if (ObjectAccessor::FindPlayerInOrOutOfWorld(recruiterGUID))
-			{
-				oss << "[|cFF0177ECÔÚÏß|r]";
-				oss << "|cFFFF1717";
-				oss << GetRecruiterData(player)->name;
-				oss << "|r";
-				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_TELE, GetRecruiterData(player)->guidLow);
-			}
-		}
-
-		std::vector<GlobalPlayerData const*> friendsDataList;
-		GetFriendsDataList(friendsDataList, player);
-
-		for (size_t i = 0; i < friendsDataList.size(); i++)
-		{
-			std::ostringstream oss;
-			uint64 friendGUID = MAKE_NEW_GUID(friendsDataList[i]->guidLow, 0, HIGHGUID_PLAYER);
-
-			if (ObjectAccessor::FindPlayerInOrOutOfWorld(friendGUID))
-			{
-				oss << "[|cFF0177ECÔÚÏß|r]";
-				oss << "|cFF0177EC";
-				oss << friendsDataList[i]->name;
-				oss << "|r";
-				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_TELE, friendsDataList[i]->guidLow);
-			}
-		}
-		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
-	}
-	break;
-	case SENDER_RECRUIT_TELE:
-	{
-		RecruitTelePort(player, action);
-		player->CLOSE_GOSSIP_MENU();
-	}
-	break;
-	default:
-		return false;
-	}
-
-	return true;
-}
-
-bool Recruit::RecruitFriend(Player* player, uint32 sender, const char* name)
-{
-	if (sender != SENDER_RECRUIT_NEW)
-		return false;
-
-	player->PlayerTalkClass->ClearMenus();
-
-	if (!*name)
-		return true;
-
-	player->CLOSE_GOSSIP_MENU();
-
-	std::string pName = name;
-
-	if (!normalizePlayerName(pName))
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÊä³öµÄÃû×ÖÓÐÎó");
-		return true;
-	}
-
-	uint32 GUIDLow = sWorld->GetGlobalPlayerGUID(pName);
-	if (!GUIDLow)
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÕÐÄ¼µÄÍæ¼Ò²»´æÔÚ");
-		return true;
-	}
-
-	uint64 friendGuid = MAKE_NEW_GUID(GUIDLow, 0, HIGHGUID_PLAYER);
-
-	Player* pFriend = ObjectAccessor::FindPlayerInOrOutOfWorld(friendGuid);
-
-	if (!pFriend)
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÕÐÄ¼µÄÍæ¼Ò²»ÔÚÏß");
-		return true;
-	}
-
-	std::string ip1 = pFriend->GetSession()->GetRemoteAddress();
-	std::string ip2 = player->GetSession()->GetRemoteAddress();
-
-	if (strcmp(ip1.c_str(), ip2.c_str()) == 0 && player->GetSession()->GetSecurity() < SEC_ADMINISTRATOR)
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÍ¬Ò»IPµÄÍæ¼Ò²»ÄÜÕÐÄ¼");
-		return true;
-	}
-	
-	if (!CrossFaction() && player->GetTeamId() != pFriend->GetTeamId())
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÖ»ÄÜÕÐÄ¼Í¬Ò»ÕóÓªÍæ¼Ò");
-		return true;
-	}
-
-	if (IsRecruited(pFriend))
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|r|cFF0177EC%s|rÒÑ±»ÕÐÄ¼", sCF->GetNameLink(pFriend).c_str());
-		return true;
-	}
-
-	if (GetFriendAmount(player) >= GetPlayersLimit())
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÄã²»ÄÜÕÐÄ¼¸ü¶àÍæ¼Ò");
-		return true;
-	}
-
-	if (!IsRecruitYourRecruiter(player->GetGUIDLow(), pFriend->GetGUIDLow()))
-	{
-		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÄã²»ÄÜÕÐÄ¼ÄãµÄÕÐÄ¼Õß");
-		return true;
-	}
-
-	if (!sReq->Check(player, GetRecReqId()))
-		return true;
-
-	pFriend->recruiterGUIDLow = player->GetGUIDLow();
-
-	std::ostringstream oss;
-	oss << "|cFF0177EC";
-	oss << sCF->GetNameLink(player);
-	oss << "|rÕýÔÚÕÐÄ¼Äã";
-	PopMsg(pFriend, RECRUIT_MENU_ID, oss.str());
-
-	ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[ÕÐÄ¼ÏµÍ³]|rÏò|cFF0177EC%s|r·¢ËÍÕÐÄ¼ÉêÇë³É¹¦£¡",sCF->GetNameLink(pFriend).c_str());
-
-	return true;
-}
+ï»¿//#pragma execution_character_set("utf-8")
+//#include "../PrecompiledHeaders/ScriptPCH.h"
+//#include "Recruit.h"
+//#include "Pet.h"
+//#include "GuildMgr.h"
+//#include "../Custom/Requirement/Requirement.h"
+//#include "../Custom/Reward/Reward.h"
+//#include "../CommonFunc/CommonFunc.h"
+//
+//#define RECRUIT_MENU_ID 8000
+//
+//std::vector <RecruitTemplate> RecruitInfo;
+//std::vector<RecruitOrDissTemplate> RecruitOrDissVec;
+//std::unordered_map<uint32, RucruitLootShareTemplate> RecruitLootMap;
+//
+//void Recruit::PopMsg(Player* player, uint32 menuId, std::string text)
+//{
+//	WorldPacket data(SMSG_GOSSIP_MESSAGE, 100);
+//	data << uint64(player->GetGUID());
+//	data << uint32(menuId);
+//	data << uint32(1);
+//	data << uint32(1);
+//	data << uint32(1);
+//	data << uint8(1);
+//	data << uint8(0);
+//	data << uint32(0);
+//	data << "å…¬å‘Š";
+//	data << text;
+//	player->GetSession()->SendPacket(&data);
+//}
+//
+//bool Recruit::IsRecruited(Player* player)
+//{
+//	for (size_t i = 0; i < RecruitInfo.size(); i++)
+//	{
+//		if (player->GetGUIDLow() == RecruitInfo[i].friendGUIDLow)
+//			return true;
+//	}
+//
+//	return false;
+//}
+//
+//bool Recruit::IsRecruitYourRecruiter(uint32 recruiterGUIDLow, uint32 friendGUIDLow)
+//{
+//	for (size_t i = 0; i < RecruitInfo.size(); i++)
+//	{
+//		if (friendGUIDLow == RecruitInfo[i].recruiterGUIDLow)
+//		{
+//			for (size_t j = 0; j < RecruitInfo.size(); j++)
+//			{
+//				if (recruiterGUIDLow == RecruitInfo[i].friendGUIDLow)
+//				{
+//					return false;
+//				}
+//			}
+//		}
+//	}
+//
+//	return true;
+//}
+//
+//uint32 Recruit::GetFriendAmount(Player* recruiter)
+//{
+//	uint32 friendAmount = 0;
+//	for (size_t i = 0; i < RecruitInfo.size(); i++)
+//	{
+//		if (recruiter->GetGUIDLow() == RecruitInfo[i].recruiterGUIDLow)
+//			friendAmount++;
+//	}
+//	return friendAmount;
+//}
+//
+//bool Recruit::RecruitAcceptOrCancel(Player*player, uint32 menuId)
+//{
+//	if (menuId != RECRUIT_MENU_ID)
+//		return false;
+//
+//	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(player->recruiterGUIDLow, 0, HIGHGUID_PLAYER));
+//	if (player && recruiter)
+//	{
+//		sReq->Des(recruiter, GetRecReqId());
+//		sRew->Rew(recruiter, GetRewId1());
+//		sRew->Rew(player, GetRewId2());
+//
+//		RecruitTemplate RecruitTemp;
+//		RecruitTemp.recruiterGUIDLow = player->recruiterGUIDLow;
+//		RecruitTemp.friendGUIDLow = player->GetGUIDLow();
+//
+//		RecruitInfo.push_back(RecruitTemp);
+//
+//		if (UpdateRecruitDB(player->recruiterGUIDLow, player->GetGUIDLow()))
+//			if (player->getLevel() < GetInsLevel())
+//				player->SetLevel(GetInsLevel(), true);
+//
+//		std::ostringstream oss;
+//		oss << "|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|rå¤§é“æ— æƒ…äººæœ‰æƒ…ï¼Œ[æ‹›å‹Ÿè€…]|cFF0177EC" << sCF->GetNameLink(recruiter) << "|rä¸Ž|cFF0177EC" << sCF->GetNameLink(player) << "|rå»ºç«‹ä¼™ä¼´å…³ç³»";
+//		sWorld->SendScreenMessage(oss.str().c_str());
+//		sCF->CompleteQuest(recruiter, 30003);
+//	}
+//
+//	return true;
+//}
+//
+//bool Recruit::UpdateRecruitDB(uint32 recruiterGUIDLow, uint32 friendGUIDLow)
+//{
+//	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterGUIDLow, 0, HIGHGUID_PLAYER));
+//	Player* pFriend = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(friendGUIDLow, 0, HIGHGUID_PLAYER));
+//
+//	if (!pFriend || !recruiter) 
+//		return false;
+//
+//	CharacterDatabase.DirectPExecute("INSERT INTO character_recruit(recruiter,friend,recruiterGUID,friendGUID,friendPlayedTime) VALUES ('%s','%s','%u','%u','%u')", recruiter->GetName().c_str(), pFriend->GetName().c_str(), recruiterGUIDLow, friendGUIDLow, pFriend->GetTotalPlayedTime());
+//
+//	return true;
+//}
+//
+//void Recruit::Load()
+//{
+//	RecruitInfo.clear();
+//	QueryResult result1 = CharacterDatabase.PQuery("SELECT recruiterGUID,friendGUID,friendPlayedTime,timeRewarded1,timeRewarded2,timeRewarded3 from character_recruit");
+//	if (result1)
+//	{
+//		do
+//		{
+//			Field* fields = result1->Fetch();
+//			RecruitTemplate RecruitTemp;
+//			RecruitTemp.recruiterGUIDLow = fields[0].GetUInt32();
+//			RecruitTemp.friendGUIDLow = fields[1].GetUInt32();
+//			RecruitTemp.friendPlayedTime = fields[2].GetUInt32();
+//			RecruitTemp.timeRewarded1 = fields[3].GetBool();
+//			RecruitTemp.timeRewarded2 = fields[4].GetBool();
+//			RecruitTemp.timeRewarded3 = fields[5].GetBool();
+//			RecruitInfo.push_back(RecruitTemp);
+//		} while (result1->NextRow());
+//	}
+//
+//	RecruitOrDissVec.clear();
+//	QueryResult result2 = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//		//			0				1				2				3						4						5			6					7					8					9					10						11						12					13
+//		"SELECT æ‹›å‹Ÿéœ€æ±‚æ¨¡æ¿ID,æ‹›å‹Ÿè€…å¥–åŠ±æ¨¡æ¿ID,è¢«æ‹›å‹Ÿè€…å¥–åŠ±æ¨¡æ¿ID,æ‹›å‹Ÿè€…è§£é™¤æ‹›å‹Ÿéœ€æ±‚æ¨¡æ¿ID,è¢«æ‹›å‹Ÿè€…è§£é™¤æ‹›å‹Ÿéœ€æ±‚æ¨¡æ¿ID,æ‹›å‹Ÿæ•°é‡ä¸Šé™,æ˜¯å¦å…è®¸è·¨é˜µè¥æ‹›å‹Ÿ,è¢«æ‹›å‹Ÿè€…ç«‹å³æå‡ç­‰çº§,æ‹›å‹Ÿè€…èŽ·å–å¥–åŠ±ç´¯è®¡æ—¶é—´1,æ‹›å‹Ÿè€…èŽ·å–å¥–åŠ±æ¨¡æ¿ID1,æ‹›å‹Ÿè€…èŽ·å–å¥–åŠ±ç´¯è®¡æ—¶é—´2,æ‹›å‹Ÿè€…èŽ·å–å¥–åŠ±æ¨¡æ¿ID2,æ‹›å‹Ÿè€…èŽ·å–å¥–åŠ±ç´¯è®¡æ—¶é—´3,æ‹›å‹Ÿè€…èŽ·å–å¥–åŠ±æ¨¡æ¿ID3 FROM __æ‹›å‹Ÿ" :
+//		//			0	1		2		3		4			5			6				7			8			9			10			11				12			13
+//		"SELECT reqId,rewId1,rewId2,disReqId1,disReqId2,playersLimit,allowCrossFaction,insLevel,timeForRew1,timeForRewId1,timeForRew2,timeForRewId2,timeForRew3,timeForRewId3 FROM _recruit");
+//	if (result2)
+//	{
+//		do
+//		{
+//			Field* fields = result2->Fetch();
+//			RecruitOrDissTemplate RecruitOrDissTemp;
+//			RecruitOrDissTemp.recruitReqId = fields[0].GetUInt32();
+//			RecruitOrDissTemp.rewId1 = fields[1].GetUInt32();
+//			RecruitOrDissTemp.rewId2 = fields[2].GetUInt32();
+//			RecruitOrDissTemp.disReqId1 = fields[3].GetUInt32();
+//			RecruitOrDissTemp.disReqId2 = fields[4].GetUInt32();
+//			RecruitOrDissTemp.playersLimit = fields[5].GetUInt32();
+//			RecruitOrDissTemp.crossFaction = fields[6].GetBool();
+//			RecruitOrDissTemp.insLevel = fields[7].GetUInt32();
+//			RecruitOrDissTemp.timeForRew1 = fields[8].GetUInt32();
+//			RecruitOrDissTemp.timeForRewId1 = fields[9].GetUInt32();
+//			RecruitOrDissTemp.timeForRew2 = fields[10].GetUInt32();
+//			RecruitOrDissTemp.timeForRewId2 = fields[11].GetUInt32();
+//			RecruitOrDissTemp.timeForRew3 = fields[12].GetUInt32();
+//			RecruitOrDissTemp.timeForRewId3 = fields[13].GetUInt32();
+//			RecruitOrDissVec.push_back(RecruitOrDissTemp);
+//		} while (result2->NextRow());
+//	}
+//
+//	RecruitLootMap.clear();
+//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//		"SELECT ç‰©å“ID,å…±äº«æ•°é‡ä¸Šé™, å…±äº«å‡ çŽ‡,è¢«æ‹›å‹Ÿè€…åŒæ—¶èŽ·å–å¥–åŠ±å‡ çŽ‡,è¢«æ‹›å‹Ÿè€…åŒæ—¶èŽ·å–å¥–åŠ±ç‰©å“ä¸Šé™ FROM __æ‹›å‹Ÿ_æŽ‰è½å…±äº«" :
+//		"SELECT entry,shareCountLimit, shareChance,rewChanceOnShare,rewCountLimit FROM _recruit_lootshare");
+//	if (result)
+//	{
+//		do
+//		{
+//			Field* fields = result->Fetch();
+//
+//			uint32 entry = fields[0].GetUInt32();
+//
+//			RucruitLootShareTemplate Temp;
+//			Temp.shareCountLimit	= fields[1].GetUInt32();
+//			Temp.shareChance		= fields[2].GetFloat();
+//			Temp.rewChanceOnShare	= fields[3].GetFloat();
+//			Temp.rewCountLimit		= fields[4].GetUInt32();
+//			RecruitLootMap.insert(std::make_pair(entry, Temp));
+//		} while (result->NextRow());
+//	}
+//
+//}
+//
+//GlobalPlayerData const* Recruit::GetRecruiterData(Player* player)
+//{
+//	if (!player)
+//		return NULL;
+//
+//	uint32 recruiterGUIDLow = 0;
+//
+//	for (uint32 i = 0; i < RecruitInfo.size(); i++)
+//	{
+//		if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
+//		{
+//			recruiterGUIDLow = RecruitInfo[i].recruiterGUIDLow;
+//			break;
+//		}
+//	}
+//
+//	GlobalPlayerData const* recruiterPlayerData = sWorld->GetGlobalPlayerData(recruiterGUIDLow);
+//
+//	if (!recruiterPlayerData)
+//		return NULL;
+//
+//	return recruiterPlayerData;
+//}
+//
+//void Recruit::GetFriendsDataList(std::vector<GlobalPlayerData const*> &friendsDataList, Player* player)
+//{
+//	friendsDataList.clear();
+//
+//	if (!player)
+//		return;
+//
+//	for (uint32 i = 0; i < RecruitInfo.size(); i++)
+//	{
+//		if (RecruitInfo[i].recruiterGUIDLow == player->GetGUIDLow())
+//		{
+//			GlobalPlayerData const* friendPlayerData = sWorld->GetGlobalPlayerData(RecruitInfo[i].friendGUIDLow);
+//			if (friendPlayerData)
+//				friendsDataList.push_back(friendPlayerData);
+//		}
+//	}
+//}
+//
+//void Recruit::DismissRecruit(uint32 recruiterGUIDLow, uint32 friendGUIDLow)
+//{
+//	CharacterDatabase.DirectPExecute("DELETE FROM character_recruit WHERE recruiterGUID = %u AND friendGUID = %u", recruiterGUIDLow, friendGUIDLow);
+//
+//	for (std::vector<RecruitTemplate>::iterator itr = RecruitInfo.begin(); itr != RecruitInfo.end();)
+//	{
+//		if (itr->friendGUIDLow == friendGUIDLow && itr->recruiterGUIDLow == recruiterGUIDLow)
+//			itr = RecruitInfo.erase(itr);	
+//		else
+//			++itr;
+//	}
+//}
+//
+//void Recruit::RecruitItemReward(Player* player, Item* newItem, uint32 count)
+//{
+//	if (!newItem)
+//		return;
+//
+//	uint32 entry = newItem->GetEntry();
+//	uint32 recruiterItemCount = 0;
+//	uint32 followerItemCount = 0;
+//
+//	GetItemCount(entry, count, recruiterItemCount, followerItemCount);
+//
+//	if (!recruiterItemCount)
+//		return;
+//
+//	GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
+//
+//	if (!recruiterPlayerData) 
+//		return;
+//
+//	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterPlayerData->guidLow, 0, HIGHGUID_PLAYER));
+//
+//	if (recruiter)
+//	{
+//		std::string itemlink = sCF->GetItemLink(newItem->GetEntry());
+//		ChatHandler(recruiter->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|rä½ èŽ·å¾—|cFF0177EC%s|rçš„å…±äº«æŽ‰è½%s X %u", sCF->GetNameLink(player).c_str(), itemlink.c_str(), recruiterItemCount);
+//		recruiter->AddItem(entry, recruiterItemCount);
+//
+//		if (followerItemCount)
+//		{
+//			player->AddItem(entry, followerItemCount);
+//			ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|r|cFF0177EC%s|rèŽ·å¾—ä½ çš„å…±äº«æŽ‰è½%s X %uï¼Œå¹¶ä¸”ä½ èŽ·å¾—é¢å¤–å¥–åŠ±%s X %u", sCF->GetNameLink(recruiter).c_str(), itemlink.c_str(), recruiterItemCount, itemlink.c_str(), followerItemCount);
+//		}
+//	}		
+//}
+//
+//void Recruit::RecruitMoneyReward(Player* player, uint32 count)
+//{
+//	uint32 recruiterItemCount = 0;
+//	uint32 followerItemCount = 0;
+//
+//	GetItemCount(0, count, recruiterItemCount, followerItemCount);
+//
+//	if (!recruiterItemCount)
+//		return;
+//
+//	GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
+//	if (!recruiterPlayerData) return;
+//
+//	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterPlayerData->guidLow, 0, HIGHGUID_PLAYER));
+//
+//	if (recruiter)
+//	{
+//		recruiter->ModifyMoney(count);
+//
+//		WorldPacket data(SMSG_LOOT_MONEY_NOTIFY, 4 + 1);
+//		data << uint32(count);
+//		data << uint8(1);
+//		recruiter->GetSession()->SendPacket(&data);
+//	}
+//
+//}
+//
+//void Recruit::RecruitXPReward(Player* player, uint32 xp, Unit* _victim, float _groupRate, Group* _group)
+//{
+//	uint32 recruiterItemCount = 0;
+//	uint32 followerItemCount = 0;
+//
+//	GetItemCount(2, xp, recruiterItemCount, followerItemCount);
+//
+//	if (!recruiterItemCount)
+//		return;
+//
+//	GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
+//	if (!recruiterPlayerData) 
+//		return;
+//
+//	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterPlayerData->guidLow, 0, HIGHGUID_PLAYER));
+//
+//	if (recruiter)
+//	{
+//		recruiter->GiveXP(xp, _victim, _groupRate);
+//		if (Pet* pet = recruiter->GetPet())
+//			pet->GivePetXP(_group ? xp / 2 : xp);
+//	}
+//}
+//
+//void Recruit::RecruitHonorReward(Player* player, uint32 honor)
+//{
+//	uint32 recruiterItemCount = 0;
+//	uint32 followerItemCount = 0;
+//
+//	GetItemCount(1, honor, recruiterItemCount, followerItemCount);
+//
+//	if (!recruiterItemCount)
+//		return;
+//
+//	GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
+//	if (!recruiterPlayerData) return;
+//
+//	Player* recruiter = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(recruiterPlayerData->guidLow, 0, HIGHGUID_PLAYER));
+//
+//	if (recruiter)
+//	{
+//		recruiter->ModifyHonorPoints(honor);
+//		recruiter->ApplyModUInt32Value(PLAYER_FIELD_TODAY_CONTRIBUTION, honor, true);
+//	}
+//}
+//
+//
+//void Recruit::GetItemCount(uint32 entry, uint32 itemCount, uint32 &recruiterItemCount, uint32 &followerItemCount)
+//{
+//	std::unordered_map<uint32, RucruitLootShareTemplate>::iterator iter = RecruitLootMap.find(entry);
+//
+//	if (iter != RecruitLootMap.end())
+//		if (frand(0, 100) <= iter->second.shareChance)
+//		{
+//			recruiterItemCount = std::min(itemCount, iter->second.shareCountLimit);
+//
+//			if (frand(0, 100) <= iter->second.rewChanceOnShare)
+//				followerItemCount = std::min(itemCount, iter->second.rewCountLimit);
+//		}
+//
+//}
+//
+//void Recruit::RecruitTelePort(Player* player, uint32 targetGUIDLow)
+//{
+//	if (Player* target = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(targetGUIDLow, 0, HIGHGUID_PLAYER)))
+//	{
+//		if (target->InBattleground())
+//		{
+//			player->GetSession()->SendNotification("ä¼ é€å¤±è´¥ï¼Œç›®æ ‡åœ¨æˆ˜åœºä¸­ï¼");
+//			return;
+//		}
+//			
+//		if (target->GetMap()->IsDungeon())
+//		{
+//			player->GetSession()->SendNotification("ä¼ é€å¤±è´¥ï¼Œç›®æ ‡åœ¨å‰¯æœ¬ä¸­ï¼");
+//			return;
+//		}
+//
+//		player->TeleportTo(target->GetWorldLocation());
+//	}else
+//		player->GetSession()->SendNotification("ä¼ é€ç›®æ ‡ä¸åœ¨çº¿ï¼");
+//}
+//
+//
+//uint32 Recruit::GetRecReqId()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].recruitReqId;
+//	return 0;
+//}
+//uint32 Recruit::GetRewId1()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].rewId1;
+//	return 0;
+//}
+//uint32 Recruit::GetRewId2()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].rewId2;
+//	return 0;
+//}
+//uint32 Recruit::GetDissReqId1()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].disReqId1;
+//	return 0;
+//}
+//uint32 Recruit::GetDissReqId2()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].disReqId2;
+//	return 0;
+//}
+//uint32 Recruit::GetPlayersLimit()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].playersLimit;
+//	return 0;
+//}
+//bool Recruit::CrossFaction()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].crossFaction;
+//	return false;
+//}
+//uint32 Recruit::GetInsLevel()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].insLevel;
+//	return 0;
+//}
+//uint32 Recruit::GetTimeForRew1()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].timeForRew1;
+//	return 0;
+//}
+//uint32 Recruit::GetTimeForRewId1()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].timeForRewId1;
+//	return 0;
+//}
+//
+//uint32 Recruit::GetTimeForRew2()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].timeForRew2;
+//	return 0;
+//}
+//uint32 Recruit::GetTimeForRewId2()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].timeForRewId2;
+//	return 0;
+//}
+//uint32 Recruit::GetTimeForRew3()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].timeForRew3;
+//	return 0;
+//}
+//uint32 Recruit::GetTimeForRewId3()
+//{
+//	if (!RecruitOrDissVec.empty())
+//		return RecruitOrDissVec[0].timeForRewId3;
+//	return 0;
+//}
+//
+//class RecruitWorldScript : public WorldScript
+//{
+//public:
+//	RecruitWorldScript() : WorldScript("RecruitWorldScript") {}
+//
+//	void OnAfterConfigLoad(bool /*reload*/)
+//	{
+//		sRecruit->Load();
+//	}
+//};
+//
+//class RecruitPlayerScript : PlayerScript
+//{
+//public:
+//	RecruitPlayerScript() : PlayerScript("RecruitPlayerScript") {}
+//	void OnLogin(Player* player) override
+//	{
+//
+//		GlobalPlayerData const* recruiterPlayerData = sRecruit->GetRecruiterData(player);
+//
+//		if (!recruiterPlayerData)
+//			return;
+//
+//		uint32 playedTime = 0;
+//		bool hasReward1 = false;
+//		bool hasReward2 = false;
+//		bool hasReward3 = false;
+//		uint32 recruiterGUIDLow = 0;
+//		for (uint32 i = 0; i < RecruitInfo.size(); i++)
+//		{
+//			if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
+//			{
+//				playedTime = RecruitInfo[i].friendPlayedTime;
+//				hasReward1 = RecruitInfo[i].timeRewarded1;
+//				hasReward2 = RecruitInfo[i].timeRewarded2;
+//				hasReward3 = RecruitInfo[i].timeRewarded3;
+//
+//				recruiterGUIDLow = RecruitInfo[i].recruiterGUIDLow;
+//
+//				break;
+//			}
+//		}
+//		
+//		if (!hasReward1 && (player->GetTotalPlayedTime() - playedTime > sRecruit->GetTimeForRew1()) && (sRecruit->GetTimeForRew1() > 0))
+//		{	
+//			sRecruit->UpdateHasRewad(player, 1);
+//			std::ostringstream oss;
+//			oss << "\n\nè¿™æ˜¯æ¥è‡ªçŽ©å®¶[|cFFFF1717" << player->GetName() << "|r]çš„ç¬¬ä¸€æ¬¡æ‹›å‹Ÿå¥–åŠ±\n\nç¥ä½ åœ¨è‰¾æ³½æ‹‰æ–¯çš„å†’é™©ä¹‹æ—…å……æ»¡ä¹è¶£ï¼";
+//			sRew->MailRew(player, recruiterGUIDLow, sRecruit->GetTimeForRewId1(), "æ‹›å‹Ÿå¥–åŠ±(ä¸€)", oss.str());
+//		}
+//		if (!hasReward2 && (player->GetTotalPlayedTime() - playedTime > sRecruit->GetTimeForRew2()) && (sRecruit->GetTimeForRew2() > 0))
+//		{
+//			sRecruit->UpdateHasRewad(player, 2);
+//			std::ostringstream oss;
+//			oss << "\n\nè¿™æ˜¯æ¥è‡ªçŽ©å®¶[|cFFFF1717" << player->GetName() << "|r]çš„ç¬¬äºŒæ¬¡æ‹›å‹Ÿå¥–åŠ±\n\nç¥ä½ åœ¨è‰¾æ³½æ‹‰æ–¯çš„å†’é™©ä¹‹æ—…å……æ»¡ä¹è¶£ï¼";		
+//			sRew->MailRew(player, recruiterGUIDLow, sRecruit->GetTimeForRewId2(), "æ‹›å‹Ÿå¥–åŠ±(äºŒ)", oss.str());
+//		}
+//		if (!hasReward3 && (player->GetTotalPlayedTime() - playedTime > sRecruit->GetTimeForRew3()) && (sRecruit->GetTimeForRew3() > 0))
+//		{
+//			sRecruit->UpdateHasRewad(player, 3);
+//			std::ostringstream oss;
+//			oss << "n\nè¿™æ˜¯æ¥è‡ªçŽ©å®¶[|cFFFF1717" << player->GetName() << "|r]çš„ç¬¬ä¸‰æ¬¡æ‹›å‹Ÿå¥–åŠ±\n\nç¥ä½ åœ¨è‰¾æ³½æ‹‰æ–¯çš„å†’é™©ä¹‹æ—…å……æ»¡ä¹è¶£ï¼";	
+//			sRew->MailRew(player, recruiterGUIDLow, sRecruit->GetTimeForRewId3(), "æ‹›å‹Ÿå¥–åŠ±(ä¸‰)", oss.str());
+//		}
+//	}
+//};
+//
+//
+//void Recruit::UpdateHasRewad(Player* player, uint32 flag)
+//{
+//	uint32 len = RecruitInfo.size();
+//	for (uint32 i = 0; i < len; i++)
+//		if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
+//		{
+//			player->GetSession()->SendNotification("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|ræ‹›å‹Ÿä½ çš„äººå·²èŽ·å¾—å¥–åŠ±");
+//			switch (flag)
+//			{
+//			case 1:
+//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded1 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
+//				RecruitInfo[i].timeRewarded1 = true;
+//				break;
+//			case 2:
+//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded2 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
+//				RecruitInfo[i].timeRewarded2 = true;
+//				break;
+//			case 3:
+//
+//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded3 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
+//				RecruitInfo[i].timeRewarded3 = true;
+//				break;
+//			default:
+//				break;
+//			}
+//		}
+//}
+//
+//void AddSC_RECRUIT()
+//{
+//	new RecruitWorldScript();
+//	new RecruitPlayerScript();
+//}
+//
+//
+//void Recruit::AddMainMenu(Player* player, Object* obj)
+//{
+//	player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "æ‹›å‹Ÿæ–°çš„ä¼™ä¼´", SENDER_RECRUIT_NEW, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "è§£é™¤æ‹›å‹Ÿå…³ç³»", SENDER_RECRUIT_CHAR_DISS_LIST, GOSSIP_ACTION_INFO_DEF);
+//	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "æŸ¥çœ‹æ‹›å‹Ÿä¿¡æ¯", SENDER_RECRUIT_CHAR_INFO_LIST, GOSSIP_ACTION_INFO_DEF);
+//	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "æ”¯æ´åœ¨çº¿ä¼™ä¼´", SENDER_RECRUIT_CHAR_TELE_LIST, GOSSIP_ACTION_INFO_DEF);
+//	if (obj->ToCreature())
+//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//	else
+//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//}
+//bool Recruit::AddSubMenuOrDoAction(Player* player, Object* obj, uint32 sender, uint32 action)
+//{
+//	player->PlayerTalkClass->ClearMenus();
+//	switch (sender)
+//	{
+//	case SENDER_RECRUIT_CHAR_INFO_LIST:
+//	{
+//		if (GetRecruiterData(player))
+//		{
+//			std::ostringstream oss;
+//
+//			uint64 recruiterGUID = MAKE_NEW_GUID(GetRecruiterData(player)->guidLow, 0, HIGHGUID_PLAYER);
+//
+//			if (ObjectAccessor::FindPlayerInOrOutOfWorld(recruiterGUID))
+//				oss << "[|cFF0177ECåœ¨çº¿|r]";
+//			else
+//				oss << "[|cFFFF1717ç¦»çº¿|r]";
+//			oss << "|cFFFF1717";
+//			oss << GetRecruiterData(player)->name;
+//			oss << "|r";
+//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, GetRecruiterData(player)->guidLow);
+//		}
+//
+//		std::vector<GlobalPlayerData const*> friendsDataList;
+//		GetFriendsDataList(friendsDataList, player);
+//
+//		for (size_t i = 0; i < friendsDataList.size(); i++)
+//		{
+//			std::ostringstream oss;
+//			uint64 friendGUID = MAKE_NEW_GUID(friendsDataList[i]->guidLow, 0, HIGHGUID_PLAYER);
+//
+//			if (ObjectAccessor::FindPlayerInOrOutOfWorld(friendGUID))
+//				oss << "[|cFF0177ECåœ¨çº¿|r]";
+//			else
+//				oss << "[|cFFFF1717ç¦»çº¿|r]";
+//
+//			oss << "|cFF0177EC";
+//			oss << friendsDataList[i]->name;
+//			oss << "|r";
+//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, friendsDataList[i]->guidLow);
+//		}
+//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//	}
+//	break;
+//
+//	case SENDER_RECRUIT_CHAR_INFO:
+//	{
+//		GlobalPlayerData const* playerData = sWorld->GetGlobalPlayerData(action);
+//
+//		if (playerData)
+//		{
+//			std::ostringstream oss;
+//			oss << "åå­—ï¼š" << playerData->name << "\n";
+//			oss << "ç­‰çº§ :" << playerData->level << "\n";;
+//			oss << "å…¬ä¼š :" << sGuildMgr->GetGuildNameById(playerData->guildId) << "\n";
+//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, action);
+//		}
+//	}
+//	break;
+//
+//	case SENDER_RECRUIT_CHAR_DISS_LIST:
+//	{
+//		if (GetRecruiterData(player))
+//		{
+//			std::ostringstream oss;
+//
+//			uint64 recruiterGUID = MAKE_NEW_GUID(GetRecruiterData(player)->guidLow, 0, HIGHGUID_PLAYER);
+//
+//			if (ObjectAccessor::FindPlayerInOrOutOfWorld(recruiterGUID))
+//				oss << "[|cFF0177ECåœ¨çº¿|r]";
+//			else
+//				oss << "[|cFFFF1717ç¦»çº¿|r]";
+//
+//			oss << "|cFFFF1717";
+//			oss << GetRecruiterData(player)->name;
+//			oss << "|r";
+//			player->ADD_GOSSIP_ITEM_EXTENDED(0, oss.str(), SENDER_RECRUIT_CHAR_DISMISS, 0, sReq->Notice(player, GetDissReqId2(), "ç§»é™¤", "æ‹›å‹Ÿå…³ç³»"), sReq->Golds(GetDissReqId2()), false);
+//		}
+//
+//		std::vector<GlobalPlayerData const*> friendsDataList;
+//
+//		GetFriendsDataList(friendsDataList, player);
+//
+//		for (size_t i = 0; i < friendsDataList.size(); i++)
+//		{
+//			std::ostringstream oss;
+//			uint64 friendGUID = MAKE_NEW_GUID(friendsDataList[i]->guidLow, 0, HIGHGUID_PLAYER);
+//
+//			if (ObjectAccessor::FindPlayerInOrOutOfWorld(friendGUID))
+//				oss << "[|cFF0177ECåœ¨çº¿|r]";
+//			else
+//				oss << "[|cFFFF1717ç¦»çº¿|r]";
+//
+//			oss << "|cFF0177EC";
+//			oss << friendsDataList[i]->name;
+//			oss << "|r";
+//
+//			player->ADD_GOSSIP_ITEM_EXTENDED(0, oss.str(), SENDER_RECRUIT_CHAR_DISMISS, friendsDataList[i]->guidLow, sReq->Notice(player, GetDissReqId1(), "ç§»é™¤", "æ‹›å‹Ÿå…³ç³»"), sReq->Golds(GetDissReqId1()), false);
+//		}
+//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//	}
+//	break;
+//	case SENDER_RECRUIT_CHAR_DISMISS:
+//	{
+//		if (action == 0)
+//		{
+//			if (sReq->Check(player, GetDissReqId2()))
+//			{
+//				sReq->Des(player, GetDissReqId2());
+//				DismissRecruit(GetRecruiterData(player)->guidLow, player->GetGUID());
+//			}
+//		}
+//		else
+//		{
+//			if (sReq->Check(player, GetDissReqId1()))
+//			{
+//				sReq->Des(player, GetDissReqId1());
+//				DismissRecruit(player->GetGUIDLow(), action);
+//			}
+//		}
+//
+//		player->CLOSE_GOSSIP_MENU();
+//	}
+//	break;
+//	case SENDER_RECRUIT_CHAR_TELE_LIST:
+//	{
+//		if (GetRecruiterData(player))
+//		{
+//			std::ostringstream oss;
+//
+//			uint64 recruiterGUID = MAKE_NEW_GUID(GetRecruiterData(player)->guidLow, 0, HIGHGUID_PLAYER);
+//
+//			if (ObjectAccessor::FindPlayerInOrOutOfWorld(recruiterGUID))
+//			{
+//				oss << "[|cFF0177ECåœ¨çº¿|r]";
+//				oss << "|cFFFF1717";
+//				oss << GetRecruiterData(player)->name;
+//				oss << "|r";
+//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_TELE, GetRecruiterData(player)->guidLow);
+//			}
+//		}
+//
+//		std::vector<GlobalPlayerData const*> friendsDataList;
+//		GetFriendsDataList(friendsDataList, player);
+//
+//		for (size_t i = 0; i < friendsDataList.size(); i++)
+//		{
+//			std::ostringstream oss;
+//			uint64 friendGUID = MAKE_NEW_GUID(friendsDataList[i]->guidLow, 0, HIGHGUID_PLAYER);
+//
+//			if (ObjectAccessor::FindPlayerInOrOutOfWorld(friendGUID))
+//			{
+//				oss << "[|cFF0177ECåœ¨çº¿|r]";
+//				oss << "|cFF0177EC";
+//				oss << friendsDataList[i]->name;
+//				oss << "|r";
+//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_TELE, friendsDataList[i]->guidLow);
+//			}
+//		}
+//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//	}
+//	break;
+//	case SENDER_RECRUIT_TELE:
+//	{
+//		RecruitTelePort(player, action);
+//		player->CLOSE_GOSSIP_MENU();
+//	}
+//	break;
+//	default:
+//		return false;
+//	}
+//
+//	return true;
+//}
+//
+//bool Recruit::RecruitFriend(Player* player, uint32 sender, const char* name)
+//{
+//	if (sender != SENDER_RECRUIT_NEW)
+//		return false;
+//
+//	player->PlayerTalkClass->ClearMenus();
+//
+//	if (!*name)
+//		return true;
+//
+//	player->CLOSE_GOSSIP_MENU();
+//
+//	std::string pName = name;
+//
+//	if (!normalizePlayerName(pName))
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|rè¾“å‡ºçš„åå­—æœ‰è¯¯");
+//		return true;
+//	}
+//
+//	uint32 GUIDLow = sWorld->GetGlobalPlayerGUID(pName);
+//	if (!GUIDLow)
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|ræ‹›å‹Ÿçš„çŽ©å®¶ä¸å­˜åœ¨");
+//		return true;
+//	}
+//
+//	uint64 friendGuid = MAKE_NEW_GUID(GUIDLow, 0, HIGHGUID_PLAYER);
+//
+//	Player* pFriend = ObjectAccessor::FindPlayerInOrOutOfWorld(friendGuid);
+//
+//	if (!pFriend)
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|ræ‹›å‹Ÿçš„çŽ©å®¶ä¸åœ¨çº¿");
+//		return true;
+//	}
+//
+//	std::string ip1 = pFriend->GetSession()->GetRemoteAddress();
+//	std::string ip2 = player->GetSession()->GetRemoteAddress();
+//
+//	if (strcmp(ip1.c_str(), ip2.c_str()) == 0 && player->GetSession()->GetSecurity() < SEC_ADMINISTRATOR)
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|råŒä¸€IPçš„çŽ©å®¶ä¸èƒ½æ‹›å‹Ÿ");
+//		return true;
+//	}
+//	
+//	if (!CrossFaction() && player->GetTeamId() != pFriend->GetTeamId())
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|råªèƒ½æ‹›å‹ŸåŒä¸€é˜µè¥çŽ©å®¶");
+//		return true;
+//	}
+//
+//	if (IsRecruited(pFriend))
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|r|cFF0177EC%s|rå·²è¢«æ‹›å‹Ÿ", sCF->GetNameLink(pFriend).c_str());
+//		return true;
+//	}
+//
+//	if (GetFriendAmount(player) >= GetPlayersLimit())
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|rä½ ä¸èƒ½æ‹›å‹Ÿæ›´å¤šçŽ©å®¶");
+//		return true;
+//	}
+//
+//	if (!IsRecruitYourRecruiter(player->GetGUIDLow(), pFriend->GetGUIDLow()))
+//	{
+//		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|rä½ ä¸èƒ½æ‹›å‹Ÿä½ çš„æ‹›å‹Ÿè€…");
+//		return true;
+//	}
+//
+//	if (!sReq->Check(player, GetRecReqId()))
+//		return true;
+//
+//	pFriend->recruiterGUIDLow = player->GetGUIDLow();
+//
+//	std::ostringstream oss;
+//	oss << "|cFF0177EC";
+//	oss << sCF->GetNameLink(player);
+//	oss << "|ræ­£åœ¨æ‹›å‹Ÿä½ ";
+//	PopMsg(pFriend, RECRUIT_MENU_ID, oss.str());
+//
+//	ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[æ‹›å‹Ÿç³»ç»Ÿ]|rå‘|cFF0177EC%s|rå‘é€æ‹›å‹Ÿç”³è¯·æˆåŠŸï¼",sCF->GetNameLink(pFriend).c_str());
+//
+//	return true;
+//}
