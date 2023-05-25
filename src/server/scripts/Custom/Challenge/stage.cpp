@@ -7,7 +7,7 @@
 //void Stage::Load()
 //{
 //	StageVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0			1		2				3
 //		"SELECT 关卡ID,召唤生物组ID,通关召唤物体ID,菜单文本 FROM _副本_闯关模式" :
 //		//			0		1				2		3
@@ -18,10 +18,10 @@
 //	{
 //		Field* fields = result->Fetch();
 //		StageTemplate Temp;
-//		Temp.stageRank = fields[0].GetUInt32();
-//		Temp.summonsGroupId = fields[1].GetUInt32();
-//		Temp.rewardGameobjectId = fields[2].GetUInt32();
-//		Temp.description = fields[3].GetString();
+//		Temp.stageRank = fields[0].Get<uint32>();
+//		Temp.summonsGroupId = fields[1].Get<uint32>();
+//		Temp.rewardGameobjectId = fields[2].Get<uint32>();
+//		Temp.description = fields[3].Get<std::string>();
 //		StageVec.push_back(Temp);
 //	} while (result->NextRow());
 //}
@@ -86,11 +86,11 @@
 //		{
 //			std::ostringstream oss;
 //			oss << "挑战等级:" << creature->stage;
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), creature->stage, GOSSIP_ACTION_INFO_DEF + 1);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, sStage->GetDescription(creature->stage), creature->stage, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss.str(), creature->stage, GOSSIP_ACTION_INFO_DEF + 1);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, sStage->GetDescription(creature->stage), creature->stage, GOSSIP_ACTION_INFO_DEF);
 //		}
 //
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //		return true;
 //	}
 //
@@ -103,7 +103,7 @@
 //		}
 //		creature->SummonCreatureGroup(sStage->GetSumId(creature->stage));
 //		creature->summonsClear = false;
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		return true;
 //	}
 //

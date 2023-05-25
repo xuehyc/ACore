@@ -1,4 +1,4 @@
-//#pragma execution_character_set("utf-8")
+ï»¿//#pragma execution_character_set("utf-8")
 //#include "Event.h"
 //#include "GameEventMgr.h"
 //#include "Battleground.h"
@@ -25,15 +25,15 @@
 //std::vector<EventActiveTemplate> EventActiveVec;
 //
 //
-///*»÷É±ÉúÎï*/
+///*å‡»æ€ç”Ÿç‰©*/
 //std::unordered_map<uint32/*creature entry*/, uint32> KillCreatureMap;
-///*´İ»ÙÎïÌå*/
+///*æ‘§æ¯ç‰©ä½“*/
 //std::unordered_map<uint32/*gob entry*/, uint32> DestroyGobMap;
-///*»÷É±Íæ¼Ò*/
+///*å‡»æ€ç©å®¶*/
 //std::unordered_map<TeamTypes/*event team*/, uint32> KillPlayerMap;
-///*Íæ¼ÒĞÅÏ¢*/
+///*ç©å®¶ä¿¡æ¯*/
 //std::unordered_map<uint32/*guid*/, EventPlayerTemplate> PlayerDataMap;
-///*¶ÓÎéĞÅÏ¢*/
+///*é˜Ÿä¼ä¿¡æ¯*/
 //std::unordered_map<uint32/*guid*/, TeamTypes> GroupDataMap;
 //
 //void CustomEvent::Load()
@@ -46,7 +46,7 @@
 //	{
 //		do
 //		{
-//			//¼ÓÔØdata
+//			//åŠ è½½data
 //			Field* fields = result->Fetch();
 //			uint32 eventId = fields[0].GetUInt32();
 //			EventDataTemplate Temp;
@@ -112,7 +112,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	//¼ÓÔØWorldStateVec
+//	//åŠ è½½WorldStateVec
 //	result = WorldDatabase.PQuery("SELECT eventId,creature1,creatureWorldState1,creature2,creatureWorldState2,creature3,creatureWorldState3,gameobject1,gameobjectWorldState1,gameobject2,gameobjectWorldState2,gameobject3,gameobjectWorldState3,defenseWorldState,offenseWorldState FROM _game_event_world_state");
 //	if (result)
 //	{
@@ -143,7 +143,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	//¼ÓÔØRewVec
+//	//åŠ è½½RewVec
 //	result = WorldDatabase.PQuery("SELECT eventId,winRewId,losRewId,killsForRew,killedsForRew,damageForRew,healForRew FROM _game_event_rew_setting");
 //	if (result)
 //	{
@@ -168,7 +168,7 @@
 //	}
 //	
 //
-//	//¼ÓÔØStopConditionVec
+//	//åŠ è½½StopConditionVec
 //	result = WorldDatabase.PQuery("SELECT eventId,creature1,creatureCount1,creature2,creatureCount2,creature3,creatureCount3,creature4,creatureCount4,creature5,creatureCount5, gameobject1, gameobjectCount1, gameobject2, gameobjectCount2, gameobject3, gameobjectCount3, gameobject4, gameobjectCount4, gameobject5, gameobjectCount5, defenseKills, offenseKills, killGaps FROM _game_event_stop_condition");
 //	if (result)
 //	{
@@ -210,7 +210,7 @@
 //	
 //
 //
-//	//¼ÓÔØeventPhaseMap
+//	//åŠ è½½eventPhaseMap
 //
 //	for (auto iter = EventDataMap.begin(); iter != EventDataMap.end(); iter++)
 //	{
@@ -243,7 +243,7 @@
 //		}
 //	}
 //
-//	//¼ÓÔØActiveVec
+//	//åŠ è½½ActiveVec
 //	result = WorldDatabase.PQuery("SELECT eventId,activeGuid,activeType,creatureEntry,killCount,gameobjectEntry,destroyCount FROM _game_event_active_condition");
 //	if (result)
 //	{
@@ -391,7 +391,7 @@
 //		PlayerDataMap.clear();
 //		GroupDataMap.clear();
 //
-//		/*ÊÂ¼şĞÅÏ¢*/
+//		/*äº‹ä»¶ä¿¡æ¯*/
 //		_eventType = iter->second.eventType;
 //		_groupType = iter->second.groupType;
 //		_rejoinType = iter->second.rejoinType;
@@ -504,7 +504,7 @@
 //	PlayerDataMap.clear();
 //	GroupDataMap.clear();
 //
-//	/*ÊÂ¼şĞÅÏ¢*/
+//	/*äº‹ä»¶ä¿¡æ¯*/
 //	_eventType = C_ET_GROUP;
 //	_groupType = C_GT_OFFENSE_PLAYER_RANDOM;
 //	_rejoinType = C_RT_KEEP_GROUP;
@@ -610,7 +610,7 @@
 //		return;
 //	}
 //
-//	//ÔÚ´Ë×ö¼ÙÈËÉÏÏÂÏß ÇĞ»»ÇøÓòµÈÊÂ¼ş´¦Àí
+//	//åœ¨æ­¤åšå‡äººä¸Šä¸‹çº¿ åˆ‡æ¢åŒºåŸŸç­‰äº‹ä»¶å¤„ç†
 //
 //	if (eventId == EVENT_ID_FAKE_PLAYER_LOGIN_OR_LOGOUT)
 //	{
@@ -635,7 +635,7 @@
 //	InitWorldState(eventId);
 //
 //	std::ostringstream oss;
-//	oss << _eventName << "¿ªÊ¼£¡";
+//	oss << _eventName << "å¼€å§‹ï¼";
 //	sWorld->SendServerMessage(SERVER_MSG_STRING, oss.str().c_str());
 //
 //	if (_noticeText.empty())
@@ -658,19 +658,19 @@
 //	switch (_groupType)
 //	{
 //	case C_GT_OFFENSE_ALL:
-//		oss << "ËùÓĞÍæ¼Ò½«¼ÓÈë" << _offenseName << "£¡";
+//		oss << "æ‰€æœ‰ç©å®¶å°†åŠ å…¥" << _offenseName << "ï¼";
 //		break;
 //	case C_GT_OFFENSE_ALLY:
-//		oss << "ÁªÃË½«¼ÓÈë" << _offenseName << "£¬²¿Âä½«¼ÓÈë" << _defenseName << "£¡";
+//		oss << "è”ç›Ÿå°†åŠ å…¥" << _offenseName << "ï¼Œéƒ¨è½å°†åŠ å…¥" << _defenseName << "ï¼";
 //		break;
 //	case C_GT_OFFENSE_HORDE:
-//		oss << "ÁªÃË½«¼ÓÈë" << _defenseName << "£¬²¿Âä½«¼ÓÈë" << _offenseName << "£¡";
+//		oss << "è”ç›Ÿå°†åŠ å…¥" << _defenseName << "ï¼Œéƒ¨è½å°†åŠ å…¥" << _offenseName << "ï¼";
 //		break;
 //	case C_GT_OFFENSE_FACTION_RANDOM:
-//		_AllyAsOffense ? oss << "ÁªÃË½«¼ÓÈë" << _offenseName << "£¬²¿Âä½«¼ÓÈë" << _defenseName << "£¡" : oss << "ÁªÃË½«¼ÓÈë" << _defenseName << "£¬²¿Âä½«¼ÓÈë" << _offenseName << "£¡";
+//		_AllyAsOffense ? oss << "è”ç›Ÿå°†åŠ å…¥" << _offenseName << "ï¼Œéƒ¨è½å°†åŠ å…¥" << _defenseName << "ï¼" : oss << "è”ç›Ÿå°†åŠ å…¥" << _defenseName << "ï¼Œéƒ¨è½å°†åŠ å…¥" << _offenseName << "ï¼";
 //		break;
 //	case C_GT_OFFENSE_PLAYER_RANDOM:
-//		oss << "Íæ¼Ò½«Ëæ»ú¼ÓÈë" << _defenseName << "»ò" << _offenseName << "£¡";
+//		oss << "ç©å®¶å°†éšæœºåŠ å…¥" << _defenseName << "æˆ–" << _offenseName << "ï¼";
 //		break;
 //	}
 //
@@ -682,13 +682,13 @@
 //	switch (_rejoinType)
 //	{
 //	case C_RT_BANED:
-//		oss << "ÖØĞÂ¼ÓÈë»î¶¯½«±»½ûÖ¹£¡";
+//		oss << "é‡æ–°åŠ å…¥æ´»åŠ¨å°†è¢«ç¦æ­¢ï¼";
 //		break;
 //	case C_RT_KEEP_GROUP:
-//		oss << "ÖØĞÂ¼ÓÈë»î¶¯²»»á¸Ä±ä·Ö×é£¡";
+//		oss << "é‡æ–°åŠ å…¥æ´»åŠ¨ä¸ä¼šæ”¹å˜åˆ†ç»„ï¼";
 //		break;
 //	case C_RT_REDIS_GROUP:
-//		oss << "ÖØĞÂ¼ÓÈë»î¶¯Ê±£¬ÏµÍ³»áÖØĞÂ·Ö×é£¡";
+//		oss << "é‡æ–°åŠ å…¥æ´»åŠ¨æ—¶ï¼Œç³»ç»Ÿä¼šé‡æ–°åˆ†ç»„ï¼";
 //		break;
 //	}
 //
@@ -700,7 +700,7 @@
 //	if (eventId < 70)
 //		return;
 //
-//	//ÇÀ´ğ
+//	//æŠ¢ç­”
 //	if (eventId == EVENT_ID_QUICK_RESPONSE)
 //	{
 //		sQuickResponse->Reward();
@@ -708,7 +708,7 @@
 //	}
 //
 //
-//	//Õ½³¡
+//	//æˆ˜åœº
 //	if (_eventType == C_ET_WS ||
 //		_eventType == C_ET_AB ||
 //		_eventType == C_ET_EY ||
@@ -726,14 +726,14 @@
 //		return;
 //
 //	std::ostringstream oss;
-//	oss << _eventName << "½áÊø£¡";
+//	oss << _eventName << "ç»“æŸï¼";
 //
 //	if (expired)
 //		_winTeam = C_TEAM_DEFENSE;
 //	else
 //		_winTeam = C_TEAM_OFFENSE;
 //
-//	//´Ë´¦×öÌØÊâÊâÊÂ¼şÊäÓ®ÅĞ¶Ï
+//	//æ­¤å¤„åšç‰¹æ®Šæ®Šäº‹ä»¶è¾“èµ¢åˆ¤æ–­
 //	if (eventId == NARROW_EVENT_ID)
 //	{
 //		uint32 defenseKills = GetKillPlayerCount(C_TEAM_DEFENSE);
@@ -750,13 +750,13 @@
 //	switch (_winTeam)
 //	{
 //	case C_TEAM_NONE:
-//		oss << _offenseName << _defenseName << "¶¼Ã»ÓĞÈ¡µÃ×îºóµÄÊ¤Àû£¡";
+//		oss << _offenseName << _defenseName << "éƒ½æ²¡æœ‰å–å¾—æœ€åçš„èƒœåˆ©ï¼";
 //		break;
 //	case C_TEAM_DEFENSE:
-//		oss << _defenseName << "»ñÊ¤£¡";
+//		oss << _defenseName << "è·èƒœï¼";
 //		break;
 //	case C_TEAM_OFFENSE:
-//		oss << _offenseName << "»ñÊ¤£¡";
+//		oss << _offenseName << "è·èƒœï¼";
 //		break;
 //	}
 //
@@ -833,13 +833,13 @@
 //
 //			if (team == C_TEAM_DEFENSE && iter->second.stop_defenseKills > 0)
 //			{
-//				oss << _eventName << _defenseName << "»÷É±Íæ¼Ò" << defenseKills << "/" << iter->second.stop_defenseKills;
+//				oss << _eventName << _defenseName << "å‡»æ€ç©å®¶" << defenseKills << "/" << iter->second.stop_defenseKills;
 //				announce = true;
 //			}
 //				
 //			if (team == C_TEAM_OFFENSE && iter->second.stop_offenseKills > 0)
 //			{
-//				oss << _eventName << _offenseName << "»÷É±Íæ¼Ò" << offenseKills << "/" << iter->second.stop_offenseKills;
+//				oss << _eventName << _offenseName << "å‡»æ€ç©å®¶" << offenseKills << "/" << iter->second.stop_offenseKills;
 //				announce = true;
 //			}
 //				
@@ -848,9 +848,9 @@
 //				int32 killGaps = defenseKills - offenseKills;
 //
 //				if (killGaps > 0)
-//					oss << "£¬" << _defenseName << "ÁìÏÈ»÷É±" << killGaps << "/" << iter->second.stop_killGaps;
+//					oss << "ï¼Œ" << _defenseName << "é¢†å…ˆå‡»æ€" << killGaps << "/" << iter->second.stop_killGaps;
 //				else if (killGaps < 0)
-//					oss << "£¬" << _offenseName << "ÁìÏÈ»÷É±" << abs(killGaps) << "/" << iter->second.stop_killGaps;
+//					oss << "ï¼Œ" << _offenseName << "é¢†å…ˆå‡»æ€" << abs(killGaps) << "/" << iter->second.stop_killGaps;
 //
 //				announce = true;
 //			}
@@ -867,14 +867,14 @@
 //
 //			uint32 creatureKills = GetKillCreatureCount(entry);
 //
-//			oss << _eventName << playerName << "»÷É±ÁË[" << obj->ToCreature()->GetName() << "]   ";
+//			oss << _eventName << playerName << "å‡»æ€äº†[" << obj->ToCreature()->GetName() << "]   ";
 //
 //			if (entry == iter->second.stop_creature1 && iter->second.stop_creatureCount1 > 0)
 //			{
 //				if (creatureKills < iter->second.stop_creatureCount1)
 //					oss << creatureKills << "/" << iter->second.stop_creatureCount1;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //			else if (entry == iter->second.stop_creature2 && iter->second.stop_creatureCount2 != 0)
@@ -882,7 +882,7 @@
 //				if (creatureKills < iter->second.stop_creatureCount2)
 //					oss << creatureKills << "/" << iter->second.stop_creatureCount2;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //			else if (entry == iter->second.stop_creature3 && iter->second.stop_creatureCount3 != 0)
@@ -890,7 +890,7 @@
 //				if (creatureKills < iter->second.stop_creatureCount3)
 //					oss << creatureKills << "/" << iter->second.stop_creatureCount3;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //			else if (entry == iter->second.stop_creature4 && iter->second.stop_creatureCount4 != 0)
@@ -898,7 +898,7 @@
 //				if (creatureKills < iter->second.stop_creatureCount4)
 //					oss << creatureKills << "/" << iter->second.stop_creatureCount4;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //			else if (entry == iter->second.stop_creature5 && iter->second.stop_creatureCount5 != 0)
@@ -906,7 +906,7 @@
 //				if (creatureKills < iter->second.stop_creatureCount5)
 //					oss << creatureKills << "/" << iter->second.stop_creatureCount5;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //		}
@@ -922,14 +922,14 @@
 //
 //			uint32 count = GetDestroyGobCount(entry);
 //
-//			oss << _eventName << playerName << "´İ»ÙÁË[" << obj->ToGameObject()->GetName() << "]   ";
+//			oss << _eventName << playerName << "æ‘§æ¯äº†[" << obj->ToGameObject()->GetName() << "]   ";
 //
 //			if (entry == iter->second.stop_gameobject1 && iter->second.stop_gameobjectCount1 != 0)
 //			{
 //				if (count < iter->second.stop_gameobjectCount1)
 //					oss << count << "/" << iter->second.stop_gameobjectCount1;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //			else if (entry == iter->second.stop_gameobject2 && iter->second.stop_gameobjectCount2 != 0)
@@ -937,7 +937,7 @@
 //				if (count < iter->second.stop_gameobjectCount2)
 //					oss << count << "/" << iter->second.stop_gameobjectCount2;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //			else if (entry == iter->second.stop_gameobject3 && iter->second.stop_gameobjectCount3 != 0)
@@ -945,7 +945,7 @@
 //				if (count < iter->second.stop_gameobjectCount3)
 //					oss << count << "/" << iter->second.stop_gameobjectCount3;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //			else if (entry == iter->second.stop_gameobject4 && iter->second.stop_gameobjectCount4 != 0)
@@ -953,7 +953,7 @@
 //				if (count < iter->second.stop_gameobjectCount4)
 //					oss << count << "/" << iter->second.stop_gameobjectCount4;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //			else if (entry == iter->second.stop_gameobject5 && iter->second.stop_gameobjectCount5 != 0)
@@ -961,7 +961,7 @@
 //				if (count < iter->second.stop_gameobjectCount5)
 //					oss << count << "/" << iter->second.stop_gameobjectCount5;
 //				else
-//					oss << "[Ä¿±ê´ï³É]";
+//					oss << "[ç›®æ ‡è¾¾æˆ]";
 //				announce = true;
 //			}
 //		}
@@ -1093,7 +1093,7 @@
 //	}
 //}
 //
-////¼¤»î
+////æ¿€æ´»
 //void CustomEvent::UpdateActive(Object *obj)
 //{
 //	bool valid = false;
@@ -1138,7 +1138,7 @@
 //							{
 //								std::ostringstream oss;
 //								target->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
-//								oss << _eventName << "[" << target->GetName() << "]ÏÖÔÚ¿ÉÒÔ¹¥»÷ÁË£¡";
+//								oss << _eventName << "[" << target->GetName() << "]ç°åœ¨å¯ä»¥æ”»å‡»äº†ï¼";
 //								sWorld->SendScreenMessage(oss.str().c_str());
 //							}
 //						}
@@ -1154,7 +1154,7 @@
 //							{
 //								std::ostringstream oss;
 //								target->RemoveFlag(GAMEOBJECT_FLAGS, GO_FLAG_NOT_SELECTABLE);
-//								oss << _eventName << "[" << target->GetName() << "]ÒÑ¾­¼¤»î£¡";
+//								oss << _eventName << "[" << target->GetName() << "]å·²ç»æ¿€æ´»ï¼";
 //								sWorld->SendScreenMessage(oss.str().c_str());
 //							}		
 //						}
@@ -1165,7 +1165,7 @@
 //	}
 //}
 //
-////Íæ¼Ò
+////ç©å®¶
 //bool CustomEvent::AcceptInvitation(Player* player, uint32 menuId)
 //{
 //	if (menuId < 1000000)
@@ -1175,7 +1175,7 @@
 //
 //	if (!sGameEventMgr->IsActiveEvent(eventId))
 //	{
-//		player->GetSession()->SendNotification("¸ÃÊÂ¼şÒÑ¾­½áÊø£¡");
+//		player->GetSession()->SendNotification("è¯¥äº‹ä»¶å·²ç»ç»“æŸï¼");
 //		return true;
 //	}
 //
@@ -1389,30 +1389,30 @@
 //
 //void CustomEvent::AddNewToGroup(Player* player)
 //{
-//	//ÒÑ¾­ÔÚÊÂ¼şÖĞ
+//	//å·²ç»åœ¨äº‹ä»¶ä¸­
 //	if (CheckValid(player))
 //	{
-//		ChatHandler(player->GetSession()).PSendSysMessage("%sÖØĞÂ¼ÓÈëÊÂ¼şÊ§°Ü£¡ÄãÒÑ¾­¼ÓÈëÊÂ¼ş£¡", _eventName.c_str());
+//		ChatHandler(player->GetSession()).PSendSysMessage("%sé‡æ–°åŠ å…¥äº‹ä»¶å¤±è´¥ï¼ä½ å·²ç»åŠ å…¥äº‹ä»¶ï¼", _eventName.c_str());
 //		return;
 //	}
 //	
-//	//³¬¹ıIPÏŞÖÆ
+//	//è¶…è¿‡IPé™åˆ¶
 //	if (!sCF->joinEventIsAllowed(_eventId, player))
 //		return;
 //
 //	TeamTypes team = AddPlayer(player);
 //
-//	//½ûÖ¹ÖØĞÂ¼ÓÈë
+//	//ç¦æ­¢é‡æ–°åŠ å…¥
 //	if (team == C_TEAM_NONE)
 //	{
-//		ChatHandler(player->GetSession()).PSendSysMessage("%s¼ÓÈëÊ§°Ü£¡ÎŞ·¨ÖØĞÂ¼ÓÈë£¡", _eventName.c_str());
+//		ChatHandler(player->GetSession()).PSendSysMessage("%såŠ å…¥å¤±è´¥ï¼æ— æ³•é‡æ–°åŠ å…¥ï¼", _eventName.c_str());
 //		return;
 //	}
 //
 //	if (team == C_TEAM_DEFENSE)
-//		ChatHandler(player->GetSession()).PSendSysMessage("%sÄã½«Îª%s¶øÕ½£¡", _eventName.c_str(), _defenseName.c_str());
+//		ChatHandler(player->GetSession()).PSendSysMessage("%sä½ å°†ä¸º%sè€Œæˆ˜ï¼", _eventName.c_str(), _defenseName.c_str());
 //	else
-//		ChatHandler(player->GetSession()).PSendSysMessage("%sÄã½«Îª%s¶øÕ½£¡", _eventName.c_str(), _offenseName.c_str());
+//		ChatHandler(player->GetSession()).PSendSysMessage("%sä½ å°†ä¸º%sè€Œæˆ˜ï¼", _eventName.c_str(), _offenseName.c_str());
 //
 //	if (player->isDead())
 //	{
@@ -1474,7 +1474,7 @@
 //
 //void CustomEvent::Revive(Player* player)
 //{
-//	player->GetSession()->SendAreaTriggerMessage("%sÄÃ³öÄãµÄÓÂÆø£¬¼ÌĞøÕ½¶·£¡", _eventName.c_str());
+//	player->GetSession()->SendAreaTriggerMessage("%sæ‹¿å‡ºä½ çš„å‹‡æ°”ï¼Œç»§ç»­æˆ˜æ–—ï¼", _eventName.c_str());
 //	player->CastSpell(player, 24171, true);
 //	player->ResurrectPlayer(1.0f);
 //	player->CastSpell(player, 6962, true);
@@ -1538,7 +1538,7 @@
 //	if (ii != PlayerDataMap.end())
 //		ii->second.valid = false;
 //
-//	ChatHandler(player->GetSession()).PSendSysMessage("ÄãÒÑ¾­Àë¿ª%s", _eventName.c_str());
+//	ChatHandler(player->GetSession()).PSendSysMessage("ä½ å·²ç»ç¦»å¼€%s", _eventName.c_str());
 //	player->setFactionForRace(player->getRace());
 //	player->UpdateMaxHealth();
 //	player->UninviteFromGroup();
@@ -1549,7 +1549,7 @@
 //
 //void CustomEvent::ResetAllPlayers()
 //{
-//	//ÖØÖÃplayer
+//	//é‡ç½®player
 //	for (std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.begin(); ii != PlayerDataMap.end(); ii++)
 //		if (Player* player = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(ii->first, 0, HIGHGUID_PLAYER)))
 //		{
@@ -1565,7 +1565,7 @@
 //			}
 //
 //			player->UpdateMaxHealth();
-//			//Çå³ı¶ÓÎé×´Ì¬
+//			//æ¸…é™¤é˜Ÿä¼çŠ¶æ€
 //			player->UninviteFromGroup();
 //			if (player->GetGroup())
 //				player->RemoveFromGroup();
@@ -1578,21 +1578,21 @@
 //	{
 //		if (Player* player = ObjectAccessor::FindPlayerInOrOutOfWorld(MAKE_NEW_GUID(ii->first, 0, HIGHGUID_PLAYER)))
 //		{
-//			ChatHandler(player->GetSession()).PSendSysMessage("%s»îÔ¾¶ÈÍ³¼Æ", _eventName.c_str());
-//			ChatHandler(player->GetSession()).PSendSysMessage("%s»÷É±£º%u/%u", _eventName.c_str(), ii->second.kills, _rew_killsForRew);
-//			ChatHandler(player->GetSession()).PSendSysMessage("%s±»É±£º%u/%u", _eventName.c_str(), ii->second.killeds, _rew_killedsForRew);
-//			ChatHandler(player->GetSession()).PSendSysMessage("%sÉËº¦£º%u/%u", _eventName.c_str(), ii->second.damage, _rew_damageForRew);
-//			ChatHandler(player->GetSession()).PSendSysMessage("%sÖÎÁÆ£º%u/%u", _eventName.c_str(), ii->second.heal, _rew_healForRew);
+//			ChatHandler(player->GetSession()).PSendSysMessage("%sæ´»è·ƒåº¦ç»Ÿè®¡", _eventName.c_str());
+//			ChatHandler(player->GetSession()).PSendSysMessage("%så‡»æ€ï¼š%u/%u", _eventName.c_str(), ii->second.kills, _rew_killsForRew);
+//			ChatHandler(player->GetSession()).PSendSysMessage("%sè¢«æ€ï¼š%u/%u", _eventName.c_str(), ii->second.killeds, _rew_killedsForRew);
+//			ChatHandler(player->GetSession()).PSendSysMessage("%sä¼¤å®³ï¼š%u/%u", _eventName.c_str(), ii->second.damage, _rew_damageForRew);
+//			ChatHandler(player->GetSession()).PSendSysMessage("%sæ²»ç–—ï¼š%u/%u", _eventName.c_str(), ii->second.heal, _rew_healForRew);
 //
 //			if (!ii->second.valid)
 //			{
-//				ChatHandler(player->GetSession()).PSendSysMessage("%sÄãÖĞÍ¾Àë¿ª»î¶¯£¬ÎŞ·¨»ñµÃ½±Àø", _eventName.c_str());
+//				ChatHandler(player->GetSession()).PSendSysMessage("%sä½ ä¸­é€”ç¦»å¼€æ´»åŠ¨ï¼Œæ— æ³•è·å¾—å¥–åŠ±", _eventName.c_str());
 //				continue;
 //			}
 //
 //			if (ii->second.kills < _rew_killsForRew && ii->second.killeds < _rew_killedsForRew && ii->second.damage < _rew_damageForRew && ii->second.heal < _rew_healForRew)
 //			{
-//				ChatHandler(player->GetSession()).PSendSysMessage("%s»îÔ¾¶ÈÎ´´ïµ½ÒªÇó£¬ÎŞ·¨»ñµÃ½±Àø", _eventName.c_str(), ii->second.heal);
+//				ChatHandler(player->GetSession()).PSendSysMessage("%sæ´»è·ƒåº¦æœªè¾¾åˆ°è¦æ±‚ï¼Œæ— æ³•è·å¾—å¥–åŠ±", _eventName.c_str(), ii->second.heal);
 //				continue;
 //			}
 //
@@ -1651,7 +1651,7 @@
 //
 //	switch (_eventId)
 //	{
-//	case NARROW_EVENT_ID:			//ÏÁÂ·Ïà·ê
+//	case NARROW_EVENT_ID:			//ç‹­è·¯ç›¸é€¢
 //	{
 //		uint32 posId = 0;
 //
@@ -1869,7 +1869,7 @@
 //				if (GetTeam(pl) == C_TEAM_OFFENSE && GetDistance(pl, _graveyard_defense_pos) <= _defense_graveyard_safe)
 //				{
 //					std::ostringstream oss;
-//					oss << _eventName << "ÄãÒÑ½øÈëµĞ·½Ä¹µØ±£»¤ÇøÓò" << _defense_graveyard_safe << "£¬Ç¿ÖÆ´«ËÍ";
+//					oss << _eventName << "ä½ å·²è¿›å…¥æ•Œæ–¹å¢“åœ°ä¿æŠ¤åŒºåŸŸ" << _defense_graveyard_safe << "ï¼Œå¼ºåˆ¶ä¼ é€";
 //					pl->GetSession()->SendNotification(oss.str().c_str());
 //					Teleport(pl, _graveyard_offense_pos);
 //				}
@@ -1877,7 +1877,7 @@
 //				if (GetTeam(pl) == C_TEAM_DEFENSE && GetDistance(pl, _graveyard_offense_pos) < _offense_graveyard_safe)
 //				{
 //					std::ostringstream oss;
-//					oss << _eventName << "ÄãÒÑ½øÈëµĞ·½Ä¹µØ±£»¤ÇøÓò" << _offense_graveyard_safe << "£¬Ç¿ÖÆ´«ËÍ";
+//					oss << _eventName << "ä½ å·²è¿›å…¥æ•Œæ–¹å¢“åœ°ä¿æŠ¤åŒºåŸŸ" << _offense_graveyard_safe << "ï¼Œå¼ºåˆ¶ä¼ é€";
 //					pl->GetSession()->SendNotification(oss.str().c_str());
 //					Teleport(pl, _graveyard_defense_pos);
 //				}		
@@ -1898,7 +1898,7 @@
 //	UpdateSafeArea(diff);
 //}
 //
-////Õ½³¡
+////æˆ˜åœº
 //bool CustomEvent::IsFixedTimeBgActive(BattlegroundTypeId bgTypeId)
 //{
 //	EventTypes eventType = C_ET_NONE;
@@ -1981,7 +1981,7 @@
 //	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
-////Unk1 = 1Ê± ¼ì²âÕóÓªÊÇ·ñÒ»ÖÂ Ò»ÖÂÔòÍ¨¹ı ¿ÉÒÔÊÍ·Å¼¼ÄÜ
+////Unk1 = 1æ—¶ æ£€æµ‹é˜µè¥æ˜¯å¦ä¸€è‡´ ä¸€è‡´åˆ™é€šè¿‡ å¯ä»¥é‡Šæ”¾æŠ€èƒ½
 //bool CustomEvent::GobUnk1Check(Unit* target, GameObject *const gob)
 //{
 //	if (!target)
@@ -2046,7 +2046,7 @@
 //			if (addPos)
 //			{
 //				std::ostringstream oss;
-//				oss << "posId" << posId1 << "Óë" << posId2 << "Ö®¼ä²É¼¯µã" << uint32(i);
+//				oss << "posId" << posId1 << "ä¸" << posId2 << "ä¹‹é—´é‡‡é›†ç‚¹" << uint32(i);
 //
 //				uint32 posId = 1;
 //
@@ -2056,7 +2056,7 @@
 //				WorldDatabase.DirectPExecute("INSERT INTO _position(comment,posId,map,x,y,z,o) VALUES ('%s','%u','%u','%f','%f','%f','%f')", oss.str().c_str(), posId,map, x, y, z, o);
 //
 //				std::ostringstream oss1;
-//				oss1 << "_positionĞÂÔöID:" << posId << "±¸×¢:" << oss.str().c_str();
+//				oss1 << "_positionæ–°å¢ID:" << posId << "å¤‡æ³¨:" << oss.str().c_str();
 //				ChatHandler(player->GetSession()).PSendSysMessage(oss1.str().c_str());
 //			}
 //		}
@@ -2159,7 +2159,7 @@
 //};
 //
 //
-////Ò°ÍâÌôÕ½½Å±¾
+////é‡å¤–æŒ‘æˆ˜è„šæœ¬
 //class StageTrigger : public CreatureScript
 //{
 //public:
@@ -2195,7 +2195,7 @@
 //			if (Summons.empty() && active)
 //			{
 //				std::ostringstream oss;
-//				oss << "[Ê¤ÕßÎªÍõ]£ºµÚ" << stage << "¹Ø¿ªÊ¼!";
+//				oss << "[èƒœè€…ä¸ºç‹]ï¼šç¬¬" << stage << "å…³å¼€å§‹!";
 //				sWorld->SendScreenMessage(oss.str().c_str());
 //				me->SummonCreatureGroup(stage);
 //			}
@@ -2204,7 +2204,7 @@
 //		void SummonedCreatureDies(Creature* summon, Unit* killer)  override
 //		{	
 //			std::ostringstream oss;
-//			oss << "[Ê¤ÕßÎªÍõ]£º[" << killer->GetName() << "]»÷É±[" << summon->GetCreatureTemplate()->Name << "]£¬ÌôÕ½³É¹¦£¡";
+//			oss << "[èƒœè€…ä¸ºç‹]ï¼š[" << killer->GetName() << "]å‡»æ€[" << summon->GetCreatureTemplate()->Name << "]ï¼ŒæŒ‘æˆ˜æˆåŠŸï¼";
 //			sWorld->SendScreenMessage(oss.str().c_str());
 //			Summons.Despawn(summon);
 //

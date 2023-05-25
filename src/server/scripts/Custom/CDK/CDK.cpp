@@ -1,8 +1,8 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "CDK.h"
-//#include "../Reward/Reward.h"
-//#include <fstream>
-//#include <iostream>
+﻿#pragma execution_character_set("utf-8")
+#include "CDK.h"
+#include "../Reward/Reward.h"
+#include <fstream>
+#include <iostream>
 //
 //std::unordered_map<std::string, uint32> CDKMap;
 //

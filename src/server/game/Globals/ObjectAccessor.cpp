@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -179,6 +179,12 @@ Object* ObjectAccessor::GetObjectByTypeMask(WorldObject const& p, ObjectGuid con
     }
 
     return nullptr;
+}
+
+
+Player* ObjectAccessor::FindPlayerInOrOutOfWorld(uint64 guid)
+{
+    return GetObjectInOrOutOfWorld(guid, (Player*)NULL);
 }
 
 Corpse* ObjectAccessor::GetCorpse(WorldObject const& u, ObjectGuid const guid)

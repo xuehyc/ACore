@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -317,6 +317,8 @@ public:
 
     [[nodiscard]] MapEntry const* GetEntry() const { return i_mapEntry; }
 
+    //挑战模式
+    uint32 challengeLv = 0;
     // currently unused for normal maps
     bool CanUnload(uint32 diff)
     {

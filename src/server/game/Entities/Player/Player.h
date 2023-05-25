@@ -1068,6 +1068,7 @@ public:
 
     //gs
     uint32 GS;
+    uint32 ChallengeLv;
 
     //前缀
     std::string namePrefix;

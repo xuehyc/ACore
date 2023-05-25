@@ -1,28 +1,28 @@
-/*
+ï»¿/*
 classMask							itemMask
-1			Õ½Ê¿						1			°Ë¼şÌ×
-2			ÆïÊ¿						2			ÊÎÆ·¡¢½äÖ¸¡¢Åû·ç¡¢ÏîÁ´
-4			ÁÔÈË						4			Ë«ÊÖ¡¢¹­¡¢Ç¹¡¢åó
-8			µÁÔô						8			Ö÷ÊÖ¡¢µ¥ÊÖ
-16			ÄÁÊ¦						16			¸±ÊÖ
-32			ËÀÍöÆïÊ¿					32			Ô¶³Ì¡¢Ä§ÕÈ
-64			ÈøÂú						64			³ÄÒÂ
-128			·¨Ê¦						128			Õ½ÅÛ
-256			ÊõÊ¿						256			´ø¹âĞ§µÄÎäÆ÷FM
-1024		µÂÂ³ÒÁ					512			·ûÓ¡
+1			æˆ˜å£«						1			å…«ä»¶å¥—
+2			éª‘å£«						2			é¥°å“ã€æˆ’æŒ‡ã€æŠ«é£ã€é¡¹é“¾
+4			çŒäºº						4			åŒæ‰‹ã€å¼“ã€æªã€å¼©
+8			ç›—è´¼						8			ä¸»æ‰‹ã€å•æ‰‹
+16			ç‰§å¸ˆ						16			å‰¯æ‰‹
+32			æ­»äº¡éª‘å£«					32			è¿œç¨‹ã€é­”æ–
+64			è¨æ»¡						64			è¡¬è¡£
+128			æ³•å¸ˆ						128			æˆ˜è¢
+256			æœ¯å£«						256			å¸¦å…‰æ•ˆçš„æ­¦å™¨FM
+1024		å¾·é²ä¼Š					512			ç¬¦å°
 
-È«Ö°Òµ		classMask	1535		
-´¿ÎïÀí		classMask	45
-´¿·¨Ïµ		classMask	400
-»ìºÏÖ°Òµ		classMask	1090
+å…¨èŒä¸š		classMask	1535		
+çº¯ç‰©ç†		classMask	45
+çº¯æ³•ç³»		classMask	400
+æ··åˆèŒä¸š		classMask	1090
 flagMsk
-Í¬Ò»¸ömask Ö»ÄÜ³öÏÖÇ¿»¯ÆäÖĞÒ»¸ö
+åŒä¸€ä¸ªmask åªèƒ½å‡ºç°å¼ºåŒ–å…¶ä¸­ä¸€ä¸ª
 
 */
 
 #define TRANS_FLAG_ENCHANT_ID 6000000
 
-//Ç¿»¯Î»ÖÃÊıÁ¿
+//å¼ºåŒ–ä½ç½®æ•°é‡
 
 #define COUNT_SUIT							2
 #define COUNT_ORNAMENT						2
@@ -34,7 +34,7 @@ flagMsk
 #define COUNT_TABARD						2
 #define COUNT_SIGIL							10
 
-//±£ÁôÇ¿»¯Ğ§¹û¿ª¹Ø
+//ä¿ç•™å¼ºåŒ–æ•ˆæœå¼€å…³
 #define KEEP_ENCHANT_SUIT					true
 #define KEEP_ENCHANT_ORNAMENT				true
 #define KEEP_ENCHANT_2H_WEAPON				true
@@ -44,28 +44,28 @@ flagMsk
 #define KEEP_ENCHANT_SHIRT					true
 #define KEEP_ENCHANT_TABARD					true
 
-//FMµÈ¶¯×÷·¢ÉúÊ±Ê©·¨µÄÊÓ¾õĞ§¹û¼¼ÄÜID
+//FMç­‰åŠ¨ä½œå‘ç”Ÿæ—¶æ–½æ³•çš„è§†è§‰æ•ˆæœæŠ€èƒ½ID
 #define VISUAL_SPELL_ID						61456
 
-// ²é¿´¹âĞ§FMÊ±¼ä
+// æŸ¥çœ‹å…‰æ•ˆFMæ—¶é—´
 #define LOOKUP_WEAPON_PERM_SECONDS			8
 
-//Ã¿Ò³ÏÔÊ¾×î´óFMĞĞÊı
+//æ¯é¡µæ˜¾ç¤ºæœ€å¤§FMè¡Œæ•°
 #define MAX_ROWS_COUNT						25
 
-//·ûÓ¡ÊÇ·ñ×Ô´øFM£¬ÉèÖÃ³õÊ¼ID SIGIL_OWN_ENCHANT_ID_START£¨end = start + COUNT_SIGIL£©
-//SIGIL_OWN_ENCHANT_TITLE_0,SIGIL_OWN_ENCHANT_TITLE_1 ·ûÓ¡¿É×Ô´ø±êÌâ µã»÷»Øµ½µ±Ç°Ò³ Èç¹û²»ÓÃ ¿ÉÉèÖÃÎª -1
+//ç¬¦å°æ˜¯å¦è‡ªå¸¦FMï¼Œè®¾ç½®åˆå§‹ID SIGIL_OWN_ENCHANT_ID_STARTï¼ˆend = start + COUNT_SIGILï¼‰
+//SIGIL_OWN_ENCHANT_TITLE_0,SIGIL_OWN_ENCHANT_TITLE_1 ç¬¦å°å¯è‡ªå¸¦æ ‡é¢˜ ç‚¹å‡»å›åˆ°å½“å‰é¡µ å¦‚æœä¸ç”¨ å¯è®¾ç½®ä¸º -1
 #define SIGIL_OWN_ENCHANT					true
 #define SIGIL_OWN_ENCHANT_ID_START			220000 
 #define SIGIL_OWN_ENCHANT_TITLE_0			220000
 #define SIGIL_OWN_ENCHANT_TITLE_1			220006
 
 
-//¼ø¶¨ºÍ²·ØÔreqId
+//é‰´å®šå’Œåœå¦reqId
 #define ITEM_IDENTIFY_REQID					2000
 #define ITEM_ASTROLOGY_REQID				2001
 
-//Ä¬ÈÏÒÆ³ıFM ½ğ±ÒÊıÁ¿
+//é»˜è®¤ç§»é™¤FM é‡‘å¸æ•°é‡
 #define DEFAULT_REMOVE_ENCHANT_GOLDS		0
 
 
@@ -94,8 +94,8 @@ flagMsk
 #define ACTION_WEAPONPERM_BUY						1029
 #define ACTION_TRANS								1030
 
-const std::string ENCHANT_ACTION_STRING = "ÏâÇ¶";
-const std::string ENCHANT_NAME_STRING	= "·ûÎÄ";
+const std::string ENCHANT_ACTION_STRING = "é•¶åµŒ";
+const std::string ENCHANT_NAME_STRING	= "ç¬¦æ–‡";
 
 
 
@@ -171,7 +171,7 @@ struct ItemDesTemplate
 
 extern std::unordered_map<uint32, ItemDesTemplate> ItemDesMap;
 
-//Òş²ØÎïÆ·
+//éšè—ç‰©å“
 struct HiddenItemTemplate
 {
 	uint32 entry;
@@ -197,7 +197,7 @@ struct ItemUnbindCostTemplate
 };
 extern std::vector<ItemUnbindCostTemplate> ItemUnbindCostInfo;
 
-////È¥³ı±¦Ê¯////
+////å»é™¤å®çŸ³////
 struct RemoveGemTemplate
 {
 	uint32 entry;
@@ -206,7 +206,7 @@ struct RemoveGemTemplate
 };
 extern std::vector<RemoveGemTemplate> RemoveGemInfo;
 
-////×°±¸Éı¼¶////
+////è£…å¤‡å‡çº§////
 
 /*
 ALTER TABLE _itemmod_exchange_item ADD destroyOnFail BOOL DEFAULT FALSE AFTER chance;
@@ -220,14 +220,14 @@ struct ItemExchangeTemplate
 	uint32 exchangeditem;
 	uint32 reqId;
 	uint32 chance;
-	uint32 flag;//0 ºÏ³É//Ç¿»¯
+	uint32 flag;//0 åˆæˆ//å¼ºåŒ–
 	uint32 rewIdOnFail;
 	bool destroyOnFail;
 	bool keepEnchant;
 };
 extern std::vector<ItemExchangeTemplate> ItemExchangeInfo;
 
-////×°±¸Ç¿»¯////
+////è£…å¤‡å¼ºåŒ–////
 struct ItemUpgradeTemplate
 {
 	uint32 enchantId;
@@ -258,7 +258,7 @@ struct FilterTemplate
 };
 extern std::vector<FilterTemplate> FilterVec;
 
-//±¦Ê¯ÉÏÏŞ
+//å®çŸ³ä¸Šé™
 struct GemCountLimitTemplate
 {
 	uint32 entry;
@@ -268,7 +268,7 @@ extern std::vector<GemCountLimitTemplate> GemCountLimitInfo;
 
 extern std::unordered_map<uint32/*entry*/, uint32/*count*/> GetmCountLimitMap;
 
-//¼ø¶¨ºÍØÔÏó
+//é‰´å®šå’Œå¦è±¡
 struct IdentifyTemplate
 {
 	uint32 entry;
@@ -299,7 +299,7 @@ struct EnchantGroupTemplate
 extern std::vector<EnchantGroupTemplate> EnchantGroupVec;
 extern std::list<uint32> GCAddonEnchantGroupVec;
 
-//×°±¸×é
+//è£…å¤‡ç»„
 struct ItemAddTemplate
 {
 	uint32 categoryId;
@@ -382,7 +382,7 @@ public:
 	std::string GetGemName(Item* item, uint8 slot);
 	uint32 getGemId(Item* item, uint8 slot);
 
-	void ExchangeItem(Player* player, Item* item, uint32 update = 0/*0 ºÏ³É 1Ç¿»¯*/);
+	void ExchangeItem(Player* player, Item* item, uint32 update = 0/*0 åˆæˆ 1å¼ºåŒ–*/);
 	void RemoveBind(Player* player, Item* item);
 	Item* AddItem(Player* player, uint32 itemId, uint32 count);
 	void AddGemList(Player* player, Item* item);
@@ -398,7 +398,7 @@ public:
 	void setEnchantMask(Item* item);
 
 	void AddCastMenu(Player* player, Item* item);
-	bool AddItemExchangeMenu(Player* player, Item* item, uint32 update = 0/*0 ºÏ³É 1Ç¿»¯ 2NoPatchItem*/);
+	bool AddItemExchangeMenu(Player* player, Item* item, uint32 update = 0/*0 åˆæˆ 1å¼ºåŒ– 2NoPatchItem*/);
 	bool AddItemRemovBindMenu(Player* player, Item* item);
 	bool AddRemoveGemMenu(Player* player, Item* item);
 
@@ -411,7 +411,7 @@ public:
 
 	bool IsUpgradeSetted(Player* player, Item* item, ITEM_ENCHANT_TYPES type = ITEM_ENCHANT_UPGRADE);
 
-	//¼ø¶¨ºÍ·âÏó
+	//é‰´å®šå’Œå°è±¡
 	uint32 GetIdentifyGroupId(uint32 entry, EnchantmentSlot slot);
 	uint32 GetIdentifyEnchantId(uint32 entry, EnchantmentSlot slot);
 	void GetIdentifyInfo(uint32 entry, EnchantmentSlot slot, uint32 &reqId, std::string &gossipText, bool &slotHasEnchant);
@@ -429,16 +429,16 @@ public:
 	void AddWeaponPermList(Player* player, Item* item);
 	void RecoverWeaponPermEnchant(Player* player);
 
-	//¼¸ÂÊ±¦Ê¯
+	//å‡ ç‡å®çŸ³
 	uint32 GetRate(Player* player, RateStoneTypes type);
 	uint32 GetRateAndDes(Player* player, RateStoneTypes type);
-	//×Ô´øFM
+	//è‡ªå¸¦FM
 	uint32 GenerateEnchantId(uint32 entry,uint8 slot);
 
-	//ÏîÁ´³É³¤
+	//é¡¹é“¾æˆé•¿
 	void NeckUp(Player* player, bool isPVP);
 
-	//»Ã»¯
+	//å¹»åŒ–
 	bool HasTransFlag(Item* item);
 
 	void ApplyHiddenItem(Player* player, Item* item, bool apply);

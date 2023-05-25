@@ -1,4 +1,4 @@
-//#pragma execution_character_set("utf-8")
+ï»¿//#pragma execution_character_set("utf-8")
 //#include "ThunderbluffBattle.h"
 //#include "../CustomEvent/Event.h"
 //#include "Vehicle.h"
@@ -7,7 +7,7 @@
 //{
 //	SPELL_TELE_DEBUFF = 54643,
 //
-//	//Å£Í·ÊØÎÀ
+//	//ç‰›å¤´å®ˆå«
 //	SPELL_THROW_FIRE = 250000,
 //	SPELL_THROW_WIND = 250001,
 //
@@ -84,7 +84,7 @@
 //				{
 //					//TimerMinuteCount++;
 //					//std::ostringstream oss;
-//					//oss << "Ê±¼ä£º" << TimerMinuteCount << "Ãë";
+//					//oss << "æ—¶é—´ï¼š" << TimerMinuteCount << "ç§’";
 //					//sWorld->SendServerMessage(SERVER_MSG_STRING, oss.str().c_str());
 //				}	
 //				events.ScheduleEvent(EVENT_TIMER, IN_MILLISECONDS);
@@ -127,7 +127,7 @@
 //		void Announce(PhaseIds phase)
 //		{
 //			std::ostringstream oss;
-//			oss << event_name << "µÚ" << phase << "½×¶Î¼¤»î£¡";
+//			oss << event_name << "ç¬¬" << phase << "é˜¶æ®µæ¿€æ´»ï¼";
 //
 //			SessionMap const& smap = sWorld->GetAllSessions();
 //			for (SessionMap::const_iterator iter = smap.begin(); iter != smap.end(); ++iter)
@@ -201,7 +201,7 @@
 //
 //		if (sThunderbluffBattle->GetPhase() == PHASE_ZERO)
 //		{
-//			player->GetSession()->SendNotification("µÈ´ı´«ËÍÆ÷¼¤»î!");
+//			player->GetSession()->SendNotification("ç­‰å¾…ä¼ é€å™¨æ¿€æ´»!");
 //			return false;
 //		}
 //
@@ -282,7 +282,7 @@
 //		void Announce(uint32 seconds)
 //		{
 //			std::ostringstream oss;
-//			oss << event_name << seconds << "Ãëºó¼¯Ìå¸´»î£¬Çë¿¿½üÁé»êÒ½Õß...";
+//			oss << event_name << seconds << "ç§’åé›†ä½“å¤æ´»ï¼Œè¯·é è¿‘çµé­‚åŒ»è€…...";
 //
 //			std::list<Player*> playersNearby;
 //			me->GetPlayerListInGrid(playersNearby, 30, false);
@@ -308,7 +308,7 @@
 //		{
 //			std::ostringstream oss;
 //
-//			oss << event_name << "ÄÃ³öÄãµÄÓÂÆø£¬¼ÌĞøÕ½¶·£¡";
+//			oss << event_name << "æ‹¿å‡ºä½ çš„å‹‡æ°”ï¼Œç»§ç»­æˆ˜æ–—ï¼";
 //
 //			std::list<Player*> playersNearby;
 //			me->GetPlayerListInGrid(playersNearby, 30, false);
@@ -374,7 +374,7 @@
 //				me->CastSpell(caster, 43789);
 //
 //				Unit* ps = me->GetVehicleKit()->GetPassenger(0);
-//				me->MonsterWhisper("¸ÃËÀ£¬±»ÄÇ¸öÅ£Í·ÈË»÷ÖĞÁË£¬¿ì¸ÉµôËü...·ñÔòÎÒÃÇ¾Í×¹»ÙÁË£¡", ps->ToPlayer());
+//				me->MonsterWhisper("è¯¥æ­»ï¼Œè¢«é‚£ä¸ªç‰›å¤´äººå‡»ä¸­äº†ï¼Œå¿«å¹²æ‰å®ƒ...å¦åˆ™æˆ‘ä»¬å°±å æ¯äº†ï¼", ps->ToPlayer());
 //				countdown = true;
 //			}
 //		}

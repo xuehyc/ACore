@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -85,6 +85,13 @@ namespace ObjectAccessor
     Player* FindPlayerByName(std::string const& name, bool checkInWorld = true);
     Creature* GetSpawnedCreatureByDBGUID(uint32 mapId, uint64 guid);
     GameObject* GetSpawnedGameObjectByDBGUID(uint32 mapId, uint64 guid);
+
+    Player* FindPlayerInOrOutOfWorld(uint64 guid);//I
+
+    template<class T> static T* GetObjectInOrOutOfWorld(uint64 guid, T* /*typeSpecifier*/)  //I
+    {
+        return HashMapHolder<T>::Find((ObjectGuid)guid);
+    }
 
     // when using this, you must use the hashmapholder's lock
     HashMapHolder<Player>::MapType const& GetPlayers();
