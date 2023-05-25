@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -108,5 +108,6 @@ typedef std::uint64_t uint64;
 typedef std::uint32_t uint32;
 typedef std::uint16_t uint16;
 typedef std::uint8_t uint8;
+//typedef std::string string;//I
 
 #endif //ACORE_DEFINE_H

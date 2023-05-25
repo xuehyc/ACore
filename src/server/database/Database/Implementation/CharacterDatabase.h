@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -505,6 +505,36 @@ enum CharacterDatabaseStatements : uint32
     CHAR_SEL_RECOVERY_ITEM_LIST,
     CHAR_DEL_RECOVERY_ITEM,
     CHAR_DEL_RECOVERY_ITEM_BY_RECOVERY_ID,
+
+    CHAR_INS_AC,            //I begin
+    CHAR_UPD_ARMORY_TOKEN,
+    CHAR_DEL_ARMORY_TOKEN,
+    CHAR_INS_ARMORY_TOKEN,
+
+    CHAR_UPD_ARMORY_SIGIL,
+    CHAR_DEL_ARMORY_SIGIL,
+    CHAR_INS_ARMORY_SIGIL,
+
+    CHAR_UPD_ARMORY_PVP,
+    CHAR_DEL_ARMORY_PVP,
+    CHAR_INS_ARMORY_PVP,
+
+    CHAR_UPD_NAME_PREFIX,
+    CHAR_UPD_NAME_SUFFIX,
+
+    CHAR_INS_TOKEN,
+
+    CHAR_REP_ARENA_DUEL,
+    CHAR_DEL_ARENA_DUEL,
+
+    CHAR_UPD_RANKVALUE,
+    CHAR_UPD_SIGN_IN,
+    CHAR_UPD_CUSTOM_SKILL,
+    CHAR_UPD_ITEM_DAY,
+    CHAR_DEL_ITEM_DAY,
+    CHAR_REP_TALISMAN,
+    CHAR_SEL_LOOTCHECK,
+    CHAR_UPD_LOOTCHECK, //I end
 
     CHAR_SEL_HONORPOINTS,
     CHAR_SEL_ARENAPOINTS,

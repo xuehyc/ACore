@@ -1073,6 +1073,108 @@ public:
     std::string namePrefix;
     std::string nameSuffix;
 
+    //签到
+    time_t signinTime;
+    uint32 signinDays;
+
+    //礼包
+    uint32 loginTime;
+    uint32 GetGiftTime() { return getMSTime() - loginTime; }
+    uint32 GiftCheckTimer;
+    std::vector<uint32 /*gift time*/> GiftTimeVec;
+
+    //套装
+    std::vector<uint32 /*ID*/> InvSetVec;
+
+    //积分数量
+    uint32 totalTokenAmount;
+
+    //buy item
+    uint32 buy_reqId; uint32 buy_item; uint32 buy_count;
+
+    //进入地图
+    uint32 enter_map_req;
+    AreaTriggerTeleport const* enter_map_at;
+
+    //在线泡点
+    uint32 onlineRewTimer;
+    uint32 timeRewId;
+
+    //领取泡点
+    uint32 onlineRewardedCount;
+
+    //账号技能
+    std::vector<uint32 /*spellId*/> AccountSpellVec;
+    uint32 AccountLootMuilt;
+
+    //购买幻化
+    uint32 trans_item;
+    uint32 trans_reqId;
+
+    //升级，强化的物品
+    Item* playerItem;
+
+
+    //Vip等级
+    uint32 vipLevel;
+
+    //脱战冷却时间
+    int stopCombatCD;
+    bool canStopCombat;
+
+    //专业数量
+    uint32 tradeSkillCount;
+
+    //更新军衔
+    uint32 hornorTimer;
+    bool hasUpdateHornor;
+
+    #define MAX_STAT_POINTS_TYPE 13
+
+    #define MAX_AC_POINT_COUNT 10
+
+    //防守 1，2
+    //对线 1，2
+    //公会战 Guild guid
+
+    //自定义阵营 faction
+    #define EventFactionId uint32
+
+    struct EventDataTemplate
+    {
+        uint32 EventId;
+        std::string FactionName;
+        EventFactionId FactionId;
+        uint32 Damage;
+        uint32 Heal;
+        uint32 Kills;
+        uint32 Killeds;
+    };
+
+    //customevent
+    EventFactionId GetEventFaction() { return _EventData.FactionId; }
+    EventDataTemplate GetEventData() { return _EventData; }
+
+    Item* AddItemById(uint32 itemId, uint32 count);//I
+
+   
+
+private:
+    EventDataTemplate _EventData;
+
+public:
+    bool UnderACKmount() const { return m_ACKmounted; }
+    void SetUnderACKmount() { m_mountTimer = 3 * IN_MILLISECONDS; m_ACKmounted = true; }
+    void SetSkipOnePacket(bool blinked) { m_skipOnePacket = blinked; }
+    bool IsSkipOnePacket() const { return m_skipOnePacket; }
+    bool GMFlyON;
+private:
+    bool m_skipOnePacket;
+    uint32 m_mountTimer;
+    bool   m_ACKmounted;
+    uint32 m_otherhackTimer;
+
+public:
     void CleanupsBeforeDelete(bool finalCleanup = true) override;
 
     void AddToWorld() override;

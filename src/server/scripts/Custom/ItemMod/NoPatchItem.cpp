@@ -1,4 +1,4 @@
-#pragma execution_character_set("utf-8")
+Ôªø#pragma execution_character_set("utf-8")
 #include "NoPatchItem.h"
 #include "ItemMod.h"
 #include "../GCAddon/GCAddon.h"
@@ -43,9 +43,9 @@ void NoPatchItem::Load()
 		{
 			Field* fields = result->Fetch();
 			NpSrcTemplate Temp;
-			Temp.SrcIndex = fields[0].GetUInt32();
-			Temp.SrcEntry = fields[1].GetUInt32();
-			Temp.SrcChance = fields[2].GetFloat();
+			Temp.SrcIndex = fields[0].Get<uint32>();
+			Temp.SrcEntry = fields[1].Get<uint32>();
+			Temp.SrcChance = fields[2].Get<float>();
 			NpSrcVec.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -57,15 +57,15 @@ void NoPatchItem::Load()
 		{
 			Field* fields = result->Fetch();
 			NpSpellTemplate Temp;
-			Temp.SpellIndex						= fields[0].GetUInt32();
-			Temp.Spell.SpellId					= fields[1].GetUInt32();
-			Temp.Spell.SpellTrigger				= fields[2].GetUInt32();
-			Temp.Spell.SpellCharges				= fields[3].GetUInt32();
-			Temp.Spell.SpellPPMRate				= fields[4].GetFloat();
-			Temp.Spell.SpellCooldown			= fields[5].GetInt32();
-			Temp.Spell.SpellCategory			= fields[6].GetUInt32();
-			Temp.Spell.SpellCategoryCooldown	= fields[7].GetInt32();
-			Temp.SpellChance					= fields[8].GetFloat();
+			Temp.SpellIndex						= fields[0].Get<uint32>();
+			Temp.Spell.SpellId					= fields[1].Get<uint32>();
+			Temp.Spell.SpellTrigger				= fields[2].Get<uint32>();
+			Temp.Spell.SpellCharges				= fields[3].Get<uint32>();
+			Temp.Spell.SpellPPMRate				= fields[4].Get<float>();
+			Temp.Spell.SpellCooldown			= fields[5].Get<int32>();
+			Temp.Spell.SpellCategory			= fields[6].Get<uint32>();
+			Temp.Spell.SpellCategoryCooldown	= fields[7].Get<int32>();
+			Temp.SpellChance					= fields[8].Get<float>();
 			NpSpellVec.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -76,11 +76,11 @@ void NoPatchItem::Load()
 		{
 			Field* fields = result->Fetch();
 			NpStatTemplate Temp;
-			Temp.StatIndex				= fields[0].GetUInt32();
-			Temp.Stat.ItemStatType		= fields[1].GetUInt32();
-			Temp.Stat.ItemStatMinValue	= fields[2].GetUInt32();
-			Temp.Stat.ItemStatMaxValue	= fields[3].GetUInt32();
-			Temp.StatChance				= fields[4].GetUInt32();
+			Temp.StatIndex				= fields[0].Get<uint32>();
+			Temp.Stat.ItemStatType		= fields[1].Get<uint32>();
+			Temp.Stat.ItemStatMinValue	= fields[2].Get<uint32>();
+			Temp.Stat.ItemStatMaxValue	= fields[3].Get<uint32>();
+			Temp.StatChance				= fields[4].Get<uint32>();
 			NpStatVec.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -91,27 +91,27 @@ void NoPatchItem::Load()
 		do
 		{
 			Field* fields				= result->Fetch();
-			uint32 Entry				= fields[0].GetUInt32();
+			uint32 Entry				= fields[0].Get<uint32>();
 			NpTemplate Temp;
-			Temp.StatCount				= fields[1].GetUInt32();
+			Temp.StatCount				= fields[1].Get<uint32>();
 			if (Temp.StatCount > MAX_ITEM_PROTO_STATS)
 				Temp.StatCount = MAX_ITEM_PROTO_STATS;
-			Temp.SpellCount				= fields[2].GetUInt32();
+			Temp.SpellCount				= fields[2].Get<uint32>();
 			if (Temp.SpellCount > MAX_ITEM_PROTO_SPELLS)
 				Temp.SpellCount = MAX_ITEM_PROTO_SPELLS;
-			Temp.Damage.MinDamageMin	= fields[3].GetUInt32();
-			Temp.Damage.MinDamageMax	= fields[4].GetUInt32();
-			Temp.Damage.MaxDamageMin	= fields[5].GetUInt32();
-			Temp.Damage.MaxDamageMax	= fields[6].GetUInt32();
-			Temp.Delay.MinDelay			= fields[7].GetUInt32();
-			Temp.Delay.MaxDelay			= fields[8].GetUInt32();
-			Temp.SrcIndex				= fields[9].GetUInt32();
-			Temp.SpellIndex				= fields[10].GetUInt32();
-			Temp.StatIndex				= fields[11].GetUInt32();			
-			Temp.LevelIndex				= fields[12].GetUInt32();
-			Temp.Quality	= fields[13].GetInt32();
-			Temp.ItemLevel	= fields[14].GetUInt32();
-			Temp.Suffix		= fields[15].GetString();
+			Temp.Damage.MinDamageMin	= fields[3].Get<uint32>();
+			Temp.Damage.MinDamageMax	= fields[4].Get<uint32>();
+			Temp.Damage.MaxDamageMin	= fields[5].Get<uint32>();
+			Temp.Damage.MaxDamageMax	= fields[6].Get<uint32>();
+			Temp.Delay.MinDelay			= fields[7].Get<uint32>();
+			Temp.Delay.MaxDelay			= fields[8].Get<uint32>();
+			Temp.SrcIndex				= fields[9].Get<uint32>();
+			Temp.SpellIndex				= fields[10].Get<uint32>();
+			Temp.StatIndex				= fields[11].Get<uint32>();			
+			Temp.LevelIndex				= fields[12].Get<uint32>();
+			Temp.Quality	= fields[13].Get<int32>();
+			Temp.ItemLevel	= fields[14].Get<uint32>();
+			Temp.Suffix		= fields[15].Get<std::string>();
 
 			NpMap.insert(std::make_pair(Entry, Temp));
 
@@ -123,7 +123,7 @@ void NoPatchItem::Load()
 		do
 		{
 			Field* fields = result->Fetch();
-			NpPrefixMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetString()));
+			NpPrefixMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<std::string>()));
 		} while (result->NextRow());
 	}
 
@@ -134,26 +134,26 @@ void NoPatchItem::Load()
 		{
 			Field* f = result->Fetch();
 			_NpItemLevel Temp;
-			Temp.Level				= f[0].GetUInt8();
-			Temp.ReqId				= f[1].GetUInt32();
-			Temp.Chance				= f[2].GetFloat();
-			Temp.SpellIndex			= f[3].GetUInt32();
-			Temp.AddSpellCount		= f[4].GetUInt32();
-			Temp.StatIndex			= f[5].GetUInt32();
-			Temp.AddStatCount		= f[6].GetUInt32();
-			Temp.LevelStatModIndex	= f[7].GetUInt8();
+			Temp.Level				= f[0].Get<uint8>();
+			Temp.ReqId				= f[1].Get<uint32>();
+			Temp.Chance				= f[2].Get<float>();
+			Temp.SpellIndex			= f[3].Get<uint32>();
+			Temp.AddSpellCount		= f[4].Get<uint32>();
+			Temp.StatIndex			= f[5].Get<uint32>();
+			Temp.AddStatCount		= f[6].Get<uint32>();
+			Temp.LevelStatModIndex	= f[7].Get<uint8>();
 
-			if (strcmp("º”÷µ", f[8].GetCString()) == 0)
+			if (strcmp("Âä†ÂÄº", f[8].Get<>()) == 0)//CString
 				Temp.DamageLevelType = TYPE_ADD_VALUE;
 			else
 				Temp.DamageLevelType = TYPE_MUI_VALUE;
-			Temp.DamageValue		= f[9].GetFloat();
+			Temp.DamageValue		= f[9].Get<float>();
 
-			Temp.Suffix				= f[10].GetString();
-			Temp.ItemLevel			= f[11].GetUInt32();
-			Temp.Quality			= f[12].GetUInt32();
-			Temp.LevelIndex			= f[13].GetUInt32();
-			Temp.EnchantIndex		= f[14].GetUInt32();
+			Temp.Suffix				= f[10].Get<std::string>();
+			Temp.ItemLevel			= f[11].Get<uint32>();
+			Temp.Quality			= f[12].Get<uint32>();
+			Temp.LevelIndex			= f[13].Get<uint32>();
+			Temp.EnchantIndex		= f[14].Get<uint32>();
 			NpLevelVec.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -164,16 +164,16 @@ void NoPatchItem::Load()
 		{
 			Field* fields = result->Fetch();
 			_NpItemLevelStatModTemplate Temp;
-			Temp.LevelStatModIndex = fields[0].GetUInt32();
-			Temp.StatType = fields[1].GetUInt32();
+			Temp.LevelStatModIndex = fields[0].Get<uint32>();
+			Temp.StatType = fields[1].Get<uint32>();
 
 
-			if (strcmp("º”÷µ", fields[2].GetCString()) == 0)
+			if (strcmp("Âä†ÂÄº", fields[2].Get<std::string>()) == 0)//CString
 				Temp.ModType = TYPE_ADD_VALUE;
 			else
 				Temp.ModType = TYPE_MUI_VALUE;
 
-			Temp.StatValue = fields[3].GetFloat();
+			Temp.StatValue = fields[3].Get<float>();
 			NpLevelStatModVec.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -184,12 +184,12 @@ void NoPatchItem::Load()
 		{
 			Field* fields = result->Fetch();
 			NpAuraTemplate Temp;
-			Temp.LevelIndex = fields[0].GetUInt32();
-			Temp.Level		= fields[1].GetUInt32();
-			Temp.Count		= fields[2].GetUInt32();
-			Temp.RewId		= fields[3].GetUInt32();
+			Temp.LevelIndex = fields[0].Get<uint32>();
+			Temp.Level		= fields[1].Get<uint32>();
+			Temp.Count		= fields[2].Get<uint32>();
+			Temp.RewId		= fields[3].Get<uint32>();
 			for (size_t i = 0; i < 5; i++)
-				Temp.Auras[i] = fields[4 + i].GetUInt32();
+				Temp.Auras[i] = fields[4 + i].Get<uint32>();
 			NpAuraVector.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -199,10 +199,10 @@ void NoPatchItem::Load()
 		do
 		{
 			Field* fields = result->Fetch();
-			uint32 Entry = fields[0].GetUInt32();
+			uint32 Entry = fields[0].Get<uint32>();
 			NpToLevelTemplate Temp;
-			Temp.level = fields[1].GetUInt32();
-			Temp.chance = fields[2].GetFloat();
+			Temp.level = fields[1].Get<uint32>();
+			Temp.chance = fields[2].Get<float>();
 			NpToLevelMap.insert(std::make_pair(Entry, Temp));
 		} while (result->NextRow());
 	}
@@ -212,12 +212,12 @@ void NoPatchItem::Load()
 		do
 		{
 			Field* fields = result->Fetch();
-			uint32 SrcTempIndex = fields[0].GetUInt32();
+			uint32 SrcTempIndex = fields[0].Get<uint32>();
 			NpSameTemplate Temp;
-			Temp.SrcTempIndex		= fields[0].GetUInt32();
-			Temp.TargetTempIndex	= fields[1].GetUInt32();
-			Temp.MeetLevel			= fields[2].GetUInt32();
-			Temp.RewId				= fields[3].GetUInt32();
+			Temp.SrcTempIndex		= fields[0].Get<uint32>();
+			Temp.TargetTempIndex	= fields[1].Get<uint32>();
+			Temp.MeetLevel			= fields[2].Get<uint32>();
+			Temp.RewId				= fields[3].Get<uint32>();
 			NpSameTempIndexVector.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -241,11 +241,11 @@ void NoPatchItem::LoadMap()
 		{
 			Field* fields = result->Fetch();
 			MapNpTemplate Temp;
-			Temp.MapId			= fields[0].GetUInt32();
-			Temp.Diff			= Difficulty(fields[1].GetUInt8());
-			Temp.ChallengeLv	= fields[2].GetUInt32();
-			Temp.TempIndex		= fields[3].GetUInt32();
-			Temp.Chance			= fields[4].GetFloat();
+			Temp.MapId			= fields[0].Get<uint32>();
+			Temp.Diff			= Difficulty(fields[1].Get<uint8>());
+			Temp.ChallengeLv	= fields[2].Get<uint32>();
+			Temp.TempIndex		= fields[3].Get<uint32>();
+			Temp.Chance			= fields[4].Get<float>();
 			MapNpVector.push_back(Temp);
 
 		} while (result->NextRow());
@@ -259,16 +259,16 @@ void NoPatchItem::LoadMap()
 		do
 		{
 			Field* fields = result->Fetch();
-			uint32 TempIndex = fields[0].GetUInt32();
+			uint32 TempIndex = fields[0].Get<uint32>();
 			MapNpTempTemplate Temp;
-			Temp.Quality		= fields[1].GetUInt32();
-			Temp.ItemLevel		= fields[2].GetUInt32();
-			Temp.EnchantIndex	= fields[3].GetUInt32();
-			Temp.Suffix			= fields[4].GetString();
-			Temp.LevelIndex		= fields[5].GetUInt32();
-			Temp.StatModIndex	= fields[6].GetUInt32();
+			Temp.Quality		= fields[1].Get<uint32>();
+			Temp.ItemLevel		= fields[2].Get<uint32>();
+			Temp.EnchantIndex	= fields[3].Get<uint32>();
+			Temp.Suffix			= fields[4].Get<std::string>();
+			Temp.LevelIndex		= fields[5].Get<uint32>();
+			Temp.StatModIndex	= fields[6].Get<uint32>();
 
-			Tokenizer StatAdd(fields[7].GetString(), '#');
+			Tokenizer StatAdd(fields[7].Get<std::string>(), '#');
 			for (Tokenizer::const_iterator itr = StatAdd.begin(); itr != StatAdd.end(); ++itr)
 			{
 				Tokenizer data(*itr, ',');
@@ -276,7 +276,7 @@ void NoPatchItem::LoadMap()
 					Temp.StatAddMap.insert(std::make_pair(atoi(data[0]), atoi(data[1])));
 			}
 
-			Tokenizer StatOver(fields[8].GetString(), '#');
+			Tokenizer StatOver(fields[8].Get<std::string>(), '#');
 			for (Tokenizer::const_iterator itr = StatOver.begin(); itr != StatOver.end(); ++itr)
 			{
 				Tokenizer data(*itr, ',');
@@ -284,13 +284,13 @@ void NoPatchItem::LoadMap()
 					Temp.StatOverMap.insert(std::make_pair(atoi(data[0]), atoi(data[1])));
 			}
 
-			Temp.SpellIndex		= fields[9].GetInt32();
-			Temp.SpellCount		= fields[10].GetUInt32();
+			Temp.SpellIndex		= fields[9].Get<int32>();
+			Temp.SpellCount		= fields[10].Get<uint32>();
 			if (Temp.SpellCount > MAX_ITEM_PROTO_SPELLS)
 				Temp.SpellCount = MAX_ITEM_PROTO_SPELLS;
-			Temp.WeaponIndex	= fields[11].GetUInt32();
-			Temp.SellRewId		= fields[12].GetUInt32();
-			Temp.Prefix			= fields[13].GetString();
+			Temp.WeaponIndex	= fields[11].Get<uint32>();
+			Temp.SellRewId		= fields[12].Get<uint32>();
+			Temp.Prefix			= fields[13].Get<std::string>();
 			MapNpTempMap.insert(std::make_pair(TempIndex, Temp));
 
 		} while (result->NextRow());
@@ -302,10 +302,10 @@ void NoPatchItem::LoadMap()
 		{
 			Field* fields = result->Fetch();
 			MapNpStatModTemplate Temp;
-			Temp.StatModIndex	= fields[0].GetUInt32();
-			Temp.StatType		= fields[1].GetUInt32();
-			Temp.ModStatMin		= fields[2].GetFloat();
-			Temp.ModStatMax		= fields[3].GetFloat();
+			Temp.StatModIndex	= fields[0].Get<uint32>();
+			Temp.StatType		= fields[1].Get<uint32>();
+			Temp.ModStatMin		= fields[2].Get<float>();
+			Temp.ModStatMax		= fields[3].Get<float>();
 			MapNpStatModVector.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -316,9 +316,9 @@ void NoPatchItem::LoadMap()
 		{
 			Field* fields = result->Fetch();
 			MapNpEnchantTemplate Temp;
-			Temp.EnchantIndex	= fields[0].GetUInt32();
-			Temp.Slot			= fields[1].GetUInt8();
-			Temp.EnchantGroupId = fields[2].GetUInt32();
+			Temp.EnchantIndex	= fields[0].Get<uint32>();
+			Temp.Slot			= fields[1].Get<uint8>();
+			Temp.EnchantGroupId = fields[2].Get<uint32>();
 			MapNpEnchantVector.push_back(Temp);
 		} while (result->NextRow());
 	}
@@ -329,22 +329,22 @@ void NoPatchItem::LoadMap()
 		{
 			Field* fields = result->Fetch();
 			MapNpWeaponTemplate Temp;
-			Temp.WeaponIndex			= fields[0].GetUInt32();
-			Temp.SubClass				= fields[1].GetUInt32();
-			Temp.MinDamageMod			= fields[2].GetFloat();
-			Temp.MaxDamageMod			= fields[3].GetFloat();
+			Temp.WeaponIndex			= fields[0].Get<uint32>();
+			Temp.SubClass				= fields[1].Get<uint32>();
+			Temp.MinDamageMod			= fields[2].Get<float>();
+			Temp.MaxDamageMod			= fields[3].Get<float>();
 			if (Temp.MaxDamageMod < Temp.MinDamageMod)
 				Temp.MaxDamageMod = Temp.MinDamageMod;
-			Temp.Damage.MinDamageMin	= fields[4].GetUInt32();
-			Temp.Damage.MinDamageMax	= fields[5].GetUInt32();
+			Temp.Damage.MinDamageMin	= fields[4].Get<uint32>();
+			Temp.Damage.MinDamageMax	= fields[5].Get<uint32>();
 			if (Temp.Damage.MinDamageMax < Temp.Damage.MinDamageMin)
 				Temp.Damage.MinDamageMax = Temp.Damage.MinDamageMin;
-			Temp.Damage.MaxDamageMin	= fields[6].GetUInt32();
-			Temp.Damage.MaxDamageMax	= fields[7].GetUInt32();
+			Temp.Damage.MaxDamageMin	= fields[6].Get<uint32>();
+			Temp.Damage.MaxDamageMax	= fields[7].Get<uint32>();
 			if (Temp.Damage.MaxDamageMax < Temp.Damage.MaxDamageMin)
 				Temp.Damage.MaxDamageMax = Temp.Damage.MaxDamageMin;
-			Temp.Delay.MinDelay			= fields[8].GetUInt32();
-			Temp.Delay.MaxDelay			= fields[9].GetUInt32();
+			Temp.Delay.MinDelay			= fields[8].Get<uint32>();
+			Temp.Delay.MaxDelay			= fields[9].Get<uint32>();
 			if (Temp.Delay.MaxDelay	 < Temp.Delay.MinDelay)
 				Temp.Delay.MaxDelay = Temp.Delay.MinDelay;
 			MapNpWeaponVector.push_back(Temp);
@@ -766,7 +766,7 @@ bool NoPatchItem::Create(Player* owner, Item* item)
 	Item* pItem;
 
 	if (Quality < 0)
-		pItem = owner->AddItemById(entry, 1);
+        pItem = owner->AddItemById(entry, 1); 
 	else
 		pItem = owner->AddItemById(srcEntry, 1);
 
@@ -775,11 +775,11 @@ bool NoPatchItem::Create(Player* owner, Item* item)
 
 	if (Quality < 0)
 	{
-		//…Ë÷√–¬ŒÔ∆∑
+		//ËÆæÁΩÆÊñ∞Áâ©ÂìÅ
 		pItem->Name = srcTemp->Name1 + Suffix;
 		pItem->LevelData = GetLevelData(entry, 1, srcTemp->Quality, ItemLevel);
 
-		//≤˙…˙ººƒ‹
+		//‰∫ßÁîüÊäÄËÉΩ
 		_Spell NewSpells[MAX_ITEM_PROTO_SPELLS];
 
 		for (size_t i = 0; i < MAX_ITEM_PROTO_SPELLS; i++)
@@ -802,7 +802,7 @@ bool NoPatchItem::Create(Player* owner, Item* item)
 		for (size_t i = 0; i < MAX_ITEM_PROTO_SPELLS; i++)
 			pItem->Spells[i] = NewSpells[i];
 
-		//≤˙…˙ Ù–‘
+		//‰∫ßÁîüÂ±ûÊÄß
 		for (size_t i = 0; i < MAX_ITEM_PROTO_STATS; i++)
 		{
 			pItem->Stats[i] = srcTemp->ItemStat[i];
@@ -810,7 +810,7 @@ bool NoPatchItem::Create(Player* owner, Item* item)
 		}
 		
 
-		//≤˙…˙ Ù–‘
+		//‰∫ßÁîüÂ±ûÊÄß
 		_ItemStat NewStats[MAX_ITEM_PROTO_STATS];
 
 		for (size_t i = 0; i < MAX_ITEM_PROTO_STATS; i++)
@@ -844,22 +844,22 @@ bool NoPatchItem::Create(Player* owner, Item* item)
 	}
 	else
 	{
-		//…Ë÷√–¬ŒÔ∆∑
+		//ËÆæÁΩÆÊñ∞Áâ©ÂìÅ
 		pItem->Name = srcTemp->Name1 + Suffix;
 		pItem->LevelData = GetLevelData(entry, 1, Quality, ItemLevel);
 
-		//≤˙…˙ººƒ‹
+		//‰∫ßÁîüÊäÄËÉΩ
 		for (size_t i = 0; i < SpellCount; i++)
 			pItem->Spells[i] = GetRandomSpell(pItem->Spells,SpellIndex);
 
-		//≤˙…˙ Ù–‘
+		//‰∫ßÁîüÂ±ûÊÄß
 		for (size_t i = 0; i < StatCount; i++)
 			pItem->Stats[i] = GetRandomStat(StatIndex);
 
-		//∫œ≤¢ Ù–‘
+		//ÂêàÂπ∂Â±ûÊÄß
 		MergeStat(pItem->Stats);
 
-		//≤˙…˙«∞◊∫
+		//‰∫ßÁîüÂâçÁºÄ
 		pItem->Name = GetPrefix(pItem) + pItem->Name;
 
 		pItem->Damages[0].DamageMin = MinDamage;
@@ -867,13 +867,13 @@ bool NoPatchItem::Create(Player* owner, Item* item)
 		pItem->NpDelay = Delay;
 	}
 	
-	//…Ë÷√flag query data
+	//ËÆæÁΩÆflag query data
 	pItem->SetUInt32Value(ITEM_FIELD_PROPERTY_SEED, GetQueryId(pItem));
 	//SetItemFlag(pItem);
 	pItem->SetState(ITEM_CHANGED, owner);
 	ItemQueryMap[pItem->GetGUIDLow()] = pItem;
 
-	//¥›ªŸ‘≠ŒÔ∆∑
+	//ÊëßÊØÅÂéüÁâ©ÂìÅ
 	owner->DestroyItem(item->GetBagSlot(), item->GetSlot(), true);
 
 	return true;
@@ -936,7 +936,7 @@ bool NoPatchItem::Compound(Player* owner, Item* item1)
 {
 	if (!item1->IsNoPatch())
 	{
-		owner->GetSession()->SendNotification("≤ª «NoPathItem");
+		owner->GetSession()->SendNotification("‰∏çÊòØNoPathItem");
 		return false;
 	}
 	
@@ -956,7 +956,7 @@ bool NoPatchItem::Compound(Player* owner, Item* item1)
 
 	if (!item2)
 	{
-		owner->GetSession()->SendNotification("Œ¥’“µΩÕÍ»´œ‡Õ¨µƒ¡Ωº˛ŒÔ∆∑");
+		owner->GetSession()->SendNotification("Êú™ÊâæÂà∞ÂÆåÂÖ®Áõ∏ÂêåÁöÑ‰∏§‰ª∂Áâ©ÂìÅ");
 		return false;
 	}
 
@@ -978,8 +978,8 @@ bool NoPatchItem::Compound(Player* owner, Item* item1)
 
 		item->MapData = GetMapData(1, 1, 0, 0);
 
-		//≤˙…˙ººƒ‹
-		//∏Ωº”∂ÓÕ‚ººƒ‹
+		//‰∫ßÁîüÊäÄËÉΩ
+		//ÈôÑÂä†È¢ùÂ§ñÊäÄËÉΩ
 		if (itr->second.SpellIndex > 0)
 		{
 			_Spell NewSpells[MAX_ITEM_PROTO_SPELLS];
@@ -1004,10 +1004,10 @@ bool NoPatchItem::Compound(Player* owner, Item* item1)
 			for (size_t i = 0; i < MAX_ITEM_PROTO_SPELLS; i++)
 				item->Spells[i] = NewSpells[i];
 		}
-		//∂ÓÕ‚ººƒ‹
+		//È¢ùÂ§ñÊäÄËÉΩ
 		else if (itr->second.SpellIndex < 0)
 		{
-			//≤˙…˙ººƒ‹
+			//‰∫ßÁîüÊäÄËÉΩ
 			for (size_t i = 0; i < itr->second.SpellCount; i++)
 				item->Spells[i] = GetRandomSpell(item->Spells, abs(itr->second.SpellIndex));
 		}
@@ -1017,7 +1017,7 @@ bool NoPatchItem::Compound(Player* owner, Item* item1)
 				item->Spells[i] = proto->Spells[i];
 		}
 
-		//‘≠ Ù–‘∑≠±∂
+		//ÂéüÂ±ûÊÄßÁøªÂÄç
 		for (size_t i = 0; i < MAX_ITEM_PROTO_STATS; i++)
 			item->Stats[i] = proto->ItemStat[i];
 
@@ -1036,7 +1036,7 @@ bool NoPatchItem::Compound(Player* owner, Item* item1)
 			}
 		}
 
-		//∏Ωº”∂ÓÕ‚ Ù–‘
+		//ÈôÑÂä†È¢ùÂ§ñÂ±ûÊÄß
 		if (itr->second.StatOverMap.empty())
 		{
 			_ItemStat NewStats[MAX_ITEM_PROTO_STATS];
@@ -1116,7 +1116,7 @@ bool NoPatchItem::Compound(Player* owner, Item* item1)
 				item->Stats[i] = NewStats[i];
 		}
 
-		//≤˙…˙ÀÊª˙FM
+		//‰∫ßÁîüÈöèÊú∫FM
 		for (uint8 slot = PROP_ENCHANTMENT_SLOT_0; slot < MAX_ENCHANTMENT_SLOT; slot++)
 		{
 			uint32 enchant_id = GetCreateEnchantId(itr->second.EnchantIndex, slot - 6);
@@ -1166,7 +1166,7 @@ bool NoPatchItem::Compound(Player* owner, Item* item1)
 		}
 
 		item->TempIndex = TempIndex;
-		//…Ë÷√flag query data
+		//ËÆæÁΩÆflag query data
 		item->SetUInt32Value(ITEM_FIELD_PROPERTY_SEED, GetQueryId(item));
 		//SetItemFlag(item);
 		ItemQueryMap[item->GetGUIDLow()] = item;
@@ -1213,8 +1213,8 @@ bool NoPatchItem::Create(Map* map, Item* item)
 
 		item->MapData = GetMapData(map->GetId(), 1, map->GetDifficulty(), map->challengeLv);
 
-		//≤˙…˙ººƒ‹
-		//∏Ωº”∂ÓÕ‚ººƒ‹
+		//‰∫ßÁîüÊäÄËÉΩ
+		//ÈôÑÂä†È¢ùÂ§ñÊäÄËÉΩ
 		if (itr->second.SpellIndex > 0)
 		{
 			_Spell NewSpells[MAX_ITEM_PROTO_SPELLS];
@@ -1239,10 +1239,10 @@ bool NoPatchItem::Create(Map* map, Item* item)
 			for (size_t i = 0; i < MAX_ITEM_PROTO_SPELLS; i++)
 				item->Spells[i] = NewSpells[i];
 		}
-		//∂ÓÕ‚ººƒ‹
+		//È¢ùÂ§ñÊäÄËÉΩ
 		else if (itr->second.SpellIndex < 0)
 		{
-			//≤˙…˙ººƒ‹
+			//‰∫ßÁîüÊäÄËÉΩ
 			for (size_t i = 0; i < itr->second.SpellCount; i++)
 				item->Spells[i] = GetRandomSpell(item->Spells, abs(itr->second.SpellIndex));
 		}
@@ -1252,7 +1252,7 @@ bool NoPatchItem::Create(Map* map, Item* item)
 				item->Spells[i] = proto->Spells[i];
 		}
 
-		//‘≠ Ù–‘∑≠±∂
+		//ÂéüÂ±ûÊÄßÁøªÂÄç
 		for (size_t i = 0; i < MAX_ITEM_PROTO_STATS; i++)
 			item->Stats[i] = proto->ItemStat[i];
 
@@ -1271,7 +1271,7 @@ bool NoPatchItem::Create(Map* map, Item* item)
 			}
 		}
 
-		//∏Ωº”∂ÓÕ‚ Ù–‘
+		//ÈôÑÂä†È¢ùÂ§ñÂ±ûÊÄß
 		if (itr->second.StatOverMap.empty())
 		{
 			_ItemStat NewStats[MAX_ITEM_PROTO_STATS];
@@ -1351,7 +1351,7 @@ bool NoPatchItem::Create(Map* map, Item* item)
 				item->Stats[i] = NewStats[i];				
 		}
 
-		//≤˙…˙ÀÊª˙FM
+		//‰∫ßÁîüÈöèÊú∫FM
 		for (uint8 slot = PROP_ENCHANTMENT_SLOT_0; slot < MAX_ENCHANTMENT_SLOT; slot++)
 		{
 			uint32 enchant_id = GetCreateEnchantId(itr->second.EnchantIndex, slot - 6);
@@ -1401,7 +1401,7 @@ bool NoPatchItem::Create(Map* map, Item* item)
 		}
 
 		item->TempIndex = TempIndex;
-		//…Ë÷√flag query data
+		//ËÆæÁΩÆflag query data
 		item->SetUInt32Value(ITEM_FIELD_PROPERTY_SEED, GetQueryId(item));
 		//SetItemFlag(item);
 		ItemQueryMap[item->GetGUIDLow()] = item;
@@ -1513,7 +1513,7 @@ bool NoPatchItem::LevelUp(Player* owner, Item* item)
 	if (frand(0, 100.0f) > L_Chance)
 	{
 		sReq->Des(owner, L_ReqId);
-		owner->GetSession()->SendNotification("…˝º∂ ß∞‹");
+		owner->GetSession()->SendNotification("ÂçáÁ∫ßÂ§±Ë¥•");
 		return false;
 	}
 
@@ -1522,7 +1522,7 @@ bool NoPatchItem::LevelUp(Player* owner, Item* item)
 	if (!pItem)
 		return false;
 
-	//…Ë÷√–¬ŒÔ∆∑
+	//ËÆæÁΩÆÊñ∞Áâ©ÂìÅ
 	std::string prefix = "";
 	std::string suffix = "";
 	GetMapPrefixSuffix(item, prefix, suffix);
@@ -1539,7 +1539,7 @@ bool NoPatchItem::LevelUp(Player* owner, Item* item)
 	if (item->MapData > 0)
 		pItem->MapData = GetMapData(GetMapId(item->MapData), GetMapLevelNow(item->MapData) + 1, GetDifficulty(item->MapData), GetChallegeLv(item->MapData));
 
-	//≤˙…˙ººƒ‹
+	//‰∫ßÁîüÊäÄËÉΩ
 	_Spell NewSpells[MAX_ITEM_PROTO_SPELLS];
 
 	for (size_t i = 0; i < MAX_ITEM_PROTO_SPELLS; i++)
@@ -1562,7 +1562,7 @@ bool NoPatchItem::LevelUp(Player* owner, Item* item)
 	for (size_t i = 0; i < MAX_ITEM_PROTO_SPELLS; i++)
 		pItem->Spells[i] = NewSpells[i];
 
-	//≤˙…˙ Ù–‘
+	//‰∫ßÁîüÂ±ûÊÄß
 	_ItemStat NewStats[MAX_ITEM_PROTO_STATS];
 
 	for (size_t i = 0; i < MAX_ITEM_PROTO_STATS; i++)
@@ -1597,7 +1597,7 @@ bool NoPatchItem::LevelUp(Player* owner, Item* item)
 	for (size_t i = 0; i < MAX_ITEM_PROTO_STATS; i++)
 		pItem->Stats[i] = NewStats[i];
 
-	//≤˙…˙«∞◊∫
+	//‰∫ßÁîüÂâçÁºÄ
 	pItem->Name = GetPrefix(pItem) + pItem->Name;
 
 	pItem->Damages[0].DamageMin = L_DamageLevelType == TYPE_ADD_VALUE ? item->Damages[0].DamageMin + L_DamageValue : item->Damages[0].DamageMin * L_DamageValue;
@@ -1605,7 +1605,7 @@ bool NoPatchItem::LevelUp(Player* owner, Item* item)
 
 	pItem->NpDelay = item->NpDelay;
 
-	//±£¡ÙFM–ßπ˚
+	//‰øùÁïôFMÊïàÊûú
 	for (uint8 slot = PERM_ENCHANTMENT_SLOT; slot < MAX_ENCHANTMENT_SLOT; slot++)
 	{
 		uint32 x = GetCreateEnchantId(L_EnchantIndex, slot - 6);
@@ -1620,13 +1620,13 @@ bool NoPatchItem::LevelUp(Player* owner, Item* item)
 		}
 	}
 
-	//…Ë÷√flag query data
+	//ËÆæÁΩÆflag query data
 	pItem->SetUInt32Value(ITEM_FIELD_PROPERTY_SEED, GetQueryId(pItem));
 	//SetItemFlag(pItem);
 	pItem->SetState(ITEM_CHANGED, owner);
 	ItemQueryMap[pItem->GetGUIDLow()] = pItem;
 
-	//ø€ºıœ˚∫ƒ¥›ªŸ‘≠ŒÔ∆∑
+	//Êâ£ÂáèÊ∂àËÄóÊëßÊØÅÂéüÁâ©ÂìÅ
 	sReq->Des(owner, L_ReqId);
 	owner->DestroyItem(item->GetBagSlot(), item->GetSlot(), true);
 
@@ -1648,37 +1648,37 @@ bool NoPatchItem::LevelUp(Player* owner, Item* item)
 uint8 NoPatchItem::GetInsert(ItemTemplate temp)
 {
 	uint8 insert = 0;
-	//√˚◊÷
+	//ÂêçÂ≠ó
 	insert++;
 
-	sLog->outString("-->%d->>>>√˚◊÷", insert);
+	sLog->outString("-->%d->>>>ÂêçÂ≠ó", insert);
 
-	//”¢–€ƒ£ Ω
+	//Ëã±ÈõÑÊ®°Âºè
 	if ((temp.Flags & ITEM_FLAG_HEROIC_TOOLTIP) != 0)
 	{
 		insert++;
-		sLog->outString("-->%d->>>>”¢–€ƒ£ Ω", insert);
+		sLog->outString("-->%d->>>>Ëã±ÈõÑÊ®°Âºè", insert);
 	}
 
-	//∞Û∂® ’À∫≈∞Û∂® ◊∞±∏∞Û∂®...
+	//ÁªëÂÆö Ë¥¶Âè∑ÁªëÂÆö Ë£ÖÂ§áÁªëÂÆö...
 	if (temp.Bonding != NO_BIND || (temp.Flags & ITEM_FLAG_IS_BOUND_TO_ACCOUNT) != 0 || temp.Quality == 7)
 	{
 		insert++;
-		sLog->outString("-->%d->>>>∞Û∂®", insert);
+		sLog->outString("-->%d->>>>ÁªëÂÆö", insert);
 	}
 
-	//ƒß∑®÷∆◊˜µƒŒÔ∆∑
+	//È≠îÊ≥ïÂà∂‰ΩúÁöÑÁâ©ÂìÅ
 	if ((temp.Flags & ITEM_FLAG_CONJURED) != 0)
 		insert++;
 
-	//Œ®“ª ◊Ó¥Û ˝¡ø ◊∞±∏Œ®“ª...
+	//ÂîØ‰∏Ä ÊúÄÂ§ßÊï∞Èáè Ë£ÖÂ§áÂîØ‰∏Ä...
 	if (temp.MaxCount != 0 || (temp.Flags & ITEM_FLAG_UNIQUE_EQUIPPABLE) != 0)
 	{
 		insert++;
-		sLog->outString("-->%d->>>>◊Ó¥Û ˝¡ø", insert);
+		sLog->outString("-->%d->>>>ÊúÄÂ§ßÊï∞Èáè", insert);
 	}
 
-	//øπ–‘
+	//ÊäóÊÄß
 	if (temp.HolyRes != 0)
 		insert++;
 	if (temp.FireRes != 0)
@@ -1692,41 +1692,41 @@ uint8 NoPatchItem::GetInsert(ItemTemplate temp)
 	if (temp.ArcaneRes != 0)
 		insert++;
 
-	//ª§º◊
+	//Êä§Áî≤
 	if (temp.Armor > 0)
 	{
 		insert++;
-		sLog->outString("-->%d->>>>ª§º◊", insert);
+		sLog->outString("-->%d->>>>Êä§Áî≤", insert);
 	}
 
-	//À´ ÷ ª§º◊...
+	//ÂèåÊâã Êä§Áî≤...
 	if (temp.InventoryType != 0 && (temp.Class == ITEM_CLASS_WEAPON || temp.Class == ITEM_CLASS_ARMOR))
 	{
 		insert++;
-		sLog->outString("-->%d->>>>Œª÷√", insert);
+		sLog->outString("-->%d->>>>‰ΩçÁΩÆ", insert);
 	}
 
-	//…À∫¶
+	//‰º§ÂÆ≥
 	if (temp.Damage[0].DamageMin > 0 || temp.Damage[0].DamageMax > 0)
 	{
 		insert++;
-		sLog->outString("-->%d->>>>…À∫¶", insert);
+		sLog->outString("-->%d->>>>‰º§ÂÆ≥", insert);
 	}
 	if (temp.Damage[1].DamageMin > 0 || temp.Damage[1].DamageMax > 0)
 	{
 		insert++;
-		sLog->outString("-->%d->>>>…À∫¶", insert);
+		sLog->outString("-->%d->>>>‰º§ÂÆ≥", insert);
 	}
 
 
-	//√Î…À
+	//Áßí‰º§
 	if (temp.Damage[0].DamageMin > 0 && temp.Damage[0].DamageMax > 0 && temp.Delay > 0)
 	{
 		insert++;
-		sLog->outString("-->%d->>>>√Î…À", insert);
+		sLog->outString("-->%d->>>>Áßí‰º§", insert);
 	}
 
-	// Ù–‘
+	//Â±ûÊÄß
 	for (uint8 i = 0; i < temp.StatsCount; ++i)
 		if ((temp.ItemStat[i].ItemStatType == 0
 			|| temp.ItemStat[i].ItemStatType == 1
@@ -1742,15 +1742,15 @@ uint8 NoPatchItem::GetInsert(ItemTemplate temp)
 		}
 
 
-	//±¶ Ø
+	//ÂÆùÁü≥
 	for (size_t i = 0; i < MAX_ITEM_PROTO_SOCKETS; i++)
 		if (temp.Socket[i].Color != 0)
 		{
 			insert++;
-			sLog->outString("-->%d->>>>±¶ Ø", insert);
+			sLog->outString("-->%d->>>>ÂÆùÁü≥", insert);
 		}
 
-	// π”√«¯”Ú
+	//‰ΩøÁî®Âå∫Âüü
 	if (temp.Area != 0)
 		insert++;
 

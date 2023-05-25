@@ -2673,6 +2673,17 @@ private:
     uint32 _oldFactionId;           ///< faction before charm
     bool _isWalkingBeforeCharm;     ///< Are we walking before we were charmed?
 
+    public://I
+        void SetLastMoveClientTimestamp(uint32 timestamp) { lastMoveClientTimestamp = timestamp; }
+        uint32 GetLastMoveClientTimestamp() const { return lastMoveClientTimestamp; }
+        void UpdateMovementInfo(MovementInfo const& movementInfo);
+        void SetSpeedHackCooldown(time_t t) { _speedhackCooldown = t; }
+        time_t GetSpeedHackCooldown() { return _speedhackCooldown; }
+    private:
+        uint32 lastMoveClientTimestamp;
+        time_t _speedhackCooldown;//I
+
+
     [[nodiscard]] float processDummyAuras(float TakenTotalMod) const;
 
     uint32 _lastExtraAttackSpell;

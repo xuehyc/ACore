@@ -1,5 +1,5 @@
-#pragma execution_character_set("utf-8")
-#include "../PrecompiledHeaders/ScriptPCH.h"
+ï»¿#pragma execution_character_set("utf-8")
+#include "ScriptPCH.h"
 #include "../DataLoader/DataLoader.h"
 #include "../CommonFunc/CommonFunc.h"
 #include "../Requirement/Requirement.h"
@@ -94,7 +94,7 @@ void ItemMod::LoadBuyEquipSaleUse()
 
 	ItemBuyVec.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID,ĞèÇóÄ£°åID from _ÎïÆ·_µ±¹ºÂòÊ±" :
+		"SELECT ç‰©å“ID,éœ€æ±‚æ¨¡æ¿ID from _ç‰©å“_å½“è´­ä¹°æ—¶" :
 		"SELECT entry,reqId from _itemmod_on_buy");
 	if (result)
 	{
@@ -110,7 +110,7 @@ void ItemMod::LoadBuyEquipSaleUse()
 
 	ItemEquipMap.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-		"SELECT ÎïÆ·ID,ĞèÇóÄ£°åID from _ÎïÆ·_µ±×°±¸Ê±" :
+		"SELECT ç‰©å“ID,éœ€æ±‚æ¨¡æ¿ID from _ç‰©å“_å½“è£…å¤‡æ—¶" :
 		"SELECT entry,reqId from _itemmod_on_equip");
 	if (result)
 	{
@@ -123,7 +123,7 @@ void ItemMod::LoadBuyEquipSaleUse()
 
 	ItemSaleVec.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-		"SELECT ÎïÆ·ID,½±ÀøÄ£°åID,»ñµÃ½±Àø¼¸ÂÊ,GMÃüÁî×é from _ÎïÆ·_µ±ÊÛÂôÊ±" :
+		"SELECT ç‰©å“ID,å¥–åŠ±æ¨¡æ¿ID,è·å¾—å¥–åŠ±å‡ ç‡,GMå‘½ä»¤ç»„ from _ç‰©å“_å½“å”®å–æ—¶" :
 		"SELECT entry,rewId,rewChance,command from _itemmod_on_sale");
 	if (result)
 	{
@@ -141,7 +141,7 @@ void ItemMod::LoadBuyEquipSaleUse()
 
 	ItemUseVec.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-		"SELECT ÎïÆ·ID,ĞèÇóÄ£°åID,½±ÀøÄ£°åID,»ñµÃ½±Àø¼¸ÂÊ,GMÃüÁî×é,´¥·¢¼¼ÄÜID1,´¥·¢¼¼ÄÜID2,´¥·¢¼¼ÄÜID3 from  _ÎïÆ·_µ±Ê¹ÓÃÊ±" :
+		"SELECT ç‰©å“ID,éœ€æ±‚æ¨¡æ¿ID,å¥–åŠ±æ¨¡æ¿ID,è·å¾—å¥–åŠ±å‡ ç‡,GMå‘½ä»¤ç»„,è§¦å‘æŠ€èƒ½ID1,è§¦å‘æŠ€èƒ½ID2,è§¦å‘æŠ€èƒ½ID3 from  _ç‰©å“_å½“ä½¿ç”¨æ—¶" :
 		"SELECT entry,reqId,rewId,rewChance,command,spell1,spell2,spell3 from _itemmod_on_use");
 	if (result)
 	{
@@ -163,7 +163,7 @@ void ItemMod::LoadBuyEquipSaleUse()
 
 	ItemDesMap.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID,¶îÍâÃèÊö,Ó¢ĞÛÄ£Ê½ÎÄ±¾ from _ÎïÆ·_¶îÍâÃèÊö" :
+		"SELECT ç‰©å“ID,é¢å¤–æè¿°,è‹±é›„æ¨¡å¼æ–‡æœ¬ from _ç‰©å“_é¢å¤–æè¿°" :
 		"SELECT Entry,Description,HeroText from _itemmod_description");
 	if (result)
 	{
@@ -201,7 +201,7 @@ void ItemMod::Load()
 
 	RateStoneVec.clear();
 	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID,ÀàĞÍ,Ìá¸ß³É¹¦¼¸ÂÊ from _ÎïÆ·_¼¸ÂÊ±¦Ê¯" :
+		"SELECT ç‰©å“ID,ç±»å‹,æé«˜æˆåŠŸå‡ ç‡ from _ç‰©å“_å‡ ç‡å®çŸ³" :
 		"SELECT entry,type,rate from _itemmod_rate_stone");
 	if (result)
 	{
@@ -219,7 +219,7 @@ void ItemMod::Load()
 
 	ItemUnbindCostInfo.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID,ĞèÇóÄ£°åID from _ÎïÆ·_½â³ı°ó¶¨" :
+		"SELECT ç‰©å“ID,éœ€æ±‚æ¨¡æ¿ID from _ç‰©å“_è§£é™¤ç»‘å®š" :
 		"SELECT entry,reqId from _itemmod_unbind");
 	if (result)
 	{
@@ -237,7 +237,7 @@ void ItemMod::Load()
 
 	RemoveGemInfo.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ±¦Ê¯ÎïÆ·ID, ĞèÇóÄ£°åID,³É¹¦¼¸ÂÊ FROM _ÎïÆ·_ÒÆ³ı±¦Ê¯" :
+		"SELECT å®çŸ³ç‰©å“ID, éœ€æ±‚æ¨¡æ¿ID,æˆåŠŸå‡ ç‡ FROM _ç‰©å“_ç§»é™¤å®çŸ³" :
 		"SELECT entry, reqId,chance FROM _itemmod_gem_remove");
 	if (result)
 	{
@@ -255,7 +255,7 @@ void ItemMod::Load()
 
 	ItemExchangeInfo.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID, Éı¼¶ºóÎïÆ·ID, ĞèÇóÄ£°åID,³É¹¦¼¸ÂÊ,Éı¼¶·½Ê½,Ê§°ÜÊ±½±ÀøÄ£°åID,Ê§°ÜÊ±ÊÇ·ñ´İ»ÙÔ­ÎïÆ·,Éı¼¶ºóÊÇ·ñ±£Áô¸½Ä§Ğ§¹û FROM _ÎïÆ·_Éı¼¶" :
+		"SELECT ç‰©å“ID, å‡çº§åç‰©å“ID, éœ€æ±‚æ¨¡æ¿ID,æˆåŠŸå‡ ç‡,å‡çº§æ–¹å¼,å¤±è´¥æ—¶å¥–åŠ±æ¨¡æ¿ID,å¤±è´¥æ—¶æ˜¯å¦æ‘§æ¯åŸç‰©å“,å‡çº§åæ˜¯å¦ä¿ç•™é™„é­”æ•ˆæœ FROM _ç‰©å“_å‡çº§" :
 		"SELECT item, exchangedItem, reqId,chance,upFlag,rewIdOnFail,destroyOnFail,keepEnchant FROM _itemmod_exchange_item");
 	if (result)
 	{
@@ -277,7 +277,7 @@ void ItemMod::Load()
 
 	UpgradeVec.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ¸½Ä§ID, ÉÏ¼¶¸½Ä§ID, ĞèÇóÄ£°åID,ÒÆ³ıÊ±¸½Ä§½±ÀøÄ£°åID,²Ëµ¥ÎÄ±¾,³É¹¦¼¸ÂÊ,ÎïÆ·ÀàĞÍÑÚÂë,·Ö×éÑÚÂë,Ö°ÒµÑÚÂë FROM _ÎïÆ·_Ç¿»¯" :
+		"SELECT é™„é­”ID, ä¸Šçº§é™„é­”ID, éœ€æ±‚æ¨¡æ¿ID,ç§»é™¤æ—¶é™„é­”å¥–åŠ±æ¨¡æ¿ID,èœå•æ–‡æœ¬,æˆåŠŸå‡ ç‡,ç‰©å“ç±»å‹æ©ç ,åˆ†ç»„æ©ç ,èŒä¸šæ©ç  FROM _ç‰©å“_å¼ºåŒ–" :
 		"SELECT enchant_id, prev_enchant_id, enchantReqId,removeEnchantRewId,description,chance,itemMask,flagMask,classMask FROM _itemmod_strengthen_item");
 
 	if (result)
@@ -303,7 +303,7 @@ void ItemMod::Load()
 	GemCountLimitInfo.clear();
 	GetmCountLimitMap.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ±¦Ê¯ÎïÆ·ID,ÊıÁ¿ÉÏÏŞ FROM _ÎïÆ·_±¦Ê¯ÉÏÏŞ" :
+		"SELECT å®çŸ³ç‰©å“ID,æ•°é‡ä¸Šé™ FROM _ç‰©å“_å®çŸ³ä¸Šé™" :
 		"SELECT entry,limitCount FROM _itemmod_gem_limit");
 	if (result)
 	{
@@ -330,7 +330,7 @@ void ItemMod::Load()
 	
 	IdentifyVec.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID,¸½Ä§×éÄ£°åID,ĞèÇóÄ£°åID,¸½Ä§Î»ÖÃ,²Ëµ¥ÎÄ±¾,ÊÇ·ñĞèÒªµ±Ç°Î»ÖÃÓĞ¸½Ä§ FROM _ÎïÆ·_Ë¢ĞÂ¸½Ä§" :
+		"SELECT ç‰©å“ID,é™„é­”ç»„æ¨¡æ¿ID,éœ€æ±‚æ¨¡æ¿ID,é™„é­”ä½ç½®,èœå•æ–‡æœ¬,æ˜¯å¦éœ€è¦å½“å‰ä½ç½®æœ‰é™„é­” FROM _ç‰©å“_åˆ·æ–°é™„é­”" :
 		"SELECT entry,groupId,reqId,slot,gossipText FROM _itemmod_refresh");
 	if (result)
 	{
@@ -351,7 +351,7 @@ void ItemMod::Load()
 
 	CreateEnchantVec.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID,¸½Ä§×éÄ£°åID,¸½Ä§Î»ÖÃ,×Ô´ø¸½Ä§¼¸ÂÊ FROM _ÎïÆ·_×Ô´ø¸½Ä§" :
+		"SELECT ç‰©å“ID,é™„é­”ç»„æ¨¡æ¿ID,é™„é­”ä½ç½®,è‡ªå¸¦é™„é­”å‡ ç‡ FROM _ç‰©å“_è‡ªå¸¦é™„é­”" :
 		"SELECT entry,groupId,slot,chance FROM _itemmod_creation_enchant");
 	if (result)
 	{
@@ -371,7 +371,7 @@ void ItemMod::Load()
 	EnchantGroupVec.clear();
 	GCAddonEnchantGroupVec.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ¸½Ä§×éÄ£°åID,¸½Ä§ID,³éÈ¡¼¸ÂÊ FROM _Ä£°å_¸½Ä§×é" :
+		"SELECT é™„é­”ç»„æ¨¡æ¿ID,é™„é­”ID,æŠ½å–å‡ ç‡ FROM _æ¨¡æ¿_é™„é­”ç»„" :
 		"SELECT groupId,enchantId,chance FROM _itemmod_enchant_groups");
 	if (result)
 	{
@@ -397,7 +397,7 @@ void ItemMod::Load()
 
 	HiddenItemInfo.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID FROM _ÎïÆ·_±³°üÖĞ»ñµÃÊôĞÔ" :
+		"SELECT ç‰©å“ID FROM _ç‰©å“_èƒŒåŒ…ä¸­è·å¾—å±æ€§" :
 		"SELECT entry FROM _itemmod_hidden");
 	if (result)
 	{
@@ -412,7 +412,7 @@ void ItemMod::Load()
 
 	CurrencyLikeItemVec.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID FROM _ÎïÆ·_»ÕÕÂµôÂä·½Ê½" :
+		"SELECT ç‰©å“ID FROM _ç‰©å“_å¾½ç« æ‰è½æ–¹å¼" :
 		"SELECT entry FROM _itemmod_currency_like");
 	if (result)
 	{
@@ -425,7 +425,7 @@ void ItemMod::Load()
 
 	DayLimitItemMap.clear();
 	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-		"SELECT ÎïÆ·ID,Ã¿ÈÕÉÏÏŞ FROM _ÎïÆ·_Ã¿ÈÕÉÏÏŞ" :
+		"SELECT ç‰©å“ID,æ¯æ—¥ä¸Šé™ FROM _ç‰©å“_æ¯æ—¥ä¸Šé™" :
 		"SELECT entry,limitCount FROM _itemmod_day_limit");
 	if (result)
 	{
@@ -457,9 +457,9 @@ std::string ItemMod::GetExDes(uint32 entry, uint32 flag)
 	if (reqId != 0)
 	{
 		if (flag == 0)
-			oss << "|cFF00FF00¡¸Éı¼¶ĞèÒªÂú×ã¡¹|r\n";
+			oss << "|cFF00FF00ã€Œå‡çº§éœ€è¦æ»¡è¶³ã€|r\n";
 		else
-			oss << "|cFF00FF00¡¸Éı¼¶ĞèÒªÂú×ã¡¹|r\n";
+			oss << "|cFF00FF00ã€Œå‡çº§éœ€è¦æ»¡è¶³ã€|r\n";
 
 		oss << sReq->GetExtraDes(reqId);
 	}
@@ -489,7 +489,7 @@ std::string ItemMod::GetUnbindDes(uint32 entry)
 
 	if (reqId != 0)
 	{
-		oss << "|cFF00FF00¡¸½â°óĞèÒªÂú×ã¡¹|r\n";
+		oss << "|cFF00FF00ã€Œè§£ç»‘éœ€è¦æ»¡è¶³ã€|r\n";
 		oss << sReq->GetExtraDes(reqId);
 	}
 	
@@ -506,9 +506,9 @@ std::string ItemMod::GetMaxGemDes(uint32 entry)
 	{
 		if (entry == GemCountLimitInfo[i].entry)
 		{
-			oss << "|cFF00FF00¡¸×î´óÏâÇ¶ÊıÁ¿";
+			oss << "|cFF00FF00ã€Œæœ€å¤§é•¶åµŒæ•°é‡";
 			oss << GemCountLimitInfo[i].limitCount;
-			oss << "¡¹|r\n";
+			oss << "ã€|r\n";
 			return oss.str();
 		}			
 	}
@@ -600,7 +600,7 @@ uint8 ItemMod::getSlot(uint32 sender) {
 }
 
 uint32 ItemMod::getEnchant(uint32 sender) {
-	return (uint32)((sender - GOSSIP_SENDER_MAIN) & 0xFFFFFF);//ÆÁ±Î¸ß8Î»
+	return (uint32)((sender - GOSSIP_SENDER_MAIN) & 0xFFFFFF);//å±è”½é«˜8ä½
 }
 
 uint32 ItemMod::getGemId(uint32 sender) {
@@ -712,7 +712,7 @@ bool ItemMod::AddItemRemovBindMenu(Player* player, Item* item)
 		if (item->GetEntry() == ItemUnbindCostInfo[i].entry && !item->UnBinded && item->IsSoulBound())
 		{
 			std::ostringstream oss;
-			oss << sReq->Notice(player, ItemUnbindCostInfo[i].reqId, "½â°ó", sCF->GetItemLink(item->GetEntry()),item->GetCount());
+			oss << sReq->Notice(player, ItemUnbindCostInfo[i].reqId, "è§£ç»‘", sCF->GetItemLink(item->GetEntry()),item->GetCount());
 			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_ITEM_UNBIND)), GOSSIP_SENDER_MAIN, ACTION_ITEM_REMOVEBIND, oss.str().c_str(), sReq->Golds(ItemUnbindCostInfo[i].reqId), 0);
 			return true;
 		}
@@ -734,7 +734,7 @@ bool ItemMod::AddItemExchangeMenu(Player* player, Item* item, uint32 update)
 		{
 			std::ostringstream oss;
 			oss << sCF->GetItemLink(item->GetEntry());
-			oss << sReq->Notice(player, L_ReqId, "\nÉı¼¶\n", "", 1, L_Chance, VIP_RATE_ITEM_EXCHANGE_0, HR_RATE_ITEM_EXCHANGE_0);
+			oss << sReq->Notice(player, L_ReqId, "\nå‡çº§\n", "", 1, L_Chance, VIP_RATE_ITEM_EXCHANGE_0, HR_RATE_ITEM_EXCHANGE_0);
 			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_ITEM_EXCHANGE)), update, ACTION_ITEM_EXCHANGE, oss.str().c_str(), L_ReqId, 0);
 			flag = true;
 		}
@@ -742,7 +742,7 @@ bool ItemMod::AddItemExchangeMenu(Player* player, Item* item, uint32 update)
 		if (sNoPatchItem->CanCompound(item))
 		{
 			std::ostringstream oss;
-			oss << sCF->GetItemLink(item->GetEntry()) << " X 2" << "\n\nºÏ³É\n\n";
+			oss << sCF->GetItemLink(item->GetEntry()) << " X 2" << "\n\nåˆæˆ\n\n";
 			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_STAT_PANEL)), update, ACTION_ITEM_NO_PATCH_COMPOUND, oss.str().c_str(), 0, 0);
 			flag = true;
 		}
@@ -757,9 +757,9 @@ bool ItemMod::AddItemExchangeMenu(Player* player, Item* item, uint32 update)
 				oss << sCF->GetItemLink(item->GetEntry());
 
 				if (update == 0)
-					oss << sReq->Notice(player, ItemExchangeInfo[i].reqId, "\nÉı¼¶Îª\n", sCF->GetItemLink(ItemExchangeInfo[i].exchangeditem), 1, ItemExchangeInfo[i].chance, VIP_RATE_ITEM_EXCHANGE_0, HR_RATE_ITEM_EXCHANGE_0);
+					oss << sReq->Notice(player, ItemExchangeInfo[i].reqId, "\nå‡çº§ä¸º\n", sCF->GetItemLink(ItemExchangeInfo[i].exchangeditem), 1, ItemExchangeInfo[i].chance, VIP_RATE_ITEM_EXCHANGE_0, HR_RATE_ITEM_EXCHANGE_0);
 				else
-					oss << sReq->Notice(player, ItemExchangeInfo[i].reqId, "\nÉı¼¶Îª\n", sCF->GetItemLink(ItemExchangeInfo[i].exchangeditem), 1, ItemExchangeInfo[i].chance, VIP_RATE_ITEM_EXCHANGE_1, HR_RATE_ITEM_EXCHANGE_1);
+					oss << sReq->Notice(player, ItemExchangeInfo[i].reqId, "\nå‡çº§ä¸º\n", sCF->GetItemLink(ItemExchangeInfo[i].exchangeditem), 1, ItemExchangeInfo[i].chance, VIP_RATE_ITEM_EXCHANGE_1, HR_RATE_ITEM_EXCHANGE_1);
 
 				player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, update == 0 ? sString->GetText(CORE_STR_TYPES(STR_ITEM_EXCHANGE)) : sString->GetText(CORE_STR_TYPES(STR_ITEM_UPGRADE)), update, ACTION_ITEM_EXCHANGE, oss.str().c_str(), sReq->Golds(ItemExchangeInfo[i].reqId), 0);
 				flag = true;
@@ -850,13 +850,13 @@ uint32 ItemMod::GetItemMask(uint32 entry)
 
 	switch (proto->InventoryType)
 	{
-		//ÊÎÎï
+		//é¥°ç‰©
 	case INVTYPE_NECK:
 	case INVTYPE_FINGER:
 	case INVTYPE_TRINKET:
 	case INVTYPE_CLOAK:
 		return ITEM_MASK_ORNAMENT;
-	//°Ë¼şÌ×
+	//å…«ä»¶å¥—
 	case INVTYPE_HEAD:
 	case INVTYPE_SHOULDERS:	
 	case INVTYPE_CHEST:
@@ -868,29 +868,29 @@ uint32 ItemMod::GetItemMask(uint32 entry)
 	case INVTYPE_ROBE:
 		return ITEM_MASK_SUIT;
 
-	//³ÄÒÂ
+	//è¡¬è¡£
 	case INVTYPE_BODY:
 		return ITEM_MASK_SHIRT;
-	//Õ½ÅÛ
+	//æˆ˜è¢
 	case INVTYPE_TABARD:
 		return ITEM_MASK_TABARD;
 
-	//Ë«ÊÖ ¹­ åó Ç¹
+	//åŒæ‰‹ å¼“ å¼© æª
 	case INVTYPE_2HWEAPON:
-	case INVTYPE_RANGEDRIGHT://²»ÄÜ°üÀ¨Ä§ÕÈ
+	case INVTYPE_RANGEDRIGHT://ä¸èƒ½åŒ…æ‹¬é­”æ–
 	case INVTYPE_RANGED:
 		return ITEM_MASK_2H_WEAPON;
 
-	//µ¥ÊÖ¡¢Ö÷ÊÖ
+	//å•æ‰‹ã€ä¸»æ‰‹
 	case INVTYPE_WEAPON:
 	case INVTYPE_WEAPONMAINHAND:
 		return ITEM_MASK_1H_WEAPON;
-	//¶Ü¡¢¸±ÊÖ
+	//ç›¾ã€å‰¯æ‰‹
 	case INVTYPE_SHIELD:
 	case INVTYPE_WEAPONOFFHAND:
 		return ITEM_MASK_OFFHAND;
-	//Ô¶³Ì
-	case INVTYPE_THROWN://°üÀ¨Ä§ÕÈ
+	//è¿œç¨‹
+	case INVTYPE_THROWN://åŒ…æ‹¬é­”æ–
 	case INVTYPE_RELIC:
 		return ITEM_MASK_RANGED;
 
@@ -999,7 +999,7 @@ void ItemMod::AddItemCurrEnchantList(Player* player, Item* item, ITEM_ENCHANT_TY
 		{
 			std::ostringstream oss;
 			uint32 currEnchantId = item->GetEnchantmentId(EnchantmentSlot(slot));
-			//oss << "[µ±Ç°£º" << GetItemEnchantDescription(item, currEnchantId) << "]";
+			//oss << "[å½“å‰ï¼š" << GetItemEnchantDescription(item, currEnchantId) << "]";
 			oss << GetItemEnchantDescription(player, currEnchantId);
 			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), senderValue(slot, currEnchantId), ACTION_SIGIL_ENCHANT_NEXT_MENU_SHOW);
 		}
@@ -1010,7 +1010,7 @@ void ItemMod::AddItemCurrEnchantList(Player* player, Item* item, ITEM_ENCHANT_TY
 	}
 
 	if (SIGIL_OWN_ENCHANT && type != ITEM_ENCHANT_SIGIL)
-		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<< ·µ»Ø >>", GOSSIP_SENDER_MAIN, ACTION_MAINMENU_BACK);
+		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<< è¿”å› >>", GOSSIP_SENDER_MAIN, ACTION_MAINMENU_BACK);
 	player->PlayerTalkClass->GetGossipMenu().SetMenuId(MENU_ID);
 	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 }
@@ -1021,7 +1021,7 @@ void ItemMod::AddItemNextEnchantList(Player* player, Item* item, uint32 sender, 
 
 	uint32 currEnchantId = getEnchant(sender);
 
-	//·ûÓ¡ÖĞ ÓĞÁ½ĞĞÊÇ¹Ì¶¨Öµ µã»÷ÏÔÊ¾µ±Ç°²Ëµ¥
+	//ç¬¦å°ä¸­ æœ‰ä¸¤è¡Œæ˜¯å›ºå®šå€¼ ç‚¹å‡»æ˜¾ç¤ºå½“å‰èœå•
 	if (SIGIL_OWN_ENCHANT && (currEnchantId == SIGIL_OWN_ENCHANT_TITLE_0 || currEnchantId == SIGIL_OWN_ENCHANT_TITLE_1))
 	{
 		AddItemCurrEnchantList(player, player->playerItem, ITEM_ENCHANT_SIGIL);
@@ -1043,8 +1043,8 @@ void ItemMod::AddItemNextEnchantList(Player* player, Item* item, uint32 sender, 
 				{
 					std::ostringstream oss1;
 					std::ostringstream oss2;
-					oss1 << "ÒÆ³ı" << GetItemEnchantDescription(player, currEnchantId);
-					oss2 << "\nÒÆ³ı\n" << GetEnchantDescription(item, currEnchantId);
+					oss1 << "ç§»é™¤" << GetItemEnchantDescription(player, currEnchantId);
+					oss2 << "\nç§»é™¤\n" << GetEnchantDescription(item, currEnchantId);
 					player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, oss1.str(), senderValue(slot, currEnchantId), ACTION_ITEM_REMOVE_ENCHANT, oss2.str().c_str(), 0, 0);
 					undefineEnchant = false;
 					break;
@@ -1056,21 +1056,21 @@ void ItemMod::AddItemNextEnchantList(Player* player, Item* item, uint32 sender, 
 		{
 			std::ostringstream oss1;
 			std::ostringstream oss2;
-			oss1 << "|cFFFF0000ÒÆ³ı ¡ª> " << GetItemEnchantDescription(player, currEnchantId) << "|r";
-			oss2 << sCF->GetItemLink(item->GetEntry()) << "\n\nÒÆ³ı ¡ª> " << GetEnchantDescription(item, currEnchantId);
+			oss1 << "|cFFFF0000ç§»é™¤ â€”> " << GetItemEnchantDescription(player, currEnchantId) << "|r";
+			oss2 << sCF->GetItemLink(item->GetEntry()) << "\n\nç§»é™¤ â€”> " << GetEnchantDescription(item, currEnchantId);
 			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, oss1.str(), senderValue(slot, currEnchantId), ACTION_ITEM_REMOVE_ENCHANT, oss2.str().c_str(), DEFAULT_REMOVE_ENCHANT_GOLDS * GOLD, 0);
 		}
 	}
 	
-	//·ÀÖ¹å´»ú
+	//é˜²æ­¢å®•æœº
 	if(len > 30)
 		len = 30;
 
 	for (uint32 i = 0; i < len; i++)
-		player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, ENCHANT_ACTION_STRING + " ¡ª> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), senderValue(slot, FilterVec[i].enchantId), ACTION_ITEM_ENCHANT, sReq->Notice(player, FilterVec[i].enchantReqId, sCF->GetItemLink(item->GetEntry()), "\n\n" + ENCHANT_ACTION_STRING + " ¡ª> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), 1, FilterVec[i].chance, VIP_RATE_ITEM_STRENGTHEN, HR_RATE_ITEM_STRENGTHEN), sReq->Golds(FilterVec[i].enchantReqId), 0);
+		player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, ENCHANT_ACTION_STRING + " â€”> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), senderValue(slot, FilterVec[i].enchantId), ACTION_ITEM_ENCHANT, sReq->Notice(player, FilterVec[i].enchantReqId, sCF->GetItemLink(item->GetEntry()), "\n\n" + ENCHANT_ACTION_STRING + " â€”> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), 1, FilterVec[i].chance, VIP_RATE_ITEM_STRENGTHEN, HR_RATE_ITEM_STRENGTHEN), sReq->Golds(FilterVec[i].enchantReqId), 0);
 
 	if (SIGIL_OWN_ENCHANT && type != ITEM_ENCHANT_SIGIL)
-		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<< ·µ»Ø >>", GOSSIP_SENDER_MAIN, ACTION_ITEM_ENCHANT_CURR_MENU_SHOW);
+		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<< è¿”å› >>", GOSSIP_SENDER_MAIN, ACTION_ITEM_ENCHANT_CURR_MENU_SHOW);
 
 	player->PlayerTalkClass->GetGossipMenu().SetMenuId(MENU_ID);
 	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
@@ -1139,7 +1139,7 @@ void ItemMod::EnchantItem(Player* player, Item* item, uint8 slot, uint32 enchant
 				if (urand(1, 100) > rate)
 				{
 					sReq->Des(player, UpgradeVec[i].enchantReqId);
-					std::string noticetext = ENCHANT_ACTION_STRING + "Ê§°Ü";
+					std::string noticetext = ENCHANT_ACTION_STRING + "å¤±è´¥";
 					player->GetSession()->SendAreaTriggerMessage(noticetext.c_str());
 					player->CLOSE_GOSSIP_MENU();
 					return;
@@ -1155,7 +1155,7 @@ void ItemMod::EnchantItem(Player* player, Item* item, uint8 slot, uint32 enchant
 
 				if (SpellItemEnchantmentEntry const* info = sSpellItemEnchantmentStore.LookupEntry(enchantId))
 				{
-					std::string noticetext = ENCHANT_ACTION_STRING + info->description[4] + "³É¹¦";
+					std::string noticetext = ENCHANT_ACTION_STRING + info->description[4] + "æˆåŠŸ";
 					player->GetSession()->SendAreaTriggerMessage(noticetext.c_str());
 				}
 				
@@ -1174,7 +1174,7 @@ void ItemMod::EnchantItem(Player* player, Item* item, uint8 slot, uint32 enchant
 	player->CLOSE_GOSSIP_MENU();
 }
 
-//ÎïÆ·½â°ó
+//ç‰©å“è§£ç»‘
 void ItemMod::RemoveBind(Player* player, Item* item)
 {
 	uint32 len = ItemUnbindCostInfo.size();
@@ -1189,7 +1189,7 @@ void ItemMod::RemoveBind(Player* player, Item* item)
 				item->SetBinding(false);
 				item->SetState(ITEM_CHANGED, player);
 				player->CastSpell(player, VISUAL_SPELL_ID, true, NULL, NULL, player->GetGUID());
-				player->GetSession()->SendAreaTriggerMessage("³É¹¦½â³ıÎïÆ·°ó¶¨");
+				player->GetSession()->SendAreaTriggerMessage("æˆåŠŸè§£é™¤ç‰©å“ç»‘å®š");
 				sReq->Des(player, ItemUnbindCostInfo[i].reqId, item->GetCount());
 			}
 			player->CLOSE_GOSSIP_MENU();
@@ -1199,8 +1199,8 @@ void ItemMod::RemoveBind(Player* player, Item* item)
 	player->CLOSE_GOSSIP_MENU();
 }
 
-//ÎïÆ·Éı¼¶
-void ItemMod::ExchangeItem(Player* player, Item* item, uint32 update/*0 Éı¼¶ 1Ç¿»¯*/)
+//ç‰©å“å‡çº§
+void ItemMod::ExchangeItem(Player* player, Item* item, uint32 update/*0 å‡çº§ 1å¼ºåŒ–*/)
 {
 	uint32 len = ItemExchangeInfo.size();
 	for (uint32 i = 0; i < len; i++)
@@ -1239,12 +1239,12 @@ void ItemMod::ExchangeItem(Player* player, Item* item, uint32 update/*0 Éı¼¶ 1Ç¿
 
 					std::ostringstream oss;
 					oss << sCF->GetItemLink(item, player->GetSession());
-					update == 0 ? oss << "Éı¼¶Ê§°Ü" : oss << "Éı¼¶Ê§°Ü";
+					update == 0 ? oss << "å‡çº§å¤±è´¥" : oss << "å‡çº§å¤±è´¥";
 
 					if (ItemExchangeInfo[i].destroyOnFail)
 					{
 						player->DestroyItem(item->GetBagSlot(), item->GetSlot(), true);
-						oss << ",±»´İ»Ù£¡";
+						oss << ",è¢«æ‘§æ¯ï¼";
 					}
 					
 					player->GetSession()->SendAreaTriggerMessage(oss.str().c_str());
@@ -1267,7 +1267,7 @@ void ItemMod::ExchangeItem(Player* player, Item* item, uint32 update/*0 Éı¼¶ 1Ç¿
 					return;
 				}
 
-				if (ItemExchangeInfo[i].keepEnchant) //±£Áô¸½Ä§Ğ§¹û
+				if (ItemExchangeInfo[i].keepEnchant) //ä¿ç•™é™„é­”æ•ˆæœ
 				{
 					for (uint8 slot = PERM_ENCHANTMENT_SLOT; slot < MAX_ENCHANTMENT_SLOT; slot++)
 					{
@@ -1286,7 +1286,7 @@ void ItemMod::ExchangeItem(Player* player, Item* item, uint32 update/*0 Éı¼¶ 1Ç¿
 				uint32 expItemId = item->GetEntry();
 				player->DestroyItem(item->GetBagSlot(), item->GetSlot(), true);
 				sReq->Des(player, ItemExchangeInfo[i].reqId, 1, expItemId);
-				update == 0 ? player->GetSession()->SendAreaTriggerMessage("Éı¼¶³É¹¦") : player->GetSession()->SendAreaTriggerMessage("Éı¼¶³É¹¦");
+				update == 0 ? player->GetSession()->SendAreaTriggerMessage("å‡çº§æˆåŠŸ") : player->GetSession()->SendAreaTriggerMessage("å‡çº§æˆåŠŸ");
 				player->CLOSE_GOSSIP_MENU();
 				return;
 			}
@@ -1304,7 +1304,7 @@ Item* ItemMod::AddItem(Player* player, uint32 itemId, uint32 count)
 
 	if (count == 0 || dest.empty())
 	{
-		if (dest.empty()) player->GetSession()->SendNotification("±³°üÒÑÂú£¬»òÉı¼¶ºóµÄÎïÆ·ÒÑ´æÔÚÇÒÎ¨Ò»£¡");
+		if (dest.empty()) player->GetSession()->SendNotification("èƒŒåŒ…å·²æ»¡ï¼Œæˆ–å‡çº§åçš„ç‰©å“å·²å­˜åœ¨ä¸”å”¯ä¸€ï¼");
 		// -- TODO: Send to mailbox if no space
 		//ChatHandler(GetSession()).PSendSysMessage("You don't have any space in your bags.");
 		return NULL;
@@ -1315,12 +1315,12 @@ Item* ItemMod::AddItem(Player* player, uint32 itemId, uint32 count)
 		player->SendNewItem(item, count, true, false);
 	else
 	{
-		player->GetSession()->SendNotification("Ê§°Ü£¬Çë¼ì²éÊÇ·ñÉı¼¶ºóµÄÎïÆ·´æÔÚÇÒÎ¨Ò»£¡");
+		player->GetSession()->SendNotification("å¤±è´¥ï¼Œè¯·æ£€æŸ¥æ˜¯å¦å‡çº§åçš„ç‰©å“å­˜åœ¨ä¸”å”¯ä¸€ï¼");
 		return NULL;
 	}
 	return item;
 }
-//È¥³ı±¦Ê¯
+//å»é™¤å®çŸ³
 void ItemMod::AddGemList(Player* player, Item* item)
 {
 	bool gemExsit = false;
@@ -1334,7 +1334,7 @@ void ItemMod::AddGemList(Player* player, Item* item)
 			if (gemId != 0 && gemId == RemoveGemInfo[i].entry)
 			{
 				gemExsit = true;
-				player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, gemName.c_str(), senderValue(slot, gemId), ACTION_ITEM_REMOVEGEM, sReq->Notice(player, RemoveGemInfo[i].reqId, sCF->GetItemLink(gemId), "ÒÆ³ı", 1, RemoveGemInfo[i].chance, VIP_RATE_GEM_REMOVE, HR_RATE_GEM_REMOVE), sReq->Golds(RemoveGemInfo[i].reqId), 0);
+				player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, gemName.c_str(), senderValue(slot, gemId), ACTION_ITEM_REMOVEGEM, sReq->Notice(player, RemoveGemInfo[i].reqId, sCF->GetItemLink(gemId), "ç§»é™¤", 1, RemoveGemInfo[i].chance, VIP_RATE_GEM_REMOVE, HR_RATE_GEM_REMOVE), sReq->Golds(RemoveGemInfo[i].reqId), 0);
 			}
 		}
 	}
@@ -1349,7 +1349,7 @@ void ItemMod::AddGemList(Player* player, Item* item)
 	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 }
 
-//¼ø¶¨ºÍ·âÏó
+//é‰´å®šå’Œå°è±¡
 bool ItemMod::AddIdentifyMenu(Player* player, Item* item)
 {
 	bool flag = false;
@@ -1381,12 +1381,12 @@ bool ItemMod::AddIdentifyMenu(Player* player, Item* item)
 				oss << sString->GetText(CORE_STR_TYPES(STR_IDENTIFY)) << str;
 			}
 			else
-				oss << sString->GetText(CORE_STR_TYPES(STR_IDENTIFY)) << "»ñµÃĞÂµÄÊôĞÔ";
+				oss << sString->GetText(CORE_STR_TYPES(STR_IDENTIFY)) << "è·å¾—æ–°çš„å±æ€§";
 
 			if (!gossipText.empty())
 				oss << "\n" << gossipText;
 
-			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, oss.str(), slot, ACTION_ITEM_IDENTIFY, sReq->Notice(player, reqId, "ÖØĞÂÁ¶»¯", sCF->GetItemLink(item->GetEntry())), sReq->Golds(reqId), 0);
+			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, oss.str(), slot, ACTION_ITEM_IDENTIFY, sReq->Notice(player, reqId, "é‡æ–°ç‚¼åŒ–", sCF->GetItemLink(item->GetEntry())), sReq->Golds(reqId), 0);
 		}
 	}
 
@@ -1413,7 +1413,7 @@ void ItemMod::RemoveGem(Player* player, Item* item, uint32 sender)
 				if (urand(1, 100) > rate)
 				{
 					sReq->Des(player, RemoveGemInfo[i].reqId);
-					player->GetSession()->SendAreaTriggerMessage("ÒÆ³ıÊ§°Ü");
+					player->GetSession()->SendAreaTriggerMessage("ç§»é™¤å¤±è´¥");
 					AddGemList(player, player->playerItem);
 					return;
 				}
@@ -1422,7 +1422,7 @@ void ItemMod::RemoveGem(Player* player, Item* item, uint32 sender)
 				item->ClearEnchantment(EnchantmentSlot(slot));
 				player->CastSpell(player, VISUAL_SPELL_ID, true, NULL, NULL, player->GetGUID());
 				player->AddItem(gemId, 1);
-				player->GetSession()->SendAreaTriggerMessage("ÒÆ³ı³É¹¦");
+				player->GetSession()->SendAreaTriggerMessage("ç§»é™¤æˆåŠŸ");
 				sReq->Des(player, RemoveGemInfo[i].reqId);
 				player->CastSpell(player, VISUAL_SPELL_ID, true, NULL, NULL, player->GetGUID());
 				AddGemList(player, player->playerItem);
@@ -1447,7 +1447,7 @@ void ItemMod::RemoveItemEnchant(Player* player, Item* item, uint8 slot, uint32 e
 	player->ApplyEnchantment(item, EnchantmentSlot(slot), false);
 	item->ClearEnchantment(EnchantmentSlot(slot));
 	player->CastSpell(player, VISUAL_SPELL_ID, true, NULL, NULL, player->GetGUID());
-	std::string text = "ÒÆ³ı" + ENCHANT_NAME_STRING + info->description[4];
+	std::string text = "ç§»é™¤" + ENCHANT_NAME_STRING + info->description[4];
 	player->GetSession()->SendAreaTriggerMessage(text.c_str());
 	AddItemCurrEnchantList(player, item);
 }
@@ -1456,13 +1456,13 @@ void ItemMod::RemoveUndefinEnchant(Player* player, Item* item, uint8 slot, uint3
 {
 	if (!player->HasEnoughMoney(100 * GOLD))
 	{
-		player->GetSession()->SendNotification("ÄãÃ»ÓĞ×ã¹»µÄ½ğÇ®");
+		player->GetSession()->SendNotification("ä½ æ²¡æœ‰è¶³å¤Ÿçš„é‡‘é’±");
 		return;
 	}
 	player->ApplyEnchantment(item, EnchantmentSlot(slot), false);
 	item->ClearEnchantment(EnchantmentSlot(slot));
 	player->CastSpell(player, VISUAL_SPELL_ID, true, NULL, NULL, player->GetGUID());
-	player->GetSession()->SendAreaTriggerMessage("ÒÆ³ı¸½Ä§");
+	player->GetSession()->SendAreaTriggerMessage("ç§»é™¤é™„é­”");
 	player->CLOSE_GOSSIP_MENU();
 	return;
 }
@@ -1481,7 +1481,7 @@ void ItemMod::RefreshItem(Player* player, Item* item, EnchantmentSlot slot)
 	//if (enchant_id != 8004 && slot == PROP_ENCHANTMENT_SLOT_0 || enchant_id != 8005 && slot == PROP_ENCHANTMENT_SLOT_1)
 	//{
 	//	player->CLOSE_GOSSIP_MENU();
-	//	player->GetSession()->SendNotification("¸Ã×°±¸Ö»ÄÜ¼ø¶¨»ò´ãÁ¶Ò»´Î£¡");
+	//	player->GetSession()->SendNotification("è¯¥è£…å¤‡åªèƒ½é‰´å®šæˆ–æ·¬ç‚¼ä¸€æ¬¡ï¼");
 	//	return;
 	//}
 		
@@ -1511,10 +1511,10 @@ void ItemMod::RefreshItem(Player* player, Item* item, EnchantmentSlot slot)
 		sReq->Des(player, reqId);
 		player->CastSpell(player, VISUAL_SPELL_ID, true, NULL, NULL, player->GetGUID());
 		if (SpellItemEnchantmentEntry const* info = sSpellItemEnchantmentStore.LookupEntry(enchantId))
-			player->GetSession()->SendAreaTriggerMessage("%s|cFF00FF00»ñµÃ|r%s", sCF->GetItemLink(item->GetEntry()).c_str(), info->description[4]);;
+			player->GetSession()->SendAreaTriggerMessage("%s|cFF00FF00è·å¾—|r%s", sCF->GetItemLink(item->GetEntry()).c_str(), info->description[4]);;
 	}
 
-	//<< ·µ»Ø >>¼ÀÁ¶²Ëµ¥
+	//<< è¿”å› >>ç¥­ç‚¼èœå•
 	AddCastMenu(player, item);
 }
 
@@ -1539,7 +1539,7 @@ public:
 
 			if (item->GetOwner() != player)
 			{
-				ChatHandler(player->GetSession()).PSendSysMessage("Äã²»ÓµÓĞÕâ¼ş×°±¸£¡");
+				ChatHandler(player->GetSession()).PSendSysMessage("ä½ ä¸æ‹¥æœ‰è¿™ä»¶è£…å¤‡ï¼");
 				return;
 			}
 
@@ -1582,7 +1582,7 @@ public:
 		case ACTION_MAINMENU_BACK:
 			sItemMod->AddCastMenu(player, player->playerItem);
 			break;
-			//ÎïÆ·¸½Ä§
+			//ç‰©å“é™„é­”
 		case ACTION_ITEM_ENCHANT_CURR_MENU_SHOW:
 			sItemMod->AddItemCurrEnchantList(player, player->playerItem);
 			break;
@@ -1626,12 +1626,12 @@ public:
 			player->SaveToDB(false, false);
 			break;
 
-			//ÒÆ³ıÎ´¶¨Òå¸½Ä§
+			//ç§»é™¤æœªå®šä¹‰é™„é­”
 		case ACTION_REMOVE_ENCHANT_UNDEFINE:
 			sItemMod->RemoveUndefinEnchant(player, player->playerItem, sItemMod->getSlot(sender), sItemMod->getEnchant(sender));
 			player->SaveToDB(false, false);
 			break;
-			//ÒÆ³ı±¦Ê¯
+			//ç§»é™¤å®çŸ³
 		case ACTION_GEM_MENU_SHOW:
 			sItemMod->AddGemList(player, player->playerItem);
 			break;
@@ -1639,7 +1639,7 @@ public:
 			sItemMod->RemoveGem(player, player->playerItem, sender);
 			player->SaveToDB(false, false);
 			break;
-			//ÎïÆ·Éı¼¶
+			//ç‰©å“å‡çº§
 		case ACTION_ITEM_EXCHANGE:
 			if (player->playerItem->IsNoPatch())
 				sNoPatchItem->LevelUp(player, player->playerItem);
@@ -1652,7 +1652,7 @@ public:
 			player->CLOSE_GOSSIP_MENU();
 			player->SaveToDB(false, false);
 			break;
-			//ÎïÆ·½â°ó
+			//ç‰©å“è§£ç»‘
 		case ACTION_ITEM_REMOVEBIND:
 			sItemMod->RemoveBind(player, player->playerItem);
 			break;
@@ -1672,14 +1672,14 @@ public:
 
 	void OnLogin(Player* player) override
 	{
-		//Ö÷±³°ü
+		//ä¸»èƒŒåŒ…
 		for (uint8 i = INVENTORY_SLOT_ITEM_START; i < INVENTORY_SLOT_ITEM_END; i++)
 			if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
 				for (uint32 k = 0; k < HiddenItemInfo.size(); k++)
 					if (item->GetEntry() == HiddenItemInfo[k].entry)
 						player->_ApplyItemModsCustom(item, 0, true);
 
-		//¶îÍâÈı¸ö±³°ü
+		//é¢å¤–ä¸‰ä¸ªèƒŒåŒ…
 		for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
 			if (Bag* pBag = player->GetBagByPos(i))
 				for (uint32 j = 0; j < pBag->GetBagSize(); j++)
@@ -1688,13 +1688,13 @@ public:
 							if (item->GetEntry() == HiddenItemInfo[k].entry)
 								player->_ApplyItemModsCustom(item, 0, true);
 
-		//ÒøĞĞ
+		//é“¶è¡Œ
 		for (uint8 i = BANK_SLOT_ITEM_START; i < BANK_SLOT_BAG_END; ++i)
 			if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
 				for (uint32 k = 0; k < HiddenItemInfo.size(); k++)
 					if (item->GetEntry() == HiddenItemInfo[k].entry)
 						player->_ApplyItemModsCustom(item, 0, true);
-		//ÒøĞĞ±³°ü
+		//é“¶è¡ŒèƒŒåŒ…
 		for (uint8 i = BANK_SLOT_BAG_START; i < BANK_SLOT_BAG_END; ++i)
 			if (Bag* pBag = player->GetBagByPos(i))
 				for (uint32 j = 0; j < pBag->GetBagSize(); j++)
@@ -1717,7 +1717,7 @@ public:
 	}
 };
 
-//·ûÓ¡
+//ç¬¦å°
 class sigil_item_upgrade : public ItemScript
 {
 public:
@@ -1773,7 +1773,7 @@ void AddSC_ITEM_MOD()
 
 
 
-//¼¸ÂÊ±¦Ê¯
+//å‡ ç‡å®çŸ³
 
 uint32 ItemMod::GetRate(Player* player, RateStoneTypes type)
 {
@@ -1860,7 +1860,7 @@ std::string ItemMod::GetDayLimitDes(Player* player, uint32 entry)
 	if (count > limit)
 		count = limit;
 
-	oss << "|cFF00FF00¡¸Ã¿ÈÕÉÏÏŞ |cFFFFCC00" << count << "/" << limit << "|r |cFF00FF00¡¹|r\n";
+	oss << "|cFF00FF00ã€Œæ¯æ—¥ä¸Šé™ |cFFFFCC00" << count << "/" << limit << "|r |cFF00FF00ã€|r\n";
 
 	return oss.str();
 }
@@ -1884,7 +1884,7 @@ std::string ItemMod::GetUseDes(uint32 entry)
 
 	if (reqId != 0)
 	{
-		oss << "|cFF00FF00¡¸Ê¹ÓÃĞèÒªÂú×ã¡¹|r\n";
+		oss << "|cFF00FF00ã€Œä½¿ç”¨éœ€è¦æ»¡è¶³ã€|r\n";
 		oss << sReq->GetExtraDes(reqId);
 	}
 
@@ -1899,7 +1899,7 @@ std::string ItemMod::GetEquipDes(uint32 entry)
 
 	if (reqId != 0)
 	{
-		oss << "|cFF00FF00¡¸×°±¸ĞèÒªÂú×ã¡¹|r\n";
+		oss << "|cFF00FF00ã€Œè£…å¤‡éœ€è¦æ»¡è¶³ã€|r\n";
 		oss << sReq->GetExtraDes(reqId);
 	}
 	return oss.str();
@@ -1924,7 +1924,7 @@ std::string ItemMod::GetBuyDes(uint32 entry)
 
 	if (reqId != 0)
 	{
-		oss << "|cFF00FF00¡¸¹ºÂòĞèÒªÂú×ã¡¹|r\n";
+		oss << "|cFF00FF00ã€Œè´­ä¹°éœ€è¦æ»¡è¶³ã€|r\n";
 		oss << sReq->GetExtraDes(reqId);
 	}
 	
@@ -1953,9 +1953,9 @@ void ItemMod::AddCategoryItem(Player* player, Player* target, uint32 categoryId)
 			if (ItemTemplate const* pProto = sObjectMgr->GetItemTemplate(ItemAddVec[i].entry))
 			{
 				if (AddItem(target, ItemAddVec[i].entry, ItemAddVec[i].count))
-					ChatHandler(player->GetSession()).PSendSysMessage("%s»ñµÃ%s X %u", target->GetName().c_str(), pProto->Name1.c_str(), ItemAddVec[i].count);
+					ChatHandler(player->GetSession()).PSendSysMessage("%sè·å¾—%s X %u", target->GetName().c_str(), pProto->Name1.c_str(), ItemAddVec[i].count);
 				else
-					ChatHandler(player->GetSession()).PSendSysMessage("Ìí¼Ó%sÊ§°Ü", pProto->Name1.c_str());
+					ChatHandler(player->GetSession()).PSendSysMessage("æ·»åŠ %så¤±è´¥", pProto->Name1.c_str());
 			}
 		}
 	}
@@ -2006,7 +2006,7 @@ void ItemMod::UnApplyEquipments(Player* player)
 					player->UpdateExpertise(OFF_ATTACK);
 			}
 
-			ChatHandler(player->GetSession()).PSendSysMessage("Ğ¶ÔØ%sÊôĞÔ", sCF->GetItemLink(pItem, player->GetSession()).c_str());
+			ChatHandler(player->GetSession()).PSendSysMessage("å¸è½½%så±æ€§", sCF->GetItemLink(pItem, player->GetSession()).c_str());
 		}
 	}
 }
@@ -2019,7 +2019,7 @@ void ItemMod::AddEnchant(Player* player, uint32 enchantId)
 
 	player->RuneVec.push_back(enchantId);
 
-	//¸üĞÂÊı¾İ¿â
+	//æ›´æ–°æ•°æ®åº“
 	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_RUNE);
 	stmt->setUInt32(0, player->GetGUIDLow());
 	stmt->setUInt32(1, enchantId);
