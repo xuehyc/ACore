@@ -1242,7 +1242,7 @@
 //
 //TeamTypes CustomEvent::GetTeam(Player* player)
 //{
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUID().GetCounter());
 //	if (ii != PlayerDataMap.end())
 //		return ii->second.team;
 //
@@ -1307,7 +1307,7 @@
 //	break;
 //	}
 //
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUID().GetCounter());
 //	if (ii != PlayerDataMap.end())
 //		ii->second.team = team;
 //
@@ -1324,7 +1324,7 @@
 //
 //void CustomEvent::SetValid(Player* player, bool valid)
 //{
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator iter = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator iter = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //	if (iter != PlayerDataMap.end())
 //		iter->second.valid = valid;
@@ -1332,7 +1332,7 @@
 //
 //bool CustomEvent::CheckValid(Player* player)
 //{
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator iter = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator iter = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //	if (iter != PlayerDataMap.end())
 //		return iter->second.valid;
@@ -1344,7 +1344,7 @@
 //{
 //	TeamTypes team = C_TEAM_NONE;
 //
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //	if (ii != PlayerDataMap.end())
 //	{
@@ -1369,7 +1369,7 @@
 //		team = SetTeam(player);
 //		SetFaction(player, team);
 //
-//		std::unordered_map<uint32, EventPlayerTemplate>::iterator iter = PlayerDataMap.find(player->GetGUIDLow());
+//		std::unordered_map<uint32, EventPlayerTemplate>::iterator iter = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //		if (iter == PlayerDataMap.end())
 //		{
@@ -1380,7 +1380,7 @@
 //			Temp.kills = 0;
 //			Temp.killeds = 0;
 //			Temp.valid = true;
-//			PlayerDataMap.insert(std::make_pair(player->GetGUIDLow(), Temp));
+//			PlayerDataMap.insert(std::make_pair(player->GetGUID().GetCounter(), Temp));
 //		}
 //	}
 //
@@ -1533,7 +1533,7 @@
 //	if (!CheckValid(player))
 //		return;
 //
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //	if (ii != PlayerDataMap.end())
 //		ii->second.valid = false;
@@ -1604,7 +1604,7 @@
 //
 //void CustomEvent::IncreaseDamage(Player* player,Unit* target, uint32 damage)
 //{
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //	if (ii != PlayerDataMap.end())
 //		if (target->GetTypeId() != TYPEID_PLAYER)
@@ -1613,7 +1613,7 @@
 //
 //void CustomEvent::IncreaseHeal(Player* player, Unit* target, uint32 heal)
 //{
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //	if (ii != PlayerDataMap.end())
 //		if (target->GetTypeId() != TYPEID_PLAYER)
@@ -1622,7 +1622,7 @@
 //
 //void CustomEvent::IncreaseKills(Player* player)
 //{
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //	if (ii != PlayerDataMap.end())
 //			ii->second.kills ++;
@@ -1630,7 +1630,7 @@
 //
 //void CustomEvent::IncreaseKilleds(Player* player)
 //{
-//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, EventPlayerTemplate>::iterator ii = PlayerDataMap.find(player->GetGUID().GetCounter());
 //
 //	if (ii != PlayerDataMap.end())
 //			ii->second.killeds++;
@@ -1680,7 +1680,7 @@
 //
 //void CustomEvent::UpdatePhase(Object* obj)
 //{
-//	uint32 guid = obj->GetGUIDLow();
+//	uint32 guid = obj->GetGUID().GetCounter();
 //	TypeID typeId = obj->GetTypeId();
 //
 //	auto iter = EventDataMap.find(_eventId);

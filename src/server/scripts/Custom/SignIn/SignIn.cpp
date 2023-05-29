@@ -44,7 +44,7 @@
 //
 //void SignIn::GetInfo(Player* player, time_t &signinTime, uint32 &signinDays)
 //{
-//	QueryResult result = CharacterDatabase.PQuery("SELECT signin_time,signin_days FROM characters WHERE guid = '%u'", player->GetGUIDLow());
+//	QueryResult result = CharacterDatabase.Query("SELECT signin_time,signin_days FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
 //	if (!result)
 //		return;
 //
@@ -91,10 +91,10 @@
 //	sRew->Rew(player, GetRewId(player->signinDays));
 //
 //	SQLTransaction trans = CharacterDatabase.BeginTransaction();
-//	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_SIGN_IN);
+//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_SIGN_IN);
 //	stmt->setUInt32(0, player->signinTime);
 //	stmt->setUInt32(1, player->signinDays);
-//	stmt->setUInt32(2, player->GetGUIDLow());
+//	stmt->setUInt32(2, player->GetGUID().GetCounter());
 //	trans->Append(stmt);
 //	CharacterDatabase.CommitTransaction(trans);
 //}

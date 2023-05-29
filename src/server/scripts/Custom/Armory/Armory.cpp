@@ -26,7 +26,7 @@
 //void Armory::Load()
 //{
 //	ArmoryTokenVec.clear();
-//	QueryResult result1 = CharacterDatabase.PQuery("SELECT guid,account,amount from armory_token");
+//	QueryResult result1 = CharacterDatabase.Query("SELECT guid,account,amount from armory_token");
 //	if (result1)
 //	{
 //		do
@@ -41,7 +41,7 @@
 //	}
 //
 //	ArmorySigilVec.clear();
-//	QueryResult result2 = CharacterDatabase.PQuery("SELECT guid,account,amount from armory_sigil");
+//	QueryResult result2 = CharacterDatabase.Query("SELECT guid,account,amount from armory_sigil");
 //	if (result2)
 //	{
 //		do
@@ -56,7 +56,7 @@
 //	}
 //
 //	ArmoryPvpVec.clear();
-//	QueryResult result3 = CharacterDatabase.PQuery("SELECT guid,account,amount from armory_pvp");
+//	QueryResult result3 = CharacterDatabase.Query("SELECT guid,account,amount from armory_pvp");
 //	if (result3)
 //	{
 //		do
@@ -146,7 +146,7 @@
 //void Armory::UpdateTokenArmory(Player* player)
 //{
 //	uint32 account = player->GetSession()->GetAccountId();
-//	uint32 guid = player->GetGUIDLow();
+//	uint32 guid = player->GetGUID().GetCounter();
 //	uint32 amount = QueryToken(player); 
 //
 //	std::vector<ArmoryTokenTemplate>::iterator itr;
@@ -154,7 +154,7 @@
 //		if (account == itr->account)
 //		{
 //			SQLTransaction trans = CharacterDatabase.BeginTransaction();
-//			//PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ARMORY_TOKEN);
+//			//CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ARMORY_TOKEN);
 //            CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ARMORY_TOKEN);//org
 //            /*stmt->setUInt32(0, guid); 
 //			stmt->setUInt32(1, amount);
@@ -294,7 +294,7 @@
 //void Armory::UpdatePvpArmory(Player* player)
 //{
 //	uint32 account = player->GetSession()->GetAccountId();
-//	uint32 guid = player->GetGUIDLow();
+//	uint32 guid = player->GetGUID().GetCounter();
 //	uint32 amount = QueryPvp(player);
 //
 //	std::vector<ArmoryPvpTemplate>::iterator itr;
@@ -306,7 +306,7 @@
 //	//			return;
 //	//
 //	//		SQLTransaction trans = CharacterDatabase.BeginTransaction();
-//	//		PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ARMORY_PVP);
+//	//		CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ARMORY_PVP);
 //	//		stmt->setUInt32(0, guid);
 //	//		stmt->setUInt32(1, amount);
 //	//		stmt->setUInt32(2, account);

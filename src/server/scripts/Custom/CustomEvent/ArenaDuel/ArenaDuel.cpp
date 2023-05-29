@@ -50,7 +50,7 @@
 //void ArenaDuel::Load()
 //{
 //	ArenaDuelMap.clear();
-//	QueryResult result = CharacterDatabase.PQuery("SELECT guid,selected,winnum FROM characters_arena_duel");
+//	QueryResult result = CharacterDatabase.Query("SELECT guid,selected,winnum FROM characters_arena_duel");
 //	if (result)
 //	{
 //		do
@@ -67,12 +67,12 @@
 //
 //void ArenaDuel::Save(Player* pl)
 //{
-//	auto itr = ArenaDuelMap.find(pl->GetGUIDLow());
+//	auto itr = ArenaDuelMap.find(pl->GetGUID().GetCounter());
 //	if (itr == ArenaDuelMap.end())
 //		return;
 //
-//	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_ARENA_DUEL);
-//	stmt->setUInt32(0, pl->GetGUIDLow());
+//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_ARENA_DUEL);
+//	stmt->setUInt32(0, pl->GetGUID().GetCounter());
 //	stmt->setBool(1, itr->second.selected);
 //	stmt->setUInt32(2, itr->second.winNum);
 //	CharacterDatabase.Execute(stmt);
@@ -83,7 +83,7 @@
 //	ArenaDuelTemplate temp;
 //	temp.selected = false;
 //	temp.winNum = 0;
-//	ArenaDuelMap.insert(std::make_pair(pl->GetGUIDLow(), temp));
+//	ArenaDuelMap.insert(std::make_pair(pl->GetGUID().GetCounter(), temp));
 //
 //	Save(pl);
 //}
@@ -238,7 +238,7 @@
 //	}
 //
 //
-//	auto itr = ArenaDuelMap.find(winner->GetGUIDLow());
+//	auto itr = ArenaDuelMap.find(winner->GetGUID().GetCounter());
 //	if (itr != ArenaDuelMap.end())
 //		itr->second.winNum++;
 //
@@ -712,7 +712,7 @@
 //
 //		if (sArenaDuel->GetState() == ARENA_DUEL_STATE_SIGNUP)
 //		{
-//			auto itr = ArenaDuelMap.find(pl->GetGUIDLow());
+//			auto itr = ArenaDuelMap.find(pl->GetGUID().GetCounter());
 //			if (itr != ArenaDuelMap.end())
 //			{
 //				pl->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "你已经报过名了！", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 2);

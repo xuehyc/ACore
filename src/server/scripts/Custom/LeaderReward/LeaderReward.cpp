@@ -199,7 +199,7 @@
 //	std::vector<uint32> bossinfovec;
 //	GetBossInfoVec(mapIdOrZoneId, isInstance, diff, entry, bossinfovec);
 //	std::vector<uint32> playerbossidvec;
-//	GetPlayerBossIdVec(leader->GetGUIDLow(), isInstance, diff, mapIdOrZoneId, playerbossidvec);
+//	GetPlayerBossIdVec(leader->GetGUID().GetCounter(), isInstance, diff, mapIdOrZoneId, playerbossidvec);
 //
 //	bool exsist = false;
 //
@@ -210,7 +210,7 @@
 //	if (!exsist)
 //	{
 //		LearderDataTemplate Temp;
-//		Temp.guid = leader->GetGUIDLow();
+//		Temp.guid = leader->GetGUID().GetCounter();
 //		Temp.mapIdOrZoneId = mapIdOrZoneId;
 //		Temp.isInstance = isInstance;
 //		Temp.diff = diff;
@@ -218,7 +218,7 @@
 //		LeaderDataVec.push_back(Temp);
 //	}	
 //
-//	GetPlayerBossIdVec(leader->GetGUIDLow(), isInstance, diff, mapIdOrZoneId, playerbossidvec);
+//	GetPlayerBossIdVec(leader->GetGUID().GetCounter(), isInstance, diff, mapIdOrZoneId, playerbossidvec);
 //
 //	bool allKillFlag = true;
 //
@@ -250,7 +250,7 @@
 //	//奖励之后清空
 //	for (std::vector<LearderDataTemplate>::iterator iter = LeaderDataVec.begin(); iter != LeaderDataVec.end(); ++iter)
 //	{
-//		if (leader->GetGUIDLow() == iter->guid && mapIdOrZoneId == iter->mapIdOrZoneId && isInstance == iter->isInstance && diff == iter->diff)
+//		if (leader->GetGUID().GetCounter() == iter->guid && mapIdOrZoneId == iter->mapIdOrZoneId && isInstance == iter->isInstance && diff == iter->diff)
 //		{
 //			if (std::find(bossinfovec.begin(), bossinfovec.end(), iter->bossId) != bossinfovec.end())
 //				iter->bossId = 0;

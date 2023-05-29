@@ -265,7 +265,7 @@
 //
 //void GateWay::BanPc(std::string charName)
 //{
-//	QueryResult result = CharacterDatabase.PQuery("SELECT account FROM characters where name = '%s'", charName);
+//	QueryResult result = CharacterDatabase.Query("SELECT account FROM characters where name = '%s'", charName);
 //
 //	if (!result)
 //		return;
@@ -289,7 +289,7 @@
 //
 //void GateWay::UnBanPc(std::string charName)
 //{
-//	QueryResult result = CharacterDatabase.PQuery("SELECT account FROM characters where name = '%s'", charName);
+//	QueryResult result = CharacterDatabase.Query("SELECT account FROM characters where name = '%s'", charName);
 //
 //	if (!result)
 //		return;

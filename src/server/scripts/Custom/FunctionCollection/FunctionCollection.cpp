@@ -366,7 +366,7 @@
 //
 //uint32 FunctionCollection::GetExtraTPs(Player* player)
 //{
-//	QueryResult resultExtraTPs = CharacterDatabase.PQuery("SELECT extraTalentPoints FROM characters WHERE guid = '%u'", player->GetGUIDLow());
+//	QueryResult resultExtraTPs = CharacterDatabase.Query("SELECT extraTalentPoints FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
 //	if (resultExtraTPs)
 //		return resultExtraTPs->Fetch()[0].GetUInt32();
 //	return 0;
@@ -377,16 +377,16 @@
 //	player->GetSession()->SendAreaTriggerMessage("获得额外一个天赋点");
 //	player->SetFreeTalentPoints(player->GetFreeTalentPoints() + 1);
 //	player->SendTalentsInfoData(false);
-//	CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = extraTalentPoints + 1 WHERE guid = '%u'", player->GetGUIDLow());
+//	CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = extraTalentPoints + 1 WHERE guid = '%u'", player->GetGUID().GetCounter());
 //
 //}
 //
 //void FunctionCollection::ChangeFaction(Player* player)
 //{
-//	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ADD_AT_LOGIN_FLAG);
+//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ADD_AT_LOGIN_FLAG);
 //	stmt->setUInt16(0, uint16(AT_LOGIN_CHANGE_FACTION));
 //	player->SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION);
-//	stmt->setUInt32(1, player->GetGUIDLow());
+//	stmt->setUInt32(1, player->GetGUID().GetCounter());
 //	CharacterDatabase.Execute(stmt);
 //	player->GetSession()->SendAreaTriggerMessage("重新上线以完成更改！");
 //
@@ -397,10 +397,10 @@
 //
 //void FunctionCollection::Customize(Player* player)
 //{
-//	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ADD_AT_LOGIN_FLAG);
+//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ADD_AT_LOGIN_FLAG);
 //	stmt->setUInt16(0, uint16(AT_LOGIN_CUSTOMIZE));
 //	player->SetAtLoginFlag(AT_LOGIN_CUSTOMIZE);
-//	stmt->setUInt32(1, player->GetGUIDLow());
+//	stmt->setUInt32(1, player->GetGUID().GetCounter());
 //	CharacterDatabase.Execute(stmt);
 //	player->GetSession()->SendAreaTriggerMessage("重新上线以完成更改！");
 //}
@@ -413,10 +413,10 @@
 //
 //void FunctionCollection::ChangeRace(Player* player)
 //{
-//	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ADD_AT_LOGIN_FLAG);
+//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ADD_AT_LOGIN_FLAG);
 //	stmt->setUInt16(0, uint16(AT_LOGIN_CHANGE_RACE));
 //	player->SetAtLoginFlag(AT_LOGIN_CHANGE_RACE);
-//	stmt->setUInt32(1, player->GetGUIDLow());
+//	stmt->setUInt32(1, player->GetGUID().GetCounter());
 //	CharacterDatabase.Execute(stmt);
 //	player->GetSession()->SendAreaTriggerMessage("重新上线以完成更改！");
 //
@@ -540,7 +540,7 @@
 //			group->ResetInstances(INSTANCE_RESET_ALL, false, player);
 //	}
 //	else
-//		Player::ResetInstances(player->GetGUIDLow(), INSTANCE_RESET_ALL, false);
+//		Player::ResetInstances(player->GetGUID().GetCounter(), INSTANCE_RESET_ALL, false);
 //
 //	if (Group* group = player->GetGroup())
 //	{
@@ -548,14 +548,14 @@
 //			group->ResetInstances(INSTANCE_RESET_CHANGE_DIFFICULTY, true, player);
 //	}
 //	else
-//		Player::ResetInstances(player->GetGUIDLow(), INSTANCE_RESET_CHANGE_DIFFICULTY, true);
+//		Player::ResetInstances(player->GetGUID().GetCounter(), INSTANCE_RESET_CHANGE_DIFFICULTY, true);
 //
 //*/
 //	for (uint8 i = 0; i < MAX_DIFFICULTY; ++i)
 //	{
 //
 //		std::vector<InstanceSave*> toUnbind;
-//		BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUIDLow(), Difficulty(i));
+//		BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUID().GetCounter(), Difficulty(i));
 //		for (BoundInstancesMap::const_iterator itr = m_boundInstances.begin(); itr != m_boundInstances.end(); ++itr)
 //		{
 //			InstanceSave* instanceSave = itr->second.save;

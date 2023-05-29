@@ -60,7 +60,7 @@
 //		player->LearnTalentCustom(player->buy_talentId, player->buy_talentRank);
 //		player->SendTalentsInfoData(false);
 //		player->BuyTalentVec.push_back(player->buy_talentSpell);
-//		CharacterDatabase.PExecute("REPLACE INTO characters_talent_req (guid, spellid) VALUES (%u, %u)", player->GetGUIDLow(), player->buy_talentSpell);
+//		CharacterDatabase.PExecute("REPLACE INTO characters_talent_req (guid, spellid) VALUES (%u, %u)", player->GetGUID().GetCounter(), player->buy_talentSpell);
 //		sReq->Des(player, reqId);
 //		player->buy_talentId = 0;
 //		player->buy_talentRank = 0;
@@ -76,7 +76,7 @@
 //	{
 //		player->BuyTalentVec.clear();
 //
-//		if (QueryResult result = CharacterDatabase.PQuery("SELECT spellid FROM characters_talent_req WHERE guid = '%u'", player->GetGUIDLow()))
+//		if (QueryResult result = CharacterDatabase.Query("SELECT spellid FROM characters_talent_req WHERE guid = '%u'", player->GetGUID().GetCounter()))
 //		{
 //			do
 //			{

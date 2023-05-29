@@ -161,7 +161,7 @@
 //			if (itr1->second->GetPlayer()->m_topmc != 999) //没有决斗出名次
 //				continue;
 //
-//			uint32 guid = itr1->second->GetPlayer()->GetGUIDLow();
+//			uint32 guid = itr1->second->GetPlayer()->GetGUID().GetCounter();
 //			_charTopDataMap.push_back(guid);
 //			_charTopMaxMap.push_back(guid);
 //		}
@@ -230,7 +230,7 @@
 //				{
 //					if (itr1->second->GetPlayer()->GetAreaId() == sSwitch->GetValue(TOP_94))
 //					{
-//						if (itr1->second->GetPlayer()->duel && Isintop(itr1->second->GetPlayer()->GetGUIDLow()))
+//						if (itr1->second->GetPlayer()->duel && Isintop(itr1->second->GetPlayer()->GetGUID().GetCounter()))
 //						{
 //							if (itr1->second->GetPlayer()->GetHealthPct() < itr1->second->GetPlayer()->duel->opponent->GetHealthPct())
 //								itr1->second->GetPlayer()->DuelComplete(DUEL_FLED);
@@ -276,7 +276,7 @@
 //				Player* player = ObjectAccessor::FindPlayerInOrOutOfWorld(*itr);
 //				if (player)
 //				{
-//					sWorld->UpdateTopPlayerData(player->GetGUIDLow(), "");
+//					sWorld->UpdateTopPlayerData(player->GetGUID().GetCounter(), "");
 //					for (SessionMap::const_iterator itr22 = sWorld->GetAllSessions().begin(); itr22 != sWorld->GetAllSessions().end(); ++itr22)
 //					{
 //						if (itr22->second && itr22->second->GetPlayer() && itr22->second->GetPlayer()->IsInWorld())
@@ -295,7 +295,7 @@
 //	else
 //	{
 //		std::list<uint64> guids;
-//		//sWorld->UpdateGlobalPlayerData(player->GetGUIDLow(), PLAYER_UPDATE_DATA_NAME, player->GetName());
+//		//sWorld->UpdateGlobalPlayerData(player->GetGUID().GetCounter(), PLAYER_UPDATE_DATA_NAME, player->GetName());
 //		for (SessionMap::const_iterator itr2 = sWorld->GetAllSessions().begin(); itr2 != sWorld->GetAllSessions().end(); ++itr2)
 //		{
 //			if (itr2->second && itr2->second->GetPlayer() && itr2->second->GetPlayer()->IsInWorld())
@@ -327,7 +327,7 @@
 //				Player* player = ObjectAccessor::FindPlayerInOrOutOfWorld(*itr);
 //				if (player)
 //				{
-//					sWorld->UpdateTopPlayerData(player->GetGUIDLow(), player->m_toptitle);
+//					sWorld->UpdateTopPlayerData(player->GetGUID().GetCounter(), player->m_toptitle);
 //					for (SessionMap::const_iterator itr22 = sWorld->GetAllSessions().begin(); itr22 != sWorld->GetAllSessions().end(); ++itr22)
 //					{
 //						if (itr22->second && itr22->second->GetPlayer() && itr22->second->GetPlayer()->IsInWorld())
@@ -440,7 +440,7 @@
 //			}
 //
 //			player->m_topmc = 0;
-//			CharacterDatabase.PExecute("update _xlchar set top = %u where guid = %u", player->m_topmc, player->GetGUIDLow());
+//			CharacterDatabase.PExecute("update _xlchar set top = %u where guid = %u", player->m_topmc, player->GetGUID().GetCounter());
 //			creature->MonsterWhisper("比武大会奖励领取成功...", player);
 //			OnGossipHello(player, creature);
 //			return false;
@@ -448,7 +448,7 @@
 //		else if (action == 3)
 //		{
 //			player->m_topmc = 999;
-//			CharacterDatabase.PExecute("update _xlchar set top = %u where guid = %u", player->m_topmc, player->GetGUIDLow());
+//			CharacterDatabase.PExecute("update _xlchar set top = %u where guid = %u", player->m_topmc, player->GetGUID().GetCounter());
 //			creature->MonsterWhisper("比武大会报名成功...", player);
 //			OnGossipHello(player, creature);
 //			return false;

@@ -41,7 +41,7 @@
 //	if (sSwitch->GetOnOff(ST_TP_ACCOUNT_BIND))
 //		resultExtraTPs = LoginDatabase.PQuery("SELECT extraTalentPoints FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
 //	else 
-//		resultExtraTPs = CharacterDatabase.PQuery("SELECT extraTalentPoints FROM characters WHERE guid = '%u'", player->GetGUIDLow());
+//		resultExtraTPs = CharacterDatabase.Query("SELECT extraTalentPoints FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
 //
 //	if (!resultExtraTPs) 
 //		return 0;
@@ -85,10 +85,10 @@
 //
 //	//积分监视
 //	SQLTransaction trans = CharacterDatabase.BeginTransaction();
-//	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_TOKEN);
+//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_TOKEN);
 //	stmt->setString(0, sAntiCheat->GetTimeString());
 //	stmt->setString(1, player->GetName());
-//	stmt->setUInt32(2, player->GetGUIDLow());
+//	stmt->setUInt32(2, player->GetGUID().GetCounter());
 //	stmt->setUInt32(3, player->GetSession()->GetAccountId());
 //	stmt->setString(4, action);
 //	if (ins)
@@ -102,7 +102,7 @@
 //void CommonFunc::SetOnlineRewardedCount(Player* player, uint32 count)
 //{
 //	player->onlineRewardedCount = count;
-//	CharacterDatabase.DirectPExecute("UPDATE characters SET onlineRewardedCount = '%u' WHERE guid = '%u'", count, player->GetGUIDLow());
+//	CharacterDatabase.DirectPExecute("UPDATE characters SET onlineRewardedCount = '%u' WHERE guid = '%u'", count, player->GetGUID().GetCounter());
 //}
 //
 ////弹窗
@@ -692,8 +692,8 @@
 //	//oss << player->GetName();
 //	//oss << " ";
 //	//oss << GetHRTitle(player);
-//	//sWorld->UpdateGlobalNameData(player->GetGUIDLow(), player->GetName(), oss.str());
-//	//sWorld->UpdateGlobalPlayerData(player->GetGUIDLow(), PLAYER_UPDATE_DATA_NAME, oss.str());
+//	//sWorld->UpdateGlobalNameData(player->GetGUID().GetCounter(), player->GetName(), oss.str());
+//	//sWorld->UpdateGlobalPlayerData(player->GetGUID().GetCounter(), PLAYER_UPDATE_DATA_NAME, oss.str());
 //	//player->ToggleDND();
 //	//player->canUpdateName = true;
 //}
@@ -864,7 +864,7 @@
 //
 //	player->realTeam == TEAM_ALLIANCE ? factionRate = sSwitch->GetValue(ST_LOOT_RATE_A) : factionRate = sSwitch->GetValue(ST_LOOT_RATE_H);
 //
-//	std::unordered_map<uint32, float>::iterator iter = PlayerDropRateMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, float>::iterator iter = PlayerDropRateMap.find(player->GetGUID().GetCounter());
 //	if (iter != PlayerDropRateMap.end())
 //		playerRate = iter->second;
 //
@@ -901,14 +901,14 @@
 //{
 //	for (uint8 i = 0; i < MAX_DIFFICULTY; ++i)
 //	{
-//		BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUIDLow(), Difficulty(i));
+//		BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUID().GetCounter(), Difficulty(i));
 //		for (BoundInstancesMap::const_iterator itr = m_boundInstances.begin(); itr != m_boundInstances.end();)
 //		{
 //			InstanceSave* save = itr->second.save;
 //			MapEntry const* mapEntry = sMapStore.LookupEntry(itr->first);
 //			if (mapEntry && mapEntry->IsRaid() == isRaid && itr->first != player->GetMapId() && (!mapId || mapId == itr->first) && (diff == -1 || diff == save->GetDifficulty()))
 //			{
-//				sInstanceSaveMgr->PlayerUnbindInstance(player->GetGUIDLow(), itr->first, diff, true, player);
+//				sInstanceSaveMgr->PlayerUnbindInstance(player->GetGUID().GetCounter(), itr->first, diff, true, player);
 //				itr = m_boundInstances.begin();
 //			}
 //			else
@@ -1062,7 +1062,7 @@
 //
 //void CommonFunc::SetCommercePoints(Player* player)
 //{
-//	QueryResult result = CharacterDatabase.PQuery("SELECT extraPrimaryTradeSkills FROM characters where guid = %u", player->GetGUIDLow());
+//	QueryResult result = CharacterDatabase.Query("SELECT extraPrimaryTradeSkills FROM characters where guid = %u", player->GetGUID().GetCounter());
 //	if (result)
 //		player->maxPrimaryTradeSkills += result->Fetch()[0].Get<uint32>();
 //	if (player->maxPrimaryTradeSkills >= GetCommercePoints(player))
@@ -1301,10 +1301,10 @@
 //	else if (map->IsDungeon())
 //	{
 //		// if the GM is bound to another instance, he will not be bound to another one
-//		InstancePlayerBind* bind = sInstanceSaveMgr->PlayerGetBoundInstance(player->GetGUIDLow(), target->GetMapId(), target->GetDifficulty(map->IsRaid()));
+//		InstancePlayerBind* bind = sInstanceSaveMgr->PlayerGetBoundInstance(player->GetGUID().GetCounter(), target->GetMapId(), target->GetDifficulty(map->IsRaid()));
 //		if (!bind)
 //			if (InstanceSave* save = sInstanceSaveMgr->GetInstanceSave(target->GetInstanceId()))
-//				sInstanceSaveMgr->PlayerBindToInstance(player->GetGUIDLow(), save, !save->CanReset(), player);
+//				sInstanceSaveMgr->PlayerBindToInstance(player->GetGUID().GetCounter(), save, !save->CanReset(), player);
 //
 //		if (map->IsRaid())
 //			player->SetRaidDifficulty(target->GetRaidDifficulty());
@@ -1347,10 +1347,10 @@
 //	else if (map->IsDungeon())
 //	{
 //		// if the GM is bound to another instance, he will not be bound to another one
-//		InstancePlayerBind* bind = sInstanceSaveMgr->PlayerGetBoundInstance(player->GetGUIDLow(), target->GetMapId(), target->GetDifficulty(map->IsRaid()));
+//		InstancePlayerBind* bind = sInstanceSaveMgr->PlayerGetBoundInstance(player->GetGUID().GetCounter(), target->GetMapId(), target->GetDifficulty(map->IsRaid()));
 //		if (!bind)
 //			if (InstanceSave* save = sInstanceSaveMgr->GetInstanceSave(target->GetInstanceId()))
-//				sInstanceSaveMgr->PlayerBindToInstance(player->GetGUIDLow(), save, !save->CanReset(), player);
+//				sInstanceSaveMgr->PlayerBindToInstance(player->GetGUID().GetCounter(), save, !save->CanReset(), player);
 //
 //		if (map->IsRaid())
 //			player->SetRaidDifficulty(target->GetRaidDifficulty());
@@ -1450,8 +1450,8 @@
 //			//{
 //			//	if (session)
 //			//	{
-//			//		sLog->outString("IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGuidLow(), description, size);
-//			//		sLog->outChar("IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGuidLow(), description, size);
+//			//		sLog->outString("IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description, size);
+//			//		sLog->outChar("IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description, size);
 //			//	}
 //			//	recvData.rfinish();
 //			//	return false;
@@ -1528,7 +1528,7 @@
 //			if (!IsMark && (x < 0xE4B880 || x > 0xE9BEA5))
 //			{
 //				if (session)
-//                    sLog->outString("Possiable String Hack --> IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGuidLow(), description.c_str(), size);
+//                    sLog->outString("Possiable String Hack --> IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description.c_str(), size);
 //				recvData.rfinish();
 //				return false;
 //			}
@@ -1536,7 +1536,7 @@
 //		break;
 //		default:
 //			if (session)
-//                sLog->outString("Possiable String Hack --> IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGuidLow(), description.c_str(), size);
+//                sLog->outString("Possiable String Hack --> IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description.c_str(), size);
 //			recvData.rfinish();
 //			return false;
 //		}

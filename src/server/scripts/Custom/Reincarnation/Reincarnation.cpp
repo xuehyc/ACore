@@ -89,12 +89,12 @@
 //
 //void Reincarnation::Save(Player* player)
 //{
-//	CharacterDatabase.DirectPExecute("UPDATE characters SET reincarnationLv = '%u' WHERE guid = '%u'", player->reincarnationLv,player->GetGUIDLow());
+//	CharacterDatabase.DirectPExecute("UPDATE characters SET reincarnationLv = '%u' WHERE guid = '%u'", player->reincarnationLv,player->GetGUID().GetCounter());
 //}
 //
 //void Reincarnation::Load(Player* player)
 //{
-//	if (QueryResult result = CharacterDatabase.PQuery("SELECT reincarnationLv FROM characters WHERE guid = '%u'", player->GetGUIDLow()))
+//	if (QueryResult result = CharacterDatabase.Query("SELECT reincarnationLv FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter()))
 //		player->reincarnationLv = result->Fetch()[0].GetUInt32();
 //}
 //

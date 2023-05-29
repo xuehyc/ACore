@@ -401,7 +401,7 @@
 //              	ExtraEquimentGossipTemplate temp;
 //              	temp.smallIcon = GOSSIP_ICON_CHAT;
 //              	temp.text = GetItemName(item->GetEntry(), 30, 30, 0, 0) + GetDes(item);
-//              	temp.sender = item->GetGUIDLow();
+//              	temp.sender = item->GetGUID().GetCounter();
 //              	temp.action = EXTRA_EQUIPMENT_UPDATE;
 //              	temp.item = item;
 //              	player->GossipVec.push_back(temp);
@@ -417,7 +417,7 @@
 //              			ExtraEquimentGossipTemplate temp;
 //              			temp.smallIcon = GOSSIP_ICON_CHAT;
 //              			temp.text = GetItemName(item->GetEntry(), 30, 30, 0, 0) + GetDes(item);
-//              			temp.sender = item->GetGUIDLow();
+//              			temp.sender = item->GetGUID().GetCounter();
 //              			temp.action = EXTRA_EQUIPMENT_UPDATE;
 //              			player->GossipVec.push_back(temp);
 //              		}
@@ -507,14 +507,14 @@
 //	if (!player || !item)
 //		return;
 //
-//	uint32 guid = player->GetGUIDLow();
+//	uint32 guid = player->GetGUID().GetCounter();
 //	uint32 itemEntry = item->GetEntry();
 //	std::ostringstream ssEnchants;
 //	for (uint8 i = PERM_ENCHANTMENT_SLOT; i < MAX_ENCHANTMENT_SLOT; ++i)
 //		ssEnchants << item->GetEnchantmentId(EnchantmentSlot(i)) << ' ';
 //
 //	//插入数据库
-//	QueryResult result = CharacterDatabase.PQuery("SELECT * FROM characters_extra_equipments WHERE guid = %d AND equip_slot = %d", guid, slot);
+//	QueryResult result = CharacterDatabase.Query("SELECT * FROM characters_extra_equipments WHERE guid = %d AND equip_slot = %d", guid, slot);
 //
 //	if (result)
 //		CharacterDatabase.PExecute("UPDATE characters_extra_equipments SET enchantments = '%s',itemEntry = %d WHERE guid = %d AND equip_slot = %d", ssEnchants.str().c_str(), itemEntry, guid, slot);
@@ -896,7 +896,7 @@
 //
 //void ExtraEquipment::LoadPlayerData(Player* player)
 //{
-//	QueryResult result = CharacterDatabase.PQuery("SELECT itemEntry,equip_slot,enchantments FROM characters_extra_equipments where guid = %d",player->GetGUIDLow());
+//	QueryResult result = CharacterDatabase.Query("SELECT itemEntry,equip_slot,enchantments FROM characters_extra_equipments where guid = %d",player->GetGUID().GetCounter());
 //	if (!result) 
 //		return;
 //	do

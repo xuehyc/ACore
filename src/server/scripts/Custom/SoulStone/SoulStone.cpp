@@ -162,7 +162,7 @@
 //    if (!player)
 //        return;
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {
@@ -200,7 +200,7 @@
 //    if (!player)
 //        return;
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {
@@ -222,7 +222,7 @@
 //	for (uint32 i = 1; i < limitpageval + 1; ++i)
 //    {
 //        SoulStonePlayerData td;
-//        td.guid = player->GetGUIDLow();
+//        td.guid = player->GetGUID().GetCounter();
 //        td.page = i;
 //        td.itemid1 = 0;
 //        td.itemid2 = 0;
@@ -246,7 +246,7 @@
 //    if (slot > 6)
 //        return;
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {
@@ -296,7 +296,7 @@
 //	if (page == 0)
 //		return;
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {
@@ -409,7 +409,7 @@
 //    RemoveReq(player, page);
 //
 //    SoulStonePlayerData td;
-//    td.guid = player->GetGUIDLow();
+//    td.guid = player->GetGUID().GetCounter();
 //    td.page = page;
 //    td.itemid1 = 0;
 //    td.itemid2 = 0;
@@ -428,7 +428,7 @@
 //
 //uint32 SoulStone::GetPlayerMaxPage(Player * player)
 //{
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    uint32 count = 0;
 //
@@ -641,7 +641,7 @@
 //
 //bool SoulStone::CanSetActi(Player * player, uint32 page)
 //{
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {
@@ -664,7 +664,7 @@
 //bool SoulStone::IsActi(Player * player, uint32 page)
 //{
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {
@@ -705,7 +705,7 @@
 ////		return;
 ////	}
 ////
-////    uint32 guid = player->GetGUIDLow();
+////    uint32 guid = player->GetGUID().GetCounter();
 ////
 ////    uint32 newitemtype = GetItemType(itemid);
 ////
@@ -805,7 +805,7 @@
 //		return;
 //	}
 //
-//	uint32 guid = player->GetGUIDLow();
+//	uint32 guid = player->GetGUID().GetCounter();
 //
 //	uint32 newitemtype = GetItemType(itemid);
 //	uint32 newitempage = GetItemPage(itemid);
@@ -958,7 +958,7 @@
 //
 //    player->PlayerTalkClass->ClearMenus();
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    uint32 olditemid = 0;
 //
@@ -1019,7 +1019,7 @@
 //bool SoulStone::IsData(Player * player)
 //{
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    uint32 count = 0;
 //
@@ -1166,7 +1166,7 @@
 //
 //void SoulStone::SetActiId(Player * player, uint32 page,uint32 itemid)
 //{
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {
@@ -1186,7 +1186,7 @@
 //{
 //    uint32 maxpage = GetPlayerMaxPage(player);
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {
@@ -1303,7 +1303,7 @@
 //
 //void SoulStone::UpdatePlayerDate(Player * player)
 //{
-//	uint32 guid = player->GetGUIDLow();
+//	uint32 guid = player->GetGUID().GetCounter();
 //
 //	uint32 count = 0;
 //
@@ -1321,7 +1321,7 @@
 //	for (uint32 i = limitpageval - count; i < limitpageval + 1; ++i)
 //	{
 //		SoulStonePlayerData td;
-//		td.guid = player->GetGUIDLow();
+//		td.guid = player->GetGUID().GetCounter();
 //		td.page = i;
 //		td.itemid1 = 0;
 //		td.itemid2 = 0;
@@ -1529,7 +1529,7 @@
 //    if (!player)
 //        return;
 //
-//    uint32 guid = player->GetGUIDLow();
+//    uint32 guid = player->GetGUID().GetCounter();
 //
 //    for (auto itr = _SoulStonePlayerDataMap.begin(); itr != _SoulStonePlayerDataMap.end(); ++itr)
 //    {

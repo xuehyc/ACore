@@ -210,7 +210,7 @@
 //			case ARENA_3V3_LADDER:
 //            {
 //                uint32 teamType = optionToTeamType(uiAction);
-//                QueryResult result = CharacterDatabase.PQuery("SELECT arenaTeamId, name, rating FROM arena_team WHERE type = '%u' ORDER BY rating DESC LIMIT %u;", teamType, ARENA_MAX_RESULTS);
+//                QueryResult result = CharacterDatabase.Query("SELECT arenaTeamId, name, rating FROM arena_team WHERE type = '%u' ORDER BY rating DESC LIMIT %u;", teamType, ARENA_MAX_RESULTS);
 //                    
 //                if(!result) 
 //                {
@@ -248,7 +248,7 @@
 //                if (uiAction > ARENA_START_TEAM_LOOKUP) 
 //                {
 //                    uint32 teamId = uiAction - ARENA_START_TEAM_LOOKUP;
-//					QueryResult result = CharacterDatabase.PQuery("SELECT name, rating, seasonWins, seasonGames - seasonWins, weekWins, weekGames - weekWins, rank, captainGuid , type FROM arena_team WHERE arenaTeamId = '%u'", teamId);
+//					QueryResult result = CharacterDatabase.Query("SELECT name, rating, seasonWins, seasonGames - seasonWins, weekWins, weekGames - weekWins, rank, captainGuid , type FROM arena_team WHERE arenaTeamId = '%u'", teamId);
 //                        
 //                    if(!result) 
 //                    {
@@ -288,7 +288,7 @@
 //                    buf << "全赛季: " << "|cFF1E90FF" << seasonWins << "-" << seasonLosses << "|r" << " (" << "|cFF1E90FF" << seasonWinPercentage << "|r" << " win)"; 
 //                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                        
-//                    QueryResult members = CharacterDatabase.PQuery("SELECT  a.guid, a.personalRating, a.weekWins, a.weekGames - a.weekWins, a.seasonWins, a.seasonGames - a.seasonWins, c.name, c.race, c.class, c.level FROM arena_team_member a LEFT JOIN characters c ON c.guid = a.guid WHERE arenaTeamId = '%u' ORDER BY a.guid = '%u' DESC, a.seasonGames DESC, c.name ASC", teamId, captainGuid);
+//                    QueryResult members = CharacterDatabase.Query("SELECT  a.guid, a.personalRating, a.weekWins, a.weekGames - a.weekWins, a.seasonWins, a.seasonGames - a.seasonWins, c.name, c.race, c.class, c.level FROM arena_team_member a LEFT JOIN characters c ON c.guid = a.guid WHERE arenaTeamId = '%u' ORDER BY a.guid = '%u' DESC, a.seasonGames DESC, c.name ASC", teamId, captainGuid);
 //                    if(!members) 
 //                    {
 //                        player->ADD_GOSSIP_ITEM(7, "没有发现团队成员…？", GOSSIP_SENDER_MAIN, parentOption);

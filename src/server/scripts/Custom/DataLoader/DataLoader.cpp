@@ -85,16 +85,16 @@
 //
 //void DataLoader::AddLootPl(Player* target, uint32 mod)
 //{
-//    std::unordered_map<uint32, float>::iterator iter = PlayerDropRateMap.find(target->GetGUIDLow());
+//    std::unordered_map<uint32, float>::iterator iter = PlayerDropRateMap.find(target->GetGUID().GetCounter());
 //    if (iter != PlayerDropRateMap.end())
 //    {
 //        iter->second = mod;
-//        WorldDatabase.DirectPExecute("UPDATE `_属性调整_玩家掉率修改` SET `掉落倍率`='%u' WHERE (`玩家GUID`='%u')", mod, target->GetGUIDLow());
+//        WorldDatabase.DirectPExecute("UPDATE `_属性调整_玩家掉率修改` SET `掉落倍率`='%u' WHERE (`玩家GUID`='%u')", mod, target->GetGUID().GetCounter());
 //    }
 //    else
 //    {
-//        PlayerDropRateMap.insert(std::make_pair(target->GetGUIDLow(), mod));
-//        WorldDatabase.DirectPExecute("INSERT INTO `_属性调整_玩家掉率修改` (`玩家GUID`, `掉落倍率`) VALUES ('%u', '%u')", target->GetGUIDLow(), mod);
+//        PlayerDropRateMap.insert(std::make_pair(target->GetGUID().GetCounter(), mod));
+//        WorldDatabase.DirectPExecute("INSERT INTO `_属性调整_玩家掉率修改` (`玩家GUID`, `掉落倍率`) VALUES ('%u', '%u')", target->GetGUID().GetCounter(), mod);
 //    }
 //
 //}
@@ -365,7 +365,7 @@
 //	void OnLogin(Player* player) override
 //	{
 //		//初始化onlineRewardedCount		
-//		QueryResult result = CharacterDatabase.PQuery("SELECT onlineRewardedCount FROM characters WHERE guid = '%u'", player->GetGUIDLow());
+//		QueryResult result = CharacterDatabase.Query("SELECT onlineRewardedCount FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
 //		if (!result)
 //			player->onlineRewardedCount = 10000;
 //		else

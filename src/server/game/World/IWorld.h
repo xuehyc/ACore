@@ -534,6 +534,25 @@ enum Rates
 class IWorld
 {
 public:
+
+    //I
+    // xinef: Global Player Data Storage system
+    void LoadGlobalPlayerDataStore();
+    uint32 GetGlobalPlayerGUID(std::string const& name) const;
+    //GlobalPlayerData const* GetGlobalPlayerData(uint32 guid) const;//tmp
+    void AddGlobalPlayerData(uint32 guid, uint32 accountId, std::string const& name, uint8 gender, uint8 race, uint8 playerClass, uint8 level, uint16 mailCount, uint32 guildId, std::string const& topname);
+    void UpdateNamePrefixSuffix(Player* player, std::string prefix, std::string suffix);
+    void UpdateTopPlayerData(uint32 guid, std::string const& name);
+    void UpdateAllTopPlayerData();
+    void UpdateGlobalPlayerData(uint32 guid, uint8 mask, std::string const& name, uint8 level = 0, uint8 gender = 0, uint8 race = 0, uint8 playerClass = 0);
+    void UpdateGlobalPlayerMails(uint32 guid, int16 count, bool add = true);
+    void UpdateGlobalPlayerGuild(uint32 guid, uint32 guildId);
+    void UpdateGlobalPlayerGroup(uint32 guid, uint32 groupId);
+    void UpdateGlobalPlayerArenaTeam(uint32 guid, uint8 slot, uint32 arenaTeamId);
+    void UpdateGlobalNameData(uint32 guidLow, std::string const& oldName, std::string const& newName);
+    void DeleteGlobalPlayerData(uint32 guid, std::string const& name);
+    //I
+
     virtual ~IWorld() = default;
     [[nodiscard]] virtual WorldSession* FindSession(uint32 id) const = 0;
     [[nodiscard]] virtual WorldSession* FindOfflineSession(uint32 id) const = 0;

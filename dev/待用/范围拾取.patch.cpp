@@ -124,7 +124,7 @@ index 9ec1e1e..d5ea040 100644
 +    sObjectMgr->LoadshiquString();
 +    uint32 ID =  player->GetSession()->GetAccountId();
 +
-+    QueryResult result = CharacterDatabase.PQuery("SELECT  *  FROM `_TF_一键拾取开关` WHERE `entry` = %u;", ID);
++    QueryResult result = CharacterDatabase.Query("SELECT  *  FROM `_TF_一键拾取开关` WHERE `entry` = %u;", ID);
 +    if (!result)
 +    {
 +        CharacterDatabase.PExecute("INSERT INTO `_TF_一键拾取开关` (`entry`,`idx` ) VALUES (%u,%u );", ID,  1);

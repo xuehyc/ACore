@@ -1,4 +1,4 @@
-/*
+﻿/*
  * NpcBots Data Migration System by Trickerer (onlysuffering@gmail.com)
  *
  * Last update: *09 Apr 2023*

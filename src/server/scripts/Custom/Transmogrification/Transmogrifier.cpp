@@ -161,7 +161,7 @@
 //                    return true;
 //                }
 //                // action = presetID
-//                CharacterDatabase.PExecute("DELETE FROM `custom_transmogrification_sets` WHERE Owner = %u AND PresetID = %u",  player->GetGUIDLow(), action);
+//                CharacterDatabase.PExecute("DELETE FROM `custom_transmogrification_sets` WHERE Owner = %u AND PresetID = %u",  player->GetGUID().GetCounter(), action);
 //                sT->presetById[player->GetGUID()][action].clear();
 //                sT->presetById[player->GetGUID()].erase(action);
 //                sT->presetByName[player->GetGUID()].erase(action);
@@ -292,7 +292,7 @@
 //                    sT->presetById[player->GetGUID()][presetID][it->first] = it->second;
 //                }
 //                sT->presetByName[player->GetGUID()][presetID] = name; // Make sure code doesnt mess up SQL!
-//                CharacterDatabase.PExecute("REPLACE INTO `custom_transmogrification_sets` (`Owner`, `PresetID`, `SetName`, `SetData`) VALUES (%u, %u, \"%s\", \"%s\")",  player->GetGUIDLow(), uint32(presetID), name.c_str(), ss.str().c_str());
+//                CharacterDatabase.PExecute("REPLACE INTO `custom_transmogrification_sets` (`Owner`, `PresetID`, `SetName`, `SetData`) VALUES (%u, %u, \"%s\", \"%s\")",  player->GetGUID().GetCounter(), uint32(presetID), name.c_str(), ss.str().c_str());
 //                if (cost)
 //                    player->ModifyMoney(cost);
 //                break;
@@ -331,7 +331,7 @@
 //                if (sT->GetFakeEntry(oldItem->GetGUID()) == newItem->GetEntry())
 //                    continue;
 //                ++limit;
-//				AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, sT->GetItemIcon(newItem->GetEntry(), 30, 30, -18, 0) + sT->GetItemLink(newItem, session), slot, newItem->GetGUIDLow(), "用这件装备幻化以后将和你绑定，将不能交易！\n你要继续吗？\n\n" + sT->GetItemIcon(newItem->GetEntry(), 40, 40, -15, -10) + sT->GetItemLink(newItem, session) + ss.str(), price, false);
+//				AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, sT->GetItemIcon(newItem->GetEntry(), 30, 30, -18, 0) + sT->GetItemLink(newItem, session), slot, newItem->GetGUID().GetCounter(), "用这件装备幻化以后将和你绑定，将不能交易！\n你要继续吗？\n\n" + sT->GetItemIcon(newItem->GetEntry(), 40, 40, -15, -10) + sT->GetItemLink(newItem, session) + ss.str(), price, false);
 //            }
 //
 //            for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; ++i)
@@ -351,7 +351,7 @@
 //                    if (sT->GetFakeEntry(oldItem->GetGUID()) == newItem->GetEntry())
 //                        continue;
 //                    ++limit;
-//					AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, sT->GetItemIcon(newItem->GetEntry(), 30, 30, -18, 0) + sT->GetItemLink(newItem, session), slot, newItem->GetGUIDLow(), "用这件装备幻化以后将和你绑定，将不能交易！\n你要继续吗？\n\n" + sT->GetItemIcon(newItem->GetEntry(), 40, 40, -15, -10) + sT->GetItemLink(newItem, session) + ss.str(), price, false);
+//					AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, sT->GetItemIcon(newItem->GetEntry(), 30, 30, -18, 0) + sT->GetItemLink(newItem, session), slot, newItem->GetGUID().GetCounter(), "用这件装备幻化以后将和你绑定，将不能交易！\n你要继续吗？\n\n" + sT->GetItemIcon(newItem->GetEntry(), 40, 40, -15, -10) + sT->GetItemLink(newItem, session) + ss.str(), price, false);
 //                }
 //            }
 //        }
@@ -372,7 +372,7 @@
 //    {
 //        uint64 playerGUID = player->GetGUID();
 //        sT->entryMap.erase(playerGUID);
-//        QueryResult result = CharacterDatabase.PQuery("SELECT GUID, FakeEntry FROM custom_transmogrification WHERE Owner = %u", player->GetGUIDLow());
+//        QueryResult result = CharacterDatabase.Query("SELECT GUID, FakeEntry FROM custom_transmogrification WHERE Owner = %u", player->GetGUID().GetCounter());
 //        if (result)
 //        {
 //            do
@@ -386,7 +386,7 @@
 //                }
 //                else
 //                {
-//                    //TC_LOG_ERROR->outError(LOG_FILTER_SQL, "Item entry (Entry: %u, itemGUID: %u, playerGUID: %u) does not exist, ignoring.", fakeEntry, GUID_LOPART(itemGUID), player->GetGUIDLow());
+//                    //TC_LOG_ERROR->outError(LOG_FILTER_SQL, "Item entry (Entry: %u, itemGUID: %u, playerGUID: %u) does not exist, ignoring.", fakeEntry, GUID_LOPART(itemGUID), player->GetGUID().GetCounter());
 //                    // CharacterDatabase.PExecute("DELETE FROM custom_transmogrification WHERE FakeEntry = %u", fakeEntry);
 //                }
 //            } while (result->NextRow());

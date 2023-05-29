@@ -701,8 +701,8 @@
 //	SendPacket(player);
 //
 //	//更新数据库
-//	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_TALISMAN);
-//	stmt->setUInt32(0, player->GetGUIDLow());
+//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_TALISMAN);
+//	stmt->setUInt32(0, player->GetGUID().GetCounter());
 //	for (uint32 i = 1; i < 8; i++)
 //		stmt->setUInt32(i, GetEntryByID(player, i));
 //	CharacterDatabase.Execute(stmt);
@@ -773,10 +773,10 @@
 //void Talisman::SaveTalisManValue(Player* player, bool logout)
 //{
 //	if (logout)
-//		CharacterDatabase.DirectPExecute("UPDATE characters SET TalismanValue = '%u' WHERE guid = '%u'", player->TalismanValue, player->GetGUIDLow());
+//		CharacterDatabase.DirectPExecute("UPDATE characters SET TalismanValue = '%u' WHERE guid = '%u'", player->TalismanValue, player->GetGUID().GetCounter());
 //	else if (sSwitch->GetValue(ST_TALISMAN) > player->TalismanValue)
 //	{
-//		CharacterDatabase.DirectPExecute("UPDATE characters SET TalismanValue = '%u' WHERE guid = '%u'", player->TalismanValue, player->GetGUIDLow());
+//		CharacterDatabase.DirectPExecute("UPDATE characters SET TalismanValue = '%u' WHERE guid = '%u'", player->TalismanValue, player->GetGUID().GetCounter());
 //		ChatHandler(player->GetSession()).PSendSysMessage("本命法宝信息已保存");
 //	}
 //}
@@ -791,7 +791,7 @@
 //		for (size_t i = 1; i <= 7; i++)
 //			player->TalismanMap.insert(std::make_pair(i, 0));
 //
-//		QueryResult result = CharacterDatabase.PQuery("SELECT ID_1,ID_2,ID_3,ID_4,ID_5,ID_6,ID_7 FROM character_talisman WHERE guid = %u", player->GetGUIDLow());
+//		QueryResult result = CharacterDatabase.Query("SELECT ID_1,ID_2,ID_3,ID_4,ID_5,ID_6,ID_7 FROM character_talisman WHERE guid = %u", player->GetGUID().GetCounter());
 //
 //		if (result)
 //		{
@@ -805,7 +805,7 @@
 //
 //		uint32 value = 0;
 //
-//		result = CharacterDatabase.PQuery("SELECT TalismanValue FROM characters WHERE guid = '%u'", player->GetGUIDLow());
+//		result = CharacterDatabase.Query("SELECT TalismanValue FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
 //
 //		if (result)
 //		{

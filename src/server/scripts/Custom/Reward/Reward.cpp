@@ -315,7 +315,7 @@ void Reward::LoadDamCreToSend()
 //				draft.AddItem(item);
 //			}
 //
-//			draft.SendMailTo(trans, MailReceiver(NULL, player->GetGUIDLow()), sender);
+//			draft.SendMailTo(trans, MailReceiver(NULL, player->GetGUID().GetCounter()), sender);
 //			CharacterDatabase.CommitTransaction(trans);
 //		}
 //	}
@@ -377,7 +377,7 @@ void Reward::LoadDamCreToSend()
 //				sStatPoints->UpdateDB(receiverGuidLow, statPoints);
 //		}
 //
-//		MailSender sender(MAIL_NORMAL, senderPlayer->GetSession() ? senderPlayer->GetGUIDLow() : 0, MAIL_STATIONERY_GM);
+//		MailSender sender(MAIL_NORMAL, senderPlayer->GetSession() ? senderPlayer->GetGUID().GetCounter() : 0, MAIL_STATIONERY_GM);
 //		MailDraft draft(titleText, content);
 //		SQLTransaction trans = CharacterDatabase.BeginTransaction();
 //

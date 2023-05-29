@@ -121,7 +121,7 @@
 //
 //    presetByName[pGUID].clear();
 //
-//    QueryResult result = CharacterDatabase.PQuery("SELECT `PresetID`, `SetName`, `SetData` FROM `custom_transmogrification_sets` WHERE Owner = %u", GUID_LOPART(pGUID));
+//    QueryResult result = CharacterDatabase.Query("SELECT `PresetID`, `SetName`, `SetData` FROM `custom_transmogrification_sets` WHERE Owner = %u", GUID_LOPART(pGUID));
 //    if (result)
 //    {
 //        do
@@ -267,7 +267,7 @@
 //    uint64 itemGUID = itemTransmogrified->GetGUID();
 //    entryMap[player->GetGUID()][itemGUID] = newEntry;
 //    dataMap[itemGUID] = player->GetGUID();
-//    CharacterDatabase.PExecute("REPLACE INTO custom_transmogrification (GUID, FakeEntry, Owner) VALUES (%u, %u, %u)", GUID_LOPART(itemGUID), newEntry, player->GetGUIDLow());
+//    CharacterDatabase.PExecute("REPLACE INTO custom_transmogrification (GUID, FakeEntry, Owner) VALUES (%u, %u, %u)", GUID_LOPART(itemGUID), newEntry, player->GetGUID().GetCounter());
 //    player->SetVisibleItemSlot(slot, itemTransmogrified);
 //}
 //TransmogTrinityStrings Transmogrification::Transmogrify(Player* player, uint64 itemGUID, uint8 slot, /*uint32 newEntry, */bool no_cost)
@@ -276,7 +276,7 @@
 //    // slot of the transmogrified item
 //    if (slot >= EQUIPMENT_SLOT_END)
 //    {
-//        //TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) tried to transmogrify an item (lowguid: %u) with a wrong slot (%u) when transmogrifying items.", player->GetGUIDLow(), player->GetName().c_str(), GUID_LOPART(itemGUID), slot);
+//        //TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) tried to transmogrify an item (lowguid: %u) with a wrong slot (%u) when transmogrifying items.", player->GetGUID().GetCounter(), player->GetName().c_str(), GUID_LOPART(itemGUID), slot);
 //        return LANG_ERR_TRANSMOG_INVALID_SLOT;
 //    }
 //
@@ -287,7 +287,7 @@
 //    ItemTemplate const* proto = sObjectMgr->GetItemTemplate(newEntry);
 //    if (!proto)
 //    {
-//    TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) tried to transmogrify to an invalid item (entry: %u).", player->GetGUIDLow(), player->GetName().c_str(), newEntry);
+//    TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) tried to transmogrify to an invalid item (entry: %u).", player->GetGUID().GetCounter(), player->GetName().c_str(), newEntry);
 //    return LANG_ERR_TRANSMOG_INVALID_SRC_ENTRY;
 //    }
 //    }
@@ -300,7 +300,7 @@
 //        itemTransmogrifier = player->GetItemByGuid(itemGUID);
 //        if (!itemTransmogrifier)
 //        {
-//            //TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) tried to transmogrify with an invalid item (lowguid: %u).", player->GetGUIDLow(), player->GetName().c_str(), GUID_LOPART(itemGUID));
+//            //TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) tried to transmogrify with an invalid item (lowguid: %u).", player->GetGUID().GetCounter(), player->GetName().c_str(), GUID_LOPART(itemGUID));
 //            return LANG_ERR_TRANSMOG_MISSING_SRC_ITEM;
 //        }
 //    }
@@ -309,7 +309,7 @@
 //    Item* itemTransmogrified = player->GetItemByPos(INVENTORY_SLOT_BAG_0, slot);
 //    if (!itemTransmogrified)
 //    {
-//        //TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) tried to transmogrify an invalid item in a valid slot (slot: %u).", player->GetGUIDLow(), player->GetName().c_str(), slot);
+//        //TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) tried to transmogrify an invalid item in a valid slot (slot: %u).", player->GetGUID().GetCounter(), player->GetName().c_str(), slot);
 //        return LANG_ERR_TRANSMOG_MISSING_DEST_ITEM;
 //    }
 //
@@ -317,14 +317,14 @@
 //    //// has to be able to equip item transmogrified item
 //    //if (!player->CanEquipItem(slot, tempDest, itemTransmogrified, true, true))
 //    //{
-//    //    TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) can't equip the item to be transmogrified (slot: %u, entry: %u).", player->GetGUIDLow(), player->GetName().c_str(), slot, itemTransmogrified->GetEntry());
+//    //    TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) can't equip the item to be transmogrified (slot: %u, entry: %u).", player->GetGUID().GetCounter(), player->GetName().c_str(), slot, itemTransmogrified->GetEntry());
 //    //    return;
 //    //}
 //    //
 //    //// has to be able to equip item transmogrifier item
 //    //if (!player->CanEquipItem(slot, tempDest, itemTransmogrifier, true, true))
 //    //{
-//    //    TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) can't equip the transmogrifier item (slot: %u, entry: %u).", player->GetGUIDLow(), player->GetName().c_str(), slot, itemTransmogrifier->GetEntry());
+//    //    TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) can't equip the transmogrifier item (slot: %u, entry: %u).", player->GetGUID().GetCounter(), player->GetName().c_str(), slot, itemTransmogrifier->GetEntry());
 //    //    return;
 //    //}
 //
@@ -340,7 +340,7 @@
 //    {
 //        if (!CanTransmogrifyItemWithItem(player, itemTransmogrified->GetTemplate(), itemTransmogrifier->GetTemplate()))
 //        {
-//            //sLog->outError(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) failed CanTransmogrifyItemWithItem (%u with %u).", player->GetGUIDLow(), player->GetName().c_str(), itemTransmogrified->GetEntry(), itemTransmogrifier->GetEntry());
+//            //sLog->outError(LOG_FILTER_NETWORKIO, "WORLD: HandleTransmogrifyItems - Player (GUID: %u, name: %s) failed CanTransmogrifyItemWithItem (%u with %u).", player->GetGUID().GetCounter(), player->GetName().c_str(), itemTransmogrified->GetEntry(), itemTransmogrifier->GetEntry());
 //            return LANG_ERR_TRANSMOG_INVALID_ITEMS;
 //        }
 //

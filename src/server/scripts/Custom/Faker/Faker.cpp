@@ -25,7 +25,7 @@
 //	{
 //		do
 //		{
-//			if (QueryResult charResult = CharacterDatabase.PQuery("SELECT guid FROM characters WHERE account = %u", result->Fetch()[0].GetUInt32()))
+//			if (QueryResult charResult = CharacterDatabase.Query("SELECT guid FROM characters WHERE account = %u", result->Fetch()[0].GetUInt32()))
 //			{
 //				do
 //				{
@@ -82,7 +82,7 @@
 //{
 //	int guid = reinterpret_cast<int>(i);
 //
-//	QueryResult result = CharacterDatabase.PQuery("SELECT account FROM characters WHERE guid = %u", guid);
+//	QueryResult result = CharacterDatabase.Query("SELECT account FROM characters WHERE guid = %u", guid);
 //
 //	if (!result)
 //		return 0;

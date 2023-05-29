@@ -871,7 +871,7 @@
 //	pItem->SetUInt32Value(ITEM_FIELD_PROPERTY_SEED, GetQueryId(pItem));
 //	//SetItemFlag(pItem);
 //	pItem->SetState(ITEM_CHANGED, owner);
-//	ItemQueryMap[pItem->GetGUIDLow()] = pItem;
+//	ItemQueryMap[pItem->GetGUID().GetCounter()] = pItem;
 //
 //	//摧毁原物品
 //	owner->DestroyItem(item->GetBagSlot(), item->GetSlot(), true);
@@ -1169,7 +1169,7 @@
 //		//设置flag query data
 //		item->SetUInt32Value(ITEM_FIELD_PROPERTY_SEED, GetQueryId(item));
 //		//SetItemFlag(item);
-//		ItemQueryMap[item->GetGUIDLow()] = item;
+//		ItemQueryMap[item->GetGUID().GetCounter()] = item;
 //		if (Player* owner = item->GetOwner())
 //			item->SetState(ITEM_CHANGED, owner);
 //
@@ -1404,7 +1404,7 @@
 //		//设置flag query data
 //		item->SetUInt32Value(ITEM_FIELD_PROPERTY_SEED, GetQueryId(item));
 //		//SetItemFlag(item);
-//		ItemQueryMap[item->GetGUIDLow()] = item;
+//		ItemQueryMap[item->GetGUID().GetCounter()] = item;
 //		if (Player* owner = item->GetOwner())
 //			item->SetState(ITEM_CHANGED, owner);
 //
@@ -1624,7 +1624,7 @@
 //	pItem->SetUInt32Value(ITEM_FIELD_PROPERTY_SEED, GetQueryId(pItem));
 //	//SetItemFlag(pItem);
 //	pItem->SetState(ITEM_CHANGED, owner);
-//	ItemQueryMap[pItem->GetGUIDLow()] = pItem;
+//	ItemQueryMap[pItem->GetGUID().GetCounter()] = pItem;
 //
 //	//扣减消耗摧毁原物品
 //	sReq->Des(owner, L_ReqId);

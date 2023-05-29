@@ -1017,7 +1017,7 @@
 //	for (size_t slot = PROP_ENCHANTMENT_SLOT_0; slot < MAX_ENCHANTMENT_SLOT; slot++)
 //	{
 //		std::ostringstream oss;
-//		oss << item->GetGUIDLow() << " ";
+//		oss << item->GetGUID().GetCounter() << " ";
 //		oss << slot - 6 << " ";
 //		oss << item->GetEnchantmentId(EnchantmentSlot(slot)) << " ";
 //		SendPacketTo(player, "GC_S_ITEMGUID", oss.str());

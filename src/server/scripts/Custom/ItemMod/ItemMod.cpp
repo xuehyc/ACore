@@ -2020,15 +2020,15 @@
 //	player->RuneVec.push_back(enchantId);
 //
 //	//更新数据库
-//	PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_RUNE);
-//	stmt->setUInt32(0, player->GetGUIDLow());
+//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_RUNE);
+//	stmt->setUInt32(0, player->GetGUID().GetCounter());
 //	stmt->setUInt32(1, enchantId);
 //	CharacterDatabase.Execute(stmt);
 //}
 //void ItemMod::LoadEnchant(Player* player)
 //{
 //	player->RuneVec.clear();
-//	QueryResult result = CharacterDatabase.PQuery("SELECT enchantId from character_rune where guid = '%u'", player->GetGUIDLow());
+//	QueryResult result = CharacterDatabase.Query("SELECT enchantId from character_rune where guid = '%u'", player->GetGUID().GetCounter());
 //
 //	if (result)
 //	{

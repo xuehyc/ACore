@@ -24,7 +24,7 @@
 //
 //void StatPoints::LoadPlayerData(Player* player)
 //{
-//	QueryResult result = CharacterDatabase.PQuery("SELECT stat_points FROM characters where guid = %d", player->GetGUIDLow());
+//	QueryResult result = CharacterDatabase.Query("SELECT stat_points FROM characters where guid = %d", player->GetGUID().GetCounter());
 //	if (!result)
 //		return;
 //
@@ -49,12 +49,12 @@
 //	for (size_t i = 0; i < MAX_STAT_POINTS_TYPE; i++)
 //		oss << player->stat_points[i] << " ";
 //
-//	CharacterDatabase.PExecute("UPDATE characters SET stat_points = '%s'WHERE guid = %d", oss.str().c_str(), player->GetGUIDLow());
+//	CharacterDatabase.PExecute("UPDATE characters SET stat_points = '%s'WHERE guid = %d", oss.str().c_str(), player->GetGUID().GetCounter());
 //}
 //
 //void StatPoints::UpdateDB(uint32 guid, uint32 statPoint)
 //{
-//	QueryResult result = CharacterDatabase.PQuery("SELECT stat_points FROM characters where guid = %d", guid);
+//	QueryResult result = CharacterDatabase.Query("SELECT stat_points FROM characters where guid = %d", guid);
 //
 //	if (!result)
 //		return;

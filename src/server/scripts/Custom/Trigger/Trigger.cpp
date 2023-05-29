@@ -83,7 +83,7 @@
 //			if (!player)
 //				return;
 //
-//			sTrigger->GetParam(player, me->GetGUIDLow(), type, distance, posId, auraId,notice,noticeType);
+//			sTrigger->GetParam(player, me->GetGUID().GetCounter(), type, distance, posId, auraId,notice,noticeType);
 //
 //			if (!me->IsWithinDistInMap(player, distance))
 //				return;

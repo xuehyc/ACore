@@ -48,7 +48,7 @@
 //	void OnUseGameObject(Player* player, GameObject* gob)
 //	{
 //		uint32 entry = gob->GetEntry();
-//		int32 guid = gob->GetGUIDLow();
+//		int32 guid = gob->GetGUID().GetCounter();
 //
 //		for (std::vector<GobScriptTemplate>::iterator itr = GobScriptVec.begin(); itr != GobScriptVec.end(); ++itr)
 //		{

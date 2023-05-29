@@ -865,7 +865,7 @@
 //	{
 //		if (sArenaDuel->GetState() == ARENA_DUEL_STATE_SIGNUP)
 //		{
-//			auto itr = ArenaDuelMap.find(player->GetGUIDLow());
+//			auto itr = ArenaDuelMap.find(player->GetGUID().GetCounter());
 //			if (itr == ArenaDuelMap.end())
 //				sArenaDuel->Signup(player);
 //			player->GetSession()->SendAreaTriggerMessage("报名成功，擂台赛即将开始，请保持在线！");
@@ -1731,7 +1731,7 @@
 //		pl->RemoveFromGroup();
 //
 //	pl->InitEventData(_EventId, faction, _FactionNameMap[faction]);
-//	_PlayersMap[pl->GetGUIDLow()] = faction;
+//	_PlayersMap[pl->GetGUID().GetCounter()] = faction;
 //
 //	bool groupExist = false;
 //
@@ -1767,7 +1767,7 @@
 //
 //EventFactionId Event::Subgroup(Player* pl)
 //{
-//	auto iter = _PlayersMap.find(pl->GetGUIDLow());
+//	auto iter = _PlayersMap.find(pl->GetGUID().GetCounter());
 //
 //	if (iter != _PlayersMap.end())
 //	{
@@ -1846,7 +1846,7 @@
 //		return;
 //
 //
-//	uint32 guid = obj->GetGUIDLow();
+//	uint32 guid = obj->GetGUID().GetCounter();
 //	TypeID typeId = obj->GetTypeId();
 //
 //
@@ -2053,7 +2053,7 @@
 //
 //void Event::Process(Object* obj)
 //{
-//	uint32 guid = obj->GetGUIDLow();
+//	uint32 guid = obj->GetGUID().GetCounter();
 //
 //	switch (obj->GetTypeId())
 //	{

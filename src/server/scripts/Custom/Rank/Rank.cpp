@@ -148,8 +148,8 @@
 //	}
 //	else
 //	{
-//		PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_RANKVALUE);
-//		stmt->setUInt32(0, player->GetGUIDLow());
+//		CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_RANKVALUE);
+//		stmt->setUInt32(0, player->GetGUID().GetCounter());
 //		stmt->setUInt32(1, player->rankLevel);
 //		stmt->setUInt32(2, player->rankValue);
 //		CharacterDatabase.Execute(stmt);
@@ -169,7 +169,7 @@
 //	}
 //	else
 //	{
-//		if (QueryResult result = CharacterDatabase.PQuery("SELECT level, value FROM character_rank WHERE guid = %u", player->GetGUIDLow()))
+//		if (QueryResult result = CharacterDatabase.Query("SELECT level, value FROM character_rank WHERE guid = %u", player->GetGUID().GetCounter()))
 //		{
 //			Field* fields = result->Fetch();
 //			rankLevel = fields[0].GetUInt32();

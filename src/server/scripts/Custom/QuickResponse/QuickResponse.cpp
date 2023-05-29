@@ -136,7 +136,7 @@
 //			return true;
 //		}
 //
-//		if (std::find(QuickResponsePlayerVec.begin(), QuickResponsePlayerVec.end(), player->GetGUIDLow()) != QuickResponsePlayerVec.end())
+//		if (std::find(QuickResponsePlayerVec.begin(), QuickResponsePlayerVec.end(), player->GetGUID().GetCounter()) != QuickResponsePlayerVec.end())
 //		{
 //			player->GetSession()->SendAreaTriggerMessage("|cFFFF1717[抢答]|r 禁止重复答题！");
 //			return true;
@@ -152,13 +152,13 @@
 //			return true;
 //		}
 //
-//		QuickResponsePlayerVec.push_back(player->GetGUIDLow());
+//		QuickResponsePlayerVec.push_back(player->GetGUID().GetCounter());
 //
 //		std::string correctAnswer = sQuickResponse->GetAnswer();
 //
 //		if (strcmp(correctAnswer.c_str(), answer.c_str()) == 0)
 //		{
-//			CorrectResponsePlayerVec.push_back(player->GetGUIDLow());
+//			CorrectResponsePlayerVec.push_back(player->GetGUID().GetCounter());
 //
 //			if (CorrectResponsePlayerVec.size() >= sSwitch->GetValue(ST_QUICK_RESPONSE))
 //				sGameEventMgr->StopEvent(EVENT_ID_QUICK_RESPONSE, false, false);

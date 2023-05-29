@@ -125,7 +125,7 @@
 //		}
 //
 //		ChatHandler(player->GetSession()).PSendSysMessage("忘记%s", GetSkillName(skillId).c_str());
-//		CharacterDatabase.PQuery("DELETE FROM character_custom_skill WHERE guid = %u AND skill = %u", player->GetGUIDLow(), skillId);
+//		CharacterDatabase.Query("DELETE FROM character_custom_skill WHERE guid = %u AND skill = %u", player->GetGUID().GetCounter(), skillId);
 //	}
 //	else
 //	{
@@ -138,8 +138,8 @@
 //		for (std::vector<CustomSkillTemplate>::iterator itr = CustomSkillVec.begin(); itr != CustomSkillVec.end(); itr++)
 //			if (skillId == itr->skillId)
 //			{
-//				PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_CUSTOM_SKILL);
-//				stmt->setUInt32(0, player->GetGUIDLow());
+//				CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_CUSTOM_SKILL);
+//				stmt->setUInt32(0, player->GetGUID().GetCounter());
 //				stmt->setUInt32(1, skillId);
 //				CharacterDatabase.Execute(stmt);
 //
@@ -156,7 +156,7 @@
 //{
 //	player->PCustomSkillVec.clear();
 //
-//	QueryResult result = CharacterDatabase.PQuery("SELECT skill FROM character_custom_skill WHERE guid = '%u'", player->GetGUIDLow());
+//	QueryResult result = CharacterDatabase.Query("SELECT skill FROM character_custom_skill WHERE guid = '%u'", player->GetGUID().GetCounter());
 //	if (!result)
 //		return;
 //	do

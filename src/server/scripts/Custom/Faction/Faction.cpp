@@ -117,7 +117,7 @@
 //	}
 //
 //	player->faction = faction;	
-//	CharacterDatabase.PExecute("UPDATE characters SET faction = %u WHERE guid = %u", faction, player->GetGUIDLow());
+//	CharacterDatabase.PExecute("UPDATE characters SET faction = %u WHERE guid = %u", faction, player->GetGUID().GetCounter());
 //	sCharNameMod->UpdateSuffix(player, GetSuffix(faction));
 //}
 //
@@ -200,7 +200,7 @@
 //
 //	void OnLogin(Player* player)
 //	{
-//		if (QueryResult result = CharacterDatabase.PQuery("SELECT faction FROM characters WHERE guid = %u", player->GetGUIDLow()))
+//		if (QueryResult result = CharacterDatabase.Query("SELECT faction FROM characters WHERE guid = %u", player->GetGUID().GetCounter()))
 //			player->faction = result->Fetch()[0].GetUInt32();
 //	}
 //};

@@ -438,7 +438,7 @@
 //
 //		for (uint8 i = 0; i < MAX_DIFFICULTY; ++i)
 //		{
-//			BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUIDLow(), Difficulty(i));
+//			BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUID().GetCounter(), Difficulty(i));
 //			for (BoundInstancesMap::const_iterator itr = m_boundInstances.begin(); itr != m_boundInstances.end();)
 //			{
 //				InstanceSave* save = itr->second.save;
@@ -446,7 +446,7 @@
 //				if (mapEntry && itr->first != player->GetMapId() && (!mapId || mapId == itr->first) && (diff == -1 || diff == save->GetDifficulty()))
 //				{
 //					ChatHandler(player->GetSession()).PSendSysMessage(text.c_str());
-//					sInstanceSaveMgr->PlayerUnbindInstance(player->GetGUIDLow(), itr->first, diff, true, player);
+//					sInstanceSaveMgr->PlayerUnbindInstance(player->GetGUID().GetCounter(), itr->first, diff, true, player);
 //					itr = m_boundInstances.begin();
 //				}
 //				else

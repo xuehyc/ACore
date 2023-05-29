@@ -160,7 +160,7 @@
 //	else
 //		sLog->outString(">> 读取自定义功能数据表 _活动_公会战,共0条数据读取加载...");
 //
-//	QueryResult result2 = CharacterDatabase.PQuery("SELECT guild1,guild2,data FROM GuildvsGuild where guid = 1");
+//	QueryResult result2 = CharacterDatabase.Query("SELECT guild1,guild2,data FROM GuildvsGuild where guid = 1");
 //	if (result2)
 //	{
 //		m_guildId1 = result2->Fetch()[0].GetUInt32();

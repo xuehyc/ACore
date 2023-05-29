@@ -91,7 +91,7 @@
 //
 //	for (uint8 i = 0; i < MAX_DIFFICULTY; ++i)
 //	{
-//		BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUIDLow(), Difficulty(i));
+//		BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUID().GetCounter(), Difficulty(i));
 //		for (BoundInstancesMap::const_iterator itr = m_boundInstances.begin(); itr != m_boundInstances.end(); ++itr)
 //		{
 //			if (MapEntry const* mapEntry = sMapStore.LookupEntry(itr->first))
@@ -144,7 +144,7 @@
 //
 //	for (uint8 i = 0; i < MAX_DIFFICULTY; ++i)
 //	{
-//		BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUIDLow(), Difficulty(i));
+//		BoundInstancesMap const& m_boundInstances = sInstanceSaveMgr->PlayerGetBoundInstances(player->GetGUID().GetCounter(), Difficulty(i));
 //		for (BoundInstancesMap::const_iterator itr = m_boundInstances.begin(); itr != m_boundInstances.end();)
 //		{
 //			InstanceSave* save = itr->second.save;
@@ -154,7 +154,7 @@
 //				std::ostringstream oss;
 //				oss << GetGossipText(mapEntry->MapID, i) << "已重置";
 //				ChatHandler(player->GetSession()).PSendSysMessage(oss.str().c_str());
-//				sInstanceSaveMgr->PlayerUnbindInstance(player->GetGUIDLow(), itr->first, diff, true, player);
+//				sInstanceSaveMgr->PlayerUnbindInstance(player->GetGUID().GetCounter(), itr->first, diff, true, player);
 //				itr = m_boundInstances.begin();
 //			}
 //			else

@@ -33,7 +33,7 @@
 //{
 //	for (size_t i = 0; i < RecruitInfo.size(); i++)
 //	{
-//		if (player->GetGUIDLow() == RecruitInfo[i].friendGUIDLow)
+//		if (player->GetGUID().GetCounter() == RecruitInfo[i].friendGUIDLow)
 //			return true;
 //	}
 //
@@ -64,7 +64,7 @@
 //	uint32 friendAmount = 0;
 //	for (size_t i = 0; i < RecruitInfo.size(); i++)
 //	{
-//		if (recruiter->GetGUIDLow() == RecruitInfo[i].recruiterGUIDLow)
+//		if (recruiter->GetGUID().GetCounter() == RecruitInfo[i].recruiterGUIDLow)
 //			friendAmount++;
 //	}
 //	return friendAmount;
@@ -84,11 +84,11 @@
 //
 //		RecruitTemplate RecruitTemp;
 //		RecruitTemp.recruiterGUIDLow = player->recruiterGUIDLow;
-//		RecruitTemp.friendGUIDLow = player->GetGUIDLow();
+//		RecruitTemp.friendGUIDLow = player->GetGUID().GetCounter();
 //
 //		RecruitInfo.push_back(RecruitTemp);
 //
-//		if (UpdateRecruitDB(player->recruiterGUIDLow, player->GetGUIDLow()))
+//		if (UpdateRecruitDB(player->recruiterGUIDLow, player->GetGUID().GetCounter()))
 //			if (player->getLevel() < GetInsLevel())
 //				player->SetLevel(GetInsLevel(), true);
 //
@@ -117,7 +117,7 @@
 //void Recruit::Load()
 //{
 //	RecruitInfo.clear();
-//	QueryResult result1 = CharacterDatabase.PQuery("SELECT recruiterGUID,friendGUID,friendPlayedTime,timeRewarded1,timeRewarded2,timeRewarded3 from character_recruit");
+//	QueryResult result1 = CharacterDatabase.Query("SELECT recruiterGUID,friendGUID,friendPlayedTime,timeRewarded1,timeRewarded2,timeRewarded3 from character_recruit");
 //	if (result1)
 //	{
 //		do
@@ -196,7 +196,7 @@
 //
 //	for (uint32 i = 0; i < RecruitInfo.size(); i++)
 //	{
-//		if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
+//		if (RecruitInfo[i].friendGUIDLow == player->GetGUID().GetCounter())
 //		{
 //			recruiterGUIDLow = RecruitInfo[i].recruiterGUIDLow;
 //			break;
@@ -220,7 +220,7 @@
 //
 //	for (uint32 i = 0; i < RecruitInfo.size(); i++)
 //	{
-//		if (RecruitInfo[i].recruiterGUIDLow == player->GetGUIDLow())
+//		if (RecruitInfo[i].recruiterGUIDLow == player->GetGUID().GetCounter())
 //		{
 //			GlobalPlayerData const* friendPlayerData = sWorld->GetGlobalPlayerData(RecruitInfo[i].friendGUIDLow);
 //			if (friendPlayerData)
@@ -504,7 +504,7 @@
 //		uint32 recruiterGUIDLow = 0;
 //		for (uint32 i = 0; i < RecruitInfo.size(); i++)
 //		{
-//			if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
+//			if (RecruitInfo[i].friendGUIDLow == player->GetGUID().GetCounter())
 //			{
 //				playedTime = RecruitInfo[i].friendPlayedTime;
 //				hasReward1 = RecruitInfo[i].timeRewarded1;
@@ -546,22 +546,22 @@
 //{
 //	uint32 len = RecruitInfo.size();
 //	for (uint32 i = 0; i < len; i++)
-//		if (RecruitInfo[i].friendGUIDLow == player->GetGUIDLow())
+//		if (RecruitInfo[i].friendGUIDLow == player->GetGUID().GetCounter())
 //		{
 //			player->GetSession()->SendNotification("|cFFFF1717[招募系统]|r招募你的人已获得奖励");
 //			switch (flag)
 //			{
 //			case 1:
-//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded1 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
+//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded1 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
 //				RecruitInfo[i].timeRewarded1 = true;
 //				break;
 //			case 2:
-//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded2 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
+//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded2 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
 //				RecruitInfo[i].timeRewarded2 = true;
 //				break;
 //			case 3:
 //
-//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded3 = %d WHERE friendGUID = %d", 1, player->GetGUIDLow());
+//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded3 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
 //				RecruitInfo[i].timeRewarded3 = true;
 //				break;
 //			default:
@@ -705,7 +705,7 @@
 //			if (sReq->Check(player, GetDissReqId1()))
 //			{
 //				sReq->Des(player, GetDissReqId1());
-//				DismissRecruit(player->GetGUIDLow(), action);
+//				DismissRecruit(player->GetGUID().GetCounter(), action);
 //			}
 //		}
 //
@@ -827,7 +827,7 @@
 //		return true;
 //	}
 //
-//	if (!IsRecruitYourRecruiter(player->GetGUIDLow(), pFriend->GetGUIDLow()))
+//	if (!IsRecruitYourRecruiter(player->GetGUID().GetCounter(), pFriend->GetGUID().GetCounter()))
 //	{
 //		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF1717[招募系统]|r你不能招募你的招募者");
 //		return true;
@@ -836,7 +836,7 @@
 //	if (!sReq->Check(player, GetRecReqId()))
 //		return true;
 //
-//	pFriend->recruiterGUIDLow = player->GetGUIDLow();
+//	pFriend->recruiterGUIDLow = player->GetGUID().GetCounter();
 //
 //	std::ostringstream oss;
 //	oss << "|cFF0177EC";

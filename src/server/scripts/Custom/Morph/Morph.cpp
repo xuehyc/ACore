@@ -36,7 +36,7 @@
 //
 //void Morph::UpdateCharInfoMap(Player* player)
 //{
-//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUID().GetCounter());
 //
 //	if (iter == CharInfoMap.end())
 //	{
@@ -51,7 +51,7 @@
 //		Temp.displayId = player->GetDisplayId();
 //		Temp.morphId = 0;
 //		Temp.duration = 0;
-//		CharInfoMap.insert(std::make_pair(player->GetGUIDLow(), Temp));
+//		CharInfoMap.insert(std::make_pair(player->GetGUID().GetCounter(), Temp));
 //	}
 //	else
 //	{
@@ -88,7 +88,7 @@
 //
 //uint32 Morph::GetMorphId(Player* player)
 //{
-//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUID().GetCounter());
 //
 //	if (iter != CharInfoMap.end())
 //		return iter->second.morphId;
@@ -98,7 +98,7 @@
 //
 //void Morph::SetMorphId(Player* player, uint32 morphId)
 //{
-//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUID().GetCounter());
 //
 //	if (iter != CharInfoMap.end())
 //		iter->second.morphId = morphId;
@@ -106,7 +106,7 @@
 //
 //void Morph::SetMorphDuration(Player* player, uint32 duration)
 //{
-//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUID().GetCounter());
 //
 //	if (iter != CharInfoMap.end())
 //		iter->second.duration = duration;
@@ -114,7 +114,7 @@
 //
 //uint32 Morph::GetMorphDuration(Player* player)
 //{
-//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUID().GetCounter());
 //
 //	if (iter != CharInfoMap.end())
 //		return iter->second.duration;
@@ -266,7 +266,7 @@
 //
 //void Morph::Reset(Player* player)
 //{
-//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUIDLow());
+//	std::unordered_map<uint32, CharInfoTemplate>::iterator iter = CharInfoMap.find(player->GetGUID().GetCounter());
 //
 //	if (iter != CharInfoMap.end())
 //	{

@@ -41,7 +41,7 @@
 //void Lottery::LoadLotterData()
 //{
 //	LotteryInfo.clear();
-//	QueryResult result = CharacterDatabase.PQuery("SELECT guidLow,lotteryType,lotteryAmount FROM character_lottery");
+//	QueryResult result = CharacterDatabase.Query("SELECT guidLow,lotteryType,lotteryAmount FROM character_lottery");
 //	if (!result) return;
 //	do
 //	{
@@ -246,11 +246,11 @@
 //
 //	if (PlayerCanBuy(player, lotteryAmount))
 //	{
-//		CharacterDatabase.DirectPExecute("INSERT INTO character_lottery VALUES('%u', '%u', '%u')", player->GetGUIDLow(), uint32(type), lotteryAmount);
-//		uint32	accountId = sObjectMgr->GetPlayerAccountIdByGUID(MAKE_NEW_GUID(player->GetGUIDLow(), 0, HIGHGUID_PLAYER));
+//		CharacterDatabase.DirectPExecute("INSERT INTO character_lottery VALUES('%u', '%u', '%u')", player->GetGUID().GetCounter(), uint32(type), lotteryAmount);
+//		uint32	accountId = sObjectMgr->GetPlayerAccountIdByGUID(MAKE_NEW_GUID(player->GetGUID().GetCounter(), 0, HIGHGUID_PLAYER));
 //		sCF->UpdateTokenAmount(player, lotteryAmount, false, "购买彩票");
 //		LotteryTemplate LotteryTemp;
-//		LotteryTemp.guidLow			= player->GetGUIDLow();
+//		LotteryTemp.guidLow			= player->GetGUID().GetCounter();
 //		LotteryTemp.lotteryType		= type;
 //		LotteryTemp.lotteryAmount	= lotteryAmount;
 //		LotteryInfo.push_back(LotteryTemp);
@@ -303,7 +303,7 @@
 //	uint32 amount = 0;
 //
 //	for (size_t i = 0; i < LotteryInfo.size(); i++)
-//		if (player->GetGUIDLow() == LotteryInfo[i].guidLow)
+//		if (player->GetGUID().GetCounter() == LotteryInfo[i].guidLow)
 //			amount += LotteryInfo[i].lotteryAmount;
 //
 //	return amount;

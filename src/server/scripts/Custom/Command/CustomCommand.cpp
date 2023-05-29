@@ -1695,7 +1695,7 @@
 //		{
 //			pet->SetDisplayId(displayID);
 //			pet->SetNativeDisplayId(displayID);
-//			CharacterDatabase.DirectPExecute("UPDATE character_pet SET modelid = '%u' WHERE owner = '%u' AND entry = '%u'", displayID, target->GetGUIDLow(), pet->GetEntry());
+//			CharacterDatabase.DirectPExecute("UPDATE character_pet SET modelid = '%u' WHERE owner = '%u' AND entry = '%u'", displayID, target->GetGUID().GetCounter(), pet->GetEntry());
 //			ChatHandler(target->GetSession()).PSendSysMessage("改变宠物模型为 - %u", displayID);
 //			return true;
 //		}else
@@ -1834,7 +1834,7 @@
 //			if (sSwitch->GetOnOff(ST_TP_ACCOUNT_BIND))
 //				LoginDatabase.DirectPExecute("UPDATE account SET extraTalentPoints = '%u' WHERE id = '%u'", maxExTps, target->GetSession()->GetAccountId());
 //			else
-//				CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = '%u' WHERE guid = '%u'", maxExTps, target->GetGUIDLow());
+//				CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = '%u' WHERE guid = '%u'", maxExTps, target->GetGUID().GetCounter());
 //			return true;
 //		}
 //
@@ -1848,7 +1848,7 @@
 //		if (sSwitch->GetOnOff(ST_TP_ACCOUNT_BIND))
 //			LoginDatabase.DirectPExecute("UPDATE account SET extraTalentPoints = extraTalentPoints + '%u' WHERE id = '%u'", tp, target->GetSession()->GetAccountId());
 //		else
-//			CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = extraTalentPoints + '%u' WHERE guid = '%u'", tp, target->GetGUIDLow());
+//			CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = extraTalentPoints + '%u' WHERE guid = '%u'", tp, target->GetGUID().GetCounter());
 //		return true;
 //	}
 //
@@ -1896,7 +1896,7 @@
 //			if (sSwitch->GetOnOff(ST_TP_ACCOUNT_BIND))
 //				LoginDatabase.DirectPExecute("UPDATE account SET extraTalentPoints = '%u' WHERE id = '%u'", maxExTps, target->GetSession()->GetAccountId());
 //			else
-//				CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = '%u' WHERE guid = '%u'", maxExTps, target->GetGUIDLow());
+//				CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = '%u' WHERE guid = '%u'", maxExTps, target->GetGUID().GetCounter());
 //			return true;
 //		}
 //
@@ -1910,7 +1910,7 @@
 //		if (sSwitch->GetOnOff(ST_TP_ACCOUNT_BIND))
 //			LoginDatabase.DirectPExecute("UPDATE account SET extraTalentPoints = extraTalentPoints + '%u' WHERE id = '%u'", tp, target->GetSession()->GetAccountId());
 //		else
-//			CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = extraTalentPoints + '%u' WHERE guid = '%u'", tp, target->GetGUIDLow());
+//			CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = extraTalentPoints + '%u' WHERE guid = '%u'", tp, target->GetGUID().GetCounter());
 //		return true;
 //	}
 //
@@ -1935,7 +1935,7 @@
 //
 //		uint32 extraCps = 0;
 //
-//		QueryResult result = CharacterDatabase.PQuery("SELECT extraPrimaryTradeSkills FROM characters WHERE guid = '%u'", target->GetGUIDLow());
+//		QueryResult result = CharacterDatabase.Query("SELECT extraPrimaryTradeSkills FROM characters WHERE guid = '%u'", target->GetGUID().GetCounter());
 //		if (result)
 //		{
 //			Field* fields = result->Fetch();
@@ -1945,7 +1945,7 @@
 //
 //		if (extraCps + cp > uint32(sSwitch->GetValue(ST_EXTRA_CPS_LIMIT)))
 //		{
-//			CharacterDatabase.DirectPExecute("UPDATE characters SET extraPrimaryTradeSkills ='%u' WHERE guid = '%u'", sSwitch->GetValue(ST_EXTRA_CPS_LIMIT), target->GetGUIDLow());
+//			CharacterDatabase.DirectPExecute("UPDATE characters SET extraPrimaryTradeSkills ='%u' WHERE guid = '%u'", sSwitch->GetValue(ST_EXTRA_CPS_LIMIT), target->GetGUID().GetCounter());
 //			target->maxPrimaryTradeSkills = target->maxPrimaryTradeSkills + uint32(sSwitch->GetValue(ST_EXTRA_CPS_LIMIT) - extraCps);
 //			if (target->maxPrimaryTradeSkills >= sCF->GetCommercePoints(target))
 //				target->SetFreePrimaryProfessions(target->maxPrimaryTradeSkills - sCF->GetCommercePoints(target));
@@ -1960,7 +1960,7 @@
 //		target->maxPrimaryTradeSkills += cp;
 //		if (target->maxPrimaryTradeSkills >= sCF->GetCommercePoints(target))
 //			target->SetFreePrimaryProfessions(target->maxPrimaryTradeSkills - sCF->GetCommercePoints(target));
-//		CharacterDatabase.PExecute("update characters set extraPrimaryTradeSkills = extraPrimaryTradeSkills + '%u' where guid = %u", cp, target->GetGUIDLow());
+//		CharacterDatabase.PExecute("update characters set extraPrimaryTradeSkills = extraPrimaryTradeSkills + '%u' where guid = %u", cp, target->GetGUID().GetCounter());
 //
 //		ChatHandler(target->GetSession()).PSendSysMessage("%s获得额外%u个商业技能点", sCF->GetNameLink(target).c_str(), cp);
 //		if (handler->GetSession()->GetPlayer()->GetGUID() != target->GetGUID())
