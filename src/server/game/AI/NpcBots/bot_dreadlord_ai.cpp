@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "botspell.h"
 #include "Player.h"
 #include "ScriptMgr.h"
@@ -422,6 +422,8 @@ public:
             Creature* myPet = me->SummonCreature(entry, *sPos, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 2000);
             //me->GetNearPoint(myPet, pos.m_positionX, pos.m_positionY, pos.m_positionZ, 0, 2, me->GetOrientation());
             //myPet->GetMotionMaster()->MovePoint(me->GetMapId(), pos);
+            myPet->SetObjectScale(0.3);//尝试使招呼的宠物大小为原来的0.3倍 //无效
+            //此处应该不是0.3末尾未加f的原因,待测试
             myPet->SetCreator(master);
             myPet->SetOwnerGUID(me->GetGUID());
             myPet->SetFaction(master->GetFaction());
