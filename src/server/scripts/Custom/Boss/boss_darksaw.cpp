@@ -296,7 +296,7 @@ public:
 				if (_reflectdmg && attacker->HasAura(AURA_REFLECTION))
 				{ // When reflect avtive, cast 10% of damage done back to boss. 
 					attacker->DealDamage(attacker,attacker->GetVictim(), damage * 0.1, 0, DIRECT_DAMAGE, SPELL_SCHOOL_MASK_ALL, 0, true);
-					// me->MonsterSay("Debug: Aura Powered!..",LANG_UNIVERSAL,NULL);
+					// me->Say("Debug: Aura Powered!..",LANG_UNIVERSAL,NULL);
 				}
 				/*
 				_totaldmgtaken = _totaldmgtaken + damage;

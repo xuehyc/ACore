@@ -404,7 +404,7 @@
 //					}
 //					else
 //					{
-//						creature->MonsterSay("奖励物品ID设置出错...", LANG_UNIVERSAL, 0);
+//						creature->Say("奖励物品ID设置出错...", LANG_UNIVERSAL, 0);
 //						return false;
 //					}
 //				}

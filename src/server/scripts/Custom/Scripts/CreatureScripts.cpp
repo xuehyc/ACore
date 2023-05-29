@@ -387,7 +387,7 @@
 //				switch (actionParam2)
 //				{
 //				case 1:
-//					me->MonsterSay(actionParam1.c_str(), LANG_UNIVERSAL, NULL);
+//					me->Say(actionParam1.c_str(), LANG_UNIVERSAL, NULL);
 //					break;
 //				case 2:
 //					me->MonsterYell(actionParam1.c_str(), LANG_UNIVERSAL, NULL);

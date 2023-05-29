@@ -272,7 +272,7 @@
 //					case 2:
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
 //						{
-//							thalorien->MonsterSay("我们必须不惜一切代价保卫太阳之井。", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("我们必须不惜一切代价保卫太阳之井。", LANG_UNIVERSAL, NULL);
 //							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
 //						}
 //							
@@ -283,7 +283,7 @@
 //					case 3:
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
 //						{
-//							thalorien->MonsterSay("我命令你们立即回防太阳之井，荣耀与我们同在。", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("我命令你们立即回防太阳之井，荣耀与我们同在。", LANG_UNIVERSAL, NULL);
 //							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
 //						}
 //							
@@ -294,7 +294,7 @@
 //					case 4:
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
 //						{
-//							thalorien->MonsterSay("我会留在这里为你们争取尽可能多的时间。", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("我会留在这里为你们争取尽可能多的时间。", LANG_UNIVERSAL, NULL);
 //							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
 //						}
 //							
@@ -305,7 +305,7 @@
 //					case 5:
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
 //						{
-//							thalorien->MonsterSay("与你们并肩战斗，守卫我们的领土和人民，是我最大的荣耀。", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("与你们并肩战斗，守卫我们的领土和人民，是我最大的荣耀。", LANG_UNIVERSAL, NULL);
 //							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
 //						}
 //							
@@ -318,7 +318,7 @@
 //						{
 //							if (Creature* guard = *itr)
 //							{
-//								guard->MonsterSay("遵命，长官！", LANG_UNIVERSAL, NULL);
+//								guard->Say("遵命，长官！", LANG_UNIVERSAL, NULL);
 //								guard->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
 //							}
 //						}				
@@ -346,7 +346,7 @@
 //					case 8:
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
 //						{
-//							thalorien->MonsterSay("陌生人...你不是我的士兵。你将会和我一起面对强大的敌人吗？", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("陌生人...你不是我的士兵。你将会和我一起面对强大的敌人吗？", LANG_UNIVERSAL, NULL);
 //							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
 //							thalorien->SetWalk(true);
 //							thalorien->GetMotionMaster()->MovePoint(0, 11777.6, -7063.79, 24.7945);
@@ -444,7 +444,7 @@
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
 //						{
 //							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//							thalorien->MonsterSay("我...从未想过能从这场战斗中生存下来。", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("我...从未想过能从这场战斗中生存下来。", LANG_UNIVERSAL, NULL);
 //						}					
 //						_Timer = 5000;
 //						_Phase++;
@@ -453,7 +453,7 @@
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
 //						{
 //							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//							thalorien->MonsterSay("发生了什么？我怎么在这里？", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("发生了什么？我怎么在这里？", LANG_UNIVERSAL, NULL);
 //						}
 //							
 //						_Timer = 5000;
@@ -463,7 +463,7 @@
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
 //						{
 //							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//							thalorien->MonsterSay("这是...奎尔德拉！你得到了这把剑！", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("这是...奎尔德拉！你得到了这把剑！", LANG_UNIVERSAL, NULL);
 //						}
 //							
 //						_Timer = 5000;
@@ -471,7 +471,7 @@
 //						break;
 //					case 18:
 //						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//							thalorien->MonsterSay("这把剑选择了你成为新的主人，这是我的祝福，请像我一样与天灾军团战斗！", LANG_UNIVERSAL, NULL);
+//							thalorien->Say("这把剑选择了你成为新的主人，这是我的祝福，请像我一样与天灾军团战斗！", LANG_UNIVERSAL, NULL);
 //							
 //						_Timer = 5000;
 //						_Phase++;
@@ -733,7 +733,7 @@
 //					if (Creature* guard = pl->FindNearestCreature(NPC_QUEL_GUARD, 500.0f))
 //					{
 //						guard->GetMotionMaster()->MoveChase(pl, 1.0f);
-//						guard->MonsterSay("放下武器投降，你这个叛徒！", LANG_UNIVERSAL, NULL);
+//						guard->Say("放下武器投降，你这个叛徒！", LANG_UNIVERSAL, NULL);
 //						guard->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_READY1H);
 //						guard->CastSpell(pl, SPELL_ICY_PRISON);
 //						guard->SetTarget(_player);
@@ -744,7 +744,7 @@
 //					{
 //						_summonmap.insert(std::make_pair(guard->GetGUID(), guard->GetOrientation()));
 //						guard->GetMotionMaster()->MoveChase(auric, 1.0f);
-//						guard->MonsterSay("放下武器投降，你这个叛徒！", LANG_UNIVERSAL, NULL);
+//						guard->Say("放下武器投降，你这个叛徒！", LANG_UNIVERSAL, NULL);
 //						guard->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_READY1H);
 //						guard->SetTarget(_auric);
 //					}
@@ -821,14 +821,14 @@
 //						break;
 //					case 2:
 //						if (Creature* guard = me->FindNearestCreature(NPC_QUEL_GUARD, 100.0f, true))
-//							guard->MonsterSay("真的是奎尔德拉吗？", LANG_UNIVERSAL, NULL);
+//							guard->Say("真的是奎尔德拉吗？", LANG_UNIVERSAL, NULL);
 //						_Timer = 4000;
 //						_Phase++;
 //						break;
 //					
 //					case 3:
 //						if (Creature* theron = ObjectAccessor::GetCreature(*me, _theron))
-//							theron->MonsterSay("让我们看一看...", LANG_UNIVERSAL, NULL);
+//							theron->Say("让我们看一看...", LANG_UNIVERSAL, NULL);
 //						
 //						if (Creature* rommath = ObjectAccessor::GetCreature(*me, _rommath))
 //							rommath->GetMotionMaster()->MovePoint(0, 1675.8f, 617.19f, 28.0504f);
@@ -844,7 +844,7 @@
 //						break;
 //					case 4:
 //						if (Creature* rommath = ObjectAccessor::GetCreature(*me, _rommath))
-//							rommath->MonsterSay("洛塞玛，看，毫无疑问，这是奎尔德拉。", LANG_UNIVERSAL, NULL);
+//							rommath->Say("洛塞玛，看，毫无疑问，这是奎尔德拉。", LANG_UNIVERSAL, NULL);
 //
 //						_Timer = 10000;
 //						_Phase++;
@@ -855,7 +855,7 @@
 //							std::ostringstream oss;
 //							if (Player* pl = ObjectAccessor::GetPlayer(*me, _player))
 //								oss << "好极了，非常感谢你将奎尔德拉带给它真正的主人，" << pl->GetName() << "。";
-//							theron->MonsterSay(oss.str().c_str(), LANG_UNIVERSAL, NULL);
+//							theron->Say(oss.str().c_str(), LANG_UNIVERSAL, NULL);
 //							theron->GetMotionMaster()->MovePoint(0, 1681.9f, 619.13f, 27.95f);
 //						}
 //							
@@ -887,7 +887,7 @@
 //							if (Player* player = me->SelectNearestPlayer(200.0f))
 //								rommath->AddAura(SPELL_ICY_PRISON, player);
 //	
-//							rommath->MonsterSay("背叛？", LANG_UNIVERSAL, NULL);
+//							rommath->Say("背叛？", LANG_UNIVERSAL, NULL);
 //						}
 //
 //						GuardAction(0);
@@ -900,20 +900,20 @@
 //						break;
 //					case 10:
 //						if (Creature* auric = ObjectAccessor::GetCreature(*me, _auric))
-//							auric->MonsterSay("这不是我的错，洛塞玛。这不是一个叛徒。", LANG_UNIVERSAL, NULL);
+//							auric->Say("这不是我的错，洛塞玛。这不是一个叛徒。", LANG_UNIVERSAL, NULL);
 //						_Timer = 5000;
 //						_Phase++;
 //						break;
 //					case 11:
 //						if (Creature* auric = ObjectAccessor::GetCreature(*me, _auric))
-//							auric->MonsterSay("让你的人退下，是洛塞玛的愚蠢导致他受了伤。人们不可以选择奎尔德拉，奎尔德拉自己选择主人。", LANG_UNIVERSAL, NULL);
+//							auric->Say("让你的人退下，是洛塞玛的愚蠢导致他受了伤。人们不可以选择奎尔德拉，奎尔德拉自己选择主人。", LANG_UNIVERSAL, NULL);
 //
 //						_Timer = 5000;
 //						_Phase++;
 //						break;
 //					case 12:
 //						if (Creature* rommath = ObjectAccessor::GetCreature(*me, _rommath))
-//							rommath->MonsterSay("卫兵，退下。", LANG_UNIVERSAL, NULL);
+//							rommath->Say("卫兵，退下。", LANG_UNIVERSAL, NULL);
 //						_Timer = 5000;
 //						_Phase++;
 //						break;
@@ -926,7 +926,7 @@
 //							if (Player* pl = ObjectAccessor::GetPlayer(*me, _player))
 //								oss << "你得到了一直寻找的力量，" << pl->GetName() << "。拿上这把剑，离开吧。至于你，阿瑞克，在这神圣之地，请记住你自己说过的话。";
 //
-//							rommath->MonsterSay(oss.str().c_str(), LANG_UNIVERSAL, NULL);
+//							rommath->Say(oss.str().c_str(), LANG_UNIVERSAL, NULL);
 //						}
 //						_Timer = 1000;
 //						_Phase++;
@@ -935,7 +935,7 @@
 //						if (Creature* auric = ObjectAccessor::GetCreature(*me, _auric))
 //						{
 //							auric->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-//							auric->MonsterSay("拿着这把剑，穿过去达拉然的传送门。你完成了很多人梦寐以求多年的事，你重铸了奎尔德拉。", LANG_UNIVERSAL, NULL);
+//							auric->Say("拿着这把剑，穿过去达拉然的传送门。你完成了很多人梦寐以求多年的事，你重铸了奎尔德拉。", LANG_UNIVERSAL, NULL);
 //						}
 //
 //						if (GameObject* quelDelar = ObjectAccessor::GetGameObject(*me, _QuelDelar))

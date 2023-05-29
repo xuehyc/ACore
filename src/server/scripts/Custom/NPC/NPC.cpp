@@ -213,7 +213,7 @@
 //				}
 //					break;
 //				case STORY_ACTION_SAY:
-//					me->MonsterSay(param1.c_str(), LANG_UNIVERSAL, NULL);
+//					me->Say(param1.c_str(), LANG_UNIVERSAL, NULL);
 //					index++;
 //					sStory->GetParams(me->GetEntry(), index, action, param1, param2);
 //					events.ScheduleEvent(index, IN_MILLISECONDS * atoi(param2.c_str()));

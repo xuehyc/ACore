@@ -144,27 +144,27 @@
 //					if (y = me->FindNearestCreature(960016, 200.0f))
 //					{
 //						y->MonsterYell("是谁在召唤我？", LANG_UNIVERSAL, NULL);
-//						y->MonsterSay("狡猾的精灵，你们设下可恶的圈套封印了我，现在又要来取笑我的么？梦魇暴君绝不会对你们卑躬屈膝！", LANG_UNIVERSAL, NULL);
+//						y->Say("狡猾的精灵，你们设下可恶的圈套封印了我，现在又要来取笑我的么？梦魇暴君绝不会对你们卑躬屈膝！", LANG_UNIVERSAL, NULL);
 //
 //					}
 //					me->AddAura(63771, me);
 //					_events.ScheduleEvent(EVENT_REMULUS_SAY1, 5000);
 //					break;
 //				case EVENT_REMULUS_SAY1:
-//					me->MonsterSay("伊兰尼库斯，你曾用梦魇之力折磨了无数无辜的受害者，这是对你应有的惩罚，现在，你有一个自我救赎的机会。", LANG_UNIVERSAL, NULL);
+//					me->Say("伊兰尼库斯，你曾用梦魇之力折磨了无数无辜的受害者，这是对你应有的惩罚，现在，你有一个自我救赎的机会。", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_REMULUS_SAY2, 5000);
 //					break;
 //				case EVENT_REMULUS_SAY2:
-//					me->MonsterSay("你必须从这把剑中完全抽取出残存的梦魇印记，并发誓不再残害艾泽拉斯的无辜生命，否则我将让你陷入永久的沉睡。", LANG_UNIVERSAL, NULL);
+//					me->Say("你必须从这把剑中完全抽取出残存的梦魇印记，并发誓不再残害艾泽拉斯的无辜生命，否则我将让你陷入永久的沉睡。", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_Y_SAY2, 5000);
 //					break;
 //				case EVENT_Y_SAY2:
 //					if (y = me->FindNearestCreature(960016, 200.0f))
-//						y->MonsterSay("我…答应你的要求，但这个誓言中不包括对你的仇恨，我一定会让你付出代价的！", LANG_UNIVERSAL, NULL);
+//						y->Say("我…答应你的要求，但这个誓言中不包括对你的仇恨，我一定会让你付出代价的！", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_REMULUS_SAY3, 5000);
 //					break;
 //				case EVENT_REMULUS_SAY3:
-//					me->MonsterSay("我同意，我会在这一直等着你。那么，开始吧。", LANG_UNIVERSAL, NULL);
+//					me->Say("我同意，我会在这一直等着你。那么，开始吧。", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_CLEAN_SOWRD, 5000);
 //					break;
 //				case EVENT_CLEAN_SOWRD:
@@ -195,37 +195,37 @@
 //					break;
 //				case EVENT_K_SAY:
 //					if (k = me->FindNearestCreature(960020, 200.0f))
-//						k->MonsterSay("终于出来了，我都被圣光之力压迫的受不了了。", LANG_UNIVERSAL, NULL);
+//						k->Say("终于出来了，我都被圣光之力压迫的受不了了。", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_N_SAY, 5000);
 //					break;
 //				case EVENT_N_SAY:
 //					if (n = me->FindNearestCreature(960021, 200.0f))
-//						n->MonsterSay("该死的，是谁净化了灰烬使者！", LANG_UNIVERSAL, NULL);
+//						n->Say("该死的，是谁净化了灰烬使者！", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_S_SAY, 5000);
 //					break;
 //				case EVENT_S_SAY:
 //					if (s = me->FindNearestCreature(960022, 200.0f))
-//						s->MonsterSay("我要扒了那家伙的皮用来装饰我的马鞍！", LANG_UNIVERSAL, NULL);
+//						s->Say("我要扒了那家伙的皮用来装饰我的马鞍！", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_R_SAY1, 5000);
 //					break;
 //				case EVENT_R_SAY1:
 //					if (r = me->FindNearestCreature(960023, 200.0f))
-//						r->MonsterSay("都别说了，看看眼前的是谁，梦魇暴君—伊兰尼库斯，为什么我们会在这里，你又是来干什么的。", LANG_UNIVERSAL, NULL);
+//						r->Say("都别说了，看看眼前的是谁，梦魇暴君—伊兰尼库斯，为什么我们会在这里，你又是来干什么的。", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_Y_SAY3, 5000);
 //					break;
 //				case EVENT_Y_SAY3:
 //					if (y = me->FindNearestCreature(960016, 200.0f))
-//						y->MonsterSay("真是愚蠢透顶，你们只不过是那四个废物残存的意识罢了，是时候了结这件事了。", LANG_UNIVERSAL, NULL);
+//						y->Say("真是愚蠢透顶，你们只不过是那四个废物残存的意识罢了，是时候了结这件事了。", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_R_SAY2, 5000);
 //					break;
 //				case EVENT_R_SAY2:
 //					if (r = me->FindNearestCreature(960023, 200.0f))
-//						r->MonsterSay("你已经背叛了天灾军团么？巫妖王不会放过你的。", LANG_UNIVERSAL, NULL);
+//						r->Say("你已经背叛了天灾军团么？巫妖王不会放过你的。", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_Y_SAY4, 5000);
 //					break;
 //				case EVENT_Y_SAY4:
 //					if (y = me->FindNearestCreature(960016, 200.0f))
-//						y->MonsterSay("你们只不过是当初我赐予你们主子的一丝梦魇之力罢了，这根本算不上背叛，我只不过是把力量收回而已。天启四骑士的力量会进一步被削弱。", LANG_UNIVERSAL, NULL);
+//						y->Say("你们只不过是当初我赐予你们主子的一丝梦魇之力罢了，这根本算不上背叛，我只不过是把力量收回而已。天启四骑士的力量会进一步被削弱。", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(EVENT_KILL_4_DK, 5000);
 //					break;
 //				case EVENT_KILL_4_DK:

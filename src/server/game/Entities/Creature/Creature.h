@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -51,6 +51,40 @@ class CreatureGroup;
 class Creature : public Unit, public GridObject<Creature>, public MovableMapObject
 {
 public:
+    //I
+    //creature mod
+    uint8		C_Level;										//等级
+    uint32		C_Health;										//生命值
+    float		C_HpMod;										//生命值倍率
+    int32		C_Armor;										//护甲-1 creature_template表确定
+    float		C_MeleeDmg;										//物理伤害
+    float		C_SpellDmgMod;									//法术伤害倍率
+    float		C_HealMod;										//治疗倍率
+    float		C_ReduceDmgPct;									//减伤百分比
+    int32		C_Resistance;									//抗性为-1 creature_template表确定
+    //uint32		C_LootId[MAX_CUSTOM_LOOT_COUNT];				//掉落 creaute_loot_template  //tmp
+    uint32		C_KillRewId;									//击杀者获得奖励
+    float		C_KillRewChance;								//击杀者获得奖励几率
+    uint32		C_KillGroupRewId;								//击杀者队伍成员获得奖励
+    float		C_KillGroupRewChance;							//击杀者队伍成员获得奖励几率
+    bool		C_KillAnnounce;									//击杀时广播内容
+    uint32		C_AttackTime;									//攻击间隔
+    float		C_ResetDistance;
+    int32		C_AddTalismanValue;
+    int32		C_AddAddRankValue;
+    std::vector<uint32> C_AuraVec;								//光环
+    uint32		C_KillRewGameObject;
+    bool		C_SrcLoot;										//是否包含原loot
+
+    uint32		RandSpellGroupId;
+    int32		RandSpellTimer;
+
+    //stage
+    uint32 stage;
+    bool summonsClear;
+    //anticheat
+    uint32 reset_timer;
+    //I
     explicit Creature(bool isWorldObject = false);
     ~Creature() override;
 
