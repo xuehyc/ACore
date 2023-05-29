@@ -1,70 +1,70 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "../Switch/Switch.h"
-//#include "stage.h"
-//
-//std::vector<StageTemplate> StageVec;
-//
-//void Stage::Load()
-//{
-//	StageVec.clear();
-//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//		//		0			1		2				3
-//		"SELECT 关卡ID,召唤生物组ID,通关召唤物体ID,菜单文本 FROM _副本_闯关模式" :
-//		//			0		1				2		3
-//		"SELECT stageRank,summonsGroupId,rewGobId,description FROM _stage");
-//
-//	if (!result) return;
-//	do
-//	{
-//		Field* fields = result->Fetch();
-//		StageTemplate Temp;
-//		Temp.stageRank = fields[0].Get<uint32>();
-//		Temp.summonsGroupId = fields[1].Get<uint32>();
-//		Temp.rewardGameobjectId = fields[2].Get<uint32>();
-//		Temp.description = fields[3].Get<std::string>();
-//		StageVec.push_back(Temp);
-//	} while (result->NextRow());
-//}
-//
-//std::string Stage::GetDescription(uint32 stage)
-//{
-//	uint32 len = StageVec.size();
-//
-//	for (size_t i = 0; i < len; i++)
-//	{
-//		if (stage == StageVec[i].stageRank)
-//			return StageVec[i].description;
-//	}
-//
-//	return "";
-//}
-//
-//uint32 Stage::GetSumId(uint32 stage)
-//{
-//	uint32 len = StageVec.size();
-//
-//	for (size_t i = 0; i < len; i++)
-//	{
-//		if (stage == StageVec[i].stageRank)
-//			return StageVec[i].summonsGroupId;
-//	}
-//
-//	return 1;
-//}
-//
-//uint32 Stage::GetGobId(uint32 stage)
-//{
-//	uint32 len = StageVec.size();
-//
-//	for (size_t i = 0; i < len; i++)
-//	{
-//		if (stage == StageVec[i].stageRank)
-//			return StageVec[i].rewardGameobjectId;
-//	}
-//
-//	return 0;
-//}
-//
+﻿#pragma execution_character_set("utf-8")
+#include "../Switch/Switch.h"
+#include "stage.h"
+
+std::vector<StageTemplate> StageVec;
+
+void Stage::Load()
+{
+	StageVec.clear();
+	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+		//		0			1		2				3
+		"SELECT 关卡ID,召唤生物组ID,通关召唤物体ID,菜单文本 FROM _副本_闯关模式" :
+		//			0		1				2		3
+		"SELECT stageRank,summonsGroupId,rewGobId,description FROM _stage");
+
+	if (!result) return;
+	do
+	{
+		Field* fields = result->Fetch();
+		StageTemplate Temp;
+		Temp.stageRank = fields[0].Get<uint32>();
+		Temp.summonsGroupId = fields[1].Get<uint32>();
+		Temp.rewardGameobjectId = fields[2].Get<uint32>();
+		Temp.description = fields[3].Get<std::string>();
+		StageVec.push_back(Temp);
+	} while (result->NextRow());
+}
+
+std::string Stage::GetDescription(uint32 stage)
+{
+	uint32 len = StageVec.size();
+
+	for (size_t i = 0; i < len; i++)
+	{
+		if (stage == StageVec[i].stageRank)
+			return StageVec[i].description;
+	}
+
+	return "";
+}
+
+uint32 Stage::GetSumId(uint32 stage)
+{
+	uint32 len = StageVec.size();
+
+	for (size_t i = 0; i < len; i++)
+	{
+		if (stage == StageVec[i].stageRank)
+			return StageVec[i].summonsGroupId;
+	}
+
+	return 1;
+}
+
+uint32 Stage::GetGobId(uint32 stage)
+{
+	uint32 len = StageVec.size();
+
+	for (size_t i = 0; i < len; i++)
+	{
+		if (stage == StageVec[i].stageRank)
+			return StageVec[i].rewardGameobjectId;
+	}
+
+	return 0;
+}
+
 //class StageNPC : public CreatureScript
 //{
 //public:
