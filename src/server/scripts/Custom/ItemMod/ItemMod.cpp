@@ -2124,7 +2124,7 @@
 //
 //		sGCAddon->SendPacketTo(player, "GC_S_ITEMDATA", oss.str());
 //
-//		sLog->outString(oss.str().c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, oss.str().c_str());
 //	}
 //}
 //

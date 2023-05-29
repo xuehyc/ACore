@@ -109,7 +109,7 @@
 //	if (!pFriend || !recruiter) 
 //		return false;
 //
-//	CharacterDatabase.DirectPExecute("INSERT INTO character_recruit(recruiter,friend,recruiterGUID,friendGUID,friendPlayedTime) VALUES ('%s','%s','%u','%u','%u')", recruiter->GetName().c_str(), pFriend->GetName().c_str(), recruiterGUIDLow, friendGUIDLow, pFriend->GetTotalPlayedTime());
+//	CharacterDatabase.Execute("INSERT INTO character_recruit(recruiter,friend,recruiterGUID,friendGUID,friendPlayedTime) VALUES ('%s','%s','%u','%u','%u')", recruiter->GetName().c_str(), pFriend->GetName().c_str(), recruiterGUIDLow, friendGUIDLow, pFriend->GetTotalPlayedTime());
 //
 //	return true;
 //}
@@ -231,7 +231,7 @@
 //
 //void Recruit::DismissRecruit(uint32 recruiterGUIDLow, uint32 friendGUIDLow)
 //{
-//	CharacterDatabase.DirectPExecute("DELETE FROM character_recruit WHERE recruiterGUID = %u AND friendGUID = %u", recruiterGUIDLow, friendGUIDLow);
+//	CharacterDatabase.Execute("DELETE FROM character_recruit WHERE recruiterGUID = %u AND friendGUID = %u", recruiterGUIDLow, friendGUIDLow);
 //
 //	for (std::vector<RecruitTemplate>::iterator itr = RecruitInfo.begin(); itr != RecruitInfo.end();)
 //	{
@@ -552,16 +552,16 @@
 //			switch (flag)
 //			{
 //			case 1:
-//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded1 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
+//				CharacterDatabase.Execute("UPDATE character_recruit SET timeRewarded1 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
 //				RecruitInfo[i].timeRewarded1 = true;
 //				break;
 //			case 2:
-//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded2 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
+//				CharacterDatabase.Execute("UPDATE character_recruit SET timeRewarded2 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
 //				RecruitInfo[i].timeRewarded2 = true;
 //				break;
 //			case 3:
 //
-//				CharacterDatabase.DirectPExecute("UPDATE character_recruit SET timeRewarded3 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
+//				CharacterDatabase.Execute("UPDATE character_recruit SET timeRewarded3 = %d WHERE friendGUID = %d", 1, player->GetGUID().GetCounter());
 //				RecruitInfo[i].timeRewarded3 = true;
 //				break;
 //			default:

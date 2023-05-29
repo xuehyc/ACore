@@ -63,7 +63,7 @@
 //	player->MaxSpiritPower = maxValue;
 //
 //	SendPacket(player);
-//	CharacterDatabase.DirectPExecute("UPDATE characters SET MaxSpiritPower = %u WHERE guid = %u", maxValue, player->GetGUID().GetCounter());
+//	CharacterDatabase.Execute("UPDATE characters SET MaxSpiritPower = %u WHERE guid = %u", maxValue, player->GetGUID().GetCounter());
 //	ChatHandler(player->GetSession()).PSendSysMessage("最大[灵力]设置为%u", maxValue);
 //}
 //
@@ -80,7 +80,7 @@
 //
 //void SpiritPower::SaveToDB(Player* player)
 //{
-//	CharacterDatabase.DirectPExecute("UPDATE characters SET SpiritPower = %u WHERE guid = %u", player->SpiritPower, player->GetGUID().GetCounter());
+//	CharacterDatabase.Execute("UPDATE characters SET SpiritPower = %u WHERE guid = %u", player->SpiritPower, player->GetGUID().GetCounter());
 //}
 //
 //class SpiritPowerPlayerScript : PlayerScript

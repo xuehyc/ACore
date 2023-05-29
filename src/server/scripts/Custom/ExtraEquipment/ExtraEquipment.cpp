@@ -517,9 +517,9 @@
 //	QueryResult result = CharacterDatabase.Query("SELECT * FROM characters_extra_equipments WHERE guid = %d AND equip_slot = %d", guid, slot);
 //
 //	if (result)
-//		CharacterDatabase.PExecute("UPDATE characters_extra_equipments SET enchantments = '%s',itemEntry = %d WHERE guid = %d AND equip_slot = %d", ssEnchants.str().c_str(), itemEntry, guid, slot);
+//		CharacterDatabase.Execute("UPDATE characters_extra_equipments SET enchantments = '%s',itemEntry = %d WHERE guid = %d AND equip_slot = %d", ssEnchants.str().c_str(), itemEntry, guid, slot);
 //	else
-//		CharacterDatabase.PExecute("INSERT INTO characters_extra_equipments(guid,itemEntry,equip_slot,enchantments) values(%d, %d, %d,'%s')", guid, itemEntry, slot, ssEnchants.str().c_str());
+//		CharacterDatabase.Execute("INSERT INTO characters_extra_equipments(guid,itemEntry,equip_slot,enchantments) values(%d, %d, %d,'%s')", guid, itemEntry, slot, ssEnchants.str().c_str());
 //
 //	//除去双甲效果
 //	Apply(player, false);

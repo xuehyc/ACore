@@ -161,7 +161,7 @@
 //                    return true;
 //                }
 //                // action = presetID
-//                CharacterDatabase.PExecute("DELETE FROM `custom_transmogrification_sets` WHERE Owner = %u AND PresetID = %u",  player->GetGUID().GetCounter(), action);
+//                CharacterDatabase.Execute("DELETE FROM `custom_transmogrification_sets` WHERE Owner = %u AND PresetID = %u",  player->GetGUID().GetCounter(), action);
 //                sT->presetById[player->GetGUID()][action].clear();
 //                sT->presetById[player->GetGUID()].erase(action);
 //                sT->presetByName[player->GetGUID()].erase(action);
@@ -292,7 +292,7 @@
 //                    sT->presetById[player->GetGUID()][presetID][it->first] = it->second;
 //                }
 //                sT->presetByName[player->GetGUID()][presetID] = name; // Make sure code doesnt mess up SQL!
-//                CharacterDatabase.PExecute("REPLACE INTO `custom_transmogrification_sets` (`Owner`, `PresetID`, `SetName`, `SetData`) VALUES (%u, %u, \"%s\", \"%s\")",  player->GetGUID().GetCounter(), uint32(presetID), name.c_str(), ss.str().c_str());
+//                CharacterDatabase.Execute("REPLACE INTO `custom_transmogrification_sets` (`Owner`, `PresetID`, `SetName`, `SetData`) VALUES (%u, %u, \"%s\", \"%s\")",  player->GetGUID().GetCounter(), uint32(presetID), name.c_str(), ss.str().c_str());
 //                if (cost)
 //                    player->ModifyMoney(cost);
 //                break;
@@ -387,7 +387,7 @@
 //                else
 //                {
 //                    //TC_LOG_ERROR->outError(LOG_FILTER_SQL, "Item entry (Entry: %u, itemGUID: %u, playerGUID: %u) does not exist, ignoring.", fakeEntry, GUID_LOPART(itemGUID), player->GetGUID().GetCounter());
-//                    // CharacterDatabase.PExecute("DELETE FROM custom_transmogrification WHERE FakeEntry = %u", fakeEntry);
+//                    // CharacterDatabase.Execute("DELETE FROM custom_transmogrification WHERE FakeEntry = %u", fakeEntry);
 //                }
 //            } while (result->NextRow());
 //

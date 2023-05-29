@@ -23,7 +23,7 @@
 //		Temp.countDown		= fields[1].GetUInt32()  * MINUTE * IN_MILLISECONDS;
 //		Temp.rewId			= fields[2].GetUInt32();
 //		Temp.killedEntry	= fields[3].GetUInt32();
-//		Temp.challengeLv	= fields[4].GetInt32();
+//		Temp.challengeLv	= fields[4].Get<int32>();
 //		Temp.worldStat		= fields[5].GetUInt32();
 //		Temp.gobEntry		= fields[6].GetUInt32();
 //		Temp.diff			= fields[7].GetUInt8();

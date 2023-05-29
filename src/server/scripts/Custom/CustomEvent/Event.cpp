@@ -590,7 +590,7 @@
 //		if (_EventType < C_ET_TELE)
 //			return;
 //
-//		_ZoneId = fields[3].GetInt32();
+//		_ZoneId = fields[3].Get<int32>();
 //
 //		if (_ZoneId < 0)
 //			_Map = sMapMgr->FindMap(abs(_ZoneId), 0);
@@ -785,13 +785,13 @@
 //			Field* fields = result->Fetch();
 //			EventWorldStateTemplate Temp;
 //			Temp.ID				= fields[0].GetUInt32();
-//			Temp.InitValue		= fields[1].GetInt32();
+//			Temp.InitValue		= fields[1].Get<int32>();
 //			for (size_t i = 0; i < WORLDSTATE_ENTRY_MAX; i++)
 //			{
-//				Temp.Entry[i]	= fields[2 + i * 2].GetInt32();
-//				Temp.Step[i]	= fields[3 + i * 2].GetInt32();
+//				Temp.Entry[i]	= fields[2 + i * 2].Get<int32>();
+//				Temp.Step[i]	= fields[3 + i * 2].Get<int32>();
 //			}
-//			Temp.NoticeValue	= fields[8].GetInt32();
+//			Temp.NoticeValue	= fields[8].Get<int32>();
 //			Temp.Notice			= fields[9].GetString();
 //			_WorldStateVec.push_back(Temp);
 //		} while (result->NextRow());
@@ -810,8 +810,8 @@
 //			Temp.ID				= fields[0].GetUInt32();
 //			Temp.Faction		= fields[1].GetUInt32();
 //			Temp.Kill			= fields[2].GetBool();
-//			Temp.Step			= fields[3].GetInt32();
-//			Temp.NoticeValue	= fields[4].GetInt32();
+//			Temp.Step			= fields[3].Get<int32>();
+//			Temp.NoticeValue	= fields[4].Get<int32>();
 //			Temp.Notice			= fields[5].GetString();
 //			_WorldStateFactionVec.push_back(Temp);
 //		} while (result->NextRow());
@@ -839,7 +839,7 @@
 //
 //			for (size_t i = 0; i < MAX_SPAWNNOTICE_COUNT; i++)
 //			{
-//				Temp.NoticeTime[i] = fields[5 + i * 2].GetInt32();
+//				Temp.NoticeTime[i] = fields[5 + i * 2].Get<int32>();
 //				Temp.SpawnNotice[i] = fields[6 + i * 2].GetString();
 //			}
 //			

@@ -215,7 +215,7 @@
 //	//清空彩票容器
 //	LotteryInfo.clear();
 //	//清空数据表
-//	CharacterDatabase.DirectPExecute("truncate table character_lottery");
+//	CharacterDatabase.Execute("truncate table character_lottery");
 //}
 //
 //bool Lottery::PlayerBuyLottery(Player* player, LotteryType type,uint32 lotteryAmount)
@@ -246,7 +246,7 @@
 //
 //	if (PlayerCanBuy(player, lotteryAmount))
 //	{
-//		CharacterDatabase.DirectPExecute("INSERT INTO character_lottery VALUES('%u', '%u', '%u')", player->GetGUID().GetCounter(), uint32(type), lotteryAmount);
+//		CharacterDatabase.Execute("INSERT INTO character_lottery VALUES('%u', '%u', '%u')", player->GetGUID().GetCounter(), uint32(type), lotteryAmount);
 //		uint32	accountId = sObjectMgr->GetPlayerAccountIdByGUID(MAKE_NEW_GUID(player->GetGUID().GetCounter(), 0, HIGHGUID_PLAYER));
 //		sCF->UpdateTokenAmount(player, lotteryAmount, false, "购买彩票");
 //		LotteryTemplate LotteryTemp;
@@ -345,7 +345,7 @@
 //			else
 //			{
 //				uint32	accountId = sObjectMgr->GetPlayerAccountIdByGUID(MAKE_NEW_GUID(LotteryInfo[i].guidLow, 0, HIGHGUID_PLAYER));
-//				LoginDatabase.DirectPExecute("UPDATE account SET tokenAmount = tokenAmount + '%u' WHERE id = '%u'", lotteryTokenAmount, accountId);
+//				LoginDatabase.Execute("UPDATE account SET tokenAmount = tokenAmount + '%u' WHERE id = '%u'", lotteryTokenAmount, accountId);
 //			}
 //		}
 //}

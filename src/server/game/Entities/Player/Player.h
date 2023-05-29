@@ -1066,6 +1066,16 @@ public:
     explicit Player(WorldSession* session);
     ~Player() override;
 
+    uint32 maxPrimaryTradeSkills;//I
+
+    //灵力
+    int32 SpiritPower;
+    uint32 MaxSpiritPower;
+    uint32 SpiritPowerTimer;
+    uint32 SpiritPowerInterval;
+
+
+
     //gs
     uint32 GS;
     uint32 ChallengeLv;
@@ -1130,7 +1140,7 @@ public:
     uint32 hornorTimer;
     bool hasUpdateHornor;
 
-    #define MAX_STAT_POINTS_TYPE 13
+
 
     #define MAX_AC_POINT_COUNT 10
 
@@ -1140,6 +1150,30 @@ public:
 
     //自定义阵营 faction
     #define EventFactionId uint32
+
+
+
+    
+
+    enum StatPointsTypes
+    {
+        SPT_TOTLAL,
+        SPT_STMAMINA,
+        SPT_AGILITY,
+        SPT_STRENGTH,
+        SPT_INTELLECT,
+        SPT_SPIRIT,
+        SPT_HIT,
+        SPT_CRIT,
+        SPT_AP,
+        SPT_APE,
+        SPT_SP,
+        SPT_SPE,
+        SPT_HASTE,
+    };
+    #define MAX_STAT_POINTS_TYPE 13
+    //stat points
+    uint32 stat_points[MAX_STAT_POINTS_TYPE];   //I
 
     struct EventDataTemplate
     {

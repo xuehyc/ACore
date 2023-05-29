@@ -114,11 +114,11 @@ void Reward::LoadDamCreToSend()
 			nCount++;
 
 		} while (itemup->NextRow());
-		//sLog->outString(">> 读取自定义功能数据表 _生物_伤害奖励,共%u条数据读取加载...", nCount);//org
+		//sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表 _生物_伤害奖励,共%u条数据读取加载...", nCount);//org
         LOG_INFO("server",">> 读取自定义功能数据表 _生物_伤害奖励,共%u条数据读取加载..."+nCount);
 	}
 	else
-		//sLog->outString(">> 读取自定义功能数据表 _生物_伤害奖励,共0条数据读取加载...");
+		//sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表 _生物_伤害奖励,共0条数据读取加载...");
         LOG_INFO("server", ">> 读取自定义功能数据表 _生物_伤害奖励,共0条数据读取加载...");
 
 }
@@ -352,21 +352,21 @@ void Reward::LoadDamCreToSend()
 //			if (receiver)
 //				sCF->UpdateTokenAmount(receiver, tokenCount, true, "招募奖励");
 //			else
-//				LoginDatabase.DirectPExecute("UPDATE account SET tokenAmount = tokenAmount +'%u' WHERE id = '%u'", tokenCount, receiverData->accountId);
+//				LoginDatabase.Execute("UPDATE account SET tokenAmount = tokenAmount +'%u' WHERE id = '%u'", tokenCount, receiverData->accountId);
 //		}
 //		if (arenaPoints > 0)
 //		{
 //			if (receiver)
 //				receiver->ModifyArenaPoints(arenaPoints);
 //			else
-//				CharacterDatabase.DirectPExecute("UPDATE characters SET arenaPoints = arenaPoints +'%u' WHERE guid = '%u'", arenaPoints, receiverGuidLow);
+//				CharacterDatabase.Execute("UPDATE characters SET arenaPoints = arenaPoints +'%u' WHERE guid = '%u'", arenaPoints, receiverGuidLow);
 //		}
 //		if (hrPoints > 0)
 //		{
 //			if (receiver)
 //				receiver->ModifyHonorPoints(hrPoints);
 //			else
-//				CharacterDatabase.DirectPExecute("UPDATE characters SET totalHonorPoints = totalHonorPoints +'%u' WHERE guid = '%u'", hrPoints, receiverGuidLow);
+//				CharacterDatabase.Execute("UPDATE characters SET totalHonorPoints = totalHonorPoints +'%u' WHERE guid = '%u'", hrPoints, receiverGuidLow);
 //		}
 //
 //		if (statPoints > 0)

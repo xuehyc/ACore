@@ -39,7 +39,7 @@
 //	QueryResult resultExtraTPs;
 //
 //	if (sSwitch->GetOnOff(ST_TP_ACCOUNT_BIND))
-//		resultExtraTPs = LoginDatabase.PQuery("SELECT extraTalentPoints FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
+//		resultExtraTPs = LoginDatabase.Query("SELECT extraTalentPoints FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
 //	else 
 //		resultExtraTPs = CharacterDatabase.Query("SELECT extraTalentPoints FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
 //
@@ -54,7 +54,7 @@
 //
 //uint32 CommonFunc::GetTokenAmount(Player* player)
 //{
-//	QueryResult result = LoginDatabase.PQuery("SELECT tokenAmount FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
+//	QueryResult result = LoginDatabase.Query("SELECT tokenAmount FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
 //	if (!result) return 0;
 //	else
 //	{
@@ -65,7 +65,7 @@
 //
 //uint32 CommonFunc::GetTotalTokenAmount(Player* player)
 //{
-//	QueryResult result = LoginDatabase.PQuery("SELECT totalTokenAmount FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
+//	QueryResult result = LoginDatabase.Query("SELECT totalTokenAmount FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
 //	if (!result) return 0;
 //	else
 //	{
@@ -77,9 +77,9 @@
 //void CommonFunc::UpdateTokenAmount(Player* player, uint32 amount, bool ins, std::string action)
 //{
 //	if (ins)
-//		LoginDatabase.DirectPExecute("UPDATE account SET tokenAmount = tokenAmount + '%u' WHERE id = '%u'", amount, player->GetSession()->GetAccountId());
+//		LoginDatabase.Execute("UPDATE account SET tokenAmount = tokenAmount + '%u' WHERE id = '%u'", amount, player->GetSession()->GetAccountId());
 //	else
-//		LoginDatabase.DirectPExecute("UPDATE account SET tokenAmount = tokenAmount - '%u' WHERE id = '%u'", amount, player->GetSession()->GetAccountId());
+//		LoginDatabase.Execute("UPDATE account SET tokenAmount = tokenAmount - '%u' WHERE id = '%u'", amount, player->GetSession()->GetAccountId());
 //
 //	sGCAddon->SendTokenUpdateData(player, amount, ins);
 //
@@ -102,7 +102,7 @@
 //void CommonFunc::SetOnlineRewardedCount(Player* player, uint32 count)
 //{
 //	player->onlineRewardedCount = count;
-//	CharacterDatabase.DirectPExecute("UPDATE characters SET onlineRewardedCount = '%u' WHERE guid = '%u'", count, player->GetGUID().GetCounter());
+//	CharacterDatabase.Execute("UPDATE characters SET onlineRewardedCount = '%u' WHERE guid = '%u'", count, player->GetGUID().GetCounter());
 //}
 //
 ////弹窗
@@ -819,7 +819,7 @@
 //		}
 //	}
 //	else
-//		LoginDatabase.DirectPExecute("UPDATE account SET hrLevel = '%u' WHERE id = '%u'", playerHrTitleLevel, player->GetSession()->GetAccountId());
+//		LoginDatabase.Execute("UPDATE account SET hrLevel = '%u' WHERE id = '%u'", playerHrTitleLevel, player->GetSession()->GetAccountId());
 //}
 //
 //uint32 CommonFunc::getPlayerHrTitleLevel(Player* player)
@@ -843,7 +843,7 @@
 //
 //uint32 CommonFunc::getAccountHrTitleLevel(Player* player)
 //{
-//	QueryResult result = LoginDatabase.PQuery("SELECT hrLevel FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
+//	QueryResult result = LoginDatabase.Query("SELECT hrLevel FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
 //	if (!result) return 0;
 //	else
 //	{
@@ -1450,7 +1450,7 @@
 //			//{
 //			//	if (session)
 //			//	{
-//			//		sLog->outString("IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description, size);
+//			//		sLog->outMessage("server",LOG_LEVEL_INFO, "IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description, size);
 //			//		sLog->outChar("IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description, size);
 //			//	}
 //			//	recvData.rfinish();
@@ -1528,7 +1528,7 @@
 //			if (!IsMark && (x < 0xE4B880 || x > 0xE9BEA5))
 //			{
 //				if (session)
-//                    sLog->outString("Possiable String Hack --> IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description.c_str(), size);
+//                    sLog->outMessage("server",LOG_LEVEL_INFO, "Possiable String Hack --> IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description.c_str(), size);
 //				recvData.rfinish();
 //				return false;
 //			}
@@ -1536,7 +1536,7 @@
 //		break;
 //		default:
 //			if (session)
-//                sLog->outString("Possiable String Hack --> IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description.c_str(), size);
+//                sLog->outMessage("server",LOG_LEVEL_INFO, "Possiable String Hack --> IP:%s AccountId:%u CharGUID:%u Opcode:%s SizeType:%u", session->GetRemoteAddress().c_str(), session->GetAccountId(), session->GetGUID().GetCounter(), description.c_str(), size);
 //			recvData.rfinish();
 //			return false;
 //		}

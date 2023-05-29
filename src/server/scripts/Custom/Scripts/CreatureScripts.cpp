@@ -80,11 +80,11 @@
 //
 //			//Temp.actionType		= CreatureActionTypes(fields[5].GetUInt32());
 //			Temp.actionParam1 = fields[6].GetString();
-//			Temp.actionParam2 = fields[7].GetInt32();
+//			Temp.actionParam2 = fields[7].Get<int32>();
 //			Temp.actionFlags = 0;//fields[8].GetUInt32();
 //
 //			Temp.delayTime = fields[8].GetUInt32() * 1000;
-//			Temp.actionParam3 = fields[9].GetInt32();
+//			Temp.actionParam3 = fields[9].Get<int32>();
 //			CreatureScriptVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}

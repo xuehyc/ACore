@@ -551,6 +551,13 @@ public:
     void UpdateGlobalPlayerArenaTeam(uint32 guid, uint8 slot, uint32 arenaTeamId);
     void UpdateGlobalNameData(uint32 guidLow, std::string const& oldName, std::string const& newName);
     void DeleteGlobalPlayerData(uint32 guid, std::string const& name);
+
+    //I
+    time_t m_startTime;
+    time_t m_gameTime;
+    /// Uptime (in secs)
+    uint32 GetUptime() const { return uint32(m_gameTime - m_startTime); }
+    void SendScreenMessage(const char* text, Player* player = NULL, bool GM = false, TeamId teamId = TEAM_NEUTRAL);
     //I
 
     virtual ~IWorld() = default;

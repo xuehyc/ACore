@@ -44,8 +44,8 @@
 //		Field* fields = result->Fetch();
 //		uint32 reqId = fields[0].GetUInt32();
 //		ReqTemplate ReqTemp;
-//		ReqTemp.meetVipLevel			= fields[1].GetInt32();
-//		ReqTemp.meetHRRank				= fields[2].GetInt32();
+//		ReqTemp.meetVipLevel			= fields[1].Get<int32>();
+//		ReqTemp.meetHRRank				= fields[2].Get<int32>();
 //		ReqTemp.meetAchievementPoints	= fields[3].GetUInt32();
 //		ReqTemp.desGoldCount			= fields[4].GetUInt32() * GOLD;
 //		ReqTemp.desTokenCount			= fields[5].GetUInt32();
@@ -60,9 +60,9 @@
 //
 //		ReqTemp.desXp					= fields[28].GetUInt32();
 //		ReqTemp.inInstance				= fields[29].GetBool();
-//		ReqTemp.meetLevel				= fields[30].GetInt32();
-//		ReqTemp.meetRankLevel			= fields[31].GetInt32();
-//		ReqTemp.meetFaction				= fields[32].GetInt32();
+//		ReqTemp.meetLevel				= fields[30].Get<int32>();
+//		ReqTemp.meetRankLevel			= fields[31].Get<int32>();
+//		ReqTemp.meetFaction				= fields[32].Get<int32>();
 //
 //		Tokenizer commandData(fields[33].GetString(), '#');
 //		for (Tokenizer::const_iterator itr = commandData.begin(); itr != commandData.end(); ++itr)
@@ -88,7 +88,7 @@
 //		}
 //
 //		ReqTemp.desSpiritPower			= fields[34].GetUInt32();
-//		ReqTemp.reincarnation			= fields[35].GetInt32();
+//		ReqTemp.reincarnation			= fields[35].Get<int32>();
 //
 //		Tokenizer mapData(fields[36].GetString(), '#');
 //

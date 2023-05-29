@@ -15,7 +15,7 @@
 //	{
 //		Field* fields = result->Fetch();
 //		GobScriptTemplate Temp;
-//		Temp.ID = fields[0].GetInt32();
+//		Temp.ID = fields[0].Get<int32>();
 //
 //		const char* str2 = fields[1].GetCString();
 //
@@ -33,7 +33,7 @@
 //			Temp.gobActionType = gob_ACTION_TYPE_NONE;
 //
 //		Temp.actionParam1 = fields[2].GetString();
-//		Temp.actionParam2 = fields[3].GetInt32();
+//		Temp.actionParam2 = fields[3].Get<int32>();
 //
 //		GobScriptVec.push_back(Temp);
 //	} while (result->NextRow());

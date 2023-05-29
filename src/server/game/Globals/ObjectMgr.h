@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -749,6 +749,8 @@ private:
     ~ObjectMgr();
 
 public:
+    uint32 GenerateLowGuid(HighGuid guidhigh);//I
+
     static ObjectMgr* instance();
 
     typedef std::unordered_map<uint32, Item*> ItemMap;

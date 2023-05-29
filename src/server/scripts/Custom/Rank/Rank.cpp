@@ -160,7 +160,7 @@
 //{
 //	if (AccountBind())
 //	{
-//		if (QueryResult result = LoginDatabase.PQuery("SELECT level, value FROM account_rank WHERE account = %u", player->GetSession()->GetAccountId()))
+//		if (QueryResult result = LoginDatabase.Query("SELECT level, value FROM account_rank WHERE account = %u", player->GetSession()->GetAccountId()))
 //		{
 //			Field* fields = result->Fetch();
 //			rankLevel = fields[0].GetUInt32();

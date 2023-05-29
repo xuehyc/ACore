@@ -117,7 +117,7 @@
 //	}
 //
 //	player->faction = faction;	
-//	CharacterDatabase.PExecute("UPDATE characters SET faction = %u WHERE guid = %u", faction, player->GetGUID().GetCounter());
+//	CharacterDatabase.Execute("UPDATE characters SET faction = %u WHERE guid = %u", faction, player->GetGUID().GetCounter());
 //	sCharNameMod->UpdateSuffix(player, GetSuffix(faction));
 //}
 //

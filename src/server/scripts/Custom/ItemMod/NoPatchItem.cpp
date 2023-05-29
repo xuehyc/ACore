@@ -1651,20 +1651,20 @@
 //	//名字
 //	insert++;
 //
-//	sLog->outString("-->%d->>>>名字", insert);
+//	sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>名字", insert);
 //
 //	//英雄模式
 //	if ((temp.Flags & ITEM_FLAG_HEROIC_TOOLTIP) != 0)
 //	{
 //		insert++;
-//		sLog->outString("-->%d->>>>英雄模式", insert);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>英雄模式", insert);
 //	}
 //
 //	//绑定 账号绑定 装备绑定...
 //	if (temp.Bonding != NO_BIND || (temp.Flags & ITEM_FLAG_IS_BOUND_TO_ACCOUNT) != 0 || temp.Quality == 7)
 //	{
 //		insert++;
-//		sLog->outString("-->%d->>>>绑定", insert);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>绑定", insert);
 //	}
 //
 //	//魔法制作的物品
@@ -1675,7 +1675,7 @@
 //	if (temp.MaxCount != 0 || (temp.Flags & ITEM_FLAG_UNIQUE_EQUIPPABLE) != 0)
 //	{
 //		insert++;
-//		sLog->outString("-->%d->>>>最大数量", insert);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>最大数量", insert);
 //	}
 //
 //	//抗性
@@ -1696,26 +1696,26 @@
 //	if (temp.Armor > 0)
 //	{
 //		insert++;
-//		sLog->outString("-->%d->>>>护甲", insert);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>护甲", insert);
 //	}
 //
 //	//双手 护甲...
 //	if (temp.InventoryType != 0 && (temp.Class == ITEM_CLASS_WEAPON || temp.Class == ITEM_CLASS_ARMOR))
 //	{
 //		insert++;
-//		sLog->outString("-->%d->>>>位置", insert);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>位置", insert);
 //	}
 //
 //	//伤害
 //	if (temp.Damage[0].DamageMin > 0 || temp.Damage[0].DamageMax > 0)
 //	{
 //		insert++;
-//		sLog->outString("-->%d->>>>伤害", insert);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>伤害", insert);
 //	}
 //	if (temp.Damage[1].DamageMin > 0 || temp.Damage[1].DamageMax > 0)
 //	{
 //		insert++;
-//		sLog->outString("-->%d->>>>伤害", insert);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>伤害", insert);
 //	}
 //
 //
@@ -1723,7 +1723,7 @@
 //	if (temp.Damage[0].DamageMin > 0 && temp.Damage[0].DamageMax > 0 && temp.Delay > 0)
 //	{
 //		insert++;
-//		sLog->outString("-->%d->>>>秒伤", insert);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>秒伤", insert);
 //	}
 //
 //	//属性
@@ -1738,7 +1738,7 @@
 //			) && temp.ItemStat[i].ItemStatValue != 0)
 //		{
 //			insert++;
-//			sLog->outString("-->%d->>>>ItemStatType:%d", insert, temp.ItemStat[i].ItemStatType);
+//			sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>ItemStatType:%d", insert, temp.ItemStat[i].ItemStatType);
 //		}
 //
 //
@@ -1747,7 +1747,7 @@
 //		if (temp.Socket[i].Color != 0)
 //		{
 //			insert++;
-//			sLog->outString("-->%d->>>>宝石", insert);
+//			sLog->outMessage("server",LOG_LEVEL_INFO, "-->%d->>>>宝石", insert);
 //		}
 //
 //	//使用区域
@@ -1783,12 +1783,12 @@
 //	//sprintf(buffer, "%02u", insert);
 //	//oss << buffer;
 //
-//	//sLog->outString("SellRewId:%u", SellRewId);
-//	//sLog->outString("ReqId:%u", ReqId);
-//	//sLog->outString("insert:%u", insert);
+//	//sLog->outMessage("server",LOG_LEVEL_INFO, "SellRewId:%u", SellRewId);
+//	//sLog->outMessage("server",LOG_LEVEL_INFO, "ReqId:%u", ReqId);
+//	//sLog->outMessage("server",LOG_LEVEL_INFO, "insert:%u", insert);
 //	uint32 flag = atoi(oss.str().c_str());
 //
-//	//sLog->outString("flag:%u", flag);
+//	//sLog->outMessage("server",LOG_LEVEL_INFO, "flag:%u", flag);
 //
 //	//ChatHandler(item->GetOwner()->GetSession()).PSendSysMessage("PROPERTIES_ID %u", flag);
 //

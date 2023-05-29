@@ -2053,7 +2053,7 @@
 //				if (QueryResult result = WorldDatabase.PQuery("SELECT max(posId) FROM _position"))
 //					posId = result->Fetch()[0].GetUInt32() + 1;
 //
-//				WorldDatabase.DirectPExecute("INSERT INTO _position(comment,posId,map,x,y,z,o) VALUES ('%s','%u','%u','%f','%f','%f','%f')", oss.str().c_str(), posId,map, x, y, z, o);
+//				WorldDatabase.Execute("INSERT INTO _position(comment,posId,map,x,y,z,o) VALUES ('%s','%u','%u','%f','%f','%f','%f')", oss.str().c_str(), posId,map, x, y, z, o);
 //
 //				std::ostringstream oss1;
 //				oss1 << "_position新增ID:" << posId << "备注:" << oss.str().c_str();

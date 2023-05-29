@@ -106,7 +106,7 @@
 //		break;
 //	case GOSSIP_ACTION_INFO_DEF + 1:	
 //		player->token_key = player->temp_token_key;
-//		LoginDatabase.DirectPExecute("UPDATE account SET token_key = '%s' WHERE id = '%u'", player->token_key.c_str(), player->GetSession()->GetAccountId());
+//		LoginDatabase.Execute("UPDATE account SET token_key = '%s' WHERE id = '%u'", player->token_key.c_str(), player->GetSession()->GetAccountId());
 //		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF0000「|r%s|cFFFF0000」|r已经存储，请及时绑定谷歌令牌APP", player->token_key.c_str());
 //		CloseGossipMenuFor(player);
 //		break;
@@ -121,7 +121,7 @@
 //
 //	void OnLogin(Player* player)
 //	{
-//		QueryResult result = LoginDatabase.PQuery("SELECT token_key FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
+//		QueryResult result = LoginDatabase.Query("SELECT token_key FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
 //
 //		if (!result) 
 //			return;
@@ -163,7 +163,7 @@
 //			return false;
 //		}
 //
-//		LoginDatabase.DirectPExecute("UPDATE account SET token_key = '' WHERE id = '%u'", player->GetSession()->GetAccountId());
+//		LoginDatabase.Execute("UPDATE account SET token_key = '' WHERE id = '%u'", player->GetSession()->GetAccountId());
 //		player->token_key = "";
 //		ChatHandler(player->GetSession()).PSendSysMessage("已经解除动态口令登录！");
 //		CloseGossipMenuFor(player);

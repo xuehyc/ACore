@@ -191,7 +191,7 @@
 //	//		Temp.area	= fields[3].GetUInt32();
 //	//
 //	//		for (size_t i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; i++)
-//	//			Temp.slots[i] = fields[i + 4].GetInt32();
+//	//			Temp.slots[i] = fields[i + 4].Get<int32>();
 //	//
 //	//		EquipmentVec.push_back(Temp);
 //	//	} while (result->NextRow());

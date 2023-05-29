@@ -56,7 +56,7 @@
 //	}
 //
 //	AccountSpellVec.clear();
-//	if (result = LoginDatabase.PQuery("SELECT account, spell FROM account_spells"))
+//	if (result = LoginDatabase.Query("SELECT account, spell FROM account_spells"))
 //	{
 //		do
 //		{
@@ -102,12 +102,12 @@
 //			Temp.EffectApplyAuraName[0] = fields[4].GetUInt32();
 //			Temp.EffectApplyAuraName[1] = fields[5].GetUInt32();
 //			Temp.EffectApplyAuraName[2] = fields[6].GetUInt32();
-//			Temp.EffectMiscValue[0] = fields[7].GetInt32();
-//			Temp.EffectMiscValue[1] = fields[8].GetInt32();
-//			Temp.EffectMiscValue[2] = fields[9].GetInt32();
-//			Temp.EffectBasePoints[0] = fields[10].GetInt32();
-//			Temp.EffectBasePoints[1] = fields[11].GetInt32();
-//			Temp.EffectBasePoints[2] = fields[12].GetInt32();
+//			Temp.EffectMiscValue[0] = fields[7].Get<int32>();
+//			Temp.EffectMiscValue[1] = fields[8].Get<int32>();
+//			Temp.EffectMiscValue[2] = fields[9].Get<int32>();
+//			Temp.EffectBasePoints[0] = fields[10].Get<int32>();
+//			Temp.EffectBasePoints[1] = fields[11].Get<int32>();
+//			Temp.EffectBasePoints[2] = fields[12].Get<int32>();
 //			Temp.EffectSpellClassMask[0] = flag96(fields[13].GetUInt32(), fields[14].GetUInt32(), fields[15].GetUInt32());
 //			Temp.EffectSpellClassMask[1] = flag96(fields[16].GetUInt32(), fields[17].GetUInt32(), fields[18].GetUInt32());
 //			Temp.EffectSpellClassMask[2] = flag96(fields[19].GetUInt32(), fields[20].GetUInt32(), fields[21].GetUInt32());
@@ -117,7 +117,7 @@
 //			Temp.EffectTriggerSpell[0] = fields[25].GetUInt32();
 //			Temp.EffectTriggerSpell[1] = fields[26].GetUInt32();
 //			Temp.EffectTriggerSpell[2] = fields[27].GetUInt32();
-//			Temp.RecoveryTime = fields[28].GetInt32();
+//			Temp.RecoveryTime = fields[28].Get<int32>();
 //			uint32 procFlags = fields[29].GetUInt32();
 //
 //			switch (procFlags)
@@ -133,7 +133,7 @@
 //			}
 //
 //			Temp.procChance = fields[30].GetFloat();
-//			Temp.procCharges = fields[31].GetInt32();
+//			Temp.procCharges = fields[31].Get<int32>();
 //			Temp.SpellFamilyName = fields[32].GetUInt32();
 //
 //			SpellModBaseMap.insert(std::make_pair(spellId, Temp));
@@ -298,7 +298,7 @@
 //			{
 //				Temp.Type[i] = SpellModType(fields[2 + i * 3].GetUInt32());
 //				Temp.Op[i] = SpellModOp(fields[3 + i * 3].GetUInt32());
-//				Temp.Value[i] = fields[4 + i * 3].GetInt32();
+//				Temp.Value[i] = fields[4 + i * 3].Get<int32>();
 //			}
 //			AuraModClassSpellMap.insert(std::make_pair(aura, Temp));
 //		} while (result->NextRow());
@@ -323,7 +323,7 @@
 //			Temp.auraType[0] = auraType;
 //			Temp.misc[0] = misc;
 //			Temp.miscB[0] = miscB;
-//			Temp.basePoints[0] = fields[3].GetInt32();
+//			Temp.basePoints[0] = fields[3].Get<int32>();
 //
 //			auraType = SPELL_AURA_NONE;
 //			misc = 0;
@@ -332,7 +332,7 @@
 //			Temp.auraType[1] = auraType;
 //			Temp.misc[1] = misc;
 //			Temp.miscB[1] = miscB;
-//			Temp.basePoints[1] = fields[6].GetInt32();
+//			Temp.basePoints[1] = fields[6].Get<int32>();
 //
 //			auraType = SPELL_AURA_NONE;
 //			misc = 0;
@@ -341,7 +341,7 @@
 //			Temp.auraType[2] = auraType;
 //			Temp.misc[2] = misc;
 //			Temp.miscB[2] = miscB;
-//			Temp.basePoints[2] = fields[9].GetInt32();
+//			Temp.basePoints[2] = fields[9].Get<int32>();
 //
 //			AuraModStatMap.insert(std::make_pair(aura, Temp));
 //		} while (result->NextRow());
@@ -365,7 +365,7 @@
 //			Temp.auraType[0] = auraType;
 //			Temp.misc[0] = misc;
 //			Temp.miscB[0] = miscB;
-//			Temp.basePoints[0] = fields[3].GetInt32();
+//			Temp.basePoints[0] = fields[3].Get<int32>();
 //
 //			auraType = SPELL_AURA_NONE;
 //			misc = 0;
@@ -374,7 +374,7 @@
 //			Temp.auraType[1] = auraType;
 //			Temp.misc[1] = misc;
 //			Temp.miscB[1] = miscB;
-//			Temp.basePoints[1] = fields[6].GetInt32();
+//			Temp.basePoints[1] = fields[6].Get<int32>();
 //
 //			auraType = SPELL_AURA_NONE;
 //			misc = 0;
@@ -383,7 +383,7 @@
 //			Temp.auraType[2] = auraType;
 //			Temp.misc[2] = misc;
 //			Temp.miscB[2] = miscB;
-//			Temp.basePoints[2] = fields[9].GetInt32();
+//			Temp.basePoints[2] = fields[9].Get<int32>();
 //
 //			AuraPctMap.insert(std::make_pair(aura, Temp));
 //		} while (result->NextRow());
@@ -480,7 +480,7 @@
 ////	{
 ////	Temp.Type[i] = SpellModType(fields[3 + i * 3].GetUInt32());
 ////	Temp.Op[i] = SpellModOp(fields[4 + i * 3].GetUInt32());
-////	Temp.Value[i] = fields[5 + i * 3].GetInt32();
+////	Temp.Value[i] = fields[5 + i * 3].Get<int32>();
 ////	}
 ////	AuraModSpellVec.push_back(Temp);
 ////	} while (result->NextRow());
@@ -818,7 +818,7 @@
 //{
 //	uint32 AccountId = player->GetSession()->GetAccountId();
 //
-//	QueryResult result = LoginDatabase.PQuery("SELECT spell FROM account_spells WHERE account = %u", AccountId);
+//	QueryResult result = LoginDatabase.Query("SELECT spell FROM account_spells WHERE account = %u", AccountId);
 //
 //	if (result)
 //	{

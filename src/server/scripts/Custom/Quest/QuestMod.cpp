@@ -171,7 +171,7 @@
 //{
 //	if (QuestRandomMap.empty())
 //	{
-//		sLog->outString("_quest_random未配置随机任务");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "_quest_random未配置随机任务");
 //		return false;
 //	}
 //

@@ -89,7 +89,7 @@
 //
 //void Reincarnation::Save(Player* player)
 //{
-//	CharacterDatabase.DirectPExecute("UPDATE characters SET reincarnationLv = '%u' WHERE guid = '%u'", player->reincarnationLv,player->GetGUID().GetCounter());
+//	CharacterDatabase.Execute("UPDATE characters SET reincarnationLv = '%u' WHERE guid = '%u'", player->reincarnationLv,player->GetGUID().GetCounter());
 //}
 //
 //void Reincarnation::Load(Player* player)

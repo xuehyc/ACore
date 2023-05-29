@@ -49,7 +49,7 @@
 //	for (size_t i = 0; i < MAX_STAT_POINTS_TYPE; i++)
 //		oss << player->stat_points[i] << " ";
 //
-//	CharacterDatabase.PExecute("UPDATE characters SET stat_points = '%s'WHERE guid = %d", oss.str().c_str(), player->GetGUID().GetCounter());
+//	CharacterDatabase.Execute("UPDATE characters SET stat_points = '%s'WHERE guid = %d", oss.str().c_str(), player->GetGUID().GetCounter());
 //}
 //
 //void StatPoints::UpdateDB(uint32 guid, uint32 statPoint)
@@ -87,7 +87,7 @@
 //	for (size_t i = 0; i < MAX_STAT_POINTS_TYPE; i++)
 //		oss << stat_points[i] << " ";
 //
-//	CharacterDatabase.PExecute("UPDATE characters SET stat_points = '%s'WHERE guid = %d", oss.str().c_str(), guid);
+//	CharacterDatabase.Execute("UPDATE characters SET stat_points = '%s'WHERE guid = %d", oss.str().c_str(), guid);
 //}
 //
 //void StatPoints::ResetPoints(Player* player)

@@ -773,10 +773,10 @@
 //void Talisman::SaveTalisManValue(Player* player, bool logout)
 //{
 //	if (logout)
-//		CharacterDatabase.DirectPExecute("UPDATE characters SET TalismanValue = '%u' WHERE guid = '%u'", player->TalismanValue, player->GetGUID().GetCounter());
+//		CharacterDatabase.Execute("UPDATE characters SET TalismanValue = '%u' WHERE guid = '%u'", player->TalismanValue, player->GetGUID().GetCounter());
 //	else if (sSwitch->GetValue(ST_TALISMAN) > player->TalismanValue)
 //	{
-//		CharacterDatabase.DirectPExecute("UPDATE characters SET TalismanValue = '%u' WHERE guid = '%u'", player->TalismanValue, player->GetGUID().GetCounter());
+//		CharacterDatabase.Execute("UPDATE characters SET TalismanValue = '%u' WHERE guid = '%u'", player->TalismanValue, player->GetGUID().GetCounter());
 //		ChatHandler(player->GetSession()).PSendSysMessage("本命法宝信息已保存");
 //	}
 //}

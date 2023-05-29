@@ -68,15 +68,15 @@
 //		MapModTemp.SpellDmgMod		= fields[9].GetFloat();
 //		MapModTemp.HealMod			= fields[10].GetFloat();
 //		MapModTemp.ReduceDmgPct		= fields[11].GetFloat();
-//		MapModTemp.Resistance		= fields[12].GetInt32();
+//		MapModTemp.Resistance		= fields[12].Get<int32>();
 //		MapModTemp.KillRewId		= fields[13].GetUInt32();
 //		MapModTemp.KillRewChance	= fields[14].GetFloat();
 //		MapModTemp.KillAnnounce		= fields[15].GetBool();
-//		MapModTemp.Armor			= fields[16].GetInt32();
+//		MapModTemp.Armor			= fields[16].Get<int32>();
 //		MapModTemp.ChallengeLv		= fields[17].GetUInt32();
 //		MapModTemp.AttackTime		= fields[18].GetUInt32();
-//		MapModTemp.AddTalismanValue = fields[19].GetInt32();
-//		MapModTemp.AddRankValue		= fields[20].GetInt32();
+//		MapModTemp.AddTalismanValue = fields[19].Get<int32>();
+//		MapModTemp.AddRankValue		= fields[20].Get<int32>();
 //		MapModTemp.ResetOnLeave		= fields[21].GetBool();
 //
 //		for (size_t i = 0; i < MAX_CUSTOM_LOOT_COUNT; i++)

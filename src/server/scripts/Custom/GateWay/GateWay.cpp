@@ -142,7 +142,7 @@
 //		if (player && player->GetSession())
 //			player->TeleportTo(571, 5804.15f, 624.771f, 647.767f, 0);
 //		else
-//			CharacterDatabase.DirectPExecute("UPDATE characters SET position_x = 5804.15,position_y = 624.771,position_z = 647.767,map = 571 WHERE guid = %d", guid);
+//			CharacterDatabase.Execute("UPDATE characters SET position_x = 5804.15,position_y = 624.771,position_z = 647.767,map = 571 WHERE guid = %d", guid);
 //		return "解卡成功";
 //	}
 //
@@ -236,7 +236,7 @@
 //void GateWay::Load()
 //{
 //	MacBanedVec.clear();
-//	QueryResult result = LoginDatabase.PQuery("SELECT pcIDCode FROM pc_ban");
+//	QueryResult result = LoginDatabase.Query("SELECT pcIDCode FROM pc_ban");
 //	if (!result) 
 //		return;
 //	do
@@ -272,11 +272,11 @@
 //
 //	uint32 account = result->Fetch()[0].GetUInt32();
 //
-//	QueryResult result1 = LoginDatabase.PQuery("SELECT pcIDCode FROM account where id = '%d'", account);
+//	QueryResult result1 = LoginDatabase.Query("SELECT pcIDCode FROM account where id = '%d'", account);
 //
 //	std::string pcIDCode = result1->Fetch()[0].GetString();
 //
-//	//LoginDatabase.DirectPExecute("INSERT INTO pc_ban VALUES ('%u', '%s')", account, pcIDCode.c_str());
+//	//LoginDatabase.Execute("INSERT INTO pc_ban VALUES ('%u', '%s')", account, pcIDCode.c_str());
 //
 //
 //	PreparedStatement *stmt = LoginDatabase.GetPreparedStatement(LOGIN_INS_PCCODE);
@@ -296,11 +296,11 @@
 //
 //	uint32 account = result->Fetch()[0].GetUInt32();
 //
-//	QueryResult result1 = LoginDatabase.PQuery("SELECT pcIDCode FROM account where id = '%d'", account);
+//	QueryResult result1 = LoginDatabase.Query("SELECT pcIDCode FROM account where id = '%d'", account);
 //
 //	std::string pcIDCode = result1->Fetch()[0].GetString();
 //
-//	//LoginDatabase.DirectPExecute("DELETE FROM pc_ban WHERE pcIDCode = '%s'", pcIDCode.c_str());
+//	//LoginDatabase.Execute("DELETE FROM pc_ban WHERE pcIDCode = '%s'", pcIDCode.c_str());
 //
 //
 //	PreparedStatement *stmt = LoginDatabase.GetPreparedStatement(LOGIN_DEL_PCCODE);

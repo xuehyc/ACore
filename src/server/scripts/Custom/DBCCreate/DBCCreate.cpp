@@ -45,7 +45,7 @@
 //
 //void DBCCreate::OutDBC(std::string file, std::vector<std::vector<std::string>> dbcData, std::string fmt, uint8 type)
 //{
-//	sLog->outString(">>%s - 正在写入数据...", file.c_str());
+//	sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 正在写入数据...", file.c_str());
 //
 //	std::unordered_map<std::string, uint32> stringMap;
 //
@@ -146,7 +146,7 @@
 //		uint32 y = (i + 2) * 100 / recordCount;
 //
 //		if (x != 0 && (x != y || x == 100))
-//			sLog->outString(">>%s - write data %d%% ", file.c_str(), x);
+//			sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - write data %d%% ", file.c_str(), x);
 //	}
 //
 //	for (uint32 i = 0; i < stringBytes.size(); i++)
@@ -162,16 +162,16 @@
 //	case 0:
 //		CopyFile(file.c_str(), serverPath.c_str(), FALSE);
 //		CopyFile(file.c_str(), clientPath.c_str(), FALSE);
-//		sLog->outString(">>%s - 服务端路径[%s]", file.c_str(), serverPath.c_str());
-//		sLog->outString(">>%s - 客户端路径[%s]", file.c_str(), clientPath.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 服务端路径[%s]", file.c_str(), serverPath.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 客户端路径[%s]", file.c_str(), clientPath.c_str());
 //		break;
 //	case 1:
 //		CopyFile(file.c_str(), serverPath.c_str(), FALSE);
-//		sLog->outString(">>%s - 服务端路径[%s]", file.c_str(), serverPath.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 服务端路径[%s]", file.c_str(), serverPath.c_str());
 //		break;
 //	case 2:
 //		CopyFile(file.c_str(), clientPath.c_str(), FALSE);
-//		sLog->outString(">>%s - 客户端路径[%s]", file.c_str(), clientPath.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 客户端路径[%s]", file.c_str(), clientPath.c_str());
 //		break;
 //	default:
 //		break;
@@ -189,7 +189,7 @@
 //
 //	if (strcmp(serverPath.c_str(), clientPath.c_str()) == 0)
 //	{
-//		sLog->outString(">>%s - 服务端与客户端路径相同，将无法使用客户端DBC加密功能...", file.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 服务端与客户端路径相同，将无法使用客户端DBC加密功能...", file.c_str());
 //		return;
 //	}
 //
@@ -237,23 +237,23 @@
 //			uint32 y = (i + 2) * 100 / recordCount;
 //
 //			if (x != 0 && (x != y || x == 100))
-//				sLog->outString(">>%s - encrypt client dbc %d%% ", file.c_str(), x);
+//				sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - encrypt client dbc %d%% ", file.c_str(), x);
 //		}
 //
 //		fclose(fp);
 //
-//		sLog->outString(">>%s - 客户端部分加密完成...", file.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 客户端部分加密完成...", file.c_str());
 //	}
 //	else
 //	{
-//		sLog->outString(">>%s - 无法打开[%s]...", file.c_str(), clientPath.c_str());
-//		sLog->outString(">>%s - 客户端部分加密失败...", file.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 无法打开[%s]...", file.c_str(), clientPath.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 客户端部分加密失败...", file.c_str());
 //	}
 //}
 //
 //void DBCCreate::GenerateTalentSql()
 //{
-//	//WorldDatabase.DirectPExecute("TRUNCATE TABLE _dbc_talent;");
+//	//WorldDatabase.Execute("TRUNCATE TABLE _dbc_talent;");
 //	//
 //	//for (uint32 id = 0; id < sTalentStore.GetNumRows(); id++)
 //	//{
@@ -263,7 +263,7 @@
 //	//	if (!info)
 //	//		continue;
 //	//
-//	//	WorldDatabase.DirectPExecute("INSERT INTO _dbc_talent("
+//	//	WorldDatabase.Execute("INSERT INTO _dbc_talent("
 //	//		"TalentID, TalentTab,"
 //	//		"Row, Col, RankID1, RankID2, RankID3, RankID4, RankID5, "
 //	//		"DependsOn, DependsOnRank, addToSpellBook ,petMask, petMask1)"
@@ -273,12 +273,12 @@
 //	//		info->DependsOn, info->DependsOnRank, info->addToSpellBook, info->petMask, info->petMask1);
 //	//}
 //	//
-//	//sLog->outString("_dbc_talent更新完成...");
+//	//sLog->outMessage("server",LOG_LEVEL_INFO, "_dbc_talent更新完成...");
 //}
 //
 //void DBCCreate::GenerateSpellItemEnchantmentSql()
 //{
-//	WorldDatabase.DirectPExecute("TRUNCATE TABLE _dbc_spellitemenchantment;");
+//	WorldDatabase.Execute("TRUNCATE TABLE _dbc_spellitemenchantment;");
 //
 //	for (uint32 id = 0; id < sSpellItemEnchantmentStore.GetNumRows(); id++)
 //	{
@@ -288,7 +288,7 @@
 //		if (!info)
 //			continue;
 //
-//		WorldDatabase.DirectPExecute("INSERT INTO _dbc_spellitemenchantment("
+//		WorldDatabase.Execute("INSERT INTO _dbc_spellitemenchantment("
 //			"ID, charges,"
 //			"type1, type2, type3, amount1, amount2, amount3, spellid1, spellid2, spellid3, "
 //			"description, aura_id, slot ,GemID, EnchantmentCondition, requiredSkill, requiredSkillValue, requiredLevel)"
@@ -298,12 +298,12 @@
 //			info->description[4], info->aura_id, info->slot, info->GemID, info->EnchantmentCondition, info->requiredSkill, info->requiredSkillValue, info->requiredLevel);
 //	}
 //
-//	sLog->outString("_dbc_spellitemenchantment更新完成...");
+//	sLog->outMessage("server",LOG_LEVEL_INFO, "_dbc_spellitemenchantment更新完成...");
 //}
 //
 //void DBCCreate::GenerateCharStartOutfitSql()
 //{
-//	WorldDatabase.DirectPExecute("TRUNCATE TABLE _dbc_charstartoutfit;");
+//	WorldDatabase.Execute("TRUNCATE TABLE _dbc_charstartoutfit;");
 //
 //	for (uint32 id = 0; id < sCharStartOutfitStore.GetNumRows(); id++)
 //	{
@@ -313,7 +313,7 @@
 //		if (!info)
 //			continue;
 //
-//		WorldDatabase.DirectPExecute("INSERT INTO _dbc_charstartoutfit("
+//		WorldDatabase.Execute("INSERT INTO _dbc_charstartoutfit("
 //			"Race, Class, Gender,"
 //			"Item1, Item2, Item3, Item4, Item5, Item6, Item7, Item8, Item9,Item10, Item11, Item12, Item13, Item14, Item15, Item16, Item17, Item18, Item19,Item20, Item21, Item22, Item23, Item24)"
 //			"VALUES ('%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d');",
@@ -323,12 +323,12 @@
 //			info->ItemId[20], info->ItemId[21], info->ItemId[22], info->ItemId[23]);
 //	}
 //
-//	sLog->outString("_dbc_charstartoutfit更新完成...");
+//	sLog->outMessage("server",LOG_LEVEL_INFO, "_dbc_charstartoutfit更新完成...");
 //}
 //
 //void DBCCreate::GenerateItemDisplayInfoSql()
 //{
-//	WorldDatabase.DirectPExecute("TRUNCATE TABLE _dbc_itemdisplayinfo;");
+//	WorldDatabase.Execute("TRUNCATE TABLE _dbc_itemdisplayinfo;");
 //
 //	for (uint32 id = 0; id < sItemDisplayInfoStore.GetNumRows(); id++)
 //	{
@@ -338,19 +338,19 @@
 //		if (!info)
 //			continue;
 //
-//		WorldDatabase.DirectPExecute("INSERT INTO _dbc_itemdisplayinfo(ID, LeftModel, RightModel, LeftModelTexture, RightModelTexture, Icon, Field7, Field8, Field9, Field10, Field11, Field12, groupSoundIndex, Field14, Field15, Field16, Field17, Field18, Field19, Field20, Field21, Field22, Field23, Field24, Field25) "
+//		WorldDatabase.Execute("INSERT INTO _dbc_itemdisplayinfo(ID, LeftModel, RightModel, LeftModelTexture, RightModelTexture, Icon, Field7, Field8, Field9, Field10, Field11, Field12, groupSoundIndex, Field14, Field15, Field16, Field17, Field18, Field19, Field20, Field21, Field22, Field23, Field24, Field25) "
 //			"VALUES ('%u','%s','%s','%s','%s','%s','%s','%u','%u','%u','%u','%u','%u','%u','%u','%s','%s','%s','%s','%s','%s','%s','%s','%u','%u');",
 //			info->ID, info->Field2, info->Field3, info->Field4, info->Field5, info->inventoryIcon, info->Field7, info->Field8, info->Field9, info->Field10,
 //			info->Field11, info->Field12, info->Field13, info->Field14, info->Field15, info->Field16, info->Field17, info->Field18, info->Field19, info->Field20,
 //			info->Field21, info->Field22, info->Field23, info->Field24, info->Field25);
 //	}
 //
-//	sLog->outString("_dbc_itemdisplayinfo更新完成...");
+//	sLog->outMessage("server",LOG_LEVEL_INFO, "_dbc_itemdisplayinfo更新完成...");
 //}
 //
 //void DBCCreate::GenerateSpellIconSql()
 //{
-//	WorldDatabase.DirectPExecute("TRUNCATE TABLE _dbc_spellicon;");
+//	WorldDatabase.Execute("TRUNCATE TABLE _dbc_spellicon;");
 //
 //	for (uint32 id = 0; id < sSpellIconStore.GetNumRows(); id++)
 //	{
@@ -366,12 +366,12 @@
 //		WorldDatabase.Execute(stmt);
 //	}
 //
-//	sLog->outString("_dbc_spellicon更新完成...");
+//	sLog->outMessage("server",LOG_LEVEL_INFO, "_dbc_spellicon更新完成...");
 //}
 //
 //void DBCCreate::GenerateItemExtendCostSql()
 //{
-//	WorldDatabase.DirectPExecute("TRUNCATE TABLE _dbc_itemextendedcost;");
+//	WorldDatabase.Execute("TRUNCATE TABLE _dbc_itemextendedcost;");
 //
 //	for (uint32 id = 0; id < sItemExtendedCostStore.GetNumRows(); id++)
 //	{
@@ -381,18 +381,18 @@
 //		if (!info)
 //			continue;
 //
-//		WorldDatabase.DirectPExecute("INSERT INTO _dbc_itemextendedcost(ID,honorpoints,arenapoints,arenaslot,item1,item2,item3,item4,item5,reqitemcount1,reqitemcount2,reqitemcount3,reqitemcount4,reqitemcount5,arenarating,uk)"
+//		WorldDatabase.Execute("INSERT INTO _dbc_itemextendedcost(ID,honorpoints,arenapoints,arenaslot,item1,item2,item3,item4,item5,reqitemcount1,reqitemcount2,reqitemcount3,reqitemcount4,reqitemcount5,arenarating,uk)"
 //			"VALUES ('%u','%u','%u','%u','%u','%u','%u','%u','%u','%u','%u','%u','%u','%u','%u','%u');",
 //			info->ID, info->reqhonorpoints, info->reqarenapoints, info->reqarenaslot, info->reqitem[0], info->reqitem[1], info->reqitem[2], info->reqitem[3], info->reqitem[4],
 //			info->reqitemcount[0], info->reqitemcount[1], info->reqitemcount[2], info->reqitemcount[3], info->reqitemcount[4], info->reqpersonalarenarating, 0);
 //	}
 //
-//	sLog->outString("_dbc_itemextendedcost更新完成...");
+//	sLog->outMessage("server",LOG_LEVEL_INFO, "_dbc_itemextendedcost更新完成...");
 //}
 //
 //void DBCCreate::GenerateSpellSql()
 //{
-//	WorldDatabase.DirectPExecute("TRUNCATE TABLE _dbc_spell;");
+//	WorldDatabase.Execute("TRUNCATE TABLE _dbc_spell;");
 //
 //	for (uint32 id = 0; id < _sSpellStore.GetNumRows(); id++)
 //	{
@@ -584,7 +584,7 @@
 //		WorldDatabase.Execute(stmt);
 //	}
 //
-//	sLog->outString("_dbc_spell更新完成...");
+//	sLog->outMessage("server",LOG_LEVEL_INFO, "_dbc_spell更新完成...");
 //}
 //
 //void DBCCreate::GenerateItemDBC()
@@ -612,7 +612,7 @@
 //			index++;
 //
 //			if (index % 100 == 0)
-//				sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//				sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //
 //		} while (result->NextRow());
 //	}
@@ -641,7 +641,7 @@
 //		index++;
 //
 //		if (index % 100 == 0)
-//			sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//			sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //	}
 //
 //	OutDBC(file, dbcData, fmt);
@@ -666,7 +666,7 @@
 //			dbcData.push_back(v);
 //
 //			index++;
-//			sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//			sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //
 //		} while (result->NextRow());
 //	}
@@ -695,7 +695,7 @@
 //			index++;
 //
 //			if (index % 200 == 0)
-//				sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//				sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //
 //		} while (result->NextRow());
 //	}
@@ -821,7 +821,7 @@
 //			index++;
 //
 //			if (index % 200 == 0)
-//				sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//				sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //
 //		} while (result->NextRow());
 //	}
@@ -835,7 +835,7 @@
 //	if (strcmp(serverPath.c_str(), clientPath.c_str()) == 0)
 //	{
 //		OutDBC(file, dbcData, fmt);
-//		sLog->outString(">>%s - 服务端与客户端路径相同，将无法使用客户端DBC加密功能...", file.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - 服务端与客户端路径相同，将无法使用客户端DBC加密功能...", file.c_str());
 //		return;
 //	}
 //
@@ -869,7 +869,7 @@
 //		}
 //
 //		if (flag)
-//			sLog->outString(">>Spell.dbc - Encrypt data %s...", dbcData[i][0].c_str());
+//			sLog->outMessage("server",LOG_LEVEL_INFO, ">>Spell.dbc - Encrypt data %s...", dbcData[i][0].c_str());
 //
 //	}
 //
@@ -878,7 +878,7 @@
 //
 //void DBCCreate::GenerateCharStartOutfitDBC()
 //{
-//	sLog->outString("_dbc_charstartoutfit未完成开发");
+//	sLog->outMessage("server",LOG_LEVEL_INFO, "_dbc_charstartoutfit未完成开发");
 //	return;
 //	std::vector<std::vector<std::string>> dbcData;
 //	std::string file = "CharStartOutfit.dbc";
@@ -934,7 +934,7 @@
 //			index++;
 //
 //			if (index % 200 == 0)
-//				sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//				sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //
 //
 //		} while (result->NextRow());
@@ -997,7 +997,7 @@
 //			index++;
 //			
 //			if (index % 200 == 0)
-//				sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//				sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //
 //		} while (result->NextRow());
 //	}
@@ -1053,7 +1053,7 @@
 //			index++;
 //
 //			if (index % 200 == 0)
-//				sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//				sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //
 //		} while (result->NextRow());
 //	}
@@ -1082,7 +1082,7 @@
 //			index++;
 //
 //			if (index % 200 == 0)
-//				sLog->outString(">>%s - packet data %d...", file.c_str(), index);
+//				sLog->outMessage("server",LOG_LEVEL_INFO, ">>%s - packet data %d...", file.c_str(), index);
 //
 //
 //		} while (result->NextRow());

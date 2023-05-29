@@ -89,12 +89,12 @@
 //    if (iter != PlayerDropRateMap.end())
 //    {
 //        iter->second = mod;
-//        WorldDatabase.DirectPExecute("UPDATE `_属性调整_玩家掉率修改` SET `掉落倍率`='%u' WHERE (`玩家GUID`='%u')", mod, target->GetGUID().GetCounter());
+//        WorldDatabase.Execute("UPDATE `_属性调整_玩家掉率修改` SET `掉落倍率`='%u' WHERE (`玩家GUID`='%u')", mod, target->GetGUID().GetCounter());
 //    }
 //    else
 //    {
 //        PlayerDropRateMap.insert(std::make_pair(target->GetGUID().GetCounter(), mod));
-//        WorldDatabase.DirectPExecute("INSERT INTO `_属性调整_玩家掉率修改` (`玩家GUID`, `掉落倍率`) VALUES ('%u', '%u')", target->GetGUID().GetCounter(), mod);
+//        WorldDatabase.Execute("INSERT INTO `_属性调整_玩家掉率修改` (`玩家GUID`, `掉落倍率`) VALUES ('%u', '%u')", target->GetGUID().GetCounter(), mod);
 //    }
 //
 //}
@@ -125,7 +125,7 @@
 //			Temp.battleground = fields[3].GetBool();
 //
 //			for (size_t i = 0; i < BAN_MAP_MAX; i++)
-//				Temp.BanMap[i] = fields[4 + i].GetInt32();
+//				Temp.BanMap[i] = fields[4 + i].Get<int32>();
 //
 //			MountAllowedMap.insert(std::make_pair(mountSpellId, Temp));
 //		} while (result->NextRow());
@@ -283,7 +283,7 @@
 //		sDataLoader->LoadAll();
 //		sFaker->Load();
 //		sArenaDuel->Load();
-//        sLog->outString("加载自定义数据库完成");
+//        sLog->outMessage("server",LOG_LEVEL_INFO, "加载自定义数据库完成");
 //	}
 //};
 //
@@ -315,7 +315,7 @@
 //
 //		if (!handler->GetSession())
 //		{
-//			sLog->outString(">> [数据库]重载完毕...\n");
+//			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [数据库]重载完毕...\n");
 //			return true;
 //		}
 //
@@ -331,7 +331,7 @@
 //
 //		if (!handler->GetSession())
 //		{
-//			sLog->outString(">> [装备修改数据表]重载完毕...\n");
+//			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [装备修改数据表]重载完毕...\n");
 //			return true;
 //		}
 //
@@ -347,7 +347,7 @@
 //
 //		if (!handler->GetSession())
 //		{
-//			sLog->outString(">> [SpellMod数据表]重载完毕...\n");
+//			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [SpellMod数据表]重载完毕...\n");
 //			return true;
 //		}
 //
@@ -371,7 +371,7 @@
 //		else
 //		{
 //			Field* fields = result->Fetch();
-//			player->onlineRewardedCount = fields[0].GetInt32();
+//			player->onlineRewardedCount = fields[0].Get<int32>();
 //		}
 //	}
 //};

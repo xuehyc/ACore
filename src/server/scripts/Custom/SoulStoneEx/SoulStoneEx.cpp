@@ -37,7 +37,7 @@
 //            ++count;
 //
 //        } while (result->NextRow());
-//        sLog->outString("======加载玩家魂玉扩展记录表 %u 条数据======", count);
+//        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载玩家魂玉扩展记录表 %u 条数据======", count);
 //    }
 //
 //    _SoulStoneExBuyReqDataMap.clear();
@@ -76,7 +76,7 @@
 //            ++count;
 //
 //        } while (results->NextRow());
-//        sLog->outString("======加载魂玉页面购买需求激活表 %u 条数据======", count);
+//        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉页面购买需求激活表 %u 条数据======", count);
 //    }
 //
 //	_SoulStoneExItemTypeMap.clear();
@@ -93,15 +93,15 @@
 //			SoulStoneExItemType td;
 //
 //			uint32 itemid = fields[0].GetUInt32();
-//			td.type = fields[1].GetInt32();
-//			td.page = fields[2].GetInt32();
+//			td.type = fields[1].Get<int32>();
+//			td.page = fields[2].Get<int32>();
 //
 //			_SoulStoneExItemTypeMap.insert({ itemid, td });
 //
 //			++count;
 //
 //		} while (resultss->NextRow());
-//		sLog->outString("======加载魂玉扩展类型表 %u 条数据======", count);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉扩展类型表 %u 条数据======", count);
 //	}
 //
 //	QueryResult resultssss = WorldDatabase.PQuery("SELECT 参数 FROM __通用配置 WHERE ID = 101");
@@ -112,7 +112,7 @@
 //		Field * fields = resultssss->Fetch();
 //		limitpageval = uint32(atoi(fields[0].GetString().c_str()));
 //
-//		sLog->outString("=======魂玉（组合激活版）初始化页面数量为：%d", limitpageval);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "=======魂玉（组合激活版）初始化页面数量为：%d", limitpageval);
 //	}
 //
 //    _SoulStoneExExDateMap.clear();
@@ -142,7 +142,7 @@
 //
 //        } while (resultsss->NextRow());
 //
-//        sLog->outString("======加载魂玉组合配置表 %u 条数据======", count);
+//        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉组合配置表 %u 条数据======", count);
 //    }
 //}
 //
@@ -238,7 +238,7 @@
 //			if (itr->second.page == 0)
 //				continue;
 //
-//            WorldDatabase.PExecute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性)VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u)", itr->second.guid, itr->second.page, itr->second.itemid1, itr->second.itemid2, itr->second.itemid3, itr->second.itemid4, itr->second.itemid5, itr->second.itemid6, itr->second.itemid7);
+//            WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性)VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u)", itr->second.guid, itr->second.page, itr->second.itemid1, itr->second.itemid2, itr->second.itemid3, itr->second.itemid4, itr->second.itemid5, itr->second.itemid6, itr->second.itemid7);
 //        }
 //    }
 //}
@@ -336,22 +336,22 @@
 //                switch (slot)
 //                {
 //                case 1:
-//                    WorldDatabase.PExecute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽1物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽1物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 2:
-//                    WorldDatabase.PExecute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽2物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽2物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 3:
-//                    WorldDatabase.PExecute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽3物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽3物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 4:
-//                    WorldDatabase.PExecute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽4物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽4物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 5:
-//                    WorldDatabase.PExecute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽5物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽5物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 6:
-//                    WorldDatabase.PExecute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽6物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽6物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                default:
 //                    break;
@@ -363,7 +363,7 @@
 //
 //void SoulStoneEx::AddOrRemovePlayerBuff(Player * player, uint32 itemid, uint32 olditemid, SoulStoneExSlotType t)
 //{
-//    sLog->outString("olditemid = %u", olditemid);
+//    sLog->outMessage("server",LOG_LEVEL_INFO, "olditemid = %u", olditemid);
 //
 //    ItemTemplate const * pProto = sObjectMgr->GetItemTemplate(itemid);
 //
@@ -1486,7 +1486,7 @@
 //            if (action == GOSSIP_ACTION_SSEX + 1)
 //            {
 //                std::string msg = sSoulStoneEx->GetPlayerMsg(player);
-//				sLog->outString("msg = %s",msg.c_str());
+//				sLog->outMessage("server",LOG_LEVEL_INFO, "msg = %s",msg.c_str());
 //
 //				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", msg);
 //

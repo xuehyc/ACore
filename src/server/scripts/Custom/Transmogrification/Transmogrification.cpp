@@ -157,7 +157,7 @@
 //            else // should be deleted on startup, so  this never runs (shouldnt..)
 //            {
 //                presetById[pGUID].erase(PresetID);
-//                CharacterDatabase.PExecute("DELETE FROM `custom_transmogrification_sets` WHERE Owner = %u AND PresetID = %u",  GUID_LOPART(pGUID), PresetID);
+//                CharacterDatabase.Execute("DELETE FROM `custom_transmogrification_sets` WHERE Owner = %u AND PresetID = %u",  GUID_LOPART(pGUID), PresetID);
 //            }
 //        } while (result->NextRow());
 //    }
@@ -253,7 +253,7 @@
 //    if (trans)
 //        (*trans)->PAppend("DELETE FROM custom_transmogrification WHERE GUID = %u", GUID_LOPART(itemGUID));
 //    else
-//        CharacterDatabase.PExecute("DELETE FROM custom_transmogrification WHERE GUID = %u", GUID_LOPART(itemGUID));
+//        CharacterDatabase.Execute("DELETE FROM custom_transmogrification WHERE GUID = %u", GUID_LOPART(itemGUID));
 //}
 //void Transmogrification::DeleteFakeEntry(Player* player, uint8 slot, Item* itemTransmogrified, SQLTransaction* trans)
 //{
@@ -267,7 +267,7 @@
 //    uint64 itemGUID = itemTransmogrified->GetGUID();
 //    entryMap[player->GetGUID()][itemGUID] = newEntry;
 //    dataMap[itemGUID] = player->GetGUID();
-//    CharacterDatabase.PExecute("REPLACE INTO custom_transmogrification (GUID, FakeEntry, Owner) VALUES (%u, %u, %u)", GUID_LOPART(itemGUID), newEntry, player->GetGUID().GetCounter());
+//    CharacterDatabase.Execute("REPLACE INTO custom_transmogrification (GUID, FakeEntry, Owner) VALUES (%u, %u, %u)", GUID_LOPART(itemGUID), newEntry, player->GetGUID().GetCounter());
 //    player->SetVisibleItemSlot(slot, itemTransmogrified);
 //}
 //TransmogTrinityStrings Transmogrification::Transmogrify(Player* player, uint64 itemGUID, uint8 slot, /*uint32 newEntry, */bool no_cost)

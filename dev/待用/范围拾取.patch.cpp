@@ -101,7 +101,7 @@ index 9ec1e1e..d5ea040 100644
 +    QueryResult result = CharacterDatabase.Query("SELECT * FROM `_TF_一键拾取开关`;");
 +    if (!result)
 +    {
-+        //sLog->outString("功能表 >>>>>>>>>>>>>>>>>>>>> 加载[_TF_一键拾取开关] 没有数据");
++        //sLog->outMessage("server",LOG_LEVEL_INFO, "功能表 >>>>>>>>>>>>>>>>>>>>> 加载[_TF_一键拾取开关] 没有数据");
 +        return;
 +    }
 +
@@ -117,7 +117,7 @@ index 9ec1e1e..d5ea040 100644
 +        ++counter;
 +    } while (result->NextRow());
 +
-+    //sLog->outString("功能表 >>>>>>>>>>>>>>>>>>>>> 加载[_TF_一键拾取开关] 总计 %u 条数据", counter);
++    //sLog->outMessage("server",LOG_LEVEL_INFO, "功能表 >>>>>>>>>>>>>>>>>>>>> 加载[_TF_一键拾取开关] 总计 %u 条数据", counter);
 +}
 +void ObjectMgr::kaiguan(Player* player)
 +{
@@ -127,7 +127,7 @@ index 9ec1e1e..d5ea040 100644
 +    QueryResult result = CharacterDatabase.Query("SELECT  *  FROM `_TF_一键拾取开关` WHERE `entry` = %u;", ID);
 +    if (!result)
 +    {
-+        CharacterDatabase.PExecute("INSERT INTO `_TF_一键拾取开关` (`entry`,`idx` ) VALUES (%u,%u );", ID,  1);
++        CharacterDatabase.Execute("INSERT INTO `_TF_一键拾取开关` (`entry`,`idx` ) VALUES (%u,%u );", ID,  1);
 +        ChatHandler(player->GetSession()).PSendSysMessage("[|cFFFF0000拾取系统|r]:当前为: >>>>>> |cFF00FFFF开启拾取|r <<<<<< 状态!!");
 +        sObjectMgr->LoadshiquString();
 +
@@ -137,13 +137,13 @@ index 9ec1e1e..d5ea040 100644
 +          sObjectMgr->LoadshiquString();
 +        if (sObjectMgr->Get_TF_shiqu(ID) != 1)
 +        {
-+            CharacterDatabase.PExecute("UPDATE `_TF_一键拾取开关`SET `idx` ='%u' WHERE(`entry`='%u') ", 0, ID);
++            CharacterDatabase.Execute("UPDATE `_TF_一键拾取开关`SET `idx` ='%u' WHERE(`entry`='%u') ", 0, ID);
 +            ChatHandler(player->GetSession()).PSendSysMessage("[|cFFFF0000拾取系统|r]:当前为: >>>>>> |cFF00FFFF开启拾取|r <<<<<< 状态!!");
 +          
 +        }
 +        else
 +        {
-+            CharacterDatabase.PExecute("UPDATE `_TF_一键拾取开关`SET `idx` ='%u' WHERE(`entry`='%u') ", 1, ID);
++            CharacterDatabase.Execute("UPDATE `_TF_一键拾取开关`SET `idx` ='%u' WHERE(`entry`='%u') ", 1, ID);
 +            ChatHandler(player->GetSession()).PSendSysMessage("[|cFFFF0000拾取系统|r]:当前为: >>>>>> |cFFFF1717关闭拾取|r <<<<<< 状态!!" );
 +            
 +        }

@@ -125,7 +125,7 @@
 //	}
 //	else if (IsOpcode(opcode, "GC_C_STATPOINTS"))
 //	{
-//        //sLog->outString("op = %s", msg.c_str());
+//        //sLog->outMessage("server",LOG_LEVEL_INFO, "op = %s", msg.c_str());
 //		uint32 action = atoi(SplitStr(msg, 1).c_str());
 //		uint32 id = atoi(SplitStr(msg, 2).c_str());
 //
@@ -374,20 +374,20 @@
 //	}
 //	else if (IsOpcode(opcode, "SSC_ITEM_TO_SLOT"))
 //	{
-//		sLog->outString("收到魂玉操作码5");
-//		sLog->outString(msg.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉操作码5");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, msg.c_str());
 //		std::string str = SplitStr(msg, 1);
 //		std::vector<std::string> vec = sSoulStone->split(str, "#");
 //
 //		uint32 page = atoi(vec[0].c_str());
 //		uint32 slot = atoi(vec[1].c_str());
 //		uint32 item = atoi(vec[2].c_str());
-//		sLog->outString("page = %s, slot = %d, item = %d", vec[0].c_str(), slot, item);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "page = %s, slot = %d, item = %d", vec[0].c_str(), slot, item);
 //		sSoulStone->CanInSetToSlot(player, page, slot, item, str);
 //	}
 //	else if (IsOpcode(opcode, "SSC_REMOVE_SLOT_ITEM"))
 //	{
-//		sLog->outString("收到魂玉操作码4");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉操作码4");
 //		std::string str = SplitStr(msg, 1);
 //		std::vector<std::string> vec = sSoulStone->split(str, "#");
 //
@@ -400,7 +400,7 @@
 //	{
 //		if (SplitStr(msg, 1) == "VAL")
 //		{
-//			sLog->outString("收到魂玉操作码1");
+//			sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉操作码1");
 //			sSoulStone->SendMutualData(player);
 //		}
 //	}
@@ -408,13 +408,13 @@
 //	{
 //		if (SplitStr(msg, 1) == "ISOK")
 //		{
-//			sLog->outString("收到魂玉操作码2");
+//			sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉操作码2");
 //			sSoulStone->SendAllActiData(player);
 //		}
 //	}
 //	else if (IsOpcode(opcode, "SSC_BUY_PAGE"))
 //	{
-//		sLog->outString("收到魂玉操作码3");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉操作码3");
 //		std::string str = SplitStr(msg, 1);
 //		uint32 page = atoi(str.c_str());
 //
@@ -425,20 +425,20 @@
 //	}
 //	else if (IsOpcode(opcode, "SSCEX_ITEM_TO_SLOT"))
 //	{
-//		sLog->outString("收到魂玉扩展操作码5");
-//		sLog->outString(msg.c_str());
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉扩展操作码5");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, msg.c_str());
 //		std::string str = SplitStr(msg, 1);
 //		std::vector<std::string> vec = sSoulStoneEx->split(str, "#");
 //
 //		uint32 page = atoi(vec[0].c_str());
 //		uint32 slot = atoi(vec[1].c_str());
 //		uint32 item = atoi(vec[2].c_str());
-//		sLog->outString("page = %s, slot = %d, item = %d", vec[0].c_str(), slot, item);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "page = %s, slot = %d, item = %d", vec[0].c_str(), slot, item);
 //		sSoulStoneEx->CanInSetToSlot(player, page, slot, item, str);
 //	}
 //	else if (IsOpcode(opcode, "SSCEX_REMOVE_SLOT_ITEM"))
 //	{
-//		sLog->outString("收到魂玉扩展操作码4");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉扩展操作码4");
 //		std::string str = SplitStr(msg, 1);
 //		std::vector<std::string> vec = sSoulStoneEx->split(str, "#");
 //
@@ -451,7 +451,7 @@
 //	{
 //		if (SplitStr(msg, 1) == "VAL")
 //		{
-//			sLog->outString("收到魂玉扩展操作码1");
+//			sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉扩展操作码1");
 //			sSoulStoneEx->SendMutualData(player);
 //		}
 //	}
@@ -459,13 +459,13 @@
 //	{
 //		if (SplitStr(msg, 1) == "ISOK")
 //		{
-//			sLog->outString("收到魂玉扩展操作码2");
+//			sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉扩展操作码2");
 //			sSoulStoneEx->SendAllActiData(player);
 //		}
 //	}
 //	else if (IsOpcode(opcode, "SSCEX_BUY_PAGE"))
 //	{
-//		sLog->outString("收到魂玉扩展操作码3");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, "收到魂玉扩展操作码3");
 //		std::string str = SplitStr(msg, 1);
 //		uint32 page = atoi(str.c_str());
 //

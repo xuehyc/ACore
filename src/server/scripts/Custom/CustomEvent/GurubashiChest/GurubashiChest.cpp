@@ -1,4 +1,4 @@
-//eventid 112
+ï»¿//eventid 112
 //creature guid 213732
 
 
@@ -14,8 +14,8 @@ enum GurubashiEvents
 
 Position const POS_Gurubashi_NPC[2] =
 {
-	{ -13219.6f, 221.663f, 33.243f, 1.54758f },//³õÊ¼Î»ÖÃ
-	{ -13207.1f, 280.8f, 21.9f, 4.2f },//±¦ÏäË¢ĞÂÎ»ÖÃ
+	{ -13219.6f, 221.663f, 33.243f, 1.54758f },//åˆå§‹ä½ç½®
+	{ -13207.1f, 280.8f, 21.9f, 4.2f },//å®ç®±åˆ·æ–°ä½ç½®
 };
 
 class npc_gurubashi_chest : public CreatureScript

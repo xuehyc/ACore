@@ -46,11 +46,11 @@
 //
 //			Temp.notice			= fields[2].GetString();
 //			Temp.prefix			= fields[3].GetString();
-//			Temp.minHp			= fields[4].GetInt32();
-//			Temp.zone			= fields[5].GetInt32();
-//			Temp.maxHp			= fields[6].GetInt32();
-//			Temp.killRewId		= fields[7].GetInt32();
-//			Temp.killedRewId	= fields[8].GetInt32();
+//			Temp.minHp			= fields[4].Get<int32>();
+//			Temp.zone			= fields[5].Get<int32>();
+//			Temp.maxHp			= fields[6].Get<int32>();
+//			Temp.killRewId		= fields[7].Get<int32>();
+//			Temp.killedRewId	= fields[8].Get<int32>();
 //			Tokenizer tokens(fields[9].GetString(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens.begin(); itr != tokens.end(); ++itr)
 //				Temp.eventData.push_back(uint32(atol(*itr)));

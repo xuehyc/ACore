@@ -45,10 +45,10 @@
 //			nCount++;
 //
 //		} while (areaidcustom->NextRow());
-//		sLog->outString(">> 读取自定义功能数据表1_topsys,共%u条数据读取加载...", nCount);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表1_topsys,共%u条数据读取加载...", nCount);
 //	}
 //	else
-//		sLog->outString(">> 读取自定义功能数据表1_topsys,共0条数据读取加载...");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表1_topsys,共0条数据读取加载...");
 //}
 //
 //GameObject* CharPvpTop::SpawnGob(uint32 guid, bool created)
@@ -290,7 +290,7 @@
 //		}
 //
 //		sWorld->UpdateAllTopPlayerData();
-//		CharacterDatabase.PExecute("update _xlchar set lasttop = 0,toptitle =''");
+//		CharacterDatabase.Execute("update _xlchar set lasttop = 0,toptitle =''");
 //	}
 //	else
 //	{
@@ -440,7 +440,7 @@
 //			}
 //
 //			player->m_topmc = 0;
-//			CharacterDatabase.PExecute("update _xlchar set top = %u where guid = %u", player->m_topmc, player->GetGUID().GetCounter());
+//			CharacterDatabase.Execute("update _xlchar set top = %u where guid = %u", player->m_topmc, player->GetGUID().GetCounter());
 //			creature->MonsterWhisper("比武大会奖励领取成功...", player);
 //			OnGossipHello(player, creature);
 //			return false;
@@ -448,7 +448,7 @@
 //		else if (action == 3)
 //		{
 //			player->m_topmc = 999;
-//			CharacterDatabase.PExecute("update _xlchar set top = %u where guid = %u", player->m_topmc, player->GetGUID().GetCounter());
+//			CharacterDatabase.Execute("update _xlchar set top = %u where guid = %u", player->m_topmc, player->GetGUID().GetCounter());
 //			creature->MonsterWhisper("比武大会报名成功...", player);
 //			OnGossipHello(player, creature);
 //			return false;

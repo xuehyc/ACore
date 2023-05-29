@@ -155,10 +155,10 @@
 //			Vgvgconf.insert(gvgconf_t::value_type(tmpspell.id, tmpspell));
 //			ccccc++;
 //		} while (resultBuffs->NextRow());
-//		sLog->outString(">> 读取自定义功能数据表 _活动_公会战,共%u条数据读取加载...", ccccc);
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表 _活动_公会战,共%u条数据读取加载...", ccccc);
 //	}
 //	else
-//		sLog->outString(">> 读取自定义功能数据表 _活动_公会战,共0条数据读取加载...");
+//		sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表 _活动_公会战,共0条数据读取加载...");
 //
 //	QueryResult result2 = CharacterDatabase.Query("SELECT guild1,guild2,data FROM GuildvsGuild where guid = 1");
 //	if (result2)
@@ -170,7 +170,7 @@
 //	else
 //	{
 //		uint32 guid = 1;
-//		CharacterDatabase.PExecute("INSERT INTO GuildvsGuild (guid) VALUES ('%u')", guid);
+//		CharacterDatabase.Execute("INSERT INTO GuildvsGuild (guid) VALUES ('%u')", guid);
 //	}
 //}
 //
@@ -392,7 +392,7 @@
 //					}
 //				}
 //
-//				CharacterDatabase.PExecute("update GuildvsGuild set guild1 = %u,guild2 =%u,data = %u  where guid = 1", m_guildId1, m_guildId2, time(NULL));
+//				CharacterDatabase.Execute("update GuildvsGuild set guild1 = %u,guild2 =%u,data = %u  where guid = 1", m_guildId1, m_guildId2, time(NULL));
 //				GCevent = false;
 //			}
 //		}
@@ -427,7 +427,7 @@
 //				uint32 m_guild1 = getGuildId1();
 //				setGuildId1(getGuildId2()); //占领公会改成胜利方
 //				setGuildId2(0);          //攻城方改为0;
-//				CharacterDatabase.PExecute("update GuildvsGuild set guild1 = %u,guild2 =%u,data = %u  where guid = 1", getGuildId1(), getGuildId2(), time(NULL));
+//				CharacterDatabase.Execute("update GuildvsGuild set guild1 = %u,guild2 =%u,data = %u  where guid = 1", getGuildId1(), getGuildId2(), time(NULL));
 //			}
 //			else
 //			{
@@ -437,7 +437,7 @@
 //
 //				setGuildId1(getGuildId1()); //占领公会改成胜利方
 //				setGuildId2(0);          //攻城方改为0;
-//				CharacterDatabase.PExecute("update GuildvsGuild set guild1 = %u,guild2 =%u  where guid = 1", getGuildId1(), getGuildId2());
+//				CharacterDatabase.Execute("update GuildvsGuild set guild1 = %u,guild2 =%u  where guid = 1", getGuildId1(), getGuildId2());
 //			}
 //
 //			const gvgconf * gcnpc = Findgvg(3);
@@ -646,7 +646,7 @@
 //							sGvgSys->setGuildId1(player->GetGuildId());
 //							sGvgSys->m_gvgtime = time(NULL);
 //							sWorld->SendServerMessage(SERVER_MSG_STRING, sString->Format(sString->GetText(GVG_STR_1158), pguid->GetName().c_str()));
-//							CharacterDatabase.PExecute("update GuildvsGuild set guild1 = %u,guild2 =%u,data=%u  where guid = 1", sGvgSys->getGuildId1(), sGvgSys->getGuildId2(), sGvgSys->m_gvgtime);
+//							CharacterDatabase.Execute("update GuildvsGuild set guild1 = %u,guild2 =%u,data=%u  where guid = 1", sGvgSys->getGuildId1(), sGvgSys->getGuildId2(), sGvgSys->m_gvgtime);
 //						}
 //						else
 //							ChatHandler(player->GetSession()).PSendSysMessage("你没有攻城所需物品");
@@ -687,7 +687,7 @@
 //									if (pguild1)
 //										sWorld->SendServerMessage(SERVER_MSG_STRING, sString->Format(sString->GetText(GVG_STR_1156), pguid->GetName().c_str(), pguild1->GetName().c_str()));
 //
-//									CharacterDatabase.PExecute("update GuildvsGuild set guild1 = %u,guild2 =%u  where guid = 1", sGvgSys->getGuildId1(), sGvgSys->getGuildId2());
+//									CharacterDatabase.Execute("update GuildvsGuild set guild1 = %u,guild2 =%u  where guid = 1", sGvgSys->getGuildId1(), sGvgSys->getGuildId2());
 //								}
 //								else
 //									ChatHandler(player->GetSession()).PSendSysMessage("你没有攻城所需物品");

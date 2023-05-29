@@ -73,7 +73,7 @@
 //		GossipTemp.type = fields[1].GetUInt32();
 //		GossipTemp.menuId = fields[2].GetUInt32();
 //		GossipTemp.prevMenuId = fields[3].GetUInt32();
-//		GossipTemp.funcIndex = fields[4].GetInt32();
+//		GossipTemp.funcIndex = fields[4].Get<int32>();
 //		GossipTemp.smallIconType = fields[5].GetUInt8();
 //		GossipTemp.bigIconName = fields[6].GetString();
 //		GossipTemp.menuText = fields[7].GetString();
@@ -377,7 +377,7 @@
 //	player->GetSession()->SendAreaTriggerMessage("获得额外一个天赋点");
 //	player->SetFreeTalentPoints(player->GetFreeTalentPoints() + 1);
 //	player->SendTalentsInfoData(false);
-//	CharacterDatabase.DirectPExecute("UPDATE characters SET extraTalentPoints = extraTalentPoints + 1 WHERE guid = '%u'", player->GetGUID().GetCounter());
+//	CharacterDatabase.Execute("UPDATE characters SET extraTalentPoints = extraTalentPoints + 1 WHERE guid = '%u'", player->GetGUID().GetCounter());
 //
 //}
 //

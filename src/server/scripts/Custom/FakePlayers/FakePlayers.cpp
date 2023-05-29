@@ -71,7 +71,7 @@
 //		{
 //			itr->lvl++;
 //
-//			WorldDatabase.PExecute("UPDATE _fake_players SET lvl = lvl + 1 WHERE ID = %u", itr->ID);
+//			WorldDatabase.Execute("UPDATE _fake_players SET lvl = lvl + 1 WHERE ID = %u", itr->ID);
 //		}	
 //	}
 //}

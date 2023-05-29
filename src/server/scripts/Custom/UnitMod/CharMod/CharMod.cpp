@@ -413,9 +413,9 @@
 //	if (targetClass == CLASS_DEATH_KNIGHT)
 //		player->InitRunes();
 //
-//	//CharacterDatabase.PExecute("update characters set class=%u where guid =%u", targetClass, player->GetGUID().GetCounter()); //更新转职后的职业
-//	CharacterDatabase.PExecute("delete from character_glyphs where guid =%u", player->GetGUID().GetCounter()); // 删除雕文
-//	CharacterDatabase.PExecute("delete from character_pet where owner =%u", player->GetGUID().GetCounter());//删除宠物
+//	//CharacterDatabase.Execute("update characters set class=%u where guid =%u", targetClass, player->GetGUID().GetCounter()); //更新转职后的职业
+//	CharacterDatabase.Execute("delete from character_glyphs where guid =%u", player->GetGUID().GetCounter()); // 删除雕文
+//	CharacterDatabase.Execute("delete from character_pet where owner =%u", player->GetGUID().GetCounter());//删除宠物
 //
 //	//Customize(GetGUID(), getGender(), 1, 1, 1, 1, 1);
 //	sWorld->UpdateGlobalPlayerData(player->GetGUID().GetCounter(), PLAYER_UPDATE_DATA_CLASS, "", 0, 0, 0, targetClass);

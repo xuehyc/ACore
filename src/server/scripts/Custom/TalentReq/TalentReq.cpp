@@ -60,7 +60,7 @@
 //		player->LearnTalentCustom(player->buy_talentId, player->buy_talentRank);
 //		player->SendTalentsInfoData(false);
 //		player->BuyTalentVec.push_back(player->buy_talentSpell);
-//		CharacterDatabase.PExecute("REPLACE INTO characters_talent_req (guid, spellid) VALUES (%u, %u)", player->GetGUID().GetCounter(), player->buy_talentSpell);
+//		CharacterDatabase.Execute("REPLACE INTO characters_talent_req (guid, spellid) VALUES (%u, %u)", player->GetGUID().GetCounter(), player->buy_talentSpell);
 //		sReq->Des(player, reqId);
 //		player->buy_talentId = 0;
 //		player->buy_talentRank = 0;
