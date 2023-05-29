@@ -1,6 +1,6 @@
-#pragma execution_character_set("utf-8")
+ï»¿#pragma execution_character_set("utf-8")
 #include "ItemGUID.h"
-#include "../GCAddon/GCAddon.h" //¿âº¯Êý
+#include "../GCAddon/GCAddon.h" //åº“å‡½æ•°
 
 std::unordered_map<uint32, ItemGUIDTemplate> ItemGUIDMap;   
 std::unordered_map<uint32, ItemPointsTemplate> ItemPointsMap;
