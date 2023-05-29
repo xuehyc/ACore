@@ -56,10 +56,10 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 guid = fields[0].GetUInt32();
+//			uint32 guid = fields[0].Get<uint32>();
 //			ArenaDuelTemplate temp;
 //			temp.selected = fields[1].GetBool();
-//			temp.winNum = fields[2].GetUInt32();
+//			temp.winNum = fields[2].Get<uint32>();
 //			ArenaDuelMap.insert(std::make_pair(guid, temp));
 //		} while (result->NextRow());
 //	}

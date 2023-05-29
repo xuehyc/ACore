@@ -17,8 +17,9 @@
 //#include "../FunctionCollection/FunctionCollection.h"
 //#include "UnknownBG/UnknownBG.h"
 //#include "../Command/CustomCommand.h"
-//#include "WaypointManager.h"
-//#include "MapManager.h"
+//#include "WaypointMgr.h"
+//#include "MapMgr.h"
+//#include "CustomEvent.h"
 //// load db
 //
 //std::unordered_map<uint32, EventDataTemplate> EventDataMap;
@@ -41,26 +42,26 @@
 //	EventDataMap.clear();
 //	EventActiveVec.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery("SELECT eventEntry,description,gossipText,noticeText,event_type,group_type,rejoin_type,start_defense_pos,start_offense_pos,defenseName,offenseName,zone_id FROM game_event WHERE eventEntry >= 70");
+//	QueryResult result = WorldDatabase.Query("SELECT eventEntry,description,gossipText,noticeText,event_type,group_type,rejoin_type,start_defense_pos,start_offense_pos,defenseName,offenseName,zone_id FROM game_event WHERE eventEntry >= 70");
 //	if (result)
 //	{
 //		do
 //		{
 //			//加载data
 //			Field* fields = result->Fetch();
-//			uint32 eventId = fields[0].GetUInt32();
+//			uint32 eventId = fields[0].Get<uint32>();
 //			EventDataTemplate Temp;
-//			Temp.eventName			= fields[1].GetString();
-//			Temp.gossipText			= fields[2].GetString();
-//			Temp.noticeText			= fields[3].GetString();
-//			Temp.eventType			= EventTypes(fields[4].GetUInt32());
-//			Temp.groupType			= GroupTypes(fields[5].GetUInt32());
-//			Temp.rejoinType			= RejoinTypes(fields[6].GetUInt32());
-//			Temp.startDefensePos	= fields[7].GetUInt32();
-//			Temp.startOffensePos	= fields[8].GetUInt32();
-//			Temp.defenseName		= fields[9].GetString();
-//			Temp.offenseName		= fields[10].GetString();
-//			Temp.zoneId				= fields[11].GetUInt32();
+//			Temp.eventName			= fields[1].Get<std::string>();
+//			Temp.gossipText			= fields[2].Get<std::string>();
+//			Temp.noticeText			= fields[3].Get<std::string>();
+//			Temp.eventType			= EventTypes(fields[4].Get<uint32>());
+//			Temp.groupType			= GroupTypes(fields[5].Get<uint32>());
+//			Temp.rejoinType			= RejoinTypes(fields[6].Get<uint32>());
+//			Temp.startDefensePos	= fields[7].Get<uint32>();
+//			Temp.startOffensePos	= fields[8].Get<uint32>();
+//			Temp.defenseName		= fields[9].Get<std::string>();
+//			Temp.offenseName		= fields[10].Get<std::string>();
+//			Temp.zoneId				= fields[11].Get<uint32>();
 //
 //			Temp.eventPhaseMap.clear();
 //
@@ -113,55 +114,55 @@
 //	}
 //
 //	//加载WorldStateVec
-//	result = WorldDatabase.PQuery("SELECT eventId,creature1,creatureWorldState1,creature2,creatureWorldState2,creature3,creatureWorldState3,gameobject1,gameobjectWorldState1,gameobject2,gameobjectWorldState2,gameobject3,gameobjectWorldState3,defenseWorldState,offenseWorldState FROM _game_event_world_state");
+//	result = WorldDatabase.Query("SELECT eventId,creature1,creatureWorldState1,creature2,creatureWorldState2,creature3,creatureWorldState3,gameobject1,gameobjectWorldState1,gameobject2,gameobjectWorldState2,gameobject3,gameobjectWorldState3,defenseWorldState,offenseWorldState FROM _game_event_world_state");
 //	if (result)
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 eventId = fields[0].GetUInt32();
+//			uint32 eventId = fields[0].Get<uint32>();
 //
 //			std::unordered_map<uint32, EventDataTemplate>::iterator iter = EventDataMap.find(eventId);
 //		
 //			if (iter != EventDataMap.end())
 //			{
-//				iter->second.state_creature1 = fields[1].GetUInt32();
-//				iter->second.state_creatureWorldState1 = fields[2].GetUInt32();
-//				iter->second.state_creature2 = fields[3].GetUInt32();
-//				iter->second.state_creatureWorldState2 = fields[4].GetUInt32();
-//				iter->second.state_creature3 = fields[5].GetUInt32();
-//				iter->second.state_creatureWorldState3 = fields[6].GetUInt32();
-//				iter->second.state_gameobject1 = fields[7].GetUInt32();
-//				iter->second.state_gameobjectWorldState1 = fields[8].GetUInt32();
-//				iter->second.state_gameobject2 = fields[9].GetUInt32();
-//				iter->second.state_gameobjectWorldState2 = fields[10].GetUInt32();
-//				iter->second.state_gameobject3 = fields[11].GetUInt32();
-//				iter->second.state_gameobjectWorldState3 = fields[12].GetUInt32();
-//				iter->second.state_defenseWorldState = fields[13].GetUInt32();
-//				iter->second.state_offenseWorldState = fields[14].GetUInt32();
+//				iter->second.state_creature1 = fields[1].Get<uint32>();
+//				iter->second.state_creatureWorldState1 = fields[2].Get<uint32>();
+//				iter->second.state_creature2 = fields[3].Get<uint32>();
+//				iter->second.state_creatureWorldState2 = fields[4].Get<uint32>();
+//				iter->second.state_creature3 = fields[5].Get<uint32>();
+//				iter->second.state_creatureWorldState3 = fields[6].Get<uint32>();
+//				iter->second.state_gameobject1 = fields[7].Get<uint32>();
+//				iter->second.state_gameobjectWorldState1 = fields[8].Get<uint32>();
+//				iter->second.state_gameobject2 = fields[9].Get<uint32>();
+//				iter->second.state_gameobjectWorldState2 = fields[10].Get<uint32>();
+//				iter->second.state_gameobject3 = fields[11].Get<uint32>();
+//				iter->second.state_gameobjectWorldState3 = fields[12].Get<uint32>();
+//				iter->second.state_defenseWorldState = fields[13].Get<uint32>();
+//				iter->second.state_offenseWorldState = fields[14].Get<uint32>();
 //			}
 //		} while (result->NextRow());
 //	}
 //
 //	//加载RewVec
-//	result = WorldDatabase.PQuery("SELECT eventId,winRewId,losRewId,killsForRew,killedsForRew,damageForRew,healForRew FROM _game_event_rew_setting");
+//	result = WorldDatabase.Query("SELECT eventId,winRewId,losRewId,killsForRew,killedsForRew,damageForRew,healForRew FROM _game_event_rew_setting");
 //	if (result)
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 eventId = fields[0].GetUInt32();
+//			uint32 eventId = fields[0].Get<uint32>();
 //
 //			std::unordered_map<uint32, EventDataTemplate>::iterator iter = EventDataMap.find(eventId);
 //
 //			if (iter != EventDataMap.end())
 //			{
-//				iter->second.rew_winRewId = fields[1].GetUInt32();
-//				iter->second.rew_losRewId = fields[2].GetUInt32();
-//				iter->second.rew_killsForRew = fields[3].GetUInt32();
-//				iter->second.rew_killedsForRew = fields[4].GetUInt32();
-//				iter->second.rew_damageForRew = fields[5].GetFloat();
-//				iter->second.rew_healForRew = fields[6].GetFloat();
+//				iter->second.rew_winRewId = fields[1].Get<uint32>();
+//				iter->second.rew_losRewId = fields[2].Get<uint32>();
+//				iter->second.rew_killsForRew = fields[3].Get<uint32>();
+//				iter->second.rew_killedsForRew = fields[4].Get<uint32>();
+//				iter->second.rew_damageForRew = fields[5].Get<float>();
+//				iter->second.rew_healForRew = fields[6].Get<float>();
 //			}
 //
 //		} while (result->NextRow());
@@ -169,41 +170,41 @@
 //	
 //
 //	//加载StopConditionVec
-//	result = WorldDatabase.PQuery("SELECT eventId,creature1,creatureCount1,creature2,creatureCount2,creature3,creatureCount3,creature4,creatureCount4,creature5,creatureCount5, gameobject1, gameobjectCount1, gameobject2, gameobjectCount2, gameobject3, gameobjectCount3, gameobject4, gameobjectCount4, gameobject5, gameobjectCount5, defenseKills, offenseKills, killGaps FROM _game_event_stop_condition");
+//	result = WorldDatabase.Query("SELECT eventId,creature1,creatureCount1,creature2,creatureCount2,creature3,creatureCount3,creature4,creatureCount4,creature5,creatureCount5, gameobject1, gameobjectCount1, gameobject2, gameobjectCount2, gameobject3, gameobjectCount3, gameobject4, gameobjectCount4, gameobject5, gameobjectCount5, defenseKills, offenseKills, killGaps FROM _game_event_stop_condition");
 //	if (result)
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 eventId = fields[0].GetUInt32();
+//			uint32 eventId = fields[0].Get<uint32>();
 //
 //			std::unordered_map<uint32, EventDataTemplate>::iterator iter = EventDataMap.find(eventId);
 //
 //			if (iter != EventDataMap.end())
 //			{
-//				iter->second.stop_creature1 = fields[1].GetUInt32();
-//				iter->second.stop_creatureCount1 = fields[2].GetUInt32();
-//				iter->second.stop_creature2 = fields[3].GetUInt32();
-//				iter->second.stop_creatureCount2 = fields[4].GetUInt32();
-//				iter->second.stop_creature3 = fields[5].GetUInt32();
-//				iter->second.stop_creatureCount3 = fields[6].GetUInt32();
-//				iter->second.stop_creature4 = fields[7].GetUInt32();
-//				iter->second.stop_creatureCount4 = fields[8].GetUInt32();
-//				iter->second.stop_creature5 = fields[9].GetUInt32();
-//				iter->second.stop_creatureCount5 = fields[10].GetUInt32();
-//				iter->second.stop_gameobject1 = fields[11].GetUInt32();
-//				iter->second.stop_gameobjectCount1 = fields[12].GetUInt32();
-//				iter->second.stop_gameobject2 = fields[13].GetUInt32();
-//				iter->second.stop_gameobjectCount2 = fields[14].GetUInt32();
-//				iter->second.stop_gameobject3 = fields[15].GetUInt32();
-//				iter->second.stop_gameobjectCount3 = fields[16].GetUInt32();
-//				iter->second.stop_gameobject4 = fields[17].GetUInt32();
-//				iter->second.stop_gameobjectCount4 = fields[18].GetUInt32();
-//				iter->second.stop_gameobject5 = fields[19].GetUInt32();
-//				iter->second.stop_gameobjectCount5 = fields[20].GetUInt32();
-//				iter->second.stop_defenseKills = fields[21].GetUInt32();
-//				iter->second.stop_offenseKills = fields[22].GetUInt32();
-//				iter->second.stop_killGaps = fields[23].GetUInt32();
+//				iter->second.stop_creature1 = fields[1].Get<uint32>();
+//				iter->second.stop_creatureCount1 = fields[2].Get<uint32>();
+//				iter->second.stop_creature2 = fields[3].Get<uint32>();
+//				iter->second.stop_creatureCount2 = fields[4].Get<uint32>();
+//				iter->second.stop_creature3 = fields[5].Get<uint32>();
+//				iter->second.stop_creatureCount3 = fields[6].Get<uint32>();
+//				iter->second.stop_creature4 = fields[7].Get<uint32>();
+//				iter->second.stop_creatureCount4 = fields[8].Get<uint32>();
+//				iter->second.stop_creature5 = fields[9].Get<uint32>();
+//				iter->second.stop_creatureCount5 = fields[10].Get<uint32>();
+//				iter->second.stop_gameobject1 = fields[11].Get<uint32>();
+//				iter->second.stop_gameobjectCount1 = fields[12].Get<uint32>();
+//				iter->second.stop_gameobject2 = fields[13].Get<uint32>();
+//				iter->second.stop_gameobjectCount2 = fields[14].Get<uint32>();
+//				iter->second.stop_gameobject3 = fields[15].Get<uint32>();
+//				iter->second.stop_gameobjectCount3 = fields[16].Get<uint32>();
+//				iter->second.stop_gameobject4 = fields[17].Get<uint32>();
+//				iter->second.stop_gameobjectCount4 = fields[18].Get<uint32>();
+//				iter->second.stop_gameobject5 = fields[19].Get<uint32>();
+//				iter->second.stop_gameobjectCount5 = fields[20].Get<uint32>();
+//				iter->second.stop_defenseKills = fields[21].Get<uint32>();
+//				iter->second.stop_offenseKills = fields[22].Get<uint32>();
+//				iter->second.stop_killGaps = fields[23].Get<uint32>();
 //			}
 //		} while (result->NextRow());
 //	}
@@ -214,7 +215,7 @@
 //
 //	for (auto iter = EventDataMap.begin(); iter != EventDataMap.end(); iter++)
 //	{
-//		result = WorldDatabase.PQuery("SELECT phase,stop_creature_guid,stop_gameobject_guid,stop_player_kills,"
+//		result = WorldDatabase.Query("SELECT phase,stop_creature_guid,stop_gameobject_guid,stop_player_kills,"
 //			"stop_defense_tele_pos,stop_offense_tele_pos,defense_graveyard_pos,offense_graveyard_pos,stop_defense_notice,stop_offense_notice,"
 //			"defense_graveyard_safe,offense_graveyard_safe,defense_graveyard_healer,offense_graveyard_healer FROM _game_event_phase WHERE eventId = '%u';", iter->first);
 //		if (result)
@@ -222,21 +223,21 @@
 //			do
 //			{
 //				Field* fields = result->Fetch();
-//				uint32 phase = fields[0].GetUInt32();
+//				uint32 phase = fields[0].Get<uint32>();
 //				EventPhaseTemplate Temp;
-//				Temp.stop_creature			= fields[1].GetUInt32();
-//				Temp.stop_gameobject		= fields[2].GetUInt32();
-//				Temp.stop_kills				= fields[3].GetUInt32();
-//				Temp.stop_defense_tele_pos	= fields[4].GetUInt32();
-//				Temp.stop_offense_tele_pos	= fields[5].GetUInt32();
-//				Temp.defense_graveyard_pos	= fields[6].GetUInt32();
-//				Temp.offense_graveyard_pos	= fields[7].GetUInt32();
-//				Temp.stop_defense_notice	= fields[8].GetString();
-//				Temp.stop_offense_notice	= fields[9].GetString();
-//				Temp.defense_graveyard_safe = fields[10].GetFloat();
-//				Temp.offense_graveyard_safe = fields[11].GetFloat();
-//				Temp.defense_graveyard_healer = fields[12].GetUInt32();
-//				Temp.offense_graveyard_healer = fields[13].GetUInt32();
+//				Temp.stop_creature			= fields[1].Get<uint32>();
+//				Temp.stop_gameobject		= fields[2].Get<uint32>();
+//				Temp.stop_kills				= fields[3].Get<uint32>();
+//				Temp.stop_defense_tele_pos	= fields[4].Get<uint32>();
+//				Temp.stop_offense_tele_pos	= fields[5].Get<uint32>();
+//				Temp.defense_graveyard_pos	= fields[6].Get<uint32>();
+//				Temp.offense_graveyard_pos	= fields[7].Get<uint32>();
+//				Temp.stop_defense_notice	= fields[8].Get<std::string>();
+//				Temp.stop_offense_notice	= fields[9].Get<std::string>();
+//				Temp.defense_graveyard_safe = fields[10].Get<float>();
+//				Temp.offense_graveyard_safe = fields[11].Get<float>();
+//				Temp.defense_graveyard_healer = fields[12].Get<uint32>();
+//				Temp.offense_graveyard_healer = fields[13].Get<uint32>();
 //				iter->second.eventPhaseMap.insert(std::make_pair(phase, Temp));
 //
 //			} while (result->NextRow());
@@ -244,20 +245,20 @@
 //	}
 //
 //	//加载ActiveVec
-//	result = WorldDatabase.PQuery("SELECT eventId,activeGuid,activeType,creatureEntry,killCount,gameobjectEntry,destroyCount FROM _game_event_active_condition");
+//	result = WorldDatabase.Query("SELECT eventId,activeGuid,activeType,creatureEntry,killCount,gameobjectEntry,destroyCount FROM _game_event_active_condition");
 //	if (result)
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
 //			EventActiveTemplate Temp;
-//			Temp.eventId = fields[0].GetUInt32();
-//			Temp.activeGUID = fields[1].GetUInt32();
-//			Temp.activeType = fields[2].GetUInt32();
-//			Temp.creatureEntry = fields[3].GetUInt32();
-//			Temp.killCount = fields[4].GetUInt32();
-//			Temp.gameobjectEntry = fields[5].GetUInt32();
-//			Temp.destroyCount = fields[6].GetUInt32();
+//			Temp.eventId = fields[0].Get<uint32>();
+//			Temp.activeGUID = fields[1].Get<uint32>();
+//			Temp.activeType = fields[2].Get<uint32>();
+//			Temp.creatureEntry = fields[3].Get<uint32>();
+//			Temp.killCount = fields[4].Get<uint32>();
+//			Temp.gameobjectEntry = fields[5].Get<uint32>();
+//			Temp.destroyCount = fields[6].Get<uint32>();
 //			EventActiveVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
@@ -268,18 +269,18 @@
 //void CustomEvent::LoadPos()
 //{
 //	PosMap.clear();
-//	QueryResult result = WorldDatabase.PQuery("SELECT map,x,y,z,o,posId FROM _position");
+//	QueryResult result = WorldDatabase.Query("SELECT map,x,y,z,o,posId FROM _position");
 //	if (!result) return;
 //	do
 //	{
 //		Field* fields = result->Fetch();
 //		PosTemplate Temp;
-//		Temp.map = fields[0].GetUInt32();
-//		Temp.x = fields[1].GetFloat();
-//		Temp.y = fields[2].GetFloat();
-//		Temp.z = fields[3].GetFloat();
-//		Temp.o = fields[4].GetFloat();
-//		uint32 ID = fields[5].GetUInt32();
+//		Temp.map = fields[0].Get<uint32>();
+//		Temp.x = fields[1].Get<float>();
+//		Temp.y = fields[2].Get<float>();
+//		Temp.z = fields[3].Get<float>();
+//		Temp.o = fields[4].Get<float>();
+//		uint32 ID = fields[5].Get<uint32>();
 //		PosMap.insert(std::make_pair(ID, Temp));
 //	} while (result->NextRow());
 //}
@@ -346,9 +347,9 @@
 //			if (Creature* healer = map->SummonCreature(_defense_graveyard_healer, pos, 0, 60 * 60 * IN_MILLISECONDS))
 //			{
 //				_soulhealer_defense = healer->GetGUID();
-//				healer->setFaction(DEFENSE_FACTION);
+//				healer->SetFaction(DEFENSE_FACTION);
 //				healer->setDeathState(DEAD);
-//				healer->SetUInt64Value(UNIT_FIELD_CHANNEL_OBJECT, healer->GetGUID());
+//				healer->SetUInt64Value(UNIT_FIELD_CHANNEL_OBJECT, healer->GetGUID().GetCounter());
 //				healer->SetUInt32Value(UNIT_CHANNEL_SPELL, SPELL_SPIRIT_HEAL_CHANNEL);
 //				healer->SetFloatValue(UNIT_MOD_CAST_SPEED, 1.0f);
 //			}		
@@ -366,9 +367,9 @@
 //			if (Creature* healer = map->SummonCreature(_offense_graveyard_healer, pos, 0, 60 * 60 * IN_MILLISECONDS))
 //			{
 //				_soulhealer_offense = healer->GetGUID();
-//				healer->setFaction(OFFENSE_FACTION);
+//				healer->SetFaction(OFFENSE_FACTION);
 //				healer->setDeathState(DEAD);
-//				healer->SetUInt64Value(UNIT_FIELD_CHANNEL_OBJECT, healer->GetGUID());
+//				healer->SetUInt64Value(UNIT_FIELD_CHANNEL_OBJECT, healer->GetGUID().GetCounter());
 //				healer->SetUInt32Value(UNIT_CHANNEL_SPELL, SPELL_SPIRIT_HEAL_CHANNEL);
 //				healer->SetFloatValue(UNIT_MOD_CAST_SPEED, 1.0f);
 //			}			
@@ -1317,9 +1318,9 @@
 //void CustomEvent::SetFaction(Player* player, TeamTypes team)
 //{
 //	if (team == C_TEAM_DEFENSE)
-//		player->setFaction(DEFENSE_FACTION);
+//		player->SetFaction(DEFENSE_FACTION);
 //	else if (team == C_TEAM_OFFENSE)
-//		player->setFaction(OFFENSE_FACTION);
+//		player->SetFaction(OFFENSE_FACTION);
 //}
 //
 //void CustomEvent::SetValid(Player* player, bool valid)
@@ -2050,8 +2051,8 @@
 //
 //				uint32 posId = 1;
 //
-//				if (QueryResult result = WorldDatabase.PQuery("SELECT max(posId) FROM _position"))
-//					posId = result->Fetch()[0].GetUInt32() + 1;
+//				if (QueryResult result = WorldDatabase.Query("SELECT max(posId) FROM _position"))
+//					posId = result->Fetch()[0].Get<uint32>() + 1;
 //
 //				WorldDatabase.Execute("INSERT INTO _position(comment,posId,map,x,y,z,o) VALUES ('%s','%u','%u','%f','%f','%f','%f')", oss.str().c_str(), posId,map, x, y, z, o);
 //
