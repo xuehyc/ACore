@@ -1,0 +1,1 @@
+﻿git pull https://github.com/trickerer/AzerothCore-wotlk-with-NPCBots.git npcbots_3.3.5
