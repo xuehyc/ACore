@@ -9,7 +9,7 @@ void GS::Load()
 {
 	GSVec.clear();
 	
-	//QueryResult result = WorldDatabase.PQuery("SELECT Id, Type, GS FROM _gs");
+	//QueryResult result = WorldDatabase.Query("SELECT Id, Type, GS FROM _gs");
 
 	//if (!result)
 	//	return;
@@ -17,7 +17,7 @@ void GS::Load()
 	//{
 	//	Field* fields = result->Fetch();
 	//	GSTemplate Temp;
-	//	Temp.id = fields[0].GetUInt32();
+	//	Temp.id = fields[0].Get<uint32>();
 	//
 	//	const char*  str = fields[1].GetCString();
 	//
@@ -28,7 +28,7 @@ void GS::Load()
 	//	else if (strcmp("隐藏物品", str) == 0)
 	//		Temp.type = GS_TYPE_ITEM_HIDDEN;
 	//
-	//	Temp.gs = fields[2].GetUInt32();
+	//	Temp.gs = fields[2].Get<uint32>();
 	//
 	//	GSVec.push_back(Temp);
 	//} while (result->NextRow());

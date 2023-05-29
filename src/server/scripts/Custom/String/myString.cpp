@@ -4,7 +4,7 @@
 //void CoreString::Load()//tmp
 //{
 //	StringVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT ID,文本 FROM __提示文本" :
 //		"SELECT ID,TEXT FROM _string");
 //	if (!result) return;
@@ -12,8 +12,8 @@
 //	{
 //		Field* fields = result->Fetch();
 //		StringTemplate Temp;
-//		Temp.types = fields[0].GetUInt32();
-//		Temp.text = fields[1].GetString();
+//		Temp.types = fields[0].Get<uint32>();
+//		Temp.text = fields[1].Get<std::string>();
 //		StringVec.push_back(Temp);
 //	} while (result->NextRow());
 //}

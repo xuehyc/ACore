@@ -118,7 +118,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 mountSpellId = fields[0].GetUInt32();
+//			uint32 mountSpellId = fields[0].Get<uint32>();
 //			MountAllowedTemplate Temp;
 //			Temp.indoor = fields[1].GetBool();
 //			Temp.instance = fields[2].GetBool();
@@ -142,12 +142,12 @@
 //		{
 //			Field* fields = result->Fetch();
 //			KillerStreakTemplate Temp;
-//			uint32 num = fields[0].GetUInt32();
-//			Temp.rewId = fields[1].GetUInt32();
-//			Temp.endRewId = fields[2].GetUInt32();
-//			Temp.announceFlag = fields[3].GetUInt32();
-//			Temp.rewFlag = fields[4].GetUInt32();
-//			Temp.endRewFlag = fields[5].GetUInt32();
+//			uint32 num = fields[0].Get<uint32>();
+//			Temp.rewId = fields[1].Get<uint32>();
+//			Temp.endRewId = fields[2].Get<uint32>();
+//			Temp.announceFlag = fields[3].Get<uint32>();
+//			Temp.rewFlag = fields[4].Get<uint32>();
+//			Temp.endRewFlag = fields[5].Get<uint32>();
 //			KillerStreakMap.insert(std::make_pair(num, Temp));
 //		} while (result->NextRow());
 //	}
@@ -160,7 +160,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			BuyTransItemMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetUInt32()));
+//			BuyTransItemMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<uint32>()));
 //		} while (result->NextRow());
 //	}
 //	
@@ -172,7 +172,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			PlayerDropRateMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetFloat()));
+//			PlayerDropRateMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].GetFloat()));
 //		} while (result->NextRow());
 //	}
 //
@@ -184,7 +184,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			AreaVisibilityDistMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetFloat()));
+//			AreaVisibilityDistMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].GetFloat()));
 //		} while (result->NextRow());
 //	}
 //

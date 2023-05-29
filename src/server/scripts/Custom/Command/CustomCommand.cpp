@@ -1,119 +1,119 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "CustomCommand.h"
-//#include "Chat.h"
-//#include "Transport.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "Chat.h"
-//#include "ObjectMgr.h"
-//#include "Opcodes.h"
-//#include "Pet.h"
-//#include "Player.h"
-//#include "ReputationMgr.h"
-//#include "ScriptMgr.h"
-//#include "../Switch/Switch.h"
-//#include "../StatPoints/StatPoints.h"
-//#include "../FunctionCollection/FunctionCollection.h"
-//#include "../VIP/VIP.h"
-//#include "../String/myString.h"
-//#include "../CustomEvent/Event.h"
-//#include "../CharNameMod/CharNameMod.h"
-//#include "../Reward/Reward.h"
-//#include "../DBCCreate/DBCCreate.h"
-//#include "../Skill/Skill.h"
-//#include "../Rank/Rank.h"
-//#include "../SpiritPower/SpiritPower.h"
-//#include "../Morph/Morph.h"
-//#include "../ItemMod/ItemMod.h"
-//#include "../Faker/Faker.h"
-//#include "../Talisman/Talisman.h"
-//#include "AccountMgr.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../CDK/CDK.h"
-//#include "../UI/Rune/Rune.h"
-//#include "../UI/BlackMarket/BlackMarket.h"
-//#include "../AuthCheck/AuthCheck.h"
-//#include "group.h"
-//#include <fstream>
-//#include "MapManager.h"
-//#include "..\..\server\scripts\Custom\DataLoader\DataLoader.h"
-//
-//std::vector<CommandTemplate> CommandVec;
-//
-//void CustomCommand::Load()
-//{
-//	return;
-//	CommandVec.clear();
-//	QueryResult result = WorldDatabase.PQuery("SELECT ID,command FROM _command");
-//	if (!result) return;
-//	do
-//	{
-//		Field* fields = result->Fetch();
-//		CommandTemplate Temp;
-//		Temp.ID = fields[0].GetUInt32();
-//		Temp.command = fields[1].GetString();
-//
-//		CommandVec.push_back(Temp);
-//	} while (result->NextRow());
-//}
-//
-//void CustomCommand::DoCommandByID(Player* player, uint32 ID)
-//{
-//	std::string command = "";
-//
-//	for (std::vector<CommandTemplate>::iterator iter = CommandVec.begin(); iter != CommandVec.end(); ++iter)
-//	{
-//		if (ID == iter->ID)
-//		{
-//			command = iter->command;
-//			break;
-//		}
-//	}
-//
-//	DoCommand(player, command);
-//}
-//
-//void CustomCommand::DoCommand(Player* player, std::string command)
-//{
-//	if (command.empty())
-//		return;
-//
-//	player->CastStop();
-//
-//	uint64 oriTarget = player->GetTarget();
-//
-//	std::vector<std::string> commandsVec = sCF->SplitStr(command, "#");
-//
-//	AccountTypes security = player->GetSession()->GetSecurity();
-//
-//	player->GetSession()->SetSecurity(SEC_CONSOLE);
-//
-//	for (std::vector<std::string>::iterator iter = commandsVec.begin(); iter != commandsVec.end(); ++iter)
-//	{
-//		std::string command = *iter;
-//
-//		std::string::size_type p = command.find("&");
-//
-//		if (p == std::string::npos)
-//			player->SetSelection(player->GetGUID());
-//		else
-//		{
-//			command = sCF->SplitStr(command, "&")[1];
-//			player->SetSelection(oriTarget);
-//		}
-//			
-//		if (!ChatHandler(player->GetSession()).ParseCommands(command.c_str(), false))
-//		{
-//			std::ostringstream oss;
-//			oss << "命令配置出错:" << (*iter);
-//			player->GetSession()->SendNotification(oss.str().c_str());
-//		}
-//	}
-//
-//	player->SetSelection(oriTarget);
-//
-//	player->GetSession()->SetSecurity(security);	
-//}
-//
+﻿#pragma execution_character_set("utf-8")
+#include "CustomCommand.h"
+#include "Chat.h"
+#include "Transport.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "Chat.h"
+#include "ObjectMgr.h"
+#include "Opcodes.h"
+#include "Pet.h"
+#include "Player.h"
+#include "ReputationMgr.h"
+#include "ScriptMgr.h"
+#include "../Switch/Switch.h"
+#include "../StatPoints/StatPoints.h"
+#include "../FunctionCollection/FunctionCollection.h"
+#include "../VIP/VIP.h"
+#include "../String/myString.h"
+#include "../CustomEvent/Event.h"
+#include "../CharNameMod/CharNameMod.h"
+#include "../Reward/Reward.h"
+#include "../DBCCreate/DBCCreate.h"
+#include "../Skill/Skill.h"
+#include "../Rank/Rank.h"
+#include "../SpiritPower/SpiritPower.h"
+#include "../Morph/Morph.h"
+#include "../ItemMod/ItemMod.h"
+#include "../Faker/Faker.h"
+#include "../Talisman/Talisman.h"
+#include "AccountMgr.h"
+#include "../GCAddon/GCAddon.h"
+#include "../CDK/CDK.h"
+#include "../UI/Rune/Rune.h"
+#include "../UI/BlackMarket/BlackMarket.h"
+#include "../AuthCheck/AuthCheck.h"
+#include "group.h"
+#include <fstream>
+#include "MapMgr.h"
+#include "..\..\server\scripts\Custom\DataLoader\DataLoader.h"
+
+std::vector<CommandTemplate> CommandVec;
+
+void CustomCommand::Load()
+{
+	return;
+	CommandVec.clear();
+	QueryResult result = WorldDatabase.Query("SELECT ID,command FROM _command");
+	if (!result) return;
+	do
+	{
+		Field* fields = result->Fetch();
+		CommandTemplate Temp;
+		Temp.ID = fields[0].Get<uint32>();
+		Temp.command = fields[1].Get<std::string>();
+
+		CommandVec.push_back(Temp);
+	} while (result->NextRow());
+}
+
+void CustomCommand::DoCommandByID(Player* player, uint32 ID)
+{
+	std::string command = "";
+
+	for (std::vector<CommandTemplate>::iterator iter = CommandVec.begin(); iter != CommandVec.end(); ++iter)
+	{
+		if (ID == iter->ID)
+		{
+			command = iter->command;
+			break;
+		}
+	}
+
+	DoCommand(player, command);
+}
+
+void CustomCommand::DoCommand(Player* player, std::string command)
+{
+	if (command.empty())
+		return;
+
+	player->CastStop();
+
+	ObjectGuid oriTarget = player->GetTarget();
+
+	std::vector<std::string> commandsVec = sCF->SplitStr(command, "#");
+
+	AccountTypes security = player->GetSession()->GetSecurity();
+
+	player->GetSession()->SetSecurity(SEC_CONSOLE);
+
+	for (std::vector<std::string>::iterator iter = commandsVec.begin(); iter != commandsVec.end(); ++iter)
+	{
+		std::string command = *iter;
+
+		std::string::size_type p = command.find("&");
+
+		if (p == std::string::npos)
+			player->SetSelection(player->GetGUID());
+		else
+		{
+			command = sCF->SplitStr(command, "&")[1];
+			player->SetSelection(oriTarget);
+		}
+			
+		if (!ChatHandler(player->GetSession()).ParseCommands(command.c_str()))//,false  //ignore
+		{
+			std::ostringstream oss;
+			oss << "命令配置出错:" << (*iter);
+			player->GetSession()->SendNotification(oss.str().c_str());
+		}
+	}
+
+	player->SetSelection(oriTarget);
+
+	player->GetSession()->SetSecurity(security);	
+}
+
 //class custom_commandscript : public CommandScript
 //{
 //public:
@@ -669,7 +669,7 @@
 //		if (!result)
 //			return true;
 //
-//		uint32 max = result->Fetch()[0].GetUInt32();
+//		uint32 max = result->Fetch()[0].Get<uint32>();
 //
 //		for (size_t i = 0; i < max + 1; i++)
 //			AccountMgr::DeleteAccount(i);
@@ -933,10 +933,10 @@
 //
 //		uint32 posId = 1;
 //
-//		if (QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//		if (QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //			"SELECT max(坐标ID) FROM _模板_坐标" :
 //			"SELECT max(posId) FROM _position"))
-//			posId = result->Fetch()[0].GetUInt32() + 1;
+//			posId = result->Fetch()[0].Get<uint32>() + 1;
 //
 //		WorldDatabase.DirectPExecute(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //			"INSERT INTO _模板_坐标(备注,坐标ID,地图ID,X坐标,Y坐标,Z坐标,O坐标) VALUES ('%s','%u','%u','%f','%f','%f','%f')" :

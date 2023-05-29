@@ -25,7 +25,7 @@
 //	VCTopSys.clear();
 //	topbufflists.clear();
 //
-//	QueryResult areaidcustom = WorldDatabase.PQuery("SELECT entry,name,itemid,buff from _活动_比武大会");
+//	QueryResult areaidcustom = WorldDatabase.Query("SELECT entry,name,itemid,buff from _活动_比武大会");
 //	if (areaidcustom)
 //	{
 //		int nCount = 1;
@@ -34,10 +34,10 @@
 //			Field * fields = areaidcustom->Fetch();
 //			CTopSys tmpmorph;
 //
-//			tmpmorph.entry = fields[0].GetUInt32();
-//			tmpmorph.text = fields[1].GetString();
-//			tmpmorph.itemid = fields[2].GetUInt32();
-//			tmpmorph.buffs = fields[3].GetUInt32();
+//			tmpmorph.entry = fields[0].Get<uint32>();
+//			tmpmorph.text = fields[1].Get<std::string>();
+//			tmpmorph.itemid = fields[2].Get<uint32>();
+//			tmpmorph.buffs = fields[3].Get<uint32>();
 //
 //			topbufflists.push_back(tmpmorph.buffs);
 //			VCTopSys.insert(CTopSys_t::value_type(nCount, tmpmorph));
