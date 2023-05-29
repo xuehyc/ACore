@@ -58,9 +58,9 @@
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Misc_Coin_06:30:30:0:0|t商业", GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF);
 //		player->GetTeamId() == TEAM_ALLIANCE ? player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Mount_Gryphon_01:30:30:0:0|t骑术", GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF) : player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Mount_Wyvern_01:30:30:0:0|t骑术", GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF);
 //		if (!player->HasSpell(63624))
-//			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Shadow_Charm:30:30:0:0|t天赋", GOSSIP_SENDER_MAIN + 5, GOSSIP_ACTION_INFO_DEF, "确定要学习双天赋吗？", 1000 * GOLD, false);
-//		player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Achievement_BG_winWSG:30:30:0:0|t重置天赋", GOSSIP_SENDER_MAIN + 6, GOSSIP_ACTION_INFO_DEF, "确定要重置天赋吗？", 50 * GOLD, false);
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
+//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Shadow_Charm:30:30:0:0|t天赋", GOSSIP_SENDER_MAIN + 5, GOSSIP_ACTION_INFO_DEF, "确定要学习双天赋吗？", 1000 * GOLD, false);
+//		AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Achievement_BG_winWSG:30:30:0:0|t重置天赋", GOSSIP_SENDER_MAIN + 6, GOSSIP_ACTION_INFO_DEF, "确定要重置天赋吗？", 50 * GOLD, false);
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //		return true;
 //	}
 //
@@ -83,52 +83,52 @@
 //			case CLASS_WARRIOR:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), WARRIOR);
 //				player->NpcTrainerId = WARRIOR;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_PALADIN:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), PALADIN);
 //				player->NpcTrainerId = PALADIN;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_HUNTER:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), HUNTER);
 //				player->NpcTrainerId = HUNTER;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_ROGUE:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), ROGUE);
 //				player->NpcTrainerId = ROGUE;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_PRIEST:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), PRIEST);
 //				player->NpcTrainerId = PRIEST;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_DEATH_KNIGHT:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), DEATH_KNIGHT);
 //				player->NpcTrainerId = DEATH_KNIGHT;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_SHAMAN:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), SHAMAN);
 //				player->NpcTrainerId = SHAMAN;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_MAGE:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), MAGE);
 //				player->NpcTrainerId = MAGE;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_WARLOCK:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), WARLOCK);
 //				player->NpcTrainerId = WARLOCK;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			case CLASS_DRUID:
 //				player->GetSession()->SendTrainerList(creature->GetGUID(), DRUID);
 //				player->NpcTrainerId = DRUID;
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				break;
 //			default:
 //				break;
@@ -155,7 +155,7 @@
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Holy_SealOfSacrifice:30:30:0:0|t急救", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 13);
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Fishing:30:30:0:0|t钓鱼", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/misc_arrowleft:30:30:0:0|t返回", GOSSIP_SENDER_MAIN + 100, GOSSIP_ACTION_INFO_DEF + 100);
-//			player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
+//			SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //		}
 //		break;
 //		case GOSSIP_SENDER_MAIN + 3:
@@ -173,14 +173,14 @@
 //			player->learnSpell(63624);
 //			player->CastSpell(player, 63707);
 //			ChatHandler(player->GetSession()).PSendSysMessage("你学会了双天赋");
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			break;
 //		case GOSSIP_SENDER_MAIN + 6:
 //			player->resetTalents(true);
 //			player->SendTalentsInfoData(false);
 //			player->GetSession()->SendAreaTriggerMessage("已重置角色天赋");
 //			player->ModifyMoney(-50 * GOLD);
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			break;
 //		default:
 //			break;

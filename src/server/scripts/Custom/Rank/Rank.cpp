@@ -195,9 +195,9 @@
 //	}
 //
 //	if (obj->ToCreature())
-//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
 //void Rank::Action(Player*player, uint32 action, Object*obj)
@@ -207,7 +207,7 @@
 //	else
 //	{
 //		player->ADD_GOSSIP_ITEM(0, GetGosstipText(action - GOSSIP_ACTION_INFO_DEF), SENDER_RANK, GOSSIP_ACTION_INFO_DEF);
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //	}
 //}
 //

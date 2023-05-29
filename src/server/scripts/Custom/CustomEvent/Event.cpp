@@ -960,7 +960,7 @@
 //		}
 //	}
 //
-//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //void Event::GetTelePos(uint32 posId, uint32 &map, float &x, float &y, float &z, float &o)
 //{

@@ -67,14 +67,14 @@
 //			GetParams(player, rewId, reqId);
 //			const char* text = sString->Format(sString->GetText(CORE_STR_TYPES(STR_REICARNATION_REQ)), player->reincarnationLv + 1);
 //
-//			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_REICARNATION_CLICK)), SENDER_REINCARNATION, GOSSIP_ACTION_INFO_DEF + 1, sReq->Notice(player, reqId, text, ""), sReq->Golds(reqId), 0);
+//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_REICARNATION_CLICK)), SENDER_REINCARNATION, GOSSIP_ACTION_INFO_DEF + 1, sReq->Notice(player, reqId, text, ""), sReq->Golds(reqId), 0);
 //		}
 //	}
 //
 //	if (obj->ToCreature())
-//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
 //void Reincarnation::GetParams(Player* player, uint32 &rewId, uint32 &reqId)
@@ -118,7 +118,7 @@
 //			sWorld->SendScreenMessage(text);
 //		}
 //		
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //	}
 //}
 //

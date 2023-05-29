@@ -13,8 +13,8 @@
 //	{
 //		player->PlayerTalkClass->ClearMenus();
 //		
-//		player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "输入物品编号", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
-//		player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//		AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "输入物品编号", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//		SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //		return true;
 //	}
 //

@@ -145,7 +145,7 @@
 //		}	
 //	}
 //
-//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
 //void Faction::Action(Player*player, uint32 action, Object*obj)
@@ -165,7 +165,7 @@
 //			ChatHandler(player->GetSession()).PSendSysMessage("加入%s", GetName(faction).c_str());
 //		}
 //
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //	}
 //	else if (action > GOSSIP_ACTION_INFO_DEF)
 //	{
@@ -178,16 +178,16 @@
 //		{
 //			std::string gossipText = ">> 退出" + name;
 //			std::string noticeText = "确定退出" + name + "吗？";
-//			player->ADD_GOSSIP_ITEM_EXTENDED(0, gossipText, SENDER_FACTION, 2 * GOSSIP_ACTION_INFO_DEF + player->faction, noticeText, 0, false);
+//			AddGossipItemFor(player,(0, gossipText, SENDER_FACTION, 2 * GOSSIP_ACTION_INFO_DEF + player->faction, noticeText, 0, false);
 //		}
 //		else if (player->faction == 0)
 //		{
 //			std::string gossipText = ">> 加入" + name;
 //			std::string noticeText = "确定加入" + name + "吗？";
-//			player->ADD_GOSSIP_ITEM_EXTENDED(0, gossipText, SENDER_FACTION, 2 * GOSSIP_ACTION_INFO_DEF + action - GOSSIP_ACTION_INFO_DEF, noticeText, 0, false);
+//			AddGossipItemFor(player,(0, gossipText, SENDER_FACTION, 2 * GOSSIP_ACTION_INFO_DEF + action - GOSSIP_ACTION_INFO_DEF, noticeText, 0, false);
 //		}
 //			
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //	}
 //	else
 //		sMF->AddGossip(player, obj, 0);

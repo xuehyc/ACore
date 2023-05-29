@@ -422,7 +422,7 @@
 //		}
 //
 //
-//		player->SEND_GOSSIP_MENU(20000, creature->GetGUID());
+//		SendGossipMenuFor(player,20000, creature->GetGUID());
 //		return true;
 //	}
 //
@@ -490,7 +490,7 @@
 //			else
 //				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "暂无排行榜", 1, 5);
 //
-//			player->SEND_GOSSIP_MENU(20000, creature->GetGUID());
+//			SendGossipMenuFor(player,20000, creature->GetGUID());
 //		}
 //		else if (action == 5)
 //		{

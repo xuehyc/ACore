@@ -182,7 +182,7 @@
 //        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_3v3_7:26|t|r 竞技场3v3", GOSSIP_SENDER_MAIN, ARENA_3V3_LADDER);
 //        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_5v5_7:26|t|r 竞技场1v1", GOSSIP_SENDER_MAIN, ARENA_5V5_LADDER);
 //        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\spell_chargenegative:26|t|r 返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
-//        player->SEND_GOSSIP_MENU(90085, creature->GetGUID());
+//        SendGossipMenuFor(player,90085, creature->GetGUID());
 //        return true;
 //    }
 //        
@@ -215,7 +215,7 @@
 //                if(!result) 
 //                {
 //                    player->ADD_GOSSIP_ITEM(7, "返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
-//                    player->SEND_GOSSIP_MENU(1, creature->GetGUID());
+//                    SendGossipMenuFor(player,1, creature->GetGUID());
 //                } 
 //                else
 //                {
@@ -238,7 +238,7 @@
 //                    } 
 //                    while(result->NextRow());
 //                    player->ADD_GOSSIP_ITEM(7, "返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
-//                    player->SEND_GOSSIP_MENU(90086, creature->GetGUID());
+//                    SendGossipMenuFor(player,90086, creature->GetGUID());
 //                }
 //                break;
 //            }
@@ -340,7 +340,7 @@
 //                        } 
 //                        while(members->NextRow());
 //                    }
-//                    player->SEND_GOSSIP_MENU(90087, creature->GetGUID());
+//                    SendGossipMenuFor(player,90087, creature->GetGUID());
 //                }
 //            }
 //        }

@@ -776,7 +776,7 @@
 //		{
 //			if (player->GetSession())
 //			{
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //
 //				if (player->IsSpectator())
 //					continue;
@@ -1978,7 +1978,7 @@
 //		}
 //	}
 //
-//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
 ////Unk1 = 1时 检测阵营是否一致 一致则通过 可以释放技能

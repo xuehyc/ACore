@@ -38,7 +38,7 @@
 //		player->PlayerTalkClass->ClearMenus();
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "陆地坐骑", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "飞行坐骑", GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF);
-//		player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//		SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //		return true;
 //	}
 //
@@ -53,15 +53,15 @@
 //			if (OnSale(action))
 //				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, "购买", GOSSIP_SENDER_MAIN + 4, action);
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN + 5, action);
-//			player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//			SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //			break;
 //		case GOSSIP_SENDER_MAIN + 1://陆地坐骑列表
 //			AddMountList(player, false);
-//			player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//			SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //			break;
 //		case GOSSIP_SENDER_MAIN + 2://飞行坐骑列表
 //			AddMountList(player, true);
-//			player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//			SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //			break;
 //		case GOSSIP_SENDER_MAIN + 3://查看
 //		{
@@ -69,7 +69,7 @@
 //			if (OnSale(action))
 //				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, "购买", GOSSIP_SENDER_MAIN + 4, action);
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN + 5, action);
-//			player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//			SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //			if (player->HasAura(action))
 //				break;
 //			if (player->IsMounted())
@@ -102,13 +102,13 @@
 //			{
 //				player->PlayerTalkClass->ClearMenus();
 //				AddMountList(player, true);
-//				player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//				SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //			}
 //			else
 //			{
 //				player->PlayerTalkClass->ClearMenus();
 //				AddMountList(player, false);
-//				player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//				SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //			}
 //			break;
 //		default:

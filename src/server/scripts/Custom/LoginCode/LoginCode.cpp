@@ -89,8 +89,8 @@
 //	if (player->token_key.empty())
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "使用动态口令登录可以让账号更加安全\n\n操作步骤\n1.下载谷歌令牌APP\n2.点击产生一个16位的密钥\n3.打开APP选择输入提供的密钥，将账号和密钥输入，将密钥与APP绑定\n\n「点击产生密钥」", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 //	else
-//		player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "解除动态口令登录", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
-//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "解除动态口令登录", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
 //void LoginCode::Action(Player*player, uint32 action, Object*obj)
@@ -101,14 +101,14 @@
 //	{
 //	case GOSSIP_ACTION_INFO_DEF:
 //		GenerateCode(player);
-//		player->ADD_GOSSIP_ITEM_EXTENDED(0, "将下列密钥绑定在谷歌令牌APP\n\n|cFFFF0000「|r" + player->temp_token_key + "|cFFFF0000」|r\n\n「点击添加动态口令登录」", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1, "\n点击确认后服务器将保存你的密钥\n\n|cFFFF0000「|r" + player->temp_token_key + "|cFFFF0000」|r\n\n请确认你已经下载谷歌令牌APP且已经绑定该密钥\n", 0, false);
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		AddGossipItemFor(player,(0, "将下列密钥绑定在谷歌令牌APP\n\n|cFFFF0000「|r" + player->temp_token_key + "|cFFFF0000」|r\n\n「点击添加动态口令登录」", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1, "\n点击确认后服务器将保存你的密钥\n\n|cFFFF0000「|r" + player->temp_token_key + "|cFFFF0000」|r\n\n请确认你已经下载谷歌令牌APP且已经绑定该密钥\n", 0, false);
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //		break;
 //	case GOSSIP_ACTION_INFO_DEF + 1:	
 //		player->token_key = player->temp_token_key;
 //		LoginDatabase.DirectPExecute("UPDATE account SET token_key = '%s' WHERE id = '%u'", player->token_key.c_str(), player->GetSession()->GetAccountId());
 //		ChatHandler(player->GetSession()).PSendSysMessage("|cFFFF0000「|r%s|cFFFF0000」|r已经存储，请及时绑定谷歌令牌APP", player->token_key.c_str());
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		break;
 //	}
 //}
@@ -159,14 +159,14 @@
 //		if (validToken != inputToken)
 //		{
 //			player->GetSession()->SendNotification("你输入的动态口令密码无法通过验证！");
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			return false;
 //		}
 //
 //		LoginDatabase.DirectPExecute("UPDATE account SET token_key = '' WHERE id = '%u'", player->GetSession()->GetAccountId());
 //		player->token_key = "";
 //		ChatHandler(player->GetSession()).PSendSysMessage("已经解除动态口令登录！");
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		return true;
 //	}
 //};

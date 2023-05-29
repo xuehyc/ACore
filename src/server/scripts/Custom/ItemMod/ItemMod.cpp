@@ -713,7 +713,7 @@
 //		{
 //			std::ostringstream oss;
 //			oss << sReq->Notice(player, ItemUnbindCostInfo[i].reqId, "解绑", sCF->GetItemLink(item->GetEntry()),item->GetCount());
-//			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_ITEM_UNBIND)), GOSSIP_SENDER_MAIN, ACTION_ITEM_REMOVEBIND, oss.str().c_str(), sReq->Golds(ItemUnbindCostInfo[i].reqId), 0);
+//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_ITEM_UNBIND)), GOSSIP_SENDER_MAIN, ACTION_ITEM_REMOVEBIND, oss.str().c_str(), sReq->Golds(ItemUnbindCostInfo[i].reqId), 0);
 //			return true;
 //		}
 //	}
@@ -735,7 +735,7 @@
 //			std::ostringstream oss;
 //			oss << sCF->GetItemLink(item->GetEntry());
 //			oss << sReq->Notice(player, L_ReqId, "\n升级\n", "", 1, L_Chance, VIP_RATE_ITEM_EXCHANGE_0, HR_RATE_ITEM_EXCHANGE_0);
-//			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_ITEM_EXCHANGE)), update, ACTION_ITEM_EXCHANGE, oss.str().c_str(), L_ReqId, 0);
+//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_ITEM_EXCHANGE)), update, ACTION_ITEM_EXCHANGE, oss.str().c_str(), L_ReqId, 0);
 //			flag = true;
 //		}
 //
@@ -743,7 +743,7 @@
 //		{
 //			std::ostringstream oss;
 //			oss << sCF->GetItemLink(item->GetEntry()) << " X 2" << "\n\n合成\n\n";
-//			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_STAT_PANEL)), update, ACTION_ITEM_NO_PATCH_COMPOUND, oss.str().c_str(), 0, 0);
+//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_STAT_PANEL)), update, ACTION_ITEM_NO_PATCH_COMPOUND, oss.str().c_str(), 0, 0);
 //			flag = true;
 //		}
 //	}
@@ -761,7 +761,7 @@
 //				else
 //					oss << sReq->Notice(player, ItemExchangeInfo[i].reqId, "\n升级为\n", sCF->GetItemLink(ItemExchangeInfo[i].exchangeditem), 1, ItemExchangeInfo[i].chance, VIP_RATE_ITEM_EXCHANGE_1, HR_RATE_ITEM_EXCHANGE_1);
 //
-//				player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, update == 0 ? sString->GetText(CORE_STR_TYPES(STR_ITEM_EXCHANGE)) : sString->GetText(CORE_STR_TYPES(STR_ITEM_UPGRADE)), update, ACTION_ITEM_EXCHANGE, oss.str().c_str(), sReq->Golds(ItemExchangeInfo[i].reqId), 0);
+//				AddGossipItemFor(player,(GOSSIP_ICON_CHAT, update == 0 ? sString->GetText(CORE_STR_TYPES(STR_ITEM_EXCHANGE)) : sString->GetText(CORE_STR_TYPES(STR_ITEM_UPGRADE)), update, ACTION_ITEM_EXCHANGE, oss.str().c_str(), sReq->Golds(ItemExchangeInfo[i].reqId), 0);
 //				flag = true;
 //			}
 //		}
@@ -774,7 +774,7 @@
 //{
 //	//if (HasTransFlag(item))
 //	//{
-//	//	player->CLOSE_GOSSIP_MENU();
+//	//	CloseGossipMenuFor(player);
 //	//	return;
 //	//}
 //
@@ -796,10 +796,10 @@
 //	if (reGem || reBind || ItemEnchant || ItemExchange || ItemExchange2 || Identify)
 //	{
 //		player->PlayerTalkClass->GetGossipMenu().SetMenuId(MENU_ID);
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //	}
 //	else
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //}
 //
 //bool ItemMod::hasEnchantByMask(Item* item, uint32 enchantId)
@@ -1012,7 +1012,7 @@
 //	if (SIGIL_OWN_ENCHANT && type != ITEM_ENCHANT_SIGIL)
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<< 返回 >>", GOSSIP_SENDER_MAIN, ACTION_MAINMENU_BACK);
 //	player->PlayerTalkClass->GetGossipMenu().SetMenuId(MENU_ID);
-//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
+//	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //}
 //
 //void ItemMod::AddItemNextEnchantList(Player* player, Item* item, uint32 sender, ITEM_ENCHANT_TYPES type)
@@ -1045,7 +1045,7 @@
 //					std::ostringstream oss2;
 //					oss1 << "移除" << GetItemEnchantDescription(player, currEnchantId);
 //					oss2 << "\n移除\n" << GetEnchantDescription(item, currEnchantId);
-//					player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, oss1.str(), senderValue(slot, currEnchantId), ACTION_ITEM_REMOVE_ENCHANT, oss2.str().c_str(), 0, 0);
+//					AddGossipItemFor(player,(GOSSIP_ICON_CHAT, oss1.str(), senderValue(slot, currEnchantId), ACTION_ITEM_REMOVE_ENCHANT, oss2.str().c_str(), 0, 0);
 //					undefineEnchant = false;
 //					break;
 //				}
@@ -1058,7 +1058,7 @@
 //			std::ostringstream oss2;
 //			oss1 << "|cFFFF0000移除 —> " << GetItemEnchantDescription(player, currEnchantId) << "|r";
 //			oss2 << sCF->GetItemLink(item->GetEntry()) << "\n\n移除 —> " << GetEnchantDescription(item, currEnchantId);
-//			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, oss1.str(), senderValue(slot, currEnchantId), ACTION_ITEM_REMOVE_ENCHANT, oss2.str().c_str(), DEFAULT_REMOVE_ENCHANT_GOLDS * GOLD, 0);
+//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, oss1.str(), senderValue(slot, currEnchantId), ACTION_ITEM_REMOVE_ENCHANT, oss2.str().c_str(), DEFAULT_REMOVE_ENCHANT_GOLDS * GOLD, 0);
 //		}
 //	}
 //	
@@ -1067,13 +1067,13 @@
 //		len = 30;
 //
 //	for (uint32 i = 0; i < len; i++)
-//		player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, ENCHANT_ACTION_STRING + " —> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), senderValue(slot, FilterVec[i].enchantId), ACTION_ITEM_ENCHANT, sReq->Notice(player, FilterVec[i].enchantReqId, sCF->GetItemLink(item->GetEntry()), "\n\n" + ENCHANT_ACTION_STRING + " —> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), 1, FilterVec[i].chance, VIP_RATE_ITEM_STRENGTHEN, HR_RATE_ITEM_STRENGTHEN), sReq->Golds(FilterVec[i].enchantReqId), 0);
+//		AddGossipItemFor(player,(GOSSIP_ICON_CHAT, ENCHANT_ACTION_STRING + " —> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), senderValue(slot, FilterVec[i].enchantId), ACTION_ITEM_ENCHANT, sReq->Notice(player, FilterVec[i].enchantReqId, sCF->GetItemLink(item->GetEntry()), "\n\n" + ENCHANT_ACTION_STRING + " —> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), 1, FilterVec[i].chance, VIP_RATE_ITEM_STRENGTHEN, HR_RATE_ITEM_STRENGTHEN), sReq->Golds(FilterVec[i].enchantReqId), 0);
 //
 //	if (SIGIL_OWN_ENCHANT && type != ITEM_ENCHANT_SIGIL)
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<< 返回 >>", GOSSIP_SENDER_MAIN, ACTION_ITEM_ENCHANT_CURR_MENU_SHOW);
 //
 //	player->PlayerTalkClass->GetGossipMenu().SetMenuId(MENU_ID);
-//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
+//	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //}
 //
 //void ItemMod::SetFilterVec(Player* player, Item* item, ITEM_ENCHANT_TYPES type, uint32 currEnchantId)
@@ -1141,7 +1141,7 @@
 //					sReq->Des(player, UpgradeVec[i].enchantReqId);
 //					std::string noticetext = ENCHANT_ACTION_STRING + "失败";
 //					player->GetSession()->SendAreaTriggerMessage(noticetext.c_str());
-//					player->CLOSE_GOSSIP_MENU();
+//					CloseGossipMenuFor(player);
 //					return;
 //				}
 //
@@ -1171,7 +1171,7 @@
 //			}
 //		}
 //	}
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //}
 //
 ////物品解绑
@@ -1192,11 +1192,11 @@
 //				player->GetSession()->SendAreaTriggerMessage("成功解除物品绑定");
 //				sReq->Des(player, ItemUnbindCostInfo[i].reqId, item->GetCount());
 //			}
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			return;
 //		}
 //	}
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //}
 //
 ////物品升级
@@ -1256,14 +1256,14 @@
 //
 //					sRew->Rew(player, ItemExchangeInfo[i].rewIdOnFail);
 //					
-//					player->CLOSE_GOSSIP_MENU();
+//					CloseGossipMenuFor(player);
 //					return;
 //				}
 //
 //				Item* exchangeItem = AddItem(player, ItemExchangeInfo[i].exchangeditem, 1);
 //				if (!exchangeItem)
 //				{
-//					player->CLOSE_GOSSIP_MENU();
+//					CloseGossipMenuFor(player);
 //					return;
 //				}
 //
@@ -1287,12 +1287,12 @@
 //				player->DestroyItem(item->GetBagSlot(), item->GetSlot(), true);
 //				sReq->Des(player, ItemExchangeInfo[i].reqId, 1, expItemId);
 //				update == 0 ? player->GetSession()->SendAreaTriggerMessage("升级成功") : player->GetSession()->SendAreaTriggerMessage("升级成功");
-//				player->CLOSE_GOSSIP_MENU();
+//				CloseGossipMenuFor(player);
 //				return;
 //			}
 //		}
 //	}
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //}
 //Item* ItemMod::AddItem(Player* player, uint32 itemId, uint32 count)
 //{
@@ -1334,19 +1334,19 @@
 //			if (gemId != 0 && gemId == RemoveGemInfo[i].entry)
 //			{
 //				gemExsit = true;
-//				player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, gemName.c_str(), senderValue(slot, gemId), ACTION_ITEM_REMOVEGEM, sReq->Notice(player, RemoveGemInfo[i].reqId, sCF->GetItemLink(gemId), "移除", 1, RemoveGemInfo[i].chance, VIP_RATE_GEM_REMOVE, HR_RATE_GEM_REMOVE), sReq->Golds(RemoveGemInfo[i].reqId), 0);
+//				AddGossipItemFor(player,(GOSSIP_ICON_CHAT, gemName.c_str(), senderValue(slot, gemId), ACTION_ITEM_REMOVEGEM, sReq->Notice(player, RemoveGemInfo[i].reqId, sCF->GetItemLink(gemId), "移除", 1, RemoveGemInfo[i].chance, VIP_RATE_GEM_REMOVE, HR_RATE_GEM_REMOVE), sReq->Golds(RemoveGemInfo[i].reqId), 0);
 //			}
 //		}
 //	}
 //
 //	if (!gemExsit)
 //	{
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		return;
 //	}
 //
 //	player->PlayerTalkClass->GetGossipMenu().SetMenuId(MENU_ID);
-//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
+//	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //}
 //
 ////鉴定和封象
@@ -1386,7 +1386,7 @@
 //			if (!gossipText.empty())
 //				oss << "\n" << gossipText;
 //
-//			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, oss.str(), slot, ACTION_ITEM_IDENTIFY, sReq->Notice(player, reqId, "重新炼化", sCF->GetItemLink(item->GetEntry())), sReq->Golds(reqId), 0);
+//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, oss.str(), slot, ACTION_ITEM_IDENTIFY, sReq->Notice(player, reqId, "重新炼化", sCF->GetItemLink(item->GetEntry())), sReq->Golds(reqId), 0);
 //		}
 //	}
 //
@@ -1430,7 +1430,7 @@
 //			}
 //		}
 //	}
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //}
 //
 //void ItemMod::RemoveItemEnchant(Player* player, Item* item, uint8 slot, uint32 enchantId)
@@ -1438,7 +1438,7 @@
 //	SpellItemEnchantmentEntry const* info = sSpellItemEnchantmentStore.LookupEntry(enchantId);
 //
 //	if (!info)
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //
 //	for (uint32 i = 0; i < UpgradeVec.size(); i++)
 //		if (enchantId == UpgradeVec[i].enchantId)
@@ -1463,7 +1463,7 @@
 //	item->ClearEnchantment(EnchantmentSlot(slot));
 //	player->CastSpell(player, VISUAL_SPELL_ID, true, NULL, NULL, player->GetGUID());
 //	player->GetSession()->SendAreaTriggerMessage("移除附魔");
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //	return;
 //}
 //
@@ -1480,7 +1480,7 @@
 //
 //	//if (enchant_id != 8004 && slot == PROP_ENCHANTMENT_SLOT_0 || enchant_id != 8005 && slot == PROP_ENCHANTMENT_SLOT_1)
 //	//{
-//	//	player->CLOSE_GOSSIP_MENU();
+//	//	CloseGossipMenuFor(player);
 //	//	player->GetSession()->SendNotification("该装备只能鉴定或淬炼一次！");
 //	//	return;
 //	//}
@@ -1571,7 +1571,7 @@
 //		if (menu_id != MENU_ID || !player->playerItem || !player->playerItem->IsInWorld())
 //		{
 //			player->playerItem = NULL;
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			return;
 //		}
 //
@@ -1649,7 +1649,7 @@
 //			break;
 //		case ACTION_ITEM_NO_PATCH_COMPOUND:
 //			sNoPatchItem->Compound(player, player->playerItem);
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			player->SaveToDB(false, false);
 //			break;
 //			//物品解绑
@@ -1728,7 +1728,7 @@
 //		player->PlayerTalkClass->ClearMenus();
 //		if (!item || !sItemMod->IsUpgradeSetted(player, item, ITEM_ENCHANT_SIGIL) || !item->IsInWorld())
 //		{
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			return false;
 //		}
 //

@@ -102,7 +102,7 @@
 //void SignIn::OpenPanel(Player* player)
 //{
 //	SendPacket(player);
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //}
 //
 //uint32 SignIn::GetDiffDay(time_t  time1, time_t  time2)

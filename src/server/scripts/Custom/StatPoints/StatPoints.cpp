@@ -241,9 +241,9 @@
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss_cur_spe.str(), GOSSIP_SENDER_MAIN + 12, GOSSIP_ACTION_INFO_DEF);// , oss_spe.str(), 0, false);
 //
 //	if (obj->ToCreature())
-//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
 //void StatPoints::AddPoints(Player* player, uint32 sender)
@@ -251,7 +251,7 @@
 //	if (player->stat_points[SPT_TOTLAL] < 1)
 //	{
 //		player->GetSession()->SendNotification("点数不足！");
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		return;
 //	}
 //
@@ -313,7 +313,7 @@
 //
 //	Apply(player, true);
 //	UpdateDB(player);
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //}
 //
 //

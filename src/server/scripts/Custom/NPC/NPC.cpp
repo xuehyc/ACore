@@ -122,17 +122,17 @@
 //		if (!quest || quest && player->IsActiveQuest(questId))
 //		{
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, text.c_str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
-//			player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
+//			SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //			return true;
 //		}
 //			
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		return true;
 //	}
 //
 //	bool OnGossipSelect(Player* player, Creature* creature, uint32 sender, uint32 action) override
 //	{
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		creature->GetAI()->DoAction(1);
 //		return true;
 //	}

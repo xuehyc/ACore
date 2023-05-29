@@ -113,20 +113,20 @@
 //		if (npc_thalorien::npc_thalorienAI* creatureAI = CAST_AI(npc_thalorien::npc_thalorienAI, creature->AI()))
 //			if (creatureAI->HasBeginScence())
 //			{
-//				player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//				SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //				return true;
 //			}
 //
 //		if (player->GetQuestStatus(24563) == QUEST_STATUS_INCOMPLETE || player->GetQuestStatus(24535) == QUEST_STATUS_INCOMPLETE)
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "检查遗骸", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 //
-//		player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//		SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //		return true;
 //	}
 //
 //	bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 /*action*/) 
 //	{ 
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //	
 //		if (npc_thalorien::npc_thalorienAI* creatureAI = CAST_AI(npc_thalorien::npc_thalorienAI, creature->AI()))
 //			creatureAI->BeginScene();
@@ -558,7 +558,7 @@
 //		if (player->HasItemCount(ITEM_TAINTED_QUELDANAR_1, 1) || player->HasItemCount(ITEM_TAINTED_QUELDANAR_2, 1))
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "带我去太阳之井", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 //
-//		player->SEND_GOSSIP_MENU(creature->GetEntry(), creature->GetGUID());
+//		SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //		return true;
 //	}
 //	bool OnGossipSelect(Player* player, Creature* creature, uint32 /*uiSender*/, uint32 uiAction)
@@ -569,7 +569,7 @@
 //		player->TeleportTo(580, 1728.5f, 709.219f, 71.1905f, 2.78676f);
 //		player->SetGameMaster(false);
 //		player->SetPhaseMask(2048, true);
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //
 //		return true;
 //	}

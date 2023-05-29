@@ -577,8 +577,8 @@
 //					continue;
 //
 //				pl->PlayerTalkClass->ClearMenus();
-//				pl->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_MONEY_BAG, "|TInterface/Icons/INV_BannerPVP_01:30:30:0:0|t下注[红队]获胜 --> " + sCF->GetNameLink(_DUELER_1), GOSSIP_SENDER_MAIN, 1, "", 0, true);
-//				pl->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_MONEY_BAG, "|TInterface/Icons/INV_BannerPVP_02:30:30:0:0|t下注[蓝队]获胜 --> " + sCF->GetNameLink(_DUELER_2), GOSSIP_SENDER_MAIN, 2, "", 0, true);
+//				pl->AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, "|TInterface/Icons/INV_BannerPVP_01:30:30:0:0|t下注[红队]获胜 --> " + sCF->GetNameLink(_DUELER_1), GOSSIP_SENDER_MAIN, 1, "", 0, true);
+//				pl->AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, "|TInterface/Icons/INV_BannerPVP_02:30:30:0:0|t下注[蓝队]获胜 --> " + sCF->GetNameLink(_DUELER_2), GOSSIP_SENDER_MAIN, 2, "", 0, true);
 //				pl->PlayerTalkClass->GetGossipMenu().SetMenuId(ARENA_DUEL_GAMBLE_MENU_ID);
 //				pl->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, pl->GetGUID());
 //			}
@@ -720,7 +720,7 @@
 //			else
 //			{
 //				if (sMF->Pop(ARENA_DUEL_SIGNUP_REQ_ID))
-//					pl->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "我要报名", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, sReq->Notice(pl, ARENA_DUEL_SIGNUP_REQ_ID, "竞技场决斗报名", ""), sReq->Golds(ARENA_DUEL_SIGNUP_REQ_ID), false);
+//					pl->AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "我要报名", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, sReq->Notice(pl, ARENA_DUEL_SIGNUP_REQ_ID, "竞技场决斗报名", ""), sReq->Golds(ARENA_DUEL_SIGNUP_REQ_ID), false);
 //				else
 //					pl->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "我要报名", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 //			}

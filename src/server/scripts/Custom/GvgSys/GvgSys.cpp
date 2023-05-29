@@ -563,7 +563,7 @@
 //
 //	player->ADD_GOSSIP_ITEM(2, tmp, 1, 1000);
 //
-//	player->SEND_GOSSIP_MENU(20001, creature->GetGUID());
+//	SendGossipMenuFor(player,20001, creature->GetGUID());
 //
 //	delete[]tmp;
 //
@@ -594,7 +594,7 @@
 //
 //	player->ADD_GOSSIP_ITEM(2, tmp, 1, 1002);
 //
-//	player->SEND_GOSSIP_MENU(20001, creature->GetGUID());
+//	SendGossipMenuFor(player,20001, creature->GetGUID());
 //
 //	delete[]tmp;
 //
@@ -612,14 +612,14 @@
 //			player->GetSession()->SendAreaTriggerMessage("您现在无法与我对话.");
 //			return true;
 //		}
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Ability_Paladin_ShieldoftheTemplar.blp:30|t公会攻城提交", 1000, 1);
 //		//player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Trade_BlackSmithing.blp:30|t公会积分仓库", 1001, 1);
 //		if (sSwitch->GetValue(GVG_120))
 //			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Spell_unused2.blp:30|t公会成员每日收益", 1002, 1);
 //
 //		//player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Achievement_Arena_2v2_7.blp:30|t公会信息查询", 1003, 1);
-//		player->SEND_GOSSIP_MENU(20001, creature->GetGUID());
+//		SendGossipMenuFor(player,20001, creature->GetGUID());
 //		return true;
 //	}
 //	bool OnGossipSelect(Player* player, Creature* creature, uint32 sender, uint32 action)

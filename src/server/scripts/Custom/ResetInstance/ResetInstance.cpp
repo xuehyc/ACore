@@ -103,16 +103,16 @@
 //					if (count > 25)
 //						continue;
 //					count++;
-//					player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, text, SENDER_RESET_INS, actionValue(i, mapEntry->MapID), sReq->Notice(player, reqId, "重置", text), sReq->Golds(reqId), false);
+//					AddGossipItemFor(player,(GOSSIP_ICON_CHAT, text, SENDER_RESET_INS, actionValue(i, mapEntry->MapID), sReq->Notice(player, reqId, "重置", text), sReq->Golds(reqId), false);
 //				}
 //			}
 //		}
 //	}
 //
 //	if (obj->ToCreature())
-//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //
 //	//if (count == 1)
 //	//	player->PlayerTalkClass->ClearMenus();

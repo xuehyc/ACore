@@ -278,7 +278,7 @@
 //		player->GetSession()->SendAreaTriggerMessage(oss.str().c_str());
 //	}
 //
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //	return true;
 //}
 //
@@ -353,13 +353,13 @@
 //void Lottery::AddLotteryGossip(Player* player, Object* obj)
 //{
 //	player->PlayerTalkClass->ClearMenus();
-//	player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "压豹子", LOTTERY_TYPE_AAA, GOSSIP_ACTION_INFO_DEF, "", 0, true);
-//	player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "压大", LOTTERY_TYPE_MAX, GOSSIP_ACTION_INFO_DEF, "", 0, true);
-//	player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_CHAT, "压小", LOTTERY_TYPE_MIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "压豹子", LOTTERY_TYPE_AAA, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "压大", LOTTERY_TYPE_MAX, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "压小", LOTTERY_TYPE_MIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
 //	if (obj->ToCreature())
-//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //
 //	ChatHandler(player->GetSession()).PSendSysMessage("[彩票]：请点击你要压注的彩票类型，并输入你要压注的数量");
 //	ChatHandler(player->GetSession()).PSendSysMessage("[彩票]：1注等于1%s，压注正确奖励翻倍！", sString->GetText(CORE_STR_TYPES(STR_TOKEN)));

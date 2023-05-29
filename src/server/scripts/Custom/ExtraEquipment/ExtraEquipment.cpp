@@ -379,9 +379,9 @@
 //	}
 //			
 //	if (obj->ToCreature())
-//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else 
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //
 //}
 //
@@ -451,7 +451,7 @@
 //	if (!fordisplay)
 //		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_BACK);
 //
-//	player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
 //void ExtraEquipment::Action(Player* player, Object* obj, uint32 sender, bool fordisplay)
@@ -462,14 +462,14 @@
 //		//这里处理display mainhand offhand ranged
 //		if (fordisplay)
 //		{
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			return;
 //		}
 //
 //		if (item->GetTemplate()->Stackable > 1 && item->GetCount() > 1)
 //		{
 //			player->GetSession()->SendNotification("更新失败，该物品叠加数量应小于2，请分离该物品！");
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //			return;
 //		}
 //	
@@ -479,7 +479,7 @@
 //		player->GetSession()->SendAreaTriggerMessage("更新完成！");
 //	}
 //	
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //}
 //
 //void ExtraEquipment::GiveItemBack(Player* player, EquipmentSlots slot)

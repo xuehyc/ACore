@@ -313,16 +313,16 @@
 //			if (teamId == TEAM_NEUTRAL || player->GetTeamId() == teamId)
 //			{
 //				if (reqId != 0)
-//					player->ADD_GOSSIP_ITEM_EXTENDED(smallIconType, text, AboveMenuVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
+//					AddGossipItemFor(player,(smallIconType, text, AboveMenuVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
 //				else
 //					player->ADD_GOSSIP_ITEM(smallIconType, text, AboveMenuVec[i].menuId, funcIndex);
 //			}
 //		}
 //
 //		if (obj->ToCreature())
-//			player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//			SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //		else
-//			player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//			SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //	}
 //}
 //
@@ -618,7 +618,7 @@
 //	if (sender == SENDER_HR_UP)
 //	{
 //		sHR->SetHRTitle(player, action);
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		return;
 //	}
 //#pragma endregion
@@ -633,7 +633,7 @@
 //	if (sender == SENDER_VIP_UP)
 //	{
 //		sVIP->Up(player);
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		return;
 //	}
 //#pragma endregion
@@ -651,7 +651,7 @@
 //	if (sender == SENDER_CUSTOM_EVENT)
 //	{
 //		sEvent->AcceptInvitation(player, action + 1000000);
-//		player->CLOSE_GOSSIP_MENU();
+//		CloseGossipMenuFor(player);
 //		return;
 //	}
 //#pragma endregion
@@ -748,7 +748,7 @@
 //				if (teamId == TEAM_NEUTRAL || player->GetTeamId() == teamId)
 //				{
 //					if (reqId != 0)
-//						player->ADD_GOSSIP_ITEM_EXTENDED(smallIconType, text, GossipVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
+//						AddGossipItemFor(player,(smallIconType, text, GossipVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
 //					else
 //						player->ADD_GOSSIP_ITEM(smallIconType, text, GossipVec[i].menuId, funcIndex);
 //				}		
@@ -757,9 +757,9 @@
 //	}
 //
 //	if (obj->ToCreature())
-//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //
 //#pragma endregion
 //
@@ -770,7 +770,7 @@
 //		sFC->DoAction(player, FunctionTypes(action),obj);
 //
 //		if (action != uint32(FT_ALT_CLASS) && action != uint32(FT_FACTION) && action != uint32(FT_RANK) && action != uint32(FT_CUSTOM_SKILL) && action != uint32(FT_RESET_INSTANCE) && action != uint32(FT_BUY_LOTTERY) && action != uint32(FT_UPGRADE_HR) && action != uint32(FT_RECRUIT) && action != uint32(FT_QUEST_TELE) && action != FT_UPGRADE_VIP && action != FT_REINCARNATION && action != FT_SHOW_ACTIVE_EVENTS)
-//			player->CLOSE_GOSSIP_MENU();
+//			CloseGossipMenuFor(player);
 //	}
 //
 //#pragma endregion

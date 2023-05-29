@@ -361,7 +361,7 @@
 //
 //void CharMod::ModClass(Player* player, uint8 targetClass)
 //{
-//	player->CLOSE_GOSSIP_MENU();
+//	CloseGossipMenuFor(player);
 //	
 //	uint32 reqId = sSwitch->GetValue(ST_ALT_CLASS);
 //
@@ -467,13 +467,13 @@
 //			continue;
 //
 //		std::string name = GetClassName1(i);
-//		player->ADD_GOSSIP_ITEM_EXTENDED(0, "转职 -> " + name, SENDER_ALT_CLASS, i, sReq->Notice(player, sSwitch->GetValue(ST_ALT_CLASS), "转职为", name), 0, false);
+//		AddGossipItemFor(player,(0, "转职 -> " + name, SENDER_ALT_CLASS, i, sReq->Notice(player, sSwitch->GetValue(ST_ALT_CLASS), "转职为", name), 0, false);
 //	}
 //
 //	if (obj->ToCreature())
-//		player->SEND_GOSSIP_MENU(obj->GetEntry(), obj->GetGUID());
+//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else
-//		player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
 //class CharModPlayerScript : public PlayerScript
