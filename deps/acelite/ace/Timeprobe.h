@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -35,7 +35,7 @@
 
 #ifndef ACE_TIMEPROBE_H
 #define ACE_TIMEPROBE_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 #include /**/ "ace/ACE_export.h"
@@ -195,5 +195,5 @@ static int ace_timeprobe_##descriptions##_return = \
 #  define ACE_FUNCTION_TIMEPROBE(X)
 
 #endif /* ACE_ENABLE_TIMEPROBES && ACE_COMPILE_TIMEPROBES */
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TIMEPROBE_H */

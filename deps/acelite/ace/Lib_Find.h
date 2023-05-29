@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_LIB_FIND_H
 #define ACE_LIB_FIND_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 #include /**/ "ace/ACE_export.h"
@@ -124,6 +124,6 @@ namespace ACE
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif  /* ACE_LIB_FIND_H */
 

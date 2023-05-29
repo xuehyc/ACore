@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_HANDLE_GOBBLER_H
 #define ACE_HANDLE_GOBBLER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Handle_Set.h"
 
@@ -62,5 +62,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #include "ace/Handle_Gobbler.inl"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_HANDLE_GOBBLER_H */

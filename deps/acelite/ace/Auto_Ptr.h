@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 
 #ifndef ACE_AUTO_PTR_H
 #define ACE_AUTO_PTR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -221,5 +221,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #  pragma warning(pop)
 #endif /* _MSC_VER */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_AUTO_PTR_H */

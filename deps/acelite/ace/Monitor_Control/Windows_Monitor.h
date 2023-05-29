@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef WINDOWS_MONITOR_H
 #define WINDOWS_MONITOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SString.h"
 
@@ -69,7 +69,7 @@ namespace ACE
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* defined (ACE_HAS_WIN32_PDH) */
 

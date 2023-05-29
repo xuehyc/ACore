@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_UUID_H
 #define ACE_UUID_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -275,6 +275,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/UUID.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif // ACE_UUID_H
 

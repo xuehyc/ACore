@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -65,5 +65,5 @@ namespace ACE_OS {
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-# include /**/ "ace/post.h"
+# include /**/ "post.h"
 #endif /* ACE_OS_NS_SYS_UTSNAME_H */

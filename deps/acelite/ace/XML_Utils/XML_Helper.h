@@ -1,4 +1,4 @@
-//============================================================
+﻿//============================================================
 /**
  * @file XML_Helper.h
  *
@@ -10,7 +10,7 @@
 //============================================================
 #ifndef ACE_XML_HELPER_H
 #define ACE_XML_HELPER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once
@@ -94,5 +94,5 @@ namespace XML
 
 #include "XML_Helper.tpp"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif/*ACE_XML_HELPER_H*/

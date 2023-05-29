@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_SCHED_PARAMS_H
 #define ACE_SCHED_PARAMS_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -226,5 +226,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Sched_Params.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_SCHED_PARAMS_H */

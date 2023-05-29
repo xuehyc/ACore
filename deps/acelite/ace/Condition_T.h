@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ACE_CONDITION_T_H
 #define ACE_CONDITION_T_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/OS_NS_Thread.h"
 #include "ace/Condition_Attributes.h"
@@ -166,5 +166,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_THREADS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONDITION_T_H */

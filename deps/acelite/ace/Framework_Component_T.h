@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_FRAMEWORK_COMPONENT_T_H
 #define ACE_FRAMEWORK_COMPONENT_T_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 #include "ace/Framework_Component.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
@@ -65,5 +65,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Framework_Component_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_FRAMEWORK_COMPONENT_T_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef HASH_CACHE_MAP_MANAGER_T_H
 #define HASH_CACHE_MAP_MANAGER_T_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Cache_Map_Manager_T.h"
@@ -203,6 +203,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Hash_Cache_Map_Manager_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* HASH_CACHE_MAP_MANAGER_T_H */

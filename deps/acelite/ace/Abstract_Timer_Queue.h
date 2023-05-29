@@ -1,9 +1,9 @@
-//$Id: Abstract_Timer_Queue.h 95368 2011-12-19 13:38:49Z mcorino $
+﻿//$Id: Abstract_Timer_Queue.h 95368 2011-12-19 13:38:49Z mcorino $
 
 #ifndef ACE_ABSTRACT_TIMER_QUEUE_H
 #define ACE_ABSTRACT_TIMER_QUEUE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 /**
  * @file Abstract_Timer_Queue.h
  *
@@ -226,5 +226,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Abstract_Timer_Queue.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_ABSTRACT_TIMER_QUEUE_H */

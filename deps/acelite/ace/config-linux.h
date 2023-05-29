@@ -1,10 +1,10 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 // The following configuration file is designed to work for Linux
 // platforms using GNU C++.
 
 #ifndef ACE_CONFIG_LINUX_H
 #define ACE_CONFIG_LINUX_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_LINUX)
 #define ACE_LINUX
@@ -451,6 +451,6 @@
 
 #endif /* __UCLIBC__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CONFIG_LINUX_H */

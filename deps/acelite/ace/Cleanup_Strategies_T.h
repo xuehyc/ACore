@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef CLEANUP_STRATEGIES_H
 #define CLEANUP_STRATEGIES_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -143,5 +143,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Cleanup_Strategies_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* CLEANUP_STRATEGIES_H */

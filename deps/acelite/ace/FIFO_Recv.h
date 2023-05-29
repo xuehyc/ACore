@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_FIFO_RECV_H
 #define ACE_FIFO_RECV_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/FIFO.h"
 
@@ -89,6 +89,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/FIFO_Recv.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_FIFO_RECV_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef MONITOR_CONTROL_UTILS_H
 #define MONITOR_CONTROL_UTILS_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 #pragma once
@@ -85,6 +85,6 @@ create_os_monitor (const char* name = 0,
 
 #endif /* ACE_HAS_MONITOR_FRAMEWORK==1 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // MONITOR_CONTROL_UTILS_H

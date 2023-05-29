@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -33,7 +33,7 @@
 
 #ifndef ACE_FRAMEWORK_COMPONENT_H
 #define ACE_FRAMEWORK_COMPONENT_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -194,5 +194,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 // Include the templates classes at this point.
 #include "ace/Framework_Component_T.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_FRAMEWORK_COMPONENT_H */

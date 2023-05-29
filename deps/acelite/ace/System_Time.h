@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_SYSTEM_TIME_H
 #define ACE_SYSTEM_TIME_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -93,5 +93,5 @@ private:
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_SYSTEM_TIME_H */

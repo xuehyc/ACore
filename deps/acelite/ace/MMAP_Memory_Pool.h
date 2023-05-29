@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_MMAP_MEMORY_POOL_H
 #define ACE_MMAP_MEMORY_POOL_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -341,5 +341,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/MMAP_Memory_Pool.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_MMAP_MEMORY_POOL_H */

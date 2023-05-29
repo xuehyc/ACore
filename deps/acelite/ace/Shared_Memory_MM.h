@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_SHARED_MALLOC_MM_H
 #define ACE_SHARED_MALLOC_MM_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Shared_Memory.h"
 
@@ -114,5 +114,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Shared_Memory_MM.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_SHARED_MALLOC_MM_H */

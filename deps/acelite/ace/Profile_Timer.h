@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_PROFILE_TIMER_H
 #define ACE_PROFILE_TIMER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -133,5 +133,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 # include "ace/Profile_Timer.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_PROFILE_TIMER_H */

@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_SERVICE_OBJECT_H
 #define ACE_SERVICE_OBJECT_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Shared_Object.h"
 #include "ace/Svc_Conf_Tokens.h"
@@ -200,5 +200,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Service_Object.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_SERVICE_OBJECT_H */

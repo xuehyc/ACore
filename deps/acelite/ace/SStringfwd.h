@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -15,7 +15,7 @@
 #ifndef ACE_SSTRINGFWD_H
 #define ACE_SSTRINGFWD_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Basic_Types.h"   /* ACE_WCHAR_T definition */
 
@@ -48,6 +48,6 @@ typedef ACE_CString ACE_TString;
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  /* ACE_SSTRINGFWD_H */

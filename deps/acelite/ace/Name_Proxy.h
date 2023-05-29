@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -16,7 +16,7 @@
 
 #ifndef ACE_NAME_PROXY_H
 #define ACE_NAME_PROXY_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/INET_Addr.h"
 
@@ -94,5 +94,5 @@ private:
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_NAME_PROXY_H */

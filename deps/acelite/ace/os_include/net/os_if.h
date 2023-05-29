@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_NET_OS_IF_H
 #define ACE_OS_INCLUDE_NET_OS_IF_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -102,5 +102,5 @@ struct  ifconf {
 }
 #endif /* __cplusplus */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_NET_OS_IF_H */

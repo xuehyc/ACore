@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  * @file Auto_Functor.h
@@ -8,7 +8,7 @@
 //=============================================================================
 #ifndef ACE_AUTO_FUNCTOR_H
 #define ACE_AUTO_FUNCTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -114,5 +114,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 # include "ace/Auto_Functor.cpp"
 #endif /* ACE_TEMPLATES_REQUIRE_SOURCE */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_AUTO_FUNCTOR_H*/

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef BSD_NETWORK_INTERFACE_MONITOR_H
 #define BSD_NETWORK_INTERFACE_MONITOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SString.h"
 
@@ -63,6 +63,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* defined (__NetBSD__) || defined (__OpenBSD__) */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // BSD_NETWORK_INTERFACE_MONITOR_H

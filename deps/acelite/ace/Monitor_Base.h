@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef MONITOR_BASE_H
 #define MONITOR_BASE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Monitor_Control_Types.h"
 
@@ -145,6 +145,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_MONITOR_FRAMEWORK==1 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // MONITOR_BASE_H

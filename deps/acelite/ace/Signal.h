@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_SIGNAL_H
 #define ACE_SIGNAL_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -248,5 +248,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Signal.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_SIGNAL_HANDLER_H */

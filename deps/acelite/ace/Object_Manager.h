@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_OBJECT_MANAGER_H
 #define ACE_OBJECT_MANAGER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 #include "ace/Object_Manager_Base.h"
@@ -469,5 +469,5 @@ ACE_FACTORY_DECLARE (ACE, ACE_Service_Manager)
 #endif /* ! ACE_LACKS_ACE_SVCCONF */
 
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OBJECT_MANAGER_H */

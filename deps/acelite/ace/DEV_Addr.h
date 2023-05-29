@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_DEV_ADDR_H
 #define ACE_DEV_ADDR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Addr.h"
 
@@ -83,6 +83,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/DEV_Addr.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_DEV_ADDR_H */

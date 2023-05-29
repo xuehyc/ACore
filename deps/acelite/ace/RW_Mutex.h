@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ACE_RW_MUTEX_H
 #define ACE_RW_MUTEX_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -134,6 +134,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_THREADS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_RW_MUTEX_H */

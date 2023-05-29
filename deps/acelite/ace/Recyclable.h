@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -9,7 +9,7 @@
 //=============================================================================
 #ifndef ACE_RECYCLABLE_H
 #define ACE_RECYCLABLE_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -71,5 +71,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Recyclable.inl"
 #endif /* __ACE_INLINE __ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /*ACE_RECYCLABLE_STATE_H*/

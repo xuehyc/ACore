@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef CONSTRAINT_INTERPRETER_H
 #define CONSTRAINT_INTERPRETER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/CDR_Base.h"
 
@@ -67,6 +67,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_MONITOR_FRAMEWORK==1 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* CONSTRAINT_INTERPRETER_H */

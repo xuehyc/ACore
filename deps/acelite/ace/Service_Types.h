@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_SERVICE_TYPE_H
 #define ACE_SERVICE_TYPE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Service_Object.h"
 
@@ -214,6 +214,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Service_Types.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* _SERVICE_TYPE_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -13,9 +13,10 @@
 #ifndef ACE_CONFIG_ALL_H
 #define ACE_CONFIG_ALL_H
 
-#include /**/ "ace/pre.h"
+//#include /**/ "pre.h"
+#include "pre.h"
 
-#include /**/ "ace/config-lite.h"
+#include /**/ "config-lite.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once
@@ -84,8 +85,8 @@
 
 // These includes are here to avoid circular dependencies.
 // Keep this at the bottom of the file.  It contains the main macros.
-#include "ace/OS_main.h"
+#include "OS_main.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CONFIG_ALL_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -17,7 +17,7 @@
 
 #ifndef ACE_STREAM_MODULES
 #define ACE_STREAM_MODULES
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 ACE_BEGIN_VERSIONED_NAMESPACE_DECL
 
@@ -160,5 +160,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Stream_Modules.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_STREAM_MODULES */

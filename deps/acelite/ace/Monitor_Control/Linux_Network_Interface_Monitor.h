@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef LINUX_NETWORK_INTERFACE_MONITOR_H
 #define LINUX_NETWORK_INTERFACE_MONITOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SString.h"
 
@@ -69,6 +69,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* defined (ACE_LINUX) || defined (AIX) */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // LINUX_NETWORK_INTERFACE_MONITOR_H

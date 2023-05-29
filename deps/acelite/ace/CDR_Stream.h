@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -37,7 +37,7 @@
 #ifndef ACE_CDR_STREAM_H
 #define ACE_CDR_STREAM_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/CDR_Base.h"
 
@@ -1418,6 +1418,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* GEN_OSTREAM_OPS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CDR_STREAM_H */

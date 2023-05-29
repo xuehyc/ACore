@@ -1,4 +1,4 @@
-// Note: For WinCE build, simply use: #include "ace/config-win32.h"
+﻿// Note: For WinCE build, simply use: #include "config-win32.h"
 //       It is same as config.h for Windows NT/2k so that you can
 //       share same files and directories for both WinCE and NT/2k
 //       builds, unless you add additional definition(s) for each
@@ -7,7 +7,7 @@
 #ifndef ACE_CONFIG_WINCE_H
 #define ACE_CONFIG_WINCE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #ifndef ACE_CONFIG_WIN32_H
 # error Use config-win32.h in config.h instead of this header
@@ -222,6 +222,6 @@
 #define ACE_LACKS_SIGNAL_H
 #define ACE_LACKS_SYS_STAT_H
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  // ACE_CONFIG_WINCE_H

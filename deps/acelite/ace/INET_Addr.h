@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_INET_ADDR_H
 #define ACE_INET_ADDR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Sock_Connect.h"
 
@@ -414,5 +414,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/INET_Addr.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_INET_ADDR_H */

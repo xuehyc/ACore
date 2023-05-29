@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 // The following configuration file is designed to work for QNX RTP
 // GNU C++ and the POSIX (pthread) threads package. You can get QNX
 // RTP at http://get.qnx.com.
@@ -6,7 +6,7 @@
 // various NTO versions.
 #ifndef ACE_CONFIG_QNX_H
 #define ACE_CONFIG_QNX_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include <sys/neutrino.h>
 #if !defined(_NTO_VERSION)
@@ -192,5 +192,5 @@
 #endif
 #define FD_SETSIZE 1000
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_QNX_H */

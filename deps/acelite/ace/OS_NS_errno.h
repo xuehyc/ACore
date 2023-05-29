@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -98,5 +98,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #   include "ace/OS_NS_errno.inl"
 # endif /* ACE_HAS_INLINED_OSCALLS */
 
-# include /**/ "ace/post.h"
+# include /**/ "post.h"
 #endif /* ACE_OS_NS_ERRNO_H */

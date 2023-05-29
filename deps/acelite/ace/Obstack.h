@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  *  @file    Obstack.h
@@ -9,7 +9,7 @@
 
 #ifndef ACE_OBSTACK_H
 #define ACE_OBSTACK_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Obstack_T.h"
 
@@ -25,5 +25,5 @@ typedef ACE_Obstack_T<char> ACE_Obstack;
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OBSTACK_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_BASED_POINTER_REPOSITORY_H
 #define ACE_BASED_POINTER_REPOSITORY_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -87,6 +87,6 @@ typedef ACE_Singleton<ACE_Based_Pointer_Repository, ACE_SYNCH_RW_MUTEX>
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_BASED_POINTER_REPOSITORY_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_CONTAINERS_H
 #define ACE_CONTAINERS_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -64,6 +64,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #include "ace/Containers_T.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CONTAINERS_H */

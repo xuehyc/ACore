@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_OS_INTTYPES_H
 #define ACE_OS_INCLUDE_OS_INTTYPES_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -28,5 +28,5 @@
 # include /**/ <inttypes.h>
 #endif /* !ACE_LACKS_INTTYPES_H */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_OS_INTTYPES_H */

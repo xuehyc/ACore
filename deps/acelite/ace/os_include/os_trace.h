@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_OS_TRACE_H
 #define ACE_OS_INCLUDE_OS_TRACE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -28,5 +28,5 @@
 #  include /**/ <trace.h>
 #endif /* !ACE_LACKS_TRACE_H */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_OS_TRACE_H */

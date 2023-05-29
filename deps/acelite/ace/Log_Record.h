@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -15,7 +15,7 @@
 
 #ifndef ACE_LOG_RECORD_H
 #define ACE_LOG_RECORD_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -212,5 +212,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Log_Record.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_LOG_RECORD_H */

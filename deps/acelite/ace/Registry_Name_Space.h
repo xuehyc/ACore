@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_REGISTRY_NAME_SPACE_H
 #define ACE_REGISTRY_NAME_SPACE_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -133,6 +133,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_WIN32 && ACE_USES_WCHAR */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_REGISTRY_NAME_SPACE_H */

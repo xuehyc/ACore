@@ -1,4 +1,4 @@
-//* -*- C++ -*- */
+﻿//* -*- C++ -*- */
 // The following configuration file is designed to work for VxWorks
 // 6.4 platforms using one of these compilers:
 // 1) The GNU g++ compiler that is shipped with VxWorks 6.4
@@ -6,7 +6,7 @@
 
 #ifndef ACE_CONFIG_VXWORKS_6_4_H
 #define ACE_CONFIG_VXWORKS_6_4_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if ! defined (VXWORKS)
 # define VXWORKS
@@ -348,5 +348,5 @@
 # define ACE_LACKS_PERFECT_MULTICAST_FILTERING 1
 #endif /* ACE_HAS_IP_MULTICAST */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_VXWORKS_6_4_H */

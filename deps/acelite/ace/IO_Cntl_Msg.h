@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_IO_CNTL_MSG_H
 #define ACE_IO_CNTL_MSG_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 #include "ace/os_include/os_stddef.h"
@@ -105,6 +105,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/IO_Cntl_Msg.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_IO_CNTL_MSG_H */

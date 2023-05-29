@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_OS_UCONTEXT_H
 #define ACE_OS_INCLUDE_OS_UCONTEXT_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -42,5 +42,5 @@ typedef int ucontext_t;
 }
 #endif /* __cplusplus */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_OS_UCONTEXT_H */

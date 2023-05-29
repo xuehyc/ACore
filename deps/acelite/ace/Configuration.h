@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -26,7 +26,7 @@
 
 #ifndef ACE_CONFIGURATION_H
 #define ACE_CONFIGURATION_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SStringfwd.h"
 #include "ace/Hash_Map_With_Allocator_T.h"
@@ -894,5 +894,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Configuration.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIGURATION_H */

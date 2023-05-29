@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_CACHING_STRATEGIES_H
 #define ACE_CACHING_STRATEGIES_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 #include "ace/Caching_Utility_T.h"
@@ -545,6 +545,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Caching_Strategies_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CACHING_STRATEGIES_H */

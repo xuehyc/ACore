@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_TASK_EX_T_H
 #define ACE_TASK_EX_T_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Service_Object.h"
 
@@ -188,5 +188,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Task_Ex_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TASK_EX_H */

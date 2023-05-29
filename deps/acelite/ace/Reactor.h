@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_REACTOR_H
 #define ACE_REACTOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 // Timer Queue is a complicated template class. A simple forward
 // declaration will not work.
@@ -884,6 +884,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Reactor.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_REACTOR_H */

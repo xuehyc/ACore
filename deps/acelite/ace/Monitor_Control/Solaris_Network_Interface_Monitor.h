@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef SOLARIS_NETWORK_INTERFACE_MONITOR_H
 #define SOLARIS_NETWORK_INTERFACE_MONITOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SString.h"
 
@@ -84,6 +84,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* defined (ACE_HAS_KSTAT) */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // SOLARIS_NETWORK_INTERFACE_MONITOR_H

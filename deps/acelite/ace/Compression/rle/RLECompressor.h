@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  *  @file   RLECompressor.h
@@ -38,7 +38,7 @@
 #ifndef ACE_RLECOMPRESSOR_H
 #define ACE_RLECOMPRESSOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ACE_RLECompression_export.h"
 
@@ -101,6 +101,6 @@ typedef class ACE_Singleton<ACE_RLECompressor, ACE_SYNCH_MUTEX> ACE_RLECompressi
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // ACE_RLECOMPRESSOR_H

@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_MEMORY_POOL_H
 #define ACE_MEMORY_POOL_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/ACE.h"
 
@@ -25,5 +25,5 @@
 #include "ace/Shared_Memory_Pool.h"
 #include "ace/Pagefile_Memory_Pool.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_MEMORY_POOL_H */

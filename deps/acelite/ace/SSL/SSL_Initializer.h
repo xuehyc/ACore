@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_SSL_INITIALIZER_H
 #define ACE_SSL_INITIALIZER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "SSL_Export.h"
 
@@ -45,6 +45,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 ACE_STATIC_SVC_DECLARE (ACE_SSL_Initializer)
 ACE_FACTORY_DECLARE (ACE_SSL, ACE_SSL_Initializer)
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  /* ACE_SSL_INITIALIZER_H */

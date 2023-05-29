@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_LOG_CATEGORY_H
 #define ACE_LOG_CATEGORY_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Log_Priority.h"
 #include "ace/Log_Msg.h"
@@ -271,5 +271,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Log_Category.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_LOG_CATEGORY_H */

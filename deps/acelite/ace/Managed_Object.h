@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_MANAGED_OBJECT_H
 #define ACE_MANAGED_OBJECT_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -161,6 +161,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Managed_Object.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_MANAGED_OBJECT_H */

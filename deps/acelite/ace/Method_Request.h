@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ACE_METHOD_REQUEST_H
 #define ACE_METHOD_REQUEST_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -94,5 +94,5 @@ protected:
 ACE_END_VERSIONED_NAMESPACE_DECL
 
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_METHOD_REQUEST_H */

@@ -1,8 +1,8 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 #ifndef ACE_CONFIG_WIN32_COMMON_H
 #define ACE_CONFIG_WIN32_COMMON_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #ifndef ACE_CONFIG_WIN32_H
 #error Use config-win32.h in config.h instead of this header
@@ -689,5 +689,5 @@
 #  define ACE_DEFAULT_BACKLOG SOMAXCONN
 #endif /* ACE_DEFAULT_BACKLOG */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_WIN32_COMMON_H */

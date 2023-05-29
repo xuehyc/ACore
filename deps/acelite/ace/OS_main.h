@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,12 +12,12 @@
  */
 //=============================================================================
 
-#include /**/ "ace/ACE_export.h"
+#include /**/ "ACE_export.h"
 
 #ifndef ACE_OS_MAIN_H
 # define ACE_OS_MAIN_H
 
-# include /**/ "ace/pre.h"
+# include /**/ "pre.h"
 
 # if !defined (ACE_LACKS_PRAGMA_ONCE)
 #  pragma once
@@ -303,6 +303,6 @@ int ace_main_i
 
 #endif /* ACE_DOESNT_DEFINE_MAIN */
 
-# include /**/ "ace/post.h"
+# include /**/ "post.h"
 
 #endif /* ACE_OS_MAIN_H */

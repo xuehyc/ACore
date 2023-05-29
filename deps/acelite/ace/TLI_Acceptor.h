@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_TLI_ACCEPTOR_H
 #define ACE_TLI_ACCEPTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/TLI.h"
 
@@ -117,5 +117,5 @@ private:
 ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_TLI */
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TLI_ACCEPTOR_H */

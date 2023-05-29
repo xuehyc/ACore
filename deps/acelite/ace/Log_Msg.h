@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_LOG_MSG_H
 #define ACE_LOG_MSG_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 // This stuff must come first to avoid problems with circular
 // headers...
@@ -746,5 +746,5 @@ ACE_TSS_CLEANUP_NAME (void *ptr);
 #include "ace/Log_Msg.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_LOG_MSG_H */

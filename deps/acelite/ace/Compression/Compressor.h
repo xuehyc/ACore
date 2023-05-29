@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  *  @file   Compressor.h
@@ -11,7 +11,7 @@
 #ifndef ACE_COMPRESSOR_H
 #define ACE_COMPRESSOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ACE_Compression_export.h"
 
@@ -133,6 +133,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "Compressor.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // ACE_COMPRESSOR_H

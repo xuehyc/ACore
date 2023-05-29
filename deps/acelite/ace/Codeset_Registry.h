@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  *  @file   Codeset_Registry.h
@@ -22,7 +22,7 @@
 #ifndef ACE_CODESET_REGISTRY_H
 #define ACE_CODESET_REGISTRY_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 #include "ace/SString.h"
 #include "ace/CDR_Base.h"
 #include "ace/Codeset_Symbols.h"
@@ -94,5 +94,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Codeset_Registry.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CODESET_REGISTRY_H */

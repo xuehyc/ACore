@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_OS_LOG_MSG_ATTRIBUTES_H
 #define ACE_OS_LOG_MSG_ATTRIBUTES_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once
@@ -85,5 +85,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #   include "ace/OS_Log_Msg_Attributes.inl"
 # endif /* ACE_HAS_INLINED_OSCALLS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_LOG_MSG_ATTRIBUTES_H */

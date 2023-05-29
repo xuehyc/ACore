@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_NETINET_OS_TCP_H
 #define ACE_OS_INCLUDE_NETINET_OS_TCP_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -40,5 +40,5 @@ extern "C"
 }
 #endif /* __cplusplus */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_NETINET_OS_TCP_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef NULL_NETWORK_INTERFACE_MONITOR_H
 #define NULL_NETWORK_INTERFACE_MONITOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Basic_Types.h"
 
@@ -54,6 +54,6 @@ namespace ACE
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // NULL_NETWORK_INTERFACE_MONITOR_H

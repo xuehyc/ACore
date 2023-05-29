@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_OS_TIME_H
 #define ACE_OS_INCLUDE_OS_TIME_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -106,5 +106,5 @@ typedef const struct timespec * ACE_TIMESPEC_PTR;
 }
 #endif /* __cplusplus */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_OS_TIME_H */

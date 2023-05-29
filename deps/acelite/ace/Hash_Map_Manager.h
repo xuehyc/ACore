@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ACE_HASH_MAP_MANAGER_H
 #define ACE_HASH_MAP_MANAGER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -24,6 +24,6 @@
 // Include the templates here.
 #include "ace/Hash_Map_Manager_T.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_HASH_MAP_MANAGER_H */

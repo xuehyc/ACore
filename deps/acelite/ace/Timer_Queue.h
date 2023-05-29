@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_TIMER_QUEUE_H
 #define ACE_TIMER_QUEUE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Synch_Traits.h"
 
@@ -43,6 +43,6 @@ typedef ACE_Timer_Queue_Iterator_T<ACE_Event_Handler *>
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_TIMER_QUEUE_H */

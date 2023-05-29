@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_LOCAL_SOCK_CONNECTOR_H
 #define ACE_LOCAL_SOCK_CONNECTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -85,5 +85,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #endif /* __ACE_INLINE__ */
 
 #endif /* ACE_LACKS_UNIX_DOMAIN_SOCKETS */
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_LOCAL_SOCK_CONNECTOR_H */

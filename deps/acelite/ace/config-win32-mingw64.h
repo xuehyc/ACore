@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //
 // The following configuration file is designed to work for win32 and win64
 // platforms using gcc/g++ with mingw64 (http://http://mingw-w64.sourceforge.net/).
@@ -6,7 +6,7 @@
 
 #ifndef ACE_CONFIG_WIN32_MINGW64_H
 #define ACE_CONFIG_WIN32_MINGW64_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #ifndef ACE_CONFIG_WIN32_H
 #  error Use config-win32.h in config.h instead of this header
@@ -132,5 +132,5 @@
 
 #define ACE_DLL_PREFIX ACE_TEXT ("lib")
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_WIN32_MINGW64_H */

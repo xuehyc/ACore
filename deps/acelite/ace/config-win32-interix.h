@@ -1,11 +1,11 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 // The following configuration file is designed to work for Interix
 // platforms using GNU g++ (Interix == Microsoft's Services for Unix)
 
 #ifndef ACE_CONFIG_WIN32_INTERIX_H
 #define ACE_CONFIG_WIN32_INTERIX_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/config-g++-common.h"
 
@@ -117,6 +117,6 @@
 #define ACE_HAS_TSS_EMULATION              // It would appear to be broken in Interix!
 
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CONFIG_WIN32_INTERIX_H */

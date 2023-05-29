@@ -1,4 +1,4 @@
-//* -*- C++ -*- */
+﻿//* -*- C++ -*- */
 // The following configuration file is designed to work for VxWorks
 // 6.9 platforms using one of these compilers:
 // 1) The GNU g++ compiler that is shipped with VxWorks 6.9
@@ -6,7 +6,7 @@
 
 #ifndef ACE_CONFIG_VXWORKS_6_9_H
 #define ACE_CONFIG_VXWORKS_6_9_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_VXWORKS)
 # define ACE_VXWORKS 0x690
@@ -37,6 +37,6 @@
 #  undef ACE_HAS_BROKEN_ACCEPT_ADDR
 #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_VXWORKS_6_9_H */
 

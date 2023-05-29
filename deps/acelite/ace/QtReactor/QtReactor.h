@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_QTREACTOR_H
 #define ACE_QTREACTOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/QtReactor/ACE_QtReactor_export.h"
 
@@ -220,5 +220,5 @@ private slots:
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_QTREACTOR_H */

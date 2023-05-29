@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 
 #ifndef ACE_TOKEN_INVARIANTS_H
 #define ACE_TOKEN_INVARIANTS_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -209,5 +209,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_TOKENS_LIBRARY */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TOKEN_INVARIANTS_H */

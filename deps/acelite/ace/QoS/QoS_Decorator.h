@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef QOS_DECORATOR_H
 #define QOS_DECORATOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Reactor.h"
 
@@ -173,5 +173,5 @@ private:
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif  /* QOS_DECORATOR_H */

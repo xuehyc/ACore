@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef PACKETS_SENT_MONITOR_H
 #define PACKETS_SENT_MONITOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Monitor_Base.h"
 
@@ -87,6 +87,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_MONITOR_FRAMEWORK==1 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // PACKETS_SENT_MONITOR_H

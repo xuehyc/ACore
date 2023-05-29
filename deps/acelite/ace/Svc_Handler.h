@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_SVC_HANDLER_H
 #define ACE_SVC_HANDLER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Synch_Options.h"
 
@@ -354,6 +354,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Svc_Handler.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_SVC_HANDLER_H */

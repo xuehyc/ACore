@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -23,7 +23,7 @@
 
 #ifndef ACE_ASYNCH_IO_H
 #define ACE_ASYNCH_IO_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -1756,5 +1756,5 @@ public:
 ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_WIN32 || ACE_HAS_AIO_CALLS*/
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_ASYNCH_IO_H */

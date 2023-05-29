@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_OS_PTHREAD_H
 #define ACE_OS_INCLUDE_OS_PTHREAD_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -386,5 +386,5 @@ public:
 #  endif /* !ACE_THR_PRI_OTHER_MAX */
 #endif /* ACE_HAS_PTHREADS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_OS_PTHREAD_H */

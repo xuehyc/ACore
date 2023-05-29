@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_OS_UTMPX_H
 #define ACE_OS_INCLUDE_OS_UTMPX_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -28,5 +28,5 @@
 #  include /**/ <utmpx.h>
 #endif /* !ACE_LACKS_UTMPX_H */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_OS_UTMPX_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_STRING_BASE_H
 #define ACE_STRING_BASE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Global_Macros.h"
 
@@ -884,6 +884,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("String_Base.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_STRING_BASE_H */

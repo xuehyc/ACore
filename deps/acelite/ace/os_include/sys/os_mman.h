@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_SYS_OS_MMAN_H
 #define ACE_OS_INCLUDE_SYS_OS_MMAN_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -108,5 +108,5 @@ PAGE_NOCACHE  */
 }
 #endif /* __cplusplus */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_SYS_OS_MMAN_H */

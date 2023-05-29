@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_TLI_CONNECTOR_H
 #define ACE_TLI_CONNECTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/TLI_Stream.h"
 #include "ace/Log_Category.h"
@@ -124,5 +124,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #endif /* __ACE_INLINE__ */
 
 #endif /* ACE_HAS_TLI */
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TLI_CONNECTOR_H */

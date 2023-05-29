@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -22,7 +22,7 @@
 
 #ifndef ACE_HASH_MULTI_MAP_MANAGER_T_H
 #define ACE_HASH_MULTI_MAP_MANAGER_T_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -960,5 +960,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Hash_Multi_Map_Manager_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_HASH_MULTI_MAP_MANAGER_T_H */

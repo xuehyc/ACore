@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  *  @file    SSL_Context.h
@@ -11,7 +11,7 @@
 #ifndef ACE_SSL_CONTEXT_H
 #define ACE_SSL_CONTEXT_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "SSL_Export.h"
 
@@ -421,5 +421,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "SSL_Context.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif  /* ACE_SSL_CONTEXT_H */

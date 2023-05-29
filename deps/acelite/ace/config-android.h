@@ -1,10 +1,10 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 // The following configuration file is designed to work for Android
 // platforms using GNU C++.
 
 #ifndef ACE_CONFIG_ANDROID_H
 #define ACE_CONFIG_ANDROID_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 // Location of the __ANDROID_API__ define
 // #include $NDK_ROOT/sysroot/usr/include/android/api-level.h
@@ -398,6 +398,6 @@
 # undef _B
 #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CONFIG_ANDROID_H */

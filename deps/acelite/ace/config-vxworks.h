@@ -1,10 +1,10 @@
-//* -*- C++ -*- */
+﻿//* -*- C++ -*- */
 // The following configuration file is designed to work for VxWorks
 // Based on ACE_VXWORKS it will select the correct config file
 
 #ifndef ACE_CONFIG_VXWORKS_H
 #define ACE_CONFIG_VXWORKS_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 // If ACE_VXWORKS is not defined try to figure out the VxWorks version
 #if !defined (ACE_VXWORKS)
@@ -73,6 +73,6 @@
 #  define ACE_VX_TASK_ID_ERROR TASK_ID_ERROR
 #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_VXWORKS_H */
 

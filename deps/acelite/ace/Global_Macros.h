@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -15,7 +15,7 @@
 #ifndef ACE_GLOBAL_MACROS_H
 #define ACE_GLOBAL_MACROS_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 // Included just keep compilers that see #pragma dierctive first
 // happy.
@@ -1044,6 +1044,6 @@ ACE_MAKE_SVC_CONFIG_FACTORY_NAME(ACE_VERSIONED_NAMESPACE_NAME,SERVICE_CLASS) (AC
 # define ACE_STATIC_CONSTANT(TYPE, ASSIGNMENT) enum { ASSIGNMENT }
 #endif  /* !ACE_LACKS_STATIC_IN_CLASS_CONSTANTS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /*ACE_GLOBAL_MACROS_H*/

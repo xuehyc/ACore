@@ -1,4 +1,4 @@
-
+﻿
 //=============================================================================
 /**
  *  @file    Basic_Stats.h
@@ -9,7 +9,7 @@
 
 #ifndef ACE_BASIC_STATS_H
 #define ACE_BASIC_STATS_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 #include "ace/Basic_Types.h"
@@ -86,5 +86,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Basic_Stats.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_BASIC_STATS_H */

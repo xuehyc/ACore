@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_OS_THREAD_ADAPTER_H
 #define ACE_OS_THREAD_ADAPTER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Base_Thread_Adapter.h"
 
@@ -66,5 +66,5 @@ protected:
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_THREAD_ADAPTER_H */

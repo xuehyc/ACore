@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_ASSERT_H
 #define ACE_ASSERT_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -33,6 +33,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #define ACE_ASSERT(X) ACE_TEST_ASSERT(X)
 #endif /* ACE_NDEBUG */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_ASSERT */

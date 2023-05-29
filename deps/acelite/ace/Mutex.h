@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_MUTEX_H
 #define ACE_MUTEX_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -186,6 +186,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Mutex.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_MUTEX_H */

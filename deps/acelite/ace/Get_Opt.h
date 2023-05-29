@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_GET_OPT_H
 #define ACE_GET_OPT_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SStringfwd.h"
 #include "ace/Containers.h"
@@ -488,5 +488,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Get_Opt.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_GET_OPT_H */

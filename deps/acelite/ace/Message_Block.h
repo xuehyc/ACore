@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_MESSAGE_BLOCK_H
 #define ACE_MESSAGE_BLOCK_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 #include /**/ "ace/ACE_export.h"
@@ -864,6 +864,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #include "ace/Message_Block_T.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_MESSAGE_BLOCK_H */

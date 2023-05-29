@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_NULL_SEMAPHORE_H
 #define ACE_NULL_SEMAPHORE_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/os_include/os_errno.h"
 #include "ace/os_include/sys/os_types.h"
@@ -97,5 +97,5 @@ public:
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_NULL_SEMAPHORE_H */

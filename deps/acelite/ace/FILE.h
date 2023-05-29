@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_FILE_H
 #define ACE_FILE_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/IO_SAP.h"
 
@@ -120,5 +120,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/FILE.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_FILE_H */

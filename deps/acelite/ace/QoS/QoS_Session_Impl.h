@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_QOS_SESSION_IMPL_H
 #define ACE_QOS_SESSION_IMPL_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/QoS/QoS_Session.h"
 
@@ -259,5 +259,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "QoS_Session_Impl.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_QOS_SESSION_IMPL_H */

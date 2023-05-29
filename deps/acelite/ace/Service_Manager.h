@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_SERVICE_MANAGER_H
 #define ACE_SERVICE_MANAGER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SOCK_Stream.h"
 
@@ -114,5 +114,5 @@ protected:
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* _SERVICE_MANAGER_H */

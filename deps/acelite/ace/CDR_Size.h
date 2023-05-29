@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -19,7 +19,7 @@
 #ifndef ACE_CDR_SIZE_H
 #define ACE_CDR_SIZE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/CDR_Base.h"
 #include "ace/CDR_Stream.h" // for ACE_OutputCDR::from_*
@@ -229,6 +229,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #endif /* __ACE_INLINE__ */
 
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CDR_SIZE_H */

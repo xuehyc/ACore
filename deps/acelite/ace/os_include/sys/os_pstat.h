@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ACE_OS_INCLUDE_SYS_OS_PSTAT_H
 #define ACE_OS_INCLUDE_SYS_OS_PSTAT_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -26,5 +26,5 @@
 #  include /**/ <sys/pstat.h>
 #endif /* ACE_HAS_SYS_PSTAT_H */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_SYS_OS_PSTAT_H */

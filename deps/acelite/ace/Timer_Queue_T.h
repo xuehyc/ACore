@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_TIMER_QUEUE_T_H
 #define ACE_TIMER_QUEUE_T_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Free_List.h"
 
@@ -245,5 +245,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Timer_Queue_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TIMER_QUEUE_T_H */

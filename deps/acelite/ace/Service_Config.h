@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //====================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_SERVICE_CONFIG_H
 #define ACE_SERVICE_CONFIG_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 #include "ace/Default_Constants.h"
@@ -743,6 +743,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Service_Config.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_SERVICE_CONFIG_H */

@@ -1,4 +1,4 @@
-//==============================================================
+﻿//==============================================================
 /**
  *  @file  XML_Error_Handler.h
  *
@@ -10,7 +10,7 @@
 #ifndef ACE_XML_ERROR_HANDLER_H
 #define ACE_XML_ERROR_HANDLER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 #pragma once
@@ -53,6 +53,6 @@ namespace XML
   };
 }
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_XML_ERROR_HANDLER_H */

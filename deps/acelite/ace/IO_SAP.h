@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_IO_SAP_H
 #define ACE_IO_SAP_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Flag_Manip.h"
 #include "ace/os_include/sys/os_types.h"
@@ -87,5 +87,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/IO_SAP.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_IO_SAP_H */

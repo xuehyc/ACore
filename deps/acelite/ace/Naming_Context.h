@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_NAMING_CONTEXT_H
 #define ACE_NAMING_CONTEXT_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -380,5 +380,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 ACE_FACTORY_DECLARE (ACE, ACE_Naming_Context)
 ACE_STATIC_SVC_DECLARE_EXPORT (ACE, ACE_Naming_Context)
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_NAMING_CONTEXT_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_REMOTE_MUTEX_H
 #define ACE_REMOTE_MUTEX_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/INET_Addr.h"
 
@@ -314,6 +314,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Remote_Tokens.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_REMOTE_TOKEN_H */

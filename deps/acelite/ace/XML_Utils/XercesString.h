@@ -1,7 +1,7 @@
-#ifndef _XERCESSTRING_H
+﻿#ifndef _XERCESSTRING_H
 #define _XERCESSTRING_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 #pragma once
@@ -75,6 +75,6 @@ namespace XML
 
 }
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* _XERCESSTRING_H */

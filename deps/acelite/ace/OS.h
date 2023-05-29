@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ACE_OS_H
 #define ACE_OS_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -100,5 +100,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* DO_NOT_INCLUDE_OS_H */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif  /* ACE_OS_H */

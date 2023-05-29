@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef AUTO_UPDATE_STARTER_H
 #define AUTO_UPDATE_STARTER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Task.h"
 
@@ -56,6 +56,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_MONITOR_FRAMEWORK==1 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // AUTO_UPDATE_STARTER_H

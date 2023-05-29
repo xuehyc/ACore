@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_THREAD_MUTEX_H
 #define ACE_THREAD_MUTEX_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -169,5 +169,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* !ACE_HAS_THREADS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_THREAD_MUTEX_H */

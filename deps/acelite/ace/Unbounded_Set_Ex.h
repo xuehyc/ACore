@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_UNBOUNDED_SET_EX_H
 #define ACE_UNBOUNDED_SET_EX_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Node.h"
 #include "ace/os_include/os_stddef.h"
@@ -369,5 +369,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Unbounded_Set_Ex.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_UNBOUNDED_SET_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -18,7 +18,7 @@
 #ifndef ACE_ARRAY_MAP_H
 #define ACE_ARRAY_MAP_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -284,6 +284,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Array_Map.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  /* ACE_ARRAY_MAP_H */

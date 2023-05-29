@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 
 #ifndef ACE_WIN32_PROACTOR_H
 #define ACE_WIN32_PROACTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -319,5 +319,5 @@ protected:
 ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_WIN32 */
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_PROACTOR_H */

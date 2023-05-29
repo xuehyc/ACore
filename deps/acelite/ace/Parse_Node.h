@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_PARSE_NODE_H
 #define ACE_PARSE_NODE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -516,6 +516,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_USES_CLASSIC_SVC_CONF == 1 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  /* ACE_PARSE_NODE_H */

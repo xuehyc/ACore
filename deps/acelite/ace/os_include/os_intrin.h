@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ACE_OS_INCLUDE_OS_INTRIN_H
 #define ACE_OS_INCLUDE_OS_INTRIN_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -51,5 +51,5 @@ LONG __cdecl _InterlockedExchangeAdd (LONG volatile *Addend, LONG Value);
 }
 #endif /* __cplusplus */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_OS_INTRIN_H */

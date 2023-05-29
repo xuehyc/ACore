@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=========================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_UTF16_ENCODING_CONVERTER_H
 #define ACE_UTF16_ENCODING_CONVERTER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Encoding_Converter.h"
 
@@ -79,6 +79,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_USES_WCHAR */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_UTF16_ENCODING_CONVERTER_H */

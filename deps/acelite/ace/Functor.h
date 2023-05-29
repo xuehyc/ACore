@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -27,7 +27,7 @@
 
 #ifndef ACE_FUNCTOR_H
 #define ACE_FUNCTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -469,5 +469,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Functor.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_FUNCTOR_H */

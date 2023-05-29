@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 
 #ifndef ACE_DEFAULT_CONSTANTS_H
 #define ACE_DEFAULT_CONSTANTS_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 // Included just keep compilers that see #pragma directive first
 // happy.
@@ -584,5 +584,5 @@
 #   define ACE_SYSCALL_FAILED -1
 # endif /* ACE_WIN32 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /*ACE_DEFAULT_CONSTANTS_H*/

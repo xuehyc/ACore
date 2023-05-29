@@ -1,9 +1,9 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 // The following configuration file is designed to work for FreeBSD
 
 #ifndef ACE_CONFIG_H
 #define ACE_CONFIG_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_MT_SAFE)
 #  define ACE_MT_SAFE 1
@@ -185,6 +185,6 @@ enum schedparam_policy {
 # define ACE_HAS_VOID_UNSETENV
 #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CONFIG_H */

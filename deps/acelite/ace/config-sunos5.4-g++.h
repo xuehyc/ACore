@@ -1,10 +1,10 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 // The following configuration file is designed to work for SunOS 5.4
 // platforms using the GNU g++ compiler.
 
 #ifndef ACE_CONFIG_H
 #define ACE_CONFIG_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if ! defined (__ACE_INLINE__)
 # define __ACE_INLINE__
@@ -167,5 +167,5 @@
 #define ACE_HAS_GPERF
 #define ACE_HAS_DIRENT
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_H */

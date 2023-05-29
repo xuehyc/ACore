@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_UNBOUNDED_QUEUE_H
 #define ACE_UNBOUNDED_QUEUE_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Node.h"
 
@@ -290,5 +290,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Unbounded_Queue.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_UNBOUNDED_QUEUE_H */

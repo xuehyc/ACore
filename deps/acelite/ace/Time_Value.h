@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_TIME_VALUE_H
 #define ACE_TIME_VALUE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -546,6 +546,6 @@ static const ACE_Time_Value& __max_time = ACE_Time_Value::max_time;
 ACE_END_VERSIONED_NAMESPACE_DECL
 #endif /* __MINGW32__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_TIME_VALUE_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_SOCK_DGRAM_MCAST_QOS_H
 #define ACE_SOCK_DGRAM_MCAST_QOS_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SOCK_Dgram_Mcast.h"
 #include "QoS_Manager.h"
@@ -136,5 +136,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "SOCK_Dgram_Mcast_QoS.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_SOCK_DGRAM_MCAST_QOS_H */

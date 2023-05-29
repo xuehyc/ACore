@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -23,7 +23,7 @@
 #ifndef ACE_NUMERIC_LIMITS_H
 #define ACE_NUMERIC_LIMITS_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -245,6 +245,6 @@ struct ACE_Numeric_Limits<ULONGLONG>
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  /* ACE_NUMERIC_LIMITS_H */

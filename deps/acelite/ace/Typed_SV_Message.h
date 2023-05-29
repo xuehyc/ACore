@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_TYPED_SV_MESSAGE_H
 #define ACE_TYPED_SV_MESSAGE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -100,6 +100,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Typed_SV_Message.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_TYPED_SV_MESSAGE_H */

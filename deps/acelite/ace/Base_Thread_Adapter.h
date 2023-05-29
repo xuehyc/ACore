@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_BASE_THREAD_ADAPTER_H
 #define ACE_BASE_THREAD_ADAPTER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/OS_Log_Msg_Attributes.h"
 
@@ -193,5 +193,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #   include "ace/Base_Thread_Adapter.inl"
 # endif /* ACE_HAS_INLINED_OSCALLS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_BASE_THREAD_ADAPTER_H */

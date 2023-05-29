@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_HANDLE_SET_H
 #define ACE_HANDLE_SET_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -233,5 +233,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Handle_Set.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_HANDLE_SET */

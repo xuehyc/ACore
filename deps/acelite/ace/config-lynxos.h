@@ -1,9 +1,9 @@
-// The following configuration file is designed to work for LynxOS,
+﻿// The following configuration file is designed to work for LynxOS,
 // version 4.0.0 and later, using the GNU g++ compiler.
 
 #ifndef ACE_CONFIG_H
 #define ACE_CONFIG_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 // System include files are not in sys/, this gets rid of warning.
 #define __NO_INCLUDE_WARN__
@@ -180,6 +180,6 @@
 #  define ACE_SYS_SIGLIST __sys_siglist
 #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CONFIG_H */

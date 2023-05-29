@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -15,7 +15,7 @@
 #ifndef ACE_SSL_SOCK_CONNECTOR_H
 #define ACE_SSL_SOCK_CONNECTOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "SSL_Export.h"
 
@@ -311,6 +311,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "SSL_SOCK_Connector.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_SSL_SOCK_CONNECTOR_H */

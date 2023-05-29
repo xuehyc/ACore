@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 /**
  *  @file    Netlink_Addr.h
  *
@@ -10,7 +10,7 @@
 #ifndef ACE_NETLINK_ADDR_H
 #define ACE_NETLINK_ADDR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -108,7 +108,7 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_NETLINK */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_NETLINK_ADDR_H */
 

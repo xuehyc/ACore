@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ACE_TIMER_QUEUE_FWD_H
 #define ACE_TIMER_QUEUE_FWD_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/config-all.h"
 
@@ -25,6 +25,6 @@ typedef ACE_Abstract_Timer_Queue<ACE_Event_Handler*> ACE_Timer_Queue;
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  /* ACE_TIMER_QUEUE_FWD_H */

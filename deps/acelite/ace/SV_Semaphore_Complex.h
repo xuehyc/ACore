@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_SV_SEMAPHORE_COMPLEX_H
 #define ACE_SV_SEMAPHORE_COMPLEX_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SV_Semaphore_Simple.h"
 
@@ -153,5 +153,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/SV_Semaphore_Complex.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_SV_SEMAPHORE_COMPLEX_H */

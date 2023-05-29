@@ -1,7 +1,7 @@
-#ifndef ACE_EVENT_HANDLER_HANDLE_TIMEOUT_UPCALL_H
+﻿#ifndef ACE_EVENT_HANDLER_HANDLE_TIMEOUT_UPCALL_H
 #define ACE_EVENT_HANDLER_HANDLE_TIMEOUT_UPCALL_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 /**
  * @file Event_Handler_Handle_Timeout_Upcall.h
@@ -97,5 +97,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 # include "ace/Event_Handler_Handle_Timeout_Upcall.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_EVENT_HANDLER_HANDLE_TIMEOUT_UPCALL_H */

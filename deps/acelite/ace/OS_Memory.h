@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_OS_MEMORY_H
 #define ACE_OS_MEMORY_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -334,5 +334,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #include "ace/OS_NS_stdlib.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_MEMORY_H */

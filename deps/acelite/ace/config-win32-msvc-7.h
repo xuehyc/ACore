@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 //=============================================================================
 /**
  *  @file   config-win32-msvc-7.h
@@ -15,7 +15,7 @@
 
 #ifndef ACE_CONFIG_WIN32_MSVC_7_H
 #define ACE_CONFIG_WIN32_MSVC_7_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #ifndef ACE_CONFIG_WIN32_H
 #error Use config-win32.h in config.h instead of this header
@@ -116,5 +116,5 @@
 // explicitly instantiate a template that has ACE_UNIMPLEMENTED_FUNC.
 # define ACE_NEEDS_FUNC_DEFINITIONS
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_WIN32_MSVC_7_H */

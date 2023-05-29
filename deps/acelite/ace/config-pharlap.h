@@ -1,10 +1,10 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 // This configuration file is for use with the PharLap Realtime ETS Kernel.
 // It has been tested with PharLap TNT Embedded ToolSuite version 9.1.
 
 #ifndef ACE_CONFIG_PHARLAP_H
 #define ACE_CONFIG_PHARLAP_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #define ACE_HAS_PHARLAP
 // Some features are only available with the Realtime edition of ETS.
@@ -63,7 +63,7 @@
 
 // Let the config-win32.h file do its thing
 #undef ACE_CONFIG_H
-#include "ace/config-win32.h"
+#include "config-win32.h"
 // Now remove things that desktop/server Windows has but Pharlap ETS doesn't.
 #undef ACE_HAS_INTERLOCKED_EXCHANGEADD
 #undef ACE_HAS_WCHAR
@@ -85,5 +85,5 @@
 #  define IN_CLASSD(i) (0)
 #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_PHARLAP_H */

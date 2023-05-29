@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_NT_SERVICE_H
 #define ACE_NT_SERVICE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -433,6 +433,6 @@ extern VOID WINAPI ace_nt_svc_main_##SVCNAME (DWORD dwArgc,                \
 
 #endif /* ACE_WIN32 && !ACE_LACKS_WIN32_SERVICES */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_SERVICE_OBJECT_H */

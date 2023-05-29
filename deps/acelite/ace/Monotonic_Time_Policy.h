@@ -1,4 +1,4 @@
-#ifndef ACE_MONOTONIC_TIME_POLICY_H
+﻿#ifndef ACE_MONOTONIC_TIME_POLICY_H
 #define ACE_MONOTONIC_TIME_POLICY_H
 // -*- C++ -*-
 /**
@@ -6,7 +6,7 @@
  *
  *  @author Martin Corino <mcorino@remedy.nl>
  */
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -44,5 +44,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Monotonic_Time_Policy.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_MONOTONIC_TIME_POLICY_H */

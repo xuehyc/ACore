@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -107,6 +107,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 
 
-# include /**/ "ace/post.h"
+# include /**/ "post.h"
 
 #endif /* ACE_OS_NS_MACROS_H */

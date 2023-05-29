@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file XML_Schema_Resolver.h
  * @author Will Otte <wotte@dre.vanderbilt.edu>
  *
@@ -7,7 +7,7 @@
 
 #ifndef ACE_XML_SCHEMA_RESOLVER_H
 #define ACE_XML_SCHEMA_RESOLVER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 #pragma once
@@ -103,6 +103,6 @@ namespace XML
 
 #include "XML_Schema_Resolver.tpp"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /*  ACE_XML_SCHEMA_RESOLVER_H */

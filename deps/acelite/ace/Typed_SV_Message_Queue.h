@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_TYPED_MESSAGE_QUEUE_H
 #define ACE_TYPED_MESSAGE_QUEUE_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/SV_Message_Queue.h"
 
@@ -86,5 +86,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Typed_SV_Message_Queue.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TYPED_MESSAGE_QUEUE_H */

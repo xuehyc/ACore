@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef MONITOR_ADMIN_MANAGER_H
 #define MONITOR_ADMIN_MANAGER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Service_Object.h"
 
@@ -63,6 +63,6 @@ ACE_FACTORY_DECLARE (ACE, MC_ADMINMANAGER)
 
 #endif /* ACE_HAS_MONITOR_FRAMEWORK==1 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // MONITOR_ADMIN_MANAGER_H

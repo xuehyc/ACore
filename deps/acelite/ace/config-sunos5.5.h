@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 // This configuration file is designed to work for SunOS 5.5 platforms
 // using the following compilers:
 //   * Sun C++ 4.2 and later (including 5.x), patched as noted below
@@ -7,7 +7,7 @@
 
 #ifndef ACE_CONFIG_H
 #define ACE_CONFIG_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #define ACE_LACKS_STDINT_H
 
@@ -358,5 +358,5 @@
 #define ACE_LACKS_SETENV
 #define ACE_LACKS_UNSETENV
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_H */

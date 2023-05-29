@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -19,7 +19,7 @@
 
 #ifndef ACE_TOKEN_COLLECTION_H
 #define ACE_TOKEN_COLLECTION_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Map_Manager.h"
 
@@ -223,5 +223,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_TOKENS_LIBRARY */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TOKEN_COLLECTION_H */

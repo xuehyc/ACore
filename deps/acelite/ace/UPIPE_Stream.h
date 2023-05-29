@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_UPIPE_STREAM_H
 #define ACE_UPIPE_STREAM_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Stream.h"
 
@@ -133,6 +133,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_THREADS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /*ACE_UPIPE_STREAM_H */

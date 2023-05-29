@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -9,7 +9,7 @@
 //=============================================================================
 #ifndef ACE_NOTIFICATION_STRATEGY_H
 #define ACE_NOTIFICATION_STRATEGY_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Event_Handler.h"
 
@@ -69,5 +69,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Notification_Strategy.inl"
 #endif /* __ACE_INLINE __ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /*ACE_NOTIFICATION_STRATEGY_H */

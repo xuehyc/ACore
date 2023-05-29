@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 #ifndef ETCL_INTERPRETER_H
 #define ETCL_INTERPRETER_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Thread_Mutex.h"
 
@@ -110,6 +110,6 @@ extern YYSTYPE yyval;
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // ETCL_INTERPRETER_H

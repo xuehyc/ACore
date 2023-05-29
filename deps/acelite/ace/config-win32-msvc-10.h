@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 //=============================================================================
 /**
  *  @file   config-win32-msvc-10.h
@@ -13,7 +13,7 @@
 
 #ifndef ACE_CONFIG_WIN32_MSVC_10_H
 #define ACE_CONFIG_WIN32_MSVC_10_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #ifndef ACE_CONFIG_WIN32_H
 #error Use config-win32.h in config.h instead of this header
@@ -142,5 +142,5 @@
 // # undef ACE_LACKS_COND_T
 // #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_WIN32_MSVC_10_H */

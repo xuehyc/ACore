@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_SYNCH_H
 #define ACE_SYNCH_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -47,5 +47,5 @@
 
 #endif /* DO_NOT_INCLUDE_SYNCH_H */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_SYNCH_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_LOG_MSG_UNIX_SYSLOG_H
 #define ACE_LOG_MSG_UNIX_SYSLOG_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -71,5 +71,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* !ACE_LACKS_UNIX_SYSLOG */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_LOG_MSG_UNIX_SYSLOG_H */

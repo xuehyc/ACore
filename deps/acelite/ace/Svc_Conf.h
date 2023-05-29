@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_SVC_CONF_H
 #define ACE_SVC_CONF_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Service_Config.h"
 
@@ -103,6 +103,6 @@ ace_create_service_type (ACE_TCHAR const *,
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_SVC_CONF_H */

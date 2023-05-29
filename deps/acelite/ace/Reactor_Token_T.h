@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 
 #ifndef ACE_REACTOR_TOKEN_T_H
 #define ACE_REACTOR_TOKEN_T_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Reactor_Impl.h"
 #include "ace/Token.h"
@@ -87,5 +87,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Reactor_Token_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_REACTOR_TOKEN_T_H */

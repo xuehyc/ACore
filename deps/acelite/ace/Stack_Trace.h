@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  *  @file   Stack_Trace.h
@@ -10,7 +10,7 @@
 #ifndef ACE_STACK_TRACE_H
 #define ACE_STACK_TRACE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/ACE_export.h"
 #include "ace/Basic_Types.h"
@@ -100,6 +100,6 @@ private:
   void generate_trace (ssize_t starting_frame_offset, size_t num_frames);
 };
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_STACK_TRACE_H */
 

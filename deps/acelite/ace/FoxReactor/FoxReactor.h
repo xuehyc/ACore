@@ -1,4 +1,4 @@
-/* -*- C-*- */
+﻿/* -*- C-*- */
 
 //=============================================================================
 /**
@@ -15,7 +15,7 @@
 
 #ifndef ACE_FOXREACTOR_H
 #define ACE_FOXREACTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/config-all.h"
 
@@ -104,6 +104,6 @@ private:
   ACE_FoxReactor &operator = (const ACE_FoxReactor &);
 };
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_FOXREACTOR_H */
 

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_BOUND_PTR_H
 #define ACE_BOUND_PTR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -381,6 +381,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #include "ace/Bound_Ptr.inl"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_BOUND_PTR_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -20,13 +20,13 @@
 #define ACE_CONFIG_MACROS_H
 
 #ifdef _WIN32
-  #include "ace/config-win32.h"
+  #include "config-win32.h"
 #else
   #include "ace/config.h"
 #endif
 
-#include "ace/Version.h"
-#include "ace/Versioned_Namespace.h"
+#include "Version.h"
+#include "Versioned_Namespace.h"
 
 #if !defined (ACE_HAS_EXCEPTIONS)
 #define ACE_HAS_EXCEPTIONS

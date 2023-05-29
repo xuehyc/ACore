@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_OS_INCLUDE_SYS_OS_STATVFS_H
 #define ACE_OS_INCLUDE_SYS_OS_STATVFS_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -26,5 +26,5 @@
 #  include /**/ <sys/statvfs.h>
 #endif /* !ACE_LACKS_SYS_STATVFS_H */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_INCLUDE_SYS_OS_STATVFS_H */

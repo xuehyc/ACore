@@ -1,11 +1,11 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 // The following configuration file is designed to work for CygWin
 // platforms using GNU C++.
 
 #ifndef ACE_CONFIG_CYGWIN32_H
 #define ACE_CONFIG_CYGWIN32_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_MT_SAFE)
 #define ACE_MT_SAFE 1
@@ -206,6 +206,6 @@
 #define ACE_HAS_VSWPRINTF
 #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CONFIG_CYGWIN32_H */

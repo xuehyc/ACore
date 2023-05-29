@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 
 #ifndef ACE_MSG_WFMO_REACTOR_H
 #define ACE_MSG_WFMO_REACTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -114,5 +114,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_WIN32 && !ACE_LACKS_MSG_WFMO */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_MSG_WFMO_REACTOR_H */

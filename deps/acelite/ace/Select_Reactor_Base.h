@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_SELECT_REACTOR_BASE_H
 #define ACE_SELECT_REACTOR_BASE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Timer_Queuefwd.h"
 
@@ -607,6 +607,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Select_Reactor_Base.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_SELECT_REACTOR_BASE_H */

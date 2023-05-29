@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_THREAD_MANAGER_H
 #define ACE_THREAD_MANAGER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Thread.h"
 #include "ace/Thread_Adapter.h"
@@ -1266,5 +1266,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Thread_Manager.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_THREAD_MANAGER_H */

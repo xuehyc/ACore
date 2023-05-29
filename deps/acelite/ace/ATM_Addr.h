@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_ATM_ADDR_H
 #define ACE_ATM_ADDR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -191,5 +191,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #endif /* __ACE_INLINE__ */
 
 #endif /* ACE_HAS_ATM */
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_ATM_ADDR_H */

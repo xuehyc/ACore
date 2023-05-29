@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 
 #ifndef ACE_CODESET_IMB1047_H
 #define ACE_CODESET_IMB1047_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -120,6 +120,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_EBCDIC */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CODESET_IMB1047_H */

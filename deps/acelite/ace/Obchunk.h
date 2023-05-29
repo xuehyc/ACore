@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_OBCHUNK_H
 #define ACE_OBCHUNK_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Malloc.h"
 
@@ -70,5 +70,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Obchunk.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OBCHUNK_H */

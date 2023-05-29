@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef MONITOR_CONTROL_H
 #define MONITOR_CONTROL_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Monitor_Point_Registry.h"
 
@@ -39,6 +39,6 @@ ACE_Requires_MC_Initializer = MC_ADMINMANAGER::Initializer ();
 
 #endif /* ACE_HAS_MONITOR_FRAMEWORK==1 */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // MONITOR_CONTROL_H

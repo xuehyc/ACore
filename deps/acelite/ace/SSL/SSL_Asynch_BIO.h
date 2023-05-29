@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -12,7 +12,7 @@
 #ifndef ACE_SSL_ASYNCH_BIO_H
 #define ACE_SSL_ASYNCH_BIO_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "SSL_Export.h"
 
@@ -34,6 +34,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #endif  /* OPENSSL_VERSION_NUMBER > 0x0090581fL (ACE_WIN32 ||
            ACE_HAS_AIO_CALLS) */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  /* ACE_SSL_ASYNCH_BIO_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_SERVICE_REPOSITORY_H
 #define ACE_SERVICE_REPOSITORY_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -264,6 +264,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Service_Repository.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* _SERVICE_REPOSITORY_H */

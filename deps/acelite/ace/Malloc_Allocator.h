@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //==========================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef ACE_MALLOC_ALLOCATOR_H
 #define ACE_MALLOC_ALLOCATOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -139,6 +139,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Malloc_Allocator.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* MALLOC_ALLOCATOR_H */

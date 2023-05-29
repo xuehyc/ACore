@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_ASYNCH_ACCEPTOR_H
 #define ACE_ASYNCH_ACCEPTOR_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -270,5 +270,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
 #endif /* ACE_HAS_WIN32_OVERLAPPED_IO || ACE_HAS_AIO_CALLS */
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_ASYNCH_ACCEPTOR_H */

@@ -1,11 +1,11 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 // This configuration file is designed to be included by another,
 // specific configuration file.  It provides config information common
 // to all g++ platforms, including egcs.
 
 #ifndef ACE_GNUG_COMMON_H
 #define ACE_GNUG_COMMON_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #if !defined (ACE_CC_NAME)
 # define ACE_CC_NAME ACE_TEXT ("g++")
@@ -177,5 +177,5 @@
 #endif
 #endif /* ACE_HAS_THREADS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_GNUG_COMMON_H */

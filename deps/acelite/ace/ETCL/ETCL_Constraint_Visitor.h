@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  * @file ETCL_Constraint_Visitor.h
@@ -11,7 +11,7 @@
 #ifndef ACE_ETCL_CONSTRAINT_VISITOR_H
 #define ACE_ETCL_CONSTRAINT_VISITOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/ETCL/ace_etcl_export.h"
 
@@ -64,6 +64,6 @@ public:
 
 ACE_END_VERSIONED_NAMESPACE_DECL
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif // ACE_ETCL_CONSTRAINT_VISITOR_H

@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 //=============================================================================
 /**
  *  @file   config-win32.h
@@ -15,7 +15,7 @@
 
 #ifndef ACE_CONFIG_WIN32_H
 #define ACE_CONFIG_WIN32_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 // NOTE: Please do not add anything besides #include's here.  Put other stuff
 //       (definitions, etc.) in the included headers
@@ -25,14 +25,14 @@
 // but instead let it be included at the appropriate place in
 // config-win32-borland.h.
 #if !defined (__BORLANDC__)
-#  include "ace/config-win32-common.h"
+#  include "config-win32-common.h"
 #endif /* !__BORLANDC__ */
 
 // Include the config-win32-* file specific to the compiler
 #if defined (__BORLANDC__)
 #  include "ace/config-win32-borland.h"
 #elif defined (_MSC_VER)
-#  include "ace/config-win32-msvc.h"
+#  include "config-win32-msvc.h"
 #elif defined (ACE_HAS_CEGCC) //need to be prior to MINGW32
 #  include "ace/config-win32-cegcc.h"
 #elif defined (__MINGW32__)
@@ -47,6 +47,6 @@
 #  error Compiler is not supported
 #endif
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_WIN32_H */
 

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -20,7 +20,7 @@
 
 #ifndef ACE_WIN32_ASYNCH_IO_H
 #define ACE_WIN32_ASYNCH_IO_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -1919,5 +1919,5 @@ protected:
 ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_WIN32_OVERLAPPED_IO && ACE_HAS_WINSOCK2 */
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_WIN32_ASYNCH_IO_H */

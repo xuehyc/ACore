@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 
 #ifndef ACE_ACTIVE_MAP_MANAGER_H
 #define ACE_ACTIVE_MAP_MANAGER_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -112,5 +112,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 // Include the templates here.
 #include "ace/Active_Map_Manager_T.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_ACTIVE_MAP_MANAGER_H */

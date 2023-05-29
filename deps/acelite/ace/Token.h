@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -13,7 +13,7 @@
 
 #ifndef ACE_TOKEN_H
 #define ACE_TOKEN_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -370,5 +370,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #endif /* __ACE_INLINE__ */
 
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TOKEN_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_TASK_H
 #define ACE_TASK_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Service_Object.h"
 
@@ -300,5 +300,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 // Include the ACE_Task templates classes at this point.
 #include "ace/Task_T.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_TASK_H */

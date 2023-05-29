@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_INTRUSIVE_LIST_H
 #define ACE_INTRUSIVE_LIST_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-lite.h"
 
@@ -133,5 +133,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Intrusive_List.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_INTRUSIVE_LIST_H */

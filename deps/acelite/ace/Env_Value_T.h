@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_ENV_VALUE_T_H
 #define ACE_ENV_VALUE_T_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 #include "ace/Global_Macros.h"
@@ -155,5 +155,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Env_Value_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_ENV_VALUE_T_H */

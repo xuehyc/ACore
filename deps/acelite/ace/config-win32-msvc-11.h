@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 //=============================================================================
 /**
  *  @file   config-win32-msvc-11.h
@@ -13,7 +13,7 @@
 
 #ifndef ACE_CONFIG_WIN32_MSVC_11_H
 #define ACE_CONFIG_WIN32_MSVC_11_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #ifndef ACE_CONFIG_WIN32_H
 #error Use config-win32.h in config.h instead of this header
@@ -24,7 +24,7 @@
 #endif
 
 // Until we have specific msvc11 settings, include the msvc10 file
-#include "ace/config-win32-msvc-10.h"
+#include "config-win32-msvc-10.h"
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_WIN32_MSVC_10_H */

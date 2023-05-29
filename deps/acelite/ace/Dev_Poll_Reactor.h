@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 // =========================================================================
 /**
@@ -14,7 +14,7 @@
 #ifndef ACE_DEV_POLL_REACTOR_H
 #define ACE_DEV_POLL_REACTOR_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -1202,6 +1202,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif  /* ACE_HAS_EVENT_POLL || ACE_HAS_DEV_POLL */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif  /* ACE_DEV_POLL_REACTOR_H */

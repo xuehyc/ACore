@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_OS_ERRNO_H
 #define ACE_OS_ERRNO_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/ACE_export.h"
 
@@ -94,5 +94,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 # include "ace/OS_Errno.inl"
 #endif /* ACE_HAS_INLINED_OSCALLS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_OS_ERRNO_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_ATOMIC_OP_T_H
 #define ACE_ATOMIC_OP_T_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -353,5 +353,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Atomic_Op_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /*ACE_ATOMIC_OP_T_H*/

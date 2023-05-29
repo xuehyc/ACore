@@ -1,4 +1,4 @@
-/**
+﻿/**
  *  @file Notification_Queue.h
  *
  *  @author Carlos O'Ryan <coryan@atdesk.com>
@@ -7,7 +7,7 @@
 #ifndef ACE_NOTIFICATION_QUEUE_H
 #define ACE_NOTIFICATION_QUEUE_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include "ace/Copy_Disabled.h"
 #include "ace/Event_Handler.h"
@@ -150,6 +150,6 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #include "ace/Notification_Queue.inl"
 #endif /* __ACE_INLINE__ */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_NOTIFICATION_QUEUE_H */

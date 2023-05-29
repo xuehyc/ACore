@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -11,7 +11,7 @@
 #ifndef CACHED_CONNECT_STRATEGY_T_H
 #define CACHED_CONNECT_STRATEGY_T_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -257,5 +257,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 #pragma implementation ("Cached_Connect_Strategy_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* CACHED_CONNECT_STRATEGY_T_H */

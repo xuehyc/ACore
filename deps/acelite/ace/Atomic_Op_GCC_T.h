@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
 
 #ifndef ACE_ATOMIC_OP_GCC_T_H
 #define ACE_ATOMIC_OP_GCC_T_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -133,5 +133,5 @@ ACE_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* ACE_HAS_GCC_ATOMIC_BUILTINS */
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /*ACE_ATOMIC_OP_GCC_T_H*/

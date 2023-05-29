@@ -1,10 +1,10 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 // The following configuration file is designed to work for HP
 // platforms running HP-UX 11.00 using aC++ or gcc (2.95 and up).
 
 #ifndef ACE_CONFIG_H
 #define ACE_CONFIG_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #define ACE_LACKS_STDINT_H
 #define ACE_LACKS_SYS_SELECT_H
@@ -427,5 +427,5 @@
 // gethostbyaddr does not handle IPv6-mapped-IPv4 addresses
 #define ACE_HAS_BROKEN_GETHOSTBYADDR_V4MAPPED
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_H */

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 
 // ============================================================================
 /**
@@ -20,7 +20,7 @@
 #ifndef ACE_CORBA_MACROS_H
 #define ACE_CORBA_MACROS_H
 
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #include /**/ "ace/config-all.h"
 
@@ -83,6 +83,6 @@
     if (OBJ.locked () == 0) throw EXCEPTION;
 // FUZZ: enable check_for_ACE_Guard
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 
 #endif /* ACE_CORBA_MACROS_H */

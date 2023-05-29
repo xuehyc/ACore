@@ -1,4 +1,4 @@
-/* -*- C++ -*- */
+﻿/* -*- C++ -*- */
 //=============================================================================
 /**
  *  @file   config-win32-msvc-14.h
@@ -13,7 +13,7 @@
 
 #ifndef ACE_CONFIG_WIN32_MSVC_14_H
 #define ACE_CONFIG_WIN32_MSVC_14_H
-#include /**/ "ace/pre.h"
+#include /**/ "pre.h"
 
 #ifndef ACE_CONFIG_WIN32_H
 #error Use config-win32.h in config.h instead of this header
@@ -24,7 +24,7 @@
 #endif
 
 // Until we have specific msvc14 settings, include the msvc12 file
-#include "ace/config-win32-msvc-12.h"
+#include "config-win32-msvc-12.h"
 
 #define ACE_HAS_POSIX_TIME 1
 #define ACE_LACKS_TIMESPEC_T 1
@@ -38,5 +38,5 @@
 // Visual Studio 2015 has 3 parameter wcstok
 #define ACE_HAS_3_PARAM_WCSTOK
 
-#include /**/ "ace/post.h"
+#include /**/ "post.h"
 #endif /* ACE_CONFIG_WIN32_MSVC_14_H */
