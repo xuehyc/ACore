@@ -1175,6 +1175,14 @@ public:
     //stat points
     uint32 stat_points[MAX_STAT_POINTS_TYPE];   //I
 
+
+    //mount vendor
+    uint32 mountSpellId;
+    uint32 mountReqId;
+    uint32 mountTimer;
+    bool isTryMount;
+
+
     struct EventDataTemplate
     {
         uint32 EventId;

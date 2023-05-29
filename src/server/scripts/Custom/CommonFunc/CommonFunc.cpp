@@ -1,262 +1,260 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "CommonFunc.h"
-//#include "ScriptPCH.h"
-//#include "BattlegroundMgr.h"
-//#include "AchievementMgr.h"
-//#include "AccountMgr.h"
-//#include "Group.h"
-//#include "../Requirement/Requirement.h"
-//#include "../Reward/Reward.h"
-//#include "../DataLoader/DataLoader.h"
-//#include "../SellReward/SellReward.h"
-//#include "../ItemMod/ItemMod.h"
-//#include "../VIP/VIP.h"
-//#include "../HonorRank/HonorRank.h"
-//#include "../Switch/Switch.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../ItemSet/ItemSet.h"
-//#include "../CustomEvent/Event.h"
-//#include "../Recovery/Recovery.h"
-//#include "../AntiCheat/AntiCheat.h"
-//#include "../String/myString.h"
-//#include "../TalentReq/TalentReq.h"
-//#include <fstream>
-//
-//bool CommonFunc::IsInclude(uint32 mask, uint32 totalMask)
-//{
-//	return (totalMask & mask) == mask;
-//}
-//
-//bool CampAttackStartFlag = false;
-//
-//void CommonFunc::StartCamAttack()
-//{
-//	CampAttackStartFlag = true;
-//}
-//
-//uint32 CommonFunc::GetExtraTalentPoints(Player* player)
-//{
-//	QueryResult resultExtraTPs;
-//
-//	if (sSwitch->GetOnOff(ST_TP_ACCOUNT_BIND))
-//		resultExtraTPs = LoginDatabase.Query("SELECT extraTalentPoints FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
-//	else 
-//		resultExtraTPs = CharacterDatabase.Query("SELECT extraTalentPoints FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
-//
-//	if (!resultExtraTPs) 
-//		return 0;
-//	else
-//	{
-//		Field* fields = resultExtraTPs->Fetch();
-//		return fields[0].Get<int32>();
-//	}
-//}
-//
-//uint32 CommonFunc::GetTokenAmount(Player* player)
-//{
-//	QueryResult result = LoginDatabase.Query("SELECT tokenAmount FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
-//	if (!result) return 0;
-//	else
-//	{
-//		Field* fields1 = result->Fetch();
-//		return fields1[0].Get<int32>();
-//	}
-//}
-//
-//uint32 CommonFunc::GetTotalTokenAmount(Player* player)
-//{
-//	QueryResult result = LoginDatabase.Query("SELECT totalTokenAmount FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
-//	if (!result) return 0;
-//	else
-//	{
-//		Field* fields1 = result->Fetch();
-//		return fields1[0].Get<int32>();
-//	}
-//}
-//
-//void CommonFunc::UpdateTokenAmount(Player* player, uint32 amount, bool ins, std::string action)
-//{
-//	if (ins)
-//		LoginDatabase.Execute("UPDATE account SET tokenAmount = tokenAmount + '%u' WHERE id = '%u'", amount, player->GetSession()->GetAccountId());
-//	else
-//		LoginDatabase.Execute("UPDATE account SET tokenAmount = tokenAmount - '%u' WHERE id = '%u'", amount, player->GetSession()->GetAccountId());
-//
-//	sGCAddon->SendTokenUpdateData(player, amount, ins);
-//
-//	//积分监视
-//	SQLTransaction trans = CharacterDatabase.BeginTransaction();
-//	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_TOKEN);
-//	stmt->setString(0, sAntiCheat->GetTimeString());
-//	stmt->setString(1, player->GetName());
-//	stmt->setUInt32(2, player->GetGUID().GetCounter());
-//	stmt->setUInt32(3, player->GetSession()->GetAccountId());
-//	stmt->setString(4, action);
-//	if (ins)
-//		stmt->setInt32(5, amount);
-//	else
-//		stmt->setInt32(5, -amount);
-//	trans->Append(stmt);
-//	CharacterDatabase.CommitTransaction(trans);
-//}
-//
-//void CommonFunc::SetOnlineRewardedCount(Player* player, uint32 count)
-//{
-//	player->onlineRewardedCount = count;
-//	CharacterDatabase.Execute("UPDATE characters SET onlineRewardedCount = '%u' WHERE guid = '%u'", count, player->GetGUID().GetCounter());
-//}
-//
-////弹窗
-//void CommonFunc::SendAcceptOrCancel(Player* player, uint32 id, std::string text, bool quest)
-//{
-//	if (quest)
-//	{
-//		WorldPacket data(SMSG_QUEST_CONFIRM_ACCEPT, (4 + text.size() + 8));
-//		data << uint32(id);
-//		data << text;
-//		data << uint64(player->GetGUID());
-//		player->GetSession()->SendPacket(&data);
-//		return;
-//	}
-//	
-//	WorldPacket data(SMSG_GOSSIP_MESSAGE, 100);
-//	data << uint64(player->GetGUID());
-//	data << uint32(id);
-//	data << uint32(1);
-//	data << uint32(1);
-//	data << uint32(1);
-//	data << uint8(1);
-//	data << uint8(0);
-//	data << uint32(0);
-//	data << "";
-//	data << text;
-//	player->GetSession()->SendPacket(&data);
-//}
-//
-////弹窗事件处理
-//bool CommonFunc::DoAciotnAfterAccept(Player* player, uint32 id, bool quest)
-//{
-//	if (quest)
-//	{
-//		switch (id)
-//		{
-//		case 1000000://buy item 
-//			if (sReq->Check(player, player->buy_reqId, player->buy_count))
-//			{
-//				if (player->AddItem(player->buy_item, player->buy_count))
-//					sReq->Des(player, player->buy_reqId, player->buy_count);
-//				else
-//					player->GetSession()->SendNotification("购买失败，背包已满或物品唯一");
-//
-//				player->buy_item = 0;
-//				player->buy_count = 0;
-//				player->buy_reqId = 0;
-//			}
-//			return true;
-//		default:
-//			return false;
-//		}
-//		return false;
-//	}
-//
-//	switch (id)
-//	{
-//	case 994://进入地图
-//		if (sReq->Check(player, player->enter_map_req))
-//		{
-//			sReq->Des(player, player->enter_map_req);
-//			player->TeleportTo(player->enter_map_at->target_mapId, player->enter_map_at->target_X, player->enter_map_at->target_Y, player->enter_map_at->target_Z, player->enter_map_at->target_Orientation, TELE_TO_NOT_LEAVE_TRANSPORT);
-//		}
-//		return true;
-//	case 995://天赋消耗
-//		sTalentReq->DoAction(player);
-//		return true;
-//	case 996://buy item 
-//		if (sReq->Check(player, player->buy_reqId,player->buy_count))
-//		{
-//			if (player->AddItem(player->buy_item, player->buy_count))
-//				sReq->Des(player, player->buy_reqId, player->buy_count);
-//			else
-//				player->GetSession()->SendNotification("背包已满");
-//
-//			player->buy_item  = 0;
-//			player->buy_count = 0;
-//			player->buy_reqId = 0;
-//		}
-//		return true;
-//	case 997://购买坐骑
-//		if (sReq->Check(player, player->mountReqId))
-//		{
-//			sReq->Des(player, player->mountReqId);
-//			player->learnSpell(player->mountSpellId);
-//			player->mountSpellId = 0;
-//			player->mountReqId = 0;
-//		}
-//		return true;
-//	case 999://购买幻化
-//		if (sReq->Check(player, player->trans_reqId))
-//		{
-//			if (Item* item = player->AddItemById(player->trans_item, 1))
-//			{
-//				sReq->Des(player, player->trans_reqId);
-//				//添加幻化标记
-//				//player->ApplyEnchantment(item, EnchantmentSlot(PERM_ENCHANTMENT_SLOT), false);
-//				//item->SetEnchantment(EnchantmentSlot(PERM_ENCHANTMENT_SLOT), TRANS_FLAG_ENCHANT_ID, 0, 0);
-//				//player->ApplyEnchantment(item, EnchantmentSlot(PERM_ENCHANTMENT_SLOT), true);
-//			}
-//			else
-//			{
-//				player->GetSession()->SendNotification("背包已满");
-//			}
-//			player->trans_reqId = 0;
-//			player->trans_item = 0;
-//		}
-//		return true;
-//	default:
-//		return false;
-//	}
-//	return false;
-//}
-//
-////播放声音
-//
-//void CommonFunc::PlayCustomSound(Player* player, uint32 soundId)
-//{
-//	if (!sSoundEntriesStore.LookupEntry(soundId)) return;
-//	WorldPacket data(SMSG_PLAY_SOUND, 4);
-//	data << uint32(soundId);
-//	sWorld->SendGlobalMessage(&data);
-//}
-//
-//void CommonFunc::CompleteQuest(Player* player, uint32 questId)
-//{
-//	Quest const* quest = sObjectMgr->GetQuestTemplate(questId);
-//	if (quest && player->GetQuestStatus(questId) == QUEST_STATUS_INCOMPLETE)
-//		player->CompleteQuest(questId);
-//}
-//
-////获取物品图标、名字及链接
-//std::string CommonFunc::GetItemIcon(uint32 entry, uint32 width, uint32 height, int x, int y)
-//{
-//	std::ostringstream ss;
-//	ss << "|TInterface";
-//	const ItemTemplate* temp = sObjectMgr->GetItemTemplate(entry);
-//	const ItemDisplayInfoEntry* dispInfo = NULL;
-//	if (temp)
-//	{
-//		dispInfo = sItemDisplayInfoStore.LookupEntry(temp->DisplayInfoID);
-//		if (dispInfo)
-//			ss << "/ICONS/" << dispInfo->inventoryIcon;
-//	}
-//	if (!dispInfo)
-//		ss << "/InventoryItems/WoWUnknownItem01";
-//	ss << ":" << width << ":" << height << ":" << x << ":" << y << "|t";
-//	return ss.str();
-//}
+﻿#pragma execution_character_set("utf-8")
+#include "CommonFunc.h"
+#include "ScriptPCH.h"
+#include "BattlegroundMgr.h"
+#include "AchievementMgr.h"
+#include "AccountMgr.h"
+#include "Group.h"
+#include "../Requirement/Requirement.h"
+#include "../Reward/Reward.h"
+#include "../DataLoader/DataLoader.h"
+#include "../SellReward/SellReward.h"
+#include "../ItemMod/ItemMod.h"
+#include "../VIP/VIP.h"
+#include "../HonorRank/HonorRank.h"
+#include "../Switch/Switch.h"
+#include "../GCAddon/GCAddon.h"
+#include "../ItemSet/ItemSet.h"
+#include "../CustomEvent/Event.h"
+#include "../Recovery/Recovery.h"
+#include "../AntiCheat/AntiCheat.h"
+#include "../String/myString.h"
+#include "../TalentReq/TalentReq.h"
+#include <fstream>
+
+bool CommonFunc::IsInclude(uint32 mask, uint32 totalMask)
+{
+	return (totalMask & mask) == mask;
+}
+
+bool CampAttackStartFlag = false;
+
+void CommonFunc::StartCamAttack()
+{
+	CampAttackStartFlag = true;
+}
+
+uint32 CommonFunc::GetExtraTalentPoints(Player* player)
+{
+	QueryResult resultExtraTPs;
+
+	if (sSwitch->GetOnOff(ST_TP_ACCOUNT_BIND))
+		resultExtraTPs = LoginDatabase.Query("SELECT extraTalentPoints FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
+	else 
+		resultExtraTPs = CharacterDatabase.Query("SELECT extraTalentPoints FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
+
+	if (!resultExtraTPs) 
+		return 0;
+	else
+	{
+		Field* fields = resultExtraTPs->Fetch();
+		return fields[0].Get<int32>();
+	}
+}
+
+uint32 CommonFunc::GetTokenAmount(Player* player)
+{
+	QueryResult result = LoginDatabase.Query("SELECT tokenAmount FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
+	if (!result) return 0;
+	else
+	{
+		Field* fields1 = result->Fetch();
+		return fields1[0].Get<int32>();
+	}
+}
+
+uint32 CommonFunc::GetTotalTokenAmount(Player* player)
+{
+	QueryResult result = LoginDatabase.Query("SELECT totalTokenAmount FROM account WHERE id = '%u'", player->GetSession()->GetAccountId());
+	if (!result) return 0;
+	else
+	{
+		Field* fields1 = result->Fetch();
+		return fields1[0].Get<int32>();
+	}
+}
+
+void CommonFunc::UpdateTokenAmount(Player* player, uint32 amount, bool ins, std::string action)
+{
+	if (ins)
+		LoginDatabase.Execute("UPDATE account SET tokenAmount = tokenAmount + '%u' WHERE id = '%u'", amount, player->GetSession()->GetAccountId());
+	else
+		LoginDatabase.Execute("UPDATE account SET tokenAmount = tokenAmount - '%u' WHERE id = '%u'", amount, player->GetSession()->GetAccountId());
+
+	sGCAddon->SendTokenUpdateData(player, amount, ins);
+
+	//积分监视
+	SQLTransaction trans = CharacterDatabase.BeginTransaction();
+	CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_TOKEN);
+	stmt->SetData(0, sAntiCheat->GetTimeString());
+	stmt->SetData(1, player->GetName());
+	stmt->SetData(2, player->GetGUID().GetCounter());
+	stmt->SetData(3, player->GetSession()->GetAccountId());
+	stmt->SetData(4, action);
+	if (ins)
+		stmt->SetData(5, amount);
+	else
+		stmt->SetData(5, -amount);
+	trans->Append(stmt);
+	CharacterDatabase.CommitTransaction(trans);
+}
+
+void CommonFunc::SetOnlineRewardedCount(Player* player, uint32 count)
+{
+	player->onlineRewardedCount = count;
+	CharacterDatabase.Execute("UPDATE characters SET onlineRewardedCount = '%u' WHERE guid = '%u'", count, player->GetGUID().GetCounter());
+}
+
+//弹窗
+void CommonFunc::SendAcceptOrCancel(Player* player, uint32 id, std::string text, bool quest)
+{
+	if (quest)
+	{
+		WorldPacket data(SMSG_QUEST_CONFIRM_ACCEPT, (4 + text.size() + 8));
+		data << uint32(id);
+		data << text;
+		data << uint64(player->GetGUID().GetCounter());
+		player->GetSession()->SendPacket(&data);
+		return;
+	}
+	
+	WorldPacket data(SMSG_GOSSIP_MESSAGE, 100);
+	data << uint64(player->GetGUID().GetCounter());
+	data << uint32(id);
+	data << uint32(1);
+	data << uint32(1);
+	data << uint32(1);
+	data << uint8(1);
+	data << uint8(0);
+	data << uint32(0);
+	data << "";
+	data << text;
+	player->GetSession()->SendPacket(&data);
+}
+
+//弹窗事件处理
+bool CommonFunc::DoAciotnAfterAccept(Player* player, uint32 id, bool quest)
+{
+	if (quest)
+	{
+		switch (id)
+		{
+		case 1000000://buy item 
+			if (sReq->Check(player, player->buy_reqId, player->buy_count))
+			{
+				if (player->AddItem(player->buy_item, player->buy_count))
+					sReq->Des(player, player->buy_reqId, player->buy_count);
+				else
+					player->GetSession()->SendNotification("购买失败，背包已满或物品唯一");
+
+				player->buy_item = 0;
+				player->buy_count = 0;
+				player->buy_reqId = 0;
+			}
+			return true;
+		default:
+			return false;
+		}
+		return false;
+	}
+
+	switch (id)
+	{
+	case 994://进入地图
+		if (sReq->Check(player, player->enter_map_req))
+		{
+			sReq->Des(player, player->enter_map_req);
+			player->TeleportTo(player->enter_map_at->target_mapId, player->enter_map_at->target_X, player->enter_map_at->target_Y, player->enter_map_at->target_Z, player->enter_map_at->target_Orientation, TELE_TO_NOT_LEAVE_TRANSPORT);
+		}
+		return true;
+	case 995://天赋消耗
+		sTalentReq->DoAction(player);
+		return true;
+	case 996://buy item 
+		if (sReq->Check(player, player->buy_reqId,player->buy_count))
+		{
+			if (player->AddItem(player->buy_item, player->buy_count))
+				sReq->Des(player, player->buy_reqId, player->buy_count);
+			else
+				player->GetSession()->SendNotification("背包已满");
+
+			player->buy_item  = 0;
+			player->buy_count = 0;
+			player->buy_reqId = 0;
+		}
+		return true;
+	case 997://购买坐骑
+		if (sReq->Check(player, player->mountReqId))
+		{
+			sReq->Des(player, player->mountReqId);
+			player->learnSpell(player->mountSpellId);
+			player->mountSpellId = 0;
+			player->mountReqId = 0;
+		}
+		return true;
+	case 999://购买幻化
+		if (sReq->Check(player, player->trans_reqId))
+		{
+			if (Item* item = player->AddItemById(player->trans_item, 1))
+			{
+				sReq->Des(player, player->trans_reqId);
+				//添加幻化标记
+				//player->ApplyEnchantment(item, EnchantmentSlot(PERM_ENCHANTMENT_SLOT), false);
+				//item->SetEnchantment(EnchantmentSlot(PERM_ENCHANTMENT_SLOT), TRANS_FLAG_ENCHANT_ID, 0, 0);
+				//player->ApplyEnchantment(item, EnchantmentSlot(PERM_ENCHANTMENT_SLOT), true);
+			}
+			else
+			{
+				player->GetSession()->SendNotification("背包已满");
+			}
+			player->trans_reqId = 0;
+			player->trans_item = 0;
+		}
+		return true;
+	default:
+		return false;
+	}
+	return false;
+}
+
+//播放声音
+
+void CommonFunc::PlayCustomSound(Player* player, uint32 soundId)
+{
+	if (!sSoundEntriesStore.LookupEntry(soundId)) return;
+	WorldPacket data(SMSG_PLAY_SOUND, 4);
+	data << uint32(soundId);
+	sWorld->SendGlobalMessage(&data);
+}
+
+void CommonFunc::CompleteQuest(Player* player, uint32 questId)
+{
+	Quest const* quest = sObjectMgr->GetQuestTemplate(questId);
+	if (quest && player->GetQuestStatus(questId) == QUEST_STATUS_INCOMPLETE)
+		player->CompleteQuest(questId);
+}
+
+//获取物品图标、名字及链接
+std::string CommonFunc::GetItemIcon(uint32 entry, uint32 width, uint32 height, int x, int y)
+{
+	std::ostringstream ss;
+	ss << "|TInterface";
+	const ItemTemplate* temp = sObjectMgr->GetItemTemplate(entry);
+	const ItemDisplayInfoEntry* dispInfo = NULL;
+	if (temp)
+	{
+		dispInfo = sItemDisplayInfoStore.LookupEntry(temp->DisplayInfoID);
+		if (dispInfo)
+			ss << "/ICONS/" << dispInfo->inventoryIcon;
+	}
+	if (!dispInfo)
+		ss << "/InventoryItems/WoWUnknownItem01";
+	ss << ":" << width << ":" << height << ":" << x << ":" << y << "|t";
+	return ss.str();
+}
 //
 //std::string CommonFunc::GetItemLink(Item* item, WorldSession* session)
 //{
-//
-//
 //	int loc_idx = session->GetSessionDbLocaleIndex();
 //	const ItemTemplate* temp = item->GetTemplate();
 //	std::string name = temp->Name1;
@@ -286,7 +284,7 @@
 //			}
 //		}
 //	}
-//
+
 //	std::ostringstream oss;
 //	oss << "|c" << std::hex << ItemQualityColors[temp->Quality] << std::dec <<
 //		"|Hitem:" << temp->ItemId << ":" <<
