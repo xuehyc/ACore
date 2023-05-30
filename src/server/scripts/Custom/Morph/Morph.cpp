@@ -292,7 +292,7 @@
 //	player->PlayerTalkClass->ClearMenus();
 //
 //	for (std::unordered_map<uint32, MorphTemplate>::iterator iter = MorphMap.begin(); iter != MorphMap.end(); iter++)
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, iter->second.description, SENDER_MORPH, iter->first + SENDER_MORPH);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, iter->second.description, SENDER_MORPH, iter->first + SENDER_MORPH);
 //	
 //	if (obj->ToCreature())
 //		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());

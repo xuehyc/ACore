@@ -1953,7 +1953,7 @@
 //					continue;
 //
 //				if (!iter->second.gossipText.empty())
-//					player->ADD_GOSSIP_ITEM(0, iter->second.gossipText, SENDER_CUSTOM_EVENT, *itr);
+//					AddGossipItemFor(player,0, iter->second.gossipText, SENDER_CUSTOM_EVENT, *itr);
 //			}
 //		}
 //	}
@@ -1975,7 +1975,7 @@
 //				continue;
 //
 //			if (!iter->second.gossipText.empty())
-//				player->ADD_GOSSIP_ITEM(0, iter->second.gossipText, SENDER_CUSTOM_EVENT, *itr);
+//				AddGossipItemFor(player,0, iter->second.gossipText, SENDER_CUSTOM_EVENT, *itr);
 //		}
 //	}
 //

@@ -96,7 +96,7 @@
 //	bool OnGossipHello(Player *player, Creature *creature)
 //	{
 //		if (PureSwordStartFlag) return true;
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "让我们开始", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "让我们开始", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 //		SendGossipMenuFor(player,player->GetGossipTextId(creature), creature->GetGUID());
 //		return true;
 //	}
@@ -143,7 +143,7 @@
 //				case EVENT_Y_SAY1:
 //					if (y = me->FindNearestCreature(960016, 200.0f))
 //					{
-//						y->MonsterYell("是谁在召唤我？", LANG_UNIVERSAL, NULL);
+//						y->Yell("是谁在召唤我？", LANG_UNIVERSAL, NULL);
 //						y->Say("狡猾的精灵，你们设下可恶的圈套封印了我，现在又要来取笑我的么？梦魇暴君绝不会对你们卑躬屈膝！", LANG_UNIVERSAL, NULL);
 //
 //					}
@@ -246,13 +246,13 @@
 //				case EVENT_Y_LEAVE:
 //					if (y = me->FindNearestCreature(960016, 200.0f))
 //					{
-//						y->MonsterYell("噩梦永不终结...", LANG_UNIVERSAL, NULL);
+//						y->Yell("噩梦永不终结...", LANG_UNIVERSAL, NULL);
 //						y->RemoveFromWorld();
 //					}
 //					_events.ScheduleEvent(EVENT_DONE, 5000);
 //					break;
 //				case EVENT_DONE:
-//					me->MonsterYell("带着你的自负永远离开这个世界！", LANG_UNIVERSAL, NULL);
+//					me->Yell("带着你的自负永远离开这个世界！", LANG_UNIVERSAL, NULL);
 //					me->RemoveAura(63771);
 //					sWorld->SendGlobalText("事件结束", NULL);
 //					break;

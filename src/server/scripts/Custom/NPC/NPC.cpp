@@ -121,7 +121,7 @@
 //
 //		if (!quest || quest && player->IsActiveQuest(questId))
 //		{
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, text.c_str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, text.c_str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 //			SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //			return true;
 //		}
@@ -219,7 +219,7 @@
 //					events.ScheduleEvent(index, IN_MILLISECONDS * atoi(param2.c_str()));
 //					break;
 //				case STORY_ACTION_YELL:
-//					me->MonsterYell(param1.c_str(), LANG_UNIVERSAL, NULL);
+//					me->Yell(param1.c_str(), LANG_UNIVERSAL, NULL);
 //					index++;
 //					sStory->GetParams(me->GetEntry(), index, action, param1, param2);
 //					events.ScheduleEvent(index, IN_MILLISECONDS * atoi(param2.c_str()));

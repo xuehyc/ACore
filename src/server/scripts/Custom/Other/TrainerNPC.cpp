@@ -22,41 +22,41 @@
 //		switch (player->getClass())
 //		{
 //		case CLASS_WARRIOR:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Warrior_SavageBlow:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Warrior_SavageBlow:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_PALADIN:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Holy_AuraOfLight:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Holy_AuraOfLight:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_HUNTER:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Hunter_ChimeraShot2:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Hunter_ChimeraShot2:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_ROGUE:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Rogue_DeadlyBrew:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Rogue_DeadlyBrew:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_PRIEST:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Holy_Heal:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Holy_Heal:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_DEATH_KNIGHT:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Shadow_DeadofNight:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Shadow_DeadofNight:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_SHAMAN:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Shaman_Stormstrike:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Shaman_Stormstrike:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_MAGE:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Frost_IceStorm:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Frost_IceStorm:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_WARLOCK:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Warlock_DemonicPower:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Warlock_DemonicPower:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		case CLASS_DRUID:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Druid_Bash:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Druid_Bash:30:30:0:0|t职业", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
 //			break;
 //		default:
 //			break;
 //		}
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_DualWield:30:30:0:0|t武器", GOSSIP_SENDER_MAIN + 4, GOSSIP_ACTION_INFO_DEF);
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Misc_Coin_06:30:30:0:0|t商业", GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF);
-//		player->GetTeamId() == TEAM_ALLIANCE ? player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Mount_Gryphon_01:30:30:0:0|t骑术", GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF) : player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Mount_Wyvern_01:30:30:0:0|t骑术", GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_DualWield:30:30:0:0|t武器", GOSSIP_SENDER_MAIN + 4, GOSSIP_ACTION_INFO_DEF);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Misc_Coin_06:30:30:0:0|t商业", GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF);
+//		player->GetTeamId() == TEAM_ALLIANCE ? AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Mount_Gryphon_01:30:30:0:0|t骑术", GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF) : AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Mount_Wyvern_01:30:30:0:0|t骑术", GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF);
 //		if (!player->HasSpell(63624))
 //			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Shadow_Charm:30:30:0:0|t天赋", GOSSIP_SENDER_MAIN + 5, GOSSIP_ACTION_INFO_DEF, "确定要学习双天赋吗？", 1000 * GOLD, false);
 //		AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Achievement_BG_winWSG:30:30:0:0|t重置天赋", GOSSIP_SENDER_MAIN + 6, GOSSIP_ACTION_INFO_DEF, "确定要重置天赋吗？", 50 * GOLD, false);
@@ -140,21 +140,21 @@
 //			//player->GetSession()->SendTrainerList(creature->GetGUID(), 28698);
 //			//player->NpcTrainerId = 28698;
 //			//break;
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Alchemy:30:30:0:0|t炼金", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_BlackSmithing:30:30:0:0|t锻造", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 2);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Engraving:30:30:0:0|t附魔", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 3);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Engineering:30:30:0:0|t工程", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 4);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Herbalism:30:30:0:0|t草药", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 5);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Inscription_Tradeskill01:30:30:0:0|t铭文", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 6);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Jewelcrafting_DragonsEye02:30:30:0:0|t珠宝", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 7);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_LeatherWorking:30:30:0:0|t制皮", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 8);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Mining:30:30:0:0|t采矿", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 9);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Misc_LeatherScrap_10:30:30:0:0|t剥皮", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 10);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Tailoring:30:30:0:0|t裁缝", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 11);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Misc_Food_64:30:30:0:0|t烹饪", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 12);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Holy_SealOfSacrifice:30:30:0:0|t急救", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 13);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Fishing:30:30:0:0|t钓鱼", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface/ICONS/misc_arrowleft:30:30:0:0|t返回", GOSSIP_SENDER_MAIN + 100, GOSSIP_ACTION_INFO_DEF + 100);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Alchemy:30:30:0:0|t炼金", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_BlackSmithing:30:30:0:0|t锻造", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 2);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Engraving:30:30:0:0|t附魔", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 3);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Engineering:30:30:0:0|t工程", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 4);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Herbalism:30:30:0:0|t草药", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 5);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Inscription_Tradeskill01:30:30:0:0|t铭文", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 6);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Jewelcrafting_DragonsEye02:30:30:0:0|t珠宝", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 7);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_LeatherWorking:30:30:0:0|t制皮", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 8);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Mining:30:30:0:0|t采矿", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 9);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Misc_LeatherScrap_10:30:30:0:0|t剥皮", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 10);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Tailoring:30:30:0:0|t裁缝", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 11);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Misc_Food_64:30:30:0:0|t烹饪", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 12);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Holy_SealOfSacrifice:30:30:0:0|t急救", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 13);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Trade_Fishing:30:30:0:0|t钓鱼", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/misc_arrowleft:30:30:0:0|t返回", GOSSIP_SENDER_MAIN + 100, GOSSIP_ACTION_INFO_DEF + 100);
 //			SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //		}
 //		break;

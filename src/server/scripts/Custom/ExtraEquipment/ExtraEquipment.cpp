@@ -375,7 +375,7 @@
 //		//if (slot == EQUIPMENT_SLOT_NECK || slot == EQUIPMENT_SLOT_BODY || slot > EQUIPMENT_SLOT_HANDS)
 //		//	continue;
 //
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GetSlotText(player, EquipmentSlots(slot)), slot, EXTRA_EQUIPMENT_NEXT_MENULIST);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, GetSlotText(player, EquipmentSlots(slot)), slot, EXTRA_EQUIPMENT_NEXT_MENULIST);
 //	}
 //			
 //	if (obj->ToCreature())
@@ -428,14 +428,14 @@
 //		player->flag_i++;
 //		player->rowId++;
 //
-//		player->ADD_GOSSIP_ITEM(player->GossipVec[i].smallIcon, player->GossipVec[i].text, player->GossipVec[i].sender, player->GossipVec[i].action);
+//		AddGossipItemFor(player,player->GossipVec[i].smallIcon, player->GossipVec[i].text, player->GossipVec[i].sender, player->GossipVec[i].action);
 //
 //		if (player->rowId >= MAX_EXTRA_EQUIPMENT_ROWS_COUNT)
 //		{
 //			player->rowId = 0;
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "下页", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_NEXT_PAGE);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "下页", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_NEXT_PAGE);
 //			if (player->pageId >= 2)
-//              player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "上页", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_PREV_PAGE);
+//              AddGossipItemFor(player,GOSSIP_ICON_CHAT, "上页", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_PREV_PAGE);
 //			break;
 //		}
 //	}
@@ -445,11 +445,11 @@
 //	{
 //		player->flag_i = player->flag_i + MAX_EXTRA_EQUIPMENT_ROWS_COUNT - player->rowId;
 //		player->rowId = 0;
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "上页", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_PREV_PAGE);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "上页", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_PREV_PAGE);
 //	}
 //
 //	if (!fordisplay)
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_BACK);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN, EXTRA_EQUIPMENT_BACK);
 //
 //	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}

@@ -503,15 +503,15 @@
 //	else
 //		sprintf(tmp, "%s", ("|cFF0000CC城主:[|cFF9900CC 无 |r|cFF0000CC]|r\n|cFF0000CC公会:[|r|cFF9900CC 无 |r|cFF0000CC]|r"));
 //
-//	player->ADD_GOSSIP_ITEM(0, tmp, 1000, 1);
+//	AddGossipItemFor(player,0, tmp, 1000, 1);
 //
 //	sprintf(tmp, "%s", ("|TInterface\\BUTTONS\\WHITE8X8.blp:1:200|t"));
 //
-//	player->ADD_GOSSIP_ITEM(0, tmp, 1000, 1);
+//	AddGossipItemFor(player,0, tmp, 1000, 1);
 //
 //	sprintf(tmp, "%s", ("|cFF0000CC当前申请攻城战公会:|r\n|cFF9900CC每次只能一个公会申请公会战|r"));
 //
-//	player->ADD_GOSSIP_ITEM(0, tmp, 1000, 1);
+//	AddGossipItemFor(player,0, tmp, 1000, 1);
 //
 //	if (sGvgSys->getGuildId2())
 //	{
@@ -524,11 +524,11 @@
 //	else
 //		sprintf(tmp, "|cFF0000CC[|cFF9900CC%s|r|cFF0000CC]", (" 无 "));
 //
-//	player->ADD_GOSSIP_ITEM(0, tmp, 1000, 1);
+//	AddGossipItemFor(player,0, tmp, 1000, 1);
 //
 //	sprintf(tmp, "%s", ("|TInterface\\BUTTONS\\WHITE8X8.blp:1:200|t"));
 //
-//	player->ADD_GOSSIP_ITEM(0, tmp, 1000, 1);
+//	AddGossipItemFor(player,0, tmp, 1000, 1);
 //
 //	ItemTemplate const * item1 = sObjectMgr->GetItemTemplate(sSwitch->GetValue(GVG_119));
 //	if (item1)
@@ -553,15 +553,15 @@
 //	{
 //		sprintf(tmp, "%s", ("|cFF0000CC申请攻城物品配置错误|r"));
 //	}
-//	player->ADD_GOSSIP_ITEM(1, tmp, 1000, 1);
+//	AddGossipItemFor(player,1, tmp, 1000, 1);
 //
 //	sprintf(tmp, "%s", ("|TInterface\\BUTTONS\\WHITE8X8.blp:1:200|t"));
 //
-//	player->ADD_GOSSIP_ITEM(0, tmp, 1000, 1);
+//	AddGossipItemFor(player,0, tmp, 1000, 1);
 //
 //	sprintf(tmp, "|cFF0000CC%s|r\n\n|cFF9900CC%s|r", ("我要申请攻打该城市"), ("申请人必须是公会会长"));
 //
-//	player->ADD_GOSSIP_ITEM(2, tmp, 1, 1000);
+//	AddGossipItemFor(player,2, tmp, 1, 1000);
 //
 //	SendGossipMenuFor(player,20001, creature->GetGUID());
 //
@@ -584,15 +584,15 @@
 //	}
 //	else
 //		sprintf(tmp, "%s|cFF9900CC%s|r%s", ("|cFF0000CC当前占领势力:[|r"), ("无"), ("|cFF0000CC]|r"));
-//	player->ADD_GOSSIP_ITEM(0, tmp, 1002, 1);
+//	AddGossipItemFor(player,0, tmp, 1002, 1);
 //
 //	sprintf(tmp, "%s", ("|TInterface\\BUTTONS\\WHITE8X8.blp:1:200|t"));
 //
-//	player->ADD_GOSSIP_ITEM(0, tmp, 1002, 1);
+//	AddGossipItemFor(player,0, tmp, 1002, 1);
 //
 //	sprintf(tmp, "%s", ("|cFF0000CC领取每日奖励|r"));
 //
-//	player->ADD_GOSSIP_ITEM(2, tmp, 1, 1002);
+//	AddGossipItemFor(player,2, tmp, 1, 1002);
 //
 //	SendGossipMenuFor(player,20001, creature->GetGUID());
 //
@@ -613,12 +613,12 @@
 //			return true;
 //		}
 //		CloseGossipMenuFor(player);
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Ability_Paladin_ShieldoftheTemplar.blp:30|t公会攻城提交", 1000, 1);
-//		//player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Trade_BlackSmithing.blp:30|t公会积分仓库", 1001, 1);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Ability_Paladin_ShieldoftheTemplar.blp:30|t公会攻城提交", 1000, 1);
+//		//AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Trade_BlackSmithing.blp:30|t公会积分仓库", 1001, 1);
 //		if (sSwitch->GetValue(GVG_120))
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Spell_unused2.blp:30|t公会成员每日收益", 1002, 1);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Spell_unused2.blp:30|t公会成员每日收益", 1002, 1);
 //
-//		//player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Achievement_Arena_2v2_7.blp:30|t公会信息查询", 1003, 1);
+//		//AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface\\ICONS\\Achievement_Arena_2v2_7.blp:30|t公会信息查询", 1003, 1);
 //		SendGossipMenuFor(player,20001, creature->GetGUID());
 //		return true;
 //	}

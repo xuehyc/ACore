@@ -177,11 +177,11 @@
 //        
 //    bool OnGossipHello(Player *player, Creature *creature)
 //    {
-//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\spell_chargepositive:26|t|r 竞技场排名?", GOSSIP_SENDER_MAIN, ARENA_HELP);
-//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_2v2_7:26|t|r 竞技场2v2", GOSSIP_SENDER_MAIN, ARENA_2V2_LADDER);
-//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_3v3_7:26|t|r 竞技场3v3", GOSSIP_SENDER_MAIN, ARENA_3V3_LADDER);
-//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_5v5_7:26|t|r 竞技场1v1", GOSSIP_SENDER_MAIN, ARENA_5V5_LADDER);
-//        player->ADD_GOSSIP_ITEM(4,"|cff00ff00|TInterface\\icons\\spell_chargenegative:26|t|r 返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
+//        AddGossipItemFor(player,4,"|cff00ff00|TInterface\\icons\\spell_chargepositive:26|t|r 竞技场排名?", GOSSIP_SENDER_MAIN, ARENA_HELP);
+//        AddGossipItemFor(player,4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_2v2_7:26|t|r 竞技场2v2", GOSSIP_SENDER_MAIN, ARENA_2V2_LADDER);
+//        AddGossipItemFor(player,4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_3v3_7:26|t|r 竞技场3v3", GOSSIP_SENDER_MAIN, ARENA_3V3_LADDER);
+//        AddGossipItemFor(player,4,"|cff00ff00|TInterface\\icons\\Achievement_Arena_5v5_7:26|t|r 竞技场1v1", GOSSIP_SENDER_MAIN, ARENA_5V5_LADDER);
+//        AddGossipItemFor(player,4,"|cff00ff00|TInterface\\icons\\spell_chargenegative:26|t|r 返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
 //        SendGossipMenuFor(player,90085, creature->GetGUID());
 //        return true;
 //    }
@@ -214,14 +214,14 @@
 //                    
 //                if(!result) 
 //                {
-//                    player->ADD_GOSSIP_ITEM(7, "返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
+//                    AddGossipItemFor(player,7, "返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
 //                    SendGossipMenuFor(player,1, creature->GetGUID());
 //                } 
 //                else
 //                {
 //                    std::string name;
 //                    uint32 teamId, rating, rank = 1;
-//                    player->ADD_GOSSIP_ITEM(0,"顶级竞技场名单 - 角斗士:", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
+//                    AddGossipItemFor(player,0,"顶级竞技场名单 - 角斗士:", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
 //                    do 
 //                    {
 //                        Field *fields = result->Fetch();
@@ -232,12 +232,12 @@
 //                        std::stringstream buffer;
 //                        buffer << rank << ". " << name;
 //                        buffer << ": " << "|cFF1E90FF" << rating << "|r" << " 评级!";
-//                        player->ADD_GOSSIP_ITEM(4, buffer.str(), GOSSIP_SENDER_MAIN, ARENA_START_TEAM_LOOKUP + teamId);
+//                        AddGossipItemFor(player,4, buffer.str(), GOSSIP_SENDER_MAIN, ARENA_START_TEAM_LOOKUP + teamId);
 //                            
 //                        rank++;
 //                    } 
 //                    while(result->NextRow());
-//                    player->ADD_GOSSIP_ITEM(7, "返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
+//                    AddGossipItemFor(player,7, "返回", GOSSIP_SENDER_MAIN, ARENA_GOODBYE);
 //                    SendGossipMenuFor(player,90086, creature->GetGUID());
 //                }
 //                break;
@@ -274,24 +274,24 @@
 //                        
 //                    std::stringstream buf;
 //                    buf << "战队名字: " << "|cFF1E90FF" << name << "|r";
-//                    player->ADD_GOSSIP_ITEM(7, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                    AddGossipItemFor(player,7, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                    buf.str("");
 //                    
 //                    buf << "等级: " << "|cFF1E90FF" << rating << "|r" << " (排名: " << "|cFF1E90FF" << rank << "|r" << ", Type: " << "|cFF1E90FF" << type << "v" << type << "|r"")";
-//                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                    AddGossipItemFor(player,4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                    buf.str("");
 //                    
 //                    buf << "本周: " << "|cFF1E90FF" << weekWins << "-" << weekLosses << "|r"" (" << "|cFF1E90FF" << weekWinPercentage << "|r" << "win)"; 
-//                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                    AddGossipItemFor(player,4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                    buf.str("");
 //                    
 //                    buf << "全赛季: " << "|cFF1E90FF" << seasonWins << "-" << seasonLosses << "|r" << " (" << "|cFF1E90FF" << seasonWinPercentage << "|r" << " win)"; 
-//                    player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                    AddGossipItemFor(player,4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                        
 //                    QueryResult members = CharacterDatabase.Query("SELECT  a.guid, a.personalRating, a.weekWins, a.weekGames - a.weekWins, a.seasonWins, a.seasonGames - a.seasonWins, c.name, c.race, c.class, c.level FROM arena_team_member a LEFT JOIN characters c ON c.guid = a.guid WHERE arenaTeamId = '%u' ORDER BY a.guid = '%u' DESC, a.seasonGames DESC, c.name ASC", teamId, captainGuid);
 //                    if(!members) 
 //                    {
-//                        player->ADD_GOSSIP_ITEM(7, "没有发现团队成员…？", GOSSIP_SENDER_MAIN, parentOption);
+//                        AddGossipItemFor(player,7, "没有发现团队成员…？", GOSSIP_SENDER_MAIN, parentOption);
 //                    } 
 //                    else 
 //                    {
@@ -302,7 +302,7 @@
 //                            
 //                        buf.str("");
 //                        buf << "      --- " << memberCount << " 团队" << ((memberCount == 1) ? " 成员" : " 成员") << " 发现" << " ---";
-//                        player->ADD_GOSSIP_ITEM(0, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                        AddGossipItemFor(player,0, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                        do 
 //                        {
 //                            fields = members->Fetch();
@@ -327,15 +327,15 @@
 //                                
 //                            
 //                            buf << race << " " << Class << ", " << "|cFF1E90FF" << personalRating << "|r" << " 个人等级!";
-//                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                            AddGossipItemFor(player,4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                            buf.str("");
 //                            
 //                            buf << "胜利: " << "|cFF1E90FF" << weekWins << "-" << weekLosses << "|r" << " (" << "|cFF1E90FF" << weekWinPercentage << "|r" << " 胜利), " << "|cFF1E90FF" << (weekWins + weekLosses) << "|r" << " played!"; 
-//                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                            AddGossipItemFor(player,4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                            buf.str("");
 //                            
 //                            buf << "赛季: " << "|cFF1E90FF" << seasonWins << "-" << seasonLosses << "|r" << " (" << "|cFF1E90FF" << seasonWinPercentage << "|r" << " 胜利), " << "|cFF1E90FF" << (seasonWins + seasonLosses) << "|r" << " played!"; 
-//                            player->ADD_GOSSIP_ITEM(4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
+//                            AddGossipItemFor(player,4, buf.str(), GOSSIP_SENDER_MAIN, parentOption);
 //                            memberPos++;
 //                        } 
 //                        while(members->NextRow());

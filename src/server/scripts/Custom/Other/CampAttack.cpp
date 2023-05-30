@@ -179,14 +179,14 @@
 //				case CALL_RAGNAROS:
 //				{
 //					Creature* ragnaros = me->SummonCreature(NPC_RAGNAROS, me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(),0, TEMPSUMMON_TIMED_DESPAWN, 15000);
-//					if (ragnaros) ragnaros->MonsterYell("这里将烧成灰烬，森卢肯，执行我的意志！", LANG_UNIVERSAL, NULL);
+//					if (ragnaros) ragnaros->Yell("这里将烧成灰烬，森卢肯，执行我的意志！", LANG_UNIVERSAL, NULL);
 //					_events.ScheduleEvent(CALL_FIREKING, 5000);
 //				}		
 //					break;
 //				case CALL_FIREKING:
 //				{
 //					Creature* fireking = me->SummonCreature(NPC_FIRE_KING, me->m_positionX + 30, me->m_positionY, me->m_positionZ, 0, TEMPSUMMON_TIMED_DESPAWN, 5 * 60000);
-//					if (fireking) fireking->MonsterYell("遵命，伟大的主人！", LANG_UNIVERSAL, NULL);
+//					if (fireking) fireking->Yell("遵命，伟大的主人！", LANG_UNIVERSAL, NULL);
 //
 //				}
 //					break;

@@ -57,10 +57,10 @@
 //	if (!ReincarnationMap.empty())
 //	{
 //		if (player->reincarnationLv >= GetMaxLevel())
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GetGossipText(player).c_str(), SENDER_REINCARNATION, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, GetGossipText(player).c_str(), SENDER_REINCARNATION, GOSSIP_ACTION_INFO_DEF);
 //		else
 //		{
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GetGossipText(player).c_str(), SENDER_REINCARNATION, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, GetGossipText(player).c_str(), SENDER_REINCARNATION, GOSSIP_ACTION_INFO_DEF);
 //
 //			uint32 rewId = 0;
 //			uint32 reqId = 0;

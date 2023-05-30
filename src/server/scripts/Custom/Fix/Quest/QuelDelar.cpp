@@ -1,502 +1,503 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "../Custom/CommonFunc/CommonFunc.h"
-///*
-//DELETE FROM creature WHERE id = 37552;
-//INSERT INTO creature (guid, id, map, spawnMask, phaseMask, modelid, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, spawndist, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags) VALUES('1976588','37552','530','1','2048','0','0','11781.6','-7068.71','24.9312','3.10074','300','0','0','123','180','0','1','768','32');
-//
-//DELETE FROM creature WHERE id = 37205;
-//DELETE FROM creature_template WHERE entry = 37205;
-//insert into creature_template (entry, difficulty_entry_1, difficulty_entry_2, difficulty_entry_3, KillCredit1, KillCredit2, modelid1, modelid2, modelid3, modelid4, name, subname, IconName, gossip_menu_id, minlevel, maxlevel, exp, faction, npcflag, speed_walk, speed_run, scale, rank, mindmg, maxdmg, dmgschool, attackpower, dmg_multiplier, baseattacktime, rangeattacktime, unit_class, unit_flags, unit_flags2, dynamicflags, family, trainer_type, trainer_spell, trainer_class, trainer_race, minrangedmg, maxrangedmg, rangedattackpower, type, type_flags, lootid, pickpocketloot, skinloot, resistance1, resistance2, resistance3, resistance4, resistance5, resistance6, spell1, spell2, spell3, spell4, spell5, spell6, spell7, spell8, PetSpellDataId, VehicleId, mingold, maxgold, AIName, MovementType, InhabitType, HoverHeight, Health_mod, Mana_mod, Armor_mod, RacialLeader, questItem1, questItem2, questItem3, questItem4, questItem5, questItem6, movementId, RegenHealth, mechanic_immune_mask, flags_extra, ScriptName, VerifiedBuild) values('37205','0','0','0','0','0','30570','0','0','0','萨洛瑞安·寻晨者','','','0','80','80','2','250','0','1','1.14286','1','1','500','700','0','300','5','2000','2000','2','0','2048','0','0','0','0','0','0','0','0','0','7','4096','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','SmartAI','0','3','1','3.5','3','1','0','0','0','0','0','0','0','0','1','0','0','','12340');
-//
-//
-//-- Thalorien Dawnseeker's Remains
-//SET @ENTRY := 37552;
-//
-//DELETE FROM creature_template_addon WHERE(entry=@ENTRY);
-//INSERT INTO creature_template_addon (entry,path_id,mount,bytes1,bytes2,emote,auras) VALUES
-//(@ENTRY, 0, 0, 0, 0, 0, '25824 31261');
-//
-//UPDATE creature_template SET ScriptName="npc_thalorien" WHERE entry=@ENTRY;
-//UPDATE creature_template SET faction=35 WHERE entry=@ENTRY;
-//
-//-- Thalorien Dawnseeker SAI
-//SET @ENTRY := 37205;
-//Delete FROM creature WHERE id = 37205;
-//UPDATE creature_template SET faction=250 WHERE entry=@ENTRY;
-//UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
-//DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
-//INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
-//(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 5000, 7000, 15000, 15000, 11, 67541, 3, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Thalorien Dawnseeker - In Combat - Cast 'Bladestorm' (Dungeon & Raid)"),
-//(@ENTRY, 0, 1, 0, 0, 0, 100, 0, 2000, 2000, 13000, 13000, 11, 67542, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Thalorien Dawnseeker - In Combat - Cast 'Mortal Strike'"),
-//(@ENTRY, 0, 2, 0, 0, 0, 100, 0, 19000, 19000, 19000, 19000, 11, 67716, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, "Thalorien Dawnseeker - In Combat - Cast 'Whirlwind'"),
-//(@ENTRY, 0, 3, 0, 0, 0, 100, 0, 1000, 1000, 8000, 8000, 11, 57846, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Thalorien Dawnseeker - In Combat - Cast 'Heroic Strike'");
-//
-//-- Morlen Coldgrip SAI
-//SET @ENTRY := 37542;
-//UPDATE creature_template SET faction=16 WHERE entry=@ENTRY;
-//UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
-//DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
-//INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
-//(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 2000, 3000, 9000, 10000, 11, 50688, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Morlen Coldgrip - In Combat - Cast 'Plague Strike' (Dungeon & Raid)");
-//
-//
-//-- Crypt Raider SAI
-//SET @ENTRY := 37541;
-//UPDATE creature_template SET faction=16 WHERE entry=@ENTRY;
-//UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
-//DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
-//INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
-//(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 1000, 2000, 4000, 5000, 11, 31600, 2, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, "Crypt Raider - In Combat - Cast 'Crypt Scarabs' (Dungeon & Raid)");
-//
-//-- Ghoul Invader SAI
-//SET @ENTRY := 37539;
-//UPDATE creature_template SET faction=16 WHERE entry=@ENTRY;
-//UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
-//DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
-//INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
-//(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 1000, 2000, 9000, 10000, 11, 38056, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Ghoul Invader - In Combat - Cast 'Flesh Rip' (Dungeon & Raid)");
-//
-//-- Scourge Zombie SAI
-//SET @ENTRY := 37538;
-//UPDATE creature_template SET faction=16 WHERE entry=@ENTRY;
-//UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
-//DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
-//INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
-//(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 1000, 2000, 9000, 10000, 11, 49861, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Scourge Zombie - In Combat - Cast 'Infected Bite' (Dungeon & Raid)");
-//
-//*/
-//
-//
-//enum ThalorienNPCs
-//{
-//	THALORIEN_NPC_THALORIEN = 37205,
-//	THALORIEN_NPC_DEFENDER	= 37211,
-//	THALORIEN_NPC_BOSS		= 37542,
-//	THALORIEN_NPC_ENEMY_1	= 37538,
-//	THALORIEN_NPC_ENEMY_2	= 37539,
-//	THALORIEN_NPC_ENEMY_3	= 37541,
-//};
-//
-//Position const ThalorienNPCPos[16] =
-//{
-//	//[0]			寻晨者1
-//	{ 11787.2,	-7070.56,	25.8603,	6.0444},
-//	//[1 - 10]		卫兵
-//	{ 11791.2,	-7070.76,	26.129,		2.31049 },
-//	{ 11789.4,	-7072.64,	26.0378,	2.63958 },
-//	{ 11787,	-7074.43,	25.8398,	2.51784 },
-//	{ 11785,	-7075.82,	25.7344,	2.2186 },
-//	{ 11782.8,	-7078,		25.7069,	2.28615 },
-//	{ 11784.8,	-7078.31,	25.7336,	2.24374 },
-//	{ 11787.3,	-7076.61,	25.7956,	2.18483 },
-//	{ 11789.3,	-7074.77,	26.0251,	2.17541 },
-//	{ 11791.6,	-7073.19,	26.192,		2.16755 },
-//	{ 11793.8,	-7071.21,	26.2234,	2.17619 },
-//	//[11]			BOSS
-//	{ 11759.3,	-7052.25,	25.9366,	5.70586 },
-//	//[12 - 15]
-//	{ 11760.6,	-7067.11,	25.1363,	0.286524 },
-//	{ 11760.5,	-7059.13,	25.2377,	0.039123 },
-//	{ 11760.6,	-7062.04,	25.2717,	0.0116341 },
-//	{ 11760,	-7064.6,	25.3605,	0.137299 },
-//};
-//
-//class npc_thalorien : public CreatureScript
-//{
-//public:
-//	npc_thalorien() : CreatureScript("npc_thalorien") { }
-//
-//	bool OnGossipHello(Player* player, Creature* creature)
-//	{
-//		player->PlayerTalkClass->ClearMenus();
-//
-//		if (npc_thalorien::npc_thalorienAI* creatureAI = CAST_AI(npc_thalorien::npc_thalorienAI, creature->AI()))
-//			if (creatureAI->HasBeginScence())
-//			{
-//				SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
-//				return true;
-//			}
-//
-//		if (player->GetQuestStatus(24563) == QUEST_STATUS_INCOMPLETE || player->GetQuestStatus(24535) == QUEST_STATUS_INCOMPLETE)
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "检查遗骸", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
-//
-//		SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
-//		return true;
-//	}
-//
-//	bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 /*action*/) 
-//	{ 
-//		CloseGossipMenuFor(player);
-//	
-//		if (npc_thalorien::npc_thalorienAI* creatureAI = CAST_AI(npc_thalorien::npc_thalorienAI, creature->AI()))
-//			creatureAI->BeginScene();
-//
-//		return true;
-//	}
-//
-//	CreatureAI* GetAI(Creature* creature) const
-//	{
-//		return new npc_thalorienAI(creature);
-//	}
-//
-//	struct npc_thalorienAI : public ScriptedAI
-//	{
-//		npc_thalorienAI(Creature* creature) : ScriptedAI(creature) 
-//		{
-//			Reset();
-//		}
-//
-//		void Reset()
-//		{
-//			_Phase = 0;
-//			_Timer = 0;
-//
-//			for (auto itr = _gurads.begin(); itr != _gurads.end(); itr++)
-//				if (Creature* guard = *itr)
-//					guard->DespawnOrUnsummon(0);
-//			_gurads.clear();
-//
-//			for (auto itr = _enemies.begin(); itr != _enemies.end(); itr++)
-//				if (Creature* guard = *itr)
-//					guard->DespawnOrUnsummon(0);
-//			_enemies.clear();
-//
-//			if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//				thalorien->DespawnOrUnsummon(0);
-//			_thalorien = 0;
-//
-//			if (Creature* boss = me->GetMap()->GetCreature(_boss))
-//				boss->DespawnOrUnsummon(0);
-//			_boss = 0;
-//
-//		}
-//
-//		void BeginScene()
-//		{
-//			_Timer = 100;
-//			_Phase = 1;
-//		}
-//
-//		void EndScene(bool win)
-//		{
-//			if (win)
-//			{
-//				std::list<Player*> playersNearby;
-//				me->GetPlayerListInGrid(playersNearby, 100);
-//				if (!playersNearby.empty())
-//					for (std::list<Player*>::iterator itr = playersNearby.begin(); itr != playersNearby.end(); ++itr)
-//						if ((*itr) && (*itr)->IsInWorld())
-//							(*itr)->KilledMonsterCredit(37601, 0);
-//			}
-//
-//			Reset();
-//		}
-//
-//		bool HasBeginScence()
-//		{
-//			return _Phase != 0;
-//		}
-//
-//		void AddThalorienThreat(Creature* c)
-//		{
-//			if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//			{
-//				thalorien->AddThreat(c, 100.0f);	
-//				c->AddThreat(thalorien, 100.0f);
-//				thalorien->AI()->AttackStart(c);
-//			}
-//		}
-//
-//		void JustSummoned(Creature* summon) override
-//		{
-//			switch (summon->GetEntry())
-//			{
-//			case THALORIEN_NPC_DEFENDER:
-//				_gurads.push_back(summon);
-//				break;
-//			case THALORIEN_NPC_THALORIEN:
-//				_thalorien = summon->GetGUID();
-//				break;
-//			case THALORIEN_NPC_BOSS:
-//				_boss = summon->GetGUID();
-//				summon->Mount(25678);
-//				summon->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC);
-//				break;
-//			default:
-//				summon->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC);
-//				_enemies.push_back(summon);
-//				break;
-//			}
-//		}
-//
-//		void SummonedCreatureDies(Creature* summon, Unit* /*killer*/) override
-//		{
-//			switch (summon->GetEntry())
-//			{
-//			case THALORIEN_NPC_THALORIEN:
-//				EndScene(false);
-//				break;
-//			case THALORIEN_NPC_BOSS:
-//				_Timer = 2000;
-//				break;
-//			default:
-//				for (auto itr = _enemies.begin(); itr != _enemies.end();)
-//					if ((*itr)->GetGUID() == summon->GetGUID())
-//						_enemies.erase(itr++);
-//					else
-//						itr++;
-//				if (_enemies.empty())
-//					_Timer = 2000;
-//				break;
-//			}
-//		}
-//
-//		void UpdateAI(uint32 diff)
-//		{
-//			if (_Timer)
-//			{
-//				if (_Timer <= diff)
-//				{
-//					switch (_Phase)
-//					{
-//					//召唤 寻晨者 卫兵 BOSS
-//					case 1:
-//						me->SummonCreature(THALORIEN_NPC_THALORIEN, ThalorienNPCPos[0]);
-//						for (size_t i = 1; i < 11; i++)
-//							me->SummonCreature(THALORIEN_NPC_DEFENDER, ThalorienNPCPos[i]);
-//						me->SummonCreature(THALORIEN_NPC_BOSS, ThalorienNPCPos[11]);
-//						_Timer = 1000;
-//						_Phase++;
-//						break;
-//					//寻晨者对卫兵说话1
-//					case 2:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->Say("我们必须不惜一切代价保卫太阳之井。", LANG_UNIVERSAL, NULL);
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//						}
-//							
-//						_Timer = 3000;
-//						_Phase++;
-//						break;
-//					//寻晨者对卫兵说话2
-//					case 3:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->Say("我命令你们立即回防太阳之井，荣耀与我们同在。", LANG_UNIVERSAL, NULL);
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
-//						}
-//							
-//						_Timer = 3000;
-//						_Phase++;
-//						break;
-//					//寻晨者对卫兵说话3
-//					case 4:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->Say("我会留在这里为你们争取尽可能多的时间。", LANG_UNIVERSAL, NULL);
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//						}
-//							
-//						_Timer = 3000;
-//						_Phase++;
-//						break;
-//					//寻晨者对卫兵说话4
-//					case 5:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->Say("与你们并肩战斗，守卫我们的领土和人民，是我最大的荣耀。", LANG_UNIVERSAL, NULL);
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
-//						}
-//							
-//						_Timer = 3000;
-//						_Phase++;
-//						break;
-//					//卫兵说话
-//					case 6:
-//						for (auto itr = _gurads.begin(); itr != _gurads.end(); itr++)
-//						{
-//							if (Creature* guard = *itr)
-//							{
-//								guard->Say("遵命，长官！", LANG_UNIVERSAL, NULL);
-//								guard->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
-//							}
-//						}				
-//						_Timer = 1000;
-//						_Phase++;
-//						break;
-//					//卫兵离开
-//					case 7:
-//						for (auto itr = _gurads.begin(); itr != _gurads.end();)
-//						{
-//							if (Creature* guard = *itr)
-//							{
-//								_gurads.erase(itr++);																	
-//								guard->SetWalk(false);
-//								guard->GetMotionMaster()->MovePoint(0, 11836.7, -7070.49, 26.9794);
-//								guard->DespawnOrUnsummon(3000);
-//							}
-//							else
-//								itr++;
-//						}
-//						_Timer = 1000;
-//						_Phase++;
-//						break;
-//					//寻晨者移动到BOSS前，移动过程中要讲话
-//					case 8:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->Say("陌生人...你不是我的士兵。你将会和我一起面对强大的敌人吗？", LANG_UNIVERSAL, NULL);
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//							thalorien->SetWalk(true);
-//							thalorien->GetMotionMaster()->MovePoint(0, 11777.6, -7063.79, 24.7945);
-//							if (Creature* boss = me->GetMap()->GetCreature(_boss))
-//								thalorien->SetFacingToObject(boss);
-//						}						
-//						_Timer = 5000;
-//						_Phase++;
-//						break;
-//					//寻晨者对BOSS大喊1
-//					case 9:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->SetWalk(false);
-//							thalorien->MonsterYell("听好了，天灾军团的渣子们。只要我还活着，你们休想进入太阳之井！", LANG_UNIVERSAL, NULL);
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-//							thalorien->SetHomePosition(thalorien->GetPositionX(), thalorien->GetPositionY(), thalorien->GetPositionZ(), thalorien->GetOrientation());
-//						}					
-//						_Timer = 1000;
-//						_Phase++;
-//						break;
-//					case 10:
-//						if (Creature* boss = me->GetMap()->GetCreature(_boss))
-//							boss->MonsterYell("你将和你的城市一起毁灭。巫妖王将会获得伟大的胜利，然而却没有人会记得你！", LANG_UNIVERSAL, NULL);
-//						_Timer = 1000;
-//						_Phase++;
-//						break;
-//					//BOSS大喊1，召唤第一波小怪
-//					case 11:
-//						if (Creature* boss = me->GetMap()->GetCreature(_boss))
-//						{
-//							boss->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-//							boss->MonsterYell("进攻！", LANG_UNIVERSAL, NULL);
-//						}
-//
-//						for (size_t i = 12; i < 16; i++)
-//						{
-//							if (Creature* c = me->SummonCreature(THALORIEN_NPC_ENEMY_1, ThalorienNPCPos[i]))
-//								AddThalorienThreat(c);
-//						}
-//							
-//						_Timer = 0;
-//						_Phase++;
-//						break;
-//					//召唤第二波小怪
-//					case 12:
-//						if (Creature* boss = me->GetMap()->GetCreature(_boss))
-//						{
-//							boss->MonsterYell("食尸鬼，干掉那个精灵！", LANG_UNIVERSAL, NULL);
-//							boss->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-//						}
-//							
-//						for (size_t i = 12; i < 16; i++)
-//						{
-//							if (Creature* c = me->SummonCreature(THALORIEN_NPC_ENEMY_2, ThalorienNPCPos[i]))
-//								AddThalorienThreat(c);
-//						}
-//						_Timer = 0;
-//						_Phase++;
-//						break;
-//					//召唤第三波小怪
-//					case 13:
-//						if (Creature* boss = me->GetMap()->GetCreature(_boss))
-//						{
-//							boss->MonsterYell("天灾军团战无不胜！蜘蛛们，现在进攻！", LANG_UNIVERSAL, NULL);
-//							boss->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-//						}
-//
-//						for (size_t i = 12; i < 15; i++)
-//						{
-//							if (Creature* c = me->SummonCreature(THALORIEN_NPC_ENEMY_3, ThalorienNPCPos[i]))
-//								AddThalorienThreat(c);
-//						}
-//						_Timer = 0;
-//						_Phase++;
-//						break;
-//					//BOSS激活
-//					case 14:
-//						if (Creature* boss = me->GetMap()->GetCreature(_boss))
-//						{
-//							boss->MonsterYell("我要亲自杀了你！", LANG_UNIVERSAL, NULL);
-//							boss->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-//						}			
-//
-//						if (Creature* boss = me->GetMap()->GetCreature(_boss))
-//						{
-//							boss->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC);
-//							AddThalorienThreat(boss);
-//						}				
-//						_Timer = 0;
-//						_Phase++;
-//						break;
-//					//与玩家对话
-//					case 15:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//							thalorien->Say("我...从未想过能从这场战斗中生存下来。", LANG_UNIVERSAL, NULL);
-//						}					
-//						_Timer = 5000;
-//						_Phase++;
-//						break;
-//					case 16:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//							thalorien->Say("发生了什么？我怎么在这里？", LANG_UNIVERSAL, NULL);
-//						}
-//							
-//						_Timer = 5000;
-//						_Phase++;
-//						break;
-//					case 17:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//						{
-//							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-//							thalorien->Say("这是...奎尔德拉！你得到了这把剑！", LANG_UNIVERSAL, NULL);
-//						}
-//							
-//						_Timer = 5000;
-//						_Phase++;
-//						break;
-//					case 18:
-//						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
-//							thalorien->Say("这把剑选择了你成为新的主人，这是我的祝福，请像我一样与天灾军团战斗！", LANG_UNIVERSAL, NULL);
-//							
-//						_Timer = 5000;
-//						_Phase++;
-//						break;
-//					case 19:
-//						EndScene(true);
-//						break;
-//					}
-//				}
-//				else
-//					_Timer -= diff;
-//			}	
-//		}
-//
-//	private:
-//		uint32 _Timer;
-//		uint32 _Phase;
-//		std::list<Creature*> _gurads;
-//		std::list<Creature*> _enemies;
-//		uint64 _thalorien;
-//		uint64 _boss;
-//	};
-//};
-//
-//
+﻿#pragma execution_character_set("utf-8")
+#include "Custom/CommonFunc/CommonFunc.h"
+/*
+-- SQL脚本
+DELETE FROM creature WHERE id = 37552;
+INSERT INTO creature (guid, id, map, spawnMask, phaseMask, modelid, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, spawndist, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags) VALUES('1976588','37552','530','1','2048','0','0','11781.6','-7068.71','24.9312','3.10074','300','0','0','123','180','0','1','768','32');
+
+DELETE FROM creature WHERE id = 37205;
+DELETE FROM creature_template WHERE entry = 37205;
+insert into creature_template (entry, difficulty_entry_1, difficulty_entry_2, difficulty_entry_3, KillCredit1, KillCredit2, modelid1, modelid2, modelid3, modelid4, name, subname, IconName, gossip_menu_id, minlevel, maxlevel, exp, faction, npcflag, speed_walk, speed_run, scale, rank, mindmg, maxdmg, dmgschool, attackpower, dmg_multiplier, baseattacktime, rangeattacktime, unit_class, unit_flags, unit_flags2, dynamicflags, family, trainer_type, trainer_spell, trainer_class, trainer_race, minrangedmg, maxrangedmg, rangedattackpower, type, type_flags, lootid, pickpocketloot, skinloot, resistance1, resistance2, resistance3, resistance4, resistance5, resistance6, spell1, spell2, spell3, spell4, spell5, spell6, spell7, spell8, PetSpellDataId, VehicleId, mingold, maxgold, AIName, MovementType, InhabitType, HoverHeight, Health_mod, Mana_mod, Armor_mod, RacialLeader, questItem1, questItem2, questItem3, questItem4, questItem5, questItem6, movementId, RegenHealth, mechanic_immune_mask, flags_extra, ScriptName, VerifiedBuild) values('37205','0','0','0','0','0','30570','0','0','0','萨洛瑞安·寻晨者','','','0','80','80','2','250','0','1','1.14286','1','1','500','700','0','300','5','2000','2000','2','0','2048','0','0','0','0','0','0','0','0','0','7','4096','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','SmartAI','0','3','1','3.5','3','1','0','0','0','0','0','0','0','0','1','0','0','','12340');
+
+
+-- Thalorien Dawnseeker's Remains
+SET @ENTRY := 37552;
+
+DELETE FROM creature_template_addon WHERE(entry=@ENTRY);
+INSERT INTO creature_template_addon (entry,path_id,mount,bytes1,bytes2,emote,auras) VALUES
+(@ENTRY, 0, 0, 0, 0, 0, '25824 31261');
+
+UPDATE creature_template SET ScriptName="npc_thalorien" WHERE entry=@ENTRY;
+UPDATE creature_template SET faction=35 WHERE entry=@ENTRY;
+
+-- Thalorien Dawnseeker SAI
+SET @ENTRY := 37205;
+Delete FROM creature WHERE id = 37205;
+UPDATE creature_template SET faction=250 WHERE entry=@ENTRY;
+UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
+DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
+INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
+(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 5000, 7000, 15000, 15000, 11, 67541, 3, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Thalorien Dawnseeker - In Combat - Cast 'Bladestorm' (Dungeon & Raid)"),
+(@ENTRY, 0, 1, 0, 0, 0, 100, 0, 2000, 2000, 13000, 13000, 11, 67542, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Thalorien Dawnseeker - In Combat - Cast 'Mortal Strike'"),
+(@ENTRY, 0, 2, 0, 0, 0, 100, 0, 19000, 19000, 19000, 19000, 11, 67716, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, "Thalorien Dawnseeker - In Combat - Cast 'Whirlwind'"),
+(@ENTRY, 0, 3, 0, 0, 0, 100, 0, 1000, 1000, 8000, 8000, 11, 57846, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Thalorien Dawnseeker - In Combat - Cast 'Heroic Strike'");
+
+-- Morlen Coldgrip SAI
+SET @ENTRY := 37542;
+UPDATE creature_template SET faction=16 WHERE entry=@ENTRY;
+UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
+DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
+INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
+(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 2000, 3000, 9000, 10000, 11, 50688, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Morlen Coldgrip - In Combat - Cast 'Plague Strike' (Dungeon & Raid)");
+
+
+-- Crypt Raider SAI
+SET @ENTRY := 37541;
+UPDATE creature_template SET faction=16 WHERE entry=@ENTRY;
+UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
+DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
+INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
+(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 1000, 2000, 4000, 5000, 11, 31600, 2, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, "Crypt Raider - In Combat - Cast 'Crypt Scarabs' (Dungeon & Raid)");
+
+-- Ghoul Invader SAI
+SET @ENTRY := 37539;
+UPDATE creature_template SET faction=16 WHERE entry=@ENTRY;
+UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
+DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
+INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
+(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 1000, 2000, 9000, 10000, 11, 38056, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Ghoul Invader - In Combat - Cast 'Flesh Rip' (Dungeon & Raid)");
+
+-- Scourge Zombie SAI
+SET @ENTRY := 37538;
+UPDATE creature_template SET faction=16 WHERE entry=@ENTRY;
+UPDATE creature_template SET AIName="SmartAI" WHERE entry=@ENTRY;
+DELETE FROM smart_scripts WHERE entryorguid=@ENTRY AND source_type=0;
+INSERT INTO smart_scripts (entryorguid,source_type,id,link,event_type,event_phase_mask,event_chance,event_flags,event_param1,event_param2,event_param3,event_param4,action_type,action_param1,action_param2,action_param3,action_param4,action_param5,action_param6,target_type,target_param1,target_param2,target_param3,target_x,target_y,target_z,target_o,comment) VALUES
+(@ENTRY, 0, 0, 0, 0, 0, 100, 0, 1000, 2000, 9000, 10000, 11, 49861, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, "Scourge Zombie - In Combat - Cast 'Infected Bite' (Dungeon & Raid)");
+
+*/
+
+
+enum ThalorienNPCs
+{
+	THALORIEN_NPC_THALORIEN = 37205,
+	THALORIEN_NPC_DEFENDER	= 37211,
+	THALORIEN_NPC_BOSS		= 37542,
+	THALORIEN_NPC_ENEMY_1	= 37538,
+	THALORIEN_NPC_ENEMY_2	= 37539,
+	THALORIEN_NPC_ENEMY_3	= 37541,
+};
+
+Position const ThalorienNPCPos[16] =
+{
+	//[0]			寻晨者1
+	{ 11787.2,	-7070.56,	25.8603,	6.0444},
+	//[1 - 10]		卫兵
+	{ 11791.2,	-7070.76,	26.129,		2.31049 },
+	{ 11789.4,	-7072.64,	26.0378,	2.63958 },
+	{ 11787,	-7074.43,	25.8398,	2.51784 },
+	{ 11785,	-7075.82,	25.7344,	2.2186 },
+	{ 11782.8,	-7078,		25.7069,	2.28615 },
+	{ 11784.8,	-7078.31,	25.7336,	2.24374 },
+	{ 11787.3,	-7076.61,	25.7956,	2.18483 },
+	{ 11789.3,	-7074.77,	26.0251,	2.17541 },
+	{ 11791.6,	-7073.19,	26.192,		2.16755 },
+	{ 11793.8,	-7071.21,	26.2234,	2.17619 },
+	//[11]			BOSS
+	{ 11759.3,	-7052.25,	25.9366,	5.70586 },
+	//[12 - 15]
+	{ 11760.6,	-7067.11,	25.1363,	0.286524 },
+	{ 11760.5,	-7059.13,	25.2377,	0.039123 },
+	{ 11760.6,	-7062.04,	25.2717,	0.0116341 },
+	{ 11760,	-7064.6,	25.3605,	0.137299 },
+};
+
+class npc_thalorien : public CreatureScript
+{
+public:
+	npc_thalorien() : CreatureScript("npc_thalorien") { }
+
+	bool OnGossipHello(Player* player, Creature* creature)
+	{
+		player->PlayerTalkClass->ClearMenus();
+
+		if (npc_thalorien::npc_thalorienAI* creatureAI = CAST_AI(npc_thalorien::npc_thalorienAI, creature->AI()))
+			if (creatureAI->HasBeginScence())
+			{
+				SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
+				return true;
+			}
+
+		if (player->GetQuestStatus(24563) == QUEST_STATUS_INCOMPLETE || player->GetQuestStatus(24535) == QUEST_STATUS_INCOMPLETE)
+			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "检查遗骸", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
+
+		SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
+		return true;
+	}
+
+	bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 /*action*/) 
+	{ 
+		CloseGossipMenuFor(player);
+	
+		if (npc_thalorien::npc_thalorienAI* creatureAI = CAST_AI(npc_thalorien::npc_thalorienAI, creature->AI()))
+			creatureAI->BeginScene();
+
+		return true;
+	}
+
+	CreatureAI* GetAI(Creature* creature) const
+	{
+		return new npc_thalorienAI(creature);
+	}
+
+	struct npc_thalorienAI : public ScriptedAI
+	{
+		npc_thalorienAI(Creature* creature) : ScriptedAI(creature) 
+		{
+			Reset();
+		}
+
+		void Reset()
+		{
+			_Phase = 0;
+			_Timer = 0;
+
+			for (auto itr = _gurads.begin(); itr != _gurads.end(); itr++)
+				if (Creature* guard = *itr)
+					guard->DespawnOrUnsummon(0);
+			_gurads.clear();
+
+			for (auto itr = _enemies.begin(); itr != _enemies.end(); itr++)
+				if (Creature* guard = *itr)
+					guard->DespawnOrUnsummon(0);
+			_enemies.clear();
+
+			if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+				thalorien->DespawnOrUnsummon(0);
+			_thalorien = ObjectGuid::Empty;
+
+			if (Creature* boss = me->GetMap()->GetCreature(_boss))
+				boss->DespawnOrUnsummon(0);
+			_boss = ObjectGuid::Empty;
+
+		}
+
+		void BeginScene()
+		{
+			_Timer = 100;
+			_Phase = 1;
+		}
+
+		void EndScene(bool win)
+		{
+			if (win)
+			{
+				std::list<Player*> playersNearby;
+				me->GetPlayerListInGrid(playersNearby, 100);
+				if (!playersNearby.empty())
+					for (std::list<Player*>::iterator itr = playersNearby.begin(); itr != playersNearby.end(); ++itr)
+						if ((*itr) && (*itr)->IsInWorld())
+							(*itr)->KilledMonsterCredit(37601, ObjectGuid::Empty);
+			}
+
+			Reset();
+		}
+
+		bool HasBeginScence()
+		{
+			return _Phase != 0;
+		}
+
+		void AddThalorienThreat(Creature* c)
+		{
+			if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+			{
+				thalorien->AddThreat(c, 100.0f);	
+				c->AddThreat(thalorien, 100.0f);
+				thalorien->AI()->AttackStart(c);
+			}
+		}
+
+		void JustSummoned(Creature* summon) override
+		{
+			switch (summon->GetEntry())
+			{
+			case THALORIEN_NPC_DEFENDER:
+				_gurads.push_back(summon);
+				break;
+			case THALORIEN_NPC_THALORIEN:
+				_thalorien = summon->GetGUID();
+				break;
+			case THALORIEN_NPC_BOSS:
+				_boss = summon->GetGUID();
+				summon->Mount(25678);
+				summon->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC);
+				break;
+			default:
+				summon->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC);
+				_enemies.push_back(summon);
+				break;
+			}
+		}
+
+		void SummonedCreatureDies(Creature* summon, Unit* /*killer*/) override
+		{
+			switch (summon->GetEntry())
+			{
+			case THALORIEN_NPC_THALORIEN:
+				EndScene(false);
+				break;
+			case THALORIEN_NPC_BOSS:
+				_Timer = 2000;
+				break;
+			default:
+				for (auto itr = _enemies.begin(); itr != _enemies.end();)
+					if ((*itr)->GetGUID() == summon->GetGUID())
+						_enemies.erase(itr++);
+					else
+						itr++;
+				if (_enemies.empty())
+					_Timer = 2000;
+				break;
+			}
+		}
+
+		void UpdateAI(uint32 diff)
+		{
+			if (_Timer)
+			{
+				if (_Timer <= diff)
+				{
+					switch (_Phase)
+					{
+					//召唤 寻晨者 卫兵 BOSS
+					case 1:
+						me->SummonCreature(THALORIEN_NPC_THALORIEN, ThalorienNPCPos[0]);
+						for (size_t i = 1; i < 11; i++)
+							me->SummonCreature(THALORIEN_NPC_DEFENDER, ThalorienNPCPos[i]);
+						me->SummonCreature(THALORIEN_NPC_BOSS, ThalorienNPCPos[11]);
+						_Timer = 1000;
+						_Phase++;
+						break;
+					//寻晨者对卫兵说话1
+					case 2:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->Say("我们必须不惜一切代价保卫太阳之井。", LANG_UNIVERSAL, NULL);
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
+						}
+							
+						_Timer = 3000;
+						_Phase++;
+						break;
+					//寻晨者对卫兵说话2
+					case 3:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->Say("我命令你们立即回防太阳之井，荣耀与我们同在。", LANG_UNIVERSAL, NULL);
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
+						}
+							
+						_Timer = 3000;
+						_Phase++;
+						break;
+					//寻晨者对卫兵说话3
+					case 4:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->Say("我会留在这里为你们争取尽可能多的时间。", LANG_UNIVERSAL, NULL);
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
+						}
+							
+						_Timer = 3000;
+						_Phase++;
+						break;
+					//寻晨者对卫兵说话4
+					case 5:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->Say("与你们并肩战斗，守卫我们的领土和人民，是我最大的荣耀。", LANG_UNIVERSAL, NULL);
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
+						}
+							
+						_Timer = 3000;
+						_Phase++;
+						break;
+					//卫兵说话
+					case 6:
+						for (auto itr = _gurads.begin(); itr != _gurads.end(); itr++)
+						{
+							if (Creature* guard = *itr)
+							{
+								guard->Say("遵命，长官！", LANG_UNIVERSAL, NULL);
+								guard->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
+							}
+						}				
+						_Timer = 1000;
+						_Phase++;
+						break;
+					//卫兵离开
+					case 7:
+						for (auto itr = _gurads.begin(); itr != _gurads.end();)
+						{
+							if (Creature* guard = *itr)
+							{
+								_gurads.erase(itr++);																	
+								guard->SetWalk(false);
+								guard->GetMotionMaster()->MovePoint(0, 11836.7, -7070.49, 26.9794);
+								guard->DespawnOrUnsummon(3000);
+							}
+							else
+								itr++;
+						}
+						_Timer = 1000;
+						_Phase++;
+						break;
+					//寻晨者移动到BOSS前，移动过程中要讲话
+					case 8:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->Say("陌生人...你不是我的士兵。你将会和我一起面对强大的敌人吗？", LANG_UNIVERSAL, NULL);
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
+							thalorien->SetWalk(true);
+							thalorien->GetMotionMaster()->MovePoint(0, 11777.6, -7063.79, 24.7945);
+							if (Creature* boss = me->GetMap()->GetCreature(_boss))
+								thalorien->SetFacingToObject(boss);
+						}						
+						_Timer = 5000;
+						_Phase++;
+						break;
+					//寻晨者对BOSS大喊1
+					case 9:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->SetWalk(false);
+							thalorien->Yell("听好了，天灾军团的渣子们。只要我还活着，你们休想进入太阳之井！", LANG_UNIVERSAL, NULL);
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
+							thalorien->SetHomePosition(thalorien->GetPositionX(), thalorien->GetPositionY(), thalorien->GetPositionZ(), thalorien->GetOrientation());
+						}					
+						_Timer = 1000;
+						_Phase++;
+						break;
+					case 10:
+						if (Creature* boss = me->GetMap()->GetCreature(_boss))
+							boss->Yell("你将和你的城市一起毁灭。巫妖王将会获得伟大的胜利，然而却没有人会记得你！", LANG_UNIVERSAL, NULL);
+						_Timer = 1000;
+						_Phase++;
+						break;
+					//BOSS大喊1，召唤第一波小怪
+					case 11:
+						if (Creature* boss = me->GetMap()->GetCreature(_boss))
+						{
+							boss->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
+							boss->Yell("进攻！", LANG_UNIVERSAL, NULL);
+						}
+
+						for (size_t i = 12; i < 16; i++)
+						{
+							if (Creature* c = me->SummonCreature(THALORIEN_NPC_ENEMY_1, ThalorienNPCPos[i]))
+								AddThalorienThreat(c);
+						}
+							
+						_Timer = 0;
+						_Phase++;
+						break;
+					//召唤第二波小怪
+					case 12:
+						if (Creature* boss = me->GetMap()->GetCreature(_boss))
+						{
+							boss->Yell("食尸鬼，干掉那个精灵！", LANG_UNIVERSAL, NULL);
+							boss->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
+						}
+							
+						for (size_t i = 12; i < 16; i++)
+						{
+							if (Creature* c = me->SummonCreature(THALORIEN_NPC_ENEMY_2, ThalorienNPCPos[i]))
+								AddThalorienThreat(c);
+						}
+						_Timer = 0;
+						_Phase++;
+						break;
+					//召唤第三波小怪
+					case 13:
+						if (Creature* boss = me->GetMap()->GetCreature(_boss))
+						{
+							boss->Yell("天灾军团战无不胜！蜘蛛们，现在进攻！", LANG_UNIVERSAL, NULL);
+							boss->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
+						}
+
+						for (size_t i = 12; i < 15; i++)
+						{
+							if (Creature* c = me->SummonCreature(THALORIEN_NPC_ENEMY_3, ThalorienNPCPos[i]))
+								AddThalorienThreat(c);
+						}
+						_Timer = 0;
+						_Phase++;
+						break;
+					//BOSS激活
+					case 14:
+						if (Creature* boss = me->GetMap()->GetCreature(_boss))
+						{
+							boss->Yell("我要亲自杀了你！", LANG_UNIVERSAL, NULL);
+							boss->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
+						}			
+
+						if (Creature* boss = me->GetMap()->GetCreature(_boss))
+						{
+							boss->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC);
+							AddThalorienThreat(boss);
+						}				
+						_Timer = 0;
+						_Phase++;
+						break;
+					//与玩家对话
+					case 15:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
+							thalorien->Say("我...从未想过能从这场战斗中生存下来。", LANG_UNIVERSAL, NULL);
+						}					
+						_Timer = 5000;
+						_Phase++;
+						break;
+					case 16:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
+							thalorien->Say("发生了什么？我怎么在这里？", LANG_UNIVERSAL, NULL);
+						}
+							
+						_Timer = 5000;
+						_Phase++;
+						break;
+					case 17:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+						{
+							thalorien->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
+							thalorien->Say("这是...奎尔德拉！你得到了这把剑！", LANG_UNIVERSAL, NULL);
+						}
+							
+						_Timer = 5000;
+						_Phase++;
+						break;
+					case 18:
+						if (Creature* thalorien = me->GetMap()->GetCreature(_thalorien))
+							thalorien->Say("这把剑选择了你成为新的主人，这是我的祝福，请像我一样与天灾军团战斗！", LANG_UNIVERSAL, NULL);
+							
+						_Timer = 5000;
+						_Phase++;
+						break;
+					case 19:
+						EndScene(true);
+						break;
+					}
+				}
+				else
+					_Timer -= diff;
+			}	
+		}
+
+	private:
+		uint32 _Timer;
+		uint32 _Phase;
+		std::list<Creature*> _gurads;
+		std::list<Creature*> _enemies;
+		ObjectGuid _thalorien;
+        ObjectGuid _boss;
+	};
+};
+
+
 ////净化奎尔德拉
 ///*
 //-- creature
@@ -556,7 +557,7 @@
 //		player->PlayerTalkClass->ClearMenus();
 //
 //		if (player->HasItemCount(ITEM_TAINTED_QUELDANAR_1, 1) || player->HasItemCount(ITEM_TAINTED_QUELDANAR_2, 1))
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "带我去太阳之井", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "带我去太阳之井", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 //
 //		SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //		return true;
@@ -615,7 +616,7 @@
 //
 //			std::ostringstream oss;
 //			oss << "先生们，女士们，有请奎尔德拉的新主人，" << who->GetName() << "。";
-//			me->MonsterYell(oss.str().c_str(), LANG_UNIVERSAL, NULL);
+//			me->Yell(oss.str().c_str(), LANG_UNIVERSAL, NULL);
 //
 //			if (who->GetTypeId() == TYPEID_PLAYER)
 //				_player = who->GetGUID();

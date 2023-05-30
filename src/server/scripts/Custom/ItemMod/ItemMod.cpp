@@ -692,7 +692,7 @@
 //		std::string gemName = GetGemName(item, slot);
 //		if (!gemName.empty())
 //		{
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_GEM_REMOVE)), GOSSIP_SENDER_MAIN, ACTION_GEM_MENU_SHOW);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_GEM_REMOVE)), GOSSIP_SENDER_MAIN, ACTION_GEM_MENU_SHOW);
 //			return true;
 //		}
 //	}
@@ -964,13 +964,13 @@
 //
 //	if ((item->GetTemplate()->Class == ITEM_CLASS_ARMOR || item->GetTemplate()->Class == ITEM_CLASS_WEAPON) && IsUpgradeSetted(player,item))
 //	{
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_ITEM_ENCHANT)), GOSSIP_SENDER_MAIN, ACTION_ITEM_ENCHANT_CURR_MENU_SHOW);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_ITEM_ENCHANT)), GOSSIP_SENDER_MAIN, ACTION_ITEM_ENCHANT_CURR_MENU_SHOW);
 //		flag = true;
 //	}
 //
 //	if (item->GetTemplate()->Class == ITEM_CLASS_WEAPON && IsUpgradeSetted(player, item, ITEM_ENCHANT_WEAPON_PERM))
 //	{
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_WEAPON_PERM)), GOSSIP_SENDER_MAIN, ACTION_WEAPON_PERMENCHANT_CURR_MENU_SHOW);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_WEAPON_PERM)), GOSSIP_SENDER_MAIN, ACTION_WEAPON_PERMENCHANT_CURR_MENU_SHOW);
 //		flag = true;
 //	}
 //		
@@ -989,7 +989,7 @@
 //			std::ostringstream oss;
 //			uint32 currEnchantId = item->GetEnchantmentId(EnchantmentSlot(slot));
 //			oss << GetItemEnchantDescription(player, currEnchantId);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), senderValue(slot, currEnchantId), ACTION_ITEM_ENCHANT_NEXT_MENU_SHOW);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss.str(), senderValue(slot, currEnchantId), ACTION_ITEM_ENCHANT_NEXT_MENU_SHOW);
 //		}
 //	}
 //	break;
@@ -1001,7 +1001,7 @@
 //			uint32 currEnchantId = item->GetEnchantmentId(EnchantmentSlot(slot));
 //			//oss << "[当前：" << GetItemEnchantDescription(item, currEnchantId) << "]";
 //			oss << GetItemEnchantDescription(player, currEnchantId);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), senderValue(slot, currEnchantId), ACTION_SIGIL_ENCHANT_NEXT_MENU_SHOW);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss.str(), senderValue(slot, currEnchantId), ACTION_SIGIL_ENCHANT_NEXT_MENU_SHOW);
 //		}
 //	}
 //	break;
@@ -1010,7 +1010,7 @@
 //	}
 //
 //	if (SIGIL_OWN_ENCHANT && type != ITEM_ENCHANT_SIGIL)
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<< 返回 >>", GOSSIP_SENDER_MAIN, ACTION_MAINMENU_BACK);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "<< 返回 >>", GOSSIP_SENDER_MAIN, ACTION_MAINMENU_BACK);
 //	player->PlayerTalkClass->GetGossipMenu().SetMenuId(MENU_ID);
 //	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //}
@@ -1070,7 +1070,7 @@
 //		AddGossipItemFor(player,(GOSSIP_ICON_CHAT, ENCHANT_ACTION_STRING + " —> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), senderValue(slot, FilterVec[i].enchantId), ACTION_ITEM_ENCHANT, sReq->Notice(player, FilterVec[i].enchantReqId, sCF->GetItemLink(item->GetEntry()), "\n\n" + ENCHANT_ACTION_STRING + " —> " + GetItemEnchantDescription(player, FilterVec[i].enchantId), 1, FilterVec[i].chance, VIP_RATE_ITEM_STRENGTHEN, HR_RATE_ITEM_STRENGTHEN), sReq->Golds(FilterVec[i].enchantReqId), 0);
 //
 //	if (SIGIL_OWN_ENCHANT && type != ITEM_ENCHANT_SIGIL)
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<< 返回 >>", GOSSIP_SENDER_MAIN, ACTION_ITEM_ENCHANT_CURR_MENU_SHOW);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "<< 返回 >>", GOSSIP_SENDER_MAIN, ACTION_ITEM_ENCHANT_CURR_MENU_SHOW);
 //
 //	player->PlayerTalkClass->GetGossipMenu().SetMenuId(MENU_ID);
 //	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());

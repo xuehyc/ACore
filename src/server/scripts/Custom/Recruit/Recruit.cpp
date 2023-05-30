@@ -580,9 +580,9 @@
 //void Recruit::AddMainMenu(Player* player, Object* obj)
 //{
 //	AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "招募新的伙伴", SENDER_RECRUIT_NEW, GOSSIP_ACTION_INFO_DEF, "", 0, true);
-//	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "解除招募关系", SENDER_RECRUIT_CHAR_DISS_LIST, GOSSIP_ACTION_INFO_DEF);
-//	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "查看招募信息", SENDER_RECRUIT_CHAR_INFO_LIST, GOSSIP_ACTION_INFO_DEF);
-//	player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "支援在线伙伴", SENDER_RECRUIT_CHAR_TELE_LIST, GOSSIP_ACTION_INFO_DEF);
+//	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "解除招募关系", SENDER_RECRUIT_CHAR_DISS_LIST, GOSSIP_ACTION_INFO_DEF);
+//	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "查看招募信息", SENDER_RECRUIT_CHAR_INFO_LIST, GOSSIP_ACTION_INFO_DEF);
+//	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "支援在线伙伴", SENDER_RECRUIT_CHAR_TELE_LIST, GOSSIP_ACTION_INFO_DEF);
 //	if (obj->ToCreature())
 //		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else
@@ -608,7 +608,7 @@
 //			oss << "|cFFFF1717";
 //			oss << GetRecruiterData(player)->name;
 //			oss << "|r";
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, GetRecruiterData(player)->guidLow);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, GetRecruiterData(player)->guidLow);
 //		}
 //
 //		std::vector<GlobalPlayerData const*> friendsDataList;
@@ -627,7 +627,7 @@
 //			oss << "|cFF0177EC";
 //			oss << friendsDataList[i]->name;
 //			oss << "|r";
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, friendsDataList[i]->guidLow);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, friendsDataList[i]->guidLow);
 //		}
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //	}
@@ -643,7 +643,7 @@
 //			oss << "名字：" << playerData->name << "\n";
 //			oss << "等级 :" << playerData->level << "\n";;
 //			oss << "公会 :" << sGuildMgr->GetGuildNameById(playerData->guildId) << "\n";
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, action);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_CHAR_INFO, action);
 //		}
 //	}
 //	break;
@@ -726,7 +726,7 @@
 //				oss << "|cFFFF1717";
 //				oss << GetRecruiterData(player)->name;
 //				oss << "|r";
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_TELE, GetRecruiterData(player)->guidLow);
+//				AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_TELE, GetRecruiterData(player)->guidLow);
 //			}
 //		}
 //
@@ -744,7 +744,7 @@
 //				oss << "|cFF0177EC";
 //				oss << friendsDataList[i]->name;
 //				oss << "|r";
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_TELE, friendsDataList[i]->guidLow);
+//				AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss.str(), SENDER_RECRUIT_TELE, friendsDataList[i]->guidLow);
 //			}
 //		}
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());

@@ -1075,6 +1075,12 @@ public:
     uint32 SpiritPowerInterval;
 
 
+    //Talisman
+
+    std::unordered_map<uint32, uint32> TalismanMap;
+
+   
+    uint32 TalismanValue;
 
     //gs
     uint32 GS;

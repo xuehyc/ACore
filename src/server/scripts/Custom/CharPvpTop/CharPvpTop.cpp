@@ -381,17 +381,17 @@
 //	{
 //		player->PlayerTalkClass->ClearMenus();
 //
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "比武大会排行榜", 1, 4);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "比武大会排行榜", 1, 4);
 //
 //		if (player->m_topmc == 999)
 //		{
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "你已报名", 1, 1);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "你已报名", 1, 1);
 //		}
 //		else if (player->m_topmc > 0 && player->m_topmc < 999)
 //		{
 //			if (IsEventActive(sSwitch->GetValue(TOP_93)))
 //			{
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "比武大会已经开始", 1, 1);
+//				AddGossipItemFor(player,GOSSIP_ICON_CHAT, "比武大会已经开始", 1, 1);
 //			}
 //			else
 //			{
@@ -400,7 +400,7 @@
 //				{
 //					if (ItemTemplate const* pProto = sObjectMgr->GetItemTemplate(cccc->itemid))
 //					{
-//						player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "领取比武大会奖励", 1, 2);
+//						AddGossipItemFor(player,GOSSIP_ICON_CHAT, "领取比武大会奖励", 1, 2);
 //					}
 //					else
 //					{
@@ -409,16 +409,16 @@
 //					}
 //				}
 //				else
-//					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "比武大会报名", 1, 3);
+//					AddGossipItemFor(player,GOSSIP_ICON_CHAT, "比武大会报名", 1, 3);
 //			}
 //
 //		}
 //		else if (!player->m_topmc)
 //		{
 //			if (!IsEventActive(sSwitch->GetValue(TOP_93)))
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "比武大会报名", 1, 3);
+//				AddGossipItemFor(player,GOSSIP_ICON_CHAT, "比武大会报名", 1, 3);
 //			else
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "比武大会已经开始", 1, 1);
+//				AddGossipItemFor(player,GOSSIP_ICON_CHAT, "比武大会已经开始", 1, 1);
 //		}
 //
 //
@@ -481,14 +481,14 @@
 //							else
 //								hsfdata << "第" << i << "名;" << playerData->name.c_str();
 //
-//							player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, hsfdata.str().c_str(), 1, 5);
+//							AddGossipItemFor(player,GOSSIP_ICON_CHAT, hsfdata.str().c_str(), 1, 5);
 //						}
 //
 //					}
 //				}
 //			}
 //			else
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "暂无排行榜", 1, 5);
+//				AddGossipItemFor(player,GOSSIP_ICON_CHAT, "暂无排行榜", 1, 5);
 //
 //			SendGossipMenuFor(player,20000, creature->GetGUID());
 //		}

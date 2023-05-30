@@ -390,7 +390,7 @@
 //					me->Say(actionParam1.c_str(), LANG_UNIVERSAL, NULL);
 //					break;
 //				case 2:
-//					me->MonsterYell(actionParam1.c_str(), LANG_UNIVERSAL, NULL);
+//					me->Yell(actionParam1.c_str(), LANG_UNIVERSAL, NULL);
 //					break;
 //				case 3:
 //					if (Unit* victim = me->GetVictim())

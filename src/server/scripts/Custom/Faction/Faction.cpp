@@ -129,7 +129,7 @@
 //	if (iter != FactionDataMap.end())
 //	{
 //		std::string text = "|cff0033FF" + iter->second.name + "|r";
-//		player->ADD_GOSSIP_ITEM(0, text, SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + iter->first);
+//		AddGossipItemFor(player,0, text, SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + iter->first);
 //	}	
 //
 //	for (std::map<uint32, FactionTemplate>::iterator iter = FactionDataMap.begin(); iter != FactionDataMap.end(); iter++)
@@ -141,7 +141,7 @@
 //			if (player->faction != 0) 
 //				text = "|cffFF0000" + iter->second.name + "|r";
 //
-//			player->ADD_GOSSIP_ITEM(0, text, SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + iter->first);
+//			AddGossipItemFor(player,0, text, SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + iter->first);
 //		}	
 //	}
 //
@@ -172,7 +172,7 @@
 //		uint32 faction = action - GOSSIP_ACTION_INFO_DEF;
 //		std::string name = GetName(faction);
 //
-//		player->ADD_GOSSIP_ITEM(0, GetGosstipText(faction), SENDER_FACTION, GOSSIP_ACTION_INFO_DEF);
+//		AddGossipItemFor(player,0, GetGosstipText(faction), SENDER_FACTION, GOSSIP_ACTION_INFO_DEF);
 //
 //		if (player->faction == faction)
 //		{

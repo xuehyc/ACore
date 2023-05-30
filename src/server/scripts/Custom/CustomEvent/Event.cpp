@@ -940,7 +940,7 @@
 //			oss << "\n|cFF33CC00[已激活，距离结束 - ";
 //			oss << SecTimeString(sGameEventMgr->NextCheck(itr->eventId), true);
 //			oss << "]|r";
-//			player->ADD_GOSSIP_ITEM(0, oss.str(), SENDER_CUSTOM_EVENT_ACTIVE, itr->eventId);
+//			AddGossipItemFor(player,0, oss.str(), SENDER_CUSTOM_EVENT_ACTIVE, itr->eventId);
 //		}
 //	}
 //
@@ -956,7 +956,7 @@
 //			oss << "\n|cFF666666[未激活，距离开始 - ";
 //			oss << SecTimeString(sGameEventMgr->NextCheck(itr->eventId), true);
 //			oss << "]|r";
-//			player->ADD_GOSSIP_ITEM(0, oss.str(), SENDER_CUSTOM_EVENT_DEACTIVE, itr->eventId);
+//			AddGossipItemFor(player,0, oss.str(), SENDER_CUSTOM_EVENT_DEACTIVE, itr->eventId);
 //		}
 //	}
 //

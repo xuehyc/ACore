@@ -176,7 +176,7 @@
 //	for (std::vector<CustomSkillCategoryTemplate>::iterator i = CustomSkillCategoryVec.begin(); i != CustomSkillCategoryVec.end(); i++)
 //	{
 //		std::string categoryName = "|TInterface/ICONS/" + i->icategoryIcon + ":28:28:0:0|t" + i->categoryName;
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, categoryName.c_str(), SENDER_CUSTOM_SKILL, sCF->joinXY(250, i->categoryId));
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, categoryName.c_str(), SENDER_CUSTOM_SKILL, sCF->joinXY(250, i->categoryId));
 //	}
 //		
 //
@@ -212,9 +212,9 @@
 //			}
 //		}
 //		if (flag)
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "\n                 <<返回>>\n  ", SENDER_CUSTOM_SKILL, sCF->joinXY(250 + 2, 1));
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "\n                 <<返回>>\n  ", SENDER_CUSTOM_SKILL, sCF->joinXY(250 + 2, 1));
 //		else
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "\n             <<未开启相关内容>>\n  ", SENDER_CUSTOM_SKILL, sCF->joinXY(250 + 2, 1));
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "\n             <<未开启相关内容>>\n  ", SENDER_CUSTOM_SKILL, sCF->joinXY(250 + 2, 1));
 //
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //	}
@@ -244,7 +244,7 @@
 //		for (std::vector<CustomSkillCategoryTemplate>::iterator i = CustomSkillCategoryVec.begin(); i != CustomSkillCategoryVec.end(); i++)
 //		{
 //			std::string categoryName = "|TInterface/ICONS/" + i->icategoryIcon + ":28:28:0:0|t" + i->categoryName;
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, categoryName.c_str(), SENDER_CUSTOM_SKILL, sCF->joinXY(250, i->categoryId));
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, categoryName.c_str(), SENDER_CUSTOM_SKILL, sCF->joinXY(250, i->categoryId));
 //		}
 //
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());

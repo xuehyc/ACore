@@ -259,14 +259,14 @@
 //{
 //    //if (!GetFakeEntry(item))
 //    //    return false;
-//    DeleteFakeFromDB(itemTransmogrified->GetGUID(), trans);
+//    DeleteFakeFromDB(itemTransmogrified->GetGUID().GetCounter(), trans);
 //    player->SetVisibleItemSlot(slot, itemTransmogrified);
 //}
 //void Transmogrification::SetFakeEntry(Player* player, uint32 newEntry, uint8 slot, Item* itemTransmogrified)
 //{
-//    uint64 itemGUID = itemTransmogrified->GetGUID();
+//    uint64 itemGUID = itemTransmogrified->GetGUID().GetCounter();
 //    entryMap[player->GetGUID()][itemGUID] = newEntry;
-//    dataMap[itemGUID] = player->GetGUID();
+//    dataMap[itemGUID] = player->GetGUID().GetCounter();
 //    CharacterDatabase.Execute("REPLACE INTO custom_transmogrification (GUID, FakeEntry, Owner) VALUES (%u, %u, %u)", GUID_LOPART(itemGUID), newEntry, player->GetGUID().GetCounter());
 //    player->SetVisibleItemSlot(slot, itemTransmogrified);
 //}
@@ -679,9 +679,9 @@
 //            if (Player* player = it->second->GetPlayer())
 //            {
 //                // skipping session check
-//                UnloadPlayerSets(player->GetGUID());
+//                UnloadPlayerSets(player->GetGUID().GetCounter());
 //                if (GetEnableSets())
-//                    LoadPlayerSets(player->GetGUID());
+//                    LoadPlayerSets(player->GetGUID().GetCounter());
 //            }
 //        }
 //    }

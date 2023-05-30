@@ -315,7 +315,7 @@
 //				if (reqId != 0)
 //					AddGossipItemFor(player,(smallIconType, text, AboveMenuVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
 //				else
-//					player->ADD_GOSSIP_ITEM(smallIconType, text, AboveMenuVec[i].menuId, funcIndex);
+//					AddGossipItemFor(player,smallIconType, text, AboveMenuVec[i].menuId, funcIndex);
 //			}
 //		}
 //
@@ -750,7 +750,7 @@
 //					if (reqId != 0)
 //						AddGossipItemFor(player,(smallIconType, text, GossipVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
 //					else
-//						player->ADD_GOSSIP_ITEM(smallIconType, text, GossipVec[i].menuId, funcIndex);
+//						AddGossipItemFor(player,smallIconType, text, GossipVec[i].menuId, funcIndex);
 //				}		
 //			}
 //		}

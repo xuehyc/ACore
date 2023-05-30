@@ -191,7 +191,7 @@
 //		else
 //			text = GetName(iter->first);
 //
-//		player->ADD_GOSSIP_ITEM(0, text, SENDER_RANK, GOSSIP_ACTION_INFO_DEF + iter->first);
+//		AddGossipItemFor(player,0, text, SENDER_RANK, GOSSIP_ACTION_INFO_DEF + iter->first);
 //	}
 //
 //	if (obj->ToCreature())
@@ -206,7 +206,7 @@
 //		AddGossip(player, obj);
 //	else
 //	{
-//		player->ADD_GOSSIP_ITEM(0, GetGosstipText(action - GOSSIP_ACTION_INFO_DEF), SENDER_RANK, GOSSIP_ACTION_INFO_DEF);
+//		AddGossipItemFor(player,0, GetGosstipText(action - GOSSIP_ACTION_INFO_DEF), SENDER_RANK, GOSSIP_ACTION_INFO_DEF);
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //	}
 //}

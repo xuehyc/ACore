@@ -68,7 +68,7 @@
 //		Quest const* quest = sObjectMgr->GetQuestTemplate(itr->first);
 //
 //		if (quest && player->IsActiveQuest(itr->first) && itr->second.telePosId != 0)
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, quest->GetTitle(), SENDER_QUEST_TELE, quest->GetQuestId());
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, quest->GetTitle(), SENDER_QUEST_TELE, quest->GetQuestId());
 //	}
 //
 //	if (obj->ToCreature())

@@ -36,8 +36,8 @@
 //	bool OnGossipHello(Player* player, Creature* creature) override
 //	{
 //		player->PlayerTalkClass->ClearMenus();
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "陆地坐骑", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "飞行坐骑", GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "陆地坐骑", GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "飞行坐骑", GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF);
 //		SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //		return true;
 //	}
@@ -49,10 +49,10 @@
 //		switch (sender)
 //		{
 //		case GOSSIP_SENDER_MAIN:
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TAXI, "查看", GOSSIP_SENDER_MAIN + 3, action);
+//			AddGossipItemFor(player,GOSSIP_ICON_TAXI, "查看", GOSSIP_SENDER_MAIN + 3, action);
 //			if (OnSale(action))
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, "购买", GOSSIP_SENDER_MAIN + 4, action);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN + 5, action);
+//				AddGossipItemFor(player,GOSSIP_ICON_TRAINER, "购买", GOSSIP_SENDER_MAIN + 4, action);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN + 5, action);
 //			SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //			break;
 //		case GOSSIP_SENDER_MAIN + 1://陆地坐骑列表
@@ -65,10 +65,10 @@
 //			break;
 //		case GOSSIP_SENDER_MAIN + 3://查看
 //		{
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TAXI, "查看", GOSSIP_SENDER_MAIN + 3, action);
+//			AddGossipItemFor(player,GOSSIP_ICON_TAXI, "查看", GOSSIP_SENDER_MAIN + 3, action);
 //			if (OnSale(action))
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, "购买", GOSSIP_SENDER_MAIN + 4, action);
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN + 5, action);
+//				AddGossipItemFor(player,GOSSIP_ICON_TRAINER, "购买", GOSSIP_SENDER_MAIN + 4, action);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "返回", GOSSIP_SENDER_MAIN + 5, action);
 //			SendGossipMenuFor(player,creature->GetEntry(), creature->GetGUID());
 //			if (player->HasAura(action))
 //				break;
@@ -141,7 +141,7 @@
 //				flycount++;
 //
 //				if (flycount < 32)
-//					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR, spellInfo->SpellName[4], GOSSIP_SENDER_MAIN, MountVendorVec[i].spellId);
+//					AddGossipItemFor(player,GOSSIP_ICON_VENDOR, spellInfo->SpellName[4], GOSSIP_SENDER_MAIN, MountVendorVec[i].spellId);
 //			}
 //			else
 //			{
@@ -151,7 +151,7 @@
 //				noflycount++;
 //
 //				if (noflycount < 32)
-//					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR, spellInfo->SpellName[4], GOSSIP_SENDER_MAIN, MountVendorVec[i].spellId);
+//					AddGossipItemFor(player,GOSSIP_ICON_VENDOR, spellInfo->SpellName[4], GOSSIP_SENDER_MAIN, MountVendorVec[i].spellId);
 //			}
 //		}
 //	}

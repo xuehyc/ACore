@@ -34,7 +34,7 @@
 //    {
 //        WorldSession* session = player->GetSession();
 //        if (sT->GetEnableTransmogInfo())
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Misc_Book_11:30:30:-18:0|t 请选择需要幻化的部位", EQUIPMENT_SLOT_END + 9, 0);
+//			AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Misc_Book_11:30:30:-18:0|t 请选择需要幻化的部位", EQUIPMENT_SLOT_END + 9, 0);
 //        for (uint8 slot = EQUIPMENT_SLOT_START; slot < EQUIPMENT_SLOT_END; ++slot)
 //        {
 //            if (const char* slotName = sT->GetSlotName(slot, session))
@@ -42,15 +42,15 @@
 //                Item* newItem = player->GetItemByPos(INVENTORY_SLOT_BAG_0, slot);
 //                uint32 entry = newItem ? sT->GetFakeEntry(newItem->GetGUID()) : 0;
 //                std::string icon = entry ? sT->GetItemIcon(entry,30,30,-18,0) : sT->GetSlotIcon(slot, 30, 30, -18, 0);
-//                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, icon+std::string(slotName), EQUIPMENT_SLOT_END, slot);
+//                AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, icon+std::string(slotName), EQUIPMENT_SLOT_END, slot);
 //            }
 //        }
 //#ifdef PRESETS
 //        if (sT->GetEnableSets())
-//			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/RAIDFRAME/UI-RAIDFRAME-MAINASSIST:30:30:-18:0|t 幻化管理 ", EQUIPMENT_SLOT_END + 4, 0);
+//			AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/RAIDFRAME/UI-RAIDFRAME-MAINASSIST:30:30:-18:0|t 幻化管理 ", EQUIPMENT_SLOT_END + 4, 0);
 //#endif
 //		AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Enchant_Disenchant:30:30:-18:0|t 清除所有幻化效果 ", EQUIPMENT_SLOT_END + 2, 0, "您确定要移除所有装备的幻化效果么？ ", 0, false);
-//		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/PaperDollInfoFrame/UI-GearManager-Undo:30:30:-18:0|t 刷新菜单 ", EQUIPMENT_SLOT_END + 1, 0);
+//		AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/PaperDollInfoFrame/UI-GearManager-Undo:30:30:-18:0|t 刷新菜单 ", EQUIPMENT_SLOT_END + 1, 0);
 //        SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //        return true;
 //    }
@@ -113,13 +113,13 @@
 //                    return true;
 //                }
 //                if (sT->GetEnableSetInfo())
-//					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Misc_Book_11:30:30:-18:0|t 把身上的幻化效果保存为套装 ", EQUIPMENT_SLOT_END + 10, 0);
+//					AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Misc_Book_11:30:30:-18:0|t 把身上的幻化效果保存为套装 ", EQUIPMENT_SLOT_END + 10, 0);
 //                for (Transmogrification::presetIdMap::const_iterator it = sT->presetByName[player->GetGUID()].begin(); it != sT->presetByName[player->GetGUID()].end(); ++it)
-//                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Misc_Statue_02:30:30:-18:0|t"+it->second, EQUIPMENT_SLOT_END+6, it->first);
+//                    AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Misc_Statue_02:30:30:-18:0|t"+it->second, EQUIPMENT_SLOT_END+6, it->first);
 //
 //                if (sT->presetByName[player->GetGUID()].size() < sT->GetMaxSets())
-//					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/GuildBankFrame/UI-GuildBankFrame-NewTab:30:30:-18:0|t 保存套装 ", EQUIPMENT_SLOT_END + 8, 0);
-//				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END + 1, 0);
+//					AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/GuildBankFrame/UI-GuildBankFrame-NewTab:30:30:-18:0|t 保存套装 ", EQUIPMENT_SLOT_END + 8, 0);
+//				AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END + 1, 0);
 //                SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //            } break;
 //        case EQUIPMENT_SLOT_END+5: // Use preset
@@ -146,11 +146,11 @@
 //                }
 //                // action = presetID
 //                for (Transmogrification::slotMap::const_iterator it = sT->presetById[player->GetGUID()][action].begin(); it != sT->presetById[player->GetGUID()][action].end(); ++it)
-//                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, sT->GetItemIcon(it->second, 30, 30, -18, 0)+sT->GetItemLink(it->second, session), sender, action);
+//                    AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, sT->GetItemIcon(it->second, 30, 30, -18, 0)+sT->GetItemLink(it->second, session), sender, action);
 //
 //				AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Misc_Statue_02:30:30:-18:0|t 使用套装 ", EQUIPMENT_SLOT_END + 5, action, "使用后会让装备变得不可退回，不可交易。\n您确定要继续么？\n\n " + sT->presetByName[player->GetGUID()][action], 0, false);
 //				AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, "|TInterface/PaperDollInfoFrame/UI-GearManager-LeaveItem-Opaque:30:30:-18:0|t 移除套装 ", EQUIPMENT_SLOT_END + 7, action, "你确定要删除已经保存的【 " + sT->presetByName[player->GetGUID()][action] + " 】套装么？ ", 0, false);
-//                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+4, 0);
+//                AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+4, 0);
 //                SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //            } break;
 //        case EQUIPMENT_SLOT_END+7: // Delete preset
@@ -193,24 +193,24 @@
 //                            continue;
 //                        cost += sT->GetSpecialPrice(temp);
 //                        canSave = true;
-//                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, sT->GetItemIcon(entry, 30, 30, -18, 0)+sT->GetItemLink(entry, session), EQUIPMENT_SLOT_END+8, 0);
+//                        AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, sT->GetItemIcon(entry, 30, 30, -18, 0)+sT->GetItemLink(entry, session), EQUIPMENT_SLOT_END+8, 0);
 //                    }
 //                }
 //                if (canSave)
 //					AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, "|TInterface/GuildBankFrame/UI-GuildBankFrame-NewTab:30:30:-18:0|t 保存套装 ", 0, 0, "请你设置要保存的套装的名字 ", cost*sT->GetSetCostModifier() + sT->GetSetCopperCost(), true);
-//                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/PaperDollInfoFrame/UI-GearManager-Undo:30:30:-18:0|t 刷新菜单 ", sender, action);
-//                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+4, 0);
+//                AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/PaperDollInfoFrame/UI-GearManager-Undo:30:30:-18:0|t 刷新菜单 ", sender, action);
+//                AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+4, 0);
 //                SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //            } break;
 //        case EQUIPMENT_SLOT_END+10: // Set info
 //            {
-//                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+4, 0);
+//                AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+4, 0);
 //                SendGossipMenuFor(player,sT->GetSetNpcText(), creature->GetGUID());
 //            } break;
 //#endif
 //        case EQUIPMENT_SLOT_END+9: // Transmog info
 //            {
-//                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+1, 0);
+//                AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+1, 0);
 //                SendGossipMenuFor(player,sT->GetTransmogNpcText(), creature->GetGUID());
 //            } break;
 //        default: // Transmogrify
@@ -357,8 +357,8 @@
 //        }
 //
 //		AddGossipItemFor(player,(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/INV_Enchant_Disenchant:30:30:-18:0|t 移除幻化效果 ", EQUIPMENT_SLOT_END + 3, slot, "你确定要移除这个部位的幻化效果么？ ", 0, false);
-//        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/PaperDollInfoFrame/UI-GearManager-Undo:30:30:-18:0|t 刷新菜单 ", EQUIPMENT_SLOT_END, slot);
-//        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+1, 0);
+//        AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/PaperDollInfoFrame/UI-GearManager-Undo:30:30:-18:0|t 刷新菜单 ", EQUIPMENT_SLOT_END, slot);
+//        AddGossipItemFor(player,GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/Ability_Spy:30:30:-18:0|t 返回 ", EQUIPMENT_SLOT_END+1, 0);
 //        SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //    }
 //};
@@ -370,7 +370,7 @@
 //
 //    void OnLogin(Player* player)
 //    {
-//        uint64 playerGUID = player->GetGUID();
+//        uint64 playerGUID = player->GetGUID().GetCounter();
 //        sT->entryMap.erase(playerGUID);
 //        QueryResult result = CharacterDatabase.Query("SELECT GUID, FakeEntry FROM custom_transmogrification WHERE Owner = %u", player->GetGUID().GetCounter());
 //        if (result)
@@ -406,7 +406,7 @@
 //
 //    void OnLogout(Player* player)
 //    {
-//        uint32 pGUID = player->GetGUID();
+//        uint32 pGUID = player->GetGUID().GetCounter();
 //        for (Transmogrification::transmogData::const_iterator it = sT->entryMap[pGUID].begin(); it != sT->entryMap[pGUID].end(); ++it)
 //            sT->dataMap.erase(it->first);
 //        sT->entryMap.erase(pGUID);
