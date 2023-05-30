@@ -26,33 +26,33 @@
 //			Field* fields = result->Fetch();
 //			CharStatTemplate CharStatTemp;
 //			CharStatTemp.classIndex		= fields[0].GetUInt8();
-//			CharStatTemp.meleePVPDmgMod	= fields[1].GetFloat();
-//			CharStatTemp.spellPVPDmgMod	= fields[2].GetFloat();
-//			CharStatTemp.healPVPMod		= fields[3].GetFloat();
-//			CharStatTemp.armorLimit		= fields[4].GetFloat();
-//			CharStatTemp.dodgeLimit		= fields[5].GetFloat();
-//			CharStatTemp.parryLimit		= fields[6].GetFloat();
-//			CharStatTemp.blockLimit		= fields[7].GetFloat();
-//			CharStatTemp.critLimit		= fields[8].GetFloat();
-//			CharStatTemp.spirit2SP		= fields[9].GetFloat();
-//			CharStatTemp.spirit2Heal	= fields[10].GetFloat();
-//			CharStatTemp.intellect2SP	= fields[11].GetFloat();
-//			CharStatTemp.intellect2Heal = fields[12].GetFloat();
-//			CharStatTemp.strength2AP	= fields[13].GetFloat();
-//			CharStatTemp.agility2AP		= fields[14].GetFloat();
+//			CharStatTemp.meleePVPDmgMod	= fields[1].Get<float>();
+//			CharStatTemp.spellPVPDmgMod	= fields[2].Get<float>();
+//			CharStatTemp.healPVPMod		= fields[3].Get<float>();
+//			CharStatTemp.armorLimit		= fields[4].Get<float>();
+//			CharStatTemp.dodgeLimit		= fields[5].Get<float>();
+//			CharStatTemp.parryLimit		= fields[6].Get<float>();
+//			CharStatTemp.blockLimit		= fields[7].Get<float>();
+//			CharStatTemp.critLimit		= fields[8].Get<float>();
+//			CharStatTemp.spirit2SP		= fields[9].Get<float>();
+//			CharStatTemp.spirit2Heal	= fields[10].Get<float>();
+//			CharStatTemp.intellect2SP	= fields[11].Get<float>();
+//			CharStatTemp.intellect2Heal = fields[12].Get<float>();
+//			CharStatTemp.strength2AP	= fields[13].Get<float>();
+//			CharStatTemp.agility2AP		= fields[14].Get<float>();
 //
-//			CharStatTemp.spirit2AP		= fields[15].GetFloat();
-//			CharStatTemp.intellect2AP	= fields[16].GetFloat();
-//			CharStatTemp.strength2SP	= fields[17].GetFloat();
-//			CharStatTemp.agility2SP		= fields[18].GetFloat();
-//			CharStatTemp.strength2Heal	= fields[19].GetFloat();
-//			CharStatTemp.agility2Heal	= fields[20].GetFloat();
+//			CharStatTemp.spirit2AP		= fields[15].Get<float>();
+//			CharStatTemp.intellect2AP	= fields[16].Get<float>();
+//			CharStatTemp.strength2SP	= fields[17].Get<float>();
+//			CharStatTemp.agility2SP		= fields[18].Get<float>();
+//			CharStatTemp.strength2Heal	= fields[19].Get<float>();
+//			CharStatTemp.agility2Heal	= fields[20].Get<float>();
 //
-//			CharStatTemp.reduceDmgMod	= fields[21].GetFloat();
+//			CharStatTemp.reduceDmgMod	= fields[21].Get<float>();
 //
-//			CharStatTemp.meleePVEDmgMod = fields[22].GetFloat();
-//			CharStatTemp.spellPVEDmgMod = fields[23].GetFloat();
-//			CharStatTemp.healPVEMod		= fields[24].GetFloat();
+//			CharStatTemp.meleePVEDmgMod = fields[22].Get<float>();
+//			CharStatTemp.spellPVEDmgMod = fields[23].Get<float>();
+//			CharStatTemp.healPVEMod		= fields[24].Get<float>();
 //
 //			CharStatTemp.hasteLimit		= fields[25].Get<uint32>();
 //			CharStatTemp.hpLimit		= fields[26].Get<uint32>();

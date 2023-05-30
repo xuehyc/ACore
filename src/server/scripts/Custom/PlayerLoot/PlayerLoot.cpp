@@ -19,7 +19,7 @@
 //		uint32 entry		= fields[0].Get<uint32>();
 //		PlayerLootTemplate Temp;
 //		Temp.lootCount		= fields[1].Get<uint32>();
-//		Temp.chance			= fields[2].GetFloat();
+//		Temp.chance			= fields[2].Get<float>();
 //		Temp.banBank		= fields[3].GetBool();
 //		Temp.banBag			= fields[4].GetBool();
 //		PlayerLootMap.insert(std::make_pair(entry, Temp));

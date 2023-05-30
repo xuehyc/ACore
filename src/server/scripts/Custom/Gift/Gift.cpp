@@ -22,7 +22,7 @@
 //		GiftTemplate Temp;
 //		Temp.time	= fields[0].Get<uint32>();
 //		Temp.rewId	= fields[1].Get<uint32>();
-//		Temp.notice = fields[2].GetString();
+//		Temp.notice = fields[2].Get<std::string>();
 //		GiftVec.push_back(Temp);
 //	} while (result->NextRow());
 //}

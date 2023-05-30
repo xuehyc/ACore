@@ -23,7 +23,7 @@
 //            uint32 entry = fields[0].Get<uint32>();
 //            RecoveryTemplate Temp;
 //            Temp.categoryId = fields[1].Get<uint32>();
-//            Temp.rewToken = fields[2].GetFloat();
+//            Temp.rewToken = fields[2].Get<float>();
 //            Temp.rewitem = fields[3].Get<uint32>();
 //            Temp.rewcunt = fields[4].Get<uint32>();
 //            Temp.rewid = fields[5].Get<uint32>();
@@ -40,7 +40,7 @@
 //		{
 //			Field* fields = result->Fetch();
 //			uint32 categoryId			= fields[0].Get<uint32>();
-//			std::string categoryName	= fields[1].GetString();
+//			std::string categoryName	= fields[1].Get<std::string>();
 //			RecoveryCategoryMap.insert(std::make_pair(categoryId, categoryName));
 //		} while (result->NextRow());
 //	}

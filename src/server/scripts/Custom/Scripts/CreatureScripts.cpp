@@ -79,7 +79,7 @@
 //				Temp.actionType = ACTION_TYPE_NONE;
 //
 //			//Temp.actionType		= CreatureActionTypes(fields[5].Get<uint32>());
-//			Temp.actionParam1 = fields[6].GetString();
+//			Temp.actionParam1 = fields[6].Get<std::string>();
 //			Temp.actionParam2 = fields[7].Get<int32>();
 //			Temp.actionFlags = 0;//fields[8].Get<uint32>();
 //

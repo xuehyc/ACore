@@ -23,7 +23,7 @@
 //			ReincarnationTemplate Temp;
 //			Temp.reqId = fields[1].Get<uint32>();
 //			Temp.rewId = fields[2].Get<uint32>();
-//			Temp.gossipText = fields[3].GetString();
+//			Temp.gossipText = fields[3].Get<std::string>();
 //			ReincarnationMap.insert(std::make_pair(level, Temp));
 //		} while (result->NextRow());
 //	}

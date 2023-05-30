@@ -45,10 +45,10 @@
 //			Field* fields = result->Fetch();
 //			FakerLocationTemplate Temp;
 //			Temp.Map		= fields[0].Get<uint32>();
-//			Temp.X			= fields[1].GetFloat();
-//			Temp.Y			= fields[2].GetFloat();
-//			Temp.Z			= fields[3].GetFloat();
-//			Temp.O			= fields[4].GetFloat();
+//			Temp.X			= fields[1].Get<float>();
+//			Temp.Y			= fields[2].Get<float>();
+//			Temp.Z			= fields[3].Get<float>();
+//			Temp.O			= fields[4].Get<float>();
 //			FakerLocation.push_back(Temp);
 //		} while (result->NextRow());
 //	}

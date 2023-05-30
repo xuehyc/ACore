@@ -22,7 +22,7 @@
 //		Field* fields = result->Fetch();
 //		SwitchTemplate Temp;
 //		Temp.Type	= SwithTypes(fields[0].Get<uint32>());
-//		Temp.param = fields[1].GetString();
+//		Temp.param = fields[1].Get<std::string>();
 //		SwitchVec.push_back(Temp);
 //	} while (result->NextRow());
 //

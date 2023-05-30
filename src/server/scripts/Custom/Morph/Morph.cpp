@@ -21,7 +21,7 @@
 //
 //		MorphTemplate Temp;
 //		Temp.displayId		= fields[1].Get<uint32>();
-//		Temp.description	= fields[2].GetString();
+//		Temp.description	= fields[2].Get<std::string>();
 //		Temp.scale			= fields[3].Get<uint32>();
 //		Temp.duration		= fields[4].Get<uint32>();
 //		Temp.skin			= fields[5].Get<uint32>();

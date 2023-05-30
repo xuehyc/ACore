@@ -52,7 +52,7 @@
 //		{
 //			Field* fields = result->Fetch();
 //			uint32 questId = fields[0].Get<uint32>();
-//			float chance = fields[1].GetFloat();
+//			float chance = fields[1].Get<float>();
 //			Quest const* quest = sObjectMgr->GetQuestTemplate(questId);
 //			if (!quest)
 //				continue;

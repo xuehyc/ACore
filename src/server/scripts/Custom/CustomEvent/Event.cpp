@@ -475,10 +475,10 @@
 //		Field* fields = result->Fetch();
 //		PosTemplate Temp;
 //		Temp.map = fields[0].Get<uint32>();
-//		Temp.x = fields[1].GetFloat();
-//		Temp.y = fields[2].GetFloat();
-//		Temp.z = fields[3].GetFloat();
-//		Temp.o = fields[4].GetFloat();
+//		Temp.x = fields[1].Get<float>();
+//		Temp.y = fields[2].Get<float>();
+//		Temp.z = fields[3].Get<float>();
+//		Temp.o = fields[4].Get<float>();
 //		uint32 ID = fields[5].Get<uint32>();
 //		PosMap.insert(std::make_pair(ID, Temp));
 //	} while (result->NextRow());
@@ -555,9 +555,9 @@
 //
 //		Field* fields = result->Fetch();
 //		_EventId = eventId;
-//		_EventName = fields[0].GetString();
-//		_NoticeText = fields[1].GetString();
-//		_GossipText = fields[2].GetString();
+//		_EventName = fields[0].Get<std::string>();
+//		_NoticeText = fields[1].Get<std::string>();
+//		_GossipText = fields[2].Get<std::string>();
 //		
 //		const char* type = fields[4].GetCString();
 //
@@ -650,7 +650,7 @@
 //			Field* fields = result->Fetch();
 //			EventFactionId faction		= fields[0].Get<uint32>();
 //			_FactionVec.push_back(faction);
-//			_FactionNameMap[faction]	= fields[1].GetString();
+//			_FactionNameMap[faction]	= fields[1].Get<std::string>();
 //			_StartPosMap[faction]		= fields[2].Get<uint32>();
 //			_StopPosMap[faction]		= fields[3].Get<uint32>();
 //		} while (result->NextRow());
@@ -700,7 +700,7 @@
 //			EventAltTemplate Temp;
 //			Temp.GUID		= fields[0].GetInt64();
 //			Temp.AltFlag	= fields[1].Get<uint32>();
-//			Temp.NoticeText = fields[2].GetString();
+//			Temp.NoticeText = fields[2].Get<std::string>();
 //			for (size_t i = 0; i < ALT_GUID_MAX; i++)
 //			{
 //				Temp.TargetEntry[i] = fields[3 + i * 2].GetInt64();
@@ -766,8 +766,8 @@
 //			Temp.StopPlayerKills		= fields[5].Get<uint32>();
 //			Temp.StopPlayerKilleds		= fields[6].Get<uint32>();
 //			Temp.StopTelePos			= fields[7].Get<uint32>();
-//			Temp.GraveyardSafeNotice	= fields[8].GetString();
-//			Temp.StopNotice				= fields[9].GetString();
+//			Temp.GraveyardSafeNotice	= fields[8].Get<std::string>();
+//			Temp.StopNotice				= fields[9].Get<std::string>();
 //			_PhaseFactionVec.push_back(Temp);
 //		} while (result->NextRow());
 //
@@ -792,7 +792,7 @@
 //				Temp.Step[i]	= fields[3 + i * 2].Get<int32>();
 //			}
 //			Temp.NoticeValue	= fields[8].Get<int32>();
-//			Temp.Notice			= fields[9].GetString();
+//			Temp.Notice			= fields[9].Get<std::string>();
 //			_WorldStateVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
@@ -812,7 +812,7 @@
 //			Temp.Kill			= fields[2].GetBool();
 //			Temp.Step			= fields[3].Get<int32>();
 //			Temp.NoticeValue	= fields[4].Get<int32>();
-//			Temp.Notice			= fields[5].GetString();
+//			Temp.Notice			= fields[5].Get<std::string>();
 //			_WorldStateFactionVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
@@ -840,7 +840,7 @@
 //			for (size_t i = 0; i < MAX_SPAWNNOTICE_COUNT; i++)
 //			{
 //				Temp.NoticeTime[i] = fields[5 + i * 2].Get<int32>();
-//				Temp.SpawnNotice[i] = fields[6 + i * 2].GetString();
+//				Temp.SpawnNotice[i] = fields[6 + i * 2].Get<std::string>();
 //			}
 //			
 //			_SpawnVec.push_back(Temp);

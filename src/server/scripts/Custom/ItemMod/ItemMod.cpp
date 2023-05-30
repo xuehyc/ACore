@@ -134,7 +134,7 @@
 //			Temp.entry		= fields[0].Get<uint32>();
 //			Temp.rewId		= fields[1].Get<uint32>();
 //			Temp.rewChance	= fields[2].Get<uint32>();
-//			Temp.command	= fields[3].GetString();
+//			Temp.command	= fields[3].Get<std::string>();
 //			ItemSaleVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
@@ -153,7 +153,7 @@
 //			Temp.reqId		= fields[1].Get<uint32>();
 //			Temp.rewId		= fields[2].Get<uint32>();
 //			Temp.rewChance	= fields[3].Get<uint32>();
-//			Temp.command	= fields[4].GetString();
+//			Temp.command	= fields[4].Get<std::string>();
 //			Temp.spellId1	= fields[5].Get<uint32>();
 //			Temp.spellId2	= fields[6].Get<uint32>();
 //			Temp.spellId3	= fields[7].Get<uint32>();
@@ -172,8 +172,8 @@
 //			Field* fields = result->Fetch();
 //			uint32 entry = fields[0].Get<uint32>();
 //			ItemDesTemplate temp;
-//			temp.description = fields[1].GetString();
-//			temp.heroText = fields[2].GetString();
+//			temp.description = fields[1].Get<std::string>();
+//			temp.heroText = fields[2].Get<std::string>();
 //			ItemDesMap.insert(std::make_pair(entry, temp));
 //		} while (result->NextRow());
 //	}
@@ -291,7 +291,7 @@
 //			ItemUpgradeTemp.prevEnchantId = fields[1].Get<uint32>();
 //			ItemUpgradeTemp.enchantReqId = fields[2].Get<uint32>();
 //			ItemUpgradeTemp.removeEnchantRewId = fields[3].Get<uint32>();
-//			ItemUpgradeTemp.description = fields[4].GetString();
+//			ItemUpgradeTemp.description = fields[4].Get<std::string>();
 //			ItemUpgradeTemp.chance = fields[5].Get<uint32>();
 //			ItemUpgradeTemp.itemMask = fields[6].Get<uint32>();
 //			ItemUpgradeTemp.enchantMask = fields[7].Get<uint32>();
@@ -342,7 +342,7 @@
 //			Temp.groupId = fields[1].Get<uint32>();
 //			Temp.reqId = fields[2].Get<uint32>();
 //			Temp.slot = fields[3].Get<uint32>();
-//			Temp.gossipText = fields[4].GetString();
+//			Temp.gossipText = fields[4].Get<std::string>();
 //			Temp.slotHasEnchant = fields[5].GetBool();
 //			IdentifyVec.push_back(Temp);
 //		} while (result->NextRow());
@@ -362,7 +362,7 @@
 //			Temp.entry = fields[0].Get<uint32>();
 //			Temp.groupId = fields[1].Get<uint32>();
 //			Temp.slot = fields[2].GetUInt8();
-//			Temp.chance = fields[3].GetFloat();
+//			Temp.chance = fields[3].Get<float>();
 //			CreateEnchantVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
@@ -382,7 +382,7 @@
 //			Temp.groupId = fields[0].Get<uint32>();
 //			uint32 EnchantId = fields[1].Get<uint32>();
 //			Temp.enchantId = EnchantId;
-//			Temp.chance = fields[2].GetFloat();
+//			Temp.chance = fields[2].Get<float>();
 //			EnchantGroupVec.push_back(Temp);
 //
 //			auto it = std::find(GCAddonEnchantGroupVec.begin(), GCAddonEnchantGroupVec.end(), EnchantId);

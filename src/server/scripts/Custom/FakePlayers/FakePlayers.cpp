@@ -31,8 +31,8 @@
 //	{
 //		Field* fields = result->Fetch();
 //		FakePlayersTemplate Temp;
-//		Temp.pname		= fields[0].GetString();
-//		Temp.gname		= fields[1].GetString();
+//		Temp.pname		= fields[0].Get<std::string>();
+//		Temp.gname		= fields[1].Get<std::string>();
 //		Temp.lvl		= fields[2].Get<uint32>();
 //		Temp.class_		= fields[3].Get<uint32>();
 //		Temp.race		= fields[4].Get<uint32>();

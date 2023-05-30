@@ -763,14 +763,14 @@
 //			for (size_t i = 0; i < 136; i++)
 //				v.push_back(fields[i].GetString());
 //			
-//			std::string SpellName			= fields[136].GetString();
-//			std::string SpellNameFlag		= fields[137].GetString();
-//			std::string Rank				= fields[138].GetString();
-//			std::string RankFlags			= fields[139].GetString();
-//			std::string Description			= fields[140].GetString();
-//			std::string DescriptionFlags	= fields[141].GetString();
-//			std::string ToolTip				= fields[142].GetString();
-//			std::string ToolTipFlags		= fields[143].GetString();
+//			std::string SpellName			= fields[136].Get<std::string>();
+//			std::string SpellNameFlag		= fields[137].Get<std::string>();
+//			std::string Rank				= fields[138].Get<std::string>();
+//			std::string RankFlags			= fields[139].Get<std::string>();
+//			std::string Description			= fields[140].Get<std::string>();
+//			std::string DescriptionFlags	= fields[141].Get<std::string>();
+//			std::string ToolTip				= fields[142].Get<std::string>();
+//			std::string ToolTipFlags		= fields[143].Get<std::string>();
 //
 //			//SpellName
 //			for (size_t i = 0; i < 16; i++)

@@ -126,7 +126,7 @@
 //		if (!result) 
 //			return;
 //
-//		player->token_key = result->Fetch()[0].GetString();
+//		player->token_key = result->Fetch()[0].Get<std::string>();
 //	}
 //};
 //

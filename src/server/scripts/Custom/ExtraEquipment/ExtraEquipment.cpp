@@ -22,8 +22,8 @@
 //	{
 //		Field* fields = result->Fetch();
 //
-//		extra_stat_muil = fields[0].GetFloat();
-//		extra_enchant_stat_muil = fields[1].GetFloat();
+//		extra_stat_muil = fields[0].Get<float>();
+//		extra_enchant_stat_muil = fields[1].Get<float>();
 //		extra_origin_item_back	= fields[2].GetBool();
 //	}
 //

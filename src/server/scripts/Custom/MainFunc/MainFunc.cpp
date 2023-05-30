@@ -61,15 +61,15 @@
 //		Temp.Entry		= fields[0].Get<uint32>();
 //		Temp.CurMenu	= fields[1].Get<uint32>();
 //		Temp.PreMenu	= fields[2].Get<uint32>();
-//		Temp.Command	= fields[3].GetString();
+//		Temp.Command	= fields[3].Get<std::string>();
 //		Temp.ReqId		= fields[4].Get<uint32>();
 //		Temp.RewId		= fields[5].Get<uint32>();
 //		Temp.SmallIcon	= fields[6].GetUInt8();
-//		Temp.BigIcon	= fields[7].GetString();
-//		Temp.Text		= fields[8].GetString();
+//		Temp.BigIcon	= fields[7].Get<std::string>();
+//		Temp.Text		= fields[8].Get<std::string>();
 //		Temp.Pos_A		= fields[9].Get<uint32>();
 //		Temp.Pos_H		= fields[10].Get<uint32>();
-//		Temp.PopText	= fields[14].GetString();
+//		Temp.PopText	= fields[14].Get<std::string>();
 //
 //		const char*  str = fields[11].GetCString();
 //

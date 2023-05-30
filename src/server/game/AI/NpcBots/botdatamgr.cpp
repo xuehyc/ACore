@@ -777,8 +777,8 @@ void BotDataMgr::LoadNpcBots(bool spawn)
                 uint32 mapId = uint32(field[1].Get<uint16>());
                 float pos_x = field[2].Get<float>();
                 float pos_y = field[3].Get<float>();
-                //float pos_z = field[4].GetFloat();
-                //float ori = field[5].GetFloat();
+                //float pos_z = field[4].Get<float>();
+                //float ori = field[5].Get<float>();
 
                 CellCoord c = Acore::ComputeCellCoord(pos_x, pos_y);
                 GridCoord g = Acore::ComputeGridCoord(pos_x, pos_y);

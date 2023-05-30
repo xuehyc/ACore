@@ -38,8 +38,8 @@
 //			uint32 spellId = fields[0].Get<uint32>();
 //			SpellModTemplate Temp;
 //			Temp.reqId = fields[1].Get<uint32>();
-//			Temp.dmgMod = fields[2].GetFloat();
-//			Temp.healMod = fields[3].GetFloat();
+//			Temp.dmgMod = fields[2].Get<float>();
+//			Temp.healMod = fields[3].Get<float>();
 //			Temp.accountBind = fields[4].GetBool();
 //
 //			Temp.disable		= fields[5].GetBool();
@@ -63,7 +63,7 @@
 //			Field* fields = result->Fetch();
 //			AccountSpellTemplate Temp;
 //			Temp.accountId = fields[0].Get<uint32>();
-//			Temp.spellId = fields[1].GetFloat();
+//			Temp.spellId = fields[1].Get<float>();
 //			AccountSpellVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
@@ -132,7 +132,7 @@
 //			default:Temp.procFlags = 0;					break;
 //			}
 //
-//			Temp.procChance = fields[30].GetFloat();
+//			Temp.procChance = fields[30].Get<float>();
 //			Temp.procCharges = fields[31].Get<int32>();
 //			Temp.SpellFamilyName = fields[32].Get<uint32>();
 //
@@ -186,12 +186,12 @@
 //			Field* fields = result->Fetch();
 //			uint32 auraId = fields[0].Get<uint32>();
 //			AuraTriggerSpellTemplate Temp;
-//			Temp.bp0ApPct = fields[1].GetFloat();
-//			Temp.bp1ApPct = fields[2].GetFloat();
-//			Temp.bp2ApPct = fields[3].GetFloat();
-//			Temp.bp0SpPct = fields[4].GetFloat();
-//			Temp.bp1SpPct = fields[5].GetFloat();
-//			Temp.bp2SpPct = fields[6].GetFloat();
+//			Temp.bp0ApPct = fields[1].Get<float>();
+//			Temp.bp1ApPct = fields[2].Get<float>();
+//			Temp.bp2ApPct = fields[3].Get<float>();
+//			Temp.bp0SpPct = fields[4].Get<float>();
+//			Temp.bp1SpPct = fields[5].Get<float>();
+//			Temp.bp2SpPct = fields[6].Get<float>();
 //			Tokenizer tokens(fields[7].GetString(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens.begin(); itr != tokens.end(); ++itr)
 //				Temp.linkSpellData.push_back(uint32(atol(*itr)));
@@ -203,7 +203,7 @@
 //			Temp.cooldown = fields[10].Get<uint32>();
 //			Temp.ignoreMask = fields[11].Get<uint32>();
 //			Temp.Targets = fields[12].Get<uint32>();
-//			Temp.TargetRange = fields[13].GetFloat();
+//			Temp.TargetRange = fields[13].Get<float>();
 //			Temp.procFlags = fields[14].Get<uint32>();
 //			AuraTriggerSpellMap.insert(std::make_pair(auraId, Temp));
 //		} while (result->NextRow());
@@ -219,7 +219,7 @@
 //			Field* fields = result->Fetch();
 //			SpellLeechTemplate Temp;
 //			Temp.spellid = fields[0].Get<uint32>();
-//			Temp.chance = fields[1].GetFloat();
+//			Temp.chance = fields[1].Get<float>();
 //
 //			const char* str = fields[2].GetCString();
 //
@@ -238,7 +238,7 @@
 //			else
 //				Temp.type = LEECH_TYPE_NONE;
 //
-//			Temp.basepoints = fields[3].GetFloat();
+//			Temp.basepoints = fields[3].Get<float>();
 //			Temp.addDmg = fields[4].GetBool();
 //			Temp.meetAura = fields[5].Get<uint32>();
 //			SpellLeechVec.push_back(Temp);
@@ -255,7 +255,7 @@
 //			Field* fields = result->Fetch();
 //			uint32 aura = fields[0].Get<uint32>();
 //			AuraLeechTemplate Temp;
-//			Temp.chance = fields[1].GetFloat();
+//			Temp.chance = fields[1].Get<float>();
 //
 //			const char* str = fields[2].GetCString();
 //
@@ -274,7 +274,7 @@
 //			else
 //				Temp.type = LEECH_TYPE_NONE;
 //
-//			Temp.basepoints = fields[3].GetFloat();
+//			Temp.basepoints = fields[3].Get<float>();
 //			Temp.addDmg = fields[4].GetBool();
 //			AuraLeechMap.insert(std::make_pair(aura, Temp));
 //		} while (result->NextRow());
@@ -441,9 +441,9 @@
 //			AuraTriggerOnDeathTemplate Temp;
 //			Temp.CoolDown = fields[1].Get<uint32>();
 //			Temp.AttackerTriggerSpell = fields[2].Get<uint32>();
-//			Temp.AttackerTriggerChance = fields[3].GetFloat();
+//			Temp.AttackerTriggerChance = fields[3].Get<float>();
 //			Temp.SelfTriggerSpell = fields[4].Get<uint32>();
-//			Temp.SelfTriggerChance = fields[5].GetFloat();
+//			Temp.SelfTriggerChance = fields[5].Get<float>();
 //			Temp.PreventLastDamage = fields[6].GetBool();
 //			AuraTriggerOnDeathMap.insert(std::make_pair(AuraId, Temp));
 //		} while (result->NextRow());
@@ -468,7 +468,7 @@
 ////	AuraModSpellTemplate Temp;
 ////	Temp.AuraId = fields[0].Get<uint32>();
 ////	Temp.SpellFamilyName = SpellFamilyNames(fields[1].Get<uint32>());
-////	std::string str = fields[2].GetString();
+////	std::string str = fields[2].Get<std::string>();
 ////	if (!str.empty())
 ////	{
 ////	Tokenizer tokens(str, ',');

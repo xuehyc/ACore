@@ -30,10 +30,10 @@
 //			uint32 faction = fields[0].Get<uint32>();
 //
 //			FactionTemplate Temp;
-//			Temp.name = fields[1].GetString();
-//			Temp.gossipText = fields[2].GetString();
+//			Temp.name = fields[1].Get<std::string>();
+//			Temp.gossipText = fields[2].Get<std::string>();
 //			Temp.rewId = fields[3].Get<uint32>();
-//			Temp.suffix = fields[4].GetString();
+//			Temp.suffix = fields[4].Get<std::string>();
 //			Temp.quitReqId = fields[5].Get<uint32>();
 //			FactionDataMap.insert(std::make_pair(faction, Temp));
 //

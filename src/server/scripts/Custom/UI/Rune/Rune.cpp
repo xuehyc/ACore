@@ -34,9 +34,9 @@
 //			Field* fields = result->Fetch();
 //			uint32 page = fields[0].Get<uint32>();
 //			RuneCategoryTemplate Temp;
-//			Temp.title	= fields[1].GetString();
-//			Temp.tip	= fields[2].GetString();
-//			Temp.icon	= fields[3].GetString();
+//			Temp.title	= fields[1].Get<std::string>();
+//			Temp.tip	= fields[2].Get<std::string>();
+//			Temp.icon	= fields[3].Get<std::string>();
 //			RuneCategoryMap.insert(std::make_pair(page, Temp));
 //		} while (result->NextRow());
 //	}

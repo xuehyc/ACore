@@ -720,13 +720,13 @@
 //	//
 //	//	CircleTemplate Temp;
 //	//	Temp.respawnTime		= fields[1].Get<uint32>();
-//	//	Temp.range				= fields[2].GetFloat();
+//	//	Temp.range				= fields[2].Get<float>();
 //	//	Temp.creatureId			= fields[3].Get<uint32>();
 //	//	Temp.creatureCount		= fields[4].Get<uint32>();
-//	//	Temp.creatureRadius		= fields[5].GetFloat();
+//	//	Temp.creatureRadius		= fields[5].Get<float>();
 //	//	Temp.gameobjectId		= fields[6].Get<uint32>();
 //	//	Temp.gameobjectCount	= fields[7].Get<uint32>();
-//	//	Temp.gameobjectRadius	= fields[8].GetFloat();
+//	//	Temp.gameobjectRadius	= fields[8].Get<float>();
 //	//	Temp.spellId1			= fields[9].Get<uint32>();
 //	//	Temp.spellInterval1		= fields[10].Get<uint32>();
 //	//	Temp.spellFriendly1		= fields[11].GetBool();
@@ -739,10 +739,10 @@
 //	//	Temp.spellDelay1		= fields[18].Get<uint32>();
 //	//	Temp.spellDelay2		= fields[19].Get<uint32>();
 //	//	Temp.spellDelay3		= fields[20].Get<uint32>();
-//	//	Temp.creatureOffsetZ	= fields[21].GetFloat();
-//	//	Temp.gameobjectOffsetZ	= fields[22].GetFloat();
-//	//	Temp.creatureScale		= fields[23].GetFloat();
-//	//	Temp.gameobjectScale	= fields[24].GetFloat();
+//	//	Temp.creatureOffsetZ	= fields[21].Get<float>();
+//	//	Temp.gameobjectOffsetZ	= fields[22].Get<float>();
+//	//	Temp.creatureScale		= fields[23].Get<float>();
+//	//	Temp.gameobjectScale	= fields[24].Get<float>();
 //	//	CircleDataMap.insert(std::make_pair(entry, Temp));
 //	//} while (result->NextRow());
 //}

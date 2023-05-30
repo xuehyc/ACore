@@ -22,7 +22,7 @@
 //			Temp.spell1			= fields[2].Get<uint32>();
 //			Temp.spell2			= fields[3].Get<uint32>();
 //			Temp.spell3			= fields[4].Get<uint32>();
-//			Temp.description	= fields[5].GetString();
+//			Temp.description	= fields[5].Get<std::string>();
 //			ItemSetVec.push_back(Temp);
 //		} while (result1->NextRow());
 //	}

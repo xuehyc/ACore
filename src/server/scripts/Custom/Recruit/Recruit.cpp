@@ -178,8 +178,8 @@
 //
 //			RucruitLootShareTemplate Temp;
 //			Temp.shareCountLimit	= fields[1].Get<uint32>();
-//			Temp.shareChance		= fields[2].GetFloat();
-//			Temp.rewChanceOnShare	= fields[3].GetFloat();
+//			Temp.shareChance		= fields[2].Get<float>();
+//			Temp.rewChanceOnShare	= fields[3].Get<float>();
 //			Temp.rewCountLimit		= fields[4].Get<uint32>();
 //			RecruitLootMap.insert(std::make_pair(entry, Temp));
 //		} while (result->NextRow());

@@ -44,8 +44,8 @@
 //			else
 //				Temp.type = PVP_TYPE_NONE;
 //
-//			Temp.notice			= fields[2].GetString();
-//			Temp.prefix			= fields[3].GetString();
+//			Temp.notice			= fields[2].Get<std::string>();
+//			Temp.prefix			= fields[3].Get<std::string>();
 //			Temp.minHp			= fields[4].Get<int32>();
 //			Temp.zone			= fields[5].Get<int32>();
 //			Temp.maxHp			= fields[6].Get<int32>();

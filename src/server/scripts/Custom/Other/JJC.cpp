@@ -226,7 +226,7 @@
 //                    {
 //                        Field *fields = result->Fetch();
 //                        teamId = fields[0].Get<uint32>();
-//                        name = fields[1].GetString();
+//                        name = fields[1].Get<std::string>();
 //                        rating = fields[2].Get<uint32>();
 //                            
 //                        std::stringstream buffer;
@@ -258,7 +258,7 @@
 //                    }
 //                        
 //                    Field *fields = result->Fetch();
-//                    std::string name = fields[0].GetString();
+//                    std::string name = fields[0].Get<std::string>();
 //                    uint32 rating = fields[1].Get<uint32>();
 //                    uint32 seasonWins = fields[2].Get<uint32>();
 //                    uint32 seasonLosses = fields[3].Get<uint32>();
@@ -312,7 +312,7 @@
 //                            weekLosses = fields[3].Get<uint32>();
 //                            seasonWins = fields[4].Get<uint32>();
 //                            seasonLosses = fields[5].Get<uint32>();
-//                            name = fields[6].GetString();
+//                            name = fields[6].Get<std::string>();
 //                            race = raceToString(fields[7].GetUInt8());
 //                            Class = classToString(fields[8].GetUInt8());
 //                            level = fields[9].Get<uint32>();

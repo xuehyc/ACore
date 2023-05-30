@@ -22,7 +22,7 @@
 //		uint32 itemId = fields[0].Get<uint32>();
 //
 //		LuckDrawTemplate Temp;
-//		Temp.chance = fields[1].GetFloat();
+//		Temp.chance = fields[1].Get<float>();
 //		Temp.count = fields[2].Get<int32>();
 //		LuckDrawMap.insert(std::make_pair(itemId, Temp));
 //	} while (result->NextRow());

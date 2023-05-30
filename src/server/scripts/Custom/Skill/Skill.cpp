@@ -22,8 +22,8 @@
 //	//	Field* fields = result1->Fetch();
 //	//	CustomSkillCategoryTemplate Temp;
 //	//	Temp.categoryId		= fields[0].Get<uint32>();
-//	//	Temp.categoryName	= fields[1].GetString();
-//	//	Temp.icategoryIcon	= fields[2].GetString();
+//	//	Temp.categoryName	= fields[1].Get<std::string>();
+//	//	Temp.icategoryIcon	= fields[2].Get<std::string>();
 //	//	CustomSkillCategoryVec.push_back(Temp);
 //	//} while (result1->NextRow());
 //
@@ -36,11 +36,11 @@
 //	//	Field* fields = result->Fetch();
 //	//	CustomSkillTemplate Temp;
 //	//	Temp.skillId	= fields[0].Get<uint32>();
-//	//	Temp.skillName	= fields[1].GetString();
+//	//	Temp.skillName	= fields[1].Get<std::string>();
 //	//	Temp.categoryId = fields[2].Get<uint32>();
 //	//	Temp.reqId		= fields[3].Get<uint32>();
 //	//	Temp.rewId		= fields[4].Get<uint32>();
-//	//	Temp.skillIcon	= fields[5].GetString();
+//	//	Temp.skillIcon	= fields[5].Get<std::string>();
 //	//	CustomSkillVec.push_back(Temp);
 //	//} while (result->NextRow());
 //	//

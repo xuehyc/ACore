@@ -19,10 +19,10 @@
 //			Field* fields = result->Fetch();
 //			uint8 classIndex = fields[0].GetUInt8();
 //			PetModTemplate Temp;
-//			Temp.DmgAddPct	= fields[1].GetFloat();
-//			Temp.SpAddPct	= fields[2].GetFloat();
-//			Temp.HpAddPct	= fields[3].GetFloat();
-//			Temp.ArmorLimit = fields[4].GetFloat();
+//			Temp.DmgAddPct	= fields[1].Get<float>();
+//			Temp.SpAddPct	= fields[2].Get<float>();
+//			Temp.HpAddPct	= fields[3].Get<float>();
+//			Temp.ArmorLimit = fields[4].Get<float>();
 //			PetModMap.insert(std::make_pair(classIndex, Temp));
 //
 //		} while (result->NextRow());

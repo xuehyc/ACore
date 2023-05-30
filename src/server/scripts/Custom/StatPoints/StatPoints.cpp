@@ -28,7 +28,7 @@
 //	if (!result)
 //		return;
 //
-//	std::string str = result->Fetch()[0].GetString();
+//	std::string str = result->Fetch()[0].Get<std::string>();
 //
 //	if (str.empty())
 //		return;
@@ -61,7 +61,7 @@
 //
 //	Field* fields = result->Fetch();
 //
-//	std::string str = fields[0].GetString();
+//	std::string str = fields[0].Get<std::string>();
 //
 //	if (str.empty())
 //		return;

@@ -37,8 +37,8 @@
 //	//		action = STORY_ACTION_END;
 //	//
 //	//	
-//	//	std::string param1 = fields[3].GetString();
-//	//	std::string param2 = fields[4].GetString();
+//	//	std::string param1 = fields[3].Get<std::string>();
+//	//	std::string param2 = fields[4].Get<std::string>();
 //	//
 //	//	//if (StoryMap.empty())
 //	//	//{

@@ -37,24 +37,24 @@
 //		Temp.Entry			= fields[0].Get<uint32>();
 //		Temp.Level			= fields[1].GetUInt8();
 //		Temp.Health			= fields[2].Get<uint32>();
-//		Temp.MeleeDmg		= fields[3].GetFloat();
-//		Temp.SpellDmgMod	= fields[4].GetFloat();
-//		Temp.HealMod		= fields[5].GetFloat();
-//		Temp.ReduceDmgPct	= fields[6].GetFloat();
+//		Temp.MeleeDmg		= fields[3].Get<float>();
+//		Temp.SpellDmgMod	= fields[4].Get<float>();
+//		Temp.HealMod		= fields[5].Get<float>();
+//		Temp.ReduceDmgPct	= fields[6].Get<float>();
 //		Temp.Resistance		= fields[7].Get<int32>();
 //		Temp.KillRewId		= fields[8].Get<uint32>();
-//		Temp.KillRewChance	= fields[9].GetFloat();
+//		Temp.KillRewChance	= fields[9].Get<float>();
 //		Temp.KillAnnounce	= fields[10].GetBool();
 //		Temp.Armor			= fields[11].Get<int32>();
 //		Temp.AttackTime		= fields[12].Get<uint32>();
-//		Temp.ResetDistance	= fields[13].GetFloat();
+//		Temp.ResetDistance	= fields[13].Get<float>();
 //		Temp.AddTalismanValue = fields[14].Get<int32>();
 //
 //		for (size_t i = 0; i < MAX_CUSTOM_LOOT_COUNT; i++)
 //			Temp.LootId[i] = fields[15 + i].Get<uint32>();
 //
 //		Temp.KillGroupRewId		= fields[20].Get<uint32>();
-//		Temp.KillGroupRewChance = fields[21].GetFloat();
+//		Temp.KillGroupRewChance = fields[21].Get<float>();
 //		Temp.AddRankValue		= fields[22].Get<int32>();
 //		Temp.KillRewGameObject	= fields[23].Get<int32>();
 //		Temp.ChallengeLv		= fields[24].Get<uint32>();

@@ -75,8 +75,8 @@
 //		GossipTemp.prevMenuId = fields[3].Get<uint32>();
 //		GossipTemp.funcIndex = fields[4].Get<int32>();
 //		GossipTemp.smallIconType = fields[5].GetUInt8();
-//		GossipTemp.bigIconName = fields[6].GetString();
-//		GossipTemp.menuText = fields[7].GetString();
+//		GossipTemp.bigIconName = fields[6].Get<std::string>();
+//		GossipTemp.menuText = fields[7].Get<std::string>();
 //		GossipTemp.teamId = TeamId(fields[8].Get<uint32>());
 //		GossipVec.push_back(GossipTemp);
 //	} while (result1->NextRow());

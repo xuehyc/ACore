@@ -27,10 +27,10 @@
 //
 //		RankTemplate Temp;
 //		Temp.meetValue			= fields[1].Get<uint32>();
-//		Temp.name				= fields[2].GetString();
-//		Temp.gossipText			= fields[3].GetString();
+//		Temp.name				= fields[2].Get<std::string>();
+//		Temp.gossipText			= fields[3].Get<std::string>();
 //		Temp.rewId				= fields[4].Get<uint32>();
-//		Temp.prefix				= fields[5].GetString();
+//		Temp.prefix				= fields[5].Get<std::string>();
 //		RankDataMap.insert(std::make_pair(level, Temp));
 //	} while (result->NextRow());
 //

@@ -139,17 +139,17 @@
 //
 //			tmpspell.id = fields[0].Get<uint32>();
 //			tmpspell.mapid = fields[1].Get<uint32>();
-//			tmpspell.m_x = fields[2].GetFloat();
-//			tmpspell.m_y = fields[3].GetFloat();
-//			tmpspell.m_z = fields[4].GetFloat();
-//			tmpspell.m_o = fields[5].GetFloat();
-//			tmpspell.min_x = fields[6].GetFloat();
-//			tmpspell.max_x = fields[7].GetFloat();
-//			tmpspell.min_y = fields[8].GetFloat();
-//			tmpspell.max_y = fields[9].GetFloat();
-//			tmpspell.min_z = fields[10].GetFloat();
-//			tmpspell.max_z = fields[11].GetFloat();
-//			tmpspell.areaids = fields[12].GetString();
+//			tmpspell.m_x = fields[2].Get<float>();
+//			tmpspell.m_y = fields[3].Get<float>();
+//			tmpspell.m_z = fields[4].Get<float>();
+//			tmpspell.m_o = fields[5].Get<float>();
+//			tmpspell.min_x = fields[6].Get<float>();
+//			tmpspell.max_x = fields[7].Get<float>();
+//			tmpspell.min_y = fields[8].Get<float>();
+//			tmpspell.max_y = fields[9].Get<float>();
+//			tmpspell.min_z = fields[10].Get<float>();
+//			tmpspell.max_z = fields[11].Get<float>();
+//			tmpspell.areaids = fields[12].Get<std::string>();
 //			tmpspell.itemid = fields[13].Get<uint32>();
 //
 //			Vgvgconf.insert(gvgconf_t::value_type(tmpspell.id, tmpspell));

@@ -22,7 +22,7 @@
 //		Temp.entry			= fields[0].Get<uint32>();
 //		Temp.flag			= fields[1].GetUInt8();
 //		Temp.announceType	= fields[2].GetUInt8();
-//		Temp.text			= fields[3].GetString();		
+//		Temp.text			= fields[3].Get<std::string>();		
 //		ServerAnnounceVec.push_back(Temp);
 //	} while (result->NextRow());
 //}

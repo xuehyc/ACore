@@ -172,7 +172,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			PlayerDropRateMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].GetFloat()));
+//			PlayerDropRateMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<float>()));
 //		} while (result->NextRow());
 //	}
 //
@@ -184,7 +184,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			AreaVisibilityDistMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].GetFloat()));
+//			AreaVisibilityDistMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<float>()));
 //		} while (result->NextRow());
 //	}
 //

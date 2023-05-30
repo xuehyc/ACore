@@ -274,7 +274,7 @@
 //
 //	QueryResult result1 = LoginDatabase.Query("SELECT pcIDCode FROM account where id = '%d'", account);
 //
-//	std::string pcIDCode = result1->Fetch()[0].GetString();
+//	std::string pcIDCode = result1->Fetch()[0].Get<std::string>();
 //
 //	//LoginDatabase.Execute("INSERT INTO pc_ban VALUES ('%u', '%s')", account, pcIDCode.c_str());
 //
@@ -298,7 +298,7 @@
 //
 //	QueryResult result1 = LoginDatabase.Query("SELECT pcIDCode FROM account where id = '%d'", account);
 //
-//	std::string pcIDCode = result1->Fetch()[0].GetString();
+//	std::string pcIDCode = result1->Fetch()[0].Get<std::string>();
 //
 //	//LoginDatabase.Execute("DELETE FROM pc_ban WHERE pcIDCode = '%s'", pcIDCode.c_str());
 //

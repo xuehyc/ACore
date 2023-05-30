@@ -22,12 +22,12 @@
 //		Field* fields = result->Fetch();
 //		QuickResponseTemplate Temp;
 //		Temp.rewId			= fields[0].Get<uint32>();
-//		Temp.question		= fields[1].GetString();
-//		Temp.correctAnswer	= fields[2].GetString();
-//		Temp.answerA		= fields[3].GetString();
-//		Temp.answerB		= fields[4].GetString();
-//		Temp.answerC		= fields[5].GetString();
-//		Temp.answerD		= fields[6].GetString();
+//		Temp.question		= fields[1].Get<std::string>();
+//		Temp.correctAnswer	= fields[2].Get<std::string>();
+//		Temp.answerA		= fields[3].Get<std::string>();
+//		Temp.answerB		= fields[4].Get<std::string>();
+//		Temp.answerC		= fields[5].Get<std::string>();
+//		Temp.answerD		= fields[6].Get<std::string>();
 //		QuickResponseVec.push_back(Temp);
 //	} while (result->NextRow());
 //

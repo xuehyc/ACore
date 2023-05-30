@@ -32,7 +32,7 @@
 //		else
 //			Temp.gobActionType = gob_ACTION_TYPE_NONE;
 //
-//		Temp.actionParam1 = fields[2].GetString();
+//		Temp.actionParam1 = fields[2].Get<std::string>();
 //		Temp.actionParam2 = fields[3].Get<int32>();
 //
 //		GobScriptVec.push_back(Temp);

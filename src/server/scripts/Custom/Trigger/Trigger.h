@@ -1,7 +1,7 @@
-struct TriggerTemplate
+ï»¿struct TriggerTemplate
 {
 	uint32 guid;
-	uint32 type;//1-´«ËÍ 2-ÏÂÂí 3-aura
+	uint32 type;//1-ä¼ é€ 2-ä¸‹é©¬ 3-aura
 	uint32 distance;
 	uint32 A_PosId;
 	uint32 H_PosId;

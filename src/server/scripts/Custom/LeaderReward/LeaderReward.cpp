@@ -20,7 +20,7 @@
 //		Temp.mapIdOrZoneId	= fields[0].Get<uint32>();
 //		Temp.isInstance		= fields[1].GetBool();
 //
-//		std::string bossInfo = fields[2].GetString();
+//		std::string bossInfo = fields[2].Get<std::string>();
 //		std::vector<std::string> strBossInfo = sCF->SplitStr(bossInfo, "|");
 //		for (size_t j = 0; j < strBossInfo.size(); j++)
 //			Temp.bossInfo.push_back(atoi(strBossInfo[j].c_str()));
