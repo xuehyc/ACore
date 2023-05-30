@@ -1,83 +1,83 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "Faker.h"
-//#include "../String/myString.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "../Switch/Switch.h"
-//#include "Battleground.h"
-//#include "BattlegroundMgr.h"
-//#include "WaypointManager.h"
-//#include "WorldSession.h"
-//
-//std::unordered_map<uint32, bool>FakerMap;
-//std::vector<FakerLocationTemplate> FakerLocation;
-//std::vector<WorldSession *> FakerSessions;
-//
-//void Faker::Load()
-//{
-//	FakerMap.clear();
-//	FakerLocation.clear();
-//
-//	QueryResult result;
-//
-//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//		"SELECT 账号ID FROM _假人_在线假人" :
-//		"SELECT accountId FROM _faker_online"))
-//	{
-//		do
-//		{
-//			if (QueryResult charResult = CharacterDatabase.Query("SELECT guid FROM characters WHERE account = %u", result->Fetch()[0].Get<uint32>()))
-//			{
-//				do
-//				{
-//					FakerMap.insert(std::make_pair(charResult->Fetch()[0].Get<uint32>(), false));
-//				} while (charResult->NextRow());
-//			}
-//		} while (result->NextRow());
-//	}
-//
-//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//
-//		"SELECT 地图ID,X坐标,Y坐标,Z坐标,O坐标 FROM _假人_在线假人_坐标" :
-//		"SELECT Map,X,Y,Z,O FROM _faker_online_postion"))
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			FakerLocationTemplate Temp;
-//			Temp.Map		= fields[0].Get<uint32>();
-//			Temp.X			= fields[1].Get<float>();
-//			Temp.Y			= fields[2].Get<float>();
-//			Temp.Z			= fields[3].Get<float>();
-//			Temp.O			= fields[4].Get<float>();
-//			FakerLocation.push_back(Temp);
-//		} while (result->NextRow());
-//	}
-//}
-//
-//void Faker::Add(bool ingnoreLimit)
-//{
-//	uint32 count = 0;
-//
-//	for (auto itr = FakerMap.begin(); itr != FakerMap.end(); itr++)
-//		if (itr->second)
-//			count++;
-//
-//	if (!ingnoreLimit && count >= sSwitch->GetValue(ST_FAKER_ONLINE))
-//		return;
-//
-//	//std::random_shuffle(FakerMap.begin(), FakerMap.end());
-//	
-//	for (auto itr = FakerMap.begin(); itr != FakerMap.end(); itr++)
-//	{
-//		if (itr->second)
-//			continue;
-//
-//		AddFaker(itr->first);
-//		break;
-//	}
-//}
-//
-//
+﻿#pragma execution_character_set("utf-8")
+#include "Faker.h"
+#include "../String/myString.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../Switch/Switch.h"
+#include "Battleground.h"
+#include "BattlegroundMgr.h"
+#include "WaypointMgr.h"
+#include "WorldSession.h"
+
+std::unordered_map<uint32, bool>FakerMap;
+std::vector<FakerLocationTemplate> FakerLocation;
+std::vector<WorldSession *> FakerSessions;
+
+void Faker::Load()
+{
+	FakerMap.clear();
+	FakerLocation.clear();
+
+	QueryResult result;
+
+	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+		"SELECT 账号ID FROM _假人_在线假人" :
+		"SELECT accountId FROM _faker_online"))
+	{
+		do
+		{
+			if (QueryResult charResult = CharacterDatabase.Query("SELECT guid FROM characters WHERE account = %u", result->Fetch()[0].Get<uint32>()))
+			{
+				do
+				{
+					FakerMap.insert(std::make_pair(charResult->Fetch()[0].Get<uint32>(), false));
+				} while (charResult->NextRow());
+			}
+		} while (result->NextRow());
+	}
+
+	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+
+		"SELECT 地图ID,X坐标,Y坐标,Z坐标,O坐标 FROM _假人_在线假人_坐标" :
+		"SELECT Map,X,Y,Z,O FROM _faker_online_postion"))
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			FakerLocationTemplate Temp;
+			Temp.Map		= fields[0].Get<uint32>();
+			Temp.X			= fields[1].Get<float>();
+			Temp.Y			= fields[2].Get<float>();
+			Temp.Z			= fields[3].Get<float>();
+			Temp.O			= fields[4].Get<float>();
+			FakerLocation.push_back(Temp);
+		} while (result->NextRow());
+	}
+}
+
+void Faker::Add(bool ingnoreLimit)
+{
+	uint32 count = 0;
+
+	for (auto itr = FakerMap.begin(); itr != FakerMap.end(); itr++)
+		if (itr->second)
+			count++;
+
+	if (!ingnoreLimit && count >= sSwitch->GetValue(ST_FAKER_ONLINE))
+		return;
+
+	//std::random_shuffle(FakerMap.begin(), FakerMap.end());
+	
+	for (auto itr = FakerMap.begin(); itr != FakerMap.end(); itr++)
+	{
+		if (itr->second)
+			continue;
+
+		AddFaker(itr->first);
+		break;
+	}
+}
+
+
 //DWORD WINAPI FakerThread(LPVOID i)
 //{
 //	int guid = reinterpret_cast<int>(i);
