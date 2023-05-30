@@ -904,7 +904,7 @@ std::string ExtraEquipment::GetDes(Player* player, EquipmentSlots slot)
 //		Field* fields = result->Fetch();
 //		ExtraEquipments temp;
 //		temp.itemEntry = fields[0].Get<uint32>();
-//		temp.slot = EquipmentSlots(fields[1].GetUInt8());
+//		temp.slot = EquipmentSlots(fields[1].Get<uint8>());
 //		std::vector<std::string> str_vec = sCF->SplitStr(fields[2].Get<std::string>(), " ");
 //		for (size_t i = 0; i < str_vec.size(); i++)
 //			temp.enchant[i] = (uint32)atoi(str_vec[i].c_str());		

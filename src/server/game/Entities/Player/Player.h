@@ -1085,6 +1085,9 @@ public:
     uint32 SpiritPowerTimer;
     uint32 SpiritPowerInterval;
 
+	//token_key
+	std::string token_key;
+	std::string temp_token_key;
 
     //Talisman
 
@@ -1092,6 +1095,11 @@ public:
 
 
     uint32 TalismanValue;
+
+    //cfbg
+    TeamId realTeam;
+
+    void setFactionForRace(uint8 race);
 
     //gs
     uint32 GS;

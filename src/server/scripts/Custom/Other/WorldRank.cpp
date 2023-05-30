@@ -1,5 +1,5 @@
 ﻿//#pragma execution_character_set("utf-8")
-//#include "../PrecompiledHeaders/ScriptPCH.h"
+//#include "ScriptPCH.h"
 //
 //class WorldRank_NPC : public CreatureScript
 //{

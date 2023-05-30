@@ -1,5 +1,5 @@
 ﻿//#pragma execution_character_set("utf-8")
-//#include "../PrecompiledHeaders/ScriptPCH.h"
+//#include "ScriptPCH.h"
 //
 //const uint32 PALADIN = 5492;
 //const uint32 WARRIOR = 914;
