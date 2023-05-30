@@ -12,7 +12,7 @@
 //{
 //    _SoulStonePlayerDataMap.clear();
 //
-//    QueryResult result = WorldDatabase.Query("SELECT 玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性 FROM 玩家魂玉记录表");
+//    QueryResult result = WorldDatabase.Query("SELECT 玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性 FROM ___玩家魂玉记录表");
 //
 //    if (result)
 //    {
@@ -37,12 +37,12 @@
 //            ++count;
 //
 //        } while (result->NextRow());
-//        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载玩家魂玉记录表 %u 条数据======", count);
+//        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载___玩家魂玉记录表 %u 条数据======", count);
 //    }
 //
 //    _SoulStoneBuyReqDataMap.clear();
 //
-//    QueryResult results = WorldDatabase.Query("SELECT 页面,需求物品1,数量1,需求物品2,数量2,需求物品3,数量3,需求物品4,数量4,需求物品5,数量5,VIP,军衔,转生,斗气值,金币,激活给予BUFF的物品ID FROM 魂玉页面购买需求激活表");
+//    QueryResult results = WorldDatabase.Query("SELECT 页面,需求物品1,数量1,需求物品2,数量2,需求物品3,数量3,需求物品4,数量4,需求物品5,数量5,VIP,军衔,转生,斗气值,金币,激活给予BUFF的物品ID FROM ___魂玉页面购买需求激活表");
 //
 //    if (results)
 //    {
@@ -81,7 +81,7 @@
 //
 //    _SoulStoneItemTypeMap.clear();
 //
-//	QueryResult resultss = WorldDatabase.Query("SELECT 物品ID,物品类型ID,页数 FROM 魂玉类型表");
+//	QueryResult resultss = WorldDatabase.Query("SELECT 物品ID,物品类型ID,页数 FROM ___魂玉类型表");
 //
 //	if (resultss)
 //	{
@@ -209,7 +209,7 @@
 //			if (itr->second.page == 0)
 //				continue;
 //
-//            WorldDatabase.Execute("REPLACE INTO 玩家魂玉记录表(玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性)VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u)", itr->second.guid, itr->second.page, itr->second.itemid1, itr->second.itemid2, itr->second.itemid3, itr->second.itemid4, itr->second.itemid5, itr->second.itemid6, itr->second.itemid7);
+//            WorldDatabase.Execute("REPLACE INTO ___玩家魂玉记录表(玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性)VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u)", itr->second.guid, itr->second.page, itr->second.itemid1, itr->second.itemid2, itr->second.itemid3, itr->second.itemid4, itr->second.itemid5, itr->second.itemid6, itr->second.itemid7);
 //        }
 //    }
 //}
@@ -307,22 +307,22 @@
 //                switch (slot)
 //                {
 //                case 1:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉记录表(玩家GUID,页面,插槽1物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO ___玩家魂玉记录表(玩家GUID,页面,插槽1物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 2:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉记录表(玩家GUID,页面,插槽2物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO ___玩家魂玉记录表(玩家GUID,页面,插槽2物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 3:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉记录表(玩家GUID,页面,插槽3物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO ___玩家魂玉记录表(玩家GUID,页面,插槽3物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 4:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉记录表(玩家GUID,页面,插槽4物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO ___玩家魂玉记录表(玩家GUID,页面,插槽4物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 5:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉记录表(玩家GUID,页面,插槽5物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO ___玩家魂玉记录表(玩家GUID,页面,插槽5物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                case 6:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉记录表(玩家GUID,页面,插槽6物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+//                    WorldDatabase.Execute("REPLACE INTO ___玩家魂玉记录表(玩家GUID,页面,插槽6物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
 //                    return;
 //                default:
 //                    break;

@@ -81,7 +81,7 @@
 //
 //	_SoulStoneExItemTypeMap.clear();
 //
-//	QueryResult resultss = WorldDatabase.Query("SELECT 物品ID,物品类型ID,页数 FROM 魂玉扩展类型表");
+//	QueryResult resultss = WorldDatabase.Query("SELECT 物品ID,物品类型ID,页数 FROM ___魂玉扩展类型表");
 //
 //	if (resultss)
 //	{
