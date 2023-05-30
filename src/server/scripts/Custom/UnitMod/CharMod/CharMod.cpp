@@ -467,7 +467,7 @@
 //			continue;
 //
 //		std::string name = GetClassName1(i);
-//		AddGossipItemFor(player,(0, "转职 -> " + name, SENDER_ALT_CLASS, i, sReq->Notice(player, sSwitch->GetValue(ST_ALT_CLASS), "转职为", name), 0, false);
+//		AddGossipItemFor(player,0, "转职 -> " + name, SENDER_ALT_CLASS, i, sReq->Notice(player, sSwitch->GetValue(ST_ALT_CLASS), "转职为", name), 0, false);
 //	}
 //
 //	if (obj->ToCreature())

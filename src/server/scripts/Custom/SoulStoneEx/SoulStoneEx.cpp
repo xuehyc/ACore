@@ -786,7 +786,7 @@
 ////    if (olditemid == 0)
 ////    {
 ////        ss << sCF->GetItemLink(itemid) << pProto->Name1.c_str() << "是否镶嵌到此插槽?";
-////        AddGossipItemFor(player,(GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 1, ss.str().c_str(), 0, false);
+////        AddGossipItemFor(player,GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 1, ss.str().c_str(), 0, false);
 ////        SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 ////    }
 ////    else
@@ -794,7 +794,7 @@
 ////        if (ItemTemplate const * pProt = sObjectMgr->GetItemTemplate(olditemid))
 ////        {
 ////            ss << sCF->GetItemLink(itemid) << pProto->Name1.c_str() << "是否替换插槽内的" <<sCF->GetItemLink(olditemid) << pProt->Name1.c_str();
-////            AddGossipItemFor(player,(GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 2, ss.str().c_str(), 0, false);
+////            AddGossipItemFor(player,GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 2, ss.str().c_str(), 0, false);
 ////            SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 ////        }
 ////    }
@@ -841,7 +841,7 @@
 //	{
 //		std::ostringstream sstr;
 //		sstr << sCF->GetItemLink(itemid) << "此魂玉只能镶嵌在第" << newitempage << "页";
-//		AddGossipItemFor(player,(GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS_ERR, GOSSIP_ACTION_SS_ERR, sstr.str(), 0, false);
+//		AddGossipItemFor(player,GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS_ERR, GOSSIP_ACTION_SS_ERR, sstr.str(), 0, false);
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //		return;
 //	}
@@ -909,7 +909,7 @@
 //
 //			if (send)
 //			{
-//				AddGossipItemFor(player,(GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SSEX_ERR, GOSSIP_ACTION_SSEX_ERR, "当前页面只能镶嵌一个此类型魂玉", 0, false);
+//				AddGossipItemFor(player,GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SSEX_ERR, GOSSIP_ACTION_SSEX_ERR, "当前页面只能镶嵌一个此类型魂玉", 0, false);
 //				SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //				return;
 //			}
@@ -945,7 +945,7 @@
 //	if (olditemid == 0)
 //	{
 //		ss << sCF->GetItemLink(itemid) << pProto->Name1.c_str() << "是否镶嵌到此插槽?";
-//		AddGossipItemFor(player,(GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 1, ss.str().c_str(), 0, false);
+//		AddGossipItemFor(player,GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 1, ss.str().c_str(), 0, false);
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //	}
 //	else
@@ -953,7 +953,7 @@
 //		if (ItemTemplate const * pProt = sObjectMgr->GetItemTemplate(olditemid))
 //		{
 //			ss << sCF->GetItemLink(itemid) << pProto->Name1.c_str() << "是否替换插槽内的" << sCF->GetItemLink(olditemid) << pProt->Name1.c_str();
-//			AddGossipItemFor(player,(GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 2, ss.str().c_str(), 0, false);
+//			AddGossipItemFor(player,GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 2, ss.str().c_str(), 0, false);
 //			SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //		}
 //	}
@@ -1026,7 +1026,7 @@
 //
 //    ss << "是否拆卸此插槽中的" << sCF->GetItemLink(olditemid) << pProt->Name1.c_str();
 //
-//    AddGossipItemFor(player,(GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 3, ss.str().c_str(), 0, false);
+//    AddGossipItemFor(player,GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS, GOSSIP_ACTION_SSEX + 3, ss.str().c_str(), 0, false);
 //
 //    SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //
@@ -1147,7 +1147,7 @@
 //
 //    player->PlayerTalkClass->ClearMenus();
 //
-//    AddGossipItemFor(player,(GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS_BUY, GOSSIP_ACTION_SSEX_BUY + page, "是否需要购买第"+std::to_string(page)+"页", 0, false);
+//    AddGossipItemFor(player,GOSSIP_ICON_VENDOR, "", GOSSIP_SENDER_SEC_SS_BUY, GOSSIP_ACTION_SSEX_BUY + page, "是否需要购买第"+std::to_string(page)+"页", 0, false);
 //
 //    SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, player->GetGUID());
 //

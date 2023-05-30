@@ -313,7 +313,7 @@
 //			if (teamId == TEAM_NEUTRAL || player->GetTeamId() == teamId)
 //			{
 //				if (reqId != 0)
-//					AddGossipItemFor(player,(smallIconType, text, AboveMenuVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
+//					AddGossipItemFor(player,smallIconType, text, AboveMenuVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
 //				else
 //					AddGossipItemFor(player,smallIconType, text, AboveMenuVec[i].menuId, funcIndex);
 //			}
@@ -748,7 +748,7 @@
 //				if (teamId == TEAM_NEUTRAL || player->GetTeamId() == teamId)
 //				{
 //					if (reqId != 0)
-//						AddGossipItemFor(player,(smallIconType, text, GossipVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
+//						AddGossipItemFor(player,smallIconType, text, GossipVec[i].menuId, funcIndex, sReq->Notice(player, reqId, notice, ""), sReq->Golds(reqId), false);
 //					else
 //						AddGossipItemFor(player,smallIconType, text, GossipVec[i].menuId, funcIndex);
 //				}		

@@ -353,9 +353,9 @@
 //void Lottery::AddLotteryGossip(Player* player, Object* obj)
 //{
 //	player->PlayerTalkClass->ClearMenus();
-//	AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "压豹子", LOTTERY_TYPE_AAA, GOSSIP_ACTION_INFO_DEF, "", 0, true);
-//	AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "压大", LOTTERY_TYPE_MAX, GOSSIP_ACTION_INFO_DEF, "", 0, true);
-//	AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "压小", LOTTERY_TYPE_MIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "压豹子", LOTTERY_TYPE_AAA, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "压大", LOTTERY_TYPE_MAX, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "压小", LOTTERY_TYPE_MIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
 //	if (obj->ToCreature())
 //		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
 //	else

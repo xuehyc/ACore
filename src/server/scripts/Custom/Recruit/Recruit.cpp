@@ -579,7 +579,7 @@
 //
 //void Recruit::AddMainMenu(Player* player, Object* obj)
 //{
-//	AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "招募新的伙伴", SENDER_RECRUIT_NEW, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "招募新的伙伴", SENDER_RECRUIT_NEW, GOSSIP_ACTION_INFO_DEF, "", 0, true);
 //	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "解除招募关系", SENDER_RECRUIT_CHAR_DISS_LIST, GOSSIP_ACTION_INFO_DEF);
 //	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "查看招募信息", SENDER_RECRUIT_CHAR_INFO_LIST, GOSSIP_ACTION_INFO_DEF);
 //	AddGossipItemFor(player,GOSSIP_ICON_CHAT, "支援在线伙伴", SENDER_RECRUIT_CHAR_TELE_LIST, GOSSIP_ACTION_INFO_DEF);
@@ -664,7 +664,7 @@
 //			oss << "|cFFFF1717";
 //			oss << GetRecruiterData(player)->name;
 //			oss << "|r";
-//			AddGossipItemFor(player,(0, oss.str(), SENDER_RECRUIT_CHAR_DISMISS, 0, sReq->Notice(player, GetDissReqId2(), "移除", "招募关系"), sReq->Golds(GetDissReqId2()), false);
+//			AddGossipItemFor(player,0, oss.str(), SENDER_RECRUIT_CHAR_DISMISS, 0, sReq->Notice(player, GetDissReqId2(), "移除", "招募关系"), sReq->Golds(GetDissReqId2()), false);
 //		}
 //
 //		std::vector<GlobalPlayerData const*> friendsDataList;
@@ -685,7 +685,7 @@
 //			oss << friendsDataList[i]->name;
 //			oss << "|r";
 //
-//			AddGossipItemFor(player,(0, oss.str(), SENDER_RECRUIT_CHAR_DISMISS, friendsDataList[i]->guidLow, sReq->Notice(player, GetDissReqId1(), "移除", "招募关系"), sReq->Golds(GetDissReqId1()), false);
+//			AddGossipItemFor(player,0, oss.str(), SENDER_RECRUIT_CHAR_DISMISS, friendsDataList[i]->guidLow, sReq->Notice(player, GetDissReqId1(), "移除", "招募关系"), sReq->Golds(GetDissReqId1()), false);
 //		}
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //	}

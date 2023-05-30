@@ -58,8 +58,8 @@
 //		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/INV_Misc_Coin_06:30:30:0:0|t商业", GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF);
 //		player->GetTeamId() == TEAM_ALLIANCE ? AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Mount_Gryphon_01:30:30:0:0|t骑术", GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF) : AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Ability_Mount_Wyvern_01:30:30:0:0|t骑术", GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF);
 //		if (!player->HasSpell(63624))
-//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Shadow_Charm:30:30:0:0|t天赋", GOSSIP_SENDER_MAIN + 5, GOSSIP_ACTION_INFO_DEF, "确定要学习双天赋吗？", 1000 * GOLD, false);
-//		AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "|TInterface/ICONS/Achievement_BG_winWSG:30:30:0:0|t重置天赋", GOSSIP_SENDER_MAIN + 6, GOSSIP_ACTION_INFO_DEF, "确定要重置天赋吗？", 50 * GOLD, false);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Spell_Shadow_Charm:30:30:0:0|t天赋", GOSSIP_SENDER_MAIN + 5, GOSSIP_ACTION_INFO_DEF, "确定要学习双天赋吗？", 1000 * GOLD, false);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "|TInterface/ICONS/Achievement_BG_winWSG:30:30:0:0|t重置天赋", GOSSIP_SENDER_MAIN + 6, GOSSIP_ACTION_INFO_DEF, "确定要重置天赋吗？", 50 * GOLD, false);
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
 //		return true;
 //	}

@@ -89,7 +89,7 @@
 //	if (player->token_key.empty())
 //		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "使用动态口令登录可以让账号更加安全\n\n操作步骤\n1.下载谷歌令牌APP\n2.点击产生一个16位的密钥\n3.打开APP选择输入提供的密钥，将账号和密钥输入，将密钥与APP绑定\n\n「点击产生密钥」", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 //	else
-//		AddGossipItemFor(player,(GOSSIP_ICON_CHAT, "解除动态口令登录", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
+//		AddGossipItemFor(player,GOSSIP_ICON_CHAT, "解除动态口令登录", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, "", 0, true);
 //	SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //}
 //
@@ -101,7 +101,7 @@
 //	{
 //	case GOSSIP_ACTION_INFO_DEF:
 //		GenerateCode(player);
-//		AddGossipItemFor(player,(0, "将下列密钥绑定在谷歌令牌APP\n\n|cFFFF0000「|r" + player->temp_token_key + "|cFFFF0000」|r\n\n「点击添加动态口令登录」", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1, "\n点击确认后服务器将保存你的密钥\n\n|cFFFF0000「|r" + player->temp_token_key + "|cFFFF0000」|r\n\n请确认你已经下载谷歌令牌APP且已经绑定该密钥\n", 0, false);
+//		AddGossipItemFor(player,0, "将下列密钥绑定在谷歌令牌APP\n\n|cFFFF0000「|r" + player->temp_token_key + "|cFFFF0000」|r\n\n「点击添加动态口令登录」", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1, "\n点击确认后服务器将保存你的密钥\n\n|cFFFF0000「|r" + player->temp_token_key + "|cFFFF0000」|r\n\n请确认你已经下载谷歌令牌APP且已经绑定该密钥\n", 0, false);
 //		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
 //		break;
 //	case GOSSIP_ACTION_INFO_DEF + 1:	

@@ -67,7 +67,7 @@
 //			GetParams(player, rewId, reqId);
 //			const char* text = sString->Format(sString->GetText(CORE_STR_TYPES(STR_REICARNATION_REQ)), player->reincarnationLv + 1);
 //
-//			AddGossipItemFor(player,(GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_REICARNATION_CLICK)), SENDER_REINCARNATION, GOSSIP_ACTION_INFO_DEF + 1, sReq->Notice(player, reqId, text, ""), sReq->Golds(reqId), 0);
+//			AddGossipItemFor(player,GOSSIP_ICON_CHAT, sString->GetText(CORE_STR_TYPES(STR_REICARNATION_CLICK)), SENDER_REINCARNATION, GOSSIP_ACTION_INFO_DEF + 1, sReq->Notice(player, reqId, text, ""), sReq->Golds(reqId), 0);
 //		}
 //	}
 //

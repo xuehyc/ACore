@@ -207,7 +207,7 @@
 //				std::ostringstream oss;
 //				oss << sReq->Notice(player, reqId, generalText, text);
 //
-//				AddGossipItemFor(player,(GOSSIP_ICON_CHAT, gossipText.c_str(), SENDER_CUSTOM_SKILL, sCF->joinXY(250 + 1, skillId), oss.str().c_str(), sReq->Golds(reqId), 0);
+//				AddGossipItemFor(player,GOSSIP_ICON_CHAT, gossipText.c_str(), SENDER_CUSTOM_SKILL, sCF->joinXY(250 + 1, skillId), oss.str().c_str(), sReq->Golds(reqId), 0);
 //				flag = true;
 //			}
 //		}

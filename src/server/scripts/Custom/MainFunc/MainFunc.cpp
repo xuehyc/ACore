@@ -290,9 +290,9 @@
 //			std::string text = itr->BigIcon.empty() ? itr->Text : "|TInterface/ICONS/" + itr->BigIcon + ":30:30:0:0|t" + itr->Text;
 //
 //			if (Pop(itr->ReqId))
-//				pl->AddGossipItemFor(player,(itr->SmallIcon, text, sender, action, sReq->Notice(pl, ReqId, itr->Text, ""), sReq->Golds(ReqId), false);
+//				pl->AddGossipItemFor(player,itr->SmallIcon, text, sender, action, sReq->Notice(pl, ReqId, itr->Text, ""), sReq->Golds(ReqId), false);
 //			else if (!itr->PopText.empty())
-//				pl->AddGossipItemFor(player,(itr->SmallIcon, text, sender, action, itr->PopText, 0, false);
+//				pl->AddGossipItemFor(player,itr->SmallIcon, text, sender, action, itr->PopText, 0, false);
 //			else
 //				pl->ADD_GOSSIP_ITEM(itr->SmallIcon, text, sender, action);
 //		}

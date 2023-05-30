@@ -103,7 +103,7 @@
 //					if (count > 25)
 //						continue;
 //					count++;
-//					AddGossipItemFor(player,(GOSSIP_ICON_CHAT, text, SENDER_RESET_INS, actionValue(i, mapEntry->MapID), sReq->Notice(player, reqId, "重置", text), sReq->Golds(reqId), false);
+//					AddGossipItemFor(player,GOSSIP_ICON_CHAT, text, SENDER_RESET_INS, actionValue(i, mapEntry->MapID), sReq->Notice(player, reqId, "重置", text), sReq->Golds(reqId), false);
 //				}
 //			}
 //		}
