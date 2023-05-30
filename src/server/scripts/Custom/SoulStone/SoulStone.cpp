@@ -1,12 +1,12 @@
-﻿//
-//#include "SoulStone.h"
-//#include "Object.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../CommonFunc/CommonFunc.h"
-//
-//
-//#pragma execution_character_set("UTF-8")
-//
+﻿
+#include "SoulStone.h"
+#include "Object.h"
+#include "../GCAddon/GCAddon.h"
+#include "../CommonFunc/CommonFunc.h"
+
+
+#pragma execution_character_set("UTF-8")
+
 //
 //void SoulStone::Load()
 //{

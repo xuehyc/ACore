@@ -1,151 +1,151 @@
-﻿//
-//#include "SoulStoneEx.h"
-//#include "Object.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../CommonFunc/CommonFunc.h"
-//
-//
-//#pragma execution_character_set("UTF-8")
-//
-//
-//void SoulStoneEx::Load()
-//{
-//    _SoulStoneExPlayerDataMap.clear();
-//
-//    QueryResult result = WorldDatabase.Query("SELECT 玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性 FROM 玩家魂玉扩展记录表");
-//
-//    if (result)
-//    {
-//        uint32 count = 0;
-//        do
-//        {
-//            Field * fields = result->Fetch();
-//
-//            SoulStoneExPlayerData td;
-//
-//            td.guid = fields[0].Get<uint32>();
-//            td.page = fields[1].Get<uint32>();
-//            td.itemid1 = fields[2].Get<uint32>();
-//            td.itemid2 = fields[3].Get<uint32>();
-//            td.itemid3 = fields[4].Get<uint32>();
-//            td.itemid4 = fields[5].Get<uint32>();
-//            td.itemid5 = fields[6].Get<uint32>();
-//            td.itemid6 = fields[7].Get<uint32>();
-//            td.itemid7 = fields[8].Get<uint32>();
-//
-//            _SoulStoneExPlayerDataMap.insert({td.guid,td});
-//            ++count;
-//
-//        } while (result->NextRow());
-//        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载玩家魂玉扩展记录表 %u 条数据======", count);
-//    }
-//
-//    _SoulStoneExBuyReqDataMap.clear();
-//
-//    QueryResult results = WorldDatabase.Query("SELECT 页面,需求物品1,数量1,需求物品2,数量2,需求物品3,数量3,需求物品4,数量4,需求物品5,数量5,VIP,军衔,转生,斗气值,金币,激活给予BUFF的物品ID FROM 魂玉页面购买需求激活表");
-//
-//    if (results)
-//    {
-//        uint32 count = 0;
-//        do
-//        {
-//            Field * fields = results->Fetch();
-//
-//            SoulStoneExBuyReqData td;
-//
-//            td.page = fields[0].Get<uint32>();
-//            td.itemid1 = fields[1].Get<uint32>();
-//            td.val1 = fields[2].Get<uint32>();
-//            td.itemid2 = fields[3].Get<uint32>();
-//            td.val2 = fields[4].Get<uint32>();
-//            td.itemid3 = fields[5].Get<uint32>();
-//            td.val3 = fields[6].Get<uint32>();
-//            td.itemid4 = fields[7].Get<uint32>();
-//            td.val4 = fields[8].Get<uint32>();
-//            td.itemid5 = fields[9].Get<uint32>();
-//            td.val5 = fields[10].Get<uint32>();
-//            td.vip = fields[11].Get<uint32>();
-//            td.junxian = fields[12].Get<uint32>();
-//            td.zhuansheng = fields[13].Get<uint32>();
-//            td.douqival = fields[14].Get<uint32>();
-//            td.money = fields[15].Get<uint32>() * GOLD;
-//            td.jihuoshuxingid = fields[16].Get<uint32>();
-//
-//            _SoulStoneExBuyReqDataMap.insert({td.page,td});
-//            
-//            ++count;
-//
-//        } while (results->NextRow());
-//        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉页面购买需求激活表 %u 条数据======", count);
-//    }
-//
-//	_SoulStoneExItemTypeMap.clear();
-//
-//	QueryResult resultss = WorldDatabase.Query("SELECT 物品ID,物品类型ID,页数 FROM ___魂玉扩展类型表");
-//
-//	if (resultss)
-//	{
-//		uint32 count = 0;
-//		do
-//		{
-//			Field * fields = resultss->Fetch();
-//
-//			SoulStoneExItemType td;
-//
-//			uint32 itemid = fields[0].Get<uint32>();
-//			td.type = fields[1].Get<int32>();
-//			td.page = fields[2].Get<int32>();
-//
-//			_SoulStoneExItemTypeMap.insert({ itemid, td });
-//
-//			++count;
-//
-//		} while (resultss->NextRow());
-//		sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉扩展类型表 %u 条数据======", count);
-//	}
-//
-//	QueryResult resultssss = WorldDatabase.Query("SELECT 参数 FROM __通用配置 WHERE ID = 101");
-//
-//	if (resultssss)
-//	{
-//
-//		Field * fields = resultssss->Fetch();
-//		limitpageval = uint32(atoi(fields[0].Get<std::string>().c_str()));
-//
-//		sLog->outMessage("server",LOG_LEVEL_INFO, "=======魂玉（组合激活版）初始化页面数量为：%d", limitpageval);
-//	}
-//
-//    _SoulStoneExExDateMap.clear();
-//
-//    QueryResult resultsss = WorldDatabase.Query("SELECT 页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,激活物品ID FROM 魂玉组合配置表");
-//
-//    if (resultsss)
-//    {
-//        uint32 count = 0;
-//        do
-//        {
-//            Field * fields = resultsss->Fetch();
-//            SoulStoneExDate td;
-//
-//            td.page = fields[0].Get<uint32>();
-//            td.itemid1 = fields[1].Get<uint32>();
-//            td.itemid2 = fields[2].Get<uint32>();
-//            td.itemid3 = fields[3].Get<uint32>();
-//            td.itemid4 = fields[4].Get<uint32>();
-//            td.itemid5 = fields[5].Get<uint32>();
-//            td.itemid6 = fields[6].Get<uint32>();
-//            td.itemid7 = fields[7].Get<uint32>();
-//
-//            _SoulStoneExExDateMap.insert({td.page,td});
-//
-//            ++count;
-//
-//        } while (resultsss->NextRow());
-//
-//        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉组合配置表 %u 条数据======", count);
-//    }
-//}
-//
+﻿
+#include "SoulStoneEx.h"
+#include "Object.h"
+#include "../GCAddon/GCAddon.h"
+#include "../CommonFunc/CommonFunc.h"
+
+
+#pragma execution_character_set("UTF-8")
+
+
+void SoulStoneEx::Load()
+{
+    _SoulStoneExPlayerDataMap.clear();
+
+    QueryResult result = WorldDatabase.Query("SELECT 玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性 FROM 玩家魂玉扩展记录表");
+
+    if (result)
+    {
+        uint32 count = 0;
+        do
+        {
+            Field * fields = result->Fetch();
+
+            SoulStoneExPlayerData td;
+
+            td.guid = fields[0].Get<uint32>();
+            td.page = fields[1].Get<uint32>();
+            td.itemid1 = fields[2].Get<uint32>();
+            td.itemid2 = fields[3].Get<uint32>();
+            td.itemid3 = fields[4].Get<uint32>();
+            td.itemid4 = fields[5].Get<uint32>();
+            td.itemid5 = fields[6].Get<uint32>();
+            td.itemid6 = fields[7].Get<uint32>();
+            td.itemid7 = fields[8].Get<uint32>();
+
+            _SoulStoneExPlayerDataMap.insert({td.guid,td});
+            ++count;
+
+        } while (result->NextRow());
+        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载玩家魂玉扩展记录表 %u 条数据======", count);
+    }
+
+    _SoulStoneExBuyReqDataMap.clear();
+
+    QueryResult results = WorldDatabase.Query("SELECT 页面,需求物品1,数量1,需求物品2,数量2,需求物品3,数量3,需求物品4,数量4,需求物品5,数量5,VIP,军衔,转生,斗气值,金币,激活给予BUFF的物品ID FROM 魂玉页面购买需求激活表");
+
+    if (results)
+    {
+        uint32 count = 0;
+        do
+        {
+            Field * fields = results->Fetch();
+
+            SoulStoneExBuyReqData td;
+
+            td.page = fields[0].Get<uint32>();
+            td.itemid1 = fields[1].Get<uint32>();
+            td.val1 = fields[2].Get<uint32>();
+            td.itemid2 = fields[3].Get<uint32>();
+            td.val2 = fields[4].Get<uint32>();
+            td.itemid3 = fields[5].Get<uint32>();
+            td.val3 = fields[6].Get<uint32>();
+            td.itemid4 = fields[7].Get<uint32>();
+            td.val4 = fields[8].Get<uint32>();
+            td.itemid5 = fields[9].Get<uint32>();
+            td.val5 = fields[10].Get<uint32>();
+            td.vip = fields[11].Get<uint32>();
+            td.junxian = fields[12].Get<uint32>();
+            td.zhuansheng = fields[13].Get<uint32>();
+            td.douqival = fields[14].Get<uint32>();
+            td.money = fields[15].Get<uint32>() * GOLD;
+            td.jihuoshuxingid = fields[16].Get<uint32>();
+
+            _SoulStoneExBuyReqDataMap.insert({td.page,td});
+            
+            ++count;
+
+        } while (results->NextRow());
+        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉页面购买需求激活表 %u 条数据======", count);
+    }
+
+	_SoulStoneExItemTypeMap.clear();
+
+	QueryResult resultss = WorldDatabase.Query("SELECT 物品ID,物品类型ID,页数 FROM ___魂玉扩展类型表");
+
+	if (resultss)
+	{
+		uint32 count = 0;
+		do
+		{
+			Field * fields = resultss->Fetch();
+
+			SoulStoneExItemType td;
+
+			uint32 itemid = fields[0].Get<uint32>();
+			td.type = fields[1].Get<int32>();
+			td.page = fields[2].Get<int32>();
+
+			_SoulStoneExItemTypeMap.insert({ itemid, td });
+
+			++count;
+
+		} while (resultss->NextRow());
+		sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉扩展类型表 %u 条数据======", count);
+	}
+
+	QueryResult resultssss = WorldDatabase.Query("SELECT 参数 FROM __通用配置 WHERE ID = 101");
+
+	if (resultssss)
+	{
+
+		Field * fields = resultssss->Fetch();
+		limitpageval = uint32(atoi(fields[0].Get<std::string>().c_str()));
+
+		sLog->outMessage("server",LOG_LEVEL_INFO, "=======魂玉（组合激活版）初始化页面数量为：%d", limitpageval);
+	}
+
+    _SoulStoneExExDateMap.clear();
+
+    QueryResult resultsss = WorldDatabase.Query("SELECT 页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,激活物品ID FROM 魂玉组合配置表");
+
+    if (resultsss)
+    {
+        uint32 count = 0;
+        do
+        {
+            Field * fields = resultsss->Fetch();
+            SoulStoneExDate td;
+
+            td.page = fields[0].Get<uint32>();
+            td.itemid1 = fields[1].Get<uint32>();
+            td.itemid2 = fields[2].Get<uint32>();
+            td.itemid3 = fields[3].Get<uint32>();
+            td.itemid4 = fields[4].Get<uint32>();
+            td.itemid5 = fields[5].Get<uint32>();
+            td.itemid6 = fields[6].Get<uint32>();
+            td.itemid7 = fields[7].Get<uint32>();
+
+            _SoulStoneExExDateMap.insert({td.page,td});
+
+            ++count;
+
+        } while (resultsss->NextRow());
+
+        sLog->outMessage("server",LOG_LEVEL_INFO, "======加载魂玉组合配置表 %u 条数据======", count);
+    }
+}
+
 ////重载 
 //void SoulStoneEx::ReLoad()
 //{
