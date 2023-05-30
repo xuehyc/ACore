@@ -40,9 +40,9 @@
 //			Temp.reqId = fields[1].Get<uint32>();
 //			Temp.dmgMod = fields[2].Get<float>();
 //			Temp.healMod = fields[3].Get<float>();
-//			Temp.accountBind = fields[4].GetBool();
+//			Temp.accountBind = fields[4].Get<bool>();
 //
-//			Temp.disable		= fields[5].GetBool();
+//			Temp.disable		= fields[5].Get<bool>();
 //			Temp.castingtime	= fields[6].Get<uint32>();
 //			Temp.duration		= fields[7].Get<uint32>();
 //			Temp.cooldown		= fields[8].Get<uint32>();
@@ -160,7 +160,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			OnRemoveSpellMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].GetString()));
+//			OnRemoveSpellMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<std::string>()));
 //		} while (result->NextRow());
 //	}
 //
@@ -172,7 +172,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			OnLearnSpellMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].GetString()));
+//			OnLearnSpellMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<std::string>()));
 //		} while (result->NextRow());
 //	}
 //
@@ -192,12 +192,12 @@
 //			Temp.bp0SpPct = fields[4].Get<float>();
 //			Temp.bp1SpPct = fields[5].Get<float>();
 //			Temp.bp2SpPct = fields[6].Get<float>();
-//			Tokenizer tokens(fields[7].GetString(), ' ');
+//			Tokenizer tokens(fields[7].Get<std::string>(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens.begin(); itr != tokens.end(); ++itr)
 //				Temp.linkSpellData.push_back(uint32(atol(*itr)));
 //			Temp.procChance = fields[8].Get<uint32>();
 //			//Temp.triggerSpell = fields[9].Get<uint32>();
-//			Tokenizer tokens1(fields[9].GetString(), ' ');
+//			Tokenizer tokens1(fields[9].Get<std::string>(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens1.begin(); itr != tokens1.end(); ++itr)
 //				Temp.triggerSpellData.push_back(uint32(atol(*itr)));
 //			Temp.cooldown = fields[10].Get<uint32>();
@@ -239,7 +239,7 @@
 //				Temp.type = LEECH_TYPE_NONE;
 //
 //			Temp.basepoints = fields[3].Get<float>();
-//			Temp.addDmg = fields[4].GetBool();
+//			Temp.addDmg = fields[4].Get<bool>();
 //			Temp.meetAura = fields[5].Get<uint32>();
 //			SpellLeechVec.push_back(Temp);
 //		} while (result->NextRow());
@@ -275,7 +275,7 @@
 //				Temp.type = LEECH_TYPE_NONE;
 //
 //			Temp.basepoints = fields[3].Get<float>();
-//			Temp.addDmg = fields[4].GetBool();
+//			Temp.addDmg = fields[4].Get<bool>();
 //			AuraLeechMap.insert(std::make_pair(aura, Temp));
 //		} while (result->NextRow());
 //	}
@@ -421,7 +421,7 @@
 //			uint32 Aura = fields[0].Get<uint32>();
 //			AuraStackTriggerTemplate Temp;
 //			Temp.Stacks = fields[1].Get<uint32>();
-//			Tokenizer tokens(fields[2].GetString(), ' ');
+//			Tokenizer tokens(fields[2].Get<std::string>(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens.begin(); itr != tokens.end(); ++itr)
 //				Temp.TriggerSpellVec.push_back(uint32(atol(*itr)));
 //			Temp.RemoveStacks = fields[3].Get<uint32>();
@@ -444,7 +444,7 @@
 //			Temp.AttackerTriggerChance = fields[3].Get<float>();
 //			Temp.SelfTriggerSpell = fields[4].Get<uint32>();
 //			Temp.SelfTriggerChance = fields[5].Get<float>();
-//			Temp.PreventLastDamage = fields[6].GetBool();
+//			Temp.PreventLastDamage = fields[6].Get<bool>();
 //			AuraTriggerOnDeathMap.insert(std::make_pair(AuraId, Temp));
 //		} while (result->NextRow());
 //	}

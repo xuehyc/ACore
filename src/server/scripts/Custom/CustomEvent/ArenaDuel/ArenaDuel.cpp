@@ -58,7 +58,7 @@
 //			Field* fields = result->Fetch();
 //			uint32 guid = fields[0].Get<uint32>();
 //			ArenaDuelTemplate temp;
-//			temp.selected = fields[1].GetBool();
+//			temp.selected = fields[1].Get<bool>();
 //			temp.winNum = fields[2].Get<uint32>();
 //			ArenaDuelMap.insert(std::make_pair(guid, temp));
 //		} while (result->NextRow());

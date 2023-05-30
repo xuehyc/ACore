@@ -26,7 +26,7 @@
 //            std::unordered_map<uint8, bool> slots;
 //
 //            for (uint8 i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; i++)
-//                slots.insert(std::make_pair(i, fields[i].GetBool()));
+//                slots.insert(std::make_pair(i, fields[i].Get<bool>()));
 //
 //            MapItemMap.insert(std::make_pair(fields[19].Get<uint32>(), slots));
 //
@@ -71,18 +71,18 @@
 //		MapModTemp.Resistance		= fields[12].Get<int32>();
 //		MapModTemp.KillRewId		= fields[13].Get<uint32>();
 //		MapModTemp.KillRewChance	= fields[14].Get<float>();
-//		MapModTemp.KillAnnounce		= fields[15].GetBool();
+//		MapModTemp.KillAnnounce		= fields[15].Get<bool>();
 //		MapModTemp.Armor			= fields[16].Get<int32>();
 //		MapModTemp.ChallengeLv		= fields[17].Get<uint32>();
 //		MapModTemp.AttackTime		= fields[18].Get<uint32>();
 //		MapModTemp.AddTalismanValue = fields[19].Get<int32>();
 //		MapModTemp.AddRankValue		= fields[20].Get<int32>();
-//		MapModTemp.ResetOnLeave		= fields[21].GetBool();
+//		MapModTemp.ResetOnLeave		= fields[21].Get<bool>();
 //
 //		for (size_t i = 0; i < MAX_CUSTOM_LOOT_COUNT; i++)
 //			MapModTemp.LootId[i] = fields[22 + i].Get<uint32>();
 //
-//		Tokenizer auraData(fields[27].GetString(), '#');
+//		Tokenizer auraData(fields[27].Get<std::string>(), '#');
 //		for (Tokenizer::const_iterator itr = auraData.begin(); itr != auraData.end(); ++itr)
 //			if (SpellInfo const*  spellInfo = sSpellMgr->GetSpellInfo(abs(atoi(*itr))))
 //				MapModTemp.AuraVec.push_back(atoi(*itr));
@@ -93,7 +93,7 @@
 //		MapModTemp.KillGroupRewId		= fields[30].Get<uint32>();
 //		MapModTemp.KillGroupRewChance	= fields[31].Get<float>();
 //		MapModTemp.KillRewGameObject	= fields[32].Get<uint32>();
-//		MapModTemp.SrcLoot				= fields[33].GetBool();
+//		MapModTemp.SrcLoot				= fields[33].Get<bool>();
 //		MapModTemp.RandSpellGroupId		= fields[34].Get<uint32>();
 //		MapModVec.push_back(MapModTemp);
 //	} while (result->NextRow());
@@ -131,7 +131,7 @@
 //			Temp.Diff = fields[1].Get<uint8>();
 //			Temp.ChallengeLv = fields[2].Get<uint32>();
 //
-//			Tokenizer data1(fields[3].GetString(), ' ');
+//			Tokenizer data1(fields[3].Get<std::string>(), ' ');
 //			for (Tokenizer::const_iterator itr = data1.begin(); itr != data1.end(); ++itr)
 //				Temp.AuraVec.push_back(uint32(atol(*itr)));
 //

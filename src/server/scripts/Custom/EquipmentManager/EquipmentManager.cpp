@@ -1,9 +1,9 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "EquipmentManager.h"
-//#include "Item.h"
-//#include "../Custom/ItemMod/NoPatchItem.h"
-//#include "..\..\server\scripts\Custom\CommonFunc\CommonFunc.h"
-//std::vector<EquipmentTemplate> EquipmentVec;
+﻿#pragma execution_character_set("utf-8")
+#include "EquipmentManager.h"
+#include "Item.h"
+#include "../ItemMod/NoPatchItem.h"
+#include "..\..\server\scripts\Custom\CommonFunc\CommonFunc.h"
+std::vector<EquipmentTemplate> EquipmentVec;
 //
 //void Player::InitMapTempItems(uint32 Map)
 //{
@@ -42,7 +42,7 @@
 //
 //    ApplyMapTempItems(true);
 //}
-//
+
 //bool Player::HasMapTempItems()
 //{
 //    bool ok = false;

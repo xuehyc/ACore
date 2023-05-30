@@ -729,13 +729,13 @@
 //	//	Temp.gameobjectRadius	= fields[8].Get<float>();
 //	//	Temp.spellId1			= fields[9].Get<uint32>();
 //	//	Temp.spellInterval1		= fields[10].Get<uint32>();
-//	//	Temp.spellFriendly1		= fields[11].GetBool();
+//	//	Temp.spellFriendly1		= fields[11].Get<bool>();
 //	//	Temp.spellId2			= fields[12].Get<uint32>();
 //	//	Temp.spellInterval2		= fields[13].Get<uint32>();
-//	//	Temp.spellFriendly2		= fields[14].GetBool();
+//	//	Temp.spellFriendly2		= fields[14].Get<bool>();
 //	//	Temp.spellId3			= fields[15].Get<uint32>();
 //	//	Temp.spellInterval3		= fields[16].Get<uint32>();
-//	//	Temp.spellFriendly3		= fields[17].GetBool();
+//	//	Temp.spellFriendly3		= fields[17].Get<bool>();
 //	//	Temp.spellDelay1		= fields[18].Get<uint32>();
 //	//	Temp.spellDelay2		= fields[19].Get<uint32>();
 //	//	Temp.spellDelay3		= fields[20].Get<uint32>();

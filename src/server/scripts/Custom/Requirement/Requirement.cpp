@@ -59,12 +59,12 @@
 //		}
 //
 //		ReqTemp.desXp					= fields[28].Get<uint32>();
-//		ReqTemp.inInstance				= fields[29].GetBool();
+//		ReqTemp.inInstance				= fields[29].Get<bool>();
 //		ReqTemp.meetLevel				= fields[30].Get<int32>();
 //		ReqTemp.meetRankLevel			= fields[31].Get<int32>();
 //		ReqTemp.meetFaction				= fields[32].Get<int32>();
 //
-//		Tokenizer commandData(fields[33].GetString(), '#');
+//		Tokenizer commandData(fields[33].Get<std::string>(), '#');
 //		for (Tokenizer::const_iterator itr = commandData.begin(); itr != commandData.end(); ++itr)
 //		{
 //			Tokenizer commands(*itr, '$');
@@ -90,7 +90,7 @@
 //		ReqTemp.desSpiritPower			= fields[34].Get<uint32>();
 //		ReqTemp.reincarnation			= fields[35].Get<int32>();
 //
-//		Tokenizer mapData(fields[36].GetString(), '#');
+//		Tokenizer mapData(fields[36].Get<std::string>(), '#');
 //
 //		for (Tokenizer::const_iterator itr = mapData.begin(); itr != mapData.end(); ++itr)
 //		{
@@ -118,20 +118,20 @@
 //			ReqTemp.MapDataVec.push_back(t);
 //		}
 //
-//		Tokenizer spellData(fields[37].GetString(), '#');
+//		Tokenizer spellData(fields[37].Get<std::string>(), '#');
 //
 //		for (Tokenizer::const_iterator itr = spellData.begin(); itr != spellData.end(); ++itr)
 //			if (SpellInfo const*  spellInfo = sSpellMgr->GetSpellInfo(abs(atoi(*itr))))
 //				ReqTemp.SpellDataVec.push_back(atoi(*itr));
 //
 //
-//		Tokenizer questData(fields[38].GetString(), '#');
+//		Tokenizer questData(fields[38].Get<std::string>(), '#');
 //
 //		for (Tokenizer::const_iterator itr = questData.begin(); itr != questData.end(); ++itr)
 //			if (Quest const* questProto = sObjectMgr->GetQuestTemplate(abs(atoi(*itr))))
 //				ReqTemp.QuestDataVec.push_back(atoi(*itr));
 //
-//		Tokenizer achieveData(fields[39].GetString(), '#');
+//		Tokenizer achieveData(fields[39].Get<std::string>(), '#');
 //		for (Tokenizer::const_iterator itr = achieveData.begin(); itr != achieveData.end(); ++itr)
 //			if (AchievementEntry const* achieve = sAchievementStore.LookupEntry(atoi(*itr)))
 //				ReqTemp.AchieveDataVec.push_back(atoi(*itr));

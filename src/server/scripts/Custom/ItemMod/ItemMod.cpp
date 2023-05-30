@@ -267,10 +267,10 @@
 //			ItemExchangeTemp.exchangeditem	= fields[1].Get<uint32>();
 //			ItemExchangeTemp.reqId			= fields[2].Get<uint32>();
 //			ItemExchangeTemp.chance			= fields[3].Get<uint32>();
-//			ItemExchangeTemp.flag			= fields[4].GetBool();
+//			ItemExchangeTemp.flag			= fields[4].Get<bool>();
 //			ItemExchangeTemp.rewIdOnFail	= fields[5].Get<uint32>();
-//			ItemExchangeTemp.destroyOnFail	= fields[6].GetBool();
-//			ItemExchangeTemp.keepEnchant	= fields[7].GetBool();
+//			ItemExchangeTemp.destroyOnFail	= fields[6].Get<bool>();
+//			ItemExchangeTemp.keepEnchant	= fields[7].Get<bool>();
 //			ItemExchangeInfo.push_back(ItemExchangeTemp);
 //		} while (result->NextRow());
 //	}
@@ -343,7 +343,7 @@
 //			Temp.reqId = fields[2].Get<uint32>();
 //			Temp.slot = fields[3].Get<uint32>();
 //			Temp.gossipText = fields[4].Get<std::string>();
-//			Temp.slotHasEnchant = fields[5].GetBool();
+//			Temp.slotHasEnchant = fields[5].Get<bool>();
 //			IdentifyVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}

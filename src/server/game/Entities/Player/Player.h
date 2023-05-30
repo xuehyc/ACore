@@ -1194,6 +1194,31 @@ public:
     //stat points
     uint32 stat_points[MAX_STAT_POINTS_TYPE];   //I
 
+    //gossp vec
+    struct ExtraEquimentGossipTemplate
+    {
+        uint8 smallIcon;
+        std::string text;
+        uint32 sender;
+        uint32 action;
+        Item* item;
+    };
+
+    //双甲
+    struct ExtraEquipments
+    {
+        uint32 itemEntry;
+        EquipmentSlots slot;
+        uint32 enchant[MAX_ENCHANTMENT_SLOT];
+    };
+
+    //双甲
+    std::vector<ExtraEquipments> ExtraEquimentVec;
+    uint8 selectedEquipmentSlot;
+    std::vector<ExtraEquimentGossipTemplate> GossipVec;
+    int flag_i;
+    uint32 rowId;
+    uint32 pageId;
 
     //mount vendor
     uint32 mountSpellId;

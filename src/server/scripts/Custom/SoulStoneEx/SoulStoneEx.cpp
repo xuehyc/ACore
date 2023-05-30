@@ -110,7 +110,7 @@
 //	{
 //
 //		Field * fields = resultssss->Fetch();
-//		limitpageval = uint32(atoi(fields[0].GetString().c_str()));
+//		limitpageval = uint32(atoi(fields[0].Get<std::string>().c_str()));
 //
 //		sLog->outMessage("server",LOG_LEVEL_INFO, "=======魂玉（组合激活版）初始化页面数量为：%d", limitpageval);
 //	}

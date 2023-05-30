@@ -39,8 +39,8 @@
 //			Field* fields = result->Fetch();
 //			uint32 entry = fields[0].Get<uint32>();
 //			ExtractEnchantTemplate Temp;
-//			Temp.CanExtract = fields[1].GetBool();
-//			Temp.CanEnchant = fields[2].GetBool();
+//			Temp.CanExtract = fields[1].Get<bool>();
+//			Temp.CanEnchant = fields[2].Get<bool>();
 //			ExtractEnchantMap.insert(std::make_pair(entry, Temp));
 //		} while (result->NextRow());
 //	}

@@ -120,9 +120,9 @@
 //			Field* fields = result->Fetch();
 //			uint32 mountSpellId = fields[0].Get<uint32>();
 //			MountAllowedTemplate Temp;
-//			Temp.indoor = fields[1].GetBool();
-//			Temp.instance = fields[2].GetBool();
-//			Temp.battleground = fields[3].GetBool();
+//			Temp.indoor = fields[1].Get<bool>();
+//			Temp.instance = fields[2].Get<bool>();
+//			Temp.battleground = fields[3].Get<bool>();
 //
 //			for (size_t i = 0; i < BAN_MAP_MAX; i++)
 //				Temp.BanMap[i] = fields[4 + i].Get<int32>();
@@ -196,7 +196,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			DirtyWordVector.push_back(fields[0].GetString());
+//			DirtyWordVector.push_back(fields[0].Get<std::string>());
 //		} while (result->NextRow());
 //	}
 //}

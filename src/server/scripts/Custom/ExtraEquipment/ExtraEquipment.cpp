@@ -1,291 +1,291 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "ExtraEquipment.h"
-//#include "../Custom/CommonFunc/CommonFunc.h"
-//#include "../Custom/ItemMod/ItemMod.h"
-//
-//float extra_stat_muil;
-//float extra_enchant_stat_muil;
-//bool extra_origin_item_back;
-//
-//std::vector<uint32 /*entry*/> ExtraEuipMentEntryVec;
-//
-//void ExtraEquipment::Load()
-//{
-//	extra_stat_muil = 1.0f;
-//	extra_enchant_stat_muil = 1.0f;
-//	extra_origin_item_back	= false;
-//
-//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//		"SELECT 属性倍率, 附魔属性倍率, 是否可以取回 from _物品_双甲" :
-//		"SELECT stat_muil, enchant_muil, originItemEnable from _itemmod_extra_equipments");
-//	if (result)
-//	{
-//		Field* fields = result->Fetch();
-//
-//		extra_stat_muil = fields[0].Get<float>();
-//		extra_enchant_stat_muil = fields[1].Get<float>();
-//		extra_origin_item_back	= fields[2].GetBool();
-//	}
-//
-//	ExtraEuipMentEntryVec.clear();
-//	QueryResult result1 = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//		"SELECT 物品ID from _物品_双甲列表" :
-//		"SELECT entry from _itemmod_extra_equipments_enable");
-//	if (result1)
-//	{
-//		do
-//		{
-//			Field* fields = result1->Fetch();
-//			ExtraEuipMentEntryVec.push_back(fields[0].Get<uint32>());
-//		} while (result1->NextRow());
-//	}
-//
-//}
-//
-//std::string ExtraEquipment::GetItemName(uint32 entry, uint32 width, uint32 height, int x, int y)
-//{
-//	std::ostringstream ss;
-//	ss << "|TInterface";
-//	const ItemTemplate* temp = sObjectMgr->GetItemTemplate(entry);
-//	const ItemDisplayInfoEntry* dispInfo = NULL;
-//	if (temp)
-//	{
-//		dispInfo = sItemDisplayInfoStore.LookupEntry(temp->DisplayInfoID);
-//		if (dispInfo)
-//			ss << "/ICONS/" << dispInfo->inventoryIcon;
-//	}
-//	if (!temp && !dispInfo)
-//		ss << "/InventoryItems/WoWUnknownItem01";
-//	ss << ":" << width << ":" << height << ":" << x << ":" << y << "|t";
-//	ss << temp->Name1;
-//	return ss.str();
-//}
-//
-//std::string ExtraEquipment::GetSlotDefaultText(EquipmentSlots slot, uint32 width, uint32 height, int x, int y)
-//{
-//	std::ostringstream ss;
-//	ss << "|TInterface/PaperDoll/";
-//	switch (slot)
-//	{
-//	case EQUIPMENT_SLOT_HEAD: ss << "UI-PaperDoll-Slot-Head"; break;
-//	case EQUIPMENT_SLOT_SHOULDERS: ss << "UI-PaperDoll-Slot-Shoulder"; break;
-//	case EQUIPMENT_SLOT_NECK: ss << "UI-PaperDoll-Slot-Neck"; break;
-//	case EQUIPMENT_SLOT_BODY: ss << "UI-PaperDoll-Slot-Shirt"; break;
-//	case EQUIPMENT_SLOT_CHEST: ss << "UI-PaperDoll-Slot-Chest"; break;
-//	case EQUIPMENT_SLOT_WAIST: ss << "UI-PaperDoll-Slot-Waist"; break;
-//	case EQUIPMENT_SLOT_LEGS: ss << "UI-PaperDoll-Slot-Legs"; break;
-//	case EQUIPMENT_SLOT_FEET: ss << "UI-PaperDoll-Slot-Feet"; break;
-//	case EQUIPMENT_SLOT_WRISTS: ss << "UI-PaperDoll-Slot-Wrists"; break;
-//	case EQUIPMENT_SLOT_HANDS: ss << "UI-PaperDoll-Slot-Hands"; break;
-//	case EQUIPMENT_SLOT_FINGER1: ss << "UI-PaperDoll-Slot-Finger"; break;
-//	case EQUIPMENT_SLOT_FINGER2: ss << "UI-PaperDoll-Slot-Finger"; break;
-//	case EQUIPMENT_SLOT_TRINKET1: ss << "UI-PaperDoll-Slot-Trinket"; break;
-//	case EQUIPMENT_SLOT_TRINKET2: ss << "UI-PaperDoll-Slot-Trinket"; break;
-//	case EQUIPMENT_SLOT_BACK: ss << "UI-PaperDoll-Slot-Chest"; break;
-//	case EQUIPMENT_SLOT_MAINHAND: ss << "UI-PaperDoll-Slot-MainHand"; break;
-//	case EQUIPMENT_SLOT_OFFHAND: ss << "UI-PaperDoll-Slot-SecondaryHand"; break;
-//	case EQUIPMENT_SLOT_RANGED: ss << "UI-PaperDoll-Slot-Ranged"; break;
-//	case EQUIPMENT_SLOT_TABARD: ss << "UI-PaperDoll-Slot-Tabard"; break;
-//	default: ss << "UI-Backpack-EmptySlot";
-//	}
-//	ss << ":" << width << ":" << height << ":" << x << ":" << y << "|t";
-//
-//	ss << "未装备";
-//
-//	return ss.str();
-//}
-//
-//std::string ExtraEquipment::GetSlotText(Player* player, EquipmentSlots slot)
-//{
-//	uint32 len = player->ExtraEquimentVec.size();
-//	for (size_t i = 0; i < len; i++)
-//		if (slot == player->ExtraEquimentVec[i].slot)
-//			return GetItemName(player->ExtraEquimentVec[i].itemEntry, 30, 30, 0, 0) + GetDes(player,slot);
-//
-//	return GetSlotDefaultText(slot, 30, 30, 0, 0);
-//}
-//
-//std::string ExtraEquipment::GetStatDes(uint32 entry)
-//{
-//	const ItemTemplate* proto = sObjectMgr->GetItemTemplate(entry);
-//
-//	if (!proto)
-//		return "";
-//
-//	std::ostringstream oss;
-//
-//	//装备属性
-//	for (uint8 k = 0; k < MAX_ITEM_PROTO_STATS; ++k)
-//	{
-//		if (k >= proto->StatsCount)
-//			break;
-//
-//		uint32 statType = proto->ItemStat[k].ItemStatType;
-//		int32  val = proto->ItemStat[k].ItemStatValue *extra_stat_muil;
-//
-//		if (val == 0)
-//			continue;
-//
-//		switch (statType)
-//		{
-//		case ITEM_MOD_MANA:
-//			oss << "\n              +" << val << "法力值";
-//			break;
-//		case ITEM_MOD_HEALTH:                           // modify HP
-//			oss << "\n              +" << val << "生命值";
-//			break;
-//		case ITEM_MOD_AGILITY:                          // modify agility
-//			oss << "\n              +" << val << "敏捷";
-//			break;
-//		case ITEM_MOD_STRENGTH:                         //modify strength
-//			oss << "\n              +" << val << "力量";
-//			break;
-//		case ITEM_MOD_INTELLECT:                        //modify intellect
-//			oss << "\n              +" << val << "智力";
-//			break;
-//		case ITEM_MOD_SPIRIT:                           //modify spirit
-//			oss << "\n              +" << val << "精神";
-//			break;
-//		case ITEM_MOD_STAMINA:                          //modify stamina
-//			oss << "\n              +" << val << "耐力";
-//			break;
-//		case ITEM_MOD_DEFENSE_SKILL_RATING:
-//			oss << "\n              +" << val << "防御等级";
-//			break;
-//		case ITEM_MOD_DODGE_RATING:
-//			oss << "\n              +" << val << "躲闪等级";
-//			break;
-//		case ITEM_MOD_PARRY_RATING:
-//			oss << "\n              +" << val << "招架等级";
-//			break;
-//		case ITEM_MOD_BLOCK_RATING:
-//			oss << "\n              +" << val << "格挡等级";
-//			break;
-//		case ITEM_MOD_HIT_MELEE_RATING:
-//			oss << "\n              +" << val << "命中等级";
-//			break;
-//		case ITEM_MOD_HIT_RANGED_RATING:
-//			oss << "\n              +" << val << "远程命中等级";
-//			break;
-//		case ITEM_MOD_HIT_SPELL_RATING:
-//			oss << "\n              +" << val << "法术命中等级";
-//			break;
-//		case ITEM_MOD_CRIT_MELEE_RATING:
-//			oss << "\n              +" << val << "暴击等级";
-//			break;
-//		case ITEM_MOD_CRIT_RANGED_RATING:
-//			oss << "\n              +" << val << "远程暴击等级";
-//			break;
-//		case ITEM_MOD_CRIT_SPELL_RATING:
-//			oss << "\n              +" << val << "法术暴击等级";
-//			break;
-//		case ITEM_MOD_HIT_TAKEN_MELEE_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_HIT_TAKEN_RANGED_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_HIT_TAKEN_SPELL_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_CRIT_TAKEN_MELEE_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_CRIT_TAKEN_RANGED_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_CRIT_TAKEN_SPELL_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_HASTE_MELEE_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_HASTE_RANGED_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_HASTE_SPELL_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_HIT_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_CRIT_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_HIT_TAKEN_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_CRIT_TAKEN_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_RESILIENCE_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_HASTE_RATING:
-//			oss << "\n              +" << val << "急速等级";
-//			break;
-//		case ITEM_MOD_EXPERTISE_RATING:
-//			oss << "\n              +" << val << "韧性等级";
-//			break;
-//		case ITEM_MOD_ATTACK_POWER:
-//			oss << "\n              +" << val << "攻击强度";
-//			break;
-//		case ITEM_MOD_RANGED_ATTACK_POWER:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_MANA_REGENERATION:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_ARMOR_PENETRATION_RATING:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_SPELL_POWER:
-//			oss << "\n              +" << val << "法术强度";
-//			break;
-//		case ITEM_MOD_HEALTH_REGEN:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_SPELL_PENETRATION:
-//			oss << "\n              +" << val << "";
-//			break;
-//		case ITEM_MOD_BLOCK_VALUE:
-//			oss << "\n              +" << val << "";
-//			break;
-//			// deprecated item mods
-//		case ITEM_MOD_SPELL_HEALING_DONE:
-//		case ITEM_MOD_SPELL_DAMAGE_DONE:
-//			break;
-//		}
-//	}
-//
-//	return oss.str();
-//}
-//
-//std::string ExtraEquipment::GetDes(Player* player, EquipmentSlots slot)
-//{
-//	std::ostringstream oss;
-//	
-//	oss << GetStatDes(GetItemEntry(player, slot));
-//
-//	uint32 len = player->ExtraEquimentVec.size();
-//	for (size_t i = 0; i < len; i++)
-//	{
-//		if (slot == player->ExtraEquimentVec[i].slot)
-//		{
-//			uint32 entry = player->ExtraEquimentVec[i].itemEntry;
-//
-//			for (uint8 enchant_slot = PERM_ENCHANTMENT_SLOT; enchant_slot < PROP_ENCHANTMENT_SLOT_4; enchant_slot++)
-//			{
-//              uint32 enchantId = player->ExtraEquimentVec[i].enchant[enchant_slot];
-//              if (SpellItemEnchantmentEntry const* enchantEntry = sSpellItemEnchantmentStore.LookupEntry(enchantId))
-//              	oss << "\n              " << enchantEntry->description[4];              
-//			}
-//		}
-//	}
-//
-//	return oss.str();
-//}
-//
+﻿#pragma execution_character_set("utf-8")
+#include "ExtraEquipment.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../ItemMod/ItemMod.h"
+
+float extra_stat_muil;
+float extra_enchant_stat_muil;
+bool extra_origin_item_back;
+
+std::vector<uint32 /*entry*/> ExtraEuipMentEntryVec;
+
+void ExtraEquipment::Load()
+{
+	extra_stat_muil = 1.0f;
+	extra_enchant_stat_muil = 1.0f;
+	extra_origin_item_back	= false;
+
+	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+		"SELECT 属性倍率, 附魔属性倍率, 是否可以取回 from _物品_双甲" :
+		"SELECT stat_muil, enchant_muil, originItemEnable from _itemmod_extra_equipments");
+	if (result)
+	{
+		Field* fields = result->Fetch();
+
+		extra_stat_muil = fields[0].Get<float>();
+		extra_enchant_stat_muil = fields[1].Get<float>();
+		extra_origin_item_back	= fields[2].Get<bool>();
+	}
+
+	ExtraEuipMentEntryVec.clear();
+	QueryResult result1 = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+		"SELECT 物品ID from _物品_双甲列表" :
+		"SELECT entry from _itemmod_extra_equipments_enable");
+	if (result1)
+	{
+		do
+		{
+			Field* fields = result1->Fetch();
+			ExtraEuipMentEntryVec.push_back(fields[0].Get<uint32>());
+		} while (result1->NextRow());
+	}
+
+}
+
+std::string ExtraEquipment::GetItemName(uint32 entry, uint32 width, uint32 height, int x, int y)
+{
+	std::ostringstream ss;
+	ss << "|TInterface";
+	const ItemTemplate* temp = sObjectMgr->GetItemTemplate(entry);
+	const ItemDisplayInfoEntry* dispInfo = NULL;
+	if (temp)
+	{
+		dispInfo = sItemDisplayInfoStore.LookupEntry(temp->DisplayInfoID);
+		if (dispInfo)
+			ss << "/ICONS/" << dispInfo->inventoryIcon;
+	}
+	if (!temp && !dispInfo)
+		ss << "/InventoryItems/WoWUnknownItem01";
+	ss << ":" << width << ":" << height << ":" << x << ":" << y << "|t";
+	ss << temp->Name1;
+	return ss.str();
+}
+
+std::string ExtraEquipment::GetSlotDefaultText(EquipmentSlots slot, uint32 width, uint32 height, int x, int y)
+{
+	std::ostringstream ss;
+	ss << "|TInterface/PaperDoll/";
+	switch (slot)
+	{
+	case EQUIPMENT_SLOT_HEAD: ss << "UI-PaperDoll-Slot-Head"; break;
+	case EQUIPMENT_SLOT_SHOULDERS: ss << "UI-PaperDoll-Slot-Shoulder"; break;
+	case EQUIPMENT_SLOT_NECK: ss << "UI-PaperDoll-Slot-Neck"; break;
+	case EQUIPMENT_SLOT_BODY: ss << "UI-PaperDoll-Slot-Shirt"; break;
+	case EQUIPMENT_SLOT_CHEST: ss << "UI-PaperDoll-Slot-Chest"; break;
+	case EQUIPMENT_SLOT_WAIST: ss << "UI-PaperDoll-Slot-Waist"; break;
+	case EQUIPMENT_SLOT_LEGS: ss << "UI-PaperDoll-Slot-Legs"; break;
+	case EQUIPMENT_SLOT_FEET: ss << "UI-PaperDoll-Slot-Feet"; break;
+	case EQUIPMENT_SLOT_WRISTS: ss << "UI-PaperDoll-Slot-Wrists"; break;
+	case EQUIPMENT_SLOT_HANDS: ss << "UI-PaperDoll-Slot-Hands"; break;
+	case EQUIPMENT_SLOT_FINGER1: ss << "UI-PaperDoll-Slot-Finger"; break;
+	case EQUIPMENT_SLOT_FINGER2: ss << "UI-PaperDoll-Slot-Finger"; break;
+	case EQUIPMENT_SLOT_TRINKET1: ss << "UI-PaperDoll-Slot-Trinket"; break;
+	case EQUIPMENT_SLOT_TRINKET2: ss << "UI-PaperDoll-Slot-Trinket"; break;
+	case EQUIPMENT_SLOT_BACK: ss << "UI-PaperDoll-Slot-Chest"; break;
+	case EQUIPMENT_SLOT_MAINHAND: ss << "UI-PaperDoll-Slot-MainHand"; break;
+	case EQUIPMENT_SLOT_OFFHAND: ss << "UI-PaperDoll-Slot-SecondaryHand"; break;
+	case EQUIPMENT_SLOT_RANGED: ss << "UI-PaperDoll-Slot-Ranged"; break;
+	case EQUIPMENT_SLOT_TABARD: ss << "UI-PaperDoll-Slot-Tabard"; break;
+	default: ss << "UI-Backpack-EmptySlot";
+	}
+	ss << ":" << width << ":" << height << ":" << x << ":" << y << "|t";
+
+	ss << "未装备";
+
+	return ss.str();
+}
+
+std::string ExtraEquipment::GetSlotText(Player* player, EquipmentSlots slot)
+{
+	uint32 len = player->ExtraEquimentVec.size();
+	for (size_t i = 0; i < len; i++)
+		if (slot == player->ExtraEquimentVec[i].slot)
+			return GetItemName(player->ExtraEquimentVec[i].itemEntry, 30, 30, 0, 0) + GetDes(player,slot);
+
+	return GetSlotDefaultText(slot, 30, 30, 0, 0);
+}
+
+std::string ExtraEquipment::GetStatDes(uint32 entry)
+{
+	const ItemTemplate* proto = sObjectMgr->GetItemTemplate(entry);
+
+	if (!proto)
+		return "";
+
+	std::ostringstream oss;
+
+	//装备属性
+	for (uint8 k = 0; k < MAX_ITEM_PROTO_STATS; ++k)
+	{
+		if (k >= proto->StatsCount)
+			break;
+
+		uint32 statType = proto->ItemStat[k].ItemStatType;
+		int32  val = proto->ItemStat[k].ItemStatValue *extra_stat_muil;
+
+		if (val == 0)
+			continue;
+
+		switch (statType)
+		{
+		case ITEM_MOD_MANA:
+			oss << "\n              +" << val << "法力值";
+			break;
+		case ITEM_MOD_HEALTH:                           // modify HP
+			oss << "\n              +" << val << "生命值";
+			break;
+		case ITEM_MOD_AGILITY:                          // modify agility
+			oss << "\n              +" << val << "敏捷";
+			break;
+		case ITEM_MOD_STRENGTH:                         //modify strength
+			oss << "\n              +" << val << "力量";
+			break;
+		case ITEM_MOD_INTELLECT:                        //modify intellect
+			oss << "\n              +" << val << "智力";
+			break;
+		case ITEM_MOD_SPIRIT:                           //modify spirit
+			oss << "\n              +" << val << "精神";
+			break;
+		case ITEM_MOD_STAMINA:                          //modify stamina
+			oss << "\n              +" << val << "耐力";
+			break;
+		case ITEM_MOD_DEFENSE_SKILL_RATING:
+			oss << "\n              +" << val << "防御等级";
+			break;
+		case ITEM_MOD_DODGE_RATING:
+			oss << "\n              +" << val << "躲闪等级";
+			break;
+		case ITEM_MOD_PARRY_RATING:
+			oss << "\n              +" << val << "招架等级";
+			break;
+		case ITEM_MOD_BLOCK_RATING:
+			oss << "\n              +" << val << "格挡等级";
+			break;
+		case ITEM_MOD_HIT_MELEE_RATING:
+			oss << "\n              +" << val << "命中等级";
+			break;
+		case ITEM_MOD_HIT_RANGED_RATING:
+			oss << "\n              +" << val << "远程命中等级";
+			break;
+		case ITEM_MOD_HIT_SPELL_RATING:
+			oss << "\n              +" << val << "法术命中等级";
+			break;
+		case ITEM_MOD_CRIT_MELEE_RATING:
+			oss << "\n              +" << val << "暴击等级";
+			break;
+		case ITEM_MOD_CRIT_RANGED_RATING:
+			oss << "\n              +" << val << "远程暴击等级";
+			break;
+		case ITEM_MOD_CRIT_SPELL_RATING:
+			oss << "\n              +" << val << "法术暴击等级";
+			break;
+		case ITEM_MOD_HIT_TAKEN_MELEE_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_HIT_TAKEN_RANGED_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_HIT_TAKEN_SPELL_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_CRIT_TAKEN_MELEE_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_CRIT_TAKEN_RANGED_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_CRIT_TAKEN_SPELL_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_HASTE_MELEE_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_HASTE_RANGED_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_HASTE_SPELL_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_HIT_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_CRIT_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_HIT_TAKEN_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_CRIT_TAKEN_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_RESILIENCE_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_HASTE_RATING:
+			oss << "\n              +" << val << "急速等级";
+			break;
+		case ITEM_MOD_EXPERTISE_RATING:
+			oss << "\n              +" << val << "韧性等级";
+			break;
+		case ITEM_MOD_ATTACK_POWER:
+			oss << "\n              +" << val << "攻击强度";
+			break;
+		case ITEM_MOD_RANGED_ATTACK_POWER:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_MANA_REGENERATION:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_ARMOR_PENETRATION_RATING:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_SPELL_POWER:
+			oss << "\n              +" << val << "法术强度";
+			break;
+		case ITEM_MOD_HEALTH_REGEN:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_SPELL_PENETRATION:
+			oss << "\n              +" << val << "";
+			break;
+		case ITEM_MOD_BLOCK_VALUE:
+			oss << "\n              +" << val << "";
+			break;
+			// deprecated item mods
+		case ITEM_MOD_SPELL_HEALING_DONE:
+		case ITEM_MOD_SPELL_DAMAGE_DONE:
+			break;
+		}
+	}
+
+	return oss.str();
+}
+
+std::string ExtraEquipment::GetDes(Player* player, EquipmentSlots slot)
+{
+	std::ostringstream oss;
+	
+	oss << GetStatDes(GetItemEntry(player, slot));
+
+	uint32 len = player->ExtraEquimentVec.size();
+	for (size_t i = 0; i < len; i++)
+	{
+		if (slot == player->ExtraEquimentVec[i].slot)
+		{
+			uint32 entry = player->ExtraEquimentVec[i].itemEntry;
+
+			for (uint8 enchant_slot = PERM_ENCHANTMENT_SLOT; enchant_slot < PROP_ENCHANTMENT_SLOT_4; enchant_slot++)
+			{
+              uint32 enchantId = player->ExtraEquimentVec[i].enchant[enchant_slot];
+              if (SpellItemEnchantmentEntry const* enchantEntry = sSpellItemEnchantmentStore.LookupEntry(enchantId))
+              	oss << "\n              " << enchantEntry->description[4];              
+			}
+		}
+	}
+
+	return oss.str();
+}
+
 //std::string ExtraEquipment::GetDes(Item* item)
 //{
 //	std::ostringstream oss;
@@ -905,7 +905,7 @@
 //		ExtraEquipments temp;
 //		temp.itemEntry = fields[0].Get<uint32>();
 //		temp.slot = EquipmentSlots(fields[1].GetUInt8());
-//		std::vector<std::string> str_vec = sCF->SplitStr(fields[2].GetString(), " ");
+//		std::vector<std::string> str_vec = sCF->SplitStr(fields[2].Get<std::string>(), " ");
 //		for (size_t i = 0; i < str_vec.size(); i++)
 //			temp.enchant[i] = (uint32)atoi(str_vec[i].c_str());		
 //			

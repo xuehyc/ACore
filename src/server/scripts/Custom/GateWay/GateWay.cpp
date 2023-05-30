@@ -242,7 +242,7 @@
 //	do
 //	{
 //		Field* fields = result->Fetch();
-//		std::vector<std::string> vec = sCF->SplitStr(fields[0].GetString(), "#");
+//		std::vector<std::string> vec = sCF->SplitStr(fields[0].Get<std::string>(), "#");
 //
 //		for (size_t i = 0; i < vec.size(); i++)
 //		{

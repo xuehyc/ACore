@@ -22,7 +22,7 @@
 //		MountVendorTemplate MountVendorTemp;
 //		MountVendorTemp.spellId = fields[0].Get<uint32>();
 //		MountVendorTemp.reqId = fields[1].Get<uint32>();
-//		MountVendorTemp.onSale = fields[2].GetBool();
+//		MountVendorTemp.onSale = fields[2].Get<bool>();
 //		MountVendorVec.push_back(MountVendorTemp);
 //	} while (result->NextRow());
 //}

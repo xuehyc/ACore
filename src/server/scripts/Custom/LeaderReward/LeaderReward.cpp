@@ -18,7 +18,7 @@
 //		Field* fields = result->Fetch();
 //		LeaderRewardTemplate Temp;
 //		Temp.mapIdOrZoneId	= fields[0].Get<uint32>();
-//		Temp.isInstance		= fields[1].GetBool();
+//		Temp.isInstance		= fields[1].Get<bool>();
 //
 //		std::string bossInfo = fields[2].Get<std::string>();
 //		std::vector<std::string> strBossInfo = sCF->SplitStr(bossInfo, "|");

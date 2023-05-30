@@ -29,7 +29,7 @@
 //			QuestModTemplate QuestModTemp;
 //			uint32 questId			= fields[0].Get<uint32>();
 //			QuestModTemp.reqId		= fields[1].Get<uint32>();
-//			QuestModTemp.desReq		= fields[2].GetBool();
+//			QuestModTemp.desReq		= fields[2].Get<bool>();
 //			QuestModTemp.telePosId	= fields[3].Get<uint32>();
 //
 //			for (size_t i = 0; i < MAX_QUEST_MOD_REW_COUNT; i++)

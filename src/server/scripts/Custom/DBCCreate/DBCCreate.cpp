@@ -605,7 +605,7 @@
 //			EntryVec.push_back(fields[0].Get<uint32>());
 //
 //			for (uint8 i = 0; i < 8; i++)
-//				v.push_back(fields[i].GetString());
+//				v.push_back(fields[i].Get<std::string>());
 //
 //			dbcData.push_back(v);
 //
@@ -661,7 +661,7 @@
 //			std::vector<std::string> v;
 //			Field* fields = result->Fetch();
 //			for (uint8 i = 0; i < 25; i++)
-//				v.push_back(fields[i].GetString());
+//				v.push_back(fields[i].Get<std::string>());
 //		
 //			dbcData.push_back(v);
 //
@@ -688,7 +688,7 @@
 //			Field* fields = result->Fetch();
 //
 //			for (size_t i = 0; i < 16; i++)
-//				v.push_back(fields[i].GetString());
+//				v.push_back(fields[i].Get<std::string>());
 //
 //			dbcData.push_back(v);
 //
@@ -761,7 +761,7 @@
 //			Field* fields = result->Fetch();
 //
 //			for (size_t i = 0; i < 136; i++)
-//				v.push_back(fields[i].GetString());
+//				v.push_back(fields[i].Get<std::string>());
 //			
 //			std::string SpellName			= fields[136].Get<std::string>();
 //			std::string SpellNameFlag		= fields[137].Get<std::string>();
@@ -776,45 +776,45 @@
 //			for (size_t i = 0; i < 16; i++)
 //			{
 //				if (i == 4)
-//					v.push_back(fields[136].GetString());
+//					v.push_back(fields[136].Get<std::string>());
 //				else
 //					v.push_back("");
 //			}
 //			//SpellNameFlag
-//			v.push_back(fields[137].GetString());
+//			v.push_back(fields[137].Get<std::string>());
 //			//Rank
 //			for (size_t i = 0; i < 16; i++)
 //			{
 //				if (i == 4)
-//					v.push_back(fields[138].GetString());
+//					v.push_back(fields[138].Get<std::string>());
 //				else
 //					v.push_back("");
 //			}
 //			//RankFlags
-//			v.push_back(fields[139].GetString());
+//			v.push_back(fields[139].Get<std::string>());
 //			//Description
 //			for (size_t i = 0; i < 16; i++)
 //			{
 //				if (i == 4)
-//					v.push_back(fields[140].GetString());
+//					v.push_back(fields[140].Get<std::string>());
 //				else
 //					v.push_back("");
 //			}
 //			//DescriptionFlags
-//			v.push_back(fields[141].GetString());
+//			v.push_back(fields[141].Get<std::string>());
 //			//ToolTip
 //			for (size_t i = 0; i < 16; i++)
 //			{
 //				if (i == 4)
-//					v.push_back(fields[142].GetString());
+//					v.push_back(fields[142].Get<std::string>());
 //				else
 //					v.push_back("");
 //			}
 //			//ToolTipFlags
-//			v.push_back(fields[143].GetString());
+//			v.push_back(fields[143].Get<std::string>());
 //
 //			for (size_t i = 144; i < 174; i++)
-//				v.push_back(fields[i].GetString());
+//				v.push_back(fields[i].Get<std::string>());
 //
 //			dbcData.push_back(v);
 //
@@ -896,14 +896,14 @@
 //			std::vector<std::string> v;
 //			Field* fields = result->Fetch();
 //			v.push_back(std::to_string(index + 1));	//ID
-//			v.push_back(fields[0].GetString());		//race
-//			v.push_back(fields[1].GetString());		//class
-//			v.push_back(fields[2].GetString());		//gender
+//			v.push_back(fields[0].Get<std::string>());		//race
+//			v.push_back(fields[1].Get<std::string>());		//class
+//			v.push_back(fields[2].Get<std::string>());		//gender
 //			v.push_back("0");						//unused
 //
 //			//itemid
 //			for (size_t i = 0; i < 24; i++)
-//				v.push_back(fields[3 + i].GetString());
+//				v.push_back(fields[3 + i].Get<std::string>());
 //
 //			//displayid
 //			for (size_t i = 0; i < 24; i++)
@@ -960,37 +960,37 @@
 //			std::vector<std::string> v;
 //			Field* fields = result->Fetch();
 //
-//			v.push_back(fields[0].GetString());
-//			v.push_back(fields[1].GetString());
-//			v.push_back(fields[2].GetString());
-//			v.push_back(fields[3].GetString());
-//			v.push_back(fields[4].GetString());
-//			v.push_back(fields[5].GetString());
-//			v.push_back(fields[6].GetString());
-//			v.push_back(fields[7].GetString());
+//			v.push_back(fields[0].Get<std::string>());
+//			v.push_back(fields[1].Get<std::string>());
+//			v.push_back(fields[2].Get<std::string>());
+//			v.push_back(fields[3].Get<std::string>());
+//			v.push_back(fields[4].Get<std::string>());
+//			v.push_back(fields[5].Get<std::string>());
+//			v.push_back(fields[6].Get<std::string>());
+//			v.push_back(fields[7].Get<std::string>());
 //			v.push_back("0");
 //			v.push_back("0");
 //			v.push_back("0");
-//			v.push_back(fields[8].GetString());
-//			v.push_back(fields[9].GetString());
-//			v.push_back(fields[10].GetString());
+//			v.push_back(fields[8].Get<std::string>());
+//			v.push_back(fields[9].Get<std::string>());
+//			v.push_back(fields[10].Get<std::string>());
 //
 //			for (size_t i = 0; i < 16; i++)
 //			{
 //				if (i != 4)
 //					v.push_back("");
 //				else
-//					v.push_back(fields[11].GetString());
+//					v.push_back(fields[11].Get<std::string>());
 //			}
 //
 //			v.push_back("16712190");
-//			v.push_back(fields[12].GetString());
-//			v.push_back(fields[13].GetString());
-//			v.push_back(fields[14].GetString());
-//			v.push_back(fields[15].GetString());
-//			v.push_back(fields[16].GetString());
-//			v.push_back(fields[17].GetString());
-//			v.push_back(fields[18].GetString());
+//			v.push_back(fields[12].Get<std::string>());
+//			v.push_back(fields[13].Get<std::string>());
+//			v.push_back(fields[14].Get<std::string>());
+//			v.push_back(fields[15].Get<std::string>());
+//			v.push_back(fields[16].Get<std::string>());
+//			v.push_back(fields[17].Get<std::string>());
+//			v.push_back(fields[18].Get<std::string>());
 //
 //			dbcData.push_back(v);
 //
@@ -1024,29 +1024,29 @@
 //			std::vector<std::string> v;
 //			Field* fields = result->Fetch();
 //
-//			v.push_back(fields[0].GetString());	//0
-//			v.push_back(fields[1].GetString());	//1
-//			v.push_back(fields[2].GetString());	//2
-//			v.push_back(fields[3].GetString());	//3
-//			v.push_back(fields[4].GetString());	//4
-//			v.push_back(fields[5].GetString());	//5
-//			v.push_back(fields[6].GetString());	//6
-//			v.push_back(fields[7].GetString());	//7
-//			v.push_back(fields[8].GetString());	//8
+//			v.push_back(fields[0].Get<std::string>());	//0
+//			v.push_back(fields[1].Get<std::string>());	//1
+//			v.push_back(fields[2].Get<std::string>());	//2
+//			v.push_back(fields[3].Get<std::string>());	//3
+//			v.push_back(fields[4].Get<std::string>());	//4
+//			v.push_back(fields[5].Get<std::string>());	//5
+//			v.push_back(fields[6].Get<std::string>());	//6
+//			v.push_back(fields[7].Get<std::string>());	//7
+//			v.push_back(fields[8].Get<std::string>());	//8
 //			v.push_back("0");					//9
 //			v.push_back("0");					//10
 //			v.push_back("0");					//11
 //			v.push_back("0");					//12
-//			v.push_back(fields[9].GetString());	//13
+//			v.push_back(fields[9].Get<std::string>());	//13
 //			v.push_back("0");					//14
 //			v.push_back("0");					//15
-//			v.push_back(fields[10].GetString());//16
+//			v.push_back(fields[10].Get<std::string>());//16
 //			v.push_back("0");					//17
 //			v.push_back("0");					//18
-//			v.push_back(fields[11].GetString());//19
+//			v.push_back(fields[11].Get<std::string>());//19
 //			v.push_back("0");					//20
-//			v.push_back(fields[12].GetString());//21
-//			v.push_back(fields[13].GetString());//22
+//			v.push_back(fields[12].Get<std::string>());//21
+//			v.push_back(fields[13].Get<std::string>());//22
 //
 //			dbcData.push_back(v);
 //
@@ -1074,8 +1074,8 @@
 //			std::vector<std::string> v;
 //			Field* fields = result->Fetch();
 //
-//			v.push_back(fields[0].GetString());
-//			v.push_back(fields[1].GetString());
+//			v.push_back(fields[0].Get<std::string>());
+//			v.push_back(fields[1].Get<std::string>());
 //			
 //			dbcData.push_back(v);
 //

@@ -127,9 +127,9 @@
 //			RecruitTemp.recruiterGUIDLow = fields[0].Get<uint32>();
 //			RecruitTemp.friendGUIDLow = fields[1].Get<uint32>();
 //			RecruitTemp.friendPlayedTime = fields[2].Get<uint32>();
-//			RecruitTemp.timeRewarded1 = fields[3].GetBool();
-//			RecruitTemp.timeRewarded2 = fields[4].GetBool();
-//			RecruitTemp.timeRewarded3 = fields[5].GetBool();
+//			RecruitTemp.timeRewarded1 = fields[3].Get<bool>();
+//			RecruitTemp.timeRewarded2 = fields[4].Get<bool>();
+//			RecruitTemp.timeRewarded3 = fields[5].Get<bool>();
 //			RecruitInfo.push_back(RecruitTemp);
 //		} while (result1->NextRow());
 //	}
@@ -152,7 +152,7 @@
 //			RecruitOrDissTemp.disReqId1 = fields[3].Get<uint32>();
 //			RecruitOrDissTemp.disReqId2 = fields[4].Get<uint32>();
 //			RecruitOrDissTemp.playersLimit = fields[5].Get<uint32>();
-//			RecruitOrDissTemp.crossFaction = fields[6].GetBool();
+//			RecruitOrDissTemp.crossFaction = fields[6].Get<bool>();
 //			RecruitOrDissTemp.insLevel = fields[7].Get<uint32>();
 //			RecruitOrDissTemp.timeForRew1 = fields[8].Get<uint32>();
 //			RecruitOrDissTemp.timeForRewId1 = fields[9].Get<uint32>();

@@ -51,10 +51,10 @@
 //			Temp.maxHp			= fields[6].Get<int32>();
 //			Temp.killRewId		= fields[7].Get<int32>();
 //			Temp.killedRewId	= fields[8].Get<int32>();
-//			Tokenizer tokens(fields[9].GetString(), ' ');
+//			Tokenizer tokens(fields[9].Get<std::string>(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens.begin(); itr != tokens.end(); ++itr)
 //				Temp.eventData.push_back(uint32(atol(*itr)));
-//			Temp.autoMaxHp		= fields[10].GetBool();
+//			Temp.autoMaxHp		= fields[10].Get<bool>();
 //			PvPVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}

@@ -18,7 +18,7 @@
 //		InstanceDieTeleTemplate Temp;
 //		Temp.DieTelePos_A = fields[1].Get<uint32>();
 //		Temp.DieTelePos_H = fields[2].Get<uint32>();
-//		Temp.Unique		  = fields[3].GetBool();
+//		Temp.Unique		  = fields[3].Get<bool>();
 //		InstanceDieTeleMap.insert(std::make_pair(MapId, Temp));
 //	} while (result->NextRow());
 //}

@@ -809,7 +809,7 @@
 //			EventWorldStateFactionTemplate Temp;
 //			Temp.ID				= fields[0].Get<uint32>();
 //			Temp.Faction		= fields[1].Get<uint32>();
-//			Temp.Kill			= fields[2].GetBool();
+//			Temp.Kill			= fields[2].Get<bool>();
 //			Temp.Step			= fields[3].Get<int32>();
 //			Temp.NoticeValue	= fields[4].Get<int32>();
 //			Temp.Notice			= fields[5].Get<std::string>();

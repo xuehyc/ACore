@@ -1,91 +1,91 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "FunctionCollection.h"
-//#include "../HonorRank/HonorRank.h"
-//#include "../Lottery/Lottery.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "../Recruit/Recruit.h"
-//#include "../CustomEvent/Event.h"
-//#include "Guild.h"
-//#include "../Requirement/Requirement.h"
-//#include "../Reward/Reward.h"
-//#include "../Quest/QuestMod.h"
-//#include "../VIP/VIP.h"
-//#include "Group.h"
-//#include "MapMgr.h"
-//#include "../ResetInstance/ResetInstance.h"
-//#include "../Switch/Switch.h"
-//#include "../Skill/Skill.h"
-//#include "../Rank/Rank.h"
-//#include "../Faction/Faction.h"
-//#include "../Morph/Morph.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../LuckDraw/LuckDraw.h"
-//#include "../SignIn/SignIn.h"
-//#include "../Recovery/Recovery.h"
-//#include "../StatPoints/StatPoints.h"
-//#include "../Command/CustomCommand.h"
-//#include "../Reincarnation/Reincarnation.h"
-//#include "../String/myString.h"
-//#include "../UnitMod/CharMod/CharMod.h"
-//
-//std::vector<FunctionTemplate> FunctionVec;
-//
-//std::vector<GossipTemplate> GossipVec;
-//
-//std::vector<GossipTemplate> AboveMenuVec;
-//
-//bool GreaterSort(GossipTemplate a, GossipTemplate b) { return (a.menuId <b.menuId); }
-//
-//void FunctionCollection::Load()
-//{
-//	FunctionVec.clear();
-//	GossipVec.clear();
-//	QueryResult result = WorldDatabase.Query("SELECT funcIndex,reqId,telePosId_A,telePosId_H,desReq FROM _function_index");
-//	QueryResult result1 = WorldDatabase.Query("SELECT entry,type,menuId,prevMenuId,funcIndex, smallIconType, bigIconName,menuText,teamId FROM _function_menu");
-//
-//	if (!result || !result1) return;
-//	do
-//	{
-//		Field* fields = result->Fetch();
-//		FunctionTemplate FunctionTemp;
-//		FunctionTemp.index = fields[0].Get<uint32>();
-//		FunctionTemp.reqId = fields[1].Get<uint32>();
-//
-//		Tokenizer telePosId_A_Data(fields[2].GetString(), ' ');
-//
-//		for (Tokenizer::const_iterator itr = telePosId_A_Data.begin(); itr != telePosId_A_Data.end(); ++itr)
-//			FunctionTemp.telePosId_A.push_back(atoi(*itr));
-//
-//		Tokenizer telePosId_H_Data(fields[3].GetString(), ' ');
-//
-//		for (Tokenizer::const_iterator itr = telePosId_A_Data.begin(); itr != telePosId_A_Data.end(); ++itr)
-//			FunctionTemp.telePosId_H.push_back(atoi(*itr));
-//
-//		FunctionTemp.desReq = fields[4].GetBool();
-//		FunctionVec.push_back(FunctionTemp);
-//	} while (result->NextRow());
-//
-//	do
-//	{
-//		Field* fields = result1->Fetch();
-//		GossipTemplate GossipTemp;
-//		GossipTemp.entry = fields[0].Get<uint32>();
-//		GossipTemp.type = fields[1].Get<uint32>();
-//		GossipTemp.menuId = fields[2].Get<uint32>();
-//		GossipTemp.prevMenuId = fields[3].Get<uint32>();
-//		GossipTemp.funcIndex = fields[4].Get<int32>();
-//		GossipTemp.smallIconType = fields[5].Get<uint8>();
-//		GossipTemp.bigIconName = fields[6].Get<std::string>();
-//		GossipTemp.menuText = fields[7].Get<std::string>();
-//		GossipTemp.teamId = TeamId(fields[8].Get<uint32>());
-//		GossipVec.push_back(GossipTemp);
-//	} while (result1->NextRow());
-//
-//
-//	
-//	sort(GossipVec.begin(), GossipVec.end(), GreaterSort);//升序排列
-//
-//}
+﻿#pragma execution_character_set("utf-8")
+#include "FunctionCollection.h"
+#include "../HonorRank/HonorRank.h"
+#include "../Lottery/Lottery.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../Recruit/Recruit.h"
+#include "../CustomEvent/Event.h"
+#include "Guild.h"
+#include "../Requirement/Requirement.h"
+#include "../Reward/Reward.h"
+#include "../Quest/QuestMod.h"
+#include "../VIP/VIP.h"
+#include "Group.h"
+#include "MapMgr.h"
+#include "../ResetInstance/ResetInstance.h"
+#include "../Switch/Switch.h"
+#include "../Skill/Skill.h"
+#include "../Rank/Rank.h"
+#include "../Faction/Faction.h"
+#include "../Morph/Morph.h"
+#include "../GCAddon/GCAddon.h"
+#include "../LuckDraw/LuckDraw.h"
+#include "../SignIn/SignIn.h"
+#include "../Recovery/Recovery.h"
+#include "../StatPoints/StatPoints.h"
+#include "../Command/CustomCommand.h"
+#include "../Reincarnation/Reincarnation.h"
+#include "../String/myString.h"
+#include "../UnitMod/CharMod/CharMod.h"
+
+std::vector<FunctionTemplate> FunctionVec;
+
+std::vector<GossipTemplate> GossipVec;
+
+std::vector<GossipTemplate> AboveMenuVec;
+
+bool GreaterSort(GossipTemplate a, GossipTemplate b) { return (a.menuId <b.menuId); }
+
+void FunctionCollection::Load()
+{
+	FunctionVec.clear();
+	GossipVec.clear();
+	QueryResult result = WorldDatabase.Query("SELECT funcIndex,reqId,telePosId_A,telePosId_H,desReq FROM _function_index");
+	QueryResult result1 = WorldDatabase.Query("SELECT entry,type,menuId,prevMenuId,funcIndex, smallIconType, bigIconName,menuText,teamId FROM _function_menu");
+
+	if (!result || !result1) return;
+	do
+	{
+		Field* fields = result->Fetch();
+		FunctionTemplate FunctionTemp;
+		FunctionTemp.index = fields[0].Get<uint32>();
+		FunctionTemp.reqId = fields[1].Get<uint32>();
+
+		Tokenizer telePosId_A_Data(fields[2].Get<std::string>(), ' ');
+
+		for (Tokenizer::const_iterator itr = telePosId_A_Data.begin(); itr != telePosId_A_Data.end(); ++itr)
+			FunctionTemp.telePosId_A.push_back(atoi(*itr));
+
+		Tokenizer telePosId_H_Data(fields[3].Get<std::string>(), ' ');
+
+		for (Tokenizer::const_iterator itr = telePosId_A_Data.begin(); itr != telePosId_A_Data.end(); ++itr)
+			FunctionTemp.telePosId_H.push_back(atoi(*itr));
+
+		FunctionTemp.desReq = fields[4].Get<bool>();
+		FunctionVec.push_back(FunctionTemp);
+	} while (result->NextRow());
+
+	do
+	{
+		Field* fields = result1->Fetch();
+		GossipTemplate GossipTemp;
+		GossipTemp.entry = fields[0].Get<uint32>();
+		GossipTemp.type = fields[1].Get<uint32>();
+		GossipTemp.menuId = fields[2].Get<uint32>();
+		GossipTemp.prevMenuId = fields[3].Get<uint32>();
+		GossipTemp.funcIndex = fields[4].Get<int32>();
+		GossipTemp.smallIconType = fields[5].Get<uint8>();
+		GossipTemp.bigIconName = fields[6].Get<std::string>();
+		GossipTemp.menuText = fields[7].Get<std::string>();
+		GossipTemp.teamId = TeamId(fields[8].Get<uint32>());
+		GossipVec.push_back(GossipTemp);
+	} while (result1->NextRow());
+
+
+	
+	sort(GossipVec.begin(), GossipVec.end(), GreaterSort);//升序排列
+
+}
 //uint32 FunctionCollection::GetOjectType(Object* obj)
 //{
 //	switch (obj->GetTypeId())

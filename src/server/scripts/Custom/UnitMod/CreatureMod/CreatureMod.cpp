@@ -44,7 +44,7 @@
 //		Temp.Resistance		= fields[7].Get<int32>();
 //		Temp.KillRewId		= fields[8].Get<uint32>();
 //		Temp.KillRewChance	= fields[9].Get<float>();
-//		Temp.KillAnnounce	= fields[10].GetBool();
+//		Temp.KillAnnounce	= fields[10].Get<bool>();
 //		Temp.Armor			= fields[11].Get<int32>();
 //		Temp.AttackTime		= fields[12].Get<uint32>();
 //		Temp.ResetDistance	= fields[13].Get<float>();
@@ -58,7 +58,7 @@
 //		Temp.AddRankValue		= fields[22].Get<int32>();
 //		Temp.KillRewGameObject	= fields[23].Get<int32>();
 //		Temp.ChallengeLv		= fields[24].Get<uint32>();
-//		Temp.SrcLoot			= fields[25].GetBool();
+//		Temp.SrcLoot			= fields[25].Get<bool>();
 //		Temp.RandSpellGroupId	= fields[26].Get<uint32>();
 //		Temp.Diff				= fields[27].Get<uint32>();
 //		CreautreModVec.push_back(Temp);

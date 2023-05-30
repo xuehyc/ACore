@@ -128,7 +128,7 @@
 //        {
 //            uint8 PresetID = (*result)[0].Get<uint8>();
 //            std::string SetName = (*result)[1].Get<std::string>();
-//            std::istringstream SetData((*result)[2].GetString());
+//            std::istringstream SetData((*result)[2].Get<std::string>());
 //            while (SetData.good())
 //            {
 //                uint32 slot;
