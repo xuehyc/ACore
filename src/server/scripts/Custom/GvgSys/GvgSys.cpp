@@ -1,29 +1,29 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "GvgSys.h"
-//#include "MapMgr.h"
-//#include "GuildMgr.h"
-//#include "Guild.h"
-//#include "../Switch/Switch.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "../PvP/PvP.h"
-//#include "../String/myString.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../GS/GS.h"
-//#include "Pet.h"
-//
-//GvgSys::GvgSys()
-//{
-//	m_guildId1 = 0;
-//	m_guildId2 = 0;
-//	GCevent = false;
-//	Vgvgconf.clear();
-//}
-//
-//GvgSys::~GvgSys()
-//{
-//
-//}
-//
+﻿#pragma execution_character_set("utf-8")
+#include "GvgSys.h"
+#include "MapMgr.h"
+#include "GuildMgr.h"
+#include "Guild.h"
+#include "../Switch/Switch.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../PvP/PvP.h"
+#include "../String/myString.h"
+#include "../GCAddon/GCAddon.h"
+#include "../GS/GS.h"
+#include "Pet.h"
+
+GvgSys::GvgSys()
+{
+	m_guildId1 = 0;
+	m_guildId2 = 0;
+	GCevent = false;
+	Vgvgconf.clear();
+}
+
+GvgSys::~GvgSys()
+{
+
+}
+
 //void Player::GCPlayerInTeam(bool action)
 //{
 //	if (action)
