@@ -1,50 +1,50 @@
-﻿////From:http://www.mangoscn.com/forum.php?mod=viewthread&tid=9651&extra=page%3D3
-///* Copyright (C) 2007,2008 --- TYRE TELEPORT v1.0 ---
-//* This program is free software; you can redistribute it and/or modify
-//* it under the terms of the GNU General Public License as published by
-//* the Free Software Foundation; either version 2 of the License, or
-//* (at your option) any later version.
-//*
-//* This program is distributed in the hope that it will be useful,
-//* but WITHOUT ANY WARRANTY; without even the implied warranty of
-//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//* GNU General Public License for more details.
-//*
-//* You should have received a copy of the GNU General Public License
-//* along with this program; if not, write to the Free Software
-//* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//*/
-//
-////#include "sc_defines.h"
-////#include "ConfigEnv.h"
-////#include "DatabasePostgre.h"
-//
-//
-//#include "GossipDef.h"
-//#include "Player.h"
-//#include "Chat.h"
-//#include "DatabaseEnv.h"
-//#include "WorldSession.h"
-//#include "NPCHandler.h"
-//#include "Item.h"
-//#include "ObjectMgr.h"
-//#include "config.h"
-//#include "ScriptMgr.h"
-//#include "ScriptedGossip.h"
-//
-//bool GossipHello_Teleport(Player* player, Creature* _Creature)
-//{
-//    AddGossipItemFor(player, 7, " |cff8000FF 【男方求爱】 ", 1, 1001, "", 0,false);//YES! //,false-->Later add
-//    AddGossipItemFor(player, 7, " |cff8000FF 【男方求爱】 ", 1, 1001, "", 0, false);
-//    AddGossipItemFor(player, 7, " |cff8000FF 【女方接受】 ", 1, 1002, "", 0, false);
-//    AddGossipItemFor(player, 7, " |cff8000FF 【我要离婚】 ", 1, 1003, "", 0, false);
-//    AddGossipItemFor(player, 7, " |cff8000FF 【待定】 ", 1, 1004, "", 0, false);
-//    AddGossipItemFor(player, 7, " |cff8000FF 【待定】 ", 1, 1005, "", 0, false);
-//    SendGossipMenuFor(player,99990, _Creature->GetGUID());
-//
-//    return true;
-//}
-//
+﻿//From:http://www.mangoscn.com/forum.php?mod=viewthread&tid=9651&extra=page%3D3
+/* Copyright (C) 2007,2008 --- TYRE TELEPORT v1.0 ---
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+//#include "sc_defines.h"
+//#include "ConfigEnv.h"
+//#include "DatabasePostgre.h"
+
+
+#include "GossipDef.h"
+#include "Player.h"
+#include "Chat.h"
+#include "DatabaseEnv.h"
+#include "WorldSession.h"
+#include "NPCHandler.h"
+#include "Item.h"
+#include "ObjectMgr.h"
+#include "config.h"
+#include "ScriptMgr.h"
+#include "ScriptedGossip.h"
+
+bool GossipHello_Teleport(Player* player, Creature* _Creature)
+{
+    AddGossipItemFor(player, 7, " |cff8000FF 【男方求爱】 ", 1, 1001, "", 0,false);//YES! //,false-->Later add
+    AddGossipItemFor(player, 7, " |cff8000FF 【男方求爱】 ", 1, 1001, "", 0, false);
+    AddGossipItemFor(player, 7, " |cff8000FF 【女方接受】 ", 1, 1002, "", 0, false);
+    AddGossipItemFor(player, 7, " |cff8000FF 【我要离婚】 ", 1, 1003, "", 0, false);
+    AddGossipItemFor(player, 7, " |cff8000FF 【待定】 ", 1, 1004, "", 0, false);
+    AddGossipItemFor(player, 7, " |cff8000FF 【待定】 ", 1, 1005, "", 0, false);
+    SendGossipMenuFor(player,99990, _Creature->GetGUID());
+
+    return true;
+}
+
 //void SendDefaultMenu_Teleport(Player* player, Creature* _Creature, uint32 action)
 //{
 //    //此处缺少数据库访问新语法
@@ -70,13 +70,13 @@
 //    std::string selectname;
 //
 //    result = sd2db.PQuery("select dearid,ismerry,name,dear from characters where guid='%d'", player->GetGUID());
-//    mydear = result->Fetch()[0].GetUInt32();//获取我的对象
-//    merryed = result->Fetch()[1].GetUInt32();//获取我是否已婚
+//    mydear = result->Fetch()[0].Get<uint32>();//获取我的对象
+//    merryed = result->Fetch()[1].Get<uint32>();//获取我是否已婚
 //    myname = result->Fetch()[2].GetCppString();//获取我的名字
 //    selectdear = player->GetSelection();//获取选择对象id
 //        selectdear = m_session->GetPlayer()->GetSelection()
 //    result2 = sd2db.PQuery("select ismerry,name from characters where guid='%d'", selectdear);
-//    selectdear = result2->Fetch()[0].GetUInt32();
+//    selectdear = result2->Fetch()[0].Get<uint32>();
 //    selectname = result2->Fetch()[1].GetCppString();
 //    Player* selectchar = objmgr.GetPlayer(selectdear);
 //    switch (action) {
@@ -192,7 +192,7 @@
 //            //case 1009 :
 //            //    break;
 //        case 1010:
-//            mandear = result2->Fetch()[0].GetUInt32();
+//            mandear = result2->Fetch()[0].Get<uint32>();
 //            if (mandear != player->GetSelection())
 //            {
 //                player->GetSession()->SendAreaTriggerMessage("你选择的结婚对象不是你的意中人哦");
