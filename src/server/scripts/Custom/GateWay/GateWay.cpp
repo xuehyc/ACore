@@ -270,7 +270,7 @@
 //	if (!result)
 //		return;
 //
-//	uint32 account = result->Fetch()[0].GetUInt32();
+//	uint32 account = result->Fetch()[0].Get<uint32>();
 //
 //	QueryResult result1 = LoginDatabase.Query("SELECT pcIDCode FROM account where id = '%d'", account);
 //
@@ -294,7 +294,7 @@
 //	if (!result)
 //		return;
 //
-//	uint32 account = result->Fetch()[0].GetUInt32();
+//	uint32 account = result->Fetch()[0].Get<uint32>();
 //
 //	QueryResult result1 = LoginDatabase.Query("SELECT pcIDCode FROM account where id = '%d'", account);
 //

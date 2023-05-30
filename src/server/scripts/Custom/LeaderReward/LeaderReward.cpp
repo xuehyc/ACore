@@ -11,13 +11,13 @@
 //{
 //	return;
 //	LeaderRewardVec.clear();
-//	QueryResult result = WorldDatabase.PQuery("SELECT mapIdOrZoneId,isInstance,bossInfo,rewId,distance,nearbyPlayers,rewType,diff,ipMaxCount FROM _leader_reward");
+//	QueryResult result = WorldDatabase.Query("SELECT mapIdOrZoneId,isInstance,bossInfo,rewId,distance,nearbyPlayers,rewType,diff,ipMaxCount FROM _leader_reward");
 //	if (!result) return;
 //	do
 //	{
 //		Field* fields = result->Fetch();
 //		LeaderRewardTemplate Temp;
-//		Temp.mapIdOrZoneId	= fields[0].GetUInt32();
+//		Temp.mapIdOrZoneId	= fields[0].Get<uint32>();
 //		Temp.isInstance		= fields[1].GetBool();
 //
 //		std::string bossInfo = fields[2].GetString();
@@ -25,12 +25,12 @@
 //		for (size_t j = 0; j < strBossInfo.size(); j++)
 //			Temp.bossInfo.push_back(atoi(strBossInfo[j].c_str()));
 //
-//		Temp.rewId			= fields[3].GetUInt32();
-//		Temp.range			= fields[4].GetUInt32();
-//		Temp.nearbyPlayers	= fields[5].GetUInt32();
-//		Temp.rewType		= fields[6].GetUInt32();
+//		Temp.rewId			= fields[3].Get<uint32>();
+//		Temp.range			= fields[4].Get<uint32>();
+//		Temp.nearbyPlayers	= fields[5].Get<uint32>();
+//		Temp.rewType		= fields[6].Get<uint32>();
 //		Temp.diff			= fields[7].GetUInt8();
-//		Temp.ipMaxCount		= fields[8].GetUInt32();
+//		Temp.ipMaxCount		= fields[8].Get<uint32>();
 //		LeaderRewardVec.push_back(Temp);
 //	} while (result->NextRow());
 //}

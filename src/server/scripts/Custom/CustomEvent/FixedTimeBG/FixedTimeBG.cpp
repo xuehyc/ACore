@@ -13,7 +13,7 @@
 //void FixedTimeBG::Load()
 //{
 //	FixedTimeBGMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//			0		1			2				3			4					5				6					7				8			9		10
 //		"SELECT 战场类型,胜利奖励模板ID, 失败奖励模板ID,结束击杀人数,获得奖励最小击杀数,获得奖励最小被杀数,获得奖励最小伤害值,获得奖励最小治疗值,资源或旗帜,是否跨阵营,最低血量,"
 //		//11				12			13			14			15			16		17

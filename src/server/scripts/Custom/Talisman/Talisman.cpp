@@ -11,7 +11,7 @@
 //void Talisman::Load()
 //{
 //	TalismanMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 法宝物品ID,分组ID FROM __法宝" :
 //		"SELECT entry,groupid FROM _talisman");
 //	if (!result)
@@ -19,9 +19,9 @@
 //	do
 //	{
 //		Field* fields = result->Fetch();
-//		uint32 entry = fields[0].GetUInt32();
+//		uint32 entry = fields[0].Get<uint32>();
 //		if (ItemTemplate const* proto = sObjectMgr->GetItemTemplate(entry))
-//			TalismanMap.insert(std::make_pair(entry, fields[1].GetUInt32()));
+//			TalismanMap.insert(std::make_pair(entry, fields[1].Get<uint32>()));
 //	} while (result->NextRow());
 //}
 //
@@ -798,7 +798,7 @@
 //			Field* fields = result->Fetch();
 //
 //			for (std::unordered_map<uint32, uint32>::iterator iter = player->TalismanMap.begin(); iter != player->TalismanMap.end(); iter++)
-//				iter->second = fields[iter->first - 1].GetUInt32();
+//				iter->second = fields[iter->first - 1].Get<uint32>();
 //
 //			sTalisman->ApplyOnLogin(player);
 //		}
@@ -812,7 +812,7 @@
 //			do
 //			{
 //				Field* fields = result->Fetch();
-//				value = fields[0].GetUInt32();
+//				value = fields[0].Get<uint32>();
 //			} while (result->NextRow());
 //
 //			sTalisman->AddTalismanValue(player, value, false);

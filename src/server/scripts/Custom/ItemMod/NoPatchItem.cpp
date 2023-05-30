@@ -37,7 +37,7 @@
 //
 //	QueryResult result;
 //	
-//	if (result = WorldDatabase.PQuery("SELECT SrcIndex, SrcEntry, SrcChance From _itemmod_nopatch_src"))
+//	if (result = WorldDatabase.Query("SELECT SrcIndex, SrcEntry, SrcChance From _itemmod_nopatch_src"))
 //	{
 //		do
 //		{
@@ -50,7 +50,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT SpellIndex, SpellId, SpellTrigger, SpellCharges, SpellPPMRate, SpellCooldown, SpellCategory, SpellCategoryCooldown,SpellChance "
+//	if (result = WorldDatabase.Query("SELECT SpellIndex, SpellId, SpellTrigger, SpellCharges, SpellPPMRate, SpellCooldown, SpellCategory, SpellCategoryCooldown,SpellChance "
 //		"From _itemmod_nopatch_spell"))
 //	{
 //		do
@@ -70,7 +70,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT StatIndex, ItemStatType, ItemStatMinValue, ItemStatMaxValue,StatChance From _itemmod_nopatch_stat"))
+//	if (result = WorldDatabase.Query("SELECT StatIndex, ItemStatType, ItemStatMinValue, ItemStatMaxValue,StatChance From _itemmod_nopatch_stat"))
 //	{
 //		do
 //		{
@@ -85,7 +85,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT Entry, StatCount, SpellCount,"
+//	if (result = WorldDatabase.Query("SELECT Entry, StatCount, SpellCount,"
 //		"MinDamageMin,MinDamageMax,MaxDamageMin,MaxDamageMax,MinDelay,MaxDelay,SrcIndex,SpellIndex,StatIndex,LevelIndex,Quality,ItemLevel,Suffix From _itemmod_nopatch"))
 //	{
 //		do
@@ -118,7 +118,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT ItemStatType, Prefix From _itemmod_nopatch_stat_prefix"))
+//	if (result = WorldDatabase.Query("SELECT ItemStatType, Prefix From _itemmod_nopatch_stat_prefix"))
 //	{
 //		do
 //		{
@@ -127,7 +127,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT Level, ReqId, Chance, SpellIndex,AddSpellCount,StatIndex,AddStatCount,LevelStatModIndex,DamageLevelType,DamageValue,"
+//	if (result = WorldDatabase.Query("SELECT Level, ReqId, Chance, SpellIndex,AddSpellCount,StatIndex,AddStatCount,LevelStatModIndex,DamageLevelType,DamageValue,"
 //		"Suffix,ItemLevel,Quality,LevelIndex,EnchantIndex From _itemmod_nopatch_level"))
 //	{
 //		do
@@ -158,7 +158,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT LevelStatModIndex, StatType, ModType, StatValue From _itemmod_nopatch_level_statmod"))
+//	if (result = WorldDatabase.Query("SELECT LevelStatModIndex, StatType, ModType, StatValue From _itemmod_nopatch_level_statmod"))
 //	{
 //		do
 //		{
@@ -178,7 +178,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT LevelIndex, Level, Count, RewId, Aura1, Aura2, Aura3, Aura4, Aura5 From _itemmod_nopatch_aura"))
+//	if (result = WorldDatabase.Query("SELECT LevelIndex, Level, Count, RewId, Aura1, Aura2, Aura3, Aura4, Aura5 From _itemmod_nopatch_aura"))
 //	{
 //		do
 //		{
@@ -194,7 +194,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT Entry, Level, Chance From _itemmod_nopatch_tolevel"))
+//	if (result = WorldDatabase.Query("SELECT Entry, Level, Chance From _itemmod_nopatch_tolevel"))
 //	{
 //		do
 //		{
@@ -207,7 +207,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT SrcTempIndex, TargetTempIndex, MeetLevel, RewId From _itemmod_nopatch_compound"))
+//	if (result = WorldDatabase.Query("SELECT SrcTempIndex, TargetTempIndex, MeetLevel, RewId From _itemmod_nopatch_compound"))
 //	{
 //		do
 //		{
@@ -235,7 +235,7 @@
 //
 //	QueryResult result;
 //	//											0		1		2		3			4
-//	if (result = WorldDatabase.PQuery("SELECT MapId, Diff, ChallengeLv,TempIndex,TempChance From _itemmod_nopatch_map"))
+//	if (result = WorldDatabase.Query("SELECT MapId, Diff, ChallengeLv,TempIndex,TempChance From _itemmod_nopatch_map"))
 //	{
 //		do
 //		{
@@ -252,7 +252,7 @@
 //	}
 //
 //	//											0			1		2		3			4			5	
-//	if (result = WorldDatabase.PQuery("SELECT TempIndex,Quality,ItemLevel,EnchantIndex,Suffix,LeveIndex,"
+//	if (result = WorldDatabase.Query("SELECT TempIndex,Quality,ItemLevel,EnchantIndex,Suffix,LeveIndex,"
 //		//		6		7				8		9		10			11			12	
 //		"StatModIndex,StatAddData,StatOverData,SpellIndex,SpellCount, WeaponIndex,SellRewId,Prefix From _itemmod_nopatch_map_temp"))
 //	{
@@ -296,7 +296,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT StatModIndex, StatType, ModStatMin, ModStatMax From _itemmod_nopatch_map_statmod"))
+//	if (result = WorldDatabase.Query("SELECT StatModIndex, StatType, ModStatMin, ModStatMax From _itemmod_nopatch_map_statmod"))
 //	{
 //		do
 //		{
@@ -310,7 +310,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT EnchantIndex, Slot, EnchantGroupId From _itemmod_nopatch_map_enchant"))
+//	if (result = WorldDatabase.Query("SELECT EnchantIndex, Slot, EnchantGroupId From _itemmod_nopatch_map_enchant"))
 //	{
 //		do
 //		{
@@ -323,7 +323,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery("SELECT WeaponIndex, SubClass, MinDamageMod, MaxDamageMod, MinDamageMin,MinDamageMax,MaxDamageMin,MaxDamageMax,MinDelay,MaxDelay From _itemmod_nopatch_map_weapon"))
+//	if (result = WorldDatabase.Query("SELECT WeaponIndex, SubClass, MinDamageMod, MaxDamageMod, MinDamageMin,MinDamageMax,MaxDamageMin,MaxDamageMax,MinDelay,MaxDelay From _itemmod_nopatch_map_weapon"))
 //	{
 //		do
 //		{

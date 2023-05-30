@@ -7,7 +7,7 @@
 //void Trigger::Load()
 //{
 //	TriggerVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 生物GUID,类型,范围距离,联盟传送坐标ID,部落传送坐标ID,联盟光环ID,部落光环ID,提示内容,提示类型 FROM _自定义AI_触发器" :
 //		"SELECT guid,type,distance,A_PosId,H_PosId,A_AuraId,H_AuraId,notice,noticeType FROM _trigger");
 //	if (!result) return;
@@ -15,15 +15,15 @@
 //	{
 //		Field* fields = result->Fetch();
 //		TriggerTemplate Temp;
-//		Temp.guid		= fields[0].GetUInt32();
-//		Temp.type		= fields[1].GetUInt32();
+//		Temp.guid		= fields[0].Get<uint32>();
+//		Temp.type		= fields[1].Get<uint32>();
 //		Temp.distance	= fields[2].GetFloat();
-//		Temp.A_PosId	= fields[3].GetUInt32();
-//		Temp.H_PosId	= fields[4].GetUInt32();
-//		Temp.A_AuraId	= fields[5].GetUInt32();
-//		Temp.H_AuraId	= fields[6].GetUInt32();
+//		Temp.A_PosId	= fields[3].Get<uint32>();
+//		Temp.H_PosId	= fields[4].Get<uint32>();
+//		Temp.A_AuraId	= fields[5].Get<uint32>();
+//		Temp.H_AuraId	= fields[6].Get<uint32>();
 //		Temp.notice		= fields[7].GetString();
-//		Temp.noticeType = fields[8].GetUInt32();
+//		Temp.noticeType = fields[8].Get<uint32>();
 //		TriggerVec.push_back(Temp);
 //	} while (result->NextRow());
 //}

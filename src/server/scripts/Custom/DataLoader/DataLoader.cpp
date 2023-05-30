@@ -105,7 +105,7 @@
 //	QueryResult result;
 //
 //	MountAllowedMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0			1				2					3
 //		"SELECT 坐骑技能ID,是否允许室内使用,是否允许副本使用,是否允许战场使用,"
 //		//4				5			6			7		8				9		10			11			12			13
@@ -132,7 +132,7 @@
 //	}
 //
 //	KillerStreakMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0		1				2			3		4			5
 //		"SELECT 连杀数量, 连杀奖励模板ID,终结奖励模板ID,提示类型,连杀奖励类型,终结奖励类型 FROM __连杀" :
 //		//		0		1		2		3			4		5
@@ -153,7 +153,7 @@
 //	}
 //	
 //	BuyTransItemMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID, 需求模板ID FROM _物品_购买幻化" :
 //		"SELECT entry, reqId FROM _itemmod_buy_trans"))
 //	{
@@ -165,7 +165,7 @@
 //	}
 //	
 //	PlayerDropRateMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 玩家GUID,掉落倍率 FROM _属性调整_玩家掉率修改" :
 //		"SELECT guid,rate FROM _rate_charaters"))
 //	{
@@ -177,7 +177,7 @@
 //	}
 //
 //	AreaVisibilityDistMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 地域ID,可视距离 FROM _属性调整_地域可视距离" :
 //		"SELECT Area,Distance FROM _area_visibility"))
 //	{
@@ -189,7 +189,7 @@
 //	}
 //
 //	DirtyWordVector.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 屏蔽词 FROM __聊天屏蔽词列表" :
 //		"SELECT DirtyWord FROM _dirtyword"))
 //	{

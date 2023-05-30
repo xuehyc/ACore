@@ -76,24 +76,24 @@
 //void ItemMod::LoadBuyEquipSaleUse()
 //{
 //	ItemVendorBuyVec.clear();
-//	QueryResult result = WorldDatabase.PQuery("SELECT item, reqId, entry, clientSlot, buyMaxCount from npc_vendor");
+//	QueryResult result = WorldDatabase.Query("SELECT item, reqId, entry, clientSlot, buyMaxCount from npc_vendor");
 //	if (result)
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
 //			ItemVendorBuyTemplate Temp;
-//			Temp.item = fields[0].GetUInt32();
-//			Temp.reqId = fields[1].GetUInt32();
-//			Temp.vendor = fields[2].GetUInt32();
+//			Temp.item = fields[0].Get<uint32>();
+//			Temp.reqId = fields[1].Get<uint32>();
+//			Temp.vendor = fields[2].Get<uint32>();
 //			Temp.clientSlot = fields[3].GetUInt8();
-//			Temp.buyMaxCount = fields[4].GetUInt32();
+//			Temp.buyMaxCount = fields[4].Get<uint32>();
 //			ItemVendorBuyVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
 //	ItemBuyVec.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,需求模板ID from _物品_当购买时" :
 //		"SELECT entry,reqId from _itemmod_on_buy");
 //	if (result)
@@ -102,14 +102,14 @@
 //		{
 //			Field* fields = result->Fetch();
 //			ItemBuyTemplate Temp;
-//			Temp.entry = fields[0].GetUInt32();
-//			Temp.reqId = fields[1].GetUInt32();
+//			Temp.entry = fields[0].Get<uint32>();
+//			Temp.reqId = fields[1].Get<uint32>();
 //			ItemBuyVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
 //	ItemEquipMap.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 物品ID,需求模板ID from _物品_当装备时" :
 //		"SELECT entry,reqId from _itemmod_on_equip");
 //	if (result)
@@ -117,12 +117,12 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			ItemEquipMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetUInt32()));
+//			ItemEquipMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<uint32>()));
 //		} while (result->NextRow());
 //	}
 //
 //	ItemSaleVec.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 物品ID,奖励模板ID,获得奖励几率,GM命令组 from _物品_当售卖时" :
 //		"SELECT entry,rewId,rewChance,command from _itemmod_on_sale");
 //	if (result)
@@ -131,16 +131,16 @@
 //		{
 //			Field* fields = result->Fetch();
 //			ItemSaleTemplate Temp;
-//			Temp.entry		= fields[0].GetUInt32();
-//			Temp.rewId		= fields[1].GetUInt32();
-//			Temp.rewChance	= fields[2].GetUInt32();
+//			Temp.entry		= fields[0].Get<uint32>();
+//			Temp.rewId		= fields[1].Get<uint32>();
+//			Temp.rewChance	= fields[2].Get<uint32>();
 //			Temp.command	= fields[3].GetString();
 //			ItemSaleVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
 //	ItemUseVec.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 物品ID,需求模板ID,奖励模板ID,获得奖励几率,GM命令组,触发技能ID1,触发技能ID2,触发技能ID3 from  _物品_当使用时" :
 //		"SELECT entry,reqId,rewId,rewChance,command,spell1,spell2,spell3 from _itemmod_on_use");
 //	if (result)
@@ -149,20 +149,20 @@
 //		{
 //			Field* fields = result->Fetch();
 //			ItemUseTemplate Temp;
-//			Temp.entry		= fields[0].GetUInt32();
-//			Temp.reqId		= fields[1].GetUInt32();
-//			Temp.rewId		= fields[2].GetUInt32();
-//			Temp.rewChance	= fields[3].GetUInt32();
+//			Temp.entry		= fields[0].Get<uint32>();
+//			Temp.reqId		= fields[1].Get<uint32>();
+//			Temp.rewId		= fields[2].Get<uint32>();
+//			Temp.rewChance	= fields[3].Get<uint32>();
 //			Temp.command	= fields[4].GetString();
-//			Temp.spellId1	= fields[5].GetUInt32();
-//			Temp.spellId2	= fields[6].GetUInt32();
-//			Temp.spellId3	= fields[7].GetUInt32();
+//			Temp.spellId1	= fields[5].Get<uint32>();
+//			Temp.spellId2	= fields[6].Get<uint32>();
+//			Temp.spellId3	= fields[7].Get<uint32>();
 //			ItemUseVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
 //	ItemDesMap.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,额外描述,英雄模式文本 from _物品_额外描述" :
 //		"SELECT Entry,Description,HeroText from _itemmod_description");
 //	if (result)
@@ -170,7 +170,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 entry = fields[0].GetUInt32();
+//			uint32 entry = fields[0].Get<uint32>();
 //			ItemDesTemplate temp;
 //			temp.description = fields[1].GetString();
 //			temp.heroText = fields[2].GetString();
@@ -179,16 +179,16 @@
 //	}
 //
 //	ItemAddVec.clear();
-//	//result = WorldDatabase.PQuery("SELECT categoryId,entry,count from _itemmod_add");
+//	//result = WorldDatabase.Query("SELECT categoryId,entry,count from _itemmod_add");
 //	//if (result)
 //	//{
 //	//	do
 //	//	{
 //	//		Field* fields = result->Fetch();
 //	//		ItemAddTemplate Temp;
-//	//		Temp.categoryId = fields[0].GetUInt32();
-//	//		Temp.entry		= fields[1].GetUInt32();
-//	//		Temp.count		= fields[2].GetUInt32();
+//	//		Temp.categoryId = fields[0].Get<uint32>();
+//	//		Temp.entry		= fields[1].Get<uint32>();
+//	//		Temp.count		= fields[2].Get<uint32>();
 //	//		ItemAddVec.push_back(Temp);
 //	//	} while (result->NextRow());
 //	//}
@@ -200,7 +200,7 @@
 //	LoadBuyEquipSaleUse();
 //
 //	RateStoneVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,类型,提高成功几率 from _物品_几率宝石" :
 //		"SELECT entry,type,rate from _itemmod_rate_stone");
 //	if (result)
@@ -209,16 +209,16 @@
 //		{
 //			Field* fields = result->Fetch();
 //			RateStoneTemplate Temp;
-//			Temp.entry	= fields[0].GetUInt32();
-//			Temp.type	= RateStoneTypes(fields[1].GetUInt32());
-//			Temp.rate	= fields[2].GetUInt32();
+//			Temp.entry	= fields[0].Get<uint32>();
+//			Temp.type	= RateStoneTypes(fields[1].Get<uint32>());
+//			Temp.rate	= fields[2].Get<uint32>();
 //			RateStoneVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
 //
 //	ItemUnbindCostInfo.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,需求模板ID from _物品_解除绑定" :
 //		"SELECT entry,reqId from _itemmod_unbind");
 //	if (result)
@@ -227,8 +227,8 @@
 //		{
 //			Field* fields = result->Fetch();
 //			ItemUnbindCostTemplate ItemUnbindCostTemp;
-//			ItemUnbindCostTemp.entry = fields[0].GetUInt32();
-//			ItemUnbindCostTemp.reqId = fields[1].GetUInt32();
+//			ItemUnbindCostTemp.entry = fields[0].Get<uint32>();
+//			ItemUnbindCostTemp.reqId = fields[1].Get<uint32>();
 //
 //			ItemUnbindCostInfo.push_back(ItemUnbindCostTemp);
 //		} while (result->NextRow());
@@ -236,7 +236,7 @@
 //
 //
 //	RemoveGemInfo.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 宝石物品ID, 需求模板ID,成功几率 FROM _物品_移除宝石" :
 //		"SELECT entry, reqId,chance FROM _itemmod_gem_remove");
 //	if (result)
@@ -245,16 +245,16 @@
 //		{
 //			Field* fields = result->Fetch();
 //			RemoveGemTemplate RemoveGemTemp;
-//			RemoveGemTemp.entry = fields[0].GetUInt32();
-//			RemoveGemTemp.reqId = fields[1].GetUInt32();
-//			RemoveGemTemp.chance = fields[2].GetUInt32();
+//			RemoveGemTemp.entry = fields[0].Get<uint32>();
+//			RemoveGemTemp.reqId = fields[1].Get<uint32>();
+//			RemoveGemTemp.chance = fields[2].Get<uint32>();
 //			RemoveGemInfo.push_back(RemoveGemTemp);
 //		} while (result->NextRow());
 //	}
 //
 //
 //	ItemExchangeInfo.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID, 升级后物品ID, 需求模板ID,成功几率,升级方式,失败时奖励模板ID,失败时是否摧毁原物品,升级后是否保留附魔效果 FROM _物品_升级" :
 //		"SELECT item, exchangedItem, reqId,chance,upFlag,rewIdOnFail,destroyOnFail,keepEnchant FROM _itemmod_exchange_item");
 //	if (result)
@@ -263,12 +263,12 @@
 //		{
 //			Field* fields = result->Fetch();
 //			ItemExchangeTemplate ItemExchangeTemp;
-//			ItemExchangeTemp.item			= fields[0].GetUInt32();
-//			ItemExchangeTemp.exchangeditem	= fields[1].GetUInt32();
-//			ItemExchangeTemp.reqId			= fields[2].GetUInt32();
-//			ItemExchangeTemp.chance			= fields[3].GetUInt32();
+//			ItemExchangeTemp.item			= fields[0].Get<uint32>();
+//			ItemExchangeTemp.exchangeditem	= fields[1].Get<uint32>();
+//			ItemExchangeTemp.reqId			= fields[2].Get<uint32>();
+//			ItemExchangeTemp.chance			= fields[3].Get<uint32>();
 //			ItemExchangeTemp.flag			= fields[4].GetBool();
-//			ItemExchangeTemp.rewIdOnFail	= fields[5].GetUInt32();
+//			ItemExchangeTemp.rewIdOnFail	= fields[5].Get<uint32>();
 //			ItemExchangeTemp.destroyOnFail	= fields[6].GetBool();
 //			ItemExchangeTemp.keepEnchant	= fields[7].GetBool();
 //			ItemExchangeInfo.push_back(ItemExchangeTemp);
@@ -276,7 +276,7 @@
 //	}
 //
 //	UpgradeVec.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 附魔ID, 上级附魔ID, 需求模板ID,移除时附魔奖励模板ID,菜单文本,成功几率,物品类型掩码,分组掩码,职业掩码 FROM _物品_强化" :
 //		"SELECT enchant_id, prev_enchant_id, enchantReqId,removeEnchantRewId,description,chance,itemMask,flagMask,classMask FROM _itemmod_strengthen_item");
 //
@@ -287,22 +287,22 @@
 //			Field* fields = result->Fetch();
 //
 //			ItemUpgradeTemplate ItemUpgradeTemp;
-//			ItemUpgradeTemp.enchantId = fields[0].GetUInt32();
-//			ItemUpgradeTemp.prevEnchantId = fields[1].GetUInt32();
-//			ItemUpgradeTemp.enchantReqId = fields[2].GetUInt32();
-//			ItemUpgradeTemp.removeEnchantRewId = fields[3].GetUInt32();
+//			ItemUpgradeTemp.enchantId = fields[0].Get<uint32>();
+//			ItemUpgradeTemp.prevEnchantId = fields[1].Get<uint32>();
+//			ItemUpgradeTemp.enchantReqId = fields[2].Get<uint32>();
+//			ItemUpgradeTemp.removeEnchantRewId = fields[3].Get<uint32>();
 //			ItemUpgradeTemp.description = fields[4].GetString();
-//			ItemUpgradeTemp.chance = fields[5].GetUInt32();
-//			ItemUpgradeTemp.itemMask = fields[6].GetUInt32();
-//			ItemUpgradeTemp.enchantMask = fields[7].GetUInt32();
-//			ItemUpgradeTemp.classMask = fields[8].GetUInt32();
+//			ItemUpgradeTemp.chance = fields[5].Get<uint32>();
+//			ItemUpgradeTemp.itemMask = fields[6].Get<uint32>();
+//			ItemUpgradeTemp.enchantMask = fields[7].Get<uint32>();
+//			ItemUpgradeTemp.classMask = fields[8].Get<uint32>();
 //			UpgradeVec.push_back(ItemUpgradeTemp);
 //		} while (result->NextRow());
 //	}
 //
 //	GemCountLimitInfo.clear();
 //	GetmCountLimitMap.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 宝石物品ID,数量上限 FROM _物品_宝石上限" :
 //		"SELECT entry,limitCount FROM _itemmod_gem_limit");
 //	if (result)
@@ -312,9 +312,9 @@
 //			Field* fields = result->Fetch();
 //			
 //
-//			uint32 entry = fields[0].GetUInt32();
+//			uint32 entry = fields[0].Get<uint32>();
 //			if (ItemTemplate const* proto = sObjectMgr->GetItemTemplate(entry))
-//				if (uint32 count = fields[1].GetUInt32())
+//				if (uint32 count = fields[1].Get<uint32>())
 //				{
 //					GetmCountLimitMap.insert(std::make_pair(entry, count));
 //
@@ -329,7 +329,7 @@
 //	}
 //	
 //	IdentifyVec.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,附魔组模板ID,需求模板ID,附魔位置,菜单文本,是否需要当前位置有附魔 FROM _物品_刷新附魔" :
 //		"SELECT entry,groupId,reqId,slot,gossipText FROM _itemmod_refresh");
 //	if (result)
@@ -338,10 +338,10 @@
 //		{
 //			Field* fields = result->Fetch();
 //			IdentifyTemplate Temp;
-//			Temp.entry = fields[0].GetUInt32();
-//			Temp.groupId = fields[1].GetUInt32();
-//			Temp.reqId = fields[2].GetUInt32();
-//			Temp.slot = fields[3].GetUInt32();
+//			Temp.entry = fields[0].Get<uint32>();
+//			Temp.groupId = fields[1].Get<uint32>();
+//			Temp.reqId = fields[2].Get<uint32>();
+//			Temp.slot = fields[3].Get<uint32>();
 //			Temp.gossipText = fields[4].GetString();
 //			Temp.slotHasEnchant = fields[5].GetBool();
 //			IdentifyVec.push_back(Temp);
@@ -350,7 +350,7 @@
 //
 //
 //	CreateEnchantVec.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,附魔组模板ID,附魔位置,自带附魔几率 FROM _物品_自带附魔" :
 //		"SELECT entry,groupId,slot,chance FROM _itemmod_creation_enchant");
 //	if (result)
@@ -359,8 +359,8 @@
 //		{
 //			Field* fields = result->Fetch();
 //			CreateEnchantTemplate Temp;
-//			Temp.entry = fields[0].GetUInt32();
-//			Temp.groupId = fields[1].GetUInt32();
+//			Temp.entry = fields[0].Get<uint32>();
+//			Temp.groupId = fields[1].Get<uint32>();
 //			Temp.slot = fields[2].GetUInt8();
 //			Temp.chance = fields[3].GetFloat();
 //			CreateEnchantVec.push_back(Temp);
@@ -370,7 +370,7 @@
 //
 //	EnchantGroupVec.clear();
 //	GCAddonEnchantGroupVec.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 附魔组模板ID,附魔ID,抽取几率 FROM _模板_附魔组" :
 //		"SELECT groupId,enchantId,chance FROM _itemmod_enchant_groups");
 //	if (result)
@@ -379,8 +379,8 @@
 //		{
 //			Field* fields = result->Fetch();
 //			EnchantGroupTemplate Temp;
-//			Temp.groupId = fields[0].GetUInt32();
-//			uint32 EnchantId = fields[1].GetUInt32();
+//			Temp.groupId = fields[0].Get<uint32>();
+//			uint32 EnchantId = fields[1].Get<uint32>();
 //			Temp.enchantId = EnchantId;
 //			Temp.chance = fields[2].GetFloat();
 //			EnchantGroupVec.push_back(Temp);
@@ -396,7 +396,7 @@
 //	sObjectMgr->RestItemQueryData();
 //
 //	HiddenItemInfo.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID FROM _物品_背包中获得属性" :
 //		"SELECT entry FROM _itemmod_hidden");
 //	if (result)
@@ -405,26 +405,26 @@
 //		{
 //			Field* fields = result->Fetch();
 //			HiddenItemTemplate HiddenItemTemp;
-//			HiddenItemTemp.entry = fields[0].GetUInt32();
+//			HiddenItemTemp.entry = fields[0].Get<uint32>();
 //			HiddenItemInfo.push_back(HiddenItemTemp);
 //		} while (result->NextRow());
 //	}
 //
 //	CurrencyLikeItemVec.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID FROM _物品_徽章掉落方式" :
 //		"SELECT entry FROM _itemmod_currency_like");
 //	if (result)
 //	{
 //		do
 //		{
-//			CurrencyLikeItemVec.push_back(result->Fetch()[0].GetUInt32());
+//			CurrencyLikeItemVec.push_back(result->Fetch()[0].Get<uint32>());
 //		} while (result->NextRow());
 //	}
 //
 //
 //	DayLimitItemMap.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,每日上限 FROM _物品_每日上限" :
 //		"SELECT entry,limitCount FROM _itemmod_day_limit");
 //	if (result)
@@ -432,7 +432,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			DayLimitItemMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetUInt32()));
+//			DayLimitItemMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<uint32>()));
 //		} while (result->NextRow());
 //	}
 //}
@@ -2034,7 +2034,7 @@
 //	{
 //		do
 //		{
-//			player->RuneVec.push_back(result->Fetch()[0].GetUInt32());
+//			player->RuneVec.push_back(result->Fetch()[0].Get<uint32>());
 //		} while (result->NextRow());
 //	}
 //}

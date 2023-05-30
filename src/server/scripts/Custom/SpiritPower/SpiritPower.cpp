@@ -74,8 +74,8 @@
 //		return;
 //
 //	Field* fields = result->Fetch();
-//	player->SpiritPower = fields[0].GetUInt32();
-//	player->MaxSpiritPower = fields[1].GetUInt32();
+//	player->SpiritPower = fields[0].Get<uint32>();
+//	player->MaxSpiritPower = fields[1].Get<uint32>();
 //}
 //
 //void SpiritPower::SaveToDB(Player* player)

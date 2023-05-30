@@ -377,8 +377,8 @@
 //        {
 //            do
 //            {
-//                uint64 itemGUID = MAKE_NEW_GUID((*result)[0].GetUInt32(), 0, HIGHGUID_ITEM);
-//                uint32 fakeEntry = (*result)[1].GetUInt32();
+//                uint64 itemGUID = MAKE_NEW_GUID((*result)[0].Get<uint32>(), 0, HIGHGUID_ITEM);
+//                uint32 fakeEntry = (*result)[1].Get<uint32>();
 //                if (sObjectMgr->GetItemTemplate(fakeEntry))
 //                {
 //                    sT->dataMap[itemGUID] = playerGUID;

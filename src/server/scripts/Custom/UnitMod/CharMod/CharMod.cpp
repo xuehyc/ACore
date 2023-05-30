@@ -11,7 +11,7 @@
 //void CharMod::Load()
 //{
 //	CharStatVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(
+//	QueryResult result = WorldDatabase.Query(
 //		//		0			1			2			3			4			5			6				7			8
 //		"SELECT 职业索引,物理伤害PVP倍率,法术伤害PVP倍率,治疗效果PVP倍率,护甲值上限,躲闪百分比上限,招架百分比上限,格挡百分比上限,爆击百分比上限,"
 //		//		9			10				11			12				13				14				15				16			17				18				19				20			21
@@ -54,12 +54,12 @@
 //			CharStatTemp.spellPVEDmgMod = fields[23].GetFloat();
 //			CharStatTemp.healPVEMod		= fields[24].GetFloat();
 //
-//			CharStatTemp.hasteLimit		= fields[25].GetUInt32();
-//			CharStatTemp.hpLimit		= fields[26].GetUInt32();
-//			CharStatTemp.manaLimit		= fields[27].GetUInt32();
-//			CharStatTemp.meleeDmgLimit	= fields[28].GetUInt32();
-//			CharStatTemp.spellDmgLimit	= fields[29].GetUInt32();
-//			CharStatTemp.healLimit		= fields[30].GetUInt32();
+//			CharStatTemp.hasteLimit		= fields[25].Get<uint32>();
+//			CharStatTemp.hpLimit		= fields[26].Get<uint32>();
+//			CharStatTemp.manaLimit		= fields[27].Get<uint32>();
+//			CharStatTemp.meleeDmgLimit	= fields[28].Get<uint32>();
+//			CharStatTemp.spellDmgLimit	= fields[29].Get<uint32>();
+//			CharStatTemp.healLimit		= fields[30].Get<uint32>();
 //
 //			CharStatVec.push_back(CharStatTemp);
 //		} while (result->NextRow());
@@ -68,14 +68,14 @@
 //	StaticStatVec.clear();
 //
 //	AltClassSpellVec.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 技能ID FROM __转职保留技能" :
 //		"SELECT spellid FROM _alt_class_spells"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			AltClassSpellVec.push_back(fields[0].GetUInt32());
+//			AltClassSpellVec.push_back(fields[0].Get<uint32>());
 //		} while (result->NextRow());
 //	}
 //	

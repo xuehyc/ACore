@@ -10,7 +10,7 @@
 //void Deadline::Load()
 //{
 //	DeadlineVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 地图ID,时间,通关奖励模板ID,通关需击杀生物ID,副本挑战等级,事件状态ID,通关召唤物体ID,副本难度 FROM _副本_限时模式" :
 //		"SELECT mapId,countDown,rewId,killedEntry,challengeLv,worldStat,gobEntry,diff FROM _deadline");
 //
@@ -19,13 +19,13 @@
 //	{
 //		Field* fields = result->Fetch();
 //		DeadlineTemplate Temp;
-//		Temp.mapId			= fields[0].GetUInt32();
-//		Temp.countDown		= fields[1].GetUInt32()  * MINUTE * IN_MILLISECONDS;
-//		Temp.rewId			= fields[2].GetUInt32();
-//		Temp.killedEntry	= fields[3].GetUInt32();
+//		Temp.mapId			= fields[0].Get<uint32>();
+//		Temp.countDown		= fields[1].Get<uint32>()  * MINUTE * IN_MILLISECONDS;
+//		Temp.rewId			= fields[2].Get<uint32>();
+//		Temp.killedEntry	= fields[3].Get<uint32>();
 //		Temp.challengeLv	= fields[4].Get<int32>();
-//		Temp.worldStat		= fields[5].GetUInt32();
-//		Temp.gobEntry		= fields[6].GetUInt32();
+//		Temp.worldStat		= fields[5].Get<uint32>();
+//		Temp.gobEntry		= fields[6].Get<uint32>();
 //		Temp.diff			= fields[7].GetUInt8();
 //		DeadlineVec.push_back(Temp);
 //	} while (result->NextRow());

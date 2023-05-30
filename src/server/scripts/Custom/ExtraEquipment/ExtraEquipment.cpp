@@ -15,7 +15,7 @@
 //	extra_enchant_stat_muil = 1.0f;
 //	extra_origin_item_back	= false;
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 属性倍率, 附魔属性倍率, 是否可以取回 from _物品_双甲" :
 //		"SELECT stat_muil, enchant_muil, originItemEnable from _itemmod_extra_equipments");
 //	if (result)
@@ -28,7 +28,7 @@
 //	}
 //
 //	ExtraEuipMentEntryVec.clear();
-//	QueryResult result1 = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result1 = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID from _物品_双甲列表" :
 //		"SELECT entry from _itemmod_extra_equipments_enable");
 //	if (result1)
@@ -36,7 +36,7 @@
 //		do
 //		{
 //			Field* fields = result1->Fetch();
-//			ExtraEuipMentEntryVec.push_back(fields[0].GetUInt32());
+//			ExtraEuipMentEntryVec.push_back(fields[0].Get<uint32>());
 //		} while (result1->NextRow());
 //	}
 //
@@ -903,7 +903,7 @@
 //	{
 //		Field* fields = result->Fetch();
 //		ExtraEquipments temp;
-//		temp.itemEntry = fields[0].GetUInt32();
+//		temp.itemEntry = fields[0].Get<uint32>();
 //		temp.slot = EquipmentSlots(fields[1].GetUInt8());
 //		std::vector<std::string> str_vec = sCF->SplitStr(fields[2].GetString(), " ");
 //		for (size_t i = 0; i < str_vec.size(); i++)

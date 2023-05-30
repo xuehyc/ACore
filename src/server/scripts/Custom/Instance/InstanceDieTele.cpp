@@ -7,17 +7,17 @@
 //void InstanceDieTele::Load()
 //{
 //	InstanceDieTeleMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 地图ID,联盟死亡传送坐标ID,部落死亡传送坐标ID,是否唯一 FROM _副本_死亡传送" :
 //		"SELECT MapId,DieTelePos_A,DieTelePos_H,IsUnique FROM _instance");
 //	if (!result) return;
 //	do
 //	{
 //		Field* fields = result->Fetch();
-//		uint32 MapId = fields[0].GetUInt32();
+//		uint32 MapId = fields[0].Get<uint32>();
 //		InstanceDieTeleTemplate Temp;
-//		Temp.DieTelePos_A = fields[1].GetUInt32();
-//		Temp.DieTelePos_H = fields[2].GetUInt32();
+//		Temp.DieTelePos_A = fields[1].Get<uint32>();
+//		Temp.DieTelePos_H = fields[2].Get<uint32>();
 //		Temp.Unique		  = fields[3].GetBool();
 //		InstanceDieTeleMap.insert(std::make_pair(MapId, Temp));
 //	} while (result->NextRow());

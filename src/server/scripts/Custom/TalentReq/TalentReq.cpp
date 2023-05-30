@@ -8,7 +8,7 @@
 //void TalentReq::Load()
 //{
 //	TalentReqMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 天赋技能ID,需求模板ID from _技能_天赋加点需求" :
 //		"SELECT spellid,reqId from _talent_req");
 //	if (result)
@@ -16,7 +16,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			TalentReqMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetUInt32()));
+//			TalentReqMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<uint32>()));
 //		} while (result->NextRow());
 //	}
 //}
@@ -81,7 +81,7 @@
 //			do
 //			{
 //				Field* fields = result->Fetch();
-//				player->BuyTalentVec.push_back(fields[0].GetUInt32());
+//				player->BuyTalentVec.push_back(fields[0].Get<uint32>());
 //			} while (result->NextRow());
 //		}
 //	}

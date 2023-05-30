@@ -20,7 +20,7 @@
 //{
 //	ReqMap.clear();
 //	
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		
 //		//			0		1		2		3			4		5		6		7
 //		"SELECT 需求模板ID,会员等级,军衔等级,成就点数,金币数量,积分数量,荣誉点数,竞技点数,"
@@ -42,23 +42,23 @@
 //	do
 //	{
 //		Field* fields = result->Fetch();
-//		uint32 reqId = fields[0].GetUInt32();
+//		uint32 reqId = fields[0].Get<uint32>();
 //		ReqTemplate ReqTemp;
 //		ReqTemp.meetVipLevel			= fields[1].Get<int32>();
 //		ReqTemp.meetHRRank				= fields[2].Get<int32>();
-//		ReqTemp.meetAchievementPoints	= fields[3].GetUInt32();
-//		ReqTemp.desGoldCount			= fields[4].GetUInt32() * GOLD;
-//		ReqTemp.desTokenCount			= fields[5].GetUInt32();
-//		ReqTemp.desHRPoints				= fields[6].GetUInt32();
-//		ReqTemp.desArenaPoints			= fields[7].GetUInt32();
+//		ReqTemp.meetAchievementPoints	= fields[3].Get<uint32>();
+//		ReqTemp.desGoldCount			= fields[4].Get<uint32>() * GOLD;
+//		ReqTemp.desTokenCount			= fields[5].Get<uint32>();
+//		ReqTemp.desHRPoints				= fields[6].Get<uint32>();
+//		ReqTemp.desArenaPoints			= fields[7].Get<uint32>();
 //
 //		for (size_t i = 0; i < REQ_ITEM_MAX; i++)
 //		{
-//			ReqTemp.desItem[i]			= fields[8 + 2 * i].GetUInt32();
-//			ReqTemp.desItemCount[i]		= fields[9 + 2 * i].GetUInt32();
+//			ReqTemp.desItem[i]			= fields[8 + 2 * i].Get<uint32>();
+//			ReqTemp.desItemCount[i]		= fields[9 + 2 * i].Get<uint32>();
 //		}
 //
-//		ReqTemp.desXp					= fields[28].GetUInt32();
+//		ReqTemp.desXp					= fields[28].Get<uint32>();
 //		ReqTemp.inInstance				= fields[29].GetBool();
 //		ReqTemp.meetLevel				= fields[30].Get<int32>();
 //		ReqTemp.meetRankLevel			= fields[31].Get<int32>();
@@ -87,7 +87,7 @@
 //			ReqTemp.CommandDataVec.push_back(temp);
 //		}
 //
-//		ReqTemp.desSpiritPower			= fields[34].GetUInt32();
+//		ReqTemp.desSpiritPower			= fields[34].Get<uint32>();
 //		ReqTemp.reincarnation			= fields[35].Get<int32>();
 //
 //		Tokenizer mapData(fields[36].GetString(), '#');

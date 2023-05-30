@@ -7,7 +7,7 @@
 //void CustomScript::LoadGobScripts()
 //{
 //	GobScriptVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物体ID,动作类型,动作参数1,动作参数2 FROM _自定义AI_物体" :
 //		"SELECT ID,actionType,param1,param2 FROM _ai_gameobject");
 //	if (!result) return;

@@ -12,7 +12,7 @@
 //void CreatureMod::Load()
 //{
 //	CreautreModVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //
 //		//		0		1		2		3			4			5			6			7
 //		"SELECT 生物ID,等级,生命值,物理伤害值或倍率,法术伤害倍率,治疗效果倍率,减伤百分比,抗性值,"
@@ -34,33 +34,33 @@
 //	{
 //		Field* fields = result->Fetch();
 //		CreautreModTemplate Temp;
-//		Temp.Entry			= fields[0].GetUInt32();
+//		Temp.Entry			= fields[0].Get<uint32>();
 //		Temp.Level			= fields[1].GetUInt8();
-//		Temp.Health			= fields[2].GetUInt32();
+//		Temp.Health			= fields[2].Get<uint32>();
 //		Temp.MeleeDmg		= fields[3].GetFloat();
 //		Temp.SpellDmgMod	= fields[4].GetFloat();
 //		Temp.HealMod		= fields[5].GetFloat();
 //		Temp.ReduceDmgPct	= fields[6].GetFloat();
 //		Temp.Resistance		= fields[7].Get<int32>();
-//		Temp.KillRewId		= fields[8].GetUInt32();
+//		Temp.KillRewId		= fields[8].Get<uint32>();
 //		Temp.KillRewChance	= fields[9].GetFloat();
 //		Temp.KillAnnounce	= fields[10].GetBool();
 //		Temp.Armor			= fields[11].Get<int32>();
-//		Temp.AttackTime		= fields[12].GetUInt32();
+//		Temp.AttackTime		= fields[12].Get<uint32>();
 //		Temp.ResetDistance	= fields[13].GetFloat();
 //		Temp.AddTalismanValue = fields[14].Get<int32>();
 //
 //		for (size_t i = 0; i < MAX_CUSTOM_LOOT_COUNT; i++)
-//			Temp.LootId[i] = fields[15 + i].GetUInt32();
+//			Temp.LootId[i] = fields[15 + i].Get<uint32>();
 //
-//		Temp.KillGroupRewId		= fields[20].GetUInt32();
+//		Temp.KillGroupRewId		= fields[20].Get<uint32>();
 //		Temp.KillGroupRewChance = fields[21].GetFloat();
 //		Temp.AddRankValue		= fields[22].Get<int32>();
 //		Temp.KillRewGameObject	= fields[23].Get<int32>();
-//		Temp.ChallengeLv		= fields[24].GetUInt32();
+//		Temp.ChallengeLv		= fields[24].Get<uint32>();
 //		Temp.SrcLoot			= fields[25].GetBool();
-//		Temp.RandSpellGroupId	= fields[26].GetUInt32();
-//		Temp.Diff				= fields[27].GetUInt32();
+//		Temp.RandSpellGroupId	= fields[26].Get<uint32>();
+//		Temp.Diff				= fields[27].Get<uint32>();
 //		CreautreModVec.push_back(Temp);
 //	} while (result->NextRow());
 //}

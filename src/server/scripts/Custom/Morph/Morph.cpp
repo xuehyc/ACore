@@ -8,27 +8,27 @@
 //void Morph::Load()
 //{
 //	MorphMap.clear();
-//	QueryResult result = WorldDatabase.PQuery("SELECT id,displayId,description,scale,duration,skin,face,hair,haircolor,facialhair FROM _morph");
+//	QueryResult result = WorldDatabase.Query("SELECT id,displayId,description,scale,duration,skin,face,hair,haircolor,facialhair FROM _morph");
 //	if (!result)
 //		return;
 //	do
 //	{
 //		Field* fields = result->Fetch();	
-//		uint32 id = fields[0].GetUInt32();
+//		uint32 id = fields[0].Get<uint32>();
 //
 //		if (id == 0)
 //			continue;
 //
 //		MorphTemplate Temp;
-//		Temp.displayId		= fields[1].GetUInt32();
+//		Temp.displayId		= fields[1].Get<uint32>();
 //		Temp.description	= fields[2].GetString();
-//		Temp.scale			= fields[3].GetUInt32();
-//		Temp.duration		= fields[4].GetUInt32();
-//		Temp.skin			= fields[5].GetUInt32();
-//		Temp.face			= fields[6].GetUInt32();
-//		Temp.hair			= fields[7].GetUInt32();
-//		Temp.haircolor		= fields[8].GetUInt32();
-//		Temp.facialhair		= fields[9].GetUInt32();
+//		Temp.scale			= fields[3].Get<uint32>();
+//		Temp.duration		= fields[4].Get<uint32>();
+//		Temp.skin			= fields[5].Get<uint32>();
+//		Temp.face			= fields[6].Get<uint32>();
+//		Temp.hair			= fields[7].Get<uint32>();
+//		Temp.haircolor		= fields[8].Get<uint32>();
+//		Temp.facialhair		= fields[9].Get<uint32>();
 //		MorphMap.insert(std::make_pair(id, Temp));
 //
 //	} while (result->NextRow());

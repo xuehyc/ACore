@@ -11,7 +11,7 @@
 //void LuckDraw::Load()
 //{
 //	LuckDrawMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,几率,物品数量 FROM __抽奖" :
 //		"SELECT itemId,chance,itemCount FROM _luckdraw");
 //	if (!result)
@@ -19,7 +19,7 @@
 //	do
 //	{
 //		Field* fields = result->Fetch();
-//		uint32 itemId = fields[0].GetUInt32();
+//		uint32 itemId = fields[0].Get<uint32>();
 //
 //		LuckDrawTemplate Temp;
 //		Temp.chance = fields[1].GetFloat();

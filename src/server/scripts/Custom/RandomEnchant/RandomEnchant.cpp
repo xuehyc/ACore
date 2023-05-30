@@ -12,7 +12,7 @@
 //{
 //	RandomEnchantVec.clear();
 //
-//	/*QueryResult result = WorldDatabase.PQuery("SELECT entry, enchantId from _random_enchant");
+//	/*QueryResult result = WorldDatabase.Query("SELECT entry, enchantId from _random_enchant");
 //
 //	if (result)
 //	{
@@ -20,15 +20,15 @@
 //		{
 //			Field* fields = result->Fetch();
 //			RandomEnchantTemplate Temp;
-//			Temp.entry = fields[0].GetUInt32();
-//			Temp.enchantId = fields[1].GetUInt32();
+//			Temp.entry = fields[0].Get<uint32>();
+//			Temp.enchantId = fields[1].Get<uint32>();
 //			RandomEnchantVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}*/
 //
 //	ExtractEnchantMap.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID, 是否可以提取附魔,是否可以覆盖附魔 from _物品_附魔提取与覆盖" :
 //		"SELECT entry, CanExtract,CanEnchant from _itemmod_extract_enchant");
 //
@@ -37,7 +37,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 entry = fields[0].GetUInt32();
+//			uint32 entry = fields[0].Get<uint32>();
 //			ExtractEnchantTemplate Temp;
 //			Temp.CanExtract = fields[1].GetBool();
 //			Temp.CanEnchant = fields[2].GetBool();

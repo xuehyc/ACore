@@ -11,7 +11,7 @@
 //void Reincarnation::Load()
 //{
 //	ReincarnationMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 转生等级,需求模板ID,奖励模板ID,菜单文本 from __转生" :
 //		"SELECT level,reqId,rewId,gossipText from _reincarnation");
 //	if (result)
@@ -19,10 +19,10 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 level = fields[0].GetUInt32();
+//			uint32 level = fields[0].Get<uint32>();
 //			ReincarnationTemplate Temp;
-//			Temp.reqId = fields[1].GetUInt32();
-//			Temp.rewId = fields[2].GetUInt32();
+//			Temp.reqId = fields[1].Get<uint32>();
+//			Temp.rewId = fields[2].Get<uint32>();
 //			Temp.gossipText = fields[3].GetString();
 //			ReincarnationMap.insert(std::make_pair(level, Temp));
 //		} while (result->NextRow());
@@ -95,7 +95,7 @@
 //void Reincarnation::Load(Player* player)
 //{
 //	if (QueryResult result = CharacterDatabase.Query("SELECT reincarnationLv FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter()))
-//		player->reincarnationLv = result->Fetch()[0].GetUInt32();
+//		player->reincarnationLv = result->Fetch()[0].Get<uint32>();
 //}
 //
 //void Reincarnation::DoAction(Player* player, Object* obj, uint32 action)

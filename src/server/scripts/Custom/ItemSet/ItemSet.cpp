@@ -10,33 +10,33 @@
 //{
 //	return;
 //	ItemSetVec.clear();
-//	QueryResult result1 = WorldDatabase.PQuery("SELECT ID,counts,spell1,spell2,spell3,description from _itemmod_set");
+//	QueryResult result1 = WorldDatabase.Query("SELECT ID,counts,spell1,spell2,spell3,description from _itemmod_set");
 //	if (result1)
 //	{
 //		do
 //		{
 //			Field* fields = result1->Fetch();
 //			ItemSetTemplate Temp;
-//			Temp.ID				= fields[0].GetUInt32();
-//			Temp.counts			= fields[1].GetUInt32();
-//			Temp.spell1			= fields[2].GetUInt32();
-//			Temp.spell2			= fields[3].GetUInt32();
-//			Temp.spell3			= fields[4].GetUInt32();
+//			Temp.ID				= fields[0].Get<uint32>();
+//			Temp.counts			= fields[1].Get<uint32>();
+//			Temp.spell1			= fields[2].Get<uint32>();
+//			Temp.spell2			= fields[3].Get<uint32>();
+//			Temp.spell3			= fields[4].Get<uint32>();
 //			Temp.description	= fields[5].GetString();
 //			ItemSetVec.push_back(Temp);
 //		} while (result1->NextRow());
 //	}
 //
 //	ItemSetItemsVec.clear();
-//	QueryResult result2 = WorldDatabase.PQuery("SELECT ID,entry from _itemmod_set_items");
+//	QueryResult result2 = WorldDatabase.Query("SELECT ID,entry from _itemmod_set_items");
 //	if (result2)
 //	{
 //		do
 //		{
 //			Field* fields = result2->Fetch();
 //			ItemSetItemsTemplate Temp;
-//			Temp.ID		= fields[0].GetUInt32();
-//			Temp.entry	= fields[1].GetUInt32();
+//			Temp.ID		= fields[0].Get<uint32>();
+//			Temp.entry	= fields[1].Get<uint32>();
 //			ItemSetItemsVec.push_back(Temp);
 //		} while (result2->NextRow());
 //	}

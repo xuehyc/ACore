@@ -8,7 +8,7 @@
 //void Gift::Load()
 //{
 //	GiftVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		//			0		1			2
 //		"SELECT 上线时长,奖励模板ID,弹窗提示文本 from __上线奖励与提示" :
 //		//		0		1	2
@@ -20,8 +20,8 @@
 //	{
 //		Field* fields = result->Fetch();
 //		GiftTemplate Temp;
-//		Temp.time	= fields[0].GetUInt32();
-//		Temp.rewId	= fields[1].GetUInt32();
+//		Temp.time	= fields[0].Get<uint32>();
+//		Temp.rewId	= fields[1].Get<uint32>();
 //		Temp.notice = fields[2].GetString();
 //		GiftVec.push_back(Temp);
 //	} while (result->NextRow());

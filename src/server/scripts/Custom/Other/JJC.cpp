@@ -225,9 +225,9 @@
 //                    do 
 //                    {
 //                        Field *fields = result->Fetch();
-//                        teamId = fields[0].GetUInt32();
+//                        teamId = fields[0].Get<uint32>();
 //                        name = fields[1].GetString();
-//                        rating = fields[2].GetUInt32();
+//                        rating = fields[2].Get<uint32>();
 //                            
 //                        std::stringstream buffer;
 //                        buffer << rank << ". " << name;
@@ -259,14 +259,14 @@
 //                        
 //                    Field *fields = result->Fetch();
 //                    std::string name = fields[0].GetString();
-//                    uint32 rating = fields[1].GetUInt32();
-//                    uint32 seasonWins = fields[2].GetUInt32();
-//                    uint32 seasonLosses = fields[3].GetUInt32();
-//                    uint32 weekWins = fields[4].GetUInt32();
-//                    uint32 weekLosses = fields[5].GetUInt32();
-//                    uint32 rank = fields[6].GetUInt32();
-//                    uint32 captainGuid = fields[7].GetUInt32();
-//                    uint32 type = fields[8].GetUInt32();
+//                    uint32 rating = fields[1].Get<uint32>();
+//                    uint32 seasonWins = fields[2].Get<uint32>();
+//                    uint32 seasonLosses = fields[3].Get<uint32>();
+//                    uint32 weekWins = fields[4].Get<uint32>();
+//                    uint32 weekLosses = fields[5].Get<uint32>();
+//                    uint32 rank = fields[6].Get<uint32>();
+//                    uint32 captainGuid = fields[7].Get<uint32>();
+//                    uint32 type = fields[8].Get<uint32>();
 //                    uint32 parentOption = teamTypeToOption(type);
 //                        
 //                    std::string seasonWinPercentage = getWinPercent(seasonWins, seasonLosses);
@@ -306,16 +306,16 @@
 //                        do 
 //                        {
 //                            fields = members->Fetch();
-//                            guid = fields[0].GetUInt32();
-//                            personalRating = fields[1].GetUInt32();
-//                            weekWins= fields[2].GetUInt32();
-//                            weekLosses = fields[3].GetUInt32();
-//                            seasonWins = fields[4].GetUInt32();
-//                            seasonLosses = fields[5].GetUInt32();
+//                            guid = fields[0].Get<uint32>();
+//                            personalRating = fields[1].Get<uint32>();
+//                            weekWins= fields[2].Get<uint32>();
+//                            weekLosses = fields[3].Get<uint32>();
+//                            seasonWins = fields[4].Get<uint32>();
+//                            seasonLosses = fields[5].Get<uint32>();
 //                            name = fields[6].GetString();
 //                            race = raceToString(fields[7].GetUInt8());
 //                            Class = classToString(fields[8].GetUInt8());
-//                            level = fields[9].GetUInt32();
+//                            level = fields[9].Get<uint32>();
 //                                
 //                            seasonWinPercentage = getWinPercent(seasonWins, seasonLosses);
 //                            weekWinPercentage = getWinPercent(weekWins, weekLosses);

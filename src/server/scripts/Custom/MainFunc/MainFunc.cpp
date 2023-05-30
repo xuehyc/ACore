@@ -41,7 +41,7 @@
 //{
 //	MainFuncVec.clear();
 //	
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//			0				1       2
 //		"SELECT 生物物品或物体ID, 菜单ID, 上级菜单ID, "
 //		//3			4			5			6			7		8		9				10			11	12		13		14
@@ -58,17 +58,17 @@
 //		Field* fields = result->Fetch();
 //		MainFuncTemplate Temp;
 //
-//		Temp.Entry		= fields[0].GetUInt32();
-//		Temp.CurMenu	= fields[1].GetUInt32();
-//		Temp.PreMenu	= fields[2].GetUInt32();
+//		Temp.Entry		= fields[0].Get<uint32>();
+//		Temp.CurMenu	= fields[1].Get<uint32>();
+//		Temp.PreMenu	= fields[2].Get<uint32>();
 //		Temp.Command	= fields[3].GetString();
-//		Temp.ReqId		= fields[4].GetUInt32();
-//		Temp.RewId		= fields[5].GetUInt32();
+//		Temp.ReqId		= fields[4].Get<uint32>();
+//		Temp.RewId		= fields[5].Get<uint32>();
 //		Temp.SmallIcon	= fields[6].GetUInt8();
 //		Temp.BigIcon	= fields[7].GetString();
 //		Temp.Text		= fields[8].GetString();
-//		Temp.Pos_A		= fields[9].GetUInt32();
-//		Temp.Pos_H		= fields[10].GetUInt32();
+//		Temp.Pos_A		= fields[9].Get<uint32>();
+//		Temp.Pos_H		= fields[10].Get<uint32>();
 //		Temp.PopText	= fields[14].GetString();
 //
 //		const char*  str = fields[11].GetCString();

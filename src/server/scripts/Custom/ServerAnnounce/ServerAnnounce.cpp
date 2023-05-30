@@ -10,7 +10,7 @@
 //{
 //	ServerAnnounceVec.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品或物体ID,动作类型,提示位置,提示文本 FROM __全服提示" :
 //		"SELECT entry,flag,announceType,text FROM _server_announce");
 //	if (!result)
@@ -19,7 +19,7 @@
 //	{
 //		Field* fields = result->Fetch();
 //		ServerAnnounceTemplate Temp;
-//		Temp.entry			= fields[0].GetUInt32();
+//		Temp.entry			= fields[0].Get<uint32>();
 //		Temp.flag			= fields[1].GetUInt8();
 //		Temp.announceType	= fields[2].GetUInt8();
 //		Temp.text			= fields[3].GetString();		

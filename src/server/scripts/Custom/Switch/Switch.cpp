@@ -12,7 +12,7 @@
 //void Switch::Load()
 //{
 //	SwitchVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT ID, 参数 FROM __通用配置" :
 //		"SELECT ID, param FROM _common_setting");
 //
@@ -21,7 +21,7 @@
 //	{
 //		Field* fields = result->Fetch();
 //		SwitchTemplate Temp;
-//		Temp.Type	= SwithTypes(fields[0].GetUInt32());
+//		Temp.Type	= SwithTypes(fields[0].Get<uint32>());
 //		Temp.param = fields[1].GetString();
 //		SwitchVec.push_back(Temp);
 //	} while (result->NextRow());

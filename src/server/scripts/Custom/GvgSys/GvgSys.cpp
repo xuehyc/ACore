@@ -137,8 +137,8 @@
 //		{
 //			Field *fields = resultBuffs->Fetch();
 //
-//			tmpspell.id = fields[0].GetUInt32();
-//			tmpspell.mapid = fields[1].GetUInt32();
+//			tmpspell.id = fields[0].Get<uint32>();
+//			tmpspell.mapid = fields[1].Get<uint32>();
 //			tmpspell.m_x = fields[2].GetFloat();
 //			tmpspell.m_y = fields[3].GetFloat();
 //			tmpspell.m_z = fields[4].GetFloat();
@@ -150,7 +150,7 @@
 //			tmpspell.min_z = fields[10].GetFloat();
 //			tmpspell.max_z = fields[11].GetFloat();
 //			tmpspell.areaids = fields[12].GetString();
-//			tmpspell.itemid = fields[13].GetUInt32();
+//			tmpspell.itemid = fields[13].Get<uint32>();
 //
 //			Vgvgconf.insert(gvgconf_t::value_type(tmpspell.id, tmpspell));
 //			ccccc++;
@@ -163,9 +163,9 @@
 //	QueryResult result2 = CharacterDatabase.Query("SELECT guild1,guild2,data FROM GuildvsGuild where guid = 1");
 //	if (result2)
 //	{
-//		m_guildId1 = result2->Fetch()[0].GetUInt32();
-//		m_guildId2 = result2->Fetch()[1].GetUInt32();
-//		m_gvgtime = result2->Fetch()[2].GetUInt32();
+//		m_guildId1 = result2->Fetch()[0].Get<uint32>();
+//		m_guildId2 = result2->Fetch()[1].Get<uint32>();
+//		m_gvgtime = result2->Fetch()[2].Get<uint32>();
 //	}
 //	else
 //	{

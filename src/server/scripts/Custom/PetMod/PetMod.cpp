@@ -8,7 +8,7 @@
 //{
 //	PetModMap.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 职业索引, 根据玩家伤害增加物理伤害百分比, 根据玩家伤害增加法术伤害百分比, 根据玩家血量增加血量百分比, 护甲值上限 FROM _属性调整_宠物" :
 //		"SELECT classIndex, DmgAddPct, SpAddPct, HpAddPct, ArmorLimit FROM _pet");
 //

@@ -15,7 +15,7 @@
 //	QuestModMap.clear();
 //	QuestRandomMap.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		//			0	1				2					3			4				5				6				7			8				9		10				11
 //		"SELECT 任务ID,接受任务需求模板ID,是否消耗需求, 任务传送坐标ID, 随机奖励模板ID1,随机奖励模板ID2,随机奖励模板ID3,随机奖励模板ID4,随机奖励几率1,随机奖励几率2,随机奖励几率3,随机奖励几率4 FROM _任务" :
 //		//			0	1		2				3			4				5		6		7			8		9			10			11
@@ -27,22 +27,22 @@
 //		{
 //			Field* fields = result->Fetch();
 //			QuestModTemplate QuestModTemp;
-//			uint32 questId			= fields[0].GetUInt32();
-//			QuestModTemp.reqId		= fields[1].GetUInt32();
+//			uint32 questId			= fields[0].Get<uint32>();
+//			QuestModTemp.reqId		= fields[1].Get<uint32>();
 //			QuestModTemp.desReq		= fields[2].GetBool();
-//			QuestModTemp.telePosId	= fields[3].GetUInt32();
+//			QuestModTemp.telePosId	= fields[3].Get<uint32>();
 //
 //			for (size_t i = 0; i < MAX_QUEST_MOD_REW_COUNT; i++)
-//				QuestModTemp.randomRewId[i] = fields[4 + i].GetUInt32();
+//				QuestModTemp.randomRewId[i] = fields[4 + i].Get<uint32>();
 //
 //			for (size_t i = 0; i < MAX_QUEST_MOD_REW_COUNT; i++)
-//				QuestModTemp.rewChance[i] = fields[8 + i].GetUInt32();
+//				QuestModTemp.rewChance[i] = fields[8 + i].Get<uint32>();
 //			
 //			QuestModMap.insert(std::make_pair(questId, QuestModTemp));
 //		} while (result->NextRow());
 //	}
 //
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 任务ID,接到几率 FROM _任务_随机配置" :
 //		"SELECT questId,chance FROM _quest_random");
 //
@@ -51,7 +51,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 questId = fields[0].GetUInt32();
+//			uint32 questId = fields[0].Get<uint32>();
 //			float chance = fields[1].GetFloat();
 //			Quest const* quest = sObjectMgr->GetQuestTemplate(questId);
 //			if (!quest)

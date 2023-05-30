@@ -9,14 +9,14 @@
 //void SignIn::Load()
 //{
 //	SignInMap.clear();
-//	//QueryResult result = WorldDatabase.PQuery("SELECT day,rewId from _signin");
+//	//QueryResult result = WorldDatabase.Query("SELECT day,rewId from _signin");
 //	//if (!result)
 //	//	return;
 //	//do
 //	//{
 //	//	Field* fields = result->Fetch();
-//	//	uint32 day		= fields[0].GetUInt32();
-//	//	uint32 rewId	= fields[1].GetUInt32();
+//	//	uint32 day		= fields[0].Get<uint32>();
+//	//	uint32 rewId	= fields[1].Get<uint32>();
 //	//	SignInMap.insert(std::make_pair(day, rewId));
 //	//} while (result->NextRow());
 //}
@@ -50,8 +50,8 @@
 //
 //	Field* fields = result->Fetch();
 //
-//	signinTime = time_t(fields[0].GetUInt32());
-//	signinDays = fields[1].GetUInt32();
+//	signinTime = time_t(fields[0].Get<uint32>());
+//	signinDays = fields[1].Get<uint32>();
 //}
 //
 //bool SignIn::CanSignIn(Player* player)

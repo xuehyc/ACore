@@ -16,7 +16,7 @@
 //    MapItemMap.clear();
 //    EquipmentVec.clear();
 //    QueryResult result;
-//    if (result = WorldDatabase.PQuery(
+//    if (result = WorldDatabase.Query(
 //        //		0	 1	   2	3	4	 5	  6	   7	8	9	10	 11	 12	  13   14  15	16	 17	 18		19
 //        "SELECT 头部,颈部,肩部,衬衣,胸部,腰部,腿部,靴子,手腕,手部,戒指,戒指,饰品,饰品,背部,主手,副手,远程,战袍,地图ID FROM _地图装备控制"))
 //    {
@@ -28,12 +28,12 @@
 //            for (uint8 i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; i++)
 //                slots.insert(std::make_pair(i, fields[i].GetBool()));
 //
-//            MapItemMap.insert(std::make_pair(fields[19].GetUInt32(), slots));
+//            MapItemMap.insert(std::make_pair(fields[19].Get<uint32>(), slots));
 //
 //        } while (result->NextRow());
 //    }
 //
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //
 //		//		0		1		2		3			4		5				6		7		8			9			10				11		12		13
 //		"SELECT 地图ID,地域ID,区域ID,进入需求模板ID,副本难度,怪物类型,等级,生命值,物理伤害值或倍率,法术伤害倍率,治疗效果倍率,减伤百分比,抗性值,击杀奖励模板ID,"
@@ -56,45 +56,45 @@
 //	{
 //		Field* fields = result->Fetch();
 //		MapModTemplate MapModTemp;
-//		MapModTemp.Map				= fields[0].GetUInt32();
-//		MapModTemp.Area				= fields[1].GetUInt32();
-//		MapModTemp.Zone				= fields[2].GetUInt32();
-//		MapModTemp.ReqId			= fields[3].GetUInt32();
-//		MapModTemp.Diff				= fields[4].GetUInt32();
-//		MapModTemp.ModType			= fields[5].GetUInt32();
+//		MapModTemp.Map				= fields[0].Get<uint32>();
+//		MapModTemp.Area				= fields[1].Get<uint32>();
+//		MapModTemp.Zone				= fields[2].Get<uint32>();
+//		MapModTemp.ReqId			= fields[3].Get<uint32>();
+//		MapModTemp.Diff				= fields[4].Get<uint32>();
+//		MapModTemp.ModType			= fields[5].Get<uint32>();
 //		MapModTemp.Level			= fields[6].GetUInt8();
-//		MapModTemp.Health			= fields[7].GetUInt32();
+//		MapModTemp.Health			= fields[7].Get<uint32>();
 //		MapModTemp.MeleeDmg			= fields[8].GetFloat();
 //		MapModTemp.SpellDmgMod		= fields[9].GetFloat();
 //		MapModTemp.HealMod			= fields[10].GetFloat();
 //		MapModTemp.ReduceDmgPct		= fields[11].GetFloat();
 //		MapModTemp.Resistance		= fields[12].Get<int32>();
-//		MapModTemp.KillRewId		= fields[13].GetUInt32();
+//		MapModTemp.KillRewId		= fields[13].Get<uint32>();
 //		MapModTemp.KillRewChance	= fields[14].GetFloat();
 //		MapModTemp.KillAnnounce		= fields[15].GetBool();
 //		MapModTemp.Armor			= fields[16].Get<int32>();
-//		MapModTemp.ChallengeLv		= fields[17].GetUInt32();
-//		MapModTemp.AttackTime		= fields[18].GetUInt32();
+//		MapModTemp.ChallengeLv		= fields[17].Get<uint32>();
+//		MapModTemp.AttackTime		= fields[18].Get<uint32>();
 //		MapModTemp.AddTalismanValue = fields[19].Get<int32>();
 //		MapModTemp.AddRankValue		= fields[20].Get<int32>();
 //		MapModTemp.ResetOnLeave		= fields[21].GetBool();
 //
 //		for (size_t i = 0; i < MAX_CUSTOM_LOOT_COUNT; i++)
-//			MapModTemp.LootId[i] = fields[22 + i].GetUInt32();
+//			MapModTemp.LootId[i] = fields[22 + i].Get<uint32>();
 //
 //		Tokenizer auraData(fields[27].GetString(), '#');
 //		for (Tokenizer::const_iterator itr = auraData.begin(); itr != auraData.end(); ++itr)
 //			if (SpellInfo const*  spellInfo = sSpellMgr->GetSpellInfo(abs(atoi(*itr))))
 //				MapModTemp.AuraVec.push_back(atoi(*itr));
 //			
-//		MapModTemp.RandomAuraCount = fields[28].GetUInt32();
+//		MapModTemp.RandomAuraCount = fields[28].Get<uint32>();
 //
 //		MapModTemp.HpMod				= fields[29].GetFloat();
-//		MapModTemp.KillGroupRewId		= fields[30].GetUInt32();
+//		MapModTemp.KillGroupRewId		= fields[30].Get<uint32>();
 //		MapModTemp.KillGroupRewChance	= fields[31].GetFloat();
-//		MapModTemp.KillRewGameObject	= fields[32].GetUInt32();
+//		MapModTemp.KillRewGameObject	= fields[32].Get<uint32>();
 //		MapModTemp.SrcLoot				= fields[33].GetBool();
-//		MapModTemp.RandSpellGroupId		= fields[34].GetUInt32();
+//		MapModTemp.RandSpellGroupId		= fields[34].Get<uint32>();
 //		MapModVec.push_back(MapModTemp);
 //	} while (result->NextRow());
 //
@@ -121,15 +121,15 @@
 //
 //
 //	MapModPlayerVec.clear();
-//	if (result = WorldDatabase.PQuery("SELECT 地图ID, 副本难度, 副本挑战等级, 获得光环组 FROM _属性调整_地图_玩家"))
+//	if (result = WorldDatabase.Query("SELECT 地图ID, 副本难度, 副本挑战等级, 获得光环组 FROM _属性调整_地图_玩家"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
 //			MapModPlayerTemplate Temp;
-//			Temp.Map = fields[0].GetUInt32();
+//			Temp.Map = fields[0].Get<uint32>();
 //			Temp.Diff = fields[1].GetUInt8();
-//			Temp.ChallengeLv = fields[2].GetUInt32();
+//			Temp.ChallengeLv = fields[2].Get<uint32>();
 //
 //			Tokenizer data1(fields[3].GetString(), ' ');
 //			for (Tokenizer::const_iterator itr = data1.begin(); itr != data1.end(); ++itr)

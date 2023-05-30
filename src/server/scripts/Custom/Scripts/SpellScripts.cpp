@@ -707,7 +707,7 @@
 //void CustomScript::LoadCircleData()
 //{
 //	CircleDataMap.clear();
-//	//QueryResult result = WorldDatabase.PQuery("SELECT entry,respawnTime,searchRange,creatureId,creatureCount,creatureRadius,gameobjectId,gameobjectCount,gameobjectRadius,"
+//	//QueryResult result = WorldDatabase.Query("SELECT entry,respawnTime,searchRange,creatureId,creatureCount,creatureRadius,gameobjectId,gameobjectCount,gameobjectRadius,"
 //	//	"spellId1,spellInterval1,spellFriendly1,spellId2,spellInterval2,spellFriendly2,spellId3,spellInterval3,spellFriendly3,spellDelay1,spellDelay2,spellDelay3,"
 //	//	"creatureOffsetZ,gameobjectOffsetZ,creatureScale,gameobjectScale FROM _circle_script");
 //	//
@@ -716,29 +716,29 @@
 //	//do
 //	//{
 //	//	Field* fields = result->Fetch();
-//	//	uint32 entry = fields[0].GetUInt32();
+//	//	uint32 entry = fields[0].Get<uint32>();
 //	//
 //	//	CircleTemplate Temp;
-//	//	Temp.respawnTime		= fields[1].GetUInt32();
+//	//	Temp.respawnTime		= fields[1].Get<uint32>();
 //	//	Temp.range				= fields[2].GetFloat();
-//	//	Temp.creatureId			= fields[3].GetUInt32();
-//	//	Temp.creatureCount		= fields[4].GetUInt32();
+//	//	Temp.creatureId			= fields[3].Get<uint32>();
+//	//	Temp.creatureCount		= fields[4].Get<uint32>();
 //	//	Temp.creatureRadius		= fields[5].GetFloat();
-//	//	Temp.gameobjectId		= fields[6].GetUInt32();
-//	//	Temp.gameobjectCount	= fields[7].GetUInt32();
+//	//	Temp.gameobjectId		= fields[6].Get<uint32>();
+//	//	Temp.gameobjectCount	= fields[7].Get<uint32>();
 //	//	Temp.gameobjectRadius	= fields[8].GetFloat();
-//	//	Temp.spellId1			= fields[9].GetUInt32();
-//	//	Temp.spellInterval1		= fields[10].GetUInt32();
+//	//	Temp.spellId1			= fields[9].Get<uint32>();
+//	//	Temp.spellInterval1		= fields[10].Get<uint32>();
 //	//	Temp.spellFriendly1		= fields[11].GetBool();
-//	//	Temp.spellId2			= fields[12].GetUInt32();
-//	//	Temp.spellInterval2		= fields[13].GetUInt32();
+//	//	Temp.spellId2			= fields[12].Get<uint32>();
+//	//	Temp.spellInterval2		= fields[13].Get<uint32>();
 //	//	Temp.spellFriendly2		= fields[14].GetBool();
-//	//	Temp.spellId3			= fields[15].GetUInt32();
-//	//	Temp.spellInterval3		= fields[16].GetUInt32();
+//	//	Temp.spellId3			= fields[15].Get<uint32>();
+//	//	Temp.spellInterval3		= fields[16].Get<uint32>();
 //	//	Temp.spellFriendly3		= fields[17].GetBool();
-//	//	Temp.spellDelay1		= fields[18].GetUInt32();
-//	//	Temp.spellDelay2		= fields[19].GetUInt32();
-//	//	Temp.spellDelay3		= fields[20].GetUInt32();
+//	//	Temp.spellDelay1		= fields[18].Get<uint32>();
+//	//	Temp.spellDelay2		= fields[19].Get<uint32>();
+//	//	Temp.spellDelay3		= fields[20].Get<uint32>();
 //	//	Temp.creatureOffsetZ	= fields[21].GetFloat();
 //	//	Temp.gameobjectOffsetZ	= fields[22].GetFloat();
 //	//	Temp.creatureScale		= fields[23].GetFloat();

@@ -19,23 +19,23 @@
 //
 //	QueryResult result;
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 账号ID FROM _假人_在线假人" :
 //		"SELECT accountId FROM _faker_online"))
 //	{
 //		do
 //		{
-//			if (QueryResult charResult = CharacterDatabase.Query("SELECT guid FROM characters WHERE account = %u", result->Fetch()[0].GetUInt32()))
+//			if (QueryResult charResult = CharacterDatabase.Query("SELECT guid FROM characters WHERE account = %u", result->Fetch()[0].Get<uint32>()))
 //			{
 //				do
 //				{
-//					FakerMap.insert(std::make_pair(charResult->Fetch()[0].GetUInt32(), false));
+//					FakerMap.insert(std::make_pair(charResult->Fetch()[0].Get<uint32>(), false));
 //				} while (charResult->NextRow());
 //			}
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //
 //		"SELECT 地图ID,X坐标,Y坐标,Z坐标,O坐标 FROM _假人_在线假人_坐标" :
 //		"SELECT Map,X,Y,Z,O FROM _faker_online_postion"))
@@ -44,7 +44,7 @@
 //		{
 //			Field* fields = result->Fetch();
 //			FakerLocationTemplate Temp;
-//			Temp.Map		= fields[0].GetUInt32();
+//			Temp.Map		= fields[0].Get<uint32>();
 //			Temp.X			= fields[1].GetFloat();
 //			Temp.Y			= fields[2].GetFloat();
 //			Temp.Z			= fields[3].GetFloat();
@@ -87,7 +87,7 @@
 //	if (!result)
 //		return 0;
 //
-//	uint32 account = result->Fetch()[0].GetUInt32();
+//	uint32 account = result->Fetch()[0].Get<uint32>();
 //
 //	WorldSession *FakerSession = new WorldSession(account, NULL, SEC_PLAYER, 2, time(NULL), LOCALE_zhCN, 0, false, true, 0);
 //

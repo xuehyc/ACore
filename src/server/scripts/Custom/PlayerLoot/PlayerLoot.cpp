@@ -7,7 +7,7 @@
 //{
 //	PlayerLootMap.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 物品ID,掉落数量,掉落几率,是否禁止银行掉落,是否禁止背包掉落 FROM __玩家掉落" :
 //		"SELECT entry,lootCount,chance,banBank,banBag FROM _pvp_killed_loot");
 //
@@ -16,9 +16,9 @@
 //	do
 //	{
 //		Field* fields		= result->Fetch();
-//		uint32 entry		= fields[0].GetUInt32();
+//		uint32 entry		= fields[0].Get<uint32>();
 //		PlayerLootTemplate Temp;
-//		Temp.lootCount		= fields[1].GetUInt32();
+//		Temp.lootCount		= fields[1].Get<uint32>();
 //		Temp.chance			= fields[2].GetFloat();
 //		Temp.banBank		= fields[3].GetBool();
 //		Temp.banBag			= fields[4].GetBool();

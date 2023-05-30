@@ -20,7 +20,7 @@
 //
 //	CreatureScriptVec.clear();
 //	
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 生物ID,事件类型,事件阶段ID,最小重复时间,最大重复时间,动作类型,动作参数1,动作参数2,延迟时间,动作参数3 FROM _自定义AI_生物" :
 //		"SELECT entry,eventType,eventPhase,repeatMinTime,repeatMaxTime,actionType,actionParam1,actionParam2,delayTime,actionParam3 FROM _ai_creature"))
 //	{
@@ -29,7 +29,7 @@
 //			Field* fields = result->Fetch();
 //			CreatureScriptTemplate Temp;
 //
-//			Temp.entry = fields[0].GetUInt32();
+//			Temp.entry = fields[0].Get<uint32>();
 //
 //			const char*  str1 = fields[1].GetCString();
 //
@@ -54,10 +54,10 @@
 //			else
 //				Temp.eventType = EVENT_TYPE_NONE;
 //
-//			//Temp.eventType		= CreatureEventTypes(fields[1].GetUInt32());
-//			Temp.eventPhase = fields[2].GetUInt32();
-//			Temp.repeatMinTime = fields[3].GetUInt32() * 1000;
-//			Temp.repeatMaxTime = fields[4].GetUInt32() * 1000;
+//			//Temp.eventType		= CreatureEventTypes(fields[1].Get<uint32>());
+//			Temp.eventPhase = fields[2].Get<uint32>();
+//			Temp.repeatMinTime = fields[3].Get<uint32>() * 1000;
+//			Temp.repeatMaxTime = fields[4].Get<uint32>() * 1000;
 //
 //			const char* str2 = fields[5].GetCString();
 //
@@ -78,12 +78,12 @@
 //			else
 //				Temp.actionType = ACTION_TYPE_NONE;
 //
-//			//Temp.actionType		= CreatureActionTypes(fields[5].GetUInt32());
+//			//Temp.actionType		= CreatureActionTypes(fields[5].Get<uint32>());
 //			Temp.actionParam1 = fields[6].GetString();
 //			Temp.actionParam2 = fields[7].Get<int32>();
-//			Temp.actionFlags = 0;//fields[8].GetUInt32();
+//			Temp.actionFlags = 0;//fields[8].Get<uint32>();
 //
-//			Temp.delayTime = fields[8].GetUInt32() * 1000;
+//			Temp.delayTime = fields[8].Get<uint32>() * 1000;
 //			Temp.actionParam3 = fields[9].Get<int32>();
 //			CreatureScriptVec.push_back(Temp);
 //		} while (result->NextRow());
@@ -107,7 +107,7 @@
 //
 //	AIRandSpellVec.clear();
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 随机技能组ID,技能ID,释放下一技能最小延迟,释放下一技能最大延迟 FROM _模板_随机技能组" :
 //		"SELECT GroupId,SpellId,MinDelayTime,MaxDelayTime FROM _ai_random_spell_group"))
 //	{
@@ -115,10 +115,10 @@
 //		{
 //			Field* fields = result->Fetch();
 //			AIRandSpellTemplate Temp;
-//			Temp.GroupId		= fields[0].GetUInt32();
-//			Temp.SpellId		= fields[1].GetUInt32();
-//			Temp.MinDelayTime	= fields[2].GetUInt32() * IN_MILLISECONDS;
-//			Temp.MaxDelayTime	= fields[3].GetUInt32() * IN_MILLISECONDS;
+//			Temp.GroupId		= fields[0].Get<uint32>();
+//			Temp.SpellId		= fields[1].Get<uint32>();
+//			Temp.MinDelayTime	= fields[2].Get<uint32>() * IN_MILLISECONDS;
+//			Temp.MaxDelayTime	= fields[3].Get<uint32>() * IN_MILLISECONDS;
 //
 //			if (Temp.MaxDelayTime < Temp.MinDelayTime)
 //				Temp.MaxDelayTime = Temp.MinDelayTime;

@@ -16,20 +16,20 @@
 //void Rank::Load()
 //{
 //	RankDataMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 等级,升级需达到的值,名称,菜单文本,升级奖励模板ID,玩家名字前缀 FROM __自定义等级" :
 //		"SELECT level,meetValue,name,gossipText,rewId,prefix FROM _rank");
 //	if (!result) return;
 //	do
 //	{
 //		Field* fields = result->Fetch();
-//		uint32 level = fields[0].GetUInt32();
+//		uint32 level = fields[0].Get<uint32>();
 //
 //		RankTemplate Temp;
-//		Temp.meetValue			= fields[1].GetUInt32();
+//		Temp.meetValue			= fields[1].Get<uint32>();
 //		Temp.name				= fields[2].GetString();
 //		Temp.gossipText			= fields[3].GetString();
-//		Temp.rewId				= fields[4].GetUInt32();
+//		Temp.rewId				= fields[4].Get<uint32>();
 //		Temp.prefix				= fields[5].GetString();
 //		RankDataMap.insert(std::make_pair(level, Temp));
 //	} while (result->NextRow());
@@ -163,8 +163,8 @@
 //		if (QueryResult result = LoginDatabase.Query("SELECT level, value FROM account_rank WHERE account = %u", player->GetSession()->GetAccountId()))
 //		{
 //			Field* fields = result->Fetch();
-//			rankLevel = fields[0].GetUInt32();
-//			rankValue = fields[1].GetUInt32();
+//			rankLevel = fields[0].Get<uint32>();
+//			rankValue = fields[1].Get<uint32>();
 //		}		
 //	}
 //	else
@@ -172,8 +172,8 @@
 //		if (QueryResult result = CharacterDatabase.Query("SELECT level, value FROM character_rank WHERE guid = %u", player->GetGUID().GetCounter()))
 //		{
 //			Field* fields = result->Fetch();
-//			rankLevel = fields[0].GetUInt32();
-//			rankValue = fields[1].GetUInt32();
+//			rankLevel = fields[0].Get<uint32>();
+//			rankValue = fields[1].Get<uint32>();
 //		}
 //	}
 //}

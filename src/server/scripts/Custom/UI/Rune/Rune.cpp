@@ -9,30 +9,30 @@
 //{
 //	RuneVec.clear();
 //
-//	if (QueryResult result = WorldDatabase.PQuery("SELECT page,id,spellid,reqId,classIndex FROM _ui_rune"))
+//	if (QueryResult result = WorldDatabase.Query("SELECT page,id,spellid,reqId,classIndex FROM _ui_rune"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
 //			
 //			RuneTemplate Temp;
-//			Temp.page		= fields[0].GetUInt32();
-//			Temp.id			= fields[1].GetUInt32();
-//			Temp.spellid	= fields[2].GetUInt32();
-//			Temp.reqId		= fields[3].GetUInt32();
-//			Temp.classIndex = fields[4].GetUInt32();
+//			Temp.page		= fields[0].Get<uint32>();
+//			Temp.id			= fields[1].Get<uint32>();
+//			Temp.spellid	= fields[2].Get<uint32>();
+//			Temp.reqId		= fields[3].Get<uint32>();
+//			Temp.classIndex = fields[4].Get<uint32>();
 //			RuneVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
 //	RuneCategoryMap.clear();
 //
-//	if (QueryResult result = WorldDatabase.PQuery("SELECT page, title,tip,icon FROM _ui_rune_category"))
+//	if (QueryResult result = WorldDatabase.Query("SELECT page, title,tip,icon FROM _ui_rune_category"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 page = fields[0].GetUInt32();
+//			uint32 page = fields[0].Get<uint32>();
 //			RuneCategoryTemplate Temp;
 //			Temp.title	= fields[1].GetString();
 //			Temp.tip	= fields[2].GetString();

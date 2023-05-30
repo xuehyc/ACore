@@ -124,9 +124,9 @@
 //		{
 //			Field* fields = result1->Fetch();
 //			RecruitTemplate RecruitTemp;
-//			RecruitTemp.recruiterGUIDLow = fields[0].GetUInt32();
-//			RecruitTemp.friendGUIDLow = fields[1].GetUInt32();
-//			RecruitTemp.friendPlayedTime = fields[2].GetUInt32();
+//			RecruitTemp.recruiterGUIDLow = fields[0].Get<uint32>();
+//			RecruitTemp.friendGUIDLow = fields[1].Get<uint32>();
+//			RecruitTemp.friendPlayedTime = fields[2].Get<uint32>();
 //			RecruitTemp.timeRewarded1 = fields[3].GetBool();
 //			RecruitTemp.timeRewarded2 = fields[4].GetBool();
 //			RecruitTemp.timeRewarded3 = fields[5].GetBool();
@@ -135,7 +135,7 @@
 //	}
 //
 //	RecruitOrDissVec.clear();
-//	QueryResult result2 = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result2 = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//			0				1				2				3						4						5			6					7					8					9					10						11						12					13
 //		"SELECT 招募需求模板ID,招募者奖励模板ID,被招募者奖励模板ID,招募者解除招募需求模板ID,被招募者解除招募需求模板ID,招募数量上限,是否允许跨阵营招募,被招募者立即提升等级,招募者获取奖励累计时间1,招募者获取奖励模板ID1,招募者获取奖励累计时间2,招募者获取奖励模板ID2,招募者获取奖励累计时间3,招募者获取奖励模板ID3 FROM __招募" :
 //		//			0	1		2		3		4			5			6				7			8			9			10			11				12			13
@@ -146,26 +146,26 @@
 //		{
 //			Field* fields = result2->Fetch();
 //			RecruitOrDissTemplate RecruitOrDissTemp;
-//			RecruitOrDissTemp.recruitReqId = fields[0].GetUInt32();
-//			RecruitOrDissTemp.rewId1 = fields[1].GetUInt32();
-//			RecruitOrDissTemp.rewId2 = fields[2].GetUInt32();
-//			RecruitOrDissTemp.disReqId1 = fields[3].GetUInt32();
-//			RecruitOrDissTemp.disReqId2 = fields[4].GetUInt32();
-//			RecruitOrDissTemp.playersLimit = fields[5].GetUInt32();
+//			RecruitOrDissTemp.recruitReqId = fields[0].Get<uint32>();
+//			RecruitOrDissTemp.rewId1 = fields[1].Get<uint32>();
+//			RecruitOrDissTemp.rewId2 = fields[2].Get<uint32>();
+//			RecruitOrDissTemp.disReqId1 = fields[3].Get<uint32>();
+//			RecruitOrDissTemp.disReqId2 = fields[4].Get<uint32>();
+//			RecruitOrDissTemp.playersLimit = fields[5].Get<uint32>();
 //			RecruitOrDissTemp.crossFaction = fields[6].GetBool();
-//			RecruitOrDissTemp.insLevel = fields[7].GetUInt32();
-//			RecruitOrDissTemp.timeForRew1 = fields[8].GetUInt32();
-//			RecruitOrDissTemp.timeForRewId1 = fields[9].GetUInt32();
-//			RecruitOrDissTemp.timeForRew2 = fields[10].GetUInt32();
-//			RecruitOrDissTemp.timeForRewId2 = fields[11].GetUInt32();
-//			RecruitOrDissTemp.timeForRew3 = fields[12].GetUInt32();
-//			RecruitOrDissTemp.timeForRewId3 = fields[13].GetUInt32();
+//			RecruitOrDissTemp.insLevel = fields[7].Get<uint32>();
+//			RecruitOrDissTemp.timeForRew1 = fields[8].Get<uint32>();
+//			RecruitOrDissTemp.timeForRewId1 = fields[9].Get<uint32>();
+//			RecruitOrDissTemp.timeForRew2 = fields[10].Get<uint32>();
+//			RecruitOrDissTemp.timeForRewId2 = fields[11].Get<uint32>();
+//			RecruitOrDissTemp.timeForRew3 = fields[12].Get<uint32>();
+//			RecruitOrDissTemp.timeForRewId3 = fields[13].Get<uint32>();
 //			RecruitOrDissVec.push_back(RecruitOrDissTemp);
 //		} while (result2->NextRow());
 //	}
 //
 //	RecruitLootMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 物品ID,共享数量上限, 共享几率,被招募者同时获取奖励几率,被招募者同时获取奖励物品上限 FROM __招募_掉落共享" :
 //		"SELECT entry,shareCountLimit, shareChance,rewChanceOnShare,rewCountLimit FROM _recruit_lootshare");
 //	if (result)
@@ -174,13 +174,13 @@
 //		{
 //			Field* fields = result->Fetch();
 //
-//			uint32 entry = fields[0].GetUInt32();
+//			uint32 entry = fields[0].Get<uint32>();
 //
 //			RucruitLootShareTemplate Temp;
-//			Temp.shareCountLimit	= fields[1].GetUInt32();
+//			Temp.shareCountLimit	= fields[1].Get<uint32>();
 //			Temp.shareChance		= fields[2].GetFloat();
 //			Temp.rewChanceOnShare	= fields[3].GetFloat();
-//			Temp.rewCountLimit		= fields[4].GetUInt32();
+//			Temp.rewCountLimit		= fields[4].Get<uint32>();
 //			RecruitLootMap.insert(std::make_pair(entry, Temp));
 //		} while (result->NextRow());
 //	}

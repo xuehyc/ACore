@@ -21,7 +21,7 @@
 //void ResetIns::Load()
 //{
 //	ResetInsVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 地图ID,难度,需求模板ID from _副本_重置需求" :
 //		"SELECT mapid,diff,reqId from _instance_reset");
 //	if (result)
@@ -30,9 +30,9 @@
 //		{
 //			Field* fields = result->Fetch();
 //			ResetInsTemplate Temp;
-//			Temp.mapid = fields[0].GetUInt32();
+//			Temp.mapid = fields[0].Get<uint32>();
 //			Temp.diff = fields[1].GetUInt8();
-//			Temp.reqId = fields[2].GetUInt32();
+//			Temp.reqId = fields[2].Get<uint32>();
 //			ResetInsVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}

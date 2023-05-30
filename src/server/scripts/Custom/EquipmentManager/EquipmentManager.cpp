@@ -176,7 +176,7 @@
 //{
 //	EquipmentVec.clear();
 //	
-//	//QueryResult result = WorldDatabase.PQuery("SELECT class, map, zone, area,"
+//	//QueryResult result = WorldDatabase.Query("SELECT class, map, zone, area,"
 //	//	"HEAD,NECK,SHOULDERS,BODY,CHEST,WAIST,LEGS,FEET,WRISTS,HANDS,FINGER1,FINGER2,TRINKET1,TRINKET2,BACK,MAINHAND,OFFHAND,RANGED,TABARD "
 //	//	"From _equipment");
 //	//if (result)
@@ -186,9 +186,9 @@
 //	//		Field* fields = result->Fetch();
 //	//		EquipmentTemplate Temp;
 //	//		Temp._class = fields[0].GetUInt8();
-//	//		Temp.map	= fields[1].GetUInt32();
-//	//		Temp.zone	= fields[2].GetUInt32();
-//	//		Temp.area	= fields[3].GetUInt32();
+//	//		Temp.map	= fields[1].Get<uint32>();
+//	//		Temp.zone	= fields[2].Get<uint32>();
+//	//		Temp.area	= fields[3].Get<uint32>();
 //	//
 //	//		for (size_t i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; i++)
 //	//			Temp.slots[i] = fields[i + 4].Get<int32>();

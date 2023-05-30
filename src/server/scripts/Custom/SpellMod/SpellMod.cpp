@@ -28,28 +28,28 @@
 //	QueryResult result;
 //
 //	SpellModMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 技能ID, 释放技能需求模板ID,伤害倍率,治疗倍率,是否账号绑定,是否禁用,施法时间,持续时间,冷却时间,触发机率,周期时间1,周期时间2,周期时间3 FROM _技能" :
 //		"SELECT spellId, reqId,dmgMod,healMod,accountBind,disable,castingtime,duration,cooldown,procChance,Periodic1,Periodic2,Periodic3 FROM _spellmod"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 spellId = fields[0].GetUInt32();
+//			uint32 spellId = fields[0].Get<uint32>();
 //			SpellModTemplate Temp;
-//			Temp.reqId = fields[1].GetUInt32();
+//			Temp.reqId = fields[1].Get<uint32>();
 //			Temp.dmgMod = fields[2].GetFloat();
 //			Temp.healMod = fields[3].GetFloat();
 //			Temp.accountBind = fields[4].GetBool();
 //
 //			Temp.disable		= fields[5].GetBool();
-//			Temp.castingtime	= fields[6].GetUInt32();
-//			Temp.duration		= fields[7].GetUInt32();
-//			Temp.cooldown		= fields[8].GetUInt32();
-//			Temp.procChance		= fields[9].GetUInt32();
+//			Temp.castingtime	= fields[6].Get<uint32>();
+//			Temp.duration		= fields[7].Get<uint32>();
+//			Temp.cooldown		= fields[8].Get<uint32>();
+//			Temp.procChance		= fields[9].Get<uint32>();
 //
 //			for (size_t i = 0; i < MAX_SPELL_EFFECTS; i++)
-//				Temp.Periodic[i] = fields[10 + i].GetUInt32();
+//				Temp.Periodic[i] = fields[10 + i].Get<uint32>();
 //
 //			SpellModMap.insert(std::make_pair(spellId, Temp));
 //		} while (result->NextRow());
@@ -62,14 +62,14 @@
 //		{
 //			Field* fields = result->Fetch();
 //			AccountSpellTemplate Temp;
-//			Temp.accountId = fields[0].GetUInt32();
+//			Temp.accountId = fields[0].Get<uint32>();
 //			Temp.spellId = fields[1].GetFloat();
 //			AccountSpellVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
 //	SpellModBaseMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT spellId,"
 //		"Effect1,Effect2,Effect3,"
 //		"AuraName1,AuraName2,AuraName3,MiscValue1,MiscValue2,MiscValue3,"
@@ -94,31 +94,31 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 spellId = fields[0].GetUInt32();
+//			uint32 spellId = fields[0].Get<uint32>();
 //			SpellModBaseTemplate Temp;
-//			Temp.Effect[0] = fields[1].GetUInt32();
-//			Temp.Effect[1] = fields[2].GetUInt32();
-//			Temp.Effect[2] = fields[3].GetUInt32();
-//			Temp.EffectApplyAuraName[0] = fields[4].GetUInt32();
-//			Temp.EffectApplyAuraName[1] = fields[5].GetUInt32();
-//			Temp.EffectApplyAuraName[2] = fields[6].GetUInt32();
+//			Temp.Effect[0] = fields[1].Get<uint32>();
+//			Temp.Effect[1] = fields[2].Get<uint32>();
+//			Temp.Effect[2] = fields[3].Get<uint32>();
+//			Temp.EffectApplyAuraName[0] = fields[4].Get<uint32>();
+//			Temp.EffectApplyAuraName[1] = fields[5].Get<uint32>();
+//			Temp.EffectApplyAuraName[2] = fields[6].Get<uint32>();
 //			Temp.EffectMiscValue[0] = fields[7].Get<int32>();
 //			Temp.EffectMiscValue[1] = fields[8].Get<int32>();
 //			Temp.EffectMiscValue[2] = fields[9].Get<int32>();
 //			Temp.EffectBasePoints[0] = fields[10].Get<int32>();
 //			Temp.EffectBasePoints[1] = fields[11].Get<int32>();
 //			Temp.EffectBasePoints[2] = fields[12].Get<int32>();
-//			Temp.EffectSpellClassMask[0] = flag96(fields[13].GetUInt32(), fields[14].GetUInt32(), fields[15].GetUInt32());
-//			Temp.EffectSpellClassMask[1] = flag96(fields[16].GetUInt32(), fields[17].GetUInt32(), fields[18].GetUInt32());
-//			Temp.EffectSpellClassMask[2] = flag96(fields[19].GetUInt32(), fields[20].GetUInt32(), fields[21].GetUInt32());
-//			Temp.EffectImplicitTargetA[0] = fields[22].GetUInt32();
-//			Temp.EffectImplicitTargetA[1] = fields[23].GetUInt32();
-//			Temp.EffectImplicitTargetA[2] = fields[24].GetUInt32();
-//			Temp.EffectTriggerSpell[0] = fields[25].GetUInt32();
-//			Temp.EffectTriggerSpell[1] = fields[26].GetUInt32();
-//			Temp.EffectTriggerSpell[2] = fields[27].GetUInt32();
+//			Temp.EffectSpellClassMask[0] = flag96(fields[13].Get<uint32>(), fields[14].Get<uint32>(), fields[15].Get<uint32>());
+//			Temp.EffectSpellClassMask[1] = flag96(fields[16].Get<uint32>(), fields[17].Get<uint32>(), fields[18].Get<uint32>());
+//			Temp.EffectSpellClassMask[2] = flag96(fields[19].Get<uint32>(), fields[20].Get<uint32>(), fields[21].Get<uint32>());
+//			Temp.EffectImplicitTargetA[0] = fields[22].Get<uint32>();
+//			Temp.EffectImplicitTargetA[1] = fields[23].Get<uint32>();
+//			Temp.EffectImplicitTargetA[2] = fields[24].Get<uint32>();
+//			Temp.EffectTriggerSpell[0] = fields[25].Get<uint32>();
+//			Temp.EffectTriggerSpell[1] = fields[26].Get<uint32>();
+//			Temp.EffectTriggerSpell[2] = fields[27].Get<uint32>();
 //			Temp.RecoveryTime = fields[28].Get<int32>();
-//			uint32 procFlags = fields[29].GetUInt32();
+//			uint32 procFlags = fields[29].Get<uint32>();
 //
 //			switch (procFlags)
 //			{
@@ -134,57 +134,57 @@
 //
 //			Temp.procChance = fields[30].GetFloat();
 //			Temp.procCharges = fields[31].Get<int32>();
-//			Temp.SpellFamilyName = fields[32].GetUInt32();
+//			Temp.SpellFamilyName = fields[32].Get<uint32>();
 //
 //			SpellModBaseMap.insert(std::make_pair(spellId, Temp));
 //		} while (result->NextRow());
 //	}
 //
 //	SpellCusTargetMaskMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 技能ID,目标掩码 FROM _技能_目标限制" :
 //		"SELECT spellId,targetMask FROM _spellmod_target"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			SpellCusTargetMaskMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetUInt32()));
+//			SpellCusTargetMaskMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<uint32>()));
 //		} while (result->NextRow());
 //	}
 //
 //	OnRemoveSpellMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 技能ID, GM命令组 FROM _技能_当遗忘时" :
 //		"SELECT spellId, command FROM _spellmod_on_remove"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			OnRemoveSpellMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetString()));
+//			OnRemoveSpellMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].GetString()));
 //		} while (result->NextRow());
 //	}
 //
 //	OnLearnSpellMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 技能ID, GM命令组 FROM _技能_当学习时" :
 //		"SELECT spellId, command FROM _spellmod_on_learn"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			OnLearnSpellMap.insert(std::make_pair(fields[0].GetUInt32(), fields[1].GetString()));
+//			OnLearnSpellMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].GetString()));
 //		} while (result->NextRow());
 //	}
 //
 //	AuraTriggerSpellMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 光环ID,攻强百分比增加基础值1,攻强百分比增加基础值2,攻强百分比增加基础值3,法伤百分比增加基础值1,法伤百分比增加基础值2,法伤百分比增加基础值3,链接技能组,触发几率,触发技能组,冷却时间,忽略目标类型,目标最大数量,目标范围,触发类型  FROM _技能_光环触发" :
 //		"SELECT aura,bp0ApPct,bp1ApPct,bp2ApPct,bp0SpPct,bp1SpPct,bp2SpPct,linkSpellData,procChance,triggerSpell,cooldown,ignoreMask,MaxTargets,TargetsRange,procFlags  FROM _spellmod_aura_trigger"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 auraId = fields[0].GetUInt32();
+//			uint32 auraId = fields[0].Get<uint32>();
 //			AuraTriggerSpellTemplate Temp;
 //			Temp.bp0ApPct = fields[1].GetFloat();
 //			Temp.bp1ApPct = fields[2].GetFloat();
@@ -195,22 +195,22 @@
 //			Tokenizer tokens(fields[7].GetString(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens.begin(); itr != tokens.end(); ++itr)
 //				Temp.linkSpellData.push_back(uint32(atol(*itr)));
-//			Temp.procChance = fields[8].GetUInt32();
-//			//Temp.triggerSpell = fields[9].GetUInt32();
+//			Temp.procChance = fields[8].Get<uint32>();
+//			//Temp.triggerSpell = fields[9].Get<uint32>();
 //			Tokenizer tokens1(fields[9].GetString(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens1.begin(); itr != tokens1.end(); ++itr)
 //				Temp.triggerSpellData.push_back(uint32(atol(*itr)));
-//			Temp.cooldown = fields[10].GetUInt32();
-//			Temp.ignoreMask = fields[11].GetUInt32();
-//			Temp.Targets = fields[12].GetUInt32();
+//			Temp.cooldown = fields[10].Get<uint32>();
+//			Temp.ignoreMask = fields[11].Get<uint32>();
+//			Temp.Targets = fields[12].Get<uint32>();
 //			Temp.TargetRange = fields[13].GetFloat();
-//			Temp.procFlags = fields[14].GetUInt32();
+//			Temp.procFlags = fields[14].Get<uint32>();
 //			AuraTriggerSpellMap.insert(std::make_pair(auraId, Temp));
 //		} while (result->NextRow());
 //	}
 //
 //	SpellLeechVec.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 吸血技能ID,吸血几率,吸血类型,基础值,吸血是否附带伤害,需要满足的光环ID FROM _技能_吸血技能" :
 //		"SELECT spell,chance,type,basepoints,addDamage,meetAura FROM _spellmod_leech_spell"))
 //	{
@@ -218,7 +218,7 @@
 //		{
 //			Field* fields = result->Fetch();
 //			SpellLeechTemplate Temp;
-//			Temp.spellid = fields[0].GetUInt32();
+//			Temp.spellid = fields[0].Get<uint32>();
 //			Temp.chance = fields[1].GetFloat();
 //
 //			const char* str = fields[2].GetCString();
@@ -240,20 +240,20 @@
 //
 //			Temp.basepoints = fields[3].GetFloat();
 //			Temp.addDmg = fields[4].GetBool();
-//			Temp.meetAura = fields[5].GetUInt32();
+//			Temp.meetAura = fields[5].Get<uint32>();
 //			SpellLeechVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
 //	AuraLeechMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 吸血光环技能ID,吸血几率,吸血类型,基础值,吸血是否附带伤害 FROM _技能_吸血光环" :
 //		"SELECT aura,chance,type,basepoints,addDamage FROM _spellmod_leech_aura"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 aura = fields[0].GetUInt32();
+//			uint32 aura = fields[0].Get<uint32>();
 //			AuraLeechTemplate Temp;
 //			Temp.chance = fields[1].GetFloat();
 //
@@ -281,7 +281,7 @@
 //	}
 //
 //	AuraModClassSpellMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT aura, spellfamily,type1,op1,value1,"
 //		"type2,op2,value2,type3,op3,value3 FROM _技能_职业全局光环" :
 //		"SELECT aura, spellfamily,type1,op1,value1,"
@@ -290,14 +290,14 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 aura = fields[0].GetUInt32();
+//			uint32 aura = fields[0].Get<uint32>();
 //			AuraModClassSpellTemplate Temp;
-//			Temp.SpellFamilyName = SpellFamilyNames(fields[1].GetUInt32());
+//			Temp.SpellFamilyName = SpellFamilyNames(fields[1].Get<uint32>());
 //
 //			for (size_t i = 0; i < MAX_SPELL_EFFECTS; i++)
 //			{
-//				Temp.Type[i] = SpellModType(fields[2 + i * 3].GetUInt32());
-//				Temp.Op[i] = SpellModOp(fields[3 + i * 3].GetUInt32());
+//				Temp.Type[i] = SpellModType(fields[2 + i * 3].Get<uint32>());
+//				Temp.Op[i] = SpellModOp(fields[3 + i * 3].Get<uint32>());
 //				Temp.Value[i] = fields[4 + i * 3].Get<int32>();
 //			}
 //			AuraModClassSpellMap.insert(std::make_pair(aura, Temp));
@@ -305,14 +305,14 @@
 //	}
 //
 //	AuraModStatMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 光环技能ID,光环类型1,属性类型1,转换百分比1,光环类型2,属性类型2,转换百分比2,光环类型3,属性类型3,转换百分比3 FROM _技能_主属性转换" :
 //		"SELECT aura,auraType1,statType1,pct1,auraType2,statType2,pct2,auraType3,statType3,pct3 FROM _spellmod_aura_pct_on_stat"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 aura = fields[0].GetUInt32();
+//			uint32 aura = fields[0].Get<uint32>();
 //			AuraModStatTemplate Temp;
 //
 //			AuraType auraType = SPELL_AURA_NONE;
@@ -348,14 +348,14 @@
 //	}
 //
 //	AuraPctMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 光环技能ID,效果类型1,提升类型1,提升数值1,效果类型2,提升类型2,提升数值2,效果类型3,提升类型3,提升数值3 FROM _技能_光环百分比效果" :
 //		"SELECT aura,auraType1,modType1,value1,auraType2,modType2,value2,auraType3,modType3,value3 FROM _spellmod_aura_pct"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 aura = fields[0].GetUInt32();
+//			uint32 aura = fields[0].Get<uint32>();
 //			AuraPctTemplate Temp;
 //
 //			AuraType auraType = SPELL_AURA_NONE;
@@ -390,26 +390,26 @@
 //	}
 //
 //	MountSpellMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 主坐骑技能ID,60速度坐骑技能ID,100速度坐骑技能ID,150速度坐骑技能ID,280速度坐骑技能ID,310速度坐骑技能ID FROM _技能_骑术改变速度" :
 //		"SELECT spellId,spell_60,spell_100,spell_150,spell_280,spell_310 FROM _spellmod_mount"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 spellId = fields[0].GetUInt32();
+//			uint32 spellId = fields[0].Get<uint32>();
 //			MountSpellTemplate Temp;
-//			Temp.mount60 = fields[1].GetUInt32();
-//			Temp.mount100 = fields[2].GetUInt32();
-//			Temp.mount150 = fields[3].GetUInt32();
-//			Temp.mount280 = fields[4].GetUInt32();
-//			Temp.mount310 = fields[5].GetUInt32();
+//			Temp.mount60 = fields[1].Get<uint32>();
+//			Temp.mount100 = fields[2].Get<uint32>();
+//			Temp.mount150 = fields[3].Get<uint32>();
+//			Temp.mount280 = fields[4].Get<uint32>();
+//			Temp.mount310 = fields[5].Get<uint32>();
 //			MountSpellMap.insert(std::make_pair(spellId, Temp));
 //		} while (result->NextRow());
 //	}
 //
 //	AuraStackTriggerMap.clear();
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?	
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?	
 //		"SELECT 光环技能ID, 叠加层数, 触发技能组, 触发技能后移除层数  FROM _技能_光环叠加" :
 //		"SELECT AuraId, Stacks, TriggerSpellData, RemoveStacks  FROM _spellmod_aura_stack");
 //
@@ -418,31 +418,31 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 Aura = fields[0].GetUInt32();
+//			uint32 Aura = fields[0].Get<uint32>();
 //			AuraStackTriggerTemplate Temp;
-//			Temp.Stacks = fields[1].GetUInt32();
+//			Temp.Stacks = fields[1].Get<uint32>();
 //			Tokenizer tokens(fields[2].GetString(), ' ');
 //			for (Tokenizer::const_iterator itr = tokens.begin(); itr != tokens.end(); ++itr)
 //				Temp.TriggerSpellVec.push_back(uint32(atol(*itr)));
-//			Temp.RemoveStacks = fields[3].GetUInt32();
+//			Temp.RemoveStacks = fields[3].Get<uint32>();
 //			AuraStackTriggerMap.insert(std::make_pair(Aura, Temp));
 //		} while (result->NextRow());
 //	}
 //
 //	AuraTriggerOnDeathMap.clear();
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 光环技能ID, 冷却时间, 对攻击者施放技能ID, 对攻击者施放技能几率, 对自身施放技能ID,对自身施放技能几率,是否阻止死亡  FROM _技能_光环死亡触发" :
 //		"SELECT AuraId,CoolDown,AttackerTriggerSpell,AttackerTriggerChance,SelfTriggerSpell,SelfTriggerChance,PreventLastDamage FROM _spellmod_aura_death_trigger"))
 //	{
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 AuraId = fields[0].GetUInt32();
+//			uint32 AuraId = fields[0].Get<uint32>();
 //			AuraTriggerOnDeathTemplate Temp;
-//			Temp.CoolDown = fields[1].GetUInt32();
-//			Temp.AttackerTriggerSpell = fields[2].GetUInt32();
+//			Temp.CoolDown = fields[1].Get<uint32>();
+//			Temp.AttackerTriggerSpell = fields[2].Get<uint32>();
 //			Temp.AttackerTriggerChance = fields[3].GetFloat();
-//			Temp.SelfTriggerSpell = fields[4].GetUInt32();
+//			Temp.SelfTriggerSpell = fields[4].Get<uint32>();
 //			Temp.SelfTriggerChance = fields[5].GetFloat();
 //			Temp.PreventLastDamage = fields[6].GetBool();
 //			AuraTriggerOnDeathMap.insert(std::make_pair(AuraId, Temp));
@@ -457,7 +457,7 @@
 ////	/*
 ////	AuraModSpellVec.clear();
 ////
-////	result = WorldDatabase.PQuery("SELECT aura,spellfamily, spell,type1,op1,value1,"
+////	result = WorldDatabase.Query("SELECT aura,spellfamily, spell,type1,op1,value1,"
 ////	"type2,op2,value2,type3,op3,value3 FROM _spellmod_aura_on_spell");
 ////
 ////	if (result)
@@ -466,8 +466,8 @@
 ////	{
 ////	Field* fields = result->Fetch();
 ////	AuraModSpellTemplate Temp;
-////	Temp.AuraId = fields[0].GetUInt32();
-////	Temp.SpellFamilyName = SpellFamilyNames(fields[1].GetUInt32());
+////	Temp.AuraId = fields[0].Get<uint32>();
+////	Temp.SpellFamilyName = SpellFamilyNames(fields[1].Get<uint32>());
 ////	std::string str = fields[2].GetString();
 ////	if (!str.empty())
 ////	{
@@ -478,8 +478,8 @@
 ////
 ////	for (size_t i = 0; i < MAX_SPELL_EFFECTS; i++)
 ////	{
-////	Temp.Type[i] = SpellModType(fields[3 + i * 3].GetUInt32());
-////	Temp.Op[i] = SpellModOp(fields[4 + i * 3].GetUInt32());
+////	Temp.Type[i] = SpellModType(fields[3 + i * 3].Get<uint32>());
+////	Temp.Op[i] = SpellModOp(fields[4 + i * 3].Get<uint32>());
 ////	Temp.Value[i] = fields[5 + i * 3].Get<int32>();
 ////	}
 ////	AuraModSpellVec.push_back(Temp);
@@ -825,7 +825,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 spellId = fields[0].GetUInt32();
+//			uint32 spellId = fields[0].Get<uint32>();
 //
 //			if (!player->HasSpell(spellId))
 //				player->learnSpell(spellId);

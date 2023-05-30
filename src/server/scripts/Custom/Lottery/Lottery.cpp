@@ -14,7 +14,7 @@
 //	if (!sSwitch->GetOnOff(ST_LOTTERY))
 //		return;
 //
-//	QueryResult result = WorldDatabase.PQuery(
+//	QueryResult result = WorldDatabase.Query(
 //		sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		//			0			1		2			3			4			5		6		7
 //		"SELECT 购买总积分上限,开奖间隔,开豹子翻倍数,开大翻倍数,开小翻倍数,开豹子几率,开大几率,开小几率 FROM __彩票" :
@@ -24,14 +24,14 @@
 //
 //	Field* fields = result->Fetch();
 //	LotterySetTemplate LotteryTemp;
-//	LotteryTemp.tokenLimit	= fields[0].GetUInt32();
-//	LotteryTemp.interval	= fields[1].GetUInt32();
-//	LotteryTemp.aaa_muil	= fields[2].GetUInt32();
-//	LotteryTemp.max_muil	= fields[3].GetUInt32();
-//	LotteryTemp.min_muil	= fields[4].GetUInt32();
-//	LotteryTemp.aaa_chance	= fields[5].GetUInt32();
-//	LotteryTemp.max_chance	= fields[6].GetUInt32();
-//	LotteryTemp.min_chance	= fields[7].GetUInt32();
+//	LotteryTemp.tokenLimit	= fields[0].Get<uint32>();
+//	LotteryTemp.interval	= fields[1].Get<uint32>();
+//	LotteryTemp.aaa_muil	= fields[2].Get<uint32>();
+//	LotteryTemp.max_muil	= fields[3].Get<uint32>();
+//	LotteryTemp.min_muil	= fields[4].Get<uint32>();
+//	LotteryTemp.aaa_chance	= fields[5].Get<uint32>();
+//	LotteryTemp.max_chance	= fields[6].Get<uint32>();
+//	LotteryTemp.min_chance	= fields[7].Get<uint32>();
 //	LotteryVec.push_back(LotteryTemp);
 //
 //	if (!LotteryVec.empty())
@@ -47,9 +47,9 @@
 //	{
 //		Field* fields = result->Fetch();
 //		LotteryTemplate LotteryTemp;
-//		LotteryTemp.guidLow			= fields[0].GetUInt32();
-//		LotteryTemp.lotteryType		= LotteryType(fields[1].GetUInt32());
-//		LotteryTemp.lotteryAmount	= fields[2].GetUInt32();
+//		LotteryTemp.guidLow			= fields[0].Get<uint32>();
+//		LotteryTemp.lotteryType		= LotteryType(fields[1].Get<uint32>());
+//		LotteryTemp.lotteryAmount	= fields[2].Get<uint32>();
 //		LotteryInfo.push_back(LotteryTemp);
 //	} while (result->NextRow());
 //}

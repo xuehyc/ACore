@@ -595,14 +595,14 @@
 //	uint32 index = 0;
 //	std::vector<uint32> EntryVec;
 //
-//	if (QueryResult result = WorldDatabase.PQuery("SELECT entry,class,subclass,SoundOverrideSubclass,Material,displayid,InventoryType,sheath FROM item_template ORDER BY entry ASC"))
+//	if (QueryResult result = WorldDatabase.Query("SELECT entry,class,subclass,SoundOverrideSubclass,Material,displayid,InventoryType,sheath FROM item_template ORDER BY entry ASC"))
 //	{
 //		do
 //		{
 //			std::vector<std::string> v;
 //			Field* fields = result->Fetch();
 //
-//			EntryVec.push_back(fields[0].GetUInt32());
+//			EntryVec.push_back(fields[0].Get<uint32>());
 //
 //			for (uint8 i = 0; i < 8; i++)
 //				v.push_back(fields[i].GetString());
@@ -654,7 +654,7 @@
 //	std::string fmt = "nssssssiiiiiiiissssssssii";
 //	uint32 index = 0;
 //	//1		//2			//3			//4				//5				//6			//7	//8		//9			//10	//11	//12		//13			//14	//15	//16	//17	//18		//19	//20	//21	//22		//23	//24	//25
-//	if (QueryResult result = WorldDatabase.PQuery("SELECT ID, LeftModel, RightModel, LeftModelTexture, RightModelTexture, Icon, Field7, Field8, Field9, Field10, Field11, Field12, groupSoundIndex, Field14, Field15, Field16, Field17, Field18, Field19, Field20, Field21, Field22, Field23, Field24, Field25 FROM _dbc_itemdisplayinfo  ORDER BY ID ASC"))
+//	if (QueryResult result = WorldDatabase.Query("SELECT ID, LeftModel, RightModel, LeftModelTexture, RightModelTexture, Icon, Field7, Field8, Field9, Field10, Field11, Field12, groupSoundIndex, Field14, Field15, Field16, Field17, Field18, Field19, Field20, Field21, Field22, Field23, Field24, Field25 FROM _dbc_itemdisplayinfo  ORDER BY ID ASC"))
 //	{
 //		do
 //		{
@@ -680,7 +680,7 @@
 //	std::string file = "ItemExtendedCost.dbc";
 //	std::string fmt = "niiiiiiiiiiiiiix";
 //	uint32 index = 0;									//1		//2			//3			//4		//5		//6	//7		//8	//9		//10		//11			//12		//13			//14		/15			//16
-//	if (QueryResult result = WorldDatabase.PQuery("SELECT ID,honorpoints,arenapoints,arenaslot,item1,item2,item3,item4,item5,reqitemcount1,reqitemcount2,reqitemcount3,reqitemcount4,reqitemcount5,arenarating,uk FROM _dbc_itemextendedcost ORDER BY ID ASC"))
+//	if (QueryResult result = WorldDatabase.Query("SELECT ID,honorpoints,arenapoints,arenaslot,item1,item2,item3,item4,item5,reqitemcount1,reqitemcount2,reqitemcount3,reqitemcount4,reqitemcount5,arenarating,uk FROM _dbc_itemextendedcost ORDER BY ID ASC"))
 //	{
 //		do
 //		{
@@ -709,7 +709,7 @@
 //	std::string file = "Spell.dbc";
 //	std::string fmt = "niiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiifiiiiiiiiiiiiiiiiiiiiiiiiiiiiifffiiiiiiiiiiiiiiiiiiiiifffiiiiiiiiiiiiiiifffiiiiiiiiiiiiiissssssssssssssssissssssssssssssssissssssssssssssssissssssssssssssssiiiiiiiiiiiiifffiiiiiiiiiifffii";
 //	uint32 index = 0;
-//	if (QueryResult result = WorldDatabase.PQuery(
+//	if (QueryResult result = WorldDatabase.Query(
 //				//1	//2			//3		//4		//5			//6				//7				//8			//9				//10			//11			//12
 //		"SELECT Id, Category, Dispel, Mechanic, Attributes, AttributesEx, AttributesEx2, AttributesEx3, AttributesEx4, AttributesEx5, AttributesEx6, AttributesEx7, "
 //		//13		//14		//15		//16		//17		//18			//19				//20				//21
@@ -884,7 +884,7 @@
 //	std::string file = "CharStartOutfit.dbc";
 //	std::string fmt = "dbbbXiiiiiiiiiiiiiiiiiiiiiiiixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 //	uint32 index = 0;
-//	if (QueryResult result = WorldDatabase.PQuery("SELECT "
+//	if (QueryResult result = WorldDatabase.Query("SELECT "
 //		//1		//2		//3
 //		"Race, Class, Gender, "
 //		//4	- 28
@@ -908,7 +908,7 @@
 //			//displayid
 //			for (size_t i = 0; i < 24; i++)
 //			{
-//				uint32 entry = fields[3 + i].GetUInt32();
+//				uint32 entry = fields[3 + i].Get<uint32>();
 //				const ItemTemplate* temp = sObjectMgr->GetItemTemplate(entry);
 //
 //				if (!temp)
@@ -920,7 +920,7 @@
 //			//inventory
 //			for (size_t i = 0; i < 24; i++)
 //			{
-//				uint32 entry = fields[3 + i].GetUInt32();
+//				uint32 entry = fields[3 + i].Get<uint32>();
 //				const ItemTemplate* temp = sObjectMgr->GetItemTemplate(entry);
 //
 //				if (!temp)
@@ -949,7 +949,7 @@
 //	std::string file = "SpellItemEnchantment.dbc";
 //	std::string fmt = "niiiiiiixxxiiissssssssssssssssxiiiiiii";
 //	uint32 index = 0;									
-//	if (QueryResult result = WorldDatabase.PQuery(
+//	if (QueryResult result = WorldDatabase.Query(
 //				//1	//2			//3		//4	//5		//6		//7			//8		//9		//10		//11
 //		"SELECT ID, charges, type1, type2, type3, amount1, amount2, amount3, spellid1, spellid2, spellid3, "
 //			//12		//13	//14	//15	//16				//17			//18				//19
@@ -1011,7 +1011,7 @@
 //	std::string file = "Talent.dbc";
 //	std::string fmt = "niiiiiiiixxxxixxixxixxx";
 //	uint32 index = 0;
-//	if (QueryResult result = WorldDatabase.PQuery(
+//	if (QueryResult result = WorldDatabase.Query(
 //		//1			//2		//3		//4
 //		"SELECT TalentID, TalentTab, Row, Col, "
 //		//5			//6		//7		//8			//9
@@ -1067,7 +1067,7 @@
 //	std::string file = "SpellIcon.dbc";
 //	std::string fmt = "ns";
 //	uint32 index = 0;
-//	if (QueryResult result = WorldDatabase.PQuery("SELECT ID, Icon FROM _dbc_spellicon  ORDER BY ID ASC"))
+//	if (QueryResult result = WorldDatabase.Query("SELECT ID, Icon FROM _dbc_spellicon  ORDER BY ID ASC"))
 //	{
 //		do
 //		{

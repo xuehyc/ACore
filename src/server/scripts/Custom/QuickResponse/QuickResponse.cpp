@@ -13,7 +13,7 @@
 //void QuickResponse::Load()
 //{
 //	QuickResponseVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 奖励模板ID,问题文本,正确选项,选项A,选项B,选项C,选项D FROM __抢答" :
 //		"SELECT rewId,question,correctAnswer,answerA,answerB,answerC,answerD FROM _quick_response");
 //	if (!result) return;
@@ -21,7 +21,7 @@
 //	{
 //		Field* fields = result->Fetch();
 //		QuickResponseTemplate Temp;
-//		Temp.rewId			= fields[0].GetUInt32();
+//		Temp.rewId			= fields[0].Get<uint32>();
 //		Temp.question		= fields[1].GetString();
 //		Temp.correctAnswer	= fields[2].GetString();
 //		Temp.answerA		= fields[3].GetString();

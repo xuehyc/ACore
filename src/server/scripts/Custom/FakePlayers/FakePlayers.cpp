@@ -21,7 +21,7 @@
 //void FakePlayers::Load()
 //{
 //	FakePlayersVec.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0		1		2	3	4	5	6	7			8
 //		"SELECT 名字,公会名称,等级,职业,种族,性别,ID,军衔等级,会员等级 FROM _假人_列表假人" :
 //		//		0		1	2	3		4	5	   6 7  8
@@ -33,15 +33,15 @@
 //		FakePlayersTemplate Temp;
 //		Temp.pname		= fields[0].GetString();
 //		Temp.gname		= fields[1].GetString();
-//		Temp.lvl		= fields[2].GetUInt32();
-//		Temp.class_		= fields[3].GetUInt32();
-//		Temp.race		= fields[4].GetUInt32();
+//		Temp.lvl		= fields[2].Get<uint32>();
+//		Temp.class_		= fields[3].Get<uint32>();
+//		Temp.race		= fields[4].Get<uint32>();
 //		Temp.gender		= fields[5].GetUInt8();
 //		Temp.pzoneid	= GenerateZoneId();
 //		Temp.online		= false;
-//		Temp.ID			= fields[6].GetUInt32();
-//		Temp.hr			= fields[7].GetUInt32();
-//		Temp.vip		= fields[8].GetUInt32();
+//		Temp.ID			= fields[6].Get<uint32>();
+//		Temp.hr			= fields[7].Get<uint32>();
+//		Temp.vip		= fields[8].Get<uint32>();
 //		FakePlayersVec.push_back(Temp);
 //	} while (result->NextRow());
 //}

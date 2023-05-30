@@ -12,7 +12,7 @@
 //	RecoveryMap.clear();
 //	RecoveryCategoryMap.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //        "SELECT 物品ID,分组ID,奖励积分数量,物品,数量,奖励模板ID FROM _物品_回收" :
 //		"SELECT entry,categoryId,rewToken FROM _recovery");
 //	if (result)
@@ -20,18 +20,18 @@
 //		do
 //		{
 //            Field* fields = result->Fetch();
-//            uint32 entry = fields[0].GetUInt32();
+//            uint32 entry = fields[0].Get<uint32>();
 //            RecoveryTemplate Temp;
-//            Temp.categoryId = fields[1].GetUInt32();
+//            Temp.categoryId = fields[1].Get<uint32>();
 //            Temp.rewToken = fields[2].GetFloat();
-//            Temp.rewitem = fields[3].GetUInt32();
-//            Temp.rewcunt = fields[4].GetUInt32();
-//            Temp.rewid = fields[5].GetUInt32();
+//            Temp.rewitem = fields[3].Get<uint32>();
+//            Temp.rewcunt = fields[4].Get<uint32>();
+//            Temp.rewid = fields[5].Get<uint32>();
 //			RecoveryMap.insert(std::make_pair(entry, Temp));
 //		} while (result->NextRow());
 //	}
 //	
-//	result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
 //		"SELECT 分组ID,分组名称 FROM _物品_回收分组" :
 //		"SELECT categoryId,categoryName FROM _recovery_category");
 //	if (result)
@@ -39,7 +39,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 categoryId			= fields[0].GetUInt32();
+//			uint32 categoryId			= fields[0].Get<uint32>();
 //			std::string categoryName	= fields[1].GetString();
 //			RecoveryCategoryMap.insert(std::make_pair(categoryId, categoryName));
 //		} while (result->NextRow());

@@ -8,15 +8,15 @@
 //{
 //	StoryMap.clear();
 //
-//	//QueryResult result = WorldDatabase.PQuery("SELECT entry,id,action,param1,param2 FROM _npc");
+//	//QueryResult result = WorldDatabase.Query("SELECT entry,id,action,param1,param2 FROM _npc");
 //	//
 //	//if (!result) 
 //	//	return;
 //	//do
 //	//{
 //	//	Field* fields = result->Fetch();
-//	//	uint32 entry = fields[0].GetUInt32();
-//	//	uint32 index = fields[1].GetUInt32();
+//	//	uint32 entry = fields[0].Get<uint32>();
+//	//	uint32 index = fields[1].Get<uint32>();
 //	//	const char*  s = fields[2].GetCString();
 //	//
 //	//	StoryAction action = STORY_ACTION_NONE;

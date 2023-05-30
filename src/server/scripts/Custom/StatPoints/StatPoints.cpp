@@ -10,7 +10,7 @@
 //	for (size_t i = 0; i < MAX_STAT_POINTS_TYPE; i++)
 //		stat_muil[i] = 0;
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 每点增加耐力,每点增加敏捷,每点增加力量,每点增加智力,每点增加精神,每点增加命中等级,每点增加爆击等级,每点增加攻击强度,每点增加护甲穿透,每点增加法术强度,每点增加法术穿透,每点增加急速等级 FROM __斗气" :
 //		"SELECT muil_stamina,muil_agility,muil_strength,muil_intellect,muil_spirit,muil_hit,muil_crit,muil_ap,muil_ape,muil_sp,muil_spe,muil_haste FROM _stat_points");
 //	if (!result)
@@ -19,7 +19,7 @@
 //	Field* fields = result->Fetch();
 //
 //	for (size_t i = 1; i < MAX_STAT_POINTS_TYPE; i++)
-//		stat_muil[i] = fields[i - 1].GetUInt32();
+//		stat_muil[i] = fields[i - 1].Get<uint32>();
 //}
 //
 //void StatPoints::LoadPlayerData(Player* player)

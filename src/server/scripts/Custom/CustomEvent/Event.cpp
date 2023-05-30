@@ -464,7 +464,7 @@
 //void Event::LoadPos()
 //{
 //	PosMap.clear();
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//			0	1	2		3	4		5
 //		"SELECT 地图ID,X坐标,Y坐标,Z坐标,O坐标,坐标ID FROM _模板_坐标" :
 //		//		0	1 2 3 4	 5
@@ -474,12 +474,12 @@
 //	{
 //		Field* fields = result->Fetch();
 //		PosTemplate Temp;
-//		Temp.map = fields[0].GetUInt32();
+//		Temp.map = fields[0].Get<uint32>();
 //		Temp.x = fields[1].GetFloat();
 //		Temp.y = fields[2].GetFloat();
 //		Temp.z = fields[3].GetFloat();
 //		Temp.o = fields[4].GetFloat();
-//		uint32 ID = fields[5].GetUInt32();
+//		uint32 ID = fields[5].Get<uint32>();
 //		PosMap.insert(std::make_pair(ID, Temp));
 //	} while (result->NextRow());
 //}
@@ -541,7 +541,7 @@
 //
 //	QueryResult result;
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0			1			2			3	4		5			6
 //		"SELECT 事件名称,弹窗提示文本,菜单提示文本,区域ID,事件类型,组队类型,重新加入类型,"
 //		//		7			8			9					10				11				12
@@ -629,17 +629,17 @@
 //				_RejoinType = C_RT_REDIS_GROUP;
 //		}
 //		
-//		_WinRewId		= fields[7].GetUInt32();
-//		_LosRewId		= fields[8].GetUInt32();
-//		_DamageForRew	= fields[9].GetUInt32();
-//		_HealForRew		= fields[10].GetUInt32();
-//		_KillsForRew	= fields[11].GetUInt32();
-//		_KilledForRew	= fields[12].GetUInt32();
+//		_WinRewId		= fields[7].Get<uint32>();
+//		_LosRewId		= fields[8].Get<uint32>();
+//		_DamageForRew	= fields[9].Get<uint32>();
+//		_HealForRew		= fields[10].Get<uint32>();
+//		_KillsForRew	= fields[11].Get<uint32>();
+//		_KilledForRew	= fields[12].Get<uint32>();
 //	}
 //	else
 //		return;
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0		1		2					3
 //		"SELECT 队伍ID,队伍名称,事件开始传送坐标ID,事件结束传送坐标ID From _事件_队伍配置 WHERE 事件ID = '%u'" :
 //		//		0		1		2					3
@@ -648,15 +648,15 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			EventFactionId faction		= fields[0].GetUInt32();
+//			EventFactionId faction		= fields[0].Get<uint32>();
 //			_FactionVec.push_back(faction);
 //			_FactionNameMap[faction]	= fields[1].GetString();
-//			_StartPosMap[faction]		= fields[2].GetUInt32();
-//			_StopPosMap[faction]		= fields[3].GetUInt32();
+//			_StartPosMap[faction]		= fields[2].Get<uint32>();
+//			_StopPosMap[faction]		= fields[3].Get<uint32>();
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0			1	2		3
 //		"SELECT 结束类型,队伍ID, 参数,权重值 From _事件_结束条件配置 WHERE 事件ID = '%u'" :
 //		//		0			1	 2		3
@@ -675,14 +675,14 @@
 //			else if (strcmp(type, "击杀玩家 - 数量") == 0)
 //				Temp.StopType = TYPEID_PLAYER;
 //
-//			Temp.Faction	= fields[1].GetUInt32();
-//			Temp.Param		= fields[2].GetUInt32();
-//			Temp.Weight		= fields[3].GetUInt32();
+//			Temp.Faction	= fields[1].Get<uint32>();
+//			Temp.Param		= fields[2].Get<uint32>();
+//			Temp.Weight		= fields[3].Get<uint32>();
 //			_StopVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//			0				1				2
 //		"SELECT 生物或物体GUID,生物或物体激活后FLAG,激活时提示文本,"
 //		//3						4		5					6		7						8	9						10	11						12
@@ -699,12 +699,12 @@
 //			Field* fields = result->Fetch();
 //			EventAltTemplate Temp;
 //			Temp.GUID		= fields[0].GetInt64();
-//			Temp.AltFlag	= fields[1].GetUInt32();
+//			Temp.AltFlag	= fields[1].Get<uint32>();
 //			Temp.NoticeText = fields[2].GetString();
 //			for (size_t i = 0; i < ALT_GUID_MAX; i++)
 //			{
 //				Temp.TargetEntry[i] = fields[3 + i * 2].GetInt64();
-//				Temp.TargetCount[i] = fields[4 + i * 2].GetUInt32();
+//				Temp.TargetCount[i] = fields[4 + i * 2].Get<uint32>();
 //				Temp.TargetKillCount[i] = 0;
 //			}
 //				
@@ -712,7 +712,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0				1		2		3	
 //		"SELECT 生物或物体GUID,队伍ID,击杀玩家数,玩家被杀数 From _事件_生物或物体激活条件队伍配置 WHERE 事件ID = '%u'" :
 //		//		0		1	2		3
@@ -723,14 +723,14 @@
 //			Field* fields = result->Fetch();
 //			EventAltFactionTemplate Temp;
 //			Temp.GUID			= fields[0].GetInt64();
-//			Temp.Faction		= fields[1].GetUInt32();
-//			Temp.Kills			= fields[2].GetUInt32();
-//			Temp.Killeds		= fields[3].GetUInt32();
+//			Temp.Faction		= fields[1].Get<uint32>();
+//			Temp.Kills			= fields[2].Get<uint32>();
+//			Temp.Killeds		= fields[3].Get<uint32>();
 //			_AltFactionVec.push_back(Temp);
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0		1									
 //		"SELECT 阶段ID,阶段结束需击杀生物或摧毁物体GUID From _事件_阶段生物或物体配置 WHERE 事件ID = '%u'" :
 //		//		0		1
@@ -746,7 +746,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//			0	1		2			3			4				5					6						7					8					9
 //		"SELECT 阶段ID,队伍ID,墓地坐标ID, 墓地保护区范围, 墓地灵魂医者ID,阶段结束需击杀玩家数,阶段结束需玩家被杀数,阶段结束集体传送坐标ID,进入墓地保护区提示文本,阶段结束提示文本 "
 //		"From _事件_阶段队伍配置 WHERE 事件ID = '%u'":
@@ -758,14 +758,14 @@
 //		{
 //			Field* fields = result->Fetch();
 //			EventPhaseFactionTemplate Temp;
-//			Temp.Phase					= fields[0].GetUInt32();
-//			Temp.Faction				= fields[1].GetUInt32();
-//			Temp.GraveyardPos			= fields[2].GetUInt32();
-//			Temp.GraveyardSafe			= fields[3].GetUInt32();
-//			Temp.GraveyardHealer		= fields[4].GetUInt32();
-//			Temp.StopPlayerKills		= fields[5].GetUInt32();
-//			Temp.StopPlayerKilleds		= fields[6].GetUInt32();
-//			Temp.StopTelePos			= fields[7].GetUInt32();
+//			Temp.Phase					= fields[0].Get<uint32>();
+//			Temp.Faction				= fields[1].Get<uint32>();
+//			Temp.GraveyardPos			= fields[2].Get<uint32>();
+//			Temp.GraveyardSafe			= fields[3].Get<uint32>();
+//			Temp.GraveyardHealer		= fields[4].Get<uint32>();
+//			Temp.StopPlayerKills		= fields[5].Get<uint32>();
+//			Temp.StopPlayerKilleds		= fields[6].Get<uint32>();
+//			Temp.StopTelePos			= fields[7].Get<uint32>();
 //			Temp.GraveyardSafeNotice	= fields[8].GetString();
 //			Temp.StopNotice				= fields[9].GetString();
 //			_PhaseFactionVec.push_back(Temp);
@@ -774,7 +774,7 @@
 //		SummonSoulHealer();
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0				1			2									3					4									5					6									7					8				9
 //		"SELECT 世界状态ID,世界状态初始值,更新世界状态需要击杀生物或摧毁物体ID1,更新世界状态增减值1,更新世界状态需要击杀生物或摧毁物体ID2,更新世界状态增减值2,更新世界状态需要击杀生物或摧毁物体ID3,更新世界状态增减值3,世界状态达到该值时提示,提示文本 From _事件_世界状态配置 WHERE 事件ID = '%u'" :
 //		//		0		1		2		3	4		5		6	7		8			9
@@ -784,7 +784,7 @@
 //		{
 //			Field* fields = result->Fetch();
 //			EventWorldStateTemplate Temp;
-//			Temp.ID				= fields[0].GetUInt32();
+//			Temp.ID				= fields[0].Get<uint32>();
 //			Temp.InitValue		= fields[1].Get<int32>();
 //			for (size_t i = 0; i < WORLDSTATE_ENTRY_MAX; i++)
 //			{
@@ -797,7 +797,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0			1		2			3					4					5
 //		"SELECT 世界状态ID,队伍ID,击杀或被杀,更新世界状态增减值,世界状态达到该值时提示,提示文本 From _事件_世界状态队伍配置 WHERE 事件ID  = '%u'" :
 //		//		0	1		2			3		4			5
@@ -807,8 +807,8 @@
 //		{
 //			Field* fields = result->Fetch();
 //			EventWorldStateFactionTemplate Temp;
-//			Temp.ID				= fields[0].GetUInt32();
-//			Temp.Faction		= fields[1].GetUInt32();
+//			Temp.ID				= fields[0].Get<uint32>();
+//			Temp.Faction		= fields[1].Get<uint32>();
 //			Temp.Kill			= fields[2].GetBool();
 //			Temp.Step			= fields[3].Get<int32>();
 //			Temp.NoticeValue	= fields[4].Get<int32>();
@@ -817,7 +817,7 @@
 //		} while (result->NextRow());
 //	}
 //
-//	if (result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//					0		1		2		3			4
 //		"SELECT 刷新生物或物体ID,阶段ID,刷新时间,刷新位置坐标ID,持续时间,"
 //		//5				6		7		8		9		10
@@ -832,10 +832,10 @@
 //			Field* fields = result->Fetch();
 //			EventSpawnTemplate Temp;
 //			Temp.Entry		= fields[0].GetInt64();
-//			Temp.Phase		= fields[1].GetUInt32();
-//			Temp.SpawnTime	= fields[2].GetUInt32();
-//			Temp.PosId		= fields[3].GetUInt32();
-//			Temp.Duration	= fields[4].GetUInt32();
+//			Temp.Phase		= fields[1].Get<uint32>();
+//			Temp.SpawnTime	= fields[2].Get<uint32>();
+//			Temp.PosId		= fields[3].Get<uint32>();
+//			Temp.Duration	= fields[4].Get<uint32>();
 //
 //			for (size_t i = 0; i < MAX_SPAWNNOTICE_COUNT; i++)
 //			{

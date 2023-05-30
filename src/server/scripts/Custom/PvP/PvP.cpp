@@ -15,7 +15,7 @@
 //{
 //	PvPVec.clear();
 //	
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0			1		2			3				4			5	6			7				8			9
 //		"SELECT 地域ID, 区域属性, 进入提示文本,进入获得名字前缀,生命值下限,区域ID,生命值上限,击杀奖励模板ID,被杀奖励模板ID,获得奖励时满足的事件组,进入自动满血 FROM _属性调整_区域" :
 //		//		0		1		2		3	4	5		6		7		8			9
@@ -27,7 +27,7 @@
 //		{
 //			Field* fields = result->Fetch();
 //			PvPTemplate Temp;
-//			Temp.area			= fields[0].GetUInt32();
+//			Temp.area			= fields[0].Get<uint32>();
 //
 //			const char*  type = fields[1].GetCString();
 //

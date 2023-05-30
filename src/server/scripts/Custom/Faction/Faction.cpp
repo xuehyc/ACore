@@ -16,7 +16,7 @@
 //{
 //	FactionDataMap.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		//		0				1				2		3					4		5
 //		"SELECT 自定义阵营ID, 自定义阵营名称, 菜单文本, 加入阵营奖励模板ID, 名字后缀,退出阵营需求模板ID FROM __自定义阵营" :
 //		//		0			1		2		3		4		5
@@ -27,14 +27,14 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint32 faction = fields[0].GetUInt32();
+//			uint32 faction = fields[0].Get<uint32>();
 //
 //			FactionTemplate Temp;
 //			Temp.name = fields[1].GetString();
 //			Temp.gossipText = fields[2].GetString();
-//			Temp.rewId = fields[3].GetUInt32();
+//			Temp.rewId = fields[3].Get<uint32>();
 //			Temp.suffix = fields[4].GetString();
-//			Temp.quitReqId = fields[5].GetUInt32();
+//			Temp.quitReqId = fields[5].Get<uint32>();
 //			FactionDataMap.insert(std::make_pair(faction, Temp));
 //
 //		} while (result->NextRow());
@@ -201,7 +201,7 @@
 //	void OnLogin(Player* player)
 //	{
 //		if (QueryResult result = CharacterDatabase.Query("SELECT faction FROM characters WHERE guid = %u", player->GetGUID().GetCounter()))
-//			player->faction = result->Fetch()[0].GetUInt32();
+//			player->faction = result->Fetch()[0].Get<uint32>();
 //	}
 //};
 //

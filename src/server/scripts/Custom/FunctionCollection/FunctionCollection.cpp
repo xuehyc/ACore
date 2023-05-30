@@ -40,16 +40,16 @@
 //{
 //	FunctionVec.clear();
 //	GossipVec.clear();
-//	QueryResult result = WorldDatabase.PQuery("SELECT funcIndex,reqId,telePosId_A,telePosId_H,desReq FROM _function_index");
-//	QueryResult result1 = WorldDatabase.PQuery("SELECT entry,type,menuId,prevMenuId,funcIndex, smallIconType, bigIconName,menuText,teamId FROM _function_menu");
+//	QueryResult result = WorldDatabase.Query("SELECT funcIndex,reqId,telePosId_A,telePosId_H,desReq FROM _function_index");
+//	QueryResult result1 = WorldDatabase.Query("SELECT entry,type,menuId,prevMenuId,funcIndex, smallIconType, bigIconName,menuText,teamId FROM _function_menu");
 //
 //	if (!result || !result1) return;
 //	do
 //	{
 //		Field* fields = result->Fetch();
 //		FunctionTemplate FunctionTemp;
-//		FunctionTemp.index = fields[0].GetUInt32();
-//		FunctionTemp.reqId = fields[1].GetUInt32();
+//		FunctionTemp.index = fields[0].Get<uint32>();
+//		FunctionTemp.reqId = fields[1].Get<uint32>();
 //
 //		Tokenizer telePosId_A_Data(fields[2].GetString(), ' ');
 //
@@ -69,15 +69,15 @@
 //	{
 //		Field* fields = result1->Fetch();
 //		GossipTemplate GossipTemp;
-//		GossipTemp.entry = fields[0].GetUInt32();
-//		GossipTemp.type = fields[1].GetUInt32();
-//		GossipTemp.menuId = fields[2].GetUInt32();
-//		GossipTemp.prevMenuId = fields[3].GetUInt32();
+//		GossipTemp.entry = fields[0].Get<uint32>();
+//		GossipTemp.type = fields[1].Get<uint32>();
+//		GossipTemp.menuId = fields[2].Get<uint32>();
+//		GossipTemp.prevMenuId = fields[3].Get<uint32>();
 //		GossipTemp.funcIndex = fields[4].Get<int32>();
 //		GossipTemp.smallIconType = fields[5].GetUInt8();
 //		GossipTemp.bigIconName = fields[6].GetString();
 //		GossipTemp.menuText = fields[7].GetString();
-//		GossipTemp.teamId = TeamId(fields[8].GetUInt32());
+//		GossipTemp.teamId = TeamId(fields[8].Get<uint32>());
 //		GossipVec.push_back(GossipTemp);
 //	} while (result1->NextRow());
 //
@@ -368,7 +368,7 @@
 //{
 //	QueryResult resultExtraTPs = CharacterDatabase.Query("SELECT extraTalentPoints FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
 //	if (resultExtraTPs)
-//		return resultExtraTPs->Fetch()[0].GetUInt32();
+//		return resultExtraTPs->Fetch()[0].Get<uint32>();
 //	return 0;
 //}
 //

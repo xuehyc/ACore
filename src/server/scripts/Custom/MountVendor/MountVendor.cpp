@@ -10,7 +10,7 @@
 //{
 //	MountVendorVec.clear();
 //
-//	QueryResult result = WorldDatabase.PQuery(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
 //		"SELECT 坐骑技能ID,购买需求模板ID,是否售卖 FROM _坐骑_预览与售卖" :
 //		"SELECT mountSpellId,reqId,onSale FROM _mount_vendor");
 //	
@@ -20,8 +20,8 @@
 //	{
 //		Field* fields = result->Fetch();
 //		MountVendorTemplate MountVendorTemp;
-//		MountVendorTemp.spellId = fields[0].GetUInt32();
-//		MountVendorTemp.reqId = fields[1].GetUInt32();
+//		MountVendorTemp.spellId = fields[0].Get<uint32>();
+//		MountVendorTemp.reqId = fields[1].Get<uint32>();
 //		MountVendorTemp.onSale = fields[2].GetBool();
 //		MountVendorVec.push_back(MountVendorTemp);
 //	} while (result->NextRow());

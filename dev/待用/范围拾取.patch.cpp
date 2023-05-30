@@ -110,8 +110,8 @@ index 9ec1e1e..d5ea040 100644
 +    do
 +    {
 +        Field* fields = result->Fetch();
-+        st.entry = fields[0].GetUInt32();
-+        st.idx = fields[1].GetUInt32();
++        st.entry = fields[0].Get<uint32>();
++        st.idx = fields[1].Get<uint32>();
 +
 +        m_tf_yijianshiquMap.insert(tf_yijianshiquMap::value_type(st.entry, st));
 +        ++counter;

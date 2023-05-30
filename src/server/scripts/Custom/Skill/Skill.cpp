@@ -14,32 +14,32 @@
 //void CustomSkill::Load()
 //{
 //	CustomSkillCategoryVec.clear();
-//	//QueryResult result1 = WorldDatabase.PQuery("SELECT categoryId,categoryName,categoryIcon FROM _skill_category");
+//	//QueryResult result1 = WorldDatabase.Query("SELECT categoryId,categoryName,categoryIcon FROM _skill_category");
 //	//if (!result1)
 //	//	return;
 //	//do
 //	//{
 //	//	Field* fields = result1->Fetch();
 //	//	CustomSkillCategoryTemplate Temp;
-//	//	Temp.categoryId		= fields[0].GetUInt32();
+//	//	Temp.categoryId		= fields[0].Get<uint32>();
 //	//	Temp.categoryName	= fields[1].GetString();
 //	//	Temp.icategoryIcon	= fields[2].GetString();
 //	//	CustomSkillCategoryVec.push_back(Temp);
 //	//} while (result1->NextRow());
 //
 //	CustomSkillVec.clear();
-//	//QueryResult result = WorldDatabase.PQuery("SELECT skillId,skillName,categoryId,reqId,rewId,skillIcon FROM _skill");
+//	//QueryResult result = WorldDatabase.Query("SELECT skillId,skillName,categoryId,reqId,rewId,skillIcon FROM _skill");
 //	//if (!result)
 //	//	return;
 //	//do
 //	//{
 //	//	Field* fields = result->Fetch();
 //	//	CustomSkillTemplate Temp;
-//	//	Temp.skillId	= fields[0].GetUInt32();
+//	//	Temp.skillId	= fields[0].Get<uint32>();
 //	//	Temp.skillName	= fields[1].GetString();
-//	//	Temp.categoryId = fields[2].GetUInt32();
-//	//	Temp.reqId		= fields[3].GetUInt32();
-//	//	Temp.rewId		= fields[4].GetUInt32();
+//	//	Temp.categoryId = fields[2].Get<uint32>();
+//	//	Temp.reqId		= fields[3].Get<uint32>();
+//	//	Temp.rewId		= fields[4].Get<uint32>();
 //	//	Temp.skillIcon	= fields[5].GetString();
 //	//	CustomSkillVec.push_back(Temp);
 //	//} while (result->NextRow());
@@ -162,7 +162,7 @@
 //	do
 //	{
 //		Field* fields = result->Fetch();
-//		uint32 skillId = fields[0].GetUInt32();
+//		uint32 skillId = fields[0].Get<uint32>();
 //		
 //		for (std::vector<CustomSkillTemplate>::iterator itr = CustomSkillVec.begin(); itr != CustomSkillVec.end(); itr++)
 //			if (skillId == itr->skillId)
