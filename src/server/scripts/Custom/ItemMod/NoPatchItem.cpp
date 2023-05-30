@@ -1,11 +1,11 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "NoPatchItem.h"
-//#include "ItemMod.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../Requirement/Requirement.h"
-//#include "../Reward/Reward.h"
-//
-//std::unordered_map<uint32, Item*> ItemQueryMap;
+﻿#pragma execution_character_set("utf-8")
+#include "NoPatchItem.h"
+#include "ItemMod.h"
+#include "../GCAddon/GCAddon.h"
+#include "../Requirement/Requirement.h"
+#include "../Reward/Reward.h"
+
+std::unordered_map<uint32, Item*> ItemQueryMap;
 //std::unordered_map < uint32, NpTemplate> NpMap;
 //std::unordered_map<uint32, std::string> NpPrefixMap;
 //std::vector<NpStatTemplate> NpStatVec;
@@ -22,7 +22,7 @@
 //std::vector<NpAuraTemplate> NpAuraVector;
 //std::unordered_map<uint32, NpToLevelTemplate> NpToLevelMap;
 //std::vector<NpSameTemplate> NpSameTempIndexVector;
-//
+
 //void NoPatchItem::Load()
 //{
 //	NpMap.clear();
