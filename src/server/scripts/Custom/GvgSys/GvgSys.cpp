@@ -1,6 +1,6 @@
 ﻿//#pragma execution_character_set("utf-8")
 //#include "GvgSys.h"
-//#include "MapManager.h"
+//#include "MapMgr.h"
 //#include "GuildMgr.h"
 //#include "Guild.h"
 //#include "../Switch/Switch.h"

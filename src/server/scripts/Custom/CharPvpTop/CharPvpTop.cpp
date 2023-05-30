@@ -1,172 +1,172 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "CharPvpTop.h"
-//#include "MapManager.h"
-//#include "../Switch/Switch.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "../PvP/PvP.h"
-//#include "../String/myString.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../GS/GS.h"
-//
-//CharPvpTop::CharPvpTop()
-//{
-//	topevent = false;
-//	topGobGuid = 0;
-//	isfirst = false;
-//	pvpcount = 0;
-//}
-//
-//CharPvpTop::~CharPvpTop()
-//{
-//
-//}
-//void CharPvpTop::LoadTopSys()
-//{
-//	VCTopSys.clear();
-//	topbufflists.clear();
-//
-//	QueryResult areaidcustom = WorldDatabase.Query("SELECT entry,name,itemid,buff from _活动_比武大会");
-//	if (areaidcustom)
-//	{
-//		int nCount = 1;
-//		do
-//		{
-//			Field * fields = areaidcustom->Fetch();
-//			CTopSys tmpmorph;
-//
-//			tmpmorph.entry = fields[0].Get<uint32>();
-//			tmpmorph.text = fields[1].Get<std::string>();
-//			tmpmorph.itemid = fields[2].Get<uint32>();
-//			tmpmorph.buffs = fields[3].Get<uint32>();
-//
-//			topbufflists.push_back(tmpmorph.buffs);
-//			VCTopSys.insert(CTopSys_t::value_type(nCount, tmpmorph));
-//
-//			nCount++;
-//
-//		} while (areaidcustom->NextRow());
-//		sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表1_topsys,共%u条数据读取加载...", nCount);
-//	}
-//	else
-//		sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表1_topsys,共0条数据读取加载...");
-//}
-//
-//GameObject* CharPvpTop::SpawnGob(uint32 guid, bool created)
-//{
-//
-//	GameObject* creature = NULL;
-//
-//	GameObjectData const* data = sObjectMgr->GetGOData(guid);
-//	if (!data)
-//		return creature;
-//	//Get map object
-//	Map* map = sMapMgr->CreateBaseMap(data->mapid);
-//	if (!map)
-//		return creature;
-//
-//	if (created)
-//	{
-//		creature = new GameObject;
-//		if (!creature->Create(sObjectMgr->GenerateLowGuid(HIGHGUID_GAMEOBJECT), data->id, map, data->phaseMask, data->posX, data->posY, data->posZ, data->orientation, G3D::Quat(), 0, GO_STATE_READY))
-//		{
-//			delete creature;
-//			return NULL;
-//		}
-//
-//		map->AddToMap(creature);
-//		creature->setActive(true);
-//		creature->SetPhaseMask(1, true);
-//		topGobGuid = creature->GetGUID();
-//	}
-//	else
-//	{
-//		creature = map->GetGameObject(topGobGuid);
-//	}
-//	return creature;
-//}
-//
-//
-//void CharPvpTop::RollTopTeamID()
-//{
-//	if (!topevent)
-//		return;
-//
-//	UpdateCharTopData();
-//
-//	if (!pvpcount)
-//	{
-//		if (uint32(sSwitch->GetValue(TOP_97)) > GetTopMax())
-//		{
-//			sWorld->SendServerMessage(SERVER_MSG_STRING, sString->Format(sString->GetText(TOP_STR_102), sSwitch->GetValue(TOP_97)));
-//			sGameEventMgr->StopEvent(sSwitch->GetValue(TOP_93), true);
-//			return;
-//		}
-//	}
-//	else
-//	{
-//		sWorld->SendServerMessage(SERVER_MSG_STRING, sString->Format(sString->GetText(TOP_STR_100), pvpcount + 1));
-//	}
-//	pvpcount++;
-//	uint32 maxcount = _charTopDataMap.size() / 2;
-//	for (uint32 i = 1; i < maxcount + 1; ++i)
-//	{
-//		uint32 pl1, pl2;
-//		uint32 rollid1 = irand(0, _charTopDataMap.size() - 1);
-//		uint32 myid1 = 0;
-//		for (std::vector<uint32>::iterator itr1 = _charTopDataMap.begin(); itr1 != _charTopDataMap.end(); itr1++)
-//		{
-//			if (myid1 == rollid1)
-//			{
-//				pl1 = *itr1;
-//				_charTopDataMap.erase(itr1);
-//				break;
-//			}
-//			myid1++;
-//		}
-//
-//		uint32 rollid2 = irand(0, _charTopDataMap.size() - 1);
-//		uint32 myid2 = 0;
-//		for (std::vector<uint32>::iterator itr2 = _charTopDataMap.begin(); itr2 != _charTopDataMap.end(); itr2++)
-//		{
-//			if (myid2 == rollid2)
-//			{
-//				pl2 = *itr2;
-//				_charTopDataMap.erase(itr2);
-//				break;
-//			}
-//			myid2++;
-//		}
-//
-//		AddTopTeam(i, pl1, pl2);
-//		SengPVPgo(i);
-//	}
-//}
-//
-//void CharPvpTop::UpdateCharTopData()
-//{
-//	_charTopDataMap.clear();
-//	_charTopMaxMap.clear();
-//	SessionMap::const_iterator itr1;
-//	for (itr1 = sWorld->GetAllSessions().begin(); itr1 != sWorld->GetAllSessions().end(); ++itr1)
-//	{
-//		if (itr1->second && itr1->second->GetPlayer() && itr1->second->GetPlayer()->IsInWorld())
-//		{
-//			if (itr1->second->GetPlayer()->GetAreaId() != sSwitch->GetValue(TOP_94) && itr1->second->GetPlayer()->m_topmc == 999) //不在区域并且 才报名)
-//			{
-//				itr1->second->GetPlayer()->m_topmc = 0; //无名次
-//				itr1->second->GetPlayer()->m_lasttopmc = 0; //无名次
-//				continue;
-//			}
-//
-//			if (itr1->second->GetPlayer()->m_topmc != 999) //没有决斗出名次
-//				continue;
-//
-//			uint32 guid = itr1->second->GetPlayer()->GetGUID().GetCounter();
-//			_charTopDataMap.push_back(guid);
-//			_charTopMaxMap.push_back(guid);
-//		}
-//	}
-//}
+﻿#pragma execution_character_set("utf-8")
+#include "CharPvpTop.h"
+#include "MapMgr.h"
+#include "../Switch/Switch.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../PvP/PvP.h"
+#include "../String/myString.h"
+#include "../GCAddon/GCAddon.h"
+#include "../GS/GS.h"
+
+CharPvpTop::CharPvpTop()
+{
+	topevent = false;
+	topGobGuid = ObjectGuid::Empty;//org -->0
+	isfirst = false;
+	pvpcount = 0;
+}
+
+CharPvpTop::~CharPvpTop()
+{
+
+}
+void CharPvpTop::LoadTopSys()
+{
+	VCTopSys.clear();
+	topbufflists.clear();
+
+	QueryResult areaidcustom = WorldDatabase.Query("SELECT entry,name,itemid,buff from _活动_比武大会");
+	if (areaidcustom)
+	{
+		int nCount = 1;
+		do
+		{
+			Field * fields = areaidcustom->Fetch();
+			CTopSys tmpmorph;
+
+			tmpmorph.entry = fields[0].Get<uint32>();
+			tmpmorph.text = fields[1].Get<std::string>();
+			tmpmorph.itemid = fields[2].Get<uint32>();
+			tmpmorph.buffs = fields[3].Get<uint32>();
+
+			topbufflists.push_back(tmpmorph.buffs);
+			VCTopSys.insert(CTopSys_t::value_type(nCount, tmpmorph));
+
+			nCount++;
+
+		} while (areaidcustom->NextRow());
+		sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表1_topsys,共%u条数据读取加载...", nCount);
+	}
+	else
+		sLog->outMessage("server",LOG_LEVEL_INFO, ">> 读取自定义功能数据表1_topsys,共0条数据读取加载...");
+}
+
+GameObject* CharPvpTop::SpawnGob(uint32 guid, bool created)
+{
+
+	GameObject* creature = NULL;
+
+	GameObjectData const* data = sObjectMgr->GetGameObjectData(guid);//GetGOData
+	if (!data)
+		return creature;
+	//Get map object
+	Map* map = sMapMgr->CreateBaseMap(data->mapid);
+	if (!map)
+		return creature;
+
+	if (created)
+	{
+		creature = new GameObject;
+		if (!creature->Create(sObjectMgr->GenerateLowGuid(HighGuid::GameObject), data->id, map, data->phaseMask, data->posX, data->posY, data->posZ, data->orientation, G3D::Quat(), 0, GO_STATE_READY))
+		{
+			delete creature;
+			return NULL;
+		}
+
+		map->AddToMap(creature);
+		creature->setActive(true);
+		creature->SetPhaseMask(1, true);
+		topGobGuid = creature->GetGUID();
+	}
+	else
+	{
+		creature = map->GetGameObject(topGobGuid);
+	}
+	return creature;
+}
+
+
+void CharPvpTop::RollTopTeamID()
+{
+	if (!topevent)
+		return;
+
+	UpdateCharTopData();
+
+	if (!pvpcount)
+	{
+		if (uint32(sSwitch->GetValue(TOP_97)) > GetTopMax())
+		{
+			sWorld->SendServerMessage(SERVER_MSG_STRING, sString->Format(sString->GetText(TOP_STR_102), sSwitch->GetValue(TOP_97)));
+			sGameEventMgr->StopEvent(sSwitch->GetValue(TOP_93), true);
+			return;
+		}
+	}
+	else
+	{
+		sWorld->SendServerMessage(SERVER_MSG_STRING, sString->Format(sString->GetText(TOP_STR_100), pvpcount + 1));
+	}
+	pvpcount++;
+	uint32 maxcount = _charTopDataMap.size() / 2;
+	for (uint32 i = 1; i < maxcount + 1; ++i)
+	{
+		uint32 pl1, pl2;
+		uint32 rollid1 = irand(0, _charTopDataMap.size() - 1);
+		uint32 myid1 = 0;
+		for (std::vector<uint32>::iterator itr1 = _charTopDataMap.begin(); itr1 != _charTopDataMap.end(); itr1++)
+		{
+			if (myid1 == rollid1)
+			{
+				pl1 = *itr1;
+				_charTopDataMap.erase(itr1);
+				break;
+			}
+			myid1++;
+		}
+
+		uint32 rollid2 = irand(0, _charTopDataMap.size() - 1);
+		uint32 myid2 = 0;
+		for (std::vector<uint32>::iterator itr2 = _charTopDataMap.begin(); itr2 != _charTopDataMap.end(); itr2++)
+		{
+			if (myid2 == rollid2)
+			{
+				pl2 = *itr2;
+				_charTopDataMap.erase(itr2);
+				break;
+			}
+			myid2++;
+		}
+
+		AddTopTeam(i, pl1, pl2);
+		SengPVPgo(i);
+	}
+}
+
+void CharPvpTop::UpdateCharTopData()
+{
+	_charTopDataMap.clear();
+	_charTopMaxMap.clear();
+	SessionMap::const_iterator itr1;
+	for (itr1 = sWorld->GetAllSessions().begin(); itr1 != sWorld->GetAllSessions().end(); ++itr1)
+	{
+		if (itr1->second && itr1->second->GetPlayer() && itr1->second->GetPlayer()->IsInWorld())
+		{
+			if (itr1->second->GetPlayer()->GetAreaId() != sSwitch->GetValue(TOP_94) && itr1->second->GetPlayer()->m_topmc == 999) //不在区域并且 才报名)
+			{
+				itr1->second->GetPlayer()->m_topmc = 0; //无名次
+				itr1->second->GetPlayer()->m_lasttopmc = 0; //无名次
+				continue;
+			}
+
+			if (itr1->second->GetPlayer()->m_topmc != 999) //没有决斗出名次
+				continue;
+
+			uint32 guid = itr1->second->GetPlayer()->GetGUID().GetCounter();
+			_charTopDataMap.push_back(guid);
+			_charTopMaxMap.push_back(guid);
+		}
+	}
+}
 //
 //void CharPvpTop::SengPVPgo(uint32 teamid)
 //{
@@ -203,8 +203,8 @@
 //	duel2->istop = true;
 //	pl2->duel = duel2;
 //
-//	pl1->SetUInt64Value(PLAYER_DUEL_ARBITER, obj->GetGUID());
-//	pl2->SetUInt64Value(PLAYER_DUEL_ARBITER, obj->GetGUID());
+//	pl1->SetUInt64Value(PLAYER_DUEL_ARBITER, obj->GetGUID().GetCounter());
+//	pl2->SetUInt64Value(PLAYER_DUEL_ARBITER, obj->GetGUID().GetCounter());
 //
 //	time_t now = time(NULL);
 //	pl1->duel->startTimer = now;
@@ -215,7 +215,7 @@
 //	pl2->SendDuelCountdown(10000);
 //	return;
 //}
-//
+
 //void CharPvpTop::PVPupdate()
 //{
 //	time_t now = time(NULL);

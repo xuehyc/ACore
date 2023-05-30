@@ -12,7 +12,7 @@
 //#include "../Quest/QuestMod.h"
 //#include "../VIP/VIP.h"
 //#include "Group.h"
-//#include "MapManager.h"
+//#include "MapMgr.h"
 //#include "../ResetInstance/ResetInstance.h"
 //#include "../Switch/Switch.h"
 //#include "../Skill/Skill.h"

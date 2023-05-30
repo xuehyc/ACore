@@ -380,6 +380,15 @@ enum DuelState
 
 struct DuelInfo
 {
+    //DuelInfo() : initiator(nullptr), opponent(nullptr), startTimer(0), startTime(0), outOfBound(0), isMounted(false), istop(false) {}//I-->beigin
+    //Player* initiator;
+    //Player* opponent;
+    //time_t startTimer;
+    //time_t startTime;
+    //time_t outOfBound;
+    //bool isMounted;
+    //bool istop;//I-->end
+
     DuelInfo(Player* opponent, Player* initiator, bool isMounted) : Opponent(opponent), Initiator(initiator), IsMounted(isMounted) {}
 
     Player* const Opponent;
@@ -1087,6 +1096,8 @@ public:
     //gs
     uint32 GS;
     uint32 ChallengeLv;
+
+    uint32 m_topteam, m_topmc, m_lasttopmc;
 
     //前缀
     std::string namePrefix;

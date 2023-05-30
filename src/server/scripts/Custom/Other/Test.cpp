@@ -24,7 +24,7 @@
 //#include "../Talisman/Talisman.h"
 //#include "../ItemMod/NoPatchItem.h"
 //#include "../Quest/QuestMod.h"
-//#include "MapManager.h"
+//#include "MapMgr.h"
 //#include "../EquipmentManager/EquipmentManager.h"
 //#include "../CustomEvent/BattleIC/BattleIC.h"
 //#include "../UnitMod/CharMod/CharMod.h"

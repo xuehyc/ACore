@@ -18,7 +18,7 @@
 //#include "UnknownBG/UnknownBG.h"
 //#include "../Command/CustomCommand.h"
 //#include "WaypointMgr.h"
-//#include "MapManager.h"
+//#include "MapMgr.h"
 //#include "Guild.h"
 //#include "../Switch/Switch.h"
 //#include "BattleIC/BattleIC.h"

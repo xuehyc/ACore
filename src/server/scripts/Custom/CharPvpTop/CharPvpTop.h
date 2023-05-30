@@ -42,7 +42,7 @@ public: //完全访问权限
 	void RollTopTeamID();
 	void UpdateCharTopData();
 	void SengPVPgo(uint32 entry);
-	uint64 topGobGuid;
+	ObjectGuid topGobGuid;
 	time_t pvptime;
 	void PVPupdate();
 	void SendTopTitle(bool isin);
