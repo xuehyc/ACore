@@ -31,7 +31,7 @@
 //			Field* fields = result->Fetch();
 //			ResetInsTemplate Temp;
 //			Temp.mapid = fields[0].Get<uint32>();
-//			Temp.diff = fields[1].GetUInt8();
+//			Temp.diff = fields[1].Get<uint8>();
 //			Temp.reqId = fields[2].Get<uint32>();
 //			ResetInsVec.push_back(Temp);
 //		} while (result->NextRow());

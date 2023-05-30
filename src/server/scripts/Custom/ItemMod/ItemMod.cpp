@@ -86,7 +86,7 @@
 //			Temp.item = fields[0].Get<uint32>();
 //			Temp.reqId = fields[1].Get<uint32>();
 //			Temp.vendor = fields[2].Get<uint32>();
-//			Temp.clientSlot = fields[3].GetUInt8();
+//			Temp.clientSlot = fields[3].Get<uint8>();
 //			Temp.buyMaxCount = fields[4].Get<uint32>();
 //			ItemVendorBuyVec.push_back(Temp);
 //		} while (result->NextRow());
@@ -361,7 +361,7 @@
 //			CreateEnchantTemplate Temp;
 //			Temp.entry = fields[0].Get<uint32>();
 //			Temp.groupId = fields[1].Get<uint32>();
-//			Temp.slot = fields[2].GetUInt8();
+//			Temp.slot = fields[2].Get<uint8>();
 //			Temp.chance = fields[3].Get<float>();
 //			CreateEnchantVec.push_back(Temp);
 //		} while (result->NextRow());

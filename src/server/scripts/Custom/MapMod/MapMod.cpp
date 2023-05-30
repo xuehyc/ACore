@@ -62,7 +62,7 @@
 //		MapModTemp.ReqId			= fields[3].Get<uint32>();
 //		MapModTemp.Diff				= fields[4].Get<uint32>();
 //		MapModTemp.ModType			= fields[5].Get<uint32>();
-//		MapModTemp.Level			= fields[6].GetUInt8();
+//		MapModTemp.Level			= fields[6].Get<uint8>();
 //		MapModTemp.Health			= fields[7].Get<uint32>();
 //		MapModTemp.MeleeDmg			= fields[8].Get<float>();
 //		MapModTemp.SpellDmgMod		= fields[9].Get<float>();
@@ -128,7 +128,7 @@
 //			Field* fields = result->Fetch();
 //			MapModPlayerTemplate Temp;
 //			Temp.Map = fields[0].Get<uint32>();
-//			Temp.Diff = fields[1].GetUInt8();
+//			Temp.Diff = fields[1].Get<uint8>();
 //			Temp.ChallengeLv = fields[2].Get<uint32>();
 //
 //			Tokenizer data1(fields[3].GetString(), ' ');

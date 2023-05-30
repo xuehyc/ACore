@@ -20,8 +20,8 @@
 //		Field* fields = result->Fetch();
 //		ServerAnnounceTemplate Temp;
 //		Temp.entry			= fields[0].Get<uint32>();
-//		Temp.flag			= fields[1].GetUInt8();
-//		Temp.announceType	= fields[2].GetUInt8();
+//		Temp.flag			= fields[1].Get<uint8>();
+//		Temp.announceType	= fields[2].Get<uint8>();
 //		Temp.text			= fields[3].Get<std::string>();		
 //		ServerAnnounceVec.push_back(Temp);
 //	} while (result->NextRow());

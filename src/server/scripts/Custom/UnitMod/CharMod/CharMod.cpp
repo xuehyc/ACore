@@ -25,7 +25,7 @@
 //		{
 //			Field* fields = result->Fetch();
 //			CharStatTemplate CharStatTemp;
-//			CharStatTemp.classIndex		= fields[0].GetUInt8();
+//			CharStatTemp.classIndex		= fields[0].Get<uint8>();
 //			CharStatTemp.meleePVPDmgMod	= fields[1].Get<float>();
 //			CharStatTemp.spellPVPDmgMod	= fields[2].Get<float>();
 //			CharStatTemp.healPVPMod		= fields[3].Get<float>();

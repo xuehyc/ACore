@@ -35,7 +35,7 @@
 //		Field* fields = result->Fetch();
 //		CreautreModTemplate Temp;
 //		Temp.Entry			= fields[0].Get<uint32>();
-//		Temp.Level			= fields[1].GetUInt8();
+//		Temp.Level			= fields[1].Get<uint8>();
 //		Temp.Health			= fields[2].Get<uint32>();
 //		Temp.MeleeDmg		= fields[3].Get<float>();
 //		Temp.SpellDmgMod	= fields[4].Get<float>();

@@ -1,51 +1,51 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "FakePlayers.h"
-//#include "../String/myString.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "../Switch/Switch.h"
-//#include <random>
-//#include <algorithm>
-//#include <vector>
-//
-//uint32 MAX_PLAYERS = 0;
-//
-//uint32  START_PLAYERS = 0;
-//
-//uint32 FakePlayerZones[MAX_FAKE_PLAYERS_ZONE]=
-//{
-//	4416, 3714, 33, 4742, 4131, 4812, 4493, 4809, 4265, 4603
-//};
-//
-//std::vector<FakePlayersTemplate> FakePlayersVec;
-//
-//void FakePlayers::Load()
-//{
-//	FakePlayersVec.clear();
-//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//		//		0		1		2	3	4	5	6	7			8
-//		"SELECT 名字,公会名称,等级,职业,种族,性别,ID,军衔等级,会员等级 FROM _假人_列表假人" :
-//		//		0		1	2	3		4	5	   6 7  8
-//		"SELECT name,gname,lvl,class_,race,gender,ID,hr,vip FROM _faker_list");
-//	if (!result) return;
-//	do
-//	{
-//		Field* fields = result->Fetch();
-//		FakePlayersTemplate Temp;
-//		Temp.pname		= fields[0].Get<std::string>();
-//		Temp.gname		= fields[1].Get<std::string>();
-//		Temp.lvl		= fields[2].Get<uint32>();
-//		Temp.class_		= fields[3].Get<uint32>();
-//		Temp.race		= fields[4].Get<uint32>();
-//		Temp.gender		= fields[5].GetUInt8();
-//		Temp.pzoneid	= GenerateZoneId();
-//		Temp.online		= false;
-//		Temp.ID			= fields[6].Get<uint32>();
-//		Temp.hr			= fields[7].Get<uint32>();
-//		Temp.vip		= fields[8].Get<uint32>();
-//		FakePlayersVec.push_back(Temp);
-//	} while (result->NextRow());
-//}
-//
+﻿#pragma execution_character_set("utf-8")
+#include "FakePlayers.h"
+#include "../String/myString.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../Switch/Switch.h"
+#include <random>
+#include <algorithm>
+#include <vector>
+
+uint32 MAX_PLAYERS = 0;
+
+uint32  START_PLAYERS = 0;
+
+uint32 FakePlayerZones[MAX_FAKE_PLAYERS_ZONE]=
+{
+	4416, 3714, 33, 4742, 4131, 4812, 4493, 4809, 4265, 4603
+};
+
+std::vector<FakePlayersTemplate> FakePlayersVec;
+
+void FakePlayers::Load()
+{
+	FakePlayersVec.clear();
+	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+		//		0		1		2	3	4	5	6	7			8
+		"SELECT 名字,公会名称,等级,职业,种族,性别,ID,军衔等级,会员等级 FROM _假人_列表假人" :
+		//		0		1	2	3		4	5	   6 7  8
+		"SELECT name,gname,lvl,class_,race,gender,ID,hr,vip FROM _faker_list");
+	if (!result) return;
+	do
+	{
+		Field* fields = result->Fetch();
+		FakePlayersTemplate Temp;
+		Temp.pname		= fields[0].Get<std::string>();
+		Temp.gname		= fields[1].Get<std::string>();
+		Temp.lvl		= fields[2].Get<uint32>();
+		Temp.class_		= fields[3].Get<uint32>();
+		Temp.race		= fields[4].Get<uint32>();
+		Temp.gender		= fields[5].Get<uint8>();
+		Temp.pzoneid	= GenerateZoneId();
+		Temp.online		= false;
+		Temp.ID			= fields[6].Get<uint32>();
+		Temp.hr			= fields[7].Get<uint32>();
+		Temp.vip		= fields[8].Get<uint32>();
+		FakePlayersVec.push_back(Temp);
+	} while (result->NextRow());
+}
+
 //uint32 FakePlayers::GenerateZoneId()
 //{
 //	return FakePlayerZones[urand(0, MAX_FAKE_PLAYERS_ZONE - 1)];

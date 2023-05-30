@@ -185,7 +185,7 @@
 //	//	{
 //	//		Field* fields = result->Fetch();
 //	//		EquipmentTemplate Temp;
-//	//		Temp._class = fields[0].GetUInt8();
+//	//		Temp._class = fields[0].Get<uint8>();
 //	//		Temp.map	= fields[1].Get<uint32>();
 //	//		Temp.zone	= fields[2].Get<uint32>();
 //	//		Temp.area	= fields[3].Get<uint32>();

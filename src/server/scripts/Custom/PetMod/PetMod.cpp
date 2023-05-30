@@ -17,7 +17,7 @@
 //		do
 //		{
 //			Field* fields = result->Fetch();
-//			uint8 classIndex = fields[0].GetUInt8();
+//			uint8 classIndex = fields[0].Get<uint8>();
 //			PetModTemplate Temp;
 //			Temp.DmgAddPct	= fields[1].Get<float>();
 //			Temp.SpAddPct	= fields[2].Get<float>();

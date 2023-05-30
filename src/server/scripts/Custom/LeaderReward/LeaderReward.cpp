@@ -29,7 +29,7 @@
 //		Temp.range			= fields[4].Get<uint32>();
 //		Temp.nearbyPlayers	= fields[5].Get<uint32>();
 //		Temp.rewType		= fields[6].Get<uint32>();
-//		Temp.diff			= fields[7].GetUInt8();
+//		Temp.diff			= fields[7].Get<uint8>();
 //		Temp.ipMaxCount		= fields[8].Get<uint32>();
 //		LeaderRewardVec.push_back(Temp);
 //	} while (result->NextRow());

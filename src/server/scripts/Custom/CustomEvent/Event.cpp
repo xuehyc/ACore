@@ -740,7 +740,7 @@
 //		{
 //			Field* fields = result->Fetch();
 //			EventPhaseTemplate Temp;
-//			Temp.Phase		= fields[0].GetUInt8();
+//			Temp.Phase		= fields[0].Get<uint8>();
 //			Temp.StopGUID	= fields[1].GetInt64();
 //			_PhaseVec.push_back(Temp);
 //		} while (result->NextRow());

@@ -26,7 +26,7 @@
 //		Temp.challengeLv	= fields[4].Get<int32>();
 //		Temp.worldStat		= fields[5].Get<uint32>();
 //		Temp.gobEntry		= fields[6].Get<uint32>();
-//		Temp.diff			= fields[7].GetUInt8();
+//		Temp.diff			= fields[7].Get<uint8>();
 //		DeadlineVec.push_back(Temp);
 //	} while (result->NextRow());
 //}

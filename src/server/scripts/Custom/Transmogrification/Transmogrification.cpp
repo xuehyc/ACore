@@ -126,7 +126,7 @@
 //    {
 //        do
 //        {
-//            uint8 PresetID = (*result)[0].GetUInt8();
+//            uint8 PresetID = (*result)[0].Get<uint8>();
 //            std::string SetName = (*result)[1].Get<std::string>();
 //            std::istringstream SetData((*result)[2].GetString());
 //            while (SetData.good())
