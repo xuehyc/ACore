@@ -1,200 +1,200 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "ScriptPCH.h"
-//#include "../DataLoader/DataLoader.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "../Requirement/Requirement.h"
-//#include "../Reward/Reward.h"
-//#include "ItemMod.h"
-//#include "Object.h"
-//#include "../VIP/VIP.h"
-//#include "../HonorRank/HonorRank.h"
-//#include "../ExtraEquipment/ExtraEquipment.h"
-//#include "../String/myString.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../ItemSet/ItemSet.h"
-//#include "../DBCCreate/DBCCreate.h"
-//#include "NoPatchItem.h"
-//#include "../Switch/Switch.h"
-//#include "../Recovery/Recovery.h"
-//#include "../GS/GS.h"
-//
-//std::unordered_map<uint32/*entry*/, UIItemEntryTemplate> UIItemEntryMap;
-//
-//uint8 ItemMod::GetEnchantStartSlot(uint32 itemMask)
-//{
-//	switch (itemMask)
-//	{
-//	case ITEM_MASK_SUIT:
-//		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 1).c_str());
-//	case ITEM_MASK_ORNAMENT:
-//		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 2).c_str());
-//	case ITEM_MASK_2H_WEAPON:		 
-//		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 3).c_str());
-//	case ITEM_MASK_1H_WEAPON:		 
-//		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 4).c_str());
-//	case ITEM_MASK_OFFHAND:			  
-//		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 5).c_str());
-//	case ITEM_MASK_RANGED:			
-//		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 6).c_str());
-//	case ITEM_MASK_SHIRT:			
-//		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 7).c_str());
-//	case ITEM_MASK_TABARD:			
-//		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 8).c_str());
-//	case ITEM_MASK_SIGIL:
-//		return MAX_ENCHANTMENT_SLOT - COUNT_SIGIL;
-//	}
-//
-//	return 0;
-//}
-//
-//
-//std::vector<ItemModTemplate> ItemModVec;
-//std::vector<ItemUnbindCostTemplate> ItemUnbindCostInfo;
-//std::vector<RemoveGemTemplate> RemoveGemInfo;
-//std::vector<ItemExchangeTemplate> ItemExchangeInfo;
-//std::vector<ItemUpgradeTemplate> UpgradeVec;
-//std::vector<FilterTemplate> FilterVec;
-//std::vector<GemCountLimitTemplate> GemCountLimitInfo;
-//std::vector<HiddenItemTemplate> HiddenItemInfo;
-//std::vector<IdentifyTemplate> IdentifyVec;
-//std::vector<RateStoneTemplate> RateStoneVec;
-//std::vector<CreateEnchantTemplate> CreateEnchantVec;
-//std::vector<EnchantGroupTemplate> EnchantGroupVec;
-//std::list<uint32> GCAddonEnchantGroupVec;
-//std::vector<ItemBuyTemplate> ItemBuyVec;
-//std::vector<ItemVendorBuyTemplate> ItemVendorBuyVec;
-//std::unordered_map<uint32/*entry*/, uint32/*reqId*/> ItemEquipMap;
-//std::vector<ItemSaleTemplate> ItemSaleVec;
-//std::vector<ItemUseTemplate> ItemUseVec;
-//std::vector<uint32 /*itemid*/> CurrencyLikeItemVec;
-//std::unordered_map<uint32, uint32> DayLimitItemMap;
-//std::unordered_map<uint32, ItemDesTemplate> ItemDesMap;
-//std::vector<ItemAddTemplate> ItemAddVec;
-//
-//std::unordered_map<uint32/*entry*/, uint32/*count*/> GetmCountLimitMap;
-//
-//void ItemMod::LoadBuyEquipSaleUse()
-//{
-//	ItemVendorBuyVec.clear();
-//	QueryResult result = WorldDatabase.Query("SELECT item, reqId, entry, clientSlot, buyMaxCount from npc_vendor");
-//	if (result)
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			ItemVendorBuyTemplate Temp;
-//			Temp.item = fields[0].Get<uint32>();
-//			Temp.reqId = fields[1].Get<uint32>();
-//			Temp.vendor = fields[2].Get<uint32>();
-//			Temp.clientSlot = fields[3].Get<uint8>();
-//			Temp.buyMaxCount = fields[4].Get<uint32>();
-//			ItemVendorBuyVec.push_back(Temp);
-//		} while (result->NextRow());
-//	}
-//
-//	ItemBuyVec.clear();
-//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//		"SELECT 物品ID,需求模板ID from _物品_当购买时" :
-//		"SELECT entry,reqId from _itemmod_on_buy");
-//	if (result)
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			ItemBuyTemplate Temp;
-//			Temp.entry = fields[0].Get<uint32>();
-//			Temp.reqId = fields[1].Get<uint32>();
-//			ItemBuyVec.push_back(Temp);
-//		} while (result->NextRow());
-//	}
-//
-//	ItemEquipMap.clear();
-//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-//		"SELECT 物品ID,需求模板ID from _物品_当装备时" :
-//		"SELECT entry,reqId from _itemmod_on_equip");
-//	if (result)
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			ItemEquipMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<uint32>()));
-//		} while (result->NextRow());
-//	}
-//
-//	ItemSaleVec.clear();
-//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-//		"SELECT 物品ID,奖励模板ID,获得奖励几率,GM命令组 from _物品_当售卖时" :
-//		"SELECT entry,rewId,rewChance,command from _itemmod_on_sale");
-//	if (result)
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			ItemSaleTemplate Temp;
-//			Temp.entry		= fields[0].Get<uint32>();
-//			Temp.rewId		= fields[1].Get<uint32>();
-//			Temp.rewChance	= fields[2].Get<uint32>();
-//			Temp.command	= fields[3].Get<std::string>();
-//			ItemSaleVec.push_back(Temp);
-//		} while (result->NextRow());
-//	}
-//
-//	ItemUseVec.clear();
-//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-//		"SELECT 物品ID,需求模板ID,奖励模板ID,获得奖励几率,GM命令组,触发技能ID1,触发技能ID2,触发技能ID3 from  _物品_当使用时" :
-//		"SELECT entry,reqId,rewId,rewChance,command,spell1,spell2,spell3 from _itemmod_on_use");
-//	if (result)
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			ItemUseTemplate Temp;
-//			Temp.entry		= fields[0].Get<uint32>();
-//			Temp.reqId		= fields[1].Get<uint32>();
-//			Temp.rewId		= fields[2].Get<uint32>();
-//			Temp.rewChance	= fields[3].Get<uint32>();
-//			Temp.command	= fields[4].Get<std::string>();
-//			Temp.spellId1	= fields[5].Get<uint32>();
-//			Temp.spellId2	= fields[6].Get<uint32>();
-//			Temp.spellId3	= fields[7].Get<uint32>();
-//			ItemUseVec.push_back(Temp);
-//		} while (result->NextRow());
-//	}
-//
-//	ItemDesMap.clear();
-//	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//		"SELECT 物品ID,额外描述,英雄模式文本 from _物品_额外描述" :
-//		"SELECT Entry,Description,HeroText from _itemmod_description");
-//	if (result)
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			uint32 entry = fields[0].Get<uint32>();
-//			ItemDesTemplate temp;
-//			temp.description = fields[1].Get<std::string>();
-//			temp.heroText = fields[2].Get<std::string>();
-//			ItemDesMap.insert(std::make_pair(entry, temp));
-//		} while (result->NextRow());
-//	}
-//
-//	ItemAddVec.clear();
-//	//result = WorldDatabase.Query("SELECT categoryId,entry,count from _itemmod_add");
-//	//if (result)
-//	//{
-//	//	do
-//	//	{
-//	//		Field* fields = result->Fetch();
-//	//		ItemAddTemplate Temp;
-//	//		Temp.categoryId = fields[0].Get<uint32>();
-//	//		Temp.entry		= fields[1].Get<uint32>();
-//	//		Temp.count		= fields[2].Get<uint32>();
-//	//		ItemAddVec.push_back(Temp);
-//	//	} while (result->NextRow());
-//	//}
-//}
-//
-//
+﻿#pragma execution_character_set("utf-8")
+#include "ScriptPCH.h"
+#include "../DataLoader/DataLoader.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../Requirement/Requirement.h"
+#include "../Reward/Reward.h"
+#include "ItemMod.h"
+#include "Object.h"
+#include "../VIP/VIP.h"
+#include "../HonorRank/HonorRank.h"
+#include "../ExtraEquipment/ExtraEquipment.h"
+#include "../String/myString.h"
+#include "../GCAddon/GCAddon.h"
+#include "../ItemSet/ItemSet.h"
+#include "../DBCCreate/DBCCreate.h"
+#include "NoPatchItem.h"
+#include "../Switch/Switch.h"
+#include "../Recovery/Recovery.h"
+#include "../GS/GS.h"
+
+std::unordered_map<uint32/*entry*/, UIItemEntryTemplate> UIItemEntryMap;
+
+uint8 ItemMod::GetEnchantStartSlot(uint32 itemMask)
+{
+	switch (itemMask)
+	{
+	case ITEM_MASK_SUIT:
+		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 1).c_str());
+	case ITEM_MASK_ORNAMENT:
+		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 2).c_str());
+	case ITEM_MASK_2H_WEAPON:		 
+		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 3).c_str());
+	case ITEM_MASK_1H_WEAPON:		 
+		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 4).c_str());
+	case ITEM_MASK_OFFHAND:			  
+		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 5).c_str());
+	case ITEM_MASK_RANGED:			
+		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 6).c_str());
+	case ITEM_MASK_SHIRT:			
+		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 7).c_str());
+	case ITEM_MASK_TABARD:			
+		return MAX_ENCHANTMENT_SLOT - atoi(sSwitch->GetFlagByIndex(ST_ENCHANTSLOT_MAX, 8).c_str());
+	case ITEM_MASK_SIGIL:
+		return MAX_ENCHANTMENT_SLOT - COUNT_SIGIL;
+	}
+
+	return 0;
+}
+
+
+std::vector<ItemModTemplate> ItemModVec;
+std::vector<ItemUnbindCostTemplate> ItemUnbindCostInfo;
+std::vector<RemoveGemTemplate> RemoveGemInfo;
+std::vector<ItemExchangeTemplate> ItemExchangeInfo;
+std::vector<ItemUpgradeTemplate> UpgradeVec;
+std::vector<FilterTemplate> FilterVec;
+std::vector<GemCountLimitTemplate> GemCountLimitInfo;
+std::vector<HiddenItemTemplate> HiddenItemInfo;
+std::vector<IdentifyTemplate> IdentifyVec;
+std::vector<RateStoneTemplate> RateStoneVec;
+std::vector<CreateEnchantTemplate> CreateEnchantVec;
+std::vector<EnchantGroupTemplate> EnchantGroupVec;
+std::list<uint32> GCAddonEnchantGroupVec;
+std::vector<ItemBuyTemplate> ItemBuyVec;
+std::vector<ItemVendorBuyTemplate> ItemVendorBuyVec;
+std::unordered_map<uint32/*entry*/, uint32/*reqId*/> ItemEquipMap;
+std::vector<ItemSaleTemplate> ItemSaleVec;
+std::vector<ItemUseTemplate> ItemUseVec;
+std::vector<uint32 /*itemid*/> CurrencyLikeItemVec;
+std::unordered_map<uint32, uint32> DayLimitItemMap;
+std::unordered_map<uint32, ItemDesTemplate> ItemDesMap;
+std::vector<ItemAddTemplate> ItemAddVec;
+
+std::unordered_map<uint32/*entry*/, uint32/*count*/> GetmCountLimitMap;
+
+void ItemMod::LoadBuyEquipSaleUse()
+{
+	ItemVendorBuyVec.clear();
+	QueryResult result = WorldDatabase.Query("SELECT item, reqId, entry, clientSlot, buyMaxCount from npc_vendor");
+	if (result)
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			ItemVendorBuyTemplate Temp;
+			Temp.item = fields[0].Get<uint32>();
+			Temp.reqId = fields[1].Get<uint32>();
+			Temp.vendor = fields[2].Get<uint32>();
+			Temp.clientSlot = fields[3].Get<uint8>();
+			Temp.buyMaxCount = fields[4].Get<uint32>();
+			ItemVendorBuyVec.push_back(Temp);
+		} while (result->NextRow());
+	}
+
+	ItemBuyVec.clear();
+	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+		"SELECT 物品ID,需求模板ID from _物品_当购买时" :
+		"SELECT entry,reqId from _itemmod_on_buy");
+	if (result)
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			ItemBuyTemplate Temp;
+			Temp.entry = fields[0].Get<uint32>();
+			Temp.reqId = fields[1].Get<uint32>();
+			ItemBuyVec.push_back(Temp);
+		} while (result->NextRow());
+	}
+
+	ItemEquipMap.clear();
+	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+		"SELECT 物品ID,需求模板ID from _物品_当装备时" :
+		"SELECT entry,reqId from _itemmod_on_equip");
+	if (result)
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			ItemEquipMap.insert(std::make_pair(fields[0].Get<uint32>(), fields[1].Get<uint32>()));
+		} while (result->NextRow());
+	}
+
+	ItemSaleVec.clear();
+	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+		"SELECT 物品ID,奖励模板ID,获得奖励几率,GM命令组 from _物品_当售卖时" :
+		"SELECT entry,rewId,rewChance,command from _itemmod_on_sale");
+	if (result)
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			ItemSaleTemplate Temp;
+			Temp.entry		= fields[0].Get<uint32>();
+			Temp.rewId		= fields[1].Get<uint32>();
+			Temp.rewChance	= fields[2].Get<uint32>();
+			Temp.command	= fields[3].Get<std::string>();
+			ItemSaleVec.push_back(Temp);
+		} while (result->NextRow());
+	}
+
+	ItemUseVec.clear();
+	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+		"SELECT 物品ID,需求模板ID,奖励模板ID,获得奖励几率,GM命令组,触发技能ID1,触发技能ID2,触发技能ID3 from  _物品_当使用时" :
+		"SELECT entry,reqId,rewId,rewChance,command,spell1,spell2,spell3 from _itemmod_on_use");
+	if (result)
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			ItemUseTemplate Temp;
+			Temp.entry		= fields[0].Get<uint32>();
+			Temp.reqId		= fields[1].Get<uint32>();
+			Temp.rewId		= fields[2].Get<uint32>();
+			Temp.rewChance	= fields[3].Get<uint32>();
+			Temp.command	= fields[4].Get<std::string>();
+			Temp.spellId1	= fields[5].Get<uint32>();
+			Temp.spellId2	= fields[6].Get<uint32>();
+			Temp.spellId3	= fields[7].Get<uint32>();
+			ItemUseVec.push_back(Temp);
+		} while (result->NextRow());
+	}
+
+	ItemDesMap.clear();
+	result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+		"SELECT 物品ID,额外描述,英雄模式文本 from _物品_额外描述" :
+		"SELECT Entry,Description,HeroText from _itemmod_description");
+	if (result)
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			uint32 entry = fields[0].Get<uint32>();
+			ItemDesTemplate temp;
+			temp.description = fields[1].Get<std::string>();
+			temp.heroText = fields[2].Get<std::string>();
+			ItemDesMap.insert(std::make_pair(entry, temp));
+		} while (result->NextRow());
+	}
+
+	ItemAddVec.clear();
+	//result = WorldDatabase.Query("SELECT categoryId,entry,count from _itemmod_add");
+	//if (result)
+	//{
+	//	do
+	//	{
+	//		Field* fields = result->Fetch();
+	//		ItemAddTemplate Temp;
+	//		Temp.categoryId = fields[0].Get<uint32>();
+	//		Temp.entry		= fields[1].Get<uint32>();
+	//		Temp.count		= fields[2].Get<uint32>();
+	//		ItemAddVec.push_back(Temp);
+	//	} while (result->NextRow());
+	//}
+}
+
+
 //void ItemMod::Load()
 //{
 //	LoadBuyEquipSaleUse();
