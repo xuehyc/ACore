@@ -1,13 +1,13 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "Switch.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "BattlegroundMgr.h"
-//
-//uint32 PlayerTimeRewType;
-//uint32 PlayerTimeRewIntervals;
-//uint32 AntiCheatType;
-//
-//std::vector<SwitchTemplate> SwitchVec;
+﻿#pragma execution_character_set("utf-8")
+#include "Switch.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "BattlegroundMgr.h"
+
+uint32 PlayerTimeRewType;
+uint32 PlayerTimeRewIntervals;
+uint32 AntiCheatType;
+
+std::vector<SwitchTemplate> SwitchVec;
 //
 //void Switch::Load()
 //{
@@ -34,7 +34,7 @@
 //	bool bgquequeenable = bgquequeintervals > 0 ? true : false;
 //	sBattlegroundMgr->SetAnnounceData(bgquequeenable, bgquequeintervals);
 //}
-//
+
 //std::string Switch::GetParam(SwithTypes type)
 //{
 //	for (std::vector<SwitchTemplate>::iterator itr = SwitchVec.begin(); itr != SwitchVec.end(); ++itr)

@@ -1101,6 +1101,9 @@ public:
 
     void setFactionForRace(uint8 race);
 
+    //custom skill
+    std::vector<uint32 /*skillid*/> PCustomSkillVec;
+
     //gs
     uint32 GS;
     uint32 ChallengeLv;
@@ -1211,6 +1214,14 @@ public:
         uint32 action;
         Item* item;
     };
+
+    void LearnTalentCustom(uint32 talentId, uint32 talentRank);
+
+    //TalentReq
+    std::vector<uint32>BuyTalentVec;
+    uint32 buy_talentSpell;
+    uint32 buy_talentId;
+    uint32 buy_talentRank;
 
     //双甲
     struct ExtraEquipments

@@ -1,28 +1,28 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "SpellMod.h"
-//#include "../Requirement/Requirement.h"
-//#include "Battlefield.h"
-//#include "BattlefieldMgr.h"
-//#include "Battleground.h"
-//#include "BattlegroundMgr.h"
-//
-//std::unordered_map<uint32, SpellModTemplate> SpellModMap;
-//std::unordered_map<uint32, SpellModBaseTemplate> SpellModBaseMap;
-//std::vector<AccountSpellTemplate> AccountSpellVec;
-//std::unordered_map<uint32, AuraTriggerSpellTemplate> AuraTriggerSpellMap;
-//std::vector<SpellLeechTemplate> SpellLeechVec;
-//std::unordered_map<uint32, AuraLeechTemplate> AuraLeechMap;
-//std::vector<AuraModSpellTemplate> AuraModSpellVec;
-//std::unordered_map<uint32, AuraModStatTemplate> AuraModStatMap;
-//std::unordered_map<uint32, AuraPctTemplate> AuraPctMap;
-//std::unordered_map<uint32, AuraModClassSpellTemplate> AuraModClassSpellMap;
-//std::unordered_map<uint32, std::string> OnRemoveSpellMap;
-//std::unordered_map<uint32, std::string> OnLearnSpellMap;
-//std::unordered_map<uint32, uint32> SpellCusTargetMaskMap;
-//std::unordered_map<uint32, MountSpellTemplate> MountSpellMap;
-//std::unordered_map<uint32, AuraStackTriggerTemplate> AuraStackTriggerMap;
-//std::unordered_map<uint32, AuraTriggerOnDeathTemplate> AuraTriggerOnDeathMap;
-//
+﻿#pragma execution_character_set("utf-8")
+#include "SpellMod.h"
+#include "../Requirement/Requirement.h"
+#include "Battlefield.h"
+#include "BattlefieldMgr.h"
+#include "Battleground.h"
+#include "BattlegroundMgr.h"
+
+std::unordered_map<uint32, SpellModTemplate> SpellModMap;
+std::unordered_map<uint32, SpellModBaseTemplate> SpellModBaseMap;
+std::vector<AccountSpellTemplate> AccountSpellVec;
+std::unordered_map<uint32, AuraTriggerSpellTemplate> AuraTriggerSpellMap;
+std::vector<SpellLeechTemplate> SpellLeechVec;
+std::unordered_map<uint32, AuraLeechTemplate> AuraLeechMap;
+std::vector<AuraModSpellTemplate> AuraModSpellVec;
+std::unordered_map<uint32, AuraModStatTemplate> AuraModStatMap;
+std::unordered_map<uint32, AuraPctTemplate> AuraPctMap;
+std::unordered_map<uint32, AuraModClassSpellTemplate> AuraModClassSpellMap;
+std::unordered_map<uint32, std::string> OnRemoveSpellMap;
+std::unordered_map<uint32, std::string> OnLearnSpellMap;
+std::unordered_map<uint32, uint32> SpellCusTargetMaskMap;
+std::unordered_map<uint32, MountSpellTemplate> MountSpellMap;
+std::unordered_map<uint32, AuraStackTriggerTemplate> AuraStackTriggerMap;
+std::unordered_map<uint32, AuraTriggerOnDeathTemplate> AuraTriggerOnDeathMap;
+
 //void SpellMod::Load()
 //{
 //	QueryResult result;

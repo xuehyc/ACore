@@ -1,22 +1,22 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "myString.h"
 
-//void CoreString::Load()//tmp
-//{
-//	StringVec.clear();
-//	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
-//		"SELECT ID,文本 FROM __提示文本" :
-//		"SELECT ID,TEXT FROM _string");
-//	if (!result) return;
-//	do
-//	{
-//		Field* fields = result->Fetch();
-//		StringTemplate Temp;
-//		Temp.types = fields[0].Get<uint32>();
-//		Temp.text = fields[1].Get<std::string>();
-//		StringVec.push_back(Temp);
-//	} while (result->NextRow());
-//}
+void CoreString::Load()
+{
+	StringVec.clear();
+	QueryResult result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ?
+		"SELECT ID,文本 FROM __提示文本" :
+		"SELECT ID,TEXT FROM _string");
+	if (!result) return;
+	do
+	{
+		Field* fields = result->Fetch();
+		StringTemplate Temp;
+		Temp.types = fields[0].Get<uint32>();
+		Temp.text = fields[1].Get<std::string>();
+		StringVec.push_back(Temp);
+	} while (result->NextRow());
+}
 
 const char* CoreString::Format(const char *format, ...)
 {

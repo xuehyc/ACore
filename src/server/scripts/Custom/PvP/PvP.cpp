@@ -1,16 +1,16 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "PvP.h"
-//#include "../Switch/Switch.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "../CharNameMod/CharNameMod.h"
-//#include "../Faction/Faction.h"
-//#include "../String/myString.h"
-//#include "GroupMgr.h"
-//#include "../GCAddon/GCAddon.h"
-//#include "../Reward/Reward.h"
-//
-//std::vector<PvPTemplate> PvPVec;
-//
+﻿#pragma execution_character_set("utf-8")
+#include "PvP.h"
+#include "../Switch/Switch.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../CharNameMod/CharNameMod.h"
+#include "../Faction/Faction.h"
+#include "../String/myString.h"
+#include "GroupMgr.h"
+#include "../GCAddon/GCAddon.h"
+#include "../Reward/Reward.h"
+
+std::vector<PvPTemplate> PvPVec;
+
 //void PvP::Load()
 //{
 //	PvPVec.clear();

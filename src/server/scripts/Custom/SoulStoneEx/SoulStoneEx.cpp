@@ -146,440 +146,440 @@ void SoulStoneEx::Load()
     }
 }
 
-////重载 
-//void SoulStoneEx::ReLoad()
-//{
-//    Load();
-//
-//    SessionMap const& sessions = sWorld->GetAllSessions();
-//    for (SessionMap::const_iterator it = sessions.begin(); it != sessions.end(); ++it)
-//        if (Player* player = it->second->GetPlayer())
-//        {
-//            SendMutualData(player);
-//        }
-//}
-//
-//void SoulStoneEx::SendMutualData(Player * player)
-//{
-//    if (!player)
-//        return;
-//
-//	uint32 p = limitpageval;
-//
-//	if (!p)
-//	{
-//		sGCAddon->SendPacketTo(player, "SSSEX_LIMIT_VAL", std::to_string(p));
-//		return;
-//	}
-//
-//    uint32 num = sSoulStoneEx->GetPlayerMaxPage(player);
-//
-//    std::string val = std::to_string(sSoulStoneEx->GetPlayerMaxPage(player));
-//
-//	sGCAddon->SendPacketTo(player, "SSSEX_LIMIT_VAL", val);
-//
-//    for (uint8 i = 1; i< num + 1; ++i)
-//    {
-//        SendPlayerDataForPage(player, i);
-//    }
-//   
-//}
-//
-//void SoulStoneEx::SendPlayerDataForPage(Player * player, uint32 page)
-//{
-//    if (!player)
-//        return;
-//
-//    uint32 guid = player->GetGUID().GetCounter();
-//
-//    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
-//    {
-//        if (itr->first == guid)
-//        {
-//            if (itr->second.page == page)
-//            {
-//                std::ostringstream ss1;
-//                std::ostringstream ss2;
-//                std::ostringstream ss3;
-//                std::ostringstream ss4;
-//                std::ostringstream ss5;
-//                std::ostringstream ss6;
-//
-//				ss1 << itr->second.page << "#1#" << itr->second.itemid1 << "#" << sCF->GetItemLink(itr->second.itemid1);
-//				ss2 << itr->second.page << "#2#" << itr->second.itemid2 << "#" << sCF->GetItemLink(itr->second.itemid2);
-//				ss3 << itr->second.page << "#3#" << itr->second.itemid3 << "#" << sCF->GetItemLink(itr->second.itemid3);
-//				ss4 << itr->second.page << "#4#" << itr->second.itemid4 << "#" << sCF->GetItemLink(itr->second.itemid4);
-//				ss5 << itr->second.page << "#5#" << itr->second.itemid5 << "#" << sCF->GetItemLink(itr->second.itemid5);
-//				ss6 << itr->second.page << "#6#" << itr->second.itemid6 << "#" << sCF->GetItemLink(itr->second.itemid6);
-//
-//				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss1.str());
-//				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss2.str());
-//				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss3.str());
-//				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss4.str());
-//				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss5.str());
-//				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss6.str());
-//            }
-//        }
-//    }
-//}
-//
-//void SoulStoneEx::SavePlayerAllDate(Player * player)
-//{
-//    if (!player)
-//        return;
-//
-//    uint32 guid = player->GetGUID().GetCounter();
-//
-//    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
-//    {
-//        if (itr->first == guid)
-//        {
-//
-//			if (itr->second.page == 0)
-//				continue;
-//
-//            WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性)VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u)", itr->second.guid, itr->second.page, itr->second.itemid1, itr->second.itemid2, itr->second.itemid3, itr->second.itemid4, itr->second.itemid5, itr->second.itemid6, itr->second.itemid7);
-//        }
-//    }
-//}
-//
-//void SoulStoneEx::CreatePlayerDate(Player * player)
-//{
-//    if (!player)
-//        return;
-//
-//	for (uint32 i = 1; i < limitpageval + 1; ++i)
-//    {
-//        SoulStoneExPlayerData td;
-//        td.guid = player->GetGUID().GetCounter();
-//        td.page = i;
-//        td.itemid1 = 0;
-//        td.itemid2 = 0;
-//        td.itemid3 = 0;
-//        td.itemid4 = 0;
-//        td.itemid5 = 0;
-//        td.itemid6 = 0;
-//        td.itemid7 = 0;
-//
-//        _SoulStoneExPlayerDataMap.insert({ td.guid,td });
-//    }
-//
-//    SavePlayerAllDate(player);
-//}
-//
-//void SoulStoneEx::SavePlayerSlotToSTL(Player * player, uint32 page, uint32 slot, uint32 itemid)
-//{
-//    if (!player)
-//        return;
-//
-//    if (slot > 6)
-//        return;
-//
-//    uint32 guid = player->GetGUID().GetCounter();
-//
-//    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
-//    {
-//        if (itr->first == guid)
-//        {
-//            if (itr->second.page == page)
-//            {
-//                switch (slot)
-//                {
-//                case 1:
-//                    itr->second.itemid1 = itemid;
-//                    return;
-//                case 2:
-//                    itr->second.itemid2 = itemid;
-//                    return;
-//                case 3:
-//                    itr->second.itemid3 = itemid;
-//                    return;
-//                case 4:
-//                    itr->second.itemid4 = itemid;
-//                    return;
-//                case 5:
-//                    itr->second.itemid5 = itemid;
-//                    return;
-//                case 6:
-//                    itr->second.itemid6 = itemid;
-//                    return;
-//                default:
-//                    return;
-//                }
-//            }
-//        }
-//    }
-//
-//    //SavePlayerSlotToBase(player, page, slot,itemid);
-//    //SavePlayerAllDate(player);
-//}
-//
-//void SoulStoneEx::SavePlayerSlotToBase(Player * player, uint32 page, uint32 slot, uint32 itemid)
-//{
-//    if (!player)
-//        return;
-//
-//    if (slot > 6)
-//        return;
-//
-//	if (page == 0)
-//		return;
-//
-//    uint32 guid = player->GetGUID().GetCounter();
-//
-//    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
-//    {
-//        if (itr->first == guid)
-//        {
-//            if (itr->second.page == page)
-//            {
-//                switch (slot)
-//                {
-//                case 1:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽1物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
-//                    return;
-//                case 2:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽2物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
-//                    return;
-//                case 3:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽3物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
-//                    return;
-//                case 4:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽4物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
-//                    return;
-//                case 5:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽5物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
-//                    return;
-//                case 6:
-//                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽6物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
-//                    return;
-//                default:
-//                    break;
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//void SoulStoneEx::AddOrRemovePlayerBuff(Player * player, uint32 itemid, uint32 olditemid, SoulStoneExSlotType t)
-//{
-//    sLog->outMessage("server",LOG_LEVEL_INFO, "olditemid = %u", olditemid);
-//
-//    ItemTemplate const * pProto = sObjectMgr->GetItemTemplate(itemid);
-//
-//    ItemTemplate const * pProts = sObjectMgr->GetItemTemplate(olditemid);
-//
-//    if (itemid != 0 && !pProto)
-//        return;
-//
-//    if (olditemid != 0 && !pProts)
-//        return;
-//
-//    if (t == SSEX_FG)
-//    {
-//        if (olditemid == 0)
-//            return;
-//
-//        for (uint8 i = 0; i < MAX_ITEM_PROTO_SPELLS; ++i)
-//        {
-//            _Spell const& spellData = pProto->Spells[i];
-//            _Spell const& spellDatas = pProts->Spells[i];
-//
-//            // no spell
-//            if (!spellData.SpellId)
-//                continue;
-//            if (Aura * aura = player->GetAura(spellDatas.SpellId))
-//            {
-//                player->RemoveAura(aura);
-//            }
-//
-//            player->CastSpell(player, spellData.SpellId);
-//        }
-//    }
-//
-//    if (t == SSEX_XQ)
-//    {
-//        for (uint8 i = 0; i < MAX_ITEM_PROTO_SPELLS; ++i)
-//        {
-//            _Spell const& spellData = pProto->Spells[i];
-//
-//            // no spell
-//            if (!spellData.SpellId)
-//                continue;
-//
-//            player->CastSpell(player, spellData.SpellId);
-//        }
-//    }
-//
-//    if (t == SSEX_CX)
-//    {
-//        for (uint8 i = 0; i < MAX_ITEM_PROTO_SPELLS; ++i)
-//        {
-//            _Spell const& spellDatas = pProts->Spells[i];
-//
-//            if (Aura * aura = player->GetAura(spellDatas.SpellId))
-//            {
-//                player->RemoveAura(aura);
-//            }
-//        }
-//    }
-//}
-//
-//void SoulStoneEx::PlayerBuyPage(Player * player, uint32 page)
-//{
-//    //这个好像不能放到这里 要放到判定是否有购买需求那里 首位  然后这里最底下 或许要放个 发送激活操作码到客户端
-//    if (page > GetPlayerMaxPage(player) + 1)
-//    {
-//        //提示要按顺序购买页面
-//        return;
-//    }
-//
-//
-//    RemoveReq(player, page);
-//
-//    SoulStoneExPlayerData td;
-//    td.guid = player->GetGUID().GetCounter();
-//    td.page = page;
-//    td.itemid1 = 0;
-//    td.itemid2 = 0;
-//    td.itemid3 = 0;
-//    td.itemid4 = 0;
-//    td.itemid5 = 0;
-//    td.itemid6 = 0;
-//    td.itemid7 = 0;
-//
-//    _SoulStoneExPlayerDataMap.insert({ td.guid,td });
-//
-//    //SavePlayerAllDate(player);
-//
-//    SendBuyIsOkPage(player,page);
-//}
-//
-//uint32 SoulStoneEx::GetPlayerMaxPage(Player * player)
-//{
-//    uint32 guid = player->GetGUID().GetCounter();
-//
-//    uint32 count = 0;
-//
-//    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
-//    {
-//        if (itr->first == guid)
-//        {
-//            ++count;
-//        }
-//    }
-//
-//    return count;
-//}
-//
-//
+//重载 
+void SoulStoneEx::ReLoad()
+{
+    Load();
+
+    SessionMap const& sessions = sWorld->GetAllSessions();
+    for (SessionMap::const_iterator it = sessions.begin(); it != sessions.end(); ++it)
+        if (Player* player = it->second->GetPlayer())
+        {
+            SendMutualData(player);
+        }
+}
+
+void SoulStoneEx::SendMutualData(Player * player)
+{
+    if (!player)
+        return;
+
+	uint32 p = limitpageval;
+
+	if (!p)
+	{
+		sGCAddon->SendPacketTo(player, "SSSEX_LIMIT_VAL", std::to_string(p));
+		return;
+	}
+
+    uint32 num = sSoulStoneEx->GetPlayerMaxPage(player);
+
+    std::string val = std::to_string(sSoulStoneEx->GetPlayerMaxPage(player));
+
+	sGCAddon->SendPacketTo(player, "SSSEX_LIMIT_VAL", val);
+
+    for (uint8 i = 1; i< num + 1; ++i)
+    {
+        SendPlayerDataForPage(player, i);
+    }
+   
+}
+
+void SoulStoneEx::SendPlayerDataForPage(Player * player, uint32 page)
+{
+    if (!player)
+        return;
+
+    uint32 guid = player->GetGUID().GetCounter();
+
+    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
+    {
+        if (itr->first == guid)
+        {
+            if (itr->second.page == page)
+            {
+                std::ostringstream ss1;
+                std::ostringstream ss2;
+                std::ostringstream ss3;
+                std::ostringstream ss4;
+                std::ostringstream ss5;
+                std::ostringstream ss6;
+
+				ss1 << itr->second.page << "#1#" << itr->second.itemid1 << "#" << sCF->GetItemLink(itr->second.itemid1);
+				ss2 << itr->second.page << "#2#" << itr->second.itemid2 << "#" << sCF->GetItemLink(itr->second.itemid2);
+				ss3 << itr->second.page << "#3#" << itr->second.itemid3 << "#" << sCF->GetItemLink(itr->second.itemid3);
+				ss4 << itr->second.page << "#4#" << itr->second.itemid4 << "#" << sCF->GetItemLink(itr->second.itemid4);
+				ss5 << itr->second.page << "#5#" << itr->second.itemid5 << "#" << sCF->GetItemLink(itr->second.itemid5);
+				ss6 << itr->second.page << "#6#" << itr->second.itemid6 << "#" << sCF->GetItemLink(itr->second.itemid6);
+
+				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss1.str());
+				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss2.str());
+				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss3.str());
+				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss4.str());
+				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss5.str());
+				sGCAddon->SendPacketTo(player, "SSSEX_XQ_FG", ss6.str());
+            }
+        }
+    }
+}
+
+void SoulStoneEx::SavePlayerAllDate(Player * player)
+{
+    if (!player)
+        return;
+
+    uint32 guid = player->GetGUID().GetCounter();
+
+    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
+    {
+        if (itr->first == guid)
+        {
+
+			if (itr->second.page == 0)
+				continue;
+
+            WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽1物品ID,插槽2物品ID,插槽3物品ID,插槽4物品ID,插槽5物品ID,插槽6物品ID,是否激活页面属性)VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u)", itr->second.guid, itr->second.page, itr->second.itemid1, itr->second.itemid2, itr->second.itemid3, itr->second.itemid4, itr->second.itemid5, itr->second.itemid6, itr->second.itemid7);
+        }
+    }
+}
+
+void SoulStoneEx::CreatePlayerDate(Player * player)
+{
+    if (!player)
+        return;
+
+	for (uint32 i = 1; i < limitpageval + 1; ++i)
+    {
+        SoulStoneExPlayerData td;
+        td.guid = player->GetGUID().GetCounter();
+        td.page = i;
+        td.itemid1 = 0;
+        td.itemid2 = 0;
+        td.itemid3 = 0;
+        td.itemid4 = 0;
+        td.itemid5 = 0;
+        td.itemid6 = 0;
+        td.itemid7 = 0;
+
+        _SoulStoneExPlayerDataMap.insert({ td.guid,td });
+    }
+
+    SavePlayerAllDate(player);
+}
+
+void SoulStoneEx::SavePlayerSlotToSTL(Player * player, uint32 page, uint32 slot, uint32 itemid)
+{
+    if (!player)
+        return;
+
+    if (slot > 6)
+        return;
+
+    uint32 guid = player->GetGUID().GetCounter();
+
+    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
+    {
+        if (itr->first == guid)
+        {
+            if (itr->second.page == page)
+            {
+                switch (slot)
+                {
+                case 1:
+                    itr->second.itemid1 = itemid;
+                    return;
+                case 2:
+                    itr->second.itemid2 = itemid;
+                    return;
+                case 3:
+                    itr->second.itemid3 = itemid;
+                    return;
+                case 4:
+                    itr->second.itemid4 = itemid;
+                    return;
+                case 5:
+                    itr->second.itemid5 = itemid;
+                    return;
+                case 6:
+                    itr->second.itemid6 = itemid;
+                    return;
+                default:
+                    return;
+                }
+            }
+        }
+    }
+
+    //SavePlayerSlotToBase(player, page, slot,itemid);
+    //SavePlayerAllDate(player);
+}
+
+void SoulStoneEx::SavePlayerSlotToBase(Player * player, uint32 page, uint32 slot, uint32 itemid)
+{
+    if (!player)
+        return;
+
+    if (slot > 6)
+        return;
+
+	if (page == 0)
+		return;
+
+    uint32 guid = player->GetGUID().GetCounter();
+
+    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
+    {
+        if (itr->first == guid)
+        {
+            if (itr->second.page == page)
+            {
+                switch (slot)
+                {
+                case 1:
+                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽1物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+                    return;
+                case 2:
+                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽2物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+                    return;
+                case 3:
+                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽3物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+                    return;
+                case 4:
+                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽4物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+                    return;
+                case 5:
+                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽5物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+                    return;
+                case 6:
+                    WorldDatabase.Execute("REPLACE INTO 玩家魂玉扩展记录表(玩家GUID,页面,插槽6物品ID)VALUES(%u,%u,%u)", guid, page, itemid);
+                    return;
+                default:
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void SoulStoneEx::AddOrRemovePlayerBuff(Player * player, uint32 itemid, uint32 olditemid, SoulStoneExSlotType t)
+{
+    sLog->outMessage("server",LOG_LEVEL_INFO, "olditemid = %u", olditemid);
+
+    ItemTemplate const * pProto = sObjectMgr->GetItemTemplate(itemid);
+
+    ItemTemplate const * pProts = sObjectMgr->GetItemTemplate(olditemid);
+
+    if (itemid != 0 && !pProto)
+        return;
+
+    if (olditemid != 0 && !pProts)
+        return;
+
+    if (t == SSEX_FG)
+    {
+        if (olditemid == 0)
+            return;
+
+        for (uint8 i = 0; i < MAX_ITEM_PROTO_SPELLS; ++i)
+        {
+            _Spell const& spellData = pProto->Spells[i];
+            _Spell const& spellDatas = pProts->Spells[i];
+
+            // no spell
+            if (!spellData.SpellId)
+                continue;
+            if (Aura * aura = player->GetAura(spellDatas.SpellId))
+            {
+                player->RemoveAura(aura);
+            }
+
+            player->CastSpell(player, spellData.SpellId);
+        }
+    }
+
+    if (t == SSEX_XQ)
+    {
+        for (uint8 i = 0; i < MAX_ITEM_PROTO_SPELLS; ++i)
+        {
+            _Spell const& spellData = pProto->Spells[i];
+
+            // no spell
+            if (!spellData.SpellId)
+                continue;
+
+            player->CastSpell(player, spellData.SpellId);
+        }
+    }
+
+    if (t == SSEX_CX)
+    {
+        for (uint8 i = 0; i < MAX_ITEM_PROTO_SPELLS; ++i)
+        {
+            _Spell const& spellDatas = pProts->Spells[i];
+
+            if (Aura * aura = player->GetAura(spellDatas.SpellId))
+            {
+                player->RemoveAura(aura);
+            }
+        }
+    }
+}
+
+void SoulStoneEx::PlayerBuyPage(Player * player, uint32 page)
+{
+    //这个好像不能放到这里 要放到判定是否有购买需求那里 首位  然后这里最底下 或许要放个 发送激活操作码到客户端
+    if (page > GetPlayerMaxPage(player) + 1)
+    {
+        //提示要按顺序购买页面
+        return;
+    }
+
+
+    RemoveReq(player, page);
+
+    SoulStoneExPlayerData td;
+    td.guid = player->GetGUID().GetCounter();
+    td.page = page;
+    td.itemid1 = 0;
+    td.itemid2 = 0;
+    td.itemid3 = 0;
+    td.itemid4 = 0;
+    td.itemid5 = 0;
+    td.itemid6 = 0;
+    td.itemid7 = 0;
+
+    _SoulStoneExPlayerDataMap.insert({ td.guid,td });
+
+    //SavePlayerAllDate(player);
+
+    SendBuyIsOkPage(player,page);
+}
+
+uint32 SoulStoneEx::GetPlayerMaxPage(Player * player)
+{
+    uint32 guid = player->GetGUID().GetCounter();
+
+    uint32 count = 0;
+
+    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
+    {
+        if (itr->first == guid)
+        {
+            ++count;
+        }
+    }
+
+    return count;
+}
+
+
+uint32 SoulStoneEx::GetItemType(uint32 itemid)
+{
+	auto itr = _SoulStoneExItemTypeMap.find(itemid);
+
+	if (itr != _SoulStoneExItemTypeMap.end())
+		return itr->second.type;
+
+	return 0;
+}
+
+int32 SoulStoneEx::GetItemPage(uint32 itemid)
+{
+	auto itr = _SoulStoneExItemTypeMap.find(itemid);
+
+	if (itr != _SoulStoneExItemTypeMap.end())
+		return itr->second.page;
+
+	return -1;
+}
+
 //uint32 SoulStoneEx::GetItemType(uint32 itemid)
 //{
-//	auto itr = _SoulStoneExItemTypeMap.find(itemid);
+//    auto itr = _SoulStoneExItemTypeMap.find(itemid);
 //
-//	if (itr != _SoulStoneExItemTypeMap.end())
-//		return itr->second.type;
-//
-//	return 0;
-//}
-//
-//int32 SoulStoneEx::GetItemPage(uint32 itemid)
-//{
-//	auto itr = _SoulStoneExItemTypeMap.find(itemid);
-//
-//	if (itr != _SoulStoneExItemTypeMap.end())
-//		return itr->second.page;
-//
-//	return -1;
-//}
-//
-////uint32 SoulStoneEx::GetItemType(uint32 itemid)
-////{
-////    auto itr = _SoulStoneExItemTypeMap.find(itemid);
-////
-////    if (itr != _SoulStoneExItemTypeMap.end())
-////        return itr->second;
-////
-////    return 0;
-////}
-//
-//uint32 SoulStoneEx::GetPageActi(uint32 page)
-//{
-//    auto itr = _SoulStoneExBuyReqDataMap.find(page);
-//
-//    if (itr != _SoulStoneExBuyReqDataMap.end())
-//        return itr->second.jihuoshuxingid;
+//    if (itr != _SoulStoneExItemTypeMap.end())
+//        return itr->second;
 //
 //    return 0;
 //}
-//
-//uint32 SoulStoneEx::GetOldItemId(Player * player, uint32 page, uint32 slot)
-//{
-//    uint32 guid = player->GetGUID();
-//
-//    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
-//    {
-//        if (itr->first == guid)
-//        {
-//            if (itr->second.page == page)
-//            {
-//                switch (slot)
-//                {
-//                case 1:
-//                    return itr->second.itemid1;
-//                case 2:
-//                    return itr->second.itemid2;
-//                case 3:
-//                    return itr->second.itemid3;
-//                case 4:
-//                    return itr->second.itemid4;
-//                case 5:
-//                    return itr->second.itemid5;
-//                case 6:
-//                    return itr->second.itemid6;
-//                default:
-//                    break;
-//                }
-//            }
-//        }
-//    }
-//
-//    return 0;
-//}
-//
-//void SoulStoneEx::SendAllActiData(Player * player)
-//{
-//
-//	uint32 maxpage = GetPlayerMaxPage(player);
-//
-//	if (maxpage < limitpageval)
-//		maxpage = limitpageval;
-//
-//	for (uint32 i = 1; i < maxpage + 1; ++i)
-//    {
-//        if (sSoulStoneEx->IsActi(player, i))
-//        {
-//            SendActiDataToClient(player, i);
-//        }
-//    }
-//}
-//
-//void SoulStoneEx::SendActiDataToClient(Player * player, uint32 page)
-//{
-//    std::ostringstream ss;
-//
-//    //uint32 itemid = GetPageActi(page);
-//    uint32 itemid = GetExActiId(player, page);
-//
-//    
-//    std::string itemlink = sCF->GetItemLink(itemid);
-//
-//    ss << page << "#" << itemid << "#" << itemlink;
-//   
-//	sGCAddon->SendPacketTo(player, "SSSEX_ACTI_VAL", ss.str());
-//
-//}
-//
+
+uint32 SoulStoneEx::GetPageActi(uint32 page)
+{
+    auto itr = _SoulStoneExBuyReqDataMap.find(page);
+
+    if (itr != _SoulStoneExBuyReqDataMap.end())
+        return itr->second.jihuoshuxingid;
+
+    return 0;
+}
+
+uint32 SoulStoneEx::GetOldItemId(Player * player, uint32 page, uint32 slot)
+{
+    uint32 guid = player->GetGUID().GetCounter();
+
+    for (auto itr = _SoulStoneExPlayerDataMap.begin(); itr != _SoulStoneExPlayerDataMap.end(); ++itr)
+    {
+        if (itr->first == guid)
+        {
+            if (itr->second.page == page)
+            {
+                switch (slot)
+                {
+                case 1:
+                    return itr->second.itemid1;
+                case 2:
+                    return itr->second.itemid2;
+                case 3:
+                    return itr->second.itemid3;
+                case 4:
+                    return itr->second.itemid4;
+                case 5:
+                    return itr->second.itemid5;
+                case 6:
+                    return itr->second.itemid6;
+                default:
+                    break;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
+void SoulStoneEx::SendAllActiData(Player * player)
+{
+
+	uint32 maxpage = GetPlayerMaxPage(player);
+
+	if (maxpage < limitpageval)
+		maxpage = limitpageval;
+
+	for (uint32 i = 1; i < maxpage + 1; ++i)
+    {
+        if (sSoulStoneEx->IsActi(player, i))
+        {
+            SendActiDataToClient(player, i);
+        }
+    }
+}
+
+void SoulStoneEx::SendActiDataToClient(Player * player, uint32 page)
+{
+    std::ostringstream ss;
+
+    //uint32 itemid = GetPageActi(page);
+    uint32 itemid = GetExActiId(player, page);
+
+    
+    std::string itemlink = sCF->GetItemLink(itemid);
+
+    ss << page << "#" << itemid << "#" << itemlink;
+   
+	sGCAddon->SendPacketTo(player, "SSSEX_ACTI_VAL", ss.str());
+
+}
+
 //
 //void SoulStoneEx::SendUnActiDataToClient(Player * player, uint32 page)
 //{
