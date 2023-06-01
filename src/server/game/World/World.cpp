@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1430,6 +1430,15 @@ void World::LoadConfigSettings(bool reload)
         _int_configs[CONFIG_PACKET_SPOOF_BANMODE] = (uint32)0;
 
     _int_configs[CONFIG_PACKET_SPOOF_BANDURATION] = sConfigMgr->GetOption<int32>("PacketSpoof.BanDuration", 86400);
+
+    //1vs1 arena
+    _bool_configs[CONFIG_ARENA_1V1_ENABLE] = sConfigMgr->GetBoolDefault("Arena.1v1.Enable", true);
+    _bool_configs[CONFIG_ARENA_1V1_ANNOUNCER] = sConfigMgr->GetBoolDefault("Arena.1v1.Announcer", false);
+    _int_configs[CONFIG_ARENA_1V1_MIN_LEVEL] = sConfigMgr->GetIntDefault("Arena.1v1.MinLevel", 80);
+    _int_configs[CONFIG_ARENA_1V1_COSTS] = sConfigMgr->GetIntDefault("Arena.1v1.Costs", 400000);
+    _bool_configs[CONFIG_ARENA_1V1_VENDOR_RATING] = sConfigMgr->GetBoolDefault("Arena.1v1.VendorRating", false);
+    //_float_configs[CONFIG_ARENA_1V1_ARENAPOINTS_MULTI] = sConfigMgr->GetFloatDefault("Arena.1v1.ArenaPointsMulti", 0.64f);
+    _bool_configs[CONFIG_ARENA_1V1_BLOCK_FORBIDDEN_TALENTS] = sConfigMgr->GetBoolDefault("Arena.1v1.BlockForbiddenTalents", true);
 
     // Random Battleground Rewards
     _int_configs[CONFIG_BG_REWARD_WINNER_HONOR_FIRST] = sConfigMgr->GetOption<int32>("Battleground.RewardWinnerHonorFirst", 30);
