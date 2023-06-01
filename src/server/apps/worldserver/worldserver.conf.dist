@@ -4590,5 +4590,34 @@ Playerbot.Announce.Not_enough_random_bot_accounts_available.disable=1
 #后续发现正常启动后,还是会报,需要在控制台重新加载配置(reload conf)
 
 #小坏部分
-Arena.1v1.ForbiddenTalentsIDs =
+
+###################################################################################################
+# 1V1 ARENA CONFIG
+#
+#     Arena.1v1.Enable    1v1竞技场开关
+#    Arena.1v1.Event   1v1竞技场事件ID 事件开启时候可以排队 事件结束的时候自动结算
+#    Arena1v1.Announcer  排队公告
+#    Arena1v1.MinLevel  参与最低等级
+#    Arena1v1.Costs  竞技场队伍创建需求多少铜币
+#    Arena1v1.VendorRating  开启后1v1评级将用于计算最高个人评级  可以购买商店红色竞技场显示需求的装备.
+#    Arena1v1.ArenaPointsMulti
+#        Description: 等级为1500的5v5竞技场团队每周将获得344点数.
+#                           相同评级的3v3将获得302点数（5V5*0.88）
+#                           2v2 将获得 261 点数 (5v5 * 0.76)
+#                           1v1 将获得 167 点数 (5v5 * 0.64)
+#    Arena1v1.BlockForbiddenTalents  1v1竞技场进入检测天赋
+#    Arena1v1.ForbiddenTalentsIDs   检测是否加了被禁止的天赋  查看 TalentTab.dbc的ID
+#                                                      默认格式(,隔开):     "201,202,382,362,282,383,163"
+#    Arena1v1.ForbiddenTalentpoints = 35  治疗天赋或者坦克天赋中加点超过多少就禁止进入
+#
+###################################################################################################
+Arena.1v1.Enable = 1
 Arena.1v1.Event = 130
+Arena.1v1.Announcer = 1
+Arena.1v1.MinLevel = 80
+Arena.1v1.Costs = 400000
+Arena.1v1.VendorRating = 0
+Arena.1v1.ArenaPointsMulti = 0.64
+Arena.1v1.BlockForbiddenTalents = 0
+Arena.1v1.ForbiddenTalentsIDs = "0"
+Arena.1v1.ForbiddenTalentpoints = 35
