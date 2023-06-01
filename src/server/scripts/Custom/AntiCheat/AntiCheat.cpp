@@ -1,33 +1,34 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "AntiCheat.h"
-//#include "../Switch/Switch.h"
-//#include "AccountMgr.h"
-//#include "../Command/CustomCommand.h"
-//#include "../CommonFunc/CommonFunc.h"
-//#include "../CustomEvent/Event.h"
-//#include "Configuration/Config.h"
-//
-//void AntiCheat::CreatureReset(Creature* creature,uint32 diff)
-//{
-//	if (creature->C_ResetDistance <= 0 || !creature->IsInCombat())
-//		return;
-//
-//	creature->reset_timer += diff;
-//
-//	if (creature->reset_timer > 3000)
-//	{
-//		creature->reset_timer = 0;
-//
-//		if (creature->GetHomePosition().GetExactDist2d(creature) > creature->C_ResetDistance)
-//		{
-//			creature->CombatStop(true);
-//			creature->GetThreatMgr().ClearAllThreat();//DeleteThreatList
-//			creature->GetMotionMaster()->MoveTargetedHome();
-//			creature->GetAI()->Reset();
-//		}
-//	}
-//}
-//
+﻿#pragma execution_character_set("utf-8")
+#include "AntiCheat.h"
+#include "../Switch/Switch.h"
+#include "AccountMgr.h"
+#include "../Command/CustomCommand.h"
+#include "../CommonFunc/CommonFunc.h"
+#include "../CustomEvent/Event.h"
+#include "Configuration/Config.h"
+//#include "../../../../../deps/acelite/ace/OS_NS_time.h"
+
+void AntiCheat::CreatureReset(Creature* creature,uint32 diff)
+{
+	if (creature->C_ResetDistance <= 0 || !creature->IsInCombat())
+		return;
+
+	creature->reset_timer += diff;
+
+	if (creature->reset_timer > 3000)
+	{
+		creature->reset_timer = 0;
+
+		if (creature->GetHomePosition().GetExactDist2d(creature) > creature->C_ResetDistance)
+		{
+			creature->CombatStop(true);
+			creature->GetThreatMgr().ClearAllThreat();//DeleteThreatList
+			creature->GetMotionMaster()->MoveTargetedHome();
+			creature->GetAI()->Reset();
+		}
+	}
+}
+
 //std::string AntiCheat::GetTimeString()
 //{
 //	time_t t = time(NULL);
@@ -74,7 +75,7 @@
 //
 //	return oss.str();
 //}
-//
+
 //void AntiCheat::SaveAndNotice(Player* player, AC_TYPES type, float z)
 //{
 //	std::string text = "";

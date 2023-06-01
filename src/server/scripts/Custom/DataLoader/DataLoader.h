@@ -1,4 +1,6 @@
 ﻿////掉率
+////#include "../../../../../deps/acelite/ace/Thread_Mutex.h"
+////#include "../../../../../deps/acelite/ace/Synch_Traits.h"
 //extern std::unordered_map<uint32, float> PlayerDropRateMap;
 //
 //////连杀////
@@ -48,6 +50,6 @@
 //	void LoadAll();
 //	
 //private:
-//	ACE_Thread_Mutex _lock;
+//	//ACE_Thread_Mutex _lock;
 //};
 //#define sDataLoader DataLoader::instance()

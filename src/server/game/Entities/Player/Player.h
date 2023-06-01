@@ -1079,6 +1079,12 @@ public:
 
     uint32 maxPrimaryTradeSkills;//I
 
+    //antifarm
+    uint32 AntiFarmCount;
+    uint32 AntiFarmNum;
+    uint32 AntiFarmTimer;
+    bool AntiFarmBaned;
+
     //灵力
     int32 SpiritPower;
     uint32 MaxSpiritPower;

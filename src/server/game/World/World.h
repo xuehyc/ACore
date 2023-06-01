@@ -43,6 +43,7 @@ struct Realm;
 
 AC_GAME_API extern Realm realm;
 
+
 enum ShutdownMask
 {
     SHUTDOWN_MASK_RESTART = 1,

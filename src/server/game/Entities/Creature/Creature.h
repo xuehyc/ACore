@@ -48,6 +48,8 @@ class CreatureGroup;
 
 #define MAX_VENDOR_ITEMS 150                                // Limitation in 3.x.x item count in SMSG_LIST_INVENTORY
 
+#define MAX_CUSTOM_LOOT_COUNT	5   //I
+
 class Creature : public Unit, public GridObject<Creature>, public MovableMapObject
 {
 public:
