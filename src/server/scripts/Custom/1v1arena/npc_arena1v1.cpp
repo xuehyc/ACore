@@ -215,7 +215,7 @@ public:
         if (!player || !me)
             return true;
 
-        if (sWorld->getBoolConfig(CONFIG_ARENA_1V1_ENABLE) == false)//如果读取不了conf值,那就暂时改为true
+        if (sWorld->getBoolConfig(CONFIG_ARENA_1V1_ENABLE) == false)//如果读取不了conf值,那就暂时禁用
         {
             ChatHandler(player->GetSession()).SendSysMessage("1VS1已被禁止");
             return true;
