@@ -201,184 +201,184 @@
 //	}
 //}
 //
-////void DataLoader::LoadAll()
-////{
-////	sFixtimeBG->Load();
-////	sSpellMod->Load();
-////	sRandomEnchant->Load();
-////	sSwitch->Load();
-////	sItemMod->Load();
-////	sRew->Load();
-////	sRew->LoadDamCreToSend();
-////	sReq->Load();
-////	//sFC->Load();
-////	sMF->Load();
-////	sHR->Load();
-////	sRecruit->Load();
-////	sQuestMod->Load();
-////	sMapMod->Load();
-////	sCreatureMod->Load();
-////	sCharMod->Load();
-////	sChallengeMod->Load();
-////	sVIP->Load();
-////	sLottery->Load();
-////	sMountVendor->Load();
-////	sStage->Load();
-////	sExtraEquipment->Load();
-////	sStatPoints->Load();
-////	sString->Load();
-////	sResetIns->Load();
-////	sFTB->Load();
-////	sServerAnnounce->Load();
-////	sCustomScript->LoadGobScripts();
-////	sCustomScript->LoadCreautreScripts();
-////	sCustomScript->LoadCircleData();
-////	sDeadline->Load();
-////	sLeaderReward->Load();
-////	sTrigger->Load();
-////	sQuickResponse->Load();
-////	sCustomCommand->Load();
-////	sInstanceDieTele->Load();
-////	sGateWay->Load();
-////	sGCAddon->Load();
-////	sArmory->Load();
-////	sGift->Load();
-////	sSignIn->Load();
-////	sTalisman->Load();
-////	sCustomSkill->Load();
-////	sRank->Load();
-////	sFaction->Load();
-////	sEvent->LoadPos();
-////	//sMorph->Load();
-////	sLuckDraw->Load();
-////	sRecovery->Load();
-////	sPvP->Load();
-////	sPetMod->Load();
-////	sAntiFarm->SetParams();
-////	Load();
-////	//sObjectMgr->LoadVendors();
-////	sNoPatchItem->Load();
-////	sStory->Load();
-////	sReincarnation->Load();
-////	sTalentReq->Load();
-////	sEM->Load();
-////	sZoneAura->Load();
-////	sPlayerLoot->Load();
-////	sRune->Load();
-////	sGS->Load();
-////	sItemMod->InitUIItemEntryData();
-////	sLFGMgr->LoadRewards();
-////	sCDK->Load();
-////	sCharPvpTop->LoadTopSys();
-////	sGvgSys->LoadgvgSys();
-////}
-////
-////class DataLoaderWorldScript : public WorldScript
-////{
-////public:
-////	DataLoaderWorldScript() : WorldScript("DataLoaderWorldScript") {}
-////
-////	void OnAfterConfigLoad(bool)
-////	{
-////		sDataLoader->LoadAll();
-////		sFaker->Load();
-////		sArenaDuel->Load();
-////        sLog->outMessage("server",LOG_LEVEL_INFO, "加载自定义数据库完成");
-////	}
-////};
-////
-////class DataReloaderCommand : public CommandScript
-////{
-////public:
-////	DataReloaderCommand() : CommandScript("DataReloaderCommand") { }
-////
-////    std::vector<ChatCommand> GetCommands() const
-////	{
-////		static std::vector<ChatCommand> reloaderCommandTable =
-////		{
-////			{ "all", SEC_CONSOLE, true, &HandleRlALLCommand, "" },
-////			{ "item", SEC_CONSOLE, true, &HandleRlItemCommand, "" },
-////			{ "spell", SEC_CONSOLE, true, &HandleRlSpellCommand, "" }
-////		};
-////
-////		static std::vector<ChatCommand> commandTable =
-////		{
-////			{ "rl", SEC_CONSOLE, true, NULL, "", reloaderCommandTable }
-////		};
-////
-////		return commandTable;
-////	}
-////
-////	static bool HandleRlALLCommand(ChatHandler* handler, const char* /*args*/)
-////	{
-////		sDataLoader->LoadAll();
-////
-////		if (!handler->GetSession())
-////		{
-////			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [数据库]重载完毕...\n");
-////			return true;
-////		}
-////
-////		if (handler->GetSession()->GetPlayer())
-////			handler->SendSysMessage("[数据库]重载完毕...");
-////
-////		return true;
-////	}
-////
-////	static bool HandleRlItemCommand(ChatHandler* handler, const char* /*args*/)
-////	{
-////		sObjectMgr->LoadItemTemplates();
-////
-////		if (!handler->GetSession())
-////		{
-////			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [装备修改数据表]重载完毕...\n");
-////			return true;
-////		}
-////
-////		if (handler->GetSession()->GetPlayer())
-////			handler->SendSysMessage(">> [装备修改数据表]重载完毕...");
-////
-////		return true;
-////	}
-////
-////	static bool HandleRlSpellCommand(ChatHandler* handler, const char* /*args*/)
-////	{
-////		sSpellMgr->LoadDbcDataCorrections();
-////
-////		if (!handler->GetSession())
-////		{
-////			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [SpellMod数据表]重载完毕...\n");
-////			return true;
-////		}
-////
-////		if (handler->GetSession()->GetPlayer())
-////			handler->SendSysMessage("[SpellMod数据表]重载完毕...");
-////
-////		return true;
-////	}
-////};
-////
-////class LoaderDataOnLogin : PlayerScript
-////{
-////public:
-////	LoaderDataOnLogin() : PlayerScript("LoaderDataOnLogin") {}
-////	void OnLogin(Player* player) override
-////	{
-////		//初始化onlineRewardedCount		
-////		QueryResult result = CharacterDatabase.Query("SELECT onlineRewardedCount FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
-////		if (!result)
-////			player->onlineRewardedCount = 10000;
-////		else
-////		{
-////			Field* fields = result->Fetch();
-////			player->onlineRewardedCount = fields[0].Get<int32>();
-////		}
-////	}
-////};
-////
-////void AddSC_Data_Loader()
-////{
-////	new DataLoaderWorldScript();
-////	new DataReloaderCommand();
-////	new LoaderDataOnLogin();
-////}
+//////void DataLoader::LoadAll()
+//////{
+//////	sFixtimeBG->Load();
+//////	sSpellMod->Load();
+//////	sRandomEnchant->Load();
+//////	sSwitch->Load();
+//////	sItemMod->Load();
+//////	sRew->Load();
+//////	sRew->LoadDamCreToSend();
+//////	sReq->Load();
+//////	//sFC->Load();
+//////	sMF->Load();
+//////	sHR->Load();
+//////	sRecruit->Load();
+//////	sQuestMod->Load();
+//////	sMapMod->Load();
+//////	sCreatureMod->Load();
+//////	sCharMod->Load();
+//////	sChallengeMod->Load();
+//////	sVIP->Load();
+//////	sLottery->Load();
+//////	sMountVendor->Load();
+//////	sStage->Load();
+//////	sExtraEquipment->Load();
+//////	sStatPoints->Load();
+//////	sString->Load();
+//////	sResetIns->Load();
+//////	sFTB->Load();
+//////	sServerAnnounce->Load();
+//////	sCustomScript->LoadGobScripts();
+//////	sCustomScript->LoadCreautreScripts();
+//////	sCustomScript->LoadCircleData();
+//////	sDeadline->Load();
+//////	sLeaderReward->Load();
+//////	sTrigger->Load();
+//////	sQuickResponse->Load();
+//////	sCustomCommand->Load();
+//////	sInstanceDieTele->Load();
+//////	sGateWay->Load();
+//////	sGCAddon->Load();
+//////	sArmory->Load();
+//////	sGift->Load();
+//////	sSignIn->Load();
+//////	sTalisman->Load();
+//////	sCustomSkill->Load();
+//////	sRank->Load();
+//////	sFaction->Load();
+//////	sEvent->LoadPos();
+//////	//sMorph->Load();
+//////	sLuckDraw->Load();
+//////	sRecovery->Load();
+//////	sPvP->Load();
+//////	sPetMod->Load();
+//////	sAntiFarm->SetParams();
+//////	Load();
+//////	//sObjectMgr->LoadVendors();
+//////	sNoPatchItem->Load();
+//////	sStory->Load();
+//////	sReincarnation->Load();
+//////	sTalentReq->Load();
+//////	sEM->Load();
+//////	sZoneAura->Load();
+//////	sPlayerLoot->Load();
+//////	sRune->Load();
+//////	sGS->Load();
+//////	sItemMod->InitUIItemEntryData();
+//////	sLFGMgr->LoadRewards();
+//////	sCDK->Load();
+//////	sCharPvpTop->LoadTopSys();
+//////	sGvgSys->LoadgvgSys();
+//////}
+//////
+//////class DataLoaderWorldScript : public WorldScript
+//////{
+//////public:
+//////	DataLoaderWorldScript() : WorldScript("DataLoaderWorldScript") {}
+//////
+//////	void OnAfterConfigLoad(bool)
+//////	{
+//////		sDataLoader->LoadAll();
+//////		sFaker->Load();
+//////		sArenaDuel->Load();
+//////        sLog->outMessage("server",LOG_LEVEL_INFO, "加载自定义数据库完成");
+//////	}
+//////};
+//////
+//////class DataReloaderCommand : public CommandScript
+//////{
+//////public:
+//////	DataReloaderCommand() : CommandScript("DataReloaderCommand") { }
+//////
+//////    std::vector<ChatCommand> GetCommands() const
+//////	{
+//////		static std::vector<ChatCommand> reloaderCommandTable =
+//////		{
+//////			{ "all", SEC_CONSOLE, true, &HandleRlALLCommand, "" },
+//////			{ "item", SEC_CONSOLE, true, &HandleRlItemCommand, "" },
+//////			{ "spell", SEC_CONSOLE, true, &HandleRlSpellCommand, "" }
+//////		};
+//////
+//////		static std::vector<ChatCommand> commandTable =
+//////		{
+//////			{ "rl", SEC_CONSOLE, true, NULL, "", reloaderCommandTable }
+//////		};
+//////
+//////		return commandTable;
+//////	}
+//////
+//////	static bool HandleRlALLCommand(ChatHandler* handler, const char* /*args*/)
+//////	{
+//////		sDataLoader->LoadAll();
+//////
+//////		if (!handler->GetSession())
+//////		{
+//////			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [数据库]重载完毕...\n");
+//////			return true;
+//////		}
+//////
+//////		if (handler->GetSession()->GetPlayer())
+//////			handler->SendSysMessage("[数据库]重载完毕...");
+//////
+//////		return true;
+//////	}
+//////
+//////	static bool HandleRlItemCommand(ChatHandler* handler, const char* /*args*/)
+//////	{
+//////		sObjectMgr->LoadItemTemplates();
+//////
+//////		if (!handler->GetSession())
+//////		{
+//////			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [装备修改数据表]重载完毕...\n");
+//////			return true;
+//////		}
+//////
+//////		if (handler->GetSession()->GetPlayer())
+//////			handler->SendSysMessage(">> [装备修改数据表]重载完毕...");
+//////
+//////		return true;
+//////	}
+//////
+//////	static bool HandleRlSpellCommand(ChatHandler* handler, const char* /*args*/)
+//////	{
+//////		sSpellMgr->LoadDbcDataCorrections();
+//////
+//////		if (!handler->GetSession())
+//////		{
+//////			sLog->outMessage("server",LOG_LEVEL_INFO, ">> [SpellMod数据表]重载完毕...\n");
+//////			return true;
+//////		}
+//////
+//////		if (handler->GetSession()->GetPlayer())
+//////			handler->SendSysMessage("[SpellMod数据表]重载完毕...");
+//////
+//////		return true;
+//////	}
+//////};
+//////
+//////class LoaderDataOnLogin : PlayerScript
+//////{
+//////public:
+//////	LoaderDataOnLogin() : PlayerScript("LoaderDataOnLogin") {}
+//////	void OnLogin(Player* player) override
+//////	{
+//////		//初始化onlineRewardedCount		
+//////		QueryResult result = CharacterDatabase.Query("SELECT onlineRewardedCount FROM characters WHERE guid = '%u'", player->GetGUID().GetCounter());
+//////		if (!result)
+//////			player->onlineRewardedCount = 10000;
+//////		else
+//////		{
+//////			Field* fields = result->Fetch();
+//////			player->onlineRewardedCount = fields[0].Get<int32>();
+//////		}
+//////	}
+//////};
+//////
+//////void AddSC_Data_Loader()
+//////{
+//////	new DataLoaderWorldScript();
+//////	new DataReloaderCommand();
+//////	new LoaderDataOnLogin();
+//////}

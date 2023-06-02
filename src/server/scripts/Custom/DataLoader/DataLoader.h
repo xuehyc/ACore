@@ -50,6 +50,6 @@
 //	void LoadAll();
 //	
 //private:
-//	//ACE_Thread_Mutex _lock;
+//	//ACE_Thread_Mutex _lock;   //tmp
 //};
 //#define sDataLoader DataLoader::instance()
