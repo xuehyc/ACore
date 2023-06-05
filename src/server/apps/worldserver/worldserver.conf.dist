@@ -3918,7 +3918,8 @@ Pet.RankMod.Health = 1
 
 Appender.Console=1,4,1,"1 9 3 6 5 8"
 Appender.Server=2,5,0,Server.log,w
-Appender.GM=2,5,15,gm_%s.log
+#Appender.GM=2,5,15,gm_%s.log
+#取消GM日志
 Appender.DBErrors=2,5,1,DBErrors.log
 # Appender.DB=3,5,0
 
