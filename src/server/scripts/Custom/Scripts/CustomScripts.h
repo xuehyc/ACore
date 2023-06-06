@@ -1,10 +1,10 @@
-
+﻿
 enum GobActionTypes
 {
 	gob_ACTION_TYPE_NONE,
-	gob_ACTION_TYPE_AURA,							//�ͷż���				AuraID1,						AuraID2,			
-	gob_ACTION_TYPE_TELE,							//�������				TelePosId						TeleAura				
-	gob_ACTION_TYPE_ACTIVE_OR_DEACTIVE_OBJECT,		//�����ʹʧ��			CreatureEntry					GameObjectEntry		
+	gob_ACTION_TYPE_AURA,							//释放技能				AuraID1,						AuraID2,			
+	gob_ACTION_TYPE_TELE,							//传送玩家				TelePosId						TeleAura				
+	gob_ACTION_TYPE_ACTIVE_OR_DEACTIVE_OBJECT,		//激活或使失活			CreatureEntry					GameObjectEntry		
 	gob_ACTION_TALK,
 	gob_ACTION_SUMMON,
 };
@@ -23,26 +23,26 @@ extern std::vector<GobScriptTemplate> GobScriptVec;
 enum CreatureEventTypes
 {								//						eventPhase			delayTime			repeatMinTime					repeatMaxTime	
 	EVENT_TYPE_NONE,
-	EVENT_TYPE_COMBAT,			//����ս��									�״δ�����ʱ			��С�ظ�ʱ��						����ظ�ʱ��	
-	EVENT_TYPE_KILL,			//ɱ�����									�״δ�����ʱ			��С�ظ�ʱ��						����ظ�ʱ��	
-	EVENT_TYPE_HP_90,			//Ѫ������90%(ֱ�Ӵ�����		-					-					-								-			
-	EVENT_TYPE_HP_75,			//Ѫ������75%(ֱ�Ӵ���)		-					-					-								-			
-	EVENT_TYPE_HP_50,			//Ѫ������50%(ֱ�Ӵ���)		-					-					-								-			
-	EVENT_TYPE_HP_25,			//Ѫ������25%(ֱ�Ӵ���)		-					-					-								-			
-	EVENT_TYPE_HP_10,			//Ѫ������10%(ֱ�Ӵ���)		-					-					-								-				
-	EVENT_TYPE_DIED,			//����(ֱ�Ӵ���)				-					-					-								-	
-	EVENT_TYPE_RESET,			//����(ֱ�Ӵ���)				-					-					-								-
+	EVENT_TYPE_COMBAT,			//进入战斗									首次触发延时			最小重复时间						最大重复时间	
+	EVENT_TYPE_KILL,			//杀死玩家									首次触发延时			最小重复时间						最大重复时间	
+	EVENT_TYPE_HP_90,			//血量低于90%(直接触发）		-					-					-								-			
+	EVENT_TYPE_HP_75,			//血量低于75%(直接触发)		-					-					-								-			
+	EVENT_TYPE_HP_50,			//血量低于50%(直接触发)		-					-					-								-			
+	EVENT_TYPE_HP_25,			//血量低于25%(直接触发)		-					-					-								-			
+	EVENT_TYPE_HP_10,			//血量低于10%(直接触发)		-					-					-								-				
+	EVENT_TYPE_DIED,			//死亡(直接触发)				-					-					-								-	
+	EVENT_TYPE_RESET,			//重置(直接触发)				-					-					-								-
 };
 
 enum CreatureActionTypes
 {												//						actionParam1					actionParam2			actionParam3
 	ACTION_TYPE_NONE,
-	ACTION_TYPE_CAST_SPELL,						//�ͷż���				SPELL_ID_1,						SPELL_ID_2,				-
-	ACTION_TYPE_TALK,							//˵��					˵������								-				
-	ACTION_TYPE_ACTIVE_OR_DEACTIVE_OBJECT,		//����					CreatureEntry					GameObjectEntry			-
-	ACTION_TYPE_SUMMON,							//�ٻ����������			CreatureEntry��-	GameObjectEntry	����ʱ��					����ID
-	ACTION_TYPE_ALT_PHASE,						//�趨�׶�				eventPhase							-		
-	ACTION_TYPE_ALT_GOB,						//�򿪻�ر�����			GameObjectEntry��-	GameObjectEntry	��Χ		
+	ACTION_TYPE_CAST_SPELL,						//释放技能				SPELL_ID_1,						SPELL_ID_2,				-
+	ACTION_TYPE_TALK,							//说话					说话内容								-				
+	ACTION_TYPE_ACTIVE_OR_DEACTIVE_OBJECT,		//激活					CreatureEntry					GameObjectEntry			-
+	ACTION_TYPE_SUMMON,							//召唤生物或物体			CreatureEntry或-	GameObjectEntry	持续时间					坐标ID
+	ACTION_TYPE_ALT_PHASE,						//设定阶段				eventPhase							-		
+	ACTION_TYPE_ALT_GOB,						//打开或关闭物体			GameObjectEntry或-	GameObjectEntry	范围		
 	ACTION_TYPE_MOVE_RANDOM
 };
 
@@ -111,17 +111,17 @@ extern std::unordered_map<uint32,CircleTemplate> CircleDataMap;
 
 enum SpellModTypes
 {
-	SMT_DIRECT_DMG,					//ֱ���˺�����
-	SMT_DIRECT_HEAL,				//ֱ����������
-	SMT_MOVE_SPEED_INS,				//�ƶ��ٶ�����
-	SMT_MOVE_SPEED_DES,				//�ƶ��ٶȼ���
-	SMT_DMG_PCT,					//��ɵ��˺��ٷֱ�����
-	SMT_HEAL_PCT,					//��ɵ����ưٷֱ�����
-	SMT_DMG_PCT_TAKEN,				//�ܵ����˺��ٷֱ�����
-	SMT_HEAL_PCT_TAKEN,				//�ܵ������ưٷֱ�����
-	SMT_ATTACK_SPEED,				//������ʩ���ٶȰٷֱ�����
-	SMT_STUN,						//����
-	SMT_STUN_BREAKABLE,				//�ܵ��˺��ɴ�ϻ���
+	SMT_DIRECT_DMG,					//直接伤害增加
+	SMT_DIRECT_HEAL,				//直接治疗增加
+	SMT_MOVE_SPEED_INS,				//移动速度增加
+	SMT_MOVE_SPEED_DES,				//移动速度减少
+	SMT_DMG_PCT,					//造成的伤害百分比增减
+	SMT_HEAL_PCT,					//造成的治疗百分比增减
+	SMT_DMG_PCT_TAKEN,				//受到的伤害百分比增减
+	SMT_HEAL_PCT_TAKEN,				//受到的治疗百分比增减
+	SMT_ATTACK_SPEED,				//攻击、施法速度百分比增减
+	SMT_STUN,						//昏迷
+	SMT_STUN_BREAKABLE,				//受到伤害可打断昏迷
 };
 
 struct AIRandSpellTemplate
