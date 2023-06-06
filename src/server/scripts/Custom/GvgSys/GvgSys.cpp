@@ -10,6 +10,8 @@
 #include "../GCAddon/GCAddon.h"
 #include "../GS/GS.h"
 #include "Pet.h"
+#include <Custom/CustomEvent/CustomEvent.h>
+#include <Custom/Other/CFBG.h>
 
 GvgSys::GvgSys()
 {
@@ -45,7 +47,7 @@ GvgSys::~GvgSys()
 //	if (Pet * pet = GetPet())
 //		pet->setFaction(getFaction());
 //}
-//
+
 //uint8 Player::GetGcRaceOrRace(bool action)
 //{
 //	uint8 playerrace = getRace();
