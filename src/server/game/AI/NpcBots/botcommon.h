@@ -46,6 +46,7 @@ enum BotCommonValues
     REVIVE_TIMER_MEDIUM                 = 90000, //1.5 Minutes
     REVIVE_TIMER_SHORT                  = 60000, //1 Minute
     INOUTDOORS_ENSURE_TIMER             = 1000,
+    BOT_GROUP_UPDATE_TIMER              = 2000,
 //VEHICLE CREATURES
     CREATURE_NEXUS_SKYTALON_1           = 32535, // [Q] Aces High
     CREATURE_EOE_SKYTALON_N             = 30161, // Eye of Eternity
@@ -86,6 +87,8 @@ enum BotCommonValues
     CREATURE_ICC_MUTATED_ABOMINATION8   = 38787,
 //COMMON AOE TRIGGERS
     CREATURE_ZA_FIRE_BOMB               = 23920,
+    CREATURE_UK_SHADOW_AXE_N            = 23997,
+    CREATURE_UK_SHADOW_AXE_H            = 31835,
     CREATURE_EOE_STATIC_FIELD           = 30592,
     CREATURE_ICC_OOZE_PUDDLE            = 37690,
 //COMMON ENEMY CREATURES

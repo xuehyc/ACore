@@ -1369,6 +1369,7 @@ public:
             << "\n  charmed guid:\n" << target->GetCharmGUID().ToString()
             << "\n  charmer guid:\n" << target->GetCharmerGUID().ToString()
             << "\n  creator guid:\n" << target->GetCreatorGUID().ToString()
+            << "\n  creator2 guid:\n" << (target->GetCreator() ? target->GetCreator()->GetGUID().ToString() : std::string{})
             << "\n  owner guid:\n" << target->GetOwnerGUID().ToString();
 
         handler->SendSysMessage(gss.str().c_str());
@@ -3044,6 +3045,13 @@ public:
         if (!creInfo->IsNPCBot())
         {
             handler->PSendSysMessage("生物 %u 不是NPCBot!", id);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+
+        if (id == BOT_ENTRY_MIRROR_IMAGE_BM)
+        {
+            handler->PSendSysMessage("creature %u is a mirror image and cannot be spawned!", id);
             handler->SetSentErrorMessage(true);
             return false;
         }
