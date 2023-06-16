@@ -2150,11 +2150,11 @@ local Menu={--菜单页面
 		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:32:32|t|cff9932CC城市传送",							TPMENU+0x10,	GOSSIP_ICON_BATTLE},
 		{MENU,	"|TInterface/ICONS/Achievement_Zone_Northrend_01:32:32|t|ce600008B诺森德地图",							TPMENU+0x60,	GOSSIP_ICON_BATTLE},
 		{MENU,	"|TInterface/ICONS/Achievement_Zone_Outland_01:32:32|t|cFF32CD32外域地图",								TPMENU+0x50,	GOSSIP_ICON_BATTLE},
-		{MENU,	"|TInterface/ICONS/Achievement_Zone_Kalimdor_01:32:32|t|cffe60000卡利姆多",							TPMENU+0x40,	GOSSIP_ICON_BATTLE},
-		{MENU,	"|TInterface/ICONS/Achievement_Zone_EasternKingdoms_01:32:32|t|cff00ccff东部王国",							TPMENU+0x30,	GOSSIP_ICON_BATTLE},
-		{MENU,	"|TInterface/ICONS/INV_Misc_Map04:32:32|t|cFFFF6600初始之地",						TPMENU+0x20,	GOSSIP_ICON_BATTLE},
-		{MENU,  "|TInterface/ICONS/Achievement_Zone_Mulgore_01:32:32|t|cFFcc6633风景传送",							TPMENU+0x70,	GOSSIP_ICON_BATTLE},
-		{MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“女士们”",							TPMENU+0x80,	GOSSIP_ICON_BATTLE},
+		{MENU,	"|TInterface/ICONS/Achievement_Zone_Kalimdor_01:32:32|t|cffe60000卡利姆多",							    TPMENU+0x40,	GOSSIP_ICON_BATTLE},
+		{MENU,	"|TInterface/ICONS/Achievement_Zone_EasternKingdoms_01:32:32|t|cff00ccff东部王国",						TPMENU+0x30,	GOSSIP_ICON_BATTLE},
+		{MENU,	"|TInterface/ICONS/INV_Misc_Map04:32:32|t|cFFFF6600初始之地",						                    TPMENU+0x20,	GOSSIP_ICON_BATTLE},
+		{MENU,  "|TInterface/ICONS/Achievement_Zone_Mulgore_01:32:32|t|cFFcc6633风景传送",							    TPMENU+0x70,	GOSSIP_ICON_BATTLE},
+		{MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“女士们”",							        TPMENU+0x80,	GOSSIP_ICON_BATTLE},
 
 		--需要添加地图补丁，外发时注释掉
 		--{MENU,  "|TInterface/ICONS/expansionicon_mistsofpandaria:32:32|t|cff00FF96自制地图",							TPMENU+0x90,	GOSSIP_ICON_BATTLE}, 
@@ -2183,7 +2183,7 @@ local Menu={--菜单页面
 	    {TP, " |TInterface/ICONS/Achievement_Zone_ElwynnForest:32:32|t |cff3F636C人类出生地(北郡山谷)",		0,		-8949.95,	-132.493,	83.5312,	0,			TEAM_ALLIANCE},
 	    {TP, " |TInterface/ICONS/Achievement_Zone_DunMorogh:32:32|t |cff3F636C矮人出生地(寒脊山谷)",		0,		-6240.32,	331.033,	382.758,	6.1,		TEAM_ALLIANCE},
 	    {TP, " |TInterface/ICONS/Achievement_Zone_DunMorogh:32:32|t |cff3F636C侏儒出生地(寒脊山谷)",		0,		-6240,		331,		383,		0,			TEAM_ALLIANCE},
-	    {TP, " |TInterface/ICONS/Achievement_Zone_UnGoroCrater_01:32:32|t |cff3F636C暗夜精灵出生地(幽影谷)",	1,		10311.3,	832.463,	1326.41,	5.6,		TEAM_ALLIANCE},
+	    {TP, " |TInterface/ICONS/Achievement_Zone_UnGoroCrater_01:32:32|t |cff3F636C暗夜精灵出生地(幽影谷)",1,		10311.3,	832.463,	1326.41,	5.6,		TEAM_ALLIANCE},
 	    {TP, " |TInterface/ICONS/Achievement_Zone_AzuremystIsle_01:32:32|t |cff3F636C德莱尼出生地(埃门谷)",	530,	-3961.64,	-13931.2,	100.615,	2,			TEAM_ALLIANCE},
 
 		{TP, " |TInterface/ICONS/Achievement_Zone_Durotar:32:32|t |cff3F636C兽人出生地(试炼谷)",		1,		-618.518,	-4251.67,	38.718,		0,			TEAM_HORDE},
