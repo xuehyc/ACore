@@ -902,6 +902,83 @@ end
         function ST.SummonVendor(player)--售卖商人
 			ST.SummonNPC(player, 15898)
 		end
+
+        --原神变身系列
+
+
+        function ST.Morph_45600(player)
+            player:SetDisplayId("45602") 
+		end
+
+
+
+         function ST.Morph_45601(player)
+            player:SetDisplayId("45601") 
+		end
+
+         function ST.Morph_45602(player)
+            player:SetDisplayId("45602") 
+		end
+
+         function ST.Morph_45603(player)
+            player:SetDisplayId("45603") 
+		end
+
+         function ST.Morph_45604(player)
+            player:SetDisplayId("45604") 
+		end
+
+         function ST.Morph_45605(player)
+            player:SetDisplayId("45605") 
+		end
+
+         function ST.Morph_45606(player)
+            player:SetDisplayId("45606") 
+		end
+
+         function ST.Morph_45607(player)
+            player:SetDisplayId("45607") 
+		end
+
+         function ST.Morph_45608(player)
+            player:SetDisplayId("45608") 
+		end
+         function ST.Morph_45609(player)
+            player:SetDisplayId("45609") 
+		end
+         function ST.Morph_45610(player)
+            player:SetDisplayId("45610") 
+		end
+        function ST.Morph_45611(player)--变身45611 --原神系列(蓝衣红袜)
+			--Unit:DeMorph()
+            --player::SetDisplayId(45611)
+            player:SetDisplayId("45611") --成功啦!哈哈!
+            --RunCommand(".morph target 45611")
+            --RunCommand("additem 123456")
+            --Global:RunCommand('.gm fly on')
+            --player:Yell("哈哈",0)--成功
+		end
+
+
+        --我叫MT系列
+
+         function ST.Morph_45612(player)
+            player:SetDisplayId("45612") 
+		end
+
+       
+
+        function ST.DeMorph(player)--清除变身
+			--Unit:DeMorph()    --这个不行
+            player:DeMorph()    --这个可以
+		end
+
+        function ST.PlayMovie(player)--播放影片
+			Player:SendMovieStart("0")
+            player:Yell("哈哈",0)
+		end
+        
+
 		function ST.SummonNPC_4001002(player)
 			ST.SummonNPC(player, 190002)
 		end
@@ -1781,9 +1858,10 @@ local Menu={--菜单页面
         {MENU, "|TInterface/ICONS/popkart_app_ico:32:32|t|c00722FFF跑跑卡丁车",	            MMENU+0x30,		GOSSIP_ICON_TALK},--跑跑卡丁车
         {MENU, "|TInterface/ICONS/cs_1_6_app_ico:32:32|t|c00722FFF反恐精英",	            MMENU+0x30,		GOSSIP_ICON_TALK},--反恐精英
         {MENU, "|TInterface/ICONS/Journey_to_the_East_app_ico:32:32|t|c00722FFF东游记",	    MMENU+0x30,		GOSSIP_ICON_TALK},--东游记
-        {MENU, "|TInterface/ICONS/bbl:32:32|t|c00722FFF原神",	                            MMENU+0x40,		GOSSIP_ICON_TALK},--原神    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉
+        --{MENU, "|TInterface/ICONS/bbl:32:32|t|c00722FFF芭芭拉",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--原神    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
+        {MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF原神",	                        MMENU+0x50,		GOSSIP_ICON_TALK},--原神    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
         {MENU, "|TInterface/ICONS/Temp:32:32|t|c00722FFF魔兽世界",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--魔兽世界    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别
-        
+        --需要补充的:守望先锋,大菠萝,
 	},
 
     [TBMENU]={--炉石功能
@@ -2089,6 +2167,51 @@ local Menu={--菜单页面
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
 	    {TP, " |TInterface/ICONS/achievement_pvp_H_04:32:32|t【|cFFB22222部落锁经验|r】", 1,2000.801025,-4790.464355,56.992043,0.314139,TEAM_HORDE,1,	10000},
 	},
+
+
+    	[MMENU+0x60]={--原神_变身
+		--{FUNC, "|TInterface/ICONS/achievement_leader_tyrande_whisperwind:32:32|t|cff3F636C召唤歌剧院管理员|r", 	ST.SummonNPC_sound,	GOSSIP_ICON_TAXI},--自制播音员，外发时注释掉
+		--{FUNC, "|TInterface/ICONS/Ysera_mortal:32:32|t|cff3F636C召唤伊瑟拉|r", 	ST.SummonNPC_Ysera,	GOSSIP_ICON_TAXI},--自制NPC，外发时注释掉
+		--{FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636CGM模式", 		Stone.GmOnMod,	GOSSIP_ICON_VENDOR},--eluna不能支持GM命令
+
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣短筒蓝袜",       ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒红袜", 	    ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒红袜", 	    ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒白袜", 	    ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣无袜", 	ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣蒙眼黑色毛袜", 	ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣长筒毛袜", 	ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣红裙摆长筒白袜", 	ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆长筒黑袜", 	ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆无袜", 	ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
+        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t变身芭芭拉(蓝衣红袜)12", 	ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
+        --到MT系列了
+        
+        
+        
+
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t清除变身", 	ST.DeMorph,	GOSSIP_ICON_TRAINER},
+
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t播放影片", 	            ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
+        --{FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C在线银行", 		Stone.OpenBank,	GOSSIP_ICON_VENDOR},
+        --{FUNC, "|TInterface/ICONS/INV_Letter_06:32:32|t|cff3F636C空中邮箱", 		Stone.OpenMailBox,	GOSSIP_ICON_VENDOR},
+		--{FUNC, "|TInterface/ICONS/inv_misc_coin_06:32:32|t|cff3F636C移动拍卖行", 		Stone.OpenAuction,	GOSSIP_ICON_VENDOR},--无法脱离NPC实现
+		--{FUNC, "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cff3F636C移动公会银行", 		ST.SummonGameObject_GuildBank,	GOSSIP_ICON_VENDOR},
+        --{FUNC, "|TInterface/ICONS/trade_blacksmithing:32:32|t|cff3F636C修理装备",	    Stone.RepairAll,	GOSSIP_ICON_MONEY_BAG,	false,"需要花费金币修理装备 ？"},
+        --{MENU, "|TInterface/ICONS/inv_misc_runedorb_01:32:32|t|cff3F636C商业技能设施",		MMENU+0x110,		GOSSIP_ICON_TALK},
+		--{FUNC, "|TInterface/ICONS/inv_box_02:32:32|t|cff3F636C保存角色", 		Stone.SaveToDB,			GOSSIP_ICON_INTERACT_1},
+		--{FUNC, "|TInterface/ICONS/Spell_Holy_BorrowedTime:32:32|t|cff3F636C重置角色所有冷却",	Stone.ResetAllCD,		GOSSIP_ICON_INTERACT_1,	false,"确认重置所有冷却 ？"},
+		--{FUNC, "|TInterface/ICONS/inv_potion_47:32:32|t|cff3F636C立刻回满血蓝",	Stone.MaxHealth,	GOSSIP_ICON_BATTLE,	false,"确认回复生命与法力？"},
+		--{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
+		
+		--{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
+		--{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
+		--{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
+	    --{TP, " |TInterface/ICONS/achievement_pvp_H_04:32:32|t【|cFFB22222部落锁经验|r】", 1,2000.801025,-4790.464355,56.992043,0.314139,TEAM_HORDE,1,	10000},
+	},
+
     [MMENU+0x30]={--热血江湖气功加点主界面
         {MENU, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t加点", 	    SKLMENU+0x80,	GOSSIP_ICON_TRAINER},   --进入主界面
         
@@ -2123,6 +2246,24 @@ local Menu={--菜单页面
 	},
     [MMENU+0x40]={--魔兽世界主界面
 		{MENU, "|TInterface/ICONS/inv_misc_food_15:32:32|t|c00722FFF便捷功能",		                        MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
+        {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},
+        
+        {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送", 	                            TPMENU,			GOSSIP_ICON_TAXI},
+		
+		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:32:32|t|cff0070d0炉石功能", 	                            TBMENU,	        GOSSIP_ICON_TAXI,},
+		{MENU, "|TInterface/ICONS/inv_misc_ogrepinata:32:32|t|cFF9932CC技能训练|r", 	                    SKLMENU,	    GOSSIP_ICON_TRAINER},
+		{MENU, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:32:32|t|cFF32CD99幻化功能|r",		MMENU+0x20,		GOSSIP_ICON_TABARD},
+		{MENU, "|TInterface/ICONS/Trade_Engraving:32:32|t|cFFB22222双重附魔|r",		                        ENCMENU,		GOSSIP_ICON_TABARD},
+		
+        
+        {MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:32:32|t|cFF548B54付费功能|r",	                GMMENU,		    GOSSIP_ICON_MONEY_BAG},
+		{TP,   "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cffe60000城市广场|r (|cff0070d0商业中心|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},
+        },
+
+
+
+        [MMENU+0x50]={--原神主界面
+		{MENU, "|TInterface/ICONS/inv_misc_food_15:32:32|t|c00722FFF变身",		                            MMENU+0x60,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
         {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},
         
         {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送", 	                            TPMENU,			GOSSIP_ICON_TAXI},
