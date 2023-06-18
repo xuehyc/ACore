@@ -2222,11 +2222,9 @@ local Menu={--菜单页面
 
     [MMENU+0x40]={--魔兽世界主界面
 		{MENU, "|TInterface/ICONS/inv_misc_food_15:32:32|t|c00722FFF便捷功能",		                        MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
-        {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},
-        
-        {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送_原版", 	                        TPMENU+0x01,			GOSSIP_ICON_TAXI},
-        {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送_天蓝版(细致坐标与再分类)", 	    TPMENU+0x3220,			GOSSIP_ICON_TAXI},
-		
+        {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},        
+        --{MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送_原版", 	                        TPMENU+0x01,			GOSSIP_ICON_TAXI},        
+        {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送", 	                            TPMENU+0x3220,			GOSSIP_ICON_TAXI},--天蓝版(细致坐标与再分类)		
 		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:32:32|t|cff0070d0炉石功能", 	                            TBMENU,	        GOSSIP_ICON_TAXI,},
 		{MENU, "|TInterface/ICONS/inv_misc_ogrepinata:32:32|t|cFF9932CC技能训练|r", 	                    SKLMENU,	    GOSSIP_ICON_TRAINER},
 		{MENU, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:32:32|t|cFF32CD99幻化功能|r",		MMENU+0x20,		GOSSIP_ICON_TABARD},
@@ -2851,7 +2849,7 @@ local Menu={--菜单页面
 --原版传送菜单结束
 --天蓝传送菜单开始(2023.5.24版)
 
-[TPMENU+0x3220]={--传送主菜单
+[TPMENU+0x3220]={--传送主菜单_天蓝版
 		{MENU,	"|TInterface/ICONS/INV_Misc_Map04:35:35|t|cFFFF6600各种族出生地",						TPMENU+0x20,	GOSSIP_ICON_TAXI},
 		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC主要城市",							TPMENU+0x520,	GOSSIP_ICON_TAXI,TEAM_ALLIANCE},
 		{MENU,	"|TInterface/ICONS/Achievement_Zone_EasternKingdoms_01:35:35|t|cff2359FF东部王国",							TPMENU+0x220,	GOSSIP_ICON_TAXI,TEAM_NONE},
@@ -2859,6 +2857,7 @@ local Menu={--菜单页面
 		{MENU,	"|TInterface/ICONS/Achievement_Zone_Outland_01:35:35|t|cFFB22222外域",								TPMENU+0x1a0,	GOSSIP_ICON_TAXI,TEAM_NONE},
 		{MENU,	"|TInterface/ICONS/Achievement_Zone_Northrend_01:35:35|t|ce600008B诺森德",							TPMENU+0xf0,	GOSSIP_ICON_TAXI,TEAM_NONE},
 		{MENU,  "|TInterface/ICONS/Achievement_Zone_Mulgore_01:35:35|t|cFFcc6633风景传送",							TPMENU+0x510,	GOSSIP_ICON_TAXI,TEAM_NONE},
+        {MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“女士们”",							        TPMENU+0x2180,	GOSSIP_ICON_BATTLE},
 		},
 
 	[TPMENU+0x20]={--各种族出生地
