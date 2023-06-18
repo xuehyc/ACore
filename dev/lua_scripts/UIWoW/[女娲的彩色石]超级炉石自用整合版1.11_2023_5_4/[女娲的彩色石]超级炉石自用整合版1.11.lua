@@ -962,11 +962,202 @@ end
 
         --我叫MT系列
 
-         function ST.Morph_45612(player)
-            player:SetDisplayId("45612") 
+       function ST.Morph_45612(player)
+        player:SetDisplayId("45612") 
+	   end
+
+       function ST.Morph_45613(player)
+            player:SetDisplayId("45613") 
+	   end
+
+        function ST.Morph_45614(player)
+            player:SetDisplayId("45614") 
+	    end
+        function ST.Morph_45615(player)
+            player:SetDisplayId("45615") 
+	    end
+        function ST.Morph_45616(player)
+            player:SetDisplayId("45616") 
+	    end
+
+        function ST.Morph_45617(player)
+            player:SetDisplayId("45617") 
 		end
 
-       
+        function ST.Morph_45618(player)
+            player:SetDisplayId("45618") 
+		end
+
+        function ST.Morph_45619(player)
+            player:SetDisplayId("45619") 
+		end
+
+        function ST.Morph_45620(player)
+            player:SetDisplayId("45620") 
+		end
+
+        function ST.Morph_45621(player)
+            player:SetDisplayId("45621") 
+		end
+
+
+        function ST.Morph_45622(player)
+            player:SetDisplayId("45622") 
+		end
+
+        function ST.Morph_45623(player)
+            player:SetDisplayId("45623") 
+		end
+        function ST.Morph_45624(player)
+            player:SetDisplayId("45624") 
+		end
+        function ST.Morph_45625(player)
+            player:SetDisplayId("45625") 
+		end
+        function ST.Morph_45626(player)
+            player:SetDisplayId("45626") 
+		end
+        function ST.Morph_45627(player)
+            player:SetDisplayId("45627") 
+		end
+        function ST.Morph_45628(player)
+            player:SetDisplayId("45628") 
+		end
+        function ST.Morph_45629(player)
+            player:SetDisplayId("45629") 
+		end
+        function ST.Morph_45630(player)
+            player:SetDisplayId("45630") 
+		end
+        function ST.Morph_45631(player)
+            player:SetDisplayId("45631") 
+		end
+        function ST.Morph_45632(player)
+            player:SetDisplayId("45632") 
+		end
+        function ST.Morph_45633(player)
+            player:SetDisplayId("45633") 
+		end
+        function ST.Morph_45634(player)
+            player:SetDisplayId("45634") 
+		end
+        function ST.Morph_45635(player)
+            player:SetDisplayId("45635") 
+	    end
+
+        function ST.Morph_45636(player)
+            player:SetDisplayId("45636") 
+	    end
+        function ST.Morph_45637(player)
+            player:SetDisplayId("45637") 
+	    end
+        function ST.Morph_45638(player)
+            player:SetDisplayId("45638") 
+	    end
+        function ST.Morph_45639(player)
+            player:SetDisplayId("45639") 
+	    end
+        function ST.Morph_45640(player)
+            player:SetDisplayId("45640") 
+	    end
+        function ST.Morph_45641(player)
+            player:SetDisplayId("45641") 
+	    end
+        function ST.Morph_45642(player)
+            player:SetDisplayId("45642") 
+	    end
+        function ST.Morph_45643(player)
+            player:SetDisplayId("45643") 
+	    end
+        function ST.Morph_45644(player)
+            player:SetDisplayId("45644") 
+	    end
+        function ST.Morph_45645(player)
+            player:SetDisplayId("45645") 
+	    end
+        function ST.Morph_45646(player)
+            player:SetDisplayId("45646") 
+	    end
+        function ST.Morph_45647(player)
+            player:SetDisplayId("45647") 
+	    end
+        function ST.Morph_45648(player)
+            player:SetDisplayId("45648") 
+	    end
+        function ST.Morph_45649(player)
+            player:SetDisplayId("45649") 
+	    end
+        function ST.Morph_45650(player)
+            player:SetDisplayId("45650") 
+	    end
+        function ST.Morph_45651(player)
+            player:SetDisplayId("45651") 
+	    end
+        function ST.Morph_45652(player)
+            player:SetDisplayId("45652") 
+	    end
+        function ST.Morph_45653(player)
+            player:SetDisplayId("45653") 
+	    end
+        function ST.Morph_45654(player)
+            player:SetDisplayId("45654") 
+	    end
+        function ST.Morph_45655(player)
+            player:SetDisplayId("45655") 
+	    end
+        function ST.Morph_45656(player)
+            player:SetDisplayId("45656") 
+	    end
+        function ST.Morph_45657(player)
+            player:SetDisplayId("45657") 
+	    end
+        function ST.Morph_45658(player)
+            player:SetDisplayId("45658") 
+	    end
+        function ST.Morph_45659(player)
+            player:SetDisplayId("45659") 
+	    end
+        function ST.Morph_45660(player)
+            player:SetDisplayId("45660") 
+	    end
+        function ST.Morph_45661(player)
+            player:SetDisplayId("45661") 
+	    end
+
+        --MT结束
+
+        --function ST.Morph_45662(player)
+          --  player:SetDisplayId("45662") 
+	    --end
+--        function ST.Morph_45654(player)
+  --          player:SetDisplayId("45654") 
+	--    end
+      ----  function ST.Morph_45654(player)
+          --  player:SetDisplayId("45654") 
+	    --end
+        --function ST.Morph_45654(player)
+    --        player:SetDisplayId("45654") 
+	--    end
+   --     function ST.Morph_45654(player)
+    --        player:SetDisplayId("45654") 
+	  --  end
+  --      function ST.Morph_45654(player)
+    --        player:SetDisplayId("45654") 
+	--    end
+     --   function ST.Morph_45654(player)
+    --        player:SetDisplayId("45654") 
+	 --   end
+
+
+
+
+
+
+
+
+
+
+
 
         function ST.DeMorph(player)--清除变身
 			--Unit:DeMorph()    --这个不行
@@ -1859,7 +2050,8 @@ local Menu={--菜单页面
         {MENU, "|TInterface/ICONS/cs_1_6_app_ico:32:32|t|c00722FFF反恐精英",	            MMENU+0x30,		GOSSIP_ICON_TALK},--反恐精英
         {MENU, "|TInterface/ICONS/Journey_to_the_East_app_ico:32:32|t|c00722FFF东游记",	    MMENU+0x30,		GOSSIP_ICON_TALK},--东游记
         --{MENU, "|TInterface/ICONS/bbl:32:32|t|c00722FFF芭芭拉",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--原神    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
-        {MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF原神",	                        MMENU+0x50,		GOSSIP_ICON_TALK},--原神    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
+        {MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF原神",	                        MMENU+0x60,		GOSSIP_ICON_TALK},--原神    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
+        {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF我叫MT",	                    MMENU+0x70,		GOSSIP_ICON_TALK},--原神
         {MENU, "|TInterface/ICONS/Temp:32:32|t|c00722FFF魔兽世界",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--魔兽世界    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别
         --需要补充的:守望先锋,大菠萝,
 	},
@@ -2169,32 +2361,132 @@ local Menu={--菜单页面
 	},
 
 
-    	[MMENU+0x60]={--原神_变身
-		--{FUNC, "|TInterface/ICONS/achievement_leader_tyrande_whisperwind:32:32|t|cff3F636C召唤歌剧院管理员|r", 	ST.SummonNPC_sound,	GOSSIP_ICON_TAXI},--自制播音员，外发时注释掉
-		--{FUNC, "|TInterface/ICONS/Ysera_mortal:32:32|t|cff3F636C召唤伊瑟拉|r", 	ST.SummonNPC_Ysera,	GOSSIP_ICON_TAXI},--自制NPC，外发时注释掉
-		--{FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636CGM模式", 		Stone.GmOnMod,	GOSSIP_ICON_VENDOR},--eluna不能支持GM命令
-
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣短筒蓝袜",       ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒红袜", 	    ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒红袜", 	    ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒白袜", 	    ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣无袜", 	ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣蒙眼黑色毛袜", 	ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣长筒毛袜", 	ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
+    [MMENU+0x60]={--原神_变身
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣短筒蓝袜",           ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒白袜", 	        ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣无袜", 	            ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣蒙眼黑色毛袜", 	    ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣长筒毛袜", 	        ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣红裙摆长筒白袜", 	ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆长筒黑袜", 	ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆长筒黑袜", ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆无袜", 	ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
-        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t变身芭芭拉(蓝衣红袜)12", 	ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
-        --到MT系列了
-        
-
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t清除变身", 	ST.DeMorph,	GOSSIP_ICON_TRAINER},
-
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t播放影片", 	            ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t清除变身", 	                ST.DeMorph,	    GOSSIP_ICON_TRAINER},
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t播放影片", 	                ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
        
 	},
+
+
+      [MMENU+0x70]={--我叫MT_变身1
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t长白发清凉女",     ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗夜男", 	        ST.Morph_45613,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t古装血小贱", 	    ST.Morph_45614,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t吸血鬼血小贱", 	ST.Morph_45615,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t尖角帽血小贱", 	ST.Morph_45616,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暴毙烤迪克", 	    ST.Morph_45617,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t严实板甲男", 	    ST.Morph_45618,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t大小姐", 	        ST.Morph_45619,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t呆贼", 	        ST.Morph_45620,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t术士大妈", 	    ST.Morph_45621,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t羽装大小姐", 	    ST.Morph_45622,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装大小姐", 	    ST.Morph_45623,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t神棍德", 	        ST.Morph_45624,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t地中海", 	        ST.Morph_45625,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t女德", 	        ST.Morph_45626,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装方砖叔", 	    ST.Morph_45627,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗黑装方砖叔", 	ST.Morph_45628,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t牧尸", 	        ST.Morph_45629,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t尖角装会长", 	    ST.Morph_45630,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t板甲会长", 	    ST.Morph_45631,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t狩猎装会长", 	    ST.Morph_45632,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t吉安娜", 	    ST.Morph_45633,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装劣人", 	    ST.Morph_45634,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t蓝装劣人", 	    ST.Morph_45635,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗装劣人", 	    ST.Morph_45636,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t阴谋者", 	    ST.Morph_45637,	GOSSIP_ICON_TRAINER},--成功
+        {MENU, "|TInterface/ICONS/Achievement_PVP_A_01:32:32|t下一页",              MMENU+0x80,GOSSIP_ICON_BATTLE},
+
+        --冗余部分
+        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t清除变身", 	    ST.DeMorph,	    GOSSIP_ICON_TRAINER},
+
+	},
+
+
+    [MMENU+0x80]={--我叫MT_变身2
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t红装美铝", 	    ST.Morph_45638,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装美铝", 	    ST.Morph_45639,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t亮装美铝", 	    ST.Morph_45640,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|tMT", 	    ST.Morph_45641,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t白装牧尸", 	    ST.Morph_45642,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t红装双马尾血精灵", 	    ST.Morph_45643,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗装双马尾血精灵", 	    ST.Morph_45644,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t绿装尖角女德", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t蓝黄装开花尖角女德", 	    ST.Morph_45646,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t野兽装女德", 	    ST.Morph_45647,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t红装女贼", 	    ST.Morph_45648,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗红装女贼", 	    ST.Morph_45649,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t骷髅蓝装女贼", 	    ST.Morph_45650,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t粉红清凉仙女", 	    ST.Morph_45651,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t麒麟臂男", 	    ST.Morph_45652,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t蓝金法师装女", 	    ST.Morph_45653,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t傻馒", 	    ST.Morph_45654,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t飞虎", 	    ST.Morph_45655,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t丝袜长袍血精灵法师", 	    ST.Morph_45656,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金色尖角短袍血精灵法师", 	    ST.Morph_45657,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t绿装血精灵法师", 	    ST.Morph_45658,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t白装野德新之助", 	    ST.Morph_45659,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装长披风野德新之助", 	    ST.Morph_45660,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t马驹", 	    ST.Morph_45661,	GOSSIP_ICON_TRAINER},--成功
+        {MENU, "|TInterface/ICONS/achievement_pvp_h_11:32:32|t上一页",              MMENU+0x70,GOSSIP_ICON_BATTLE},
+        --45662 初音未来
+        --45663 鱼人宝宝车队
+        --45664 邪能战蝎
+        --45665 装甲虎
+        --45666 邪能马
+        --667 星光龙
+        --668 黑色翔龙
+        --669 绿色翔龙
+        --670 发光闪电绿色翔龙
+        --671 发光白色翔龙
+        --672 地精三轮车
+        --673 红色跑车
+        --674 联盟争霸赛奖励摩托车
+        --675 部落争霸赛奖励摩托车
+        --676 浓烟飞艇
+        --677 星际争霸鱼人宝宝
+        --678 红色机器人
+        --679 熔岩裂犬
+        --680 CTM萨尔
+        --681 暗色战蝎
+        --682 烈酒虎
+        --683 黑色邪能鱼人
+        --684 暗色兽人
+        --685 亮色苏拉玛女法师
+        --686 暗色苏拉玛女法师
+        --687 邪能古尔丹
+        --688 烈焰巫妖王
+        --689 邪能宠物豹
+        --690 亮色苏拉玛男法师
+        --691 暗色苏拉玛男法师
+        --692 宾利
+        --693 家用型跑车
+        --694 黄色超跑
+        --695 魔法黄色飞猫
+        --696 烈焰宠物犬
+        --697 坦克
+        --698 2b女
+        --699 不知火舞
+        --700 吕布
+        --701 布加迪
+        --702 白色布加迪(云加鹰)
+        --703 车轮滚滚
+    },
 
     [MMENU+0x30]={--热血江湖气功加点主界面
         {MENU, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t加点", 	    SKLMENU+0x80,	GOSSIP_ICON_TRAINER},   --进入主界面
