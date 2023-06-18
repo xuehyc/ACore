@@ -2408,13 +2408,6 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装劣人", 	    ST.Morph_45636,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t阴谋者", 	    ST.Morph_45637,	GOSSIP_ICON_TRAINER},--成功
         {MENU, "|TInterface/ICONS/Achievement_PVP_A_01:32:32|t下一页",              MMENU+0x80,GOSSIP_ICON_BATTLE},
-
-        --冗余部分
-        --{FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        --{FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        --{FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        --{FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t清除变身", 	    ST.DeMorph,	    GOSSIP_ICON_TRAINER},
-
 	},
 
 
