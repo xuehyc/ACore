@@ -2189,27 +2189,11 @@ local Menu={--菜单页面
         --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t变身芭芭拉(蓝衣红袜)12", 	ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
         --到MT系列了
         
-        
-        
 
         {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t清除变身", 	ST.DeMorph,	GOSSIP_ICON_TRAINER},
 
         {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t播放影片", 	            ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
-        --{FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C在线银行", 		Stone.OpenBank,	GOSSIP_ICON_VENDOR},
-        --{FUNC, "|TInterface/ICONS/INV_Letter_06:32:32|t|cff3F636C空中邮箱", 		Stone.OpenMailBox,	GOSSIP_ICON_VENDOR},
-		--{FUNC, "|TInterface/ICONS/inv_misc_coin_06:32:32|t|cff3F636C移动拍卖行", 		Stone.OpenAuction,	GOSSIP_ICON_VENDOR},--无法脱离NPC实现
-		--{FUNC, "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cff3F636C移动公会银行", 		ST.SummonGameObject_GuildBank,	GOSSIP_ICON_VENDOR},
-        --{FUNC, "|TInterface/ICONS/trade_blacksmithing:32:32|t|cff3F636C修理装备",	    Stone.RepairAll,	GOSSIP_ICON_MONEY_BAG,	false,"需要花费金币修理装备 ？"},
-        --{MENU, "|TInterface/ICONS/inv_misc_runedorb_01:32:32|t|cff3F636C商业技能设施",		MMENU+0x110,		GOSSIP_ICON_TALK},
-		--{FUNC, "|TInterface/ICONS/inv_box_02:32:32|t|cff3F636C保存角色", 		Stone.SaveToDB,			GOSSIP_ICON_INTERACT_1},
-		--{FUNC, "|TInterface/ICONS/Spell_Holy_BorrowedTime:32:32|t|cff3F636C重置角色所有冷却",	Stone.ResetAllCD,		GOSSIP_ICON_INTERACT_1,	false,"确认重置所有冷却 ？"},
-		--{FUNC, "|TInterface/ICONS/inv_potion_47:32:32|t|cff3F636C立刻回满血蓝",	Stone.MaxHealth,	GOSSIP_ICON_BATTLE,	false,"确认回复生命与法力？"},
-		--{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
-		
-		--{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
-		--{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
-		--{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
-	    --{TP, " |TInterface/ICONS/achievement_pvp_H_04:32:32|t【|cFFB22222部落锁经验|r】", 1,2000.801025,-4790.464355,56.992043,0.314139,TEAM_HORDE,1,	10000},
+       
 	},
 
     [MMENU+0x30]={--热血江湖气功加点主界面
