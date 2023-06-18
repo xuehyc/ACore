@@ -244,7 +244,7 @@ local CLASS_DRUID = "DRUID"					-- 德鲁伊
 --菜单号
 local MMENU=1		--主菜单
 local TPMENU=2		--传送菜单
-local GMMENU=3		--GM菜单
+local GMMENU=30		--GM菜单(付费功能)
 local ENCMENU=4		--附魔菜单
 local TBMENU=5		--炉石菜单
 local SYMENU=6		--商业技能满级菜单
