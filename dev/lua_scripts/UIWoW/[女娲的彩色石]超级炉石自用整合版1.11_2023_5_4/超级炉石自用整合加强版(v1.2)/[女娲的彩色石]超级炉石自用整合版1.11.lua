@@ -2242,19 +2242,19 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/ys_app:32:32|t清除变身", 	                                                ST.DeMorph,	    GOSSIP_ICON_TRAINER},
 	},
 
-    [MMENU+0x60]={--原神_变身_芭芭拉的衣橱
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣短筒蓝袜",            ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒白袜", 	        ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣无袜", 	            ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣蒙眼黑色毛袜", 	    ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣长筒毛袜", 	        ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣红裙摆长筒白袜", 	    ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆长筒黑袜",  ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆无袜", 	    ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
+    [MMENU+0x60]={--原神_变身_芭芭拉的衣橱    此角色应为芭芭拉_双马尾
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣短筒蓝袜",            ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒红袜", 	        ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒红袜", 	        ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒白袜", 	        ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣无袜", 	            ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣蒙眼黑色毛袜", 	    ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣长筒毛袜", 	        ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣红裙摆长筒白袜", 	    ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆长筒黑袜",  ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆无袜", 	    ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
 	},
 
     [MMENU+0x70]={--我叫MT_变身_第1页
@@ -2275,7 +2275,7 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t女德", 	            ST.Morph_45626,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装方砖叔", 	    ST.Morph_45627,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗黑装方砖叔", 	    ST.Morph_45628,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t牧尸", 	            ST.Morph_45629,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t法丝", 	            ST.Morph_45629,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角装会长", 	    ST.Morph_45630,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t板甲会长", 	        ST.Morph_45631,	GOSSIP_ICON_TRAINER},--成功
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45632,	GOSSIP_ICON_TRAINER},--成功
