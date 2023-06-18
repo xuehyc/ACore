@@ -903,7 +903,7 @@ end
 			ST.SummonNPC(player, 15898)
 		end
 
-        --原神变身系列
+        --原神变身系列开始
 
 
         function ST.Morph_45600(player)
@@ -959,8 +959,9 @@ end
             --player:Yell("哈哈",0)--成功
 		end
 
+         --原神变身系列结束
 
-        --我叫MT系列
+        --我叫MT系列开始
 
        function ST.Morph_45612(player)
         player:SetDisplayId("45612") 
@@ -1124,7 +1125,7 @@ end
             player:SetDisplayId("45661") 
 	    end
 
-        --MT结束
+        --我叫MT系列开始
 
         --function ST.Morph_45662(player)
           --  player:SetDisplayId("45662") 
@@ -2049,12 +2050,214 @@ local Menu={--菜单页面
         {MENU, "|TInterface/ICONS/popkart_app_ico:32:32|t|c00722FFF跑跑卡丁车",	            MMENU+0x30,		GOSSIP_ICON_TALK},--跑跑卡丁车
         {MENU, "|TInterface/ICONS/cs_1_6_app_ico:32:32|t|c00722FFF反恐精英",	            MMENU+0x30,		GOSSIP_ICON_TALK},--反恐精英
         {MENU, "|TInterface/ICONS/Journey_to_the_East_app_ico:32:32|t|c00722FFF东游记",	    MMENU+0x30,		GOSSIP_ICON_TALK},--东游记
-        --{MENU, "|TInterface/ICONS/bbl:32:32|t|c00722FFF芭芭拉",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--原神    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
-        {MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF原神",	                        MMENU+0x60,		GOSSIP_ICON_TALK},--原神    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
-        {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF我叫MT",	                    MMENU+0x70,		GOSSIP_ICON_TALK},--原神
+        --{MENU, "|TInterface/ICONS/bbl:32:32|t|c00722FFF芭芭拉",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--芭芭拉    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
+        {MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF原神",	                        MMENU+0x50,		GOSSIP_ICON_TALK},--原神    
+        {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF我叫MT",	            MMENU+0x90,		GOSSIP_ICON_TALK},--原神
         {MENU, "|TInterface/ICONS/Temp:32:32|t|c00722FFF魔兽世界",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--魔兽世界    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别
         --需要补充的:守望先锋,大菠萝,
+        --{FUNC, "|TInterface/ICONS/ys_app:32:32|t播放影片", 	                    ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
+        --待修复
 	},
+
+    --次菜单
+	[MMENU+0x10]={--便捷功能
+		--{FUNC, "|TInterface/ICONS/achievement_leader_tyrande_whisperwind:32:32|t|cff3F636C召唤歌剧院管理员|r", 	ST.SummonNPC_sound,	GOSSIP_ICON_TAXI},--自制播音员，外发时注释掉
+		--{FUNC, "|TInterface/ICONS/Ysera_mortal:32:32|t|cff3F636C召唤伊瑟拉|r", 	ST.SummonNPC_Ysera,	GOSSIP_ICON_TAXI},--自制NPC，外发时注释掉
+		--{FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636CGM模式", 		Stone.GmOnMod,	GOSSIP_ICON_VENDOR},--eluna不能支持GM命令
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t召唤售卖商人", 	ST.SummonVendor,	GOSSIP_ICON_TRAINER},
+        {FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C在线银行", 		Stone.OpenBank,	GOSSIP_ICON_VENDOR},
+        {FUNC, "|TInterface/ICONS/INV_Letter_06:32:32|t|cff3F636C空中邮箱", 		Stone.OpenMailBox,	GOSSIP_ICON_VENDOR},
+		--{FUNC, "|TInterface/ICONS/inv_misc_coin_06:32:32|t|cff3F636C移动拍卖行", 		Stone.OpenAuction,	GOSSIP_ICON_VENDOR},--无法脱离NPC实现
+		{FUNC, "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cff3F636C移动公会银行", 		ST.SummonGameObject_GuildBank,	GOSSIP_ICON_VENDOR},
+        {FUNC, "|TInterface/ICONS/trade_blacksmithing:32:32|t|cff3F636C修理装备",	    Stone.RepairAll,	GOSSIP_ICON_MONEY_BAG,	false,"需要花费金币修理装备 ？"},
+        {MENU, "|TInterface/ICONS/inv_misc_runedorb_01:32:32|t|cff3F636C商业技能设施",		MMENU+0x110,		GOSSIP_ICON_TALK},
+		{FUNC, "|TInterface/ICONS/inv_box_02:32:32|t|cff3F636C保存角色", 		Stone.SaveToDB,			GOSSIP_ICON_INTERACT_1},
+		{FUNC, "|TInterface/ICONS/Spell_Holy_BorrowedTime:32:32|t|cff3F636C重置角色所有冷却",	Stone.ResetAllCD,		GOSSIP_ICON_INTERACT_1,	false,"确认重置所有冷却 ？"},
+		{FUNC, "|TInterface/ICONS/inv_potion_47:32:32|t|cff3F636C立刻回满血蓝",	Stone.MaxHealth,	GOSSIP_ICON_BATTLE,	false,"确认回复生命与法力？"},
+		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
+		
+		{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
+		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
+		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
+	    {TP, " |TInterface/ICONS/achievement_pvp_H_04:32:32|t【|cFFB22222部落锁经验|r】", 1,2000.801025,-4790.464355,56.992043,0.314139,TEAM_HORDE,1,	10000},
+	},
+
+	[MMENU+0x20]={--幻化功能
+		{FUNC, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:32:32|t|cFF32CD99召唤幻化大师|r", 	ST.SummonNPCds,	GOSSIP_ICON_TAXI},
+	},
+
+    [MMENU+0x30]={--热血江湖气功加点主界面
+        {MENU, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t加点", 	    SKLMENU+0x80,	GOSSIP_ICON_TRAINER},   --进入主界面
+        
+        {FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C重置", 		Douqi_seleGoss,	GOSSIP_ICON_VENDOR},    --重置与加属性界面
+	},
+
+    [MMENU+0x40]={--魔兽世界主界面
+		{MENU, "|TInterface/ICONS/inv_misc_food_15:32:32|t|c00722FFF便捷功能",		                        MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
+        {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},
+        
+        {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送", 	                            TPMENU,			GOSSIP_ICON_TAXI},
+		
+		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:32:32|t|cff0070d0炉石功能", 	                            TBMENU,	        GOSSIP_ICON_TAXI,},
+		{MENU, "|TInterface/ICONS/inv_misc_ogrepinata:32:32|t|cFF9932CC技能训练|r", 	                    SKLMENU,	    GOSSIP_ICON_TRAINER},
+		{MENU, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:32:32|t|cFF32CD99幻化功能|r",		MMENU+0x20,		GOSSIP_ICON_TABARD},
+		{MENU, "|TInterface/ICONS/Trade_Engraving:32:32|t|cFFB22222双重附魔|r",		                        ENCMENU,		GOSSIP_ICON_TABARD},
+		
+        
+        {MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:32:32|t|cFF548B54付费功能|r",	                GMMENU,		    GOSSIP_ICON_MONEY_BAG},
+		{TP,   "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cffe60000城市广场|r (|cff0070d0商业中心|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},
+        },
+
+    [MMENU+0x50]={--原神主界面
+		{MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF变身(芭芭拉的衣橱)",		                        MMENU+0x60,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t清除变身", 	                                                ST.DeMorph,	    GOSSIP_ICON_TRAINER},
+	},
+
+    [MMENU+0x60]={--原神_变身_芭芭拉的衣橱
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣短筒蓝袜",            ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒白袜", 	        ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣无袜", 	            ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣蒙眼黑色毛袜", 	    ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣长筒毛袜", 	        ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣红裙摆长筒白袜", 	    ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆长筒黑袜",  ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆无袜", 	    ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
+	},
+
+    [MMENU+0x70]={--我叫MT_变身_第1页
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t长白发清凉女",       ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗夜男", 	        ST.Morph_45613,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t古装血小贱", 	    ST.Morph_45614,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吸血鬼血小贱", 	    ST.Morph_45615,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角帽血小贱", 	    ST.Morph_45616,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t暴毙烤迪克", 	    ST.Morph_45617,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t严实板甲男", 	    ST.Morph_45618,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t大小姐", 	        ST.Morph_45619,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t呆贼", 	            ST.Morph_45620,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t术士大妈", 	        ST.Morph_45621,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t羽装大小姐", 	    ST.Morph_45622,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装大小姐", 	    ST.Morph_45623,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t神棍德", 	        ST.Morph_45624,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t地中海", 	        ST.Morph_45625,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t女德", 	            ST.Morph_45626,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装方砖叔", 	    ST.Morph_45627,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗黑装方砖叔", 	    ST.Morph_45628,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t牧尸", 	            ST.Morph_45629,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角装会长", 	    ST.Morph_45630,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t板甲会长", 	        ST.Morph_45631,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45632,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吉安娜", 	        ST.Morph_45633,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装劣人", 	        ST.Morph_45634,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝装劣人", 	        ST.Morph_45635,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装劣人", 	        ST.Morph_45636,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t阴谋者", 	        ST.Morph_45637,	GOSSIP_ICON_TRAINER},--成功
+        {MENU, "|TInterface/ICONS/Achievement_PVP_A_01:32:32|t下一页",          MMENU+0x80,GOSSIP_ICON_BATTLE},
+    },
+
+    [MMENU+0x80]={--我叫MT_变身_第2页
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装美铝", 	            ST.Morph_45638,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装美铝", 	            ST.Morph_45639,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t亮装美铝", 	            ST.Morph_45640,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|tMT", 	                ST.Morph_45641,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装牧尸", 	            ST.Morph_45642,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装双马尾血精灵",       ST.Morph_45643,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装双马尾血精灵",       ST.Morph_45644,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装尖角女德", 	        ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝黄装开花尖角女德",     ST.Morph_45646,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t野兽装女德", 	        ST.Morph_45647,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装女贼", 	            ST.Morph_45648,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗红装女贼", 	        ST.Morph_45649,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t骷髅蓝装女贼", 	        ST.Morph_45650,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t粉红清凉仙女", 	ST.Morph_45651,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t麒麟臂男", 	    ST.Morph_45652,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝金法师装女", 	        ST.Morph_45653,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t傻馒", 	                ST.Morph_45654,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t飞虎", 	                ST.Morph_45655,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t丝袜长袍血精灵法师", 	ST.Morph_45656,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金色尖角短袍血精灵法师", ST.Morph_45657,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装血精灵法师", 	    ST.Morph_45658,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装野德新之助", 	    ST.Morph_45659,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装长披风野德新之助",   ST.Morph_45660,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t马驹", 	        ST.Morph_45661,	GOSSIP_ICON_TRAINER},--成功
+        {MENU, "|TInterface/ICONS/achievement_pvp_h_11:32:32|t上一页",              MMENU+0x70,GOSSIP_ICON_BATTLE},
+        --45662 初音未来
+        --45663 鱼人宝宝车队
+        --45664 邪能战蝎
+        --45665 装甲虎
+        --45666 邪能马
+        --667 星光龙
+        --668 黑色翔龙
+        --669 绿色翔龙
+        --670 发光闪电绿色翔龙
+        --671 发光白色翔龙
+        --672 地精三轮车
+        --673 红色跑车
+        --674 联盟争霸赛奖励摩托车
+        --675 部落争霸赛奖励摩托车
+        --676 浓烟飞艇
+        --677 星际争霸鱼人宝宝
+        --678 红色机器人
+        --679 熔岩裂犬
+        --680 CTM萨尔
+        --681 暗色战蝎
+        --682 烈酒虎
+        --683 黑色邪能鱼人
+        --684 暗色兽人
+        --685 亮色苏拉玛女法师
+        --686 暗色苏拉玛女法师
+        --687 邪能古尔丹
+        --688 烈焰巫妖王
+        --689 邪能宠物豹
+        --690 亮色苏拉玛男法师
+        --691 暗色苏拉玛男法师
+        --692 宾利
+        --693 家用型跑车
+        --694 黄色超跑
+        --695 魔法黄色飞猫
+        --696 烈焰宠物犬
+        --697 坦克
+        --698 2b女
+        --699 不知火舞
+        --700 吕布
+        --701 布加迪
+        --702 白色布加迪(云加鹰)
+        --703 车轮滚滚
+    },
+
+    [MMENU+0x90]={--我叫MT主界面
+	    {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF变身",		                            MMENU+0x70,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t清除变身", 	                                    ST.DeMorph,	    GOSSIP_ICON_TRAINER},
+    },
+
+	[MMENU+0x110]={--召唤商业技能设施
+		{FUNC, "|TInterface/ICONS/spell_fire_fire:32:32|t|cff3F636C烹饪营火", 		ST.SummonTradeObject_Campfire,	GOSSIP_ICON_MONEY_BAG},
+		{FUNC, "|TInterface/ICONS/trade_alchemy:32:32|t|cff3F636C炼金实验室", 		ST.SummonTradeObject_AlchemyTable,	GOSSIP_ICON_MONEY_BAG},
+		{FUNC, "|TInterface/ICONS/trade_blacksmithing:32:32|t|cff3F636C铁砧", 		ST.SummonTradeObject_Anvil,	GOSSIP_ICON_MONEY_BAG},
+		{FUNC, "|TInterface/ICONS/inv_sword_09:32:32|t|cff3F636C熔炉", 		ST.SummonTradeObject_Furnace,	GOSSIP_ICON_MONEY_BAG},
+		{FUNC, "|TInterface/ICONS/spell_nature_earthquake:32:32|t|cff3F636C黑铁砧", 		ST.SummonTradeObject_BlackAnvil,	GOSSIP_ICON_MONEY_BAG},
+		{FUNC, "|TInterface/ICONS/spell_fire_selfdestruct:32:32|t|cff3F636C黑熔炉", 		ST.SummonTradeObject_BlackFurnace,	GOSSIP_ICON_MONEY_BAG},
+		{FUNC, "|TInterface/ICONS/inv_fabric_soulcloth_bolt:32:32|t|cff3F636C魔法织布机", 		ST.SummonTradeObject_MagicLoom,	GOSSIP_ICON_MONEY_BAG},
+		{FUNC, "|TInterface/ICONS/inv_fabric_moonrag_01:32:32|t|cff3F636C月亮井", 		ST.SummonTradeObject_MoonWell,	GOSSIP_ICON_MONEY_BAG},
+	},
+			--[[
+					--GOSSIP_ICON 菜单图标
+					local GOSSIP_ICON_CHAT            = 0                    -- 对话，空泡泡
+					local GOSSIP_ICON_VENDOR          = 1                    -- 货物，袋子
+					local GOSSIP_ICON_TAXI            = 2                    -- 传送，翅膀
+					local GOSSIP_ICON_TRAINER         = 3                    -- 训练，书
+					local GOSSIP_ICON_INTERACT_1      = 4                    -- 复活，齿轮
+					local GOSSIP_ICON_INTERACT_2      = 5                    -- 设为我的家，齿轮
+					local GOSSIP_ICON_MONEY_BAG   	  = 6                    -- 钱袋，包和金币
+					local GOSSIP_ICON_TALK            = 7                    -- 申请，说话泡泡+黑色点
+					local GOSSIP_ICON_TABARD          = 8                    -- 工会，战袍
+					local GOSSIP_ICON_BATTLE          = 9                    -- 加入战场，双剑交叉
+					local GOSSIP_ICON_DOT             = 10                   -- 加入战场，战袍
+			]]
+
 
     [TBMENU]={--炉石功能
 		{FUNC, "|TInterface/ICONS/INV_Misc_Rune_01:32:32|t|cFFB22222炉石传回", 	Stone.GoHome,	GOSSIP_ICON_TAXI,		  false,"是否穿越回|cFFF0F000记录位置|r ？"},
@@ -2323,9 +2526,6 @@ local Menu={--菜单页面
 	},
 
     [SKLMENU+0x80]={-- 热血江湖
-        --此处为参照语句
-        --{FUNC, "|TInterface/ICONS/Spell_Deathknight_ClassIcon:32:32|t【|cFFB22222提升武器熟练度|r】",	Stone.WSkillsToMax,	GOSSIP_ICON_TRAINER,	false,"确认提升武器熟练度？"},
-
         {FUNC, "|TInterface/ICONS/hit_the_target_at_every_shot:32:32|t百步穿杨", 	                            QG_hit_the_target_at_every_shot,	GOSSIP_ICON_TRAINER},--提高命中率           --基本气功开始 --基本气功指的是出生(1级)就有的
 		{FUNC, "|TInterface/ICONS/Eye_of_the_Falcon:32:32|t|cff8B4513猎鹰之眼", 	                            ST.SummonNPC_4001011,	            GOSSIP_ICON_TRAINER},--增加有效射程
 		{FUNC, "|TInterface/ICONS/Concentrate_and_gather_qi:32:32|t|cffC71585凝神聚气", 	                    ST.SummonNPC_4001007,	            GOSSIP_ICON_TRAINER},--提高最小攻击力
@@ -2334,219 +2534,9 @@ local Menu={--菜单页面
 		{FUNC, "|TInterface/ICONS/inv_glyph_majorhunter:32:32|t|cFF548B54锐利之箭", 	                        ST.SummonNPC_4001005,	            GOSSIP_ICON_TRAINER},--10   --1转
 		{FUNC, "|TInterface/ICONS/inv_glyph_majordruid:32:32|t|cFFFF6600气沉丹田", 	                            ST.SummonNPC_4001003,	            GOSSIP_ICON_TRAINER},--10   --1转
 		{FUNC, "|TInterface/ICONS/inv_glyph_majorrogue:32:32|t|cffFFFF00心神凝聚", 	                            ST.SummonNPC_4001002,	            GOSSIP_ICON_TRAINER},
-		
     },
 
 
-	[MMENU+0x10]={--便捷功能
-		--{FUNC, "|TInterface/ICONS/achievement_leader_tyrande_whisperwind:32:32|t|cff3F636C召唤歌剧院管理员|r", 	ST.SummonNPC_sound,	GOSSIP_ICON_TAXI},--自制播音员，外发时注释掉
-		--{FUNC, "|TInterface/ICONS/Ysera_mortal:32:32|t|cff3F636C召唤伊瑟拉|r", 	ST.SummonNPC_Ysera,	GOSSIP_ICON_TAXI},--自制NPC，外发时注释掉
-		--{FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636CGM模式", 		Stone.GmOnMod,	GOSSIP_ICON_VENDOR},--eluna不能支持GM命令
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t召唤售卖商人", 	ST.SummonVendor,	GOSSIP_ICON_TRAINER},
-        {FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C在线银行", 		Stone.OpenBank,	GOSSIP_ICON_VENDOR},
-        {FUNC, "|TInterface/ICONS/INV_Letter_06:32:32|t|cff3F636C空中邮箱", 		Stone.OpenMailBox,	GOSSIP_ICON_VENDOR},
-		--{FUNC, "|TInterface/ICONS/inv_misc_coin_06:32:32|t|cff3F636C移动拍卖行", 		Stone.OpenAuction,	GOSSIP_ICON_VENDOR},--无法脱离NPC实现
-		{FUNC, "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cff3F636C移动公会银行", 		ST.SummonGameObject_GuildBank,	GOSSIP_ICON_VENDOR},
-        {FUNC, "|TInterface/ICONS/trade_blacksmithing:32:32|t|cff3F636C修理装备",	    Stone.RepairAll,	GOSSIP_ICON_MONEY_BAG,	false,"需要花费金币修理装备 ？"},
-        {MENU, "|TInterface/ICONS/inv_misc_runedorb_01:32:32|t|cff3F636C商业技能设施",		MMENU+0x110,		GOSSIP_ICON_TALK},
-		{FUNC, "|TInterface/ICONS/inv_box_02:32:32|t|cff3F636C保存角色", 		Stone.SaveToDB,			GOSSIP_ICON_INTERACT_1},
-		{FUNC, "|TInterface/ICONS/Spell_Holy_BorrowedTime:32:32|t|cff3F636C重置角色所有冷却",	Stone.ResetAllCD,		GOSSIP_ICON_INTERACT_1,	false,"确认重置所有冷却 ？"},
-		{FUNC, "|TInterface/ICONS/inv_potion_47:32:32|t|cff3F636C立刻回满血蓝",	Stone.MaxHealth,	GOSSIP_ICON_BATTLE,	false,"确认回复生命与法力？"},
-		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
-		
-		{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
-		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
-		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
-	    {TP, " |TInterface/ICONS/achievement_pvp_H_04:32:32|t【|cFFB22222部落锁经验|r】", 1,2000.801025,-4790.464355,56.992043,0.314139,TEAM_HORDE,1,	10000},
-	},
-
-
-    [MMENU+0x60]={--原神_变身
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣短筒蓝袜",           ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒白袜", 	        ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣无袜", 	            ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣蒙眼黑色毛袜", 	    ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣长筒毛袜", 	        ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣红裙摆长筒白袜", 	ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆长筒黑袜", ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆无袜", 	ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t清除变身", 	                ST.DeMorph,	    GOSSIP_ICON_TRAINER},
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t播放影片", 	                ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
-       
-	},
-
-
-      [MMENU+0x70]={--我叫MT_变身1
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t长白发清凉女",     ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗夜男", 	        ST.Morph_45613,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t古装血小贱", 	    ST.Morph_45614,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吸血鬼血小贱", 	ST.Morph_45615,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角帽血小贱", 	ST.Morph_45616,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t暴毙烤迪克", 	    ST.Morph_45617,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t严实板甲男", 	    ST.Morph_45618,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t大小姐", 	        ST.Morph_45619,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t呆贼", 	        ST.Morph_45620,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t术士大妈", 	    ST.Morph_45621,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t羽装大小姐", 	    ST.Morph_45622,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装大小姐", 	    ST.Morph_45623,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t神棍德", 	        ST.Morph_45624,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t地中海", 	        ST.Morph_45625,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t女德", 	        ST.Morph_45626,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装方砖叔", 	    ST.Morph_45627,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗黑装方砖叔", 	ST.Morph_45628,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t牧尸", 	        ST.Morph_45629,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角装会长", 	    ST.Morph_45630,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t板甲会长", 	    ST.Morph_45631,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45632,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吉安娜", 	    ST.Morph_45633,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装劣人", 	    ST.Morph_45634,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝装劣人", 	    ST.Morph_45635,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装劣人", 	    ST.Morph_45636,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t阴谋者", 	    ST.Morph_45637,	GOSSIP_ICON_TRAINER},--成功
-        {MENU, "|TInterface/ICONS/Achievement_PVP_A_01:32:32|t下一页",              MMENU+0x80,GOSSIP_ICON_BATTLE},
-	},
-
-
-    [MMENU+0x80]={--我叫MT_变身2
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装美铝", 	            ST.Morph_45638,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装美铝", 	            ST.Morph_45639,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t亮装美铝", 	            ST.Morph_45640,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|tMT", 	                    ST.Morph_45641,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装牧尸", 	            ST.Morph_45642,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装双马尾血精灵",         ST.Morph_45643,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装双马尾血精灵",         ST.Morph_45644,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装尖角女德", 	        ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝黄装开花尖角女德",       ST.Morph_45646,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t野兽装女德", 	            ST.Morph_45647,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装女贼", 	            ST.Morph_45648,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗红装女贼", 	            ST.Morph_45649,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t骷髅蓝装女贼", 	        ST.Morph_45650,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t粉红清凉仙女", 	        ST.Morph_45651,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t麒麟臂男", 	            ST.Morph_45652,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝金法师装女", 	        ST.Morph_45653,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t傻馒", 	                ST.Morph_45654,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t飞虎", 	                ST.Morph_45655,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t丝袜长袍血精灵法师", 	    ST.Morph_45656,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金色尖角短袍血精灵法师",   ST.Morph_45657,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装血精灵法师", 	        ST.Morph_45658,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装野德新之助", 	        ST.Morph_45659,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装长披风野德新之助",     ST.Morph_45660,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t马驹", 	                ST.Morph_45661,	GOSSIP_ICON_TRAINER},--成功
-        {MENU, "|TInterface/ICONS/achievement_pvp_h_11:32:32|t上一页",                      MMENU+0x70,GOSSIP_ICON_BATTLE},
-        --45662 初音未来
-        --45663 鱼人宝宝车队
-        --45664 邪能战蝎
-        --45665 装甲虎
-        --45666 邪能马
-        --667 星光龙
-        --668 黑色翔龙
-        --669 绿色翔龙
-        --670 发光闪电绿色翔龙
-        --671 发光白色翔龙
-        --672 地精三轮车
-        --673 红色跑车
-        --674 联盟争霸赛奖励摩托车
-        --675 部落争霸赛奖励摩托车
-        --676 浓烟飞艇
-        --677 星际争霸鱼人宝宝
-        --678 红色机器人
-        --679 熔岩裂犬
-        --680 CTM萨尔
-        --681 暗色战蝎
-        --682 烈酒虎
-        --683 黑色邪能鱼人
-        --684 暗色兽人
-        --685 亮色苏拉玛女法师
-        --686 暗色苏拉玛女法师
-        --687 邪能古尔丹
-        --688 烈焰巫妖王
-        --689 邪能宠物豹
-        --690 亮色苏拉玛男法师
-        --691 暗色苏拉玛男法师
-        --692 宾利
-        --693 家用型跑车
-        --694 黄色超跑
-        --695 魔法黄色飞猫
-        --696 烈焰宠物犬
-        --697 坦克
-        --698 2b女
-        --699 不知火舞
-        --700 吕布
-        --701 布加迪
-        --702 白色布加迪(云加鹰)
-        --703 车轮滚滚
-    },
-
-    [MMENU+0x30]={--热血江湖气功加点主界面
-        {MENU, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t加点", 	    SKLMENU+0x80,	GOSSIP_ICON_TRAINER},   --进入主界面
-        
-        {FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C重置", 		Douqi_seleGoss,	GOSSIP_ICON_VENDOR},    --重置与加属性界面
-	},
-	[MMENU+0x110]={--召唤商业技能设施
-		{FUNC, "|TInterface/ICONS/spell_fire_fire:32:32|t|cff3F636C烹饪营火", 		ST.SummonTradeObject_Campfire,	GOSSIP_ICON_MONEY_BAG},
-		{FUNC, "|TInterface/ICONS/trade_alchemy:32:32|t|cff3F636C炼金实验室", 		ST.SummonTradeObject_AlchemyTable,	GOSSIP_ICON_MONEY_BAG},
-		{FUNC, "|TInterface/ICONS/trade_blacksmithing:32:32|t|cff3F636C铁砧", 		ST.SummonTradeObject_Anvil,	GOSSIP_ICON_MONEY_BAG},
-		{FUNC, "|TInterface/ICONS/inv_sword_09:32:32|t|cff3F636C熔炉", 		ST.SummonTradeObject_Furnace,	GOSSIP_ICON_MONEY_BAG},
-		{FUNC, "|TInterface/ICONS/spell_nature_earthquake:32:32|t|cff3F636C黑铁砧", 		ST.SummonTradeObject_BlackAnvil,	GOSSIP_ICON_MONEY_BAG},
-		{FUNC, "|TInterface/ICONS/spell_fire_selfdestruct:32:32|t|cff3F636C黑熔炉", 		ST.SummonTradeObject_BlackFurnace,	GOSSIP_ICON_MONEY_BAG},
-		{FUNC, "|TInterface/ICONS/inv_fabric_soulcloth_bolt:32:32|t|cff3F636C魔法织布机", 		ST.SummonTradeObject_MagicLoom,	GOSSIP_ICON_MONEY_BAG},
-		{FUNC, "|TInterface/ICONS/inv_fabric_moonrag_01:32:32|t|cff3F636C月亮井", 		ST.SummonTradeObject_MoonWell,	GOSSIP_ICON_MONEY_BAG},
-	},
-			--[[
-					--GOSSIP_ICON 菜单图标
-					local GOSSIP_ICON_CHAT            = 0                    -- 对话，空泡泡
-					local GOSSIP_ICON_VENDOR          = 1                    -- 货物，袋子
-					local GOSSIP_ICON_TAXI            = 2                    -- 传送，翅膀
-					local GOSSIP_ICON_TRAINER         = 3                    -- 训练，书
-					local GOSSIP_ICON_INTERACT_1      = 4                    -- 复活，齿轮
-					local GOSSIP_ICON_INTERACT_2      = 5                    -- 设为我的家，齿轮
-					local GOSSIP_ICON_MONEY_BAG   	  = 6                    -- 钱袋，包和金币
-					local GOSSIP_ICON_TALK            = 7                    -- 申请，说话泡泡+黑色点
-					local GOSSIP_ICON_TABARD          = 8                    -- 工会，战袍
-					local GOSSIP_ICON_BATTLE          = 9                    -- 加入战场，双剑交叉
-					local GOSSIP_ICON_DOT             = 10                   -- 加入战场，战袍
-			]]
-	[MMENU+0x20]={--幻化功能
-		{FUNC, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:32:32|t|cFF32CD99召唤幻化大师|r", 	ST.SummonNPCds,	GOSSIP_ICON_TAXI},
-	},
-    [MMENU+0x40]={--魔兽世界主界面
-		{MENU, "|TInterface/ICONS/inv_misc_food_15:32:32|t|c00722FFF便捷功能",		                        MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
-        {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},
-        
-        {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送", 	                            TPMENU,			GOSSIP_ICON_TAXI},
-		
-		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:32:32|t|cff0070d0炉石功能", 	                            TBMENU,	        GOSSIP_ICON_TAXI,},
-		{MENU, "|TInterface/ICONS/inv_misc_ogrepinata:32:32|t|cFF9932CC技能训练|r", 	                    SKLMENU,	    GOSSIP_ICON_TRAINER},
-		{MENU, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:32:32|t|cFF32CD99幻化功能|r",		MMENU+0x20,		GOSSIP_ICON_TABARD},
-		{MENU, "|TInterface/ICONS/Trade_Engraving:32:32|t|cFFB22222双重附魔|r",		                        ENCMENU,		GOSSIP_ICON_TABARD},
-		
-        
-        {MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:32:32|t|cFF548B54付费功能|r",	                GMMENU,		    GOSSIP_ICON_MONEY_BAG},
-		{TP,   "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cffe60000城市广场|r (|cff0070d0商业中心|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},
-        },
-
-
-
-        [MMENU+0x50]={--原神主界面
-		{MENU, "|TInterface/ICONS/inv_misc_food_15:32:32|t|c00722FFF变身",		                            MMENU+0x60,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
-        {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},
-        
-        {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送", 	                            TPMENU,			GOSSIP_ICON_TAXI},
-		
-		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:32:32|t|cff0070d0炉石功能", 	                            TBMENU,	        GOSSIP_ICON_TAXI,},
-		{MENU, "|TInterface/ICONS/inv_misc_ogrepinata:32:32|t|cFF9932CC技能训练|r", 	                    SKLMENU,	    GOSSIP_ICON_TRAINER},
-		{MENU, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:32:32|t|cFF32CD99幻化功能|r",		MMENU+0x20,		GOSSIP_ICON_TABARD},
-		{MENU, "|TInterface/ICONS/Trade_Engraving:32:32|t|cFFB22222双重附魔|r",		                        ENCMENU,		GOSSIP_ICON_TABARD},
-		
-        
-        {MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:32:32|t|cFF548B54付费功能|r",	                GMMENU,		    GOSSIP_ICON_MONEY_BAG},
-		{TP,   "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cffe60000城市广场|r (|cff0070d0商业中心|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},
-
-	},
 	[GMMENU]={--GM菜单 --付费功能
 		{FUNC, "|TInterface/ICONS/inv_scroll_11:32:32|t|cff3F636C修改名字",		Stone.ResetName,	GOSSIP_ICON_CHAT,		false,"是否修改名字？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
 		{FUNC, "|TInterface/ICONS/Ability_Rogue_Disguise:32:32|t|cff3F636C改变容貌",		Stone.ResetFace,	GOSSIP_ICON_CHAT,		false,"是否重置容貌？\n|cFFFFFF00需要返回角色选择或者重新登录才能修改。|r"},
