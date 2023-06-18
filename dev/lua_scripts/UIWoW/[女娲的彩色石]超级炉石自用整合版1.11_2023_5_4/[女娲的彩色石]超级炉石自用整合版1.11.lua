@@ -2362,88 +2362,88 @@ local Menu={--菜单页面
 
 
     [MMENU+0x60]={--原神_变身
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣短筒蓝袜",           ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣长筒白袜", 	        ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣无袜", 	            ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣蒙眼黑色毛袜", 	    ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾黑衣长筒毛袜", 	        ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣红裙摆长筒白袜", 	ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆长筒黑袜", ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆无袜", 	ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t双马尾彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t清除变身", 	                ST.DeMorph,	    GOSSIP_ICON_TRAINER},
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t播放影片", 	                ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣短筒蓝袜",           ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒红袜", 	        ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣长筒白袜", 	        ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣无袜", 	            ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣蒙眼黑色毛袜", 	    ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾黑衣长筒毛袜", 	        ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣红裙摆长筒白袜", 	ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆长筒黑袜", ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆无袜", 	ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t双马尾彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t清除变身", 	                ST.DeMorph,	    GOSSIP_ICON_TRAINER},
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t播放影片", 	                ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
        
 	},
 
 
       [MMENU+0x70]={--我叫MT_变身1
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t长白发清凉女",     ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗夜男", 	        ST.Morph_45613,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t古装血小贱", 	    ST.Morph_45614,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t吸血鬼血小贱", 	ST.Morph_45615,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t尖角帽血小贱", 	ST.Morph_45616,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暴毙烤迪克", 	    ST.Morph_45617,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t严实板甲男", 	    ST.Morph_45618,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t大小姐", 	        ST.Morph_45619,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t呆贼", 	        ST.Morph_45620,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t术士大妈", 	    ST.Morph_45621,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t羽装大小姐", 	    ST.Morph_45622,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装大小姐", 	    ST.Morph_45623,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t神棍德", 	        ST.Morph_45624,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t地中海", 	        ST.Morph_45625,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t女德", 	        ST.Morph_45626,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装方砖叔", 	    ST.Morph_45627,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗黑装方砖叔", 	ST.Morph_45628,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t牧尸", 	        ST.Morph_45629,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t尖角装会长", 	    ST.Morph_45630,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t板甲会长", 	    ST.Morph_45631,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t狩猎装会长", 	    ST.Morph_45632,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t吉安娜", 	    ST.Morph_45633,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装劣人", 	    ST.Morph_45634,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t蓝装劣人", 	    ST.Morph_45635,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗装劣人", 	    ST.Morph_45636,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t阴谋者", 	    ST.Morph_45637,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t长白发清凉女",     ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗夜男", 	        ST.Morph_45613,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t古装血小贱", 	    ST.Morph_45614,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吸血鬼血小贱", 	ST.Morph_45615,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角帽血小贱", 	ST.Morph_45616,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t暴毙烤迪克", 	    ST.Morph_45617,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t严实板甲男", 	    ST.Morph_45618,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t大小姐", 	        ST.Morph_45619,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t呆贼", 	        ST.Morph_45620,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t术士大妈", 	    ST.Morph_45621,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t羽装大小姐", 	    ST.Morph_45622,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装大小姐", 	    ST.Morph_45623,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t神棍德", 	        ST.Morph_45624,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t地中海", 	        ST.Morph_45625,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t女德", 	        ST.Morph_45626,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装方砖叔", 	    ST.Morph_45627,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗黑装方砖叔", 	ST.Morph_45628,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t牧尸", 	        ST.Morph_45629,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角装会长", 	    ST.Morph_45630,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t板甲会长", 	    ST.Morph_45631,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45632,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吉安娜", 	    ST.Morph_45633,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装劣人", 	    ST.Morph_45634,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝装劣人", 	    ST.Morph_45635,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装劣人", 	    ST.Morph_45636,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t阴谋者", 	    ST.Morph_45637,	GOSSIP_ICON_TRAINER},--成功
         {MENU, "|TInterface/ICONS/Achievement_PVP_A_01:32:32|t下一页",              MMENU+0x80,GOSSIP_ICON_BATTLE},
 
         --冗余部分
-        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        --{FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t清除变身", 	    ST.DeMorph,	    GOSSIP_ICON_TRAINER},
+        --{FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        --{FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        --{FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        --{FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t清除变身", 	    ST.DeMorph,	    GOSSIP_ICON_TRAINER},
 
 	},
 
 
     [MMENU+0x80]={--我叫MT_变身2
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t红装美铝", 	    ST.Morph_45638,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装美铝", 	    ST.Morph_45639,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t亮装美铝", 	    ST.Morph_45640,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|tMT", 	    ST.Morph_45641,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t白装牧尸", 	    ST.Morph_45642,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t红装双马尾血精灵", 	    ST.Morph_45643,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗装双马尾血精灵", 	    ST.Morph_45644,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t绿装尖角女德", 	    ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t蓝黄装开花尖角女德", 	    ST.Morph_45646,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t野兽装女德", 	    ST.Morph_45647,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t红装女贼", 	    ST.Morph_45648,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t暗红装女贼", 	    ST.Morph_45649,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t骷髅蓝装女贼", 	    ST.Morph_45650,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t粉红清凉仙女", 	    ST.Morph_45651,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t麒麟臂男", 	    ST.Morph_45652,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t蓝金法师装女", 	    ST.Morph_45653,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t傻馒", 	    ST.Morph_45654,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t飞虎", 	    ST.Morph_45655,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t丝袜长袍血精灵法师", 	    ST.Morph_45656,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金色尖角短袍血精灵法师", 	    ST.Morph_45657,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t绿装血精灵法师", 	    ST.Morph_45658,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t白装野德新之助", 	    ST.Morph_45659,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t金装长披风野德新之助", 	    ST.Morph_45660,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t马驹", 	    ST.Morph_45661,	GOSSIP_ICON_TRAINER},--成功
-        {MENU, "|TInterface/ICONS/achievement_pvp_h_11:32:32|t上一页",              MMENU+0x70,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装美铝", 	            ST.Morph_45638,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装美铝", 	            ST.Morph_45639,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t亮装美铝", 	            ST.Morph_45640,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|tMT", 	                    ST.Morph_45641,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装牧尸", 	            ST.Morph_45642,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装双马尾血精灵",         ST.Morph_45643,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装双马尾血精灵",         ST.Morph_45644,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装尖角女德", 	        ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝黄装开花尖角女德",       ST.Morph_45646,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t野兽装女德", 	            ST.Morph_45647,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装女贼", 	            ST.Morph_45648,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗红装女贼", 	            ST.Morph_45649,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t骷髅蓝装女贼", 	        ST.Morph_45650,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t粉红清凉仙女", 	        ST.Morph_45651,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t麒麟臂男", 	            ST.Morph_45652,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝金法师装女", 	        ST.Morph_45653,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t傻馒", 	                ST.Morph_45654,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t飞虎", 	                ST.Morph_45655,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t丝袜长袍血精灵法师", 	    ST.Morph_45656,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金色尖角短袍血精灵法师",   ST.Morph_45657,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装血精灵法师", 	        ST.Morph_45658,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装野德新之助", 	        ST.Morph_45659,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装长披风野德新之助",     ST.Morph_45660,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t马驹", 	                ST.Morph_45661,	GOSSIP_ICON_TRAINER},--成功
+        {MENU, "|TInterface/ICONS/achievement_pvp_h_11:32:32|t上一页",                      MMENU+0x70,GOSSIP_ICON_BATTLE},
         --45662 初音未来
         --45663 鱼人宝宝车队
         --45664 邪能战蝎
