@@ -2232,7 +2232,7 @@ local Menu={--菜单页面
 		
         
         {MENU, "|TInterface/ICONS/inv_misc_celebrationcake_01:32:32|t|cFF548B54付费功能|r",	                GMMENU,		    GOSSIP_ICON_MONEY_BAG},
-		{TP,   "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cffe60000城市广场|r (|cff0070d0商业中心|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},
+		{TP,   "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cffe60000商业中心|r", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},--org --{TP,   "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cffe60000城市广场|r (|cff0070d0商业中心|r)", 1, -8545.5, 2005.471, 100.349, 1,	TEAM_NONE,	GOSSIP_ICON_TAXI},
         },
 
     [MMENU+0x50]={--原神主界面
