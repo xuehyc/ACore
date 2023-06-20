@@ -114,7 +114,7 @@
 
 ]]
 print(">>Script: TeleportStone loading...OK")
-
+--天蓝2023.5.24版 CreatureDisplayInfo.dbc 从45554开始,45717结束
 --菜单入口 --默认炉石itemID 6948
 local itemEntry	=6948      --6948,炉石           --  -1
 --热血江湖模块相关定义
