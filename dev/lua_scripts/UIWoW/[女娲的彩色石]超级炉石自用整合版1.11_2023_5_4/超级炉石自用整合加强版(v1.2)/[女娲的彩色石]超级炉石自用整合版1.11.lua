@@ -817,7 +817,7 @@ end
 		if(player:IsInCombat())then
 			player:SendAreaTriggerMessage("不能在战斗中召唤NPC。")
 		else
-			if(nowTime>lastTime)then
+			if(1)then--nowTime>lastTime --暂时取消召唤NPC时间限制
 				local map=player:GetMap()
 				if(map)then
 					player:SendAreaTriggerMessage("你位于："..map:GetName())
