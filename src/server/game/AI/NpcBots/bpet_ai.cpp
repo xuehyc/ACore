@@ -1,6 +1,7 @@
 ﻿#include "bpet_ai.h"
 #include "bot_GridNotifiers.h"
 #include "botmgr.h"
+#include "LFGMgr.h"
 #include "Log.h"
 #include "Map.h"
 #include "MotionMaster.h"
@@ -1818,7 +1819,7 @@ void bot_pet_ai::RegeneratePetFocus()
         if (curValue == maxValue || regenTimer >= REGEN_CD)
             me->SetPower(POWER_FOCUS, curValue);
         else
-            me->UpdateUInt32Value(UNIT_FIELD_POWER1 + POWER_FOCUS, curValue);
+            me->UpdateUInt32Value(UNIT_FIELD_POWER1 + uint16(POWER_FOCUS), curValue);
     }
 }
 
@@ -1851,7 +1852,7 @@ void bot_pet_ai::RegeneratePetEnergy()
         if (curValue == maxValue || regenTimer >= REGEN_CD)
             me->SetPower(POWER_ENERGY, curValue);
         else
-            me->UpdateUInt32Value(UNIT_FIELD_POWER1 + POWER_ENERGY, curValue);
+            me->UpdateUInt32Value(UNIT_FIELD_POWER1 + uint16(POWER_ENERGY), curValue);
     }
 }
 //////////
@@ -2179,13 +2180,12 @@ bool bot_pet_ai::IsTank(Unit const* unit) const
     {
         if (Group const* gr = player->GetGroup())
         {
-            if (gr->isRaidGroup())
-            {
-                Group::MemberSlotList const& slots = gr->GetMemberSlots();
-                for (Group::member_citerator itr = slots.begin(); itr != slots.end(); ++itr)
-                    if (itr->guid == unit->GetGUID())
-                        return itr->flags & MEMBER_FLAG_MAINTANK;
-            }
+            Group::MemberSlotList const& slots = gr->GetMemberSlots();
+            for (Group::member_citerator itr = slots.begin(); itr != slots.end(); ++itr)
+                if (itr->guid == unit->GetGUID())
+                    return itr->flags & MEMBER_FLAG_MAINTANK;
+            if (gr->isLFGGroup() && sLFGMgr->GetRoles(unit->GetGUID()) & lfg::PLAYER_ROLE_TANK)
+                return true;
         }
     }
 

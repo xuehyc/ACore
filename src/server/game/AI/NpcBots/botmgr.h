@@ -285,10 +285,8 @@ class AC_GAME_API BotMgr
         void UpdateTargetIconName(uint8 id, std::string const& name);
         void ResetTargetIconNames();
 
-        static Group* GetBotGroup(Creature const* bot);
-        static void SetBotGroup(Creature const* bot, Group* group);
-        static void SetBotGroup(ObjectGuid botguid, Group* group);
-        static void SetBotGroup(ObjectGuid::LowType bot_id, Group* group);
+        static std::vector<Unit*> GetAllGroupMembers(Group const* group);
+        static std::vector<Unit*> GetAllGroupMembers(Unit const* source);
         static void InviteBotToBG(ObjectGuid botguid, GroupQueueInfo* ginfo, Battleground* bg);
 
         static bool IsBotInAreaTriggerRadius(Creature const* bot, AreaTrigger const* trigger);

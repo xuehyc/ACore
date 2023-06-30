@@ -188,21 +188,13 @@ GroupQueueInfo* BattlegroundQueue::AddGroup(Player* leader, Group* group, Battle
             ginfo->Players.emplace(member->GetGUID());
         });
         //npcbot: queue bots (bg only)
-        for (GroupReference* itr = group->GetFirstMember(); itr != nullptr; itr = itr->next())
+        if (!arenaTeamId)
         {
-            Player const* member = itr->GetSource();
-            if (!member)
-                continue;   // this should never happen
-            if (arenaTeamId || !member->HaveBot())
-                continue;
-
-            BotMap const* map = member->GetBotMgr()->GetBotMap();
-            for (BotMap::const_iterator itr = map->begin(); itr != map->end(); ++itr)
+            for (GroupBotReference* itr = group->GetFirstBotMember(); itr != nullptr; itr = itr->next())
             {
-                Creature const* bot = itr->second;
-                if (!bot || !group->IsMember(bot->GetGUID()))
+                Creature const* bot = itr->GetSource();
+                if (!bot)
                     continue;
-
                 m_QueuedPlayers[bot->GetGUID()] = ginfo;
                 ginfo->Players.emplace(bot->GetGUID());
             }
@@ -302,7 +294,6 @@ GroupQueueInfo* BattlegroundQueue::AddBotAsGroup(ObjectGuid guid, TeamId teamId,
         uint32 q_max_level = std::min(bracketEntry->maxLevel, (uint32)80);
         uint32 qHorde = GetPlayersCountInGroupsQueue(bracketId, BG_QUEUE_NORMAL_HORDE);
         uint32 qAlliance = GetPlayersCountInGroupsQueue(bracketId, BG_QUEUE_NORMAL_ALLIANCE);
-        uint32 qTotal = qHorde + qAlliance;
         sWorld->SendWorldTextOptional(LANG_BG_QUEUE_ANNOUNCE_WORLD, ANNOUNCER_FLAG_DISABLE_BG_QUEUE, bgName.c_str(), q_min_level, q_max_level, qAlliance + qHorde, MaxPlayers);
     }
 

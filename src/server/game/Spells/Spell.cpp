@@ -4580,6 +4580,11 @@ void Spell::finish(bool ok)
     if (Creature* creatureCaster = m_caster->ToCreature())
         creatureCaster->ReleaseFocus(this);
 
+    //npcbot
+    if (!ok && m_caster->IsNPCBotOrPet())
+        BotMgr::OnBotSpellGo(m_caster, this, false);
+    //end npcbot
+
     if (!ok)
     {
         if (m_caster->GetTypeId() == TYPEID_PLAYER)
@@ -5791,8 +5796,7 @@ SpellCastResult Spell::CheckCast(bool strict)
             return SPELL_FAILED_NOT_READY;
 
         //npcbot
-        if (m_caster->IsNPCBot() &&
-            m_caster->ToCreature()->HasSpellCooldown(m_spellInfo->Id))
+        if (m_caster->IsNPCBot() && m_caster->ToCreature()->HasSpellCooldown(m_spellInfo->Id) && !IsIgnoringCooldowns())
         {
             //TC_LOG_ERROR("spells", "%s has cd of %u on %s", m_caster->GetName().c_str(), m_caster->ToCreature()->GetCreatureSpellCooldownDelay(m_spellInfo->Id), m_spellInfo->SpellName[0]);
             if (m_triggeredByAuraSpell)

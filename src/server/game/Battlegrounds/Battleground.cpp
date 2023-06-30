@@ -443,7 +443,7 @@ inline void Battleground::_ProcessResurrect(uint32 diff)
             if (guid.IsCreature())
             {
                 if (Creature const* cbot = BotDataMgr::FindBot(guid.GetEntry()))
-                    BotMgr::ReviveBot(const_cast<Creature*>(cbot));
+                    cbot->GetBotAI()->UpdateReviveTimer(std::numeric_limits<uint32>::max());
                 continue;
             }
             //end npcbot
@@ -781,6 +781,12 @@ void Battleground::RemoveAuraOnTeam(uint32 spellId, TeamId teamId)
     for (BattlegroundPlayerMap::const_iterator itr = m_Players.begin(); itr != m_Players.end(); ++itr)
         if (itr->second->GetBgTeamId() == teamId)
             itr->second->RemoveAura(spellId);
+    //npcbot
+    for (auto const& kv : m_Bots)
+        if (kv.second.Team == teamId)
+            if (Creature* bot = GetBgMap()->GetCreature(kv.first))
+                bot->CastSpell(bot, spellId, true);
+    //end npcbot
 }
 
 void Battleground::YellToAll(Creature* creature, char const* text, uint32 language)
@@ -1163,13 +1169,9 @@ void Battleground::RemoveBotAtLeave(ObjectGuid guid)
 
     RemoveBotFromResurrectQueue(guid);
 
-    // GetStatus might be changed in RemovePlayer - define it here
-    BattlegroundStatus status = GetStatus();
-
     // BG subclass specific code
     RemoveBot(guid);
 
-    // if the player was a match participant
     if (participant)
     {
         // remove from raid group if player is member
@@ -1370,8 +1372,7 @@ void Battleground::AddBot(Creature* bot)
     AddOrSetBotToCorrectBgGroup(bot, teamId);
 
     bot->GetBotAI()->SetBG(this);
-    if (GetStatus() != STATUS_IN_PROGRESS && bot->IsWandererBot())
-        bot->GetBotAI()->SetBotCommandState(BOT_COMMAND_STAY);
+    bot->GetBotAI()->OnBotEnterBattleground();
 }
 //end npcbot
 
@@ -1414,7 +1415,7 @@ void Battleground::AddOrSetPlayerToCorrectBgGroup(Player* player, TeamId teamId)
 //end npcbot
 void Battleground::AddOrSetBotToCorrectBgGroup(Creature* bot, TeamId teamId)
 {
-    ObjectGuid playerGuid = bot->GetGUID();
+    ObjectGuid botGuid = bot->GetGUID();
     Group* group = GetBgRaid(teamId);
     if (!group)                                      // first player joined
     {
@@ -1425,7 +1426,12 @@ void Battleground::AddOrSetBotToCorrectBgGroup(Creature* bot, TeamId teamId)
     }
     else
     {
-        if (!group->IsMember(playerGuid))
+        if (group->IsMember(botGuid))
+        {
+            uint8 subgroup = group->GetMemberGroup(botGuid);
+            bot->SetBattlegroundOrBattlefieldRaid(group, subgroup);
+        }
+        else
             group->AddMember(bot);
     }
 }
@@ -1650,8 +1656,25 @@ void Battleground::RelocateDeadPlayers(ObjectGuid queueIndex)
     if (!ghostList.empty())
     {
         GraveyardStruct const* closestGrave = nullptr;
+        //npcbot
+        GraveyardStruct const* closestBotGrave = nullptr;
+        //end npcbot
         for (ObjectGuid const& guid : ghostList)
         {
+            //npcbot
+            if (guid.IsCreature())
+            {
+                if (Creature const* bot = BotDataMgr::FindBot(guid.GetEntry()))
+                {
+                    if (!closestBotGrave)
+                        closestBotGrave = GetClosestGraveyardForBot(const_cast<Creature*>(bot));
+                    if (closestBotGrave)
+                        const_cast<Creature*>(bot)->NearTeleportTo(closestBotGrave->x, closestBotGrave->y, closestBotGrave->z, bot->GetOrientation());
+                }
+                continue;
+            }
+            //end npcbot
+
             Player* player = ObjectAccessor::FindPlayer(guid);
             if (!player)
                 continue;
@@ -2112,7 +2135,6 @@ void Battleground::HandleBotKillPlayer(Creature* killer, Player* victim)
         }
     }
 }
-
 void Battleground::HandleBotKillBot(Creature* killer, Creature* victim)
 {
     UpdateBotScore(victim, SCORE_DEATHS, 1);
@@ -2141,7 +2163,6 @@ void Battleground::HandleBotKillBot(Creature* killer, Creature* victim)
         }
     }
 }
-
 void Battleground::HandlePlayerKillBot(Creature* victim, Player* killer)
 {
     UpdateBotScore(victim, SCORE_DEATHS, 1);
@@ -2159,7 +2180,7 @@ void Battleground::HandlePlayerKillBot(Creature* victim, Player* killer)
             if (creditedPlayer == killer)
                 continue;
 
-            if (creditedPlayer->GetBgTeamId() == killer->GetBgTeamId() && (creditedPlayer == killer || creditedPlayer->IsAtGroupRewardDistance(victim)))
+            if (creditedPlayer->GetBgTeamId() == killer->GetBgTeamId() && creditedPlayer->IsAtGroupRewardDistance(victim))
                 UpdatePlayerScore(creditedPlayer, SCORE_HONORABLE_KILLS, 1);
         }
 
@@ -2225,9 +2246,12 @@ uint32 Battleground::GetAlivePlayersCountByTeam(TeamId teamId) const
     //npcbot
     for (BattlegroundBotMap::const_iterator itr = m_Bots.begin(); itr != m_Bots.end(); ++itr)
     {
-        Creature const* bot = BotDataMgr::FindBot(itr->first.GetEntry());
-        if (bot && bot->IsAlive() && !bot->HasByteFlag(UNIT_FIELD_BYTES_2, 3, FORM_SPIRITOFREDEMPTION) && GetBotTeamId(itr->first) == teamId)
-            ++count;
+        if (GetBotTeamId(itr->first) == teamId)
+        {
+            Creature const* bot = BotDataMgr::FindBot(itr->first.GetEntry());
+            if (bot && bot->IsAlive() && !bot->HasByteFlag(UNIT_FIELD_BYTES_2, 3, FORM_SPIRITOFREDEMPTION))
+                ++count;
+        }
     }
     //end npcbot
     for (BattlegroundPlayerMap::const_iterator itr = m_Players.begin(); itr != m_Players.end(); ++itr)

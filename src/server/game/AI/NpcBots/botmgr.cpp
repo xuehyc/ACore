@@ -2746,23 +2746,31 @@ float BotMgr::GetBotDamageModByLevel(uint8 botlevel)
     return 1.0f;
 }
 
-Group* BotMgr::GetBotGroup(Creature const* bot)
+std::vector<Unit*> BotMgr::GetAllGroupMembers(Group const* group)
 {
-    return bot->GetBotAI() ? bot->GetBotAI()->GetGroup() : nullptr;
+    std::vector<Unit*> group_members;
+    if (group)
+    {
+        group_members.reserve(group->GetMembersCount());
+        for (GroupReference const* ref = group->GetFirstMember(); ref != nullptr; ref = ref->next())
+        {
+            if (Player* pl = ref->GetSource())
+                group_members.push_back(pl);
+        }
+        for (GroupBotReference const* ref = group->GetFirstBotMember(); ref != nullptr; ref = ref->next())
+        {
+            if (Creature* cr = ref->GetSource())
+                group_members.push_back(cr);
+        }
+    }
+
+    return group_members;
 }
-void BotMgr::SetBotGroup(Creature const* bot, Group* group)
+std::vector<Unit*> BotMgr::GetAllGroupMembers(Unit const* source)
 {
-    bot->GetBotAI()->SetGroup(group);
-}
-void BotMgr::SetBotGroup(ObjectGuid::LowType bot_id, Group* group)
-{
-    Creature const* bot = BotDataMgr::FindBot(bot_id);
-    ASSERT(bot);
-    SetBotGroup(bot, group);
-}
-void BotMgr::SetBotGroup(ObjectGuid botguid, Group* group)
-{
-    SetBotGroup(botguid.GetEntry(), group);
+    Group const* group = (source->IsNPCBot() && source->ToCreature()->GetBotAI()) ? source->ToCreature()->GetBotAI()->GetGroup() :
+        source->IsPlayer() ? source->ToPlayer()->GetGroup() : nullptr;
+    return GetAllGroupMembers(group);
 }
 
 void BotMgr::InviteBotToBG(ObjectGuid botguid, GroupQueueInfo* ginfo, Battleground* bg)
