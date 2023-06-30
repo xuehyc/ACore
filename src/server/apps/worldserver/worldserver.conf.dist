@@ -4191,7 +4191,7 @@ NpcBot.Botgiver.FilterRaces = 0
 #        Note2:       This parameter is set for each player at login.
 #        Default:     30
 
-NpcBot.BaseFollowDistance = 30
+NpcBot.BaseFollowDistance = 50
 
 #
 #    NpcBot.XpReduction
