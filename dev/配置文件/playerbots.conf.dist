@@ -8,7 +8,7 @@
 
 # Enable or disable AI Playerbot
 # 启用或禁用智能玩家机器人
-AiPlayerbot.Enabled = 0
+AiPlayerbot.Enabled = 1
 
 # Enable random bot system
 # 启用随机机器人系统
