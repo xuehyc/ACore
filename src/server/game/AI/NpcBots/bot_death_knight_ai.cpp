@@ -1,4 +1,4 @@
-﻿#include "bot_ai.h"
+#include "bot_ai.h"
 #include "botmgr.h"
 #include "bottext.h"
 #include "bottraits.h"
@@ -358,7 +358,7 @@ public:
 
             Unit* target = nullptr;
 
-            if (master->GetVictim() && master->IsInCombat() && IsMeleeClass(master->getClass()) &&
+            if (master->GetVictim() && master->IsInCombat() && IsMeleeClass(master->GetClass()) &&
                 GetHealthPCT(master) > 60 && me->GetDistance(master) < 30 &&
                 master->getAttackers().empty() && !CCed(master, true) &&
                 !master->GetAuraEffect(SPELL_AURA_MOD_DAMAGE_PERCENT_DONE, SPELLFAMILY_DEATHKNIGHT, 0x20000000, 0x0, 0x0))
@@ -379,7 +379,7 @@ public:
                             me->GetMap() != player->FindMap())
                             continue;
 
-                        if (IsMeleeClass(player->getClass()) && player->GetVictim() && GetHealthPCT(player) > 60 &&
+                        if (IsMeleeClass(player->GetClass()) && player->GetVictim() && GetHealthPCT(player) > 60 &&
                             me->GetDistance(player) < 30 && player->getAttackers().empty() && !CCed(player, true) &&
                             !player->GetAuraEffect(SPELL_AURA_MOD_DAMAGE_PERCENT_DONE, SPELLFAMILY_DEATHKNIGHT, 0x20000000, 0x0, 0x0))
                         {
@@ -715,8 +715,10 @@ public:
             if (IsSpellReady(DARK_COMMAND_1, diff, false) && u && u != me && dist < 30 &&
                 mytar->GetTypeId() == TYPEID_UNIT && !mytar->IsControlledByPlayer() && Rand() < 50 &&
                 !CCed(mytar) && !mytar->HasAuraType(SPELL_AURA_MOD_TAUNT) &&
-                (!IsTank(u) || (IsTank() && GetHealthPCT(u) < 30 && GetHealthPCT(me) > 67)) &&
-                (IsTank() || (!IsTankingClass(u->getClass()) && GetHealthPCT(u) < 80)) &&
+                (!IsTank(u) || (IsTank() && GetHealthPCT(me) > 67 &&
+                (GetHealthPCT(u) < 30 || (IsOffTank() && !IsOffTank(u) && IsPointedOffTankingTarget(mytar)) ||
+                (!IsOffTank() && IsOffTank(u) && IsPointedTankingTarget(mytar))))) &&
+                ((!IsTankingClass(u->GetClass()) && GetHealthPCT(u) < 80) || IsTank()) &&
                 IsInBotParty(u))
             {
                 if (doCast(mytar, GetSpell(DARK_COMMAND_1)))
