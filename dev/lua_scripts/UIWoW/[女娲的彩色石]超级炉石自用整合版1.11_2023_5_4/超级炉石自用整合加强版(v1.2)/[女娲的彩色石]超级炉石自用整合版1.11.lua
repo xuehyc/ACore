@@ -294,7 +294,12 @@ local EQUIPMENT_SLOT_TABARD       = 18--战袍
 
 local playerTeleportPoints = {}
 
-
+--后加    开始
+--清副本CD
+local fuction ST.ClearCD(player)
+Player:UnbindAllInstances()
+end
+--后加    结束
 
 local Instances={--副本表
 		{249,0},{249,1},{269,1},{309,0},
@@ -2203,7 +2208,7 @@ local Menu={--菜单页面
 		{FUNC, "|TInterface/ICONS/Spell_Holy_BorrowedTime:32:32|t|cff3F636C重置角色所有冷却",	Stone.ResetAllCD,		GOSSIP_ICON_INTERACT_1,	false,"确认重置所有冷却 ？"},
 		{FUNC, "|TInterface/ICONS/inv_potion_47:32:32|t|cff3F636C立刻回满血蓝",	Stone.MaxHealth,	GOSSIP_ICON_BATTLE,	false,"确认回复生命与法力？"},
 		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
-		
+		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C清副本CD", 	    ST.ClearCD,GOSSIP_ICON_BATTLE},
 		{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
