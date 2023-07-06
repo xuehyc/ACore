@@ -294,12 +294,7 @@ local EQUIPMENT_SLOT_TABARD       = 18--战袍
 
 local playerTeleportPoints = {}
 
---后加    开始
---清副本CD(所有)
-local fuction ST.ClearCD(player)
-Player:UnbindAllInstances()
-end
---后加    结束
+
 
 local Instances={--副本表
 		{249,0},{249,1},{269,1},{309,0},
@@ -970,6 +965,14 @@ end
         function ST.SummonVendor(player)--售卖商人
 			ST.SummonNPC(player, 15898)
 		end
+
+
+        --后加    开始
+        --清副本CD(所有)
+        function ST.ClearCD(player)
+        Player:UnbindAllInstances()
+        end
+        --后加    结束
 
         --原神变身系列开始
 
