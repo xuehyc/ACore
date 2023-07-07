@@ -3021,7 +3021,7 @@ local Menu={--菜单页面
 			{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Tanaris_01:35:35|t加基森",	1,		-7168.77,	-3786.97,	8.499,	2.964,			TEAM_NONE,	30,	0},
 			{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Winterspring:35:35|t永望镇",	1,		6714.520,	-4667.69,	720.951,	0.232,	TEAM_NONE,	55,	0},--永望镇这么重要也不加一个？
             {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永恒岛",	606,		-651,-4666,7,606,	TEAM_NONE,	35,	0},
-			 {MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
+			 --{MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
 		},
 
 	   [TPMENU+0x220]={--东部王国
