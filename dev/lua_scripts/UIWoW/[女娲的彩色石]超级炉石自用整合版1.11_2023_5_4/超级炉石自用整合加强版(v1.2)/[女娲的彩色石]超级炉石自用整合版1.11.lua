@@ -2213,7 +2213,7 @@ local Menu={--菜单页面
 		--{FUNC, "|TInterface/ICONS/achievement_leader_tyrande_whisperwind:32:32|t|cff3F636C召唤歌剧院管理员|r", 	ST.SummonNPC_sound,	GOSSIP_ICON_TAXI},--自制播音员，外发时注释掉
 		--{FUNC, "|TInterface/ICONS/Ysera_mortal:32:32|t|cff3F636C召唤伊瑟拉|r", 	ST.SummonNPC_Ysera,	GOSSIP_ICON_TAXI},--自制NPC，外发时注释掉
 		--{FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636CGM模式", 		Stone.GmOnMod,	GOSSIP_ICON_VENDOR},--eluna不能支持GM命令
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t召唤售卖商人", 	ST.SummonVendor,	GOSSIP_ICON_TRAINER},
+        {FUNC, "|TInterface/ICONS/spring_vendor:32:32|t售卖商人", 	ST.SummonVendor,	GOSSIP_ICON_TRAINER},
         {FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C在线银行", 		Stone.OpenBank,	GOSSIP_ICON_VENDOR},
         {FUNC, "|TInterface/ICONS/INV_Letter_06:32:32|t|cff3F636C空中邮箱", 		Stone.OpenMailBox,	GOSSIP_ICON_VENDOR},
 		--{FUNC, "|TInterface/ICONS/inv_misc_coin_06:32:32|t|cff3F636C移动拍卖行", 		Stone.OpenAuction,	GOSSIP_ICON_VENDOR},--无法脱离NPC实现
