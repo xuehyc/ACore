@@ -361,6 +361,8 @@ end
 
 
 
+
+
 --主界面   --完工后这里将无用
 
 --斗气原版
@@ -973,6 +975,17 @@ end
         Player:UnbindAllInstances()
         end
         --后加    结束
+
+
+        --查询本级经验模块
+        function ST.GetXP(player)   --此处是我尝试的添加经验模块
+            local xp=CharDBQuery("SELECT xp FROM characters WHERE guid="..player:GetGUIDLow()..";")	--查询经验            
+	        player:SendBroadcastMessage("当前经验为"..xp:GetUInt32(0)..",本级满级经验为:450000000,距离升级还有"..450000000-xp:GetUInt32(0).."经验")
+            --此处写死了,严谨写法应该再查world库中player_xp_for_level表(当然如果配置里经验倍率不为1,得另想办法获取削减后的经验)
+            player:SendBroadcastMessage("当前升级进度为%"..xp:GetUInt32(0)/450000000*100)  --切换为百分比,百分号放后面就崩错
+            
+        end
+
 
         --原神变身系列开始
 
@@ -2211,7 +2224,8 @@ local Menu={--菜单页面
 		{FUNC, "|TInterface/ICONS/Spell_Holy_BorrowedTime:32:32|t|cff3F636C重置角色所有冷却",	Stone.ResetAllCD,		GOSSIP_ICON_INTERACT_1,	false,"确认重置所有冷却 ？"},
 		{FUNC, "|TInterface/ICONS/inv_potion_47:32:32|t|cff3F636C立刻回满血蓝",	Stone.MaxHealth,	GOSSIP_ICON_BATTLE,	false,"确认回复生命与法力？"},
 		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
-		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C清除所有副本CD", 	    ST.ClearCD,GOSSIP_ICON_BATTLE},
+		--{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C清除所有副本CD", 	    ST.ClearCD,GOSSIP_ICON_BATTLE}, --与下方重置副本重复
+        {FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C查询本级经验", 	ST.GetXP,GOSSIP_ICON_BATTLE},
 		{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
