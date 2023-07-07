@@ -2901,7 +2901,7 @@ local Menu={--菜单页面
 		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC联盟主城",							TPMENU+0x30,	GOSSIP_ICON_TAXI,TEAM_ALLIANCE},
 		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC部落主城",							TPMENU+0x80,	GOSSIP_ICON_TAXI, TEAM_HORDE},
 		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC中立主城",							TPMENU+0x10,	GOSSIP_ICON_TAXI ,TEAM_NONE},
-		 {MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
+		 --{MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
 		},
 		
         [TPMENU+0x30]={--联盟主城
@@ -2928,7 +2928,7 @@ local Menu={--菜单页面
 		{TP, "|TInterface/ICONS/Spell_Arcane_Portalstormwind:35:35|t|cff0000ff暴风城--已宰的羔羊",		 0, -8960.11, 1007.08, 122.025, 0.585,  TEAM_ALLIANCE},
 		{TP, "|TInterface/ICONS/Spell_Arcane_Portalstormwind:35:35|t|cff0000ff暴风城--巫师圣殿",		 0, -9005.53, 867.86, 129.692, 0.585,  TEAM_ALLIANCE},
 		{TP, "|TInterface/ICONS/Spell_Arcane_Portalstormwind:35:35|t|cff0000ff暴风城--暴风城港口",		 0, -8473.2177, 1233.303, 5.2302, 1.5059,  TEAM_ALLIANCE},
-		{MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
+		--{MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
 	},
 	    [TPMENU+0x50]={--铁炉堡
 	    {TP, "|TInterface/ICONS/Achievement_Zone_Ironforge:35:35|t|cff0000ff铁炉堡--大煅炉",		0, -4791.691, -1117.180, 498.807, 2.2204,   TEAM_ALLIANCE},
@@ -2950,7 +2950,7 @@ local Menu={--菜单页面
 	    {TP, "|TInterface/ICONS/Achievement_Zone_Darnassus:35:35|t|cff0000ff达纳苏斯--神殿花园区",		1,9934.518, 2501.518, 1317.825,1.0924,   TEAM_ALLIANCE},
 	    {TP, "|TInterface/ICONS/Achievement_Zone_Darnassus:35:35|t|cff0000ff达纳苏斯--月神殿",		1,9688.63, 2525.97, 1335.38,2.78897,   TEAM_ALLIANCE},
 	    {TP, "|TInterface/ICONS/Achievement_Zone_Darnassus:35:35|t|cff0000ff达纳苏斯--战士区",		1,9950.94, 2279.22, 1341.39,2.78897,   TEAM_ALLIANCE},
-	    {MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
+	    --{MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
 	},
 
 	    [TPMENU+0x70]={--埃索达
@@ -2959,7 +2959,7 @@ local Menu={--菜单页面
 	    {TP, "|TInterface/ICONS/Spell_Arcane_TeleportExodar:35:35|t|cff0000ff埃索达--圣光地窖",		530,-4077.37, -11422.1, -141.457,1.108,   TEAM_ALLIANCE},
 	    {TP, "|TInterface/ICONS/Spell_Arcane_TeleportExodar:35:35|t|cff0000ff埃索达--贸易区",		530,-4233.98, -11708.623, -143.658,4.0453,   TEAM_ALLIANCE},
 	    {TP, "|TInterface/ICONS/Spell_Arcane_TeleportExodar:35:35|t|cff0000ff埃索达--纳鲁王座下层",		530,-3890.48, -11646.6, -310.942,1.108,   TEAM_ALLIANCE},
-	    {MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
+	    --{MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
 	},
 
 	
@@ -2980,7 +2980,7 @@ local Menu={--菜单页面
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalOrgrimmar:35:35|t|cffff0000奥格瑞玛--暗影裂口",		1,		1803.45, -4392.86, -18.1602,		2.14362,	TEAM_HORDE},
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalOrgrimmar:35:35|t|cffff0000奥格瑞玛--格罗玛什堡垒",		1,		1920.938, -4145.206, 40.629,		1.64,	TEAM_HORDE},
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalOrgrimmar:35:35|t|cffff0000奥格瑞玛--传说大厅",		1,		1659.058, -4205.261, 55.437,	1.079,	TEAM_HORDE},
-	{MENU, "上一页", TPMENU+0x80,GOSSIP_ICON_TAXI},
+	--{MENU, "上一页", TPMENU+0x80,GOSSIP_ICON_TAXI},
 	},
 	[TPMENU+0xa0]={--幽暗城
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalUndercity:35:35|t|cffff0000幽暗城--洛丹伦废墟",			0,		1835.05, 238.602, 60.3228, 	3.08,	TEAM_HORDE},
@@ -2991,7 +2991,7 @@ local Menu={--菜单页面
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalUndercity:35:35|t|cffff0000幽暗城--皇家区",			0,		1302.38, 359.112, -67.2968,     3.08,	TEAM_HORDE},
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalUndercity:35:35|t|cffff0000幽暗城--盗贼区",			0,		 1501.65, 147.634, -60.0877,    3.08,	TEAM_HORDE},
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalUndercity:35:35|t|cffff0000幽暗城--下水道",			0,		 1671, 734.324, 79.9641,     3.08,	TEAM_HORDE},
-	{MENU, "上一页", TPMENU+0x80,GOSSIP_ICON_TAXI},
+	--{MENU, "上一页", TPMENU+0x80,GOSSIP_ICON_TAXI},
 	},
 	[TPMENU+0xb0]={--雷霆崖
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalThunderBluff:35:35|t|cffff0000雷霆崖--中心区",			1,		-1210.163, -62.944, 157.750,	4.70,	TEAM_HORDE},
