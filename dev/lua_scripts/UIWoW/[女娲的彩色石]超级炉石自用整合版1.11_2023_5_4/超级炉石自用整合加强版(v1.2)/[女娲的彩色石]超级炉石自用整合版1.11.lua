@@ -987,6 +987,44 @@ end
             
         end
 
+        --霜纹布兑换经验模块(1个霜纹布)
+        function ST.SingleClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
+        itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+        if(itemamount>0)then --如果霜纹布数量大于0
+        player:RemoveItem(33470,1) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000) --给予1W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("霜纹布数量不足.")
+        end
+        end
+
+
+        --霜纹布兑换经验模块(10个霜纹布)
+        function ST.TenClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
+        itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+        if(itemamount>9)then --如果霜纹布数量大于0
+        player:RemoveItem(33470,10) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(100000) --给予10W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("霜纹布数量不足.")
+        end
+        end
+
+
+        --霜纹布兑换经验模块(100个霜纹布)
+        function ST.HundredClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
+        itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+        if(itemamount>99)then --如果霜纹布数量大于0
+        player:RemoveItem(33470,100) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(1000000) --给予100W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("霜纹布数量不足.")
+        end
+        end
+
 
         --原神变身系列开始
 
@@ -2227,6 +2265,9 @@ local Menu={--菜单页面
 		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
 		--{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C清除所有副本CD", 	    ST.ClearCD,GOSSIP_ICON_BATTLE}, --与下方重置副本重复
         {FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C查询本级经验", 	ST.GetXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C霜纹布兑换经验(1个)", 	ST.SingleClothToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C霜纹布兑换经验(10个)", 	ST.TenClothToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C霜纹布兑换经验(100个)", 	ST.HundredClothToXP,GOSSIP_ICON_BATTLE},
 		{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
