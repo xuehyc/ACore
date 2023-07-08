@@ -853,7 +853,7 @@ end
 		if(player:IsInCombat())then
 			player:SendAreaTriggerMessage("不能在战斗中召唤公会银行。")
 		else
-			if(nowTime>lastTime)then
+			if(1)then--公会银行召唤时间限制   --nowTime>lastTime
 				local map=player:GetMap()
 				if(map)then
 					player:SendAreaTriggerMessage("你位于："..map:GetName())
