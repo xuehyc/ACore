@@ -987,6 +987,9 @@ end
             
         end
 
+
+        --霜纹布兑换经验模块 开始
+
         --霜纹布兑换经验模块(1个霜纹布)
         function ST.SingleClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
         level = player:GetLevel()
@@ -1038,6 +1041,8 @@ end
          player:SendBroadcastMessage("80级玩家才可使用本功能.")
         end
         end
+        --霜纹布兑换经验模块 结束
+
 
 
         --原神变身系列开始
