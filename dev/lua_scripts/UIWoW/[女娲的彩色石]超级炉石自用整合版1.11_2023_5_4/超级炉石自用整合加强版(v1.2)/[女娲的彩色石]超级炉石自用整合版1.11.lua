@@ -1045,6 +1045,61 @@ end
 
 
 
+        --灵纹布兑换经验模块 开始
+
+        --灵纹布兑换经验模块(1个灵纹布)
+        function ST.SingleNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+
+        if(itemamount>0)then --如果灵纹布数量大于0
+        player:RemoveItem(21877,1) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000) --给予1W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("灵纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+
+
+        --灵纹布兑换经验模块(10个灵纹布)
+        function ST.TenNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
+        if(level>79)then--80级玩家才可使用本功能
+        itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+        if(itemamount>9)then --如果灵纹布数量大于0
+        player:RemoveItem(21877,10) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(100000) --给予10W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("灵纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+
+
+        --灵纹布兑换经验模块(100个灵纹布)
+        function ST.HundredNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
+        if(level>79)then--80级玩家才可使用本功能
+        itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+        if(itemamount>99)then --如果灵纹布数量大于0
+        player:RemoveItem(21877,100) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(1000000) --给予100W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("灵纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --灵纹布兑换经验模块 结束
+
         --原神变身系列开始
 
 
@@ -2287,6 +2342,9 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(1个)", 	ST.SingleSoulClothToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(10个)", 	ST.TenSoulClothToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(100个)", 	ST.HundredSoulClothToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(1个)", 	ST.SingleNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(10个)", 	ST.TenNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(100个)", 	ST.HundredNetherWeaveToXP,GOSSIP_ICON_BATTLE},
 		{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
