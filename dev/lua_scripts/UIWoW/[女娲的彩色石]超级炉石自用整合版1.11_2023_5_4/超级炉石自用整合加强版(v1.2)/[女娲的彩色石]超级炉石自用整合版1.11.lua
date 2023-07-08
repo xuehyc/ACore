@@ -1123,6 +1123,28 @@ end
         end
         --丝绸全部兑换经验模块 结束
 
+
+        --毛料全部兑换经验模块 开始
+
+        --毛料兑换经验模块(全部毛料)
+        function ST.AllWoolToXP(player)   --此处是我尝试的毛料兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_wool = player:GetItemCount( 2592 )--检测毛料数量
+
+        if(itemamount_wool>0)then --如果毛料数量大于0
+        player:RemoveItem(2592,itemamount_wool) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_wool) --给予1W*毛料数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("毛料数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --毛料全部兑换经验模块 结束
+
         --原神变身系列开始
 
 
@@ -2369,7 +2391,7 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(10个)", 	ST.TenNetherWeaveToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(100个)", 	ST.HundredNetherWeaveToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_silk_01:32:32|t|cff3F636C全部丝绸兑换经验", 	ST.AllSilkToXP,GOSSIP_ICON_BATTLE},
-
+        {FUNC, "|TInterface/ICONS/inv_Fabric_wool_01:32:32|t|cff3F636C全部毛料兑换经验", 	ST.AllWoolToXP,GOSSIP_ICON_BATTLE},
         
         {FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
