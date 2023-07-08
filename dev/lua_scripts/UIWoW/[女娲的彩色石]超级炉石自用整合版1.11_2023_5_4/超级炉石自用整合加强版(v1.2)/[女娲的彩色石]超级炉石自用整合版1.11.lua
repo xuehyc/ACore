@@ -1170,6 +1170,27 @@ end
 
 
 
+        --魔纹布全部兑换经验模块 开始
+
+        --魔纹布兑换经验模块(全部魔纹布)
+        function ST.AllMageWeaveToXP(player)   --此处是我尝试的魔纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_mageweave = player:GetItemCount( 4338 )--检测魔纹布数量
+
+        if(itemamount_mageweave>0)then --如果魔纹布数量大于0
+        player:RemoveItem(4338,itemamount_mageweave) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_mageweave) --给予1W*魔纹布数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("魔纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --魔纹布全部兑换经验模块 结束
+
 
         --原神变身系列开始
 
@@ -2419,7 +2440,7 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/inv_Fabric_silk_01:32:32|t|cff3F636C全部丝绸兑换经验", 	ST.AllSilkToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_wool_01:32:32|t|cff3F636C全部毛料兑换经验", 	ST.AllWoolToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_purplefire_01:32:32|t|cff3F636C全部符文布兑换经验", 	ST.AllPurpleFireToXP,GOSSIP_ICON_BATTLE},
-
+        {FUNC, "|TInterface/ICONS/inv_Fabric_mageweave_01:32:32|t|cff3F636C全部魔纹布兑换经验", 	ST.AllMageWeaveToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
