@@ -1100,6 +1100,29 @@ end
         end
         --灵纹布兑换经验模块 结束
 
+
+
+        --丝绸全部兑换经验模块 开始
+
+        --丝绸兑换经验模块(全部丝绸)
+        function ST.AllSilkToXP(player)   --此处是我尝试的丝绸兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_silk = player:GetItemCount( 4306 )--检测丝绸数量
+
+        if(itemamount_silk>0)then --如果丝绸数量大于0
+        player:RemoveItem(4306,itemamount_silk) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_silk) --给予1W*丝绸数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("丝绸数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --丝绸全部兑换经验模块 结束
+
         --原神变身系列开始
 
 
@@ -2345,7 +2368,10 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(1个)", 	ST.SingleNetherWeaveToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(10个)", 	ST.TenNetherWeaveToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(100个)", 	ST.HundredNetherWeaveToXP,GOSSIP_ICON_BATTLE},
-		{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
+        {FUNC, "|TInterface/ICONS/inv_Fabric_silk_01:32:32|t|cff3F636C全部丝绸兑换经验", 	ST.AllSilkToXP,GOSSIP_ICON_BATTLE},
+
+        
+        {FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
 	    {TP, " |TInterface/ICONS/achievement_pvp_H_04:32:32|t【|cFFB22222部落锁经验|r】", 1,2000.801025,-4790.464355,56.992043,0.314139,TEAM_HORDE,1,	10000},
