@@ -994,7 +994,7 @@ end
         function ST.SingleSoulClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
         level = player:GetLevel()
         if(level>79)then--80级玩家才可使用本功能
-        itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+        local itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
 
         if(itemamount>0)then --如果霜纹布数量大于0
         player:RemoveItem(33470,1) --Player:RemoveItem( entry, itemCount )
@@ -1012,7 +1012,7 @@ end
         --霜纹布兑换经验模块(10个霜纹布)
         function ST.TenSoulClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
         if(level>79)then--80级玩家才可使用本功能
-        itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+        local itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
         if(itemamount>9)then --如果霜纹布数量大于0
         player:RemoveItem(33470,10) --Player:RemoveItem( entry, itemCount )
         player:GiveXP(100000) --给予10W经验
@@ -1029,7 +1029,7 @@ end
         --霜纹布兑换经验模块(100个霜纹布)
         function ST.HundredSoulClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
         if(level>79)then--80级玩家才可使用本功能
-        itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+        local itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
         if(itemamount>99)then --如果霜纹布数量大于0
         player:RemoveItem(33470,100) --Player:RemoveItem( entry, itemCount )
         player:GiveXP(1000000) --给予100W经验
@@ -1051,7 +1051,7 @@ end
         function ST.SingleNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
         level = player:GetLevel()
         if(level>79)then--80级玩家才可使用本功能
-        itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+        local itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
 
         if(itemamount>0)then --如果灵纹布数量大于0
         player:RemoveItem(21877,1) --Player:RemoveItem( entry, itemCount )
@@ -1069,7 +1069,7 @@ end
         --灵纹布兑换经验模块(10个灵纹布)
         function ST.TenNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
         if(level>79)then--80级玩家才可使用本功能
-        itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+        local itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
         if(itemamount>9)then --如果灵纹布数量大于0
         player:RemoveItem(21877,10) --Player:RemoveItem( entry, itemCount )
         player:GiveXP(100000) --给予10W经验
@@ -1086,7 +1086,7 @@ end
         --灵纹布兑换经验模块(100个灵纹布)
         function ST.HundredNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
         if(level>79)then--80级玩家才可使用本功能
-        itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+        local itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
         if(itemamount>99)then --如果灵纹布数量大于0
         player:RemoveItem(21877,100) --Player:RemoveItem( entry, itemCount )
         player:GiveXP(1000000) --给予100W经验
