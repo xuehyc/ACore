@@ -1124,6 +1124,28 @@ end
 
 
 
+        --霜纹布全部兑换经验模块 开始
+
+        --霜纹布兑换经验模块(全部霜纹布)
+        function ST.AllSoulClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_soulcloth = player:GetItemCount( 33470 )--检测霜纹布数量
+
+        if(itemamount_soulcloth>0)then --如果霜纹布数量大于0
+        player:RemoveItem(33470,itemamount_soulcloth) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_soulcloth) --给予1W*霜纹布数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("霜纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --霜纹布全部兑换经验模块 结束
+
+
         --丝绸全部兑换经验模块 开始
 
         --丝绸兑换经验模块(全部丝绸)
@@ -2522,9 +2544,14 @@ local Menu={--菜单页面
 		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
 		--{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C清除所有副本CD", 	    ST.ClearCD,GOSSIP_ICON_BATTLE}, --与下方重置副本重复
         {FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C查询本级经验", 	ST.GetXP,GOSSIP_ICON_BATTLE},
-        {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(1个)", 	ST.SingleSoulClothToXP,GOSSIP_ICON_BATTLE},
-        {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(10个)", 	ST.TenSoulClothToXP,GOSSIP_ICON_BATTLE},
-        {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(100个)", 	ST.HundredSoulClothToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(1个)", 	ST.SingleSoulClothToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(10个)", 	ST.TenSoulClothToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(100个)", 	ST.HundredSoulClothToXP,GOSSIP_ICON_BATTLE},
+
+
+        {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C全部霜纹布兑换经验", 	ST.AllSoulClothToXP,GOSSIP_ICON_BATTLE},
+
+
 
         --{FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(1个)", 	ST.SinchampionsbondgleNetherWeaveToXP,GOSSIP_ICON_BATTLE},
         --{FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(10个)", 	ST.TenNetherWeaveToXP,GOSSIP_ICON_BATTLE},
