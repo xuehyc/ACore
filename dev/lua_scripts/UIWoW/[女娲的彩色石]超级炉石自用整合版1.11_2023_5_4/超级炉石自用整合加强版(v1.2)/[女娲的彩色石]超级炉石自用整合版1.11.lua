@@ -1101,6 +1101,28 @@ end
         --灵纹布兑换经验模块 结束
 
 
+        --灵纹布全部兑换经验模块 开始
+
+        --灵纹布兑换经验模块(全部灵纹布)
+        function ST.AllNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_netherweave = player:GetItemCount( 21877 )--检测灵纹布数量
+
+        if(itemamount_netherweave>0)then --如果灵纹布数量大于0
+        player:RemoveItem(21877,itemamount_netherweave) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_netherweave) --给予1W*灵纹布数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("灵纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --灵纹布全部兑换经验模块 结束
+
+
 
         --丝绸全部兑换经验模块 开始
 
@@ -2503,9 +2525,14 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(1个)", 	ST.SingleSoulClothToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(10个)", 	ST.TenSoulClothToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(100个)", 	ST.HundredSoulClothToXP,GOSSIP_ICON_BATTLE},
-        {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(1个)", 	ST.SinchampionsbondgleNetherWeaveToXP,GOSSIP_ICON_BATTLE},
-        {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(10个)", 	ST.TenNetherWeaveToXP,GOSSIP_ICON_BATTLE},
-        {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(100个)", 	ST.HundredNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(1个)", 	ST.SinchampionsbondgleNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(10个)", 	ST.TenNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(100个)", 	ST.HundredNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+
+        {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C全部灵纹布兑换经验", 	ST.AllNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+
+
         {FUNC, "|TInterface/ICONS/inv_Fabric_silk_01:32:32|t|cff3F636C全部丝绸兑换经验", 	ST.AllSilkToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_wool_01:32:32|t|cff3F636C全部毛料兑换经验", 	ST.AllWoolToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_purplefire_01:32:32|t|cff3F636C全部符文布兑换经验", 	ST.AllPurpleFireToXP,GOSSIP_ICON_BATTLE},
