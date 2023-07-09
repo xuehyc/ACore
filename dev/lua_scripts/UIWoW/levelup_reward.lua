@@ -1,11 +1,25 @@
 ﻿--print('levelup_reward module loading...')
-local maxlevel_talentpoints = 2                     --满级后升级奖励天赋点
+
+
+
+
+
+
 function levelup_reward(event, player, oldLevel)    --升级奖励金币
 --player:ModifyMoney(10000) --奖励1金,原版
 
 --oldLevel=getuint32(oldLevel)--报错
 --尝试更换数据类型,之前会报字符串转数值错误(错误如下:)
 --lua_scripts/UIWoW/levelup_reward.lua:14(行号): attempt to perform arithmetic on a string value
+local maxlevel_talentpoints = 2                     --满级后升级奖励天赋点
+
+if(oldLevel==80) then
+player:SetLevel("80")   --重置为80级    --此处有BUG,一旦用命令升级到80,就无法回退其他等级
+player:SetFreeTalentPoints(maxlevel_talentpoints)
+player:SendBroadcastMessage("恭喜你满级后再次升级,奖励你"..maxlevel_talentpoints.."点天赋点.")
+
+else
+
 
 player:ModifyMoney(oldLevel*1000)
 
@@ -18,11 +32,8 @@ player:ModifyMoney(oldLevel*1000)
 --player:SendBroadcastMessage("恭喜你升级了,奖励你一些金币.")
 player:SendBroadcastMessage("恭喜你升级了,奖励你"..((oldLevel*1000)/10000).."金币.")
 --player:SendBroadcastMessage("升级奖励1金")
-if(oldLevel==80) then
-Player:SetFreeTalentPoints(maxlevel_talentpoints)
-player:SendBroadcastMessage("恭喜你满级后再次升级,奖励你"..maxlevel_talentpoints.."点天赋点.")
-Player:SetLevel("80")   --重置为80级
+
 end
-end  
+end
 RegisterPlayerEvent(13, levelup_reward)
 print('levelup_reward module loaded.') 

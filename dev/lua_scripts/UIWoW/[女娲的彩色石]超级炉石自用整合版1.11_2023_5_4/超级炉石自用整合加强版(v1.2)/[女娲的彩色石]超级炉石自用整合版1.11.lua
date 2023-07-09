@@ -5934,7 +5934,7 @@ function Stone.SelectGossip(event, player, item, sender, intid, code, menu_id)
 end
 
 --RegisterPlayerEvent(7, guaiwuDQ)--暂时不想使用杀怪给气功点模块
-RegisterPlayerEvent(13, LevelDQ)--升级给武功点
+--RegisterPlayerEvent(13, LevelDQ)--升级给武功点 --暂时注释
 
 RegisterItemGossipEvent(itemEntry, 1, Stone.ShowGossip)
 RegisterItemGossipEvent(itemEntry, 2, Stone.SelectGossip)
