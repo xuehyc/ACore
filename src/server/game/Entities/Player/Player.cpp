@@ -2625,12 +2625,12 @@ void Player::InitTalentForLevel()
 {
     uint32 talentPointsForLevel = CalculateTalentsPoints();
 
-    // xinef: more talent points that we have are used, reset
-    if (m_usedTalentCount > talentPointsForLevel)
-        resetTalents(true);
-    // xinef: else, recalculate free talent points count
-    else
-        SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);
+    //// xinef: more talent points that we have are used, reset
+    //if (m_usedTalentCount > talentPointsForLevel)
+    //    resetTalents(true);
+    //// xinef: else, recalculate free talent points count
+    //else
+    //    SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);
 
     if (!GetSession()->PlayerLoading())
         SendTalentsInfoData(false);                         // update at client
