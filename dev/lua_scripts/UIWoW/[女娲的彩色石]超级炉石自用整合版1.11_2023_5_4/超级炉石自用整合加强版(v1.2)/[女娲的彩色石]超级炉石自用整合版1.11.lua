@@ -1236,6 +1236,31 @@ end
         end
         --公正徽章全部兑换经验模块 结束
 
+
+        --凯旋纹章全部兑换经验模块 开始
+
+        --凯旋纹章兑换经验模块(全部凯旋纹章)
+        function ST.AllSummonChampionToXP(player)   --此处是我尝试的凯旋纹章兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_summonchampion = player:GetItemCount( 47241 )--检测凯旋纹章数量
+
+        if(itemamount_summonchampion>0)then --如果凯旋纹章数量大于0
+        player:RemoveItem(47241,itemamount_summonchampion) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(100000*itemamount_summonchampion) --给予10W*凯旋纹章数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("凯旋纹章数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --凯旋纹章全部兑换经验模块 结束
+
+
+
+
         --原神变身系列开始
 
 
@@ -2487,6 +2512,10 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/inv_Fabric_mageweave_01:32:32|t|cff3F636C全部魔纹布兑换经验", 	ST.AllMageWeaveToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/inv_Fabric_linen_01:32:32|t|cff3F636C全部亚麻布兑换经验", 	ST.AllLinenToXP,GOSSIP_ICON_BATTLE},
         {FUNC, "|TInterface/ICONS/Spell_Holy_ChampionsBond:32:32|t|cff3F636C全部公正徽章兑换经验", 	ST.AllChampionsBondToXP,GOSSIP_ICON_BATTLE},
+
+        {FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C全部凯旋纹章兑换经验", 	ST.AllSummonChampionToXP,GOSSIP_ICON_BATTLE},
+
+
         {FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
