@@ -1566,10 +1566,10 @@ end
 
       --print(i) --输出i值
       --player:SendMovieStart(i)
-      player:SendBroadcastMessage(i)
+      --player:SendBroadcastMessage(i)
       --wait(10) --等待10秒
       
-end
+--end
 			
             --1,魔兽片头(魔兽,10年)
             --2,自从联盟和部落并肩作战..
@@ -2590,7 +2590,7 @@ local Menu={--菜单页面
 
     [MMENU+0x30]={--热血江湖气功加点主界面
         {MENU, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t加点", 	    SKLMENU+0x80,	GOSSIP_ICON_TRAINER},   --进入主界面
-        
+        {MENU, "|TInterface/ICONS/rxjh_teleport_ico:32:32|t传送", 	    SKLMENU+0x80,	GOSSIP_ICON_TRAINER},   --进入主界面
         {FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C重置", 		Douqi_seleGoss,	GOSSIP_ICON_VENDOR},    --重置与加属性界面
 	},
 
