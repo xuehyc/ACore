@@ -1553,19 +1553,12 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
         function ST.DeMorph(player)--清除变身
 			--Unit:DeMorph()    --这个不行
             player:DeMorph()    --这个可以
 		end
+
+
 
         function ST.PlayMovie(player)--播放影片
 
@@ -1584,7 +1577,9 @@ end
             --16,巫妖陨落动画(ICC副本结束)
             player:Yell("影片播放模块结束",0)
 		end
-        
+
+
+
         --理发椅
 		function ST.SummonTradeObject_BarberChair(player)
 			ST.SummonTradeObject(player, 191028)
