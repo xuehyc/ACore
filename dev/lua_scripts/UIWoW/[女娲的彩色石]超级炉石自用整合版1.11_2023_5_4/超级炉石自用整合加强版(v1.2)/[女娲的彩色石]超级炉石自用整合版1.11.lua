@@ -1568,8 +1568,21 @@ end
 		end
 
         function ST.PlayMovie(player)--播放影片
-			Player:SendMovieStart("0")
-            player:Yell("哈哈",0)
+
+        --for i=1,4294967295 do --大循环
+
+      --print(i) --输出i值
+      --player:SendMovieStart(i)
+      player:SendBroadcastMessage(i)
+      --wait(10) --等待10秒
+      
+end
+			
+            --1,魔兽片头(魔兽,10年)
+            --2,自从联盟和部落并肩作战..
+            --3-8,无
+            --16,巫妖陨落动画(ICC副本结束)
+            player:Yell("影片播放模块结束",0)
 		end
         
         --理发椅
@@ -2522,7 +2535,7 @@ local Menu={--菜单页面
         {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF我叫MT",	            MMENU+0x90,		GOSSIP_ICON_TALK},--原神
         {MENU, "|TInterface/ICONS/Temp:32:32|t|c00722FFF魔兽世界",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--魔兽世界    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别
         --需要补充的:守望先锋,大菠萝,
-        --{FUNC, "|TInterface/ICONS/ys_app:32:32|t播放影片", 	                    ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t播放影片", 	                    ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
         --待修复
 	},
 
