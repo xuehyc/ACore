@@ -980,10 +980,20 @@ end
 
         --查询本级经验模块
         function ST.GetXP(player)   --此处是我尝试的添加经验模块
-            local xp=CharDBQuery("SELECT xp FROM characters WHERE guid="..player:GetGUIDLow()..";")	--查询经验            
-	        player:SendBroadcastMessage("当前经验为"..xp:GetUInt32(0)..",本级满级经验为:280000000,距离升级还有"..280000000-xp:GetUInt32(0).."经验")
-            --此处写死了,严谨写法应该再查world库中player_xp_for_level表(当然如果配置里经验倍率不为1,得另想办法获取削减后的经验)
-            player:SendBroadcastMessage("当前升级进度为%"..xp:GetUInt32(0)/280000000*100)  --切换为百分比,百分号放后面就崩错
+            local xp=CharDBQuery("SELECT xp FROM characters WHERE guid="..player:GetGUIDLow()..";")	--查询经验           
+	        
+            if(xp:GetUInt32(0)-280000000>0)then--此处用于修正当升级瞬间,同时查询经验时的提示(即兑换成功后接经验查询的使用)
+
+                player:SendBroadcastMessage("当前经验为"..(xp:GetUInt32(0)-280000000)..",本级满级经验为:280000000,距离升级还有"..(280000000-(xp:GetUInt32(0)-280000000)).."经验")--当然此处可以写作280000000-xp:GetUInt32(0),但是为了便于理解,暂且就这样吧.
+                --此处写死了,严谨写法应该再查world库中player_xp_for_level表(当然如果配置里经验倍率不为1,得另想办法获取削减后的经验)
+                player:SendBroadcastMessage("当前升级进度为%"..(xp:GetUInt32(0)-280000000)/280000000*100)  --切换为百分比,百分号放后面就崩错
+            else 
+                player:SendBroadcastMessage("当前经验为"..xp:GetUInt32(0)..",本级满级经验为:280000000,距离升级还有"..280000000-xp:GetUInt32(0).."经验")
+                --此处写死了,严谨写法应该再查world库中player_xp_for_level表(当然如果配置里经验倍率不为1,得另想办法获取削减后的经验)
+                player:SendBroadcastMessage("当前升级进度为%"..xp:GetUInt32(0)/280000000*100)  --切换为百分比,百分号放后面就崩错
+            
+            end
+            
             
         end
 
