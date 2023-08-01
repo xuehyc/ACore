@@ -1317,22 +1317,20 @@ end
         --金币全部兑换经验模块 开始
 
         --金币兑换经验模块(全部金币)
-        function ST.AllGoldToXP(player)   --此处是我尝试的金币兑换经验模块
-        level = player:GetLevel()
-        if(level>79)then--80级玩家才可使用本功能
-        local itemamount_gold = player:GetItemCount( 47241 )--检测金币数量    --失败,不知道如何获取玩家金币数量
-
-        if(itemamount_gold>0)then --如果金币数量大于0
-        player:RemoveItem(47241,itemamount_gold) --Player:RemoveItem( entry, itemCount )
-        player:GiveXP(100000*itemamount_gold) --给予10W*金币数量经验
-        player:SendBroadcastMessage("兑换成功!")
-        else
-        player:SendBroadcastMessage("金币数量不足.")
+        function ST.SomeGoldToXP(player)   --此处是我尝试的金币兑换经验模块
+            level = player:GetLevel()
+            if(level>79)then--80级玩家才可使用本功能
+                if(player:ModifyMoney(-1540000))then    --如果扣除154金币(1540000铜币)成功
+                    player:GiveXP(280000000)        --给予80->81的满级经验
+                    player:SendBroadcastMessage("兑换成功!")
+                else
+                    player:SendBroadcastMessage("金币数量不足.")
+                end
+            else
+                player:SendBroadcastMessage("80级玩家才可使用本功能.")
+            end
         end
-        else
-         player:SendBroadcastMessage("80级玩家才可使用本功能.")
-        end
-        end
+        
         --金币全部兑换经验模块 结束
         
 
@@ -2608,8 +2606,8 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/Spell_Holy_ChampionsBond:32:32|t|cff3F636C全部公正徽章兑换经验", 	ST.AllChampionsBondToXP,GOSSIP_ICON_BATTLE},
 
         {FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C全部凯旋纹章兑换经验", 	ST.AllSummonChampionToXP,GOSSIP_ICON_BATTLE},
-        --{FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C全部金币兑换经验", 	ST.AllGoldToXP,GOSSIP_ICON_BATTLE},
-        --11G换2000W经验,1100银-2000W,11银-20W,1100铜-200K,11铜-2K
+        {FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C154金币兑换经验", 	ST.SomeGoldToXP,GOSSIP_ICON_BATTLE},
+        --最便宜的兑换中1个亚麻布55铜,1W经验,共28000W,需要28000个亚麻布,共28000*55个铜币,再折合成金币,除以1W,等于2.8*55=154,即154金币升1级
         {FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
