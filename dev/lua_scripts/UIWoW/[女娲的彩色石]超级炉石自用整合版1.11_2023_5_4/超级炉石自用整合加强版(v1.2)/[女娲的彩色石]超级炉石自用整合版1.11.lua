@@ -1248,6 +1248,7 @@ end
         player:RemoveItem(2589,itemamount_linen) --Player:RemoveItem( entry, itemCount )
         player:GiveXP(10000*itemamount_linen) --给予1W*亚麻布数量经验
         player:SendBroadcastMessage("兑换成功!")
+        ST.GetXP(player)
         else
         player:SendBroadcastMessage("亚麻布数量不足.")
         end
