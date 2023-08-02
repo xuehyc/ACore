@@ -30,13 +30,13 @@ CLUITabFrameSpells = class({
 
 function CLUITabFrameSpells:init()
 	-- Members
-	self.m_iSpellButtonsSpacing = 8
-	self.m_iSpellButtonsPerRow = 5
+	self.m_iSpellButtonsSpacing = 0.4 --8    ----技能界面高度
+	self.m_iSpellButtonsPerRow = 7  --5  --每列技能按钮数量
 	self.m_iSpellButtonsSize = 40
 	
-	self.m_iSpecAreaTitleHeight = 32
+	self.m_iSpecAreaTitleHeight = 32    --32    
 	
-	self.m_iSpecAreaSpacing = 10
+	self.m_iSpecAreaSpacing = 10    --10    -间隔
 	self.m_iSpecAreaWidth = self.m_iSpellButtonsSize * self.m_iSpellButtonsPerRow + self.m_iSpellButtonsSpacing * (self.m_iSpellButtonsPerRow + 1)
 	self.m_iSpecAreaHeight = self.m_iSpellButtonsSize * 11 + self.m_iSpellButtonsSpacing * 12 + self.m_iSpecAreaTitleHeight
 	

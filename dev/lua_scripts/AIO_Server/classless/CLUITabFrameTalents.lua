@@ -30,14 +30,14 @@ CLUITabFrameTalents = class({
 
 function CLUITabFrameTalents:init()
 	-- Members
-	self.m_iTalentButtonsSpacing = 16
-	self.m_iTalentButtonsSize = 32
+	self.m_iTalentButtonsSpacing = 8   --16   --此处用于调整天赋点界面间间隔
+	self.m_iTalentButtonsSize = 34  --32--按钮大小
 	self.m_iTalentCellSize = self.m_iTalentButtonsSize + self.m_iTalentButtonsSpacing
 
-	self.m_iSpecAreaTitleHeight = 32
+	self.m_iSpecAreaTitleHeight = 2 --32    --此处用于调整天赋点界面高度
 	
 	self.m_iSpecAreaSpacing = 10
-	self.m_iSpecAreaWidth = self.m_iTalentCellSize * 4
+	self.m_iSpecAreaWidth = self.m_iTalentCellSize * 4  --4
 	self.m_iSpecAreaHeight = self.m_iTalentCellSize * 11 + self.m_iSpecAreaTitleHeight
 	
 	self.m_iWidth = self.m_iSpecAreaWidth * CLClassSpecCount + self.m_iSpecAreaSpacing * (CLClassSpecCount + 1)

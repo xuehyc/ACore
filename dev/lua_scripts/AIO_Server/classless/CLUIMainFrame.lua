@@ -33,8 +33,9 @@ CLUIMainFrame = class({
 
 function CLUIMainFrame:init()
 	-- Members
-	self.m_iWidth = 804
-	self.m_iHeight = 688
+	self.m_iWidth = 1024 --org 804
+	self.m_iHeight = 576    --688
+    -- 尝试使用16:9分辨率
 	self.m_strPositionAnchor = "CENTER"
 	self.m_iPositionX = 0
 	self.m_iPositionY = 0
@@ -115,6 +116,48 @@ function CLUIMainFrame:SwitchTab( iTabIndex, iClassIndex )
 	self.m_iCurrentClassIndex = iClassIndex
 end
 
+
+
+
+
+function levelup_reward_classless(event, player, oldLevel)    --升级奖励金币
+
+local maxlevel_talentpoints = 2                     --满级后升级奖励天赋点
+
+if(oldLevel==80) then
+    freeTalentPointAmt = player:GetFreeTalentPoints()
+    player:SetLevel("80")   --重置为80级    --此处有BUG,一旦用命令升级到80,就无法回退其他等级
+
+    local hClient = CLClient:GetInstance()
+	local iSpellPoints = hClient:GetRemainingSpellPoints()
+    iSpellPoints=iSpellPoints+2
+	local iPetSpellPoints = hClient:GetRemainingPetSpellPoints()
+	local iTalentPoints = hClient:GetRemainingTalentPoints()
+	local iPetTalentPoints = hClient:GetRemainingPetTalentPoints()
+	local iGlyphMajorSlots = hClient:GetRemainingGlyphMajorSlots()
+	local iGlyphMinorSlots = hClient:GetRemainingGlyphMinorSlots()
+
+
+
+    player:SendBroadcastMessage("恭喜你满级后再次升级,奖励你"..maxlevel_talentpoints.."点天赋点.")
+
+else if(oldLevel==81) then
+    --此处为预防81级回退80级出现多余提示
+    --此功能使用于满级升级奖励天赋点模块
+else
+    player:ModifyMoney(oldLevel*1000)
+
+    
+    player:SendBroadcastMessage("恭喜你升级了,奖励你"..((oldLevel*1000)/10000).."金币.")
+    
+end
+end
+end
+
+
+
+
+
 function CLUIMainFrame:Update()
 	-- Update Points Frame
 	local hClient = CLClient:GetInstance()
@@ -124,15 +167,27 @@ function CLUIMainFrame:Update()
 	local iPetTalentPoints = hClient:GetRemainingPetTalentPoints()
 	local iGlyphMajorSlots = hClient:GetRemainingGlyphMajorSlots()
 	local iGlyphMinorSlots = hClient:GetRemainingGlyphMinorSlots()
-	
+
+
+    --[[
+    local hClient = CLClient:GetInstance()
+	local iSpellPoints = hClient:GetRemainingSpellPoints()
+	local iPetSpellPoints = hClient:GetRemainingPetSpellPoints()
+	local iTalentPoints = hClient:GetRemainingTalentPoints()
+	local iPetTalentPoints = hClient:GetRemainingPetTalentPoints()
+	local iGlyphMajorSlots = hClient:GetRemainingGlyphMajorSlots()
+	local iGlyphMinorSlots = hClient:GetRemainingGlyphMinorSlots()
+
+    ]]
+    --之前上面变量均为local
 	self.m_hPointsText:SetText(
 		"未使用:" ..
-		iSpellPoints .. "技 " ..
-		iTalentPoints .. "天 |cFFFF0000已使用:" ..
-		iPetSpellPoints .. "技 " ..
-		iPetTalentPoints .. "天 |cFF00FF66雕文未使用:" ..
-		iGlyphMajorSlots .. "大 " ..
-		iGlyphMinorSlots .. "小"
+		iSpellPoints .. "个技能点," ..
+		iTalentPoints .. "个天赋点.|c000000FF已使用:" ..   --cFFFF0000
+		iPetSpellPoints .. "个技能点," ..
+		iPetTalentPoints .. "个天赋点.|cFF00FF66雕文未使用:" .."大雕文 " ..
+		iGlyphMajorSlots ..  "个,小雕文"..
+		iGlyphMinorSlots .."个."
 	)
 
 	-- Update Buttons Frame
@@ -230,10 +285,10 @@ function CLUIMainFrame:Initialize()
 		-- Text
 	self.m_hPointsText = self.m_hFrame.pointsframe:CreateFontString( nil, "OVERLAY", "GameFontNormal" )
 	self.m_hPointsText:SetTextColor( self.m_hPointsTextColor.r, self.m_hPointsTextColor.g, self.m_hPointsTextColor.b )
-	self.m_hPointsText:SetJustifyV( "MIDDLE" )
-	self.m_hPointsText:SetJustifyH( "LEFT" )
-    self.m_hPointsText:SetPoint( "CENTER", self.m_hFrame.pointsframe, "CENTER", 0, 0 )
-	
+	self.m_hPointsText:SetJustifyV( "MIDDLE" )--MIDDLE
+	self.m_hPointsText:SetJustifyH( "LEFT" )--LEFT
+    self.m_hPointsText:SetPoint( "LEFT", self.m_hFrame.pointsframe, "LEFT", 0, 0 )--CENTER CENTER
+	                        --此处设置为LEFT后,底部文字居中了       --此处设置为LEFT后,底部文字靠左了
 	-- Buttons Frame
 	self.m_hFrame.buttonsframe = CreateFrame( "Frame", "CLButtonsFrame", self.m_hFrame )
 	
@@ -548,3 +603,5 @@ function CLUIMainFrame:Initialize()
 	print( "CLUIMainFrame Initialized !" )
 end
 
+RegisterPlayerEvent(13, levelup_reward_classless)
+print('levelup_reward_classless module loaded.') 
