@@ -1,4 +1,4 @@
-/*
+﻿/*
  Navicat Premium Data Transfer
 
  Source Server         : 飞升计划数据库
@@ -20,8 +20,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for character_classless
 -- ----------------------------
-DROP TABLE IF EXISTS `character_classless`;
-CREATE TABLE `character_classless`  (
+-- DROP TABLE IF EXISTS `character_classless`;
+CREATE TABLE IF NOT EXISTS `character_classless`  (
   `guid` int UNSIGNED NOT NULL COMMENT 'Player GUID (Low)',
   `spells` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Array of known Spell IDs',
   `talents` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Array of known Talent IDs',
