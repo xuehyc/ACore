@@ -1320,12 +1320,14 @@ end
         function ST.SomeGoldToXP(player)   --此处是我尝试的金币兑换经验模块
             level = player:GetLevel()
             if(level>79)then--80级玩家才可使用本功能
-                if(true)then    --如果扣除154金币(1540000铜币)成功    --player:HasMoney()>=1540000
+                if(true)then    --如果扣除154金币(1540000铜币)成功    --player:HasMoney()>=1540000    --临时启用
                     player:ModifyMoney(-1540000)
                     player:GiveXP(280000000)            --给予80->81的满级经验
                     player:SendBroadcastMessage("兑换成功!")
+                    
                 else
                     player:SendBroadcastMessage("金币数量不足.")
+                   
                 end
             else
                 player:SendBroadcastMessage("80级玩家才可使用本功能.")
