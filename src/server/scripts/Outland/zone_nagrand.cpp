@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -609,8 +609,6 @@ void AddSC_nagrand()
 {
     new npc_maghar_captive();
     new npc_creditmarker_visit_with_ancestors();
-    new npc_corki();
-    new go_corkis_prison();
     new npc_kurenai_captive();
     new go_warmaul_prison();
 }

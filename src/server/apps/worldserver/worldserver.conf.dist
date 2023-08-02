@@ -1566,6 +1566,14 @@ AllowTwoSide.Interaction.Group = 1
 AllowTwoSide.Interaction.Guild = 1
 
 #
+#    AllowTwoSide.Interaction.Arena
+#        Description: Allow joining arena teams between factions.
+#        Default:     0 - (Disabled)
+#                     1 - (Enabled)
+
+AllowTwoSide.Interaction.Arena = 0
+
+#
 #    AllowTwoSide.Interaction.Auction
 #        Description: Allow auctions between factions.
 #        Default:     0 - (Disabled)
@@ -3844,6 +3852,13 @@ ChangeFaction.MaxMoney = 0
 #                     0 - Disabled
 
 Pet.RankMod.Health = 1
+
+#
+#     AuctionHouse.SearchTimeout
+#        Description: Time (in milliseconds) after which an auction house search is discarded.
+#        Default:     1000 - (1 second)
+
+AuctionHouse.SearchTimeout = 1000
 
 #
 ###################################################################################################
