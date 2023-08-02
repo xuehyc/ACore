@@ -2609,7 +2609,7 @@ local Menu={--菜单页面
         {FUNC, "|TInterface/ICONS/Spell_Holy_ChampionsBond:32:32|t|cff3F636C全部公正徽章兑换经验", 	ST.AllChampionsBondToXP,GOSSIP_ICON_BATTLE},
 
         {FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C全部凯旋纹章兑换经验", 	ST.AllSummonChampionToXP,GOSSIP_ICON_BATTLE},
-        --{FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C154金币兑换经验", 	ST.SomeGoldToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C154金币兑换经验", 	ST.SomeGoldToXP,GOSSIP_ICON_BATTLE},
         --最便宜的兑换中1个亚麻布55铜,1W经验,共28000W,需要28000个亚麻布,共28000*55个铜币,再折合成金币,除以1W,等于2.8*55=154,即154金币升1级
         {FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
