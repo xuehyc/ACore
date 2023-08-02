@@ -33,8 +33,9 @@ CLUIMainFrame = class({
 
 function CLUIMainFrame:init()
 	-- Members
-	self.m_iWidth = 804
-	self.m_iHeight = 688
+	self.m_iWidth = 1024 --org 804
+	self.m_iHeight = 576    --688
+    -- 尝试使用16:9分辨率
 	self.m_strPositionAnchor = "CENTER"
 	self.m_iPositionX = 0
 	self.m_iPositionY = 0
@@ -127,12 +128,12 @@ function CLUIMainFrame:Update()
 	
 	self.m_hPointsText:SetText(
 		"未使用:" ..
-		iSpellPoints .. "技 " ..
-		iTalentPoints .. "天 |cFFFF0000已使用:" ..
-		iPetSpellPoints .. "技 " ..
-		iPetTalentPoints .. "天 |cFF00FF66雕文未使用:" ..
-		iGlyphMajorSlots .. "大 " ..
-		iGlyphMinorSlots .. "小"
+		iSpellPoints .. "个技能," ..
+		iTalentPoints .. "个天赋点.|cFFFF0000已使用:" ..
+		iPetSpellPoints .. "个技能," ..
+		iPetTalentPoints .. "个天赋点.|cFF00FF66雕文未使用:" .."大雕文 " ..
+		iGlyphMajorSlots ..  "个,小雕文"..
+		iGlyphMinorSlots .."个."
 	)
 
 	-- Update Buttons Frame
@@ -230,10 +231,10 @@ function CLUIMainFrame:Initialize()
 		-- Text
 	self.m_hPointsText = self.m_hFrame.pointsframe:CreateFontString( nil, "OVERLAY", "GameFontNormal" )
 	self.m_hPointsText:SetTextColor( self.m_hPointsTextColor.r, self.m_hPointsTextColor.g, self.m_hPointsTextColor.b )
-	self.m_hPointsText:SetJustifyV( "MIDDLE" )
-	self.m_hPointsText:SetJustifyH( "LEFT" )
-    self.m_hPointsText:SetPoint( "CENTER", self.m_hFrame.pointsframe, "CENTER", 0, 0 )
-	
+	self.m_hPointsText:SetJustifyV( "MIDDLE" )--MIDDLE
+	self.m_hPointsText:SetJustifyH( "LEFT" )--LEFT
+    self.m_hPointsText:SetPoint( "LEFT", self.m_hFrame.pointsframe, "CENTER", 0, 0 )--CENTER CENTER
+	                        --此处设置为LEFT后,底部文字居中了
 	-- Buttons Frame
 	self.m_hFrame.buttonsframe = CreateFrame( "Frame", "CLButtonsFrame", self.m_hFrame )
 	

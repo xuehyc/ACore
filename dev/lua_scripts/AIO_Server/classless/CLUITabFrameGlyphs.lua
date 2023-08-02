@@ -30,9 +30,9 @@ CLUITabFrameGlyphs = class({
 
 function CLUITabFrameGlyphs:init()
 	-- Members
-	self.m_iGlyphButtonsSpacing = 8
-	self.m_iGlyphButtonsPerRow = 5
-	self.m_iGlyphButtonsSize = 40
+	self.m_iGlyphButtonsSpacing = 8    --8   --姝ゅ鐢ㄤ簬淇敼闆曟枃闂撮殧
+	self.m_iGlyphButtonsPerRow = 8--5  --姣忓垪闆曟枃鏁伴噺
+	self.m_iGlyphButtonsSize = 30--40   --姝ゅ鐢ㄤ簬淇敼闆曟枃楂樺害
 	
 	self.m_iSpecAreaTitleHeight = 32
 	
@@ -279,11 +279,11 @@ function CLUITabFrameGlyphs:Initialize( hParentFrame, iClassIndex )
 					-- Build ToolTip
 					hToolTip:SetHyperlink( strLink )
 					if bIsMajor then
-						hToolTip:AddLine( "大型雕文", HIGHLIGHT_FONT_COLOR )
+						hToolTip:AddLine( "澶у瀷闆曟枃", HIGHLIGHT_FONT_COLOR )
 					else
-						hToolTip:AddLine( "小型雕文", HIGHLIGHT_FONT_COLOR )
+						hToolTip:AddLine( "灏忓瀷闆曟枃", HIGHLIGHT_FONT_COLOR )
 					end
-					hToolTip:AddLine( "要求等级: " .. iGlyphLevel, HIGHLIGHT_FONT_COLOR )
+					hToolTip:AddLine( "瑕佹眰绛夌骇: " .. iGlyphLevel, HIGHLIGHT_FONT_COLOR )
 					--hToolTip:AddLine( "SPELLID: " .. iGlyphID, RED_FONT_COLOR )
 					
 					-- Show tooltip
