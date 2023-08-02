@@ -279,11 +279,11 @@ function CLUITabFrameGlyphs:Initialize( hParentFrame, iClassIndex )
 					-- Build ToolTip
 					hToolTip:SetHyperlink( strLink )
 					if bIsMajor then
-						hToolTip:AddLine( "澶у瀷闆曟枃", HIGHLIGHT_FONT_COLOR )
+						hToolTip:AddLine( "大型雕文", HIGHLIGHT_FONT_COLOR )
 					else
-						hToolTip:AddLine( "灏忓瀷闆曟枃", HIGHLIGHT_FONT_COLOR )
+						hToolTip:AddLine( "小型雕文", HIGHLIGHT_FONT_COLOR )
 					end
-					hToolTip:AddLine( "瑕佹眰绛夌骇: " .. iGlyphLevel, HIGHLIGHT_FONT_COLOR )
+					hToolTip:AddLine( "要求等级: " .. iGlyphLevel, HIGHLIGHT_FONT_COLOR )
 					--hToolTip:AddLine( "SPELLID: " .. iGlyphID, RED_FONT_COLOR )
 					
 					-- Show tooltip

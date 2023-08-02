@@ -66,7 +66,7 @@ function CLDataGlyphs:GetGlyphDesc( iClassIndex, iSpecIndex, iGlyphIndex )
 	)
 end
 
-function CLDataGlyphs:SearchGlyph( iGlyphID )
+function CLDataGlyphs:SearchGlyph( iGlyphID )   --此处预计是显示全部职业的所在
 	for iClassIndex = 1, CLClassCount do
 		for iSpecIndex = 1, CLClassSpecCount do
 			local iGlyphCount = self:GetGlyphCount( iClassIndex, iSpecIndex )

@@ -93,17 +93,17 @@ function CLUIMainButton:Initialize()
 			local iGlyphMajorSlots = hClient:GetFreeGlyphMajorSlots()
 			local iGlyphMinorSlots = hClient:GetFreeGlyphMinorSlots()
 
-			hToolTip:AddLine( "ç»¼åˆå­¦ä¹ ç•Œé¢", NORMAL_FONT_COLOR )
-			hToolTip:AddLine( "å·¦é”®å•å‡»:æ‰“å¼€ç•Œé¢", HIGHLIGHT_FONT_COLOR )
-			hToolTip:AddLine( "å³é”®é•¿æŒ‰:æ‹–åŠ¨ç•Œé¢", HIGHLIGHT_FONT_COLOR )
+			hToolTip:AddLine( "×ÛºÏÑ§Ï°½çÃæ", NORMAL_FONT_COLOR )
+			hToolTip:AddLine( "×ó¼üµ¥»÷:´ò¿ª½çÃæ", HIGHLIGHT_FONT_COLOR )
+			hToolTip:AddLine( "ÓÒ¼ü³¤°´:ÍÏ¶¯½çÃæ", HIGHLIGHT_FONT_COLOR )
 			if ( iSpellPoints > 0 or iTalentPoints > 0 ) then
-				hToolTip:AddLine( "æœªä½¿ç”¨ : " .. iSpellPoints .. " æŠ€èƒ½ç‚¹ / " .. iTalentPoints .. " å¤©èµ‹ç‚¹", GREEN_FONT_COLOR )
+				hToolTip:AddLine( "Î´Ê¹ÓÃ : " .. iSpellPoints .. " ¼¼ÄÜµã / " .. iTalentPoints .. " Ìì¸³µã", GREEN_FONT_COLOR )
 			end
 			if ( iPetSpellPoints > 0 or iPetTalentPoints > 0 ) then
-				hToolTip:AddLine( "å·²ä½¿ç”¨ : " .. iPetSpellPoints .. " æŠ€èƒ½ç‚¹ / " .. iPetTalentPoints .. " å¤©èµ‹ç‚¹", GREEN_FONT_COLOR )
+				hToolTip:AddLine( "ÒÑÊ¹ÓÃ : " .. iPetSpellPoints .. " ¼¼ÄÜµã / " .. iPetTalentPoints .. " Ìì¸³µã", GREEN_FONT_COLOR )
 			end
 			if ( iGlyphMajorSlots > 0 or iGlyphMinorSlots > 0 ) then
-				hToolTip:AddLine( "é›•æ–‡æœªä½¿ç”¨ : " .. iGlyphMajorSlots .. " å¤§å‹ / " .. iGlyphMinorSlots .. " å°å‹", GREEN_FONT_COLOR )
+				hToolTip:AddLine( "µñÎÄÎ´Ê¹ÓÃ : " .. iGlyphMajorSlots .. " ´óĞÍ / " .. iGlyphMinorSlots .. " Ğ¡ĞÍ", GREEN_FONT_COLOR )
 			end
 			
 			-- Show tooltip
