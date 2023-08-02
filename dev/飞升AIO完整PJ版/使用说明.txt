@@ -1,0 +1,9 @@
+声明：为了能完整体验服务端最好是azerothcore核心  重要！！！重要！！！重要！！！
+
+首先解压:1-AIO_Server服务端文件含数据表.rar，解压后得到文件夹放到服务端lua_scripts文件夹里面。
+然后把character_classless.sql数据表导入到acore_characters里面！
+接下来，解压:2-AIO_Client解压后文件夹放到335客户端Interface里面.rar文件
+把解压后得到文件夹放到335客户端Interface文件夹里面。
+
+
+最后开启服务端，打开游戏体验AIO带来的不一样乐趣！
