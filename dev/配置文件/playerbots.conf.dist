@@ -49,7 +49,7 @@ AiPlayerbot.RandomBotJoinBG = 1
 
 # Enable Auto join BG - bots randomly join WSG and 2v2 Arena if server is not lagging
 # 启动自动加入战场(如果服务器不卡,机器人随机加入战歌峡谷和2V2竞技场)
-AiPlayerbot.RandomBotAutoJoinBG = 0
+AiPlayerbot.RandomBotAutoJoinBG = 1
 
 # Mark many quests <= Bot level as complete (slows down bot creation)
 # 标记大量小于机器人等级的任务为已完成(降低机器人创建速度)
@@ -57,8 +57,8 @@ AiPlayerbot.PreQuests = 0
 
 # Random bot count
 # 随机机器人数量
-AiPlayerbot.MinRandomBots = 50
-# 最少的机器人数量
+AiPlayerbot.MinRandomBots = 1
+# 最少的机器人数量(默认50)
 AiPlayerbot.MaxRandomBots = 200
 # 最大的机器人数量
 AiPlayerbot.RandomBotMinLevel = 1
@@ -70,7 +70,7 @@ AiPlayerbot.RandomBotMaxLevel = 80
 # 为随机机器人创建的账号
 AiPlayerbot.RandomBotAccountPrefix = "rndbot"
 # 随机智能机器人的账号前缀
-AiPlayerbot.RandomBotAccountCount = 200
+AiPlayerbot.RandomBotAccountCount = 10
 # 随机智能机器人的账号数量(默认:200)
 
 # Random bot guild count
