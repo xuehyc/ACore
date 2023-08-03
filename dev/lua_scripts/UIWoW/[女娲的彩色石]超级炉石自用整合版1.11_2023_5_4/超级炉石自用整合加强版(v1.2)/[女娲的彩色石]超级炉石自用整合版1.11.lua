@@ -1,4 +1,5 @@
 ﻿--https://uiwow.com/thread-17445-1-1.html?_dsign=380b398c
+--.go zon 0 0 1000 --偶然发现的新地方
 --[[信息：
 	[女娲的彩色石]超级炉石  （Teleport stone）
 	修改日期：2023-04-30
@@ -294,12 +295,7 @@ local EQUIPMENT_SLOT_TABARD       = 18--战袍
 
 local playerTeleportPoints = {}
 
---后加    开始
---清副本CD(所有)
-local fuction ST.ClearCD(player)
-Player:UnbindAllInstances()
-end
---后加    结束
+
 
 local Instances={--副本表
 		{249,0},{249,1},{269,1},{309,0},
@@ -363,6 +359,8 @@ local function LevelDQ(event, player, oldLevel)   --此处是我尝试添加的�
 		player:SaveToDB()
 		player:SendBroadcastMessage("恭喜你升级了,获得"..douqizhiCount_level.."点可分配气功点数,请打开气功点数界面分配气功点.")   
 end
+
+
 
 
 
@@ -805,6 +803,13 @@ end
 		end
 	end
 
+--后加    开始
+--清副本CD(所有)
+function ST.ClearCD(player)
+player:UnbindAllInstances()
+end
+--后加    结束
+
 	--召唤NPC入口
 	function ST.SummonNPCblsd(player)--经验锁定NPC
 		ST.SummonNPC(player, ST.NPCID601)
@@ -855,7 +860,7 @@ end
 		if(player:IsInCombat())then
 			player:SendAreaTriggerMessage("不能在战斗中召唤公会银行。")
 		else
-			if(nowTime>lastTime)then
+			if(1)then--公会银行召唤时间限制   --nowTime>lastTime
 				local map=player:GetMap()
 				if(map)then
 					player:SendAreaTriggerMessage("你位于："..map:GetName())
@@ -970,6 +975,370 @@ end
         function ST.SummonVendor(player)--售卖商人
 			ST.SummonNPC(player, 15898)
 		end
+
+
+        --后加    开始
+        
+
+
+        --查询本级经验模块
+        function ST.GetXP(player)   --此处是我尝试的添加经验模块
+            local xp=CharDBQuery("SELECT xp FROM characters WHERE guid="..player:GetGUIDLow()..";")	--查询经验           
+	        
+            if(xp:GetUInt32(0)-280000000>0)then--此处用于修正当升级瞬间,同时查询经验时的提示(即兑换成功后接经验查询的使用)
+
+                player:SendBroadcastMessage("当前经验为"..(xp:GetUInt32(0)-280000000)..",本级满级经验为:280000000,距离升级还有"..(280000000-(xp:GetUInt32(0)-280000000)).."经验")--当然此处可以写作280000000-xp:GetUInt32(0),但是为了便于理解,暂且就这样吧.
+                --此处写死了,严谨写法应该再查world库中player_xp_for_level表(当然如果配置里经验倍率不为1,得另想办法获取削减后的经验)
+                player:SendBroadcastMessage("当前升级进度为%"..(xp:GetUInt32(0)-280000000)/280000000*100)  --切换为百分比,百分号放后面就崩错
+            else 
+                player:SendBroadcastMessage("当前经验为"..xp:GetUInt32(0)..",本级满级经验为:280000000,距离升级还有"..280000000-xp:GetUInt32(0).."经验")
+                --此处写死了,严谨写法应该再查world库中player_xp_for_level表(当然如果配置里经验倍率不为1,得另想办法获取削减后的经验)
+                player:SendBroadcastMessage("当前升级进度为%"..xp:GetUInt32(0)/280000000*100)  --切换为百分比,百分号放后面就崩错
+            
+            end
+            
+            
+        end
+
+
+        --霜纹布兑换经验模块 开始
+
+        --霜纹布兑换经验模块(1个霜纹布)
+        function ST.SingleSoulClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+
+        if(itemamount>0)then --如果霜纹布数量大于0
+        player:RemoveItem(33470,1) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000) --给予1W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("霜纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+
+
+        --霜纹布兑换经验模块(10个霜纹布)
+        function ST.TenSoulClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+        if(itemamount>9)then --如果霜纹布数量大于0
+        player:RemoveItem(33470,10) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(100000) --给予10W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("霜纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+
+
+        --霜纹布兑换经验模块(100个霜纹布)
+        function ST.HundredSoulClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount = player:GetItemCount( 33470 )--检测霜纹布数量
+        if(itemamount>99)then --如果霜纹布数量大于0
+        player:RemoveItem(33470,100) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(1000000) --给予100W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("霜纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --霜纹布兑换经验模块 结束
+
+
+
+        --灵纹布兑换经验模块 开始
+
+        --灵纹布兑换经验模块(1个灵纹布)
+        function ST.SingleNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+
+        if(itemamount>0)then --如果灵纹布数量大于0
+        player:RemoveItem(21877,1) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000) --给予1W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("灵纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+
+
+        --灵纹布兑换经验模块(10个灵纹布)
+        function ST.TenNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+        if(itemamount>9)then --如果灵纹布数量大于0
+        player:RemoveItem(21877,10) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(100000) --给予10W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("灵纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+
+
+        --灵纹布兑换经验模块(100个灵纹布)
+        function ST.HundredNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount = player:GetItemCount( 21877 )--检测灵纹布数量
+        if(itemamount>99)then --如果灵纹布数量大于0
+        player:RemoveItem(21877,100) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(1000000) --给予100W经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("灵纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --灵纹布兑换经验模块 结束
+
+
+        --灵纹布全部兑换经验模块 开始
+
+        --灵纹布兑换经验模块(全部灵纹布)
+        function ST.AllNetherWeaveToXP(player)   --此处是我尝试的灵纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_netherweave = player:GetItemCount( 21877 )--检测灵纹布数量
+
+        if(itemamount_netherweave>0)then --如果灵纹布数量大于0
+        player:RemoveItem(21877,itemamount_netherweave) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_netherweave) --给予1W*灵纹布数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("灵纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --灵纹布全部兑换经验模块 结束
+
+
+
+        --霜纹布全部兑换经验模块 开始
+
+        --霜纹布兑换经验模块(全部霜纹布)
+        function ST.AllSoulClothToXP(player)   --此处是我尝试的霜纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_soulcloth = player:GetItemCount( 33470 )--检测霜纹布数量
+
+        if(itemamount_soulcloth>0)then --如果霜纹布数量大于0
+        player:RemoveItem(33470,itemamount_soulcloth) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_soulcloth) --给予1W*霜纹布数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("霜纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --霜纹布全部兑换经验模块 结束
+
+
+        --丝绸全部兑换经验模块 开始
+
+        --丝绸兑换经验模块(全部丝绸)
+        function ST.AllSilkToXP(player)   --此处是我尝试的丝绸兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_silk = player:GetItemCount( 4306 )--检测丝绸数量
+
+        if(itemamount_silk>0)then --如果丝绸数量大于0
+        player:RemoveItem(4306,itemamount_silk) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_silk) --给予1W*丝绸数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("丝绸数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --丝绸全部兑换经验模块 结束
+
+
+        --毛料全部兑换经验模块 开始
+
+        --毛料兑换经验模块(全部毛料)
+        function ST.AllWoolToXP(player)   --此处是我尝试的毛料兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_wool = player:GetItemCount( 2592 )--检测毛料数量
+
+        if(itemamount_wool>0)then --如果毛料数量大于0
+        player:RemoveItem(2592,itemamount_wool) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_wool) --给予1W*毛料数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("毛料数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --毛料全部兑换经验模块 结束
+
+
+
+        --符文布全部兑换经验模块 开始
+
+        --符文布兑换经验模块(全部符文布)
+        function ST.AllPurpleFireToXP(player)   --此处是我尝试的符文布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_purplefire = player:GetItemCount( 14047 )--检测符文布数量
+
+        if(itemamount_purplefire>0)then --如果符文布数量大于0
+        player:RemoveItem(14047,itemamount_purplefire) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_purplefire) --给予1W*符文布数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("符文布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --符文布全部兑换经验模块 结束
+
+
+
+        --魔纹布全部兑换经验模块 开始
+
+        --魔纹布兑换经验模块(全部魔纹布)
+        function ST.AllMageWeaveToXP(player)   --此处是我尝试的魔纹布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_mageweave = player:GetItemCount( 4338 )--检测魔纹布数量
+
+        if(itemamount_mageweave>0)then --如果魔纹布数量大于0
+        player:RemoveItem(4338,itemamount_mageweave) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_mageweave) --给予1W*魔纹布数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("魔纹布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --魔纹布全部兑换经验模块 结束
+
+
+        --亚麻布全部兑换经验模块 开始
+
+        --亚麻布兑换经验模块(全部亚麻布)
+        function ST.AllLinenToXP(player)   --此处是我尝试的亚麻布兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_linen = player:GetItemCount( 2589 )--检测亚麻布数量
+
+        if(itemamount_linen>0)then --如果亚麻布数量大于0
+        player:RemoveItem(2589,itemamount_linen) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(10000*itemamount_linen) --给予1W*亚麻布数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        ST.GetXP(player)
+        else
+        player:SendBroadcastMessage("亚麻布数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --亚麻布全部兑换经验模块 结束
+
+
+
+        --公正徽章全部兑换经验模块 开始
+
+        --公正徽章兑换经验模块(全部公正徽章)
+        function ST.AllChampionsBondToXP(player)   --此处是我尝试的公正徽章兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_championsbond = player:GetItemCount( 29434 )--检测公正徽章数量
+
+        if(itemamount_championsbond>0)then --如果公正徽章数量大于0
+        player:RemoveItem(29434,itemamount_championsbond) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(100000*itemamount_championsbond) --给予10W*公正徽章数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("公正徽章数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --公正徽章全部兑换经验模块 结束
+
+
+        --凯旋纹章全部兑换经验模块 开始
+
+        --凯旋纹章兑换经验模块(全部凯旋纹章)
+        function ST.AllSummonChampionToXP(player)   --此处是我尝试的凯旋纹章兑换经验模块
+        level = player:GetLevel()
+        if(level>79)then--80级玩家才可使用本功能
+        local itemamount_summonchampion = player:GetItemCount( 47241 )--检测凯旋纹章数量
+
+        if(itemamount_summonchampion>0)then --如果凯旋纹章数量大于0
+        player:RemoveItem(47241,itemamount_summonchampion) --Player:RemoveItem( entry, itemCount )
+        player:GiveXP(100000*itemamount_summonchampion) --给予10W*凯旋纹章数量经验
+        player:SendBroadcastMessage("兑换成功!")
+        else
+        player:SendBroadcastMessage("凯旋纹章数量不足.")
+        end
+        else
+         player:SendBroadcastMessage("80级玩家才可使用本功能.")
+        end
+        end
+        --凯旋纹章全部兑换经验模块 结束
+
+
+        --金币全部兑换经验模块 开始
+
+        --金币兑换经验模块(全部金币)
+        function ST.SomeGoldToXP(player)   --此处是我尝试的金币兑换经验模块
+            level = player:GetLevel()
+            if(level>79)then--80级玩家才可使用本功能
+                if(true)then    --如果扣除154金币(1540000铜币)成功    --player:HasMoney()>=1540000    --临时启用
+                    player:ModifyMoney(-1540000)
+                    player:GiveXP(280000000)            --给予80->81的满级经验
+                    player:SendBroadcastMessage("兑换成功!")
+                    
+                else
+                    player:SendBroadcastMessage("金币数量不足.")
+                   
+                end
+            else
+                player:SendBroadcastMessage("80级玩家才可使用本功能.")
+            end
+        end
+        
+        --金币全部兑换经验模块 结束
+        
 
         --原神变身系列开始
 
@@ -1219,25 +1588,33 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
         function ST.DeMorph(player)--清除变身
 			--Unit:DeMorph()    --这个不行
             player:DeMorph()    --这个可以
 		end
 
+
+
         function ST.PlayMovie(player)--播放影片
-			Player:SendMovieStart("0")
-            player:Yell("哈哈",0)
+
+        --for i=1,4294967295 do --大循环
+
+      --print(i) --输出i值
+      --player:SendMovieStart(i)
+      --player:SendBroadcastMessage(i)
+      --wait(10) --等待10秒
+      
+--end
+			
+            --1,魔兽片头(魔兽,10年)
+            --2,自从联盟和部落并肩作战..
+            --3-8,无
+            --16,巫妖陨落动画(ICC副本结束)
+            player:Yell("影片播放模块结束",0)
 		end
-        
+
+
+
         --理发椅
 		function ST.SummonTradeObject_BarberChair(player)
 			ST.SummonTradeObject(player, 191028)
@@ -2179,6 +2556,7 @@ end,
 
 local Menu={--菜单页面
 	[MMENU]={--主菜单
+        {MENU, "|TInterface/ICONS/Temp:32:32|t|c00722FFF魔兽世界",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--魔兽世界    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别
         {MENU, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t|c00722FFF热血江湖",            MMENU+0x30,		GOSSIP_ICON_TALK},--热血江湖程序图标
         {MENU, "|TInterface/ICONS/popkart_app_ico:32:32|t|c00722FFF跑跑卡丁车",	            MMENU+0x30,		GOSSIP_ICON_TALK},--跑跑卡丁车
         {MENU, "|TInterface/ICONS/cs_1_6_app_ico:32:32|t|c00722FFF反恐精英",	            MMENU+0x30,		GOSSIP_ICON_TALK},--反恐精英
@@ -2186,7 +2564,7 @@ local Menu={--菜单页面
         --{MENU, "|TInterface/ICONS/bbl:32:32|t|c00722FFF芭芭拉",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--芭芭拉    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
         {MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF原神",	                        MMENU+0x50,		GOSSIP_ICON_TALK},--原神    
         {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF我叫MT",	            MMENU+0x90,		GOSSIP_ICON_TALK},--原神
-        {MENU, "|TInterface/ICONS/Temp:32:32|t|c00722FFF魔兽世界",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--魔兽世界    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别
+        
         --需要补充的:守望先锋,大菠萝,
         --{FUNC, "|TInterface/ICONS/ys_app:32:32|t播放影片", 	                    ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
         --待修复
@@ -2197,19 +2575,43 @@ local Menu={--菜单页面
 		--{FUNC, "|TInterface/ICONS/achievement_leader_tyrande_whisperwind:32:32|t|cff3F636C召唤歌剧院管理员|r", 	ST.SummonNPC_sound,	GOSSIP_ICON_TAXI},--自制播音员，外发时注释掉
 		--{FUNC, "|TInterface/ICONS/Ysera_mortal:32:32|t|cff3F636C召唤伊瑟拉|r", 	ST.SummonNPC_Ysera,	GOSSIP_ICON_TAXI},--自制NPC，外发时注释掉
 		--{FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636CGM模式", 		Stone.GmOnMod,	GOSSIP_ICON_VENDOR},--eluna不能支持GM命令
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t召唤售卖商人", 	ST.SummonVendor,	GOSSIP_ICON_TRAINER},
+        {FUNC, "|TInterface/ICONS/spring_vendor:32:32|t售卖商人", 	ST.SummonVendor,	GOSSIP_ICON_TRAINER},
         {FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C在线银行", 		Stone.OpenBank,	GOSSIP_ICON_VENDOR},
         {FUNC, "|TInterface/ICONS/INV_Letter_06:32:32|t|cff3F636C空中邮箱", 		Stone.OpenMailBox,	GOSSIP_ICON_VENDOR},
 		--{FUNC, "|TInterface/ICONS/inv_misc_coin_06:32:32|t|cff3F636C移动拍卖行", 		Stone.OpenAuction,	GOSSIP_ICON_VENDOR},--无法脱离NPC实现
-		{FUNC, "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cff3F636C移动公会银行", 		ST.SummonGameObject_GuildBank,	GOSSIP_ICON_VENDOR},
+		{FUNC, "|TInterface/ICONS/inv_misc_coin_02:32:32|t|cff3F636C公会银行", 		ST.SummonGameObject_GuildBank,	GOSSIP_ICON_VENDOR},
         {FUNC, "|TInterface/ICONS/trade_blacksmithing:32:32|t|cff3F636C修理装备",	    Stone.RepairAll,	GOSSIP_ICON_MONEY_BAG,	false,"需要花费金币修理装备 ？"},
         {MENU, "|TInterface/ICONS/inv_misc_runedorb_01:32:32|t|cff3F636C商业技能设施",		MMENU+0x110,		GOSSIP_ICON_TALK},
 		{FUNC, "|TInterface/ICONS/inv_box_02:32:32|t|cff3F636C保存角色", 		Stone.SaveToDB,			GOSSIP_ICON_INTERACT_1},
 		{FUNC, "|TInterface/ICONS/Spell_Holy_BorrowedTime:32:32|t|cff3F636C重置角色所有冷却",	Stone.ResetAllCD,		GOSSIP_ICON_INTERACT_1,	false,"确认重置所有冷却 ？"},
 		{FUNC, "|TInterface/ICONS/inv_potion_47:32:32|t|cff3F636C立刻回满血蓝",	Stone.MaxHealth,	GOSSIP_ICON_BATTLE,	false,"确认回复生命与法力？"},
 		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C强制脱离战斗", 	Stone.OutCombat,GOSSIP_ICON_BATTLE},
-		{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C清除所有副本CD", 	    ST.ClearCD,GOSSIP_ICON_BATTLE},
 		{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
+		--{FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C清除所有副本CD", 	    ST.ClearCD,GOSSIP_ICON_BATTLE}, --与下方重置副本重复
+        {FUNC, "|TInterface/ICONS/ability_vanish:32:32|t|cff3F636C查询本级经验", 	ST.GetXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(1个)", 	ST.SingleSoulClothToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(10个)", 	ST.TenSoulClothToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C霜纹布兑换经验(100个)", 	ST.HundredSoulClothToXP,GOSSIP_ICON_BATTLE},
+
+        {FUNC, "|TInterface/ICONS/inv_Fabric_Soulcloth:32:32|t|cff3F636C全部霜纹布兑换经验", 	ST.AllSoulClothToXP,GOSSIP_ICON_BATTLE},
+
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(1个)", 	ST.SinchampionsbondgleNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(10个)", 	ST.TenNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+        --{FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C灵纹布兑换经验(100个)", 	ST.HundredNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+
+        {FUNC, "|TInterface/ICONS/inv_Fabric_Netherweave:32:32|t|cff3F636C全部灵纹布兑换经验", 	ST.AllNetherWeaveToXP,GOSSIP_ICON_BATTLE},
+
+        {FUNC, "|TInterface/ICONS/inv_Fabric_silk_01:32:32|t|cff3F636C全部丝绸兑换经验", 	ST.AllSilkToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/inv_Fabric_wool_01:32:32|t|cff3F636C全部毛料兑换经验", 	ST.AllWoolToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/inv_Fabric_purplefire_01:32:32|t|cff3F636C全部符文布兑换经验", 	ST.AllPurpleFireToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/inv_Fabric_mageweave_01:32:32|t|cff3F636C全部魔纹布兑换经验", 	ST.AllMageWeaveToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/inv_Fabric_linen_01:32:32|t|cff3F636C全部亚麻布兑换经验", 	ST.AllLinenToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/Spell_Holy_ChampionsBond:32:32|t|cff3F636C全部公正徽章兑换经验", 	ST.AllChampionsBondToXP,GOSSIP_ICON_BATTLE},
+
+        {FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C全部凯旋纹章兑换经验", 	ST.AllSummonChampionToXP,GOSSIP_ICON_BATTLE},
+        {FUNC, "|TInterface/ICONS/Spell_Holy_summonchampion:32:32|t|cff3F636C154金币兑换经验", 	ST.SomeGoldToXP,GOSSIP_ICON_BATTLE},
+        --最便宜的兑换中1个亚麻布55铜,1W经验,共28000W,需要28000个亚麻布,共28000*55个铜币,再折合成金币,除以1W,等于2.8*55=154,即154金币升1级
+        --{FUNC, "|TInterface/ICONS/Spell_Shadow_DeathScream:32:32|t|cff3F636C解除虚弱", 		Stone.WeakOut,		GOSSIP_ICON_INTERACT_1, false,"是否解除虚弱，并回复生命和法力 ？",20000},
 		{FUNC, "|TInterface/ICONS/inv_sigil_thorim:32:32|t|cff3F636C重置副本",	Stone.UnBind,	GOSSIP_ICON_INTERACT_2,	false,"确认重置副本？"},
 		{TP, " |TInterface/ICONS/achievement_pvp_A_04:32:32|t【|cff0070d0联盟锁经验|r】",0,-8416.410156,283.307831,120.886093,3.280629,	TEAM_ALLIANCE,1,10000},
 	    {TP, " |TInterface/ICONS/achievement_pvp_H_04:32:32|t【|cFFB22222部落锁经验|r】", 1,2000.801025,-4790.464355,56.992043,0.314139,TEAM_HORDE,1,	10000},
@@ -2221,7 +2623,7 @@ local Menu={--菜单页面
 
     [MMENU+0x30]={--热血江湖气功加点主界面
         {MENU, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t加点", 	    SKLMENU+0x80,	GOSSIP_ICON_TRAINER},   --进入主界面
-        
+        {MENU, "|TInterface/ICONS/rxjh_teleport_ico:32:32|t传送", 	    SKLMENU+0x80,	GOSSIP_ICON_TRAINER},   --进入主界面
         {FUNC, "|TInterface/ICONS/inv_misc_coin_01:32:32|t|cff3F636C重置", 		Douqi_seleGoss,	GOSSIP_ICON_VENDOR},    --重置与加属性界面
 	},
 
@@ -2856,26 +3258,26 @@ local Menu={--菜单页面
 
 [TPMENU+0x3220]={--传送主菜单_天蓝版
 		{MENU,	"|TInterface/ICONS/INV_Misc_Map04:35:35|t|cFFFF6600各种族出生地",						TPMENU+0x20,	GOSSIP_ICON_TAXI},
-		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC主要城市",							TPMENU+0x520,	GOSSIP_ICON_TAXI,TEAM_ALLIANCE},
-		{MENU,	"|TInterface/ICONS/Achievement_Zone_EasternKingdoms_01:35:35|t|cff2359FF东部王国",							TPMENU+0x220,	GOSSIP_ICON_TAXI,TEAM_NONE},
-		{MENU,	"|TInterface/ICONS/Achievement_Zone_Kalimdor_01:35:35|t|cffe60000卡利姆多",							TPMENU+0x3c0,	GOSSIP_ICON_TAXI,TEAM_NONEE},
-		{MENU,	"|TInterface/ICONS/Achievement_Zone_Outland_01:35:35|t|cFFB22222外域",								TPMENU+0x1a0,	GOSSIP_ICON_TAXI,TEAM_NONE},
-		{MENU,	"|TInterface/ICONS/Achievement_Zone_Northrend_01:35:35|t|ce600008B诺森德",							TPMENU+0xf0,	GOSSIP_ICON_TAXI,TEAM_NONE},
-		{MENU,  "|TInterface/ICONS/Achievement_Zone_Mulgore_01:35:35|t|cFFcc6633风景传送",							TPMENU+0x510,	GOSSIP_ICON_TAXI,TEAM_NONE},
-        {MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“女士们”",							        TPMENU+0x2180,	GOSSIP_ICON_BATTLE},
+		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC主要城市",			TPMENU+0x520,	GOSSIP_ICON_TAXI,TEAM_ALLIANCE},
+		{MENU,	"|TInterface/ICONS/Achievement_Zone_EasternKingdoms_01:35:35|t|cff2359FF东部王国",		TPMENU+0x220,	GOSSIP_ICON_TAXI,TEAM_NONE},
+		{MENU,	"|TInterface/ICONS/Achievement_Zone_Kalimdor_01:35:35|t|cffe60000卡利姆多",				TPMENU+0x3c0,	GOSSIP_ICON_TAXI,TEAM_NONEE},
+		{MENU,	"|TInterface/ICONS/Achievement_Zone_Outland_01:35:35|t|cFFB22222外域",					TPMENU+0x1a0,	GOSSIP_ICON_TAXI,TEAM_NONE},
+		{MENU,	"|TInterface/ICONS/Achievement_Zone_Northrend_01:35:35|t|ce600008B诺森德",				TPMENU+0xf0,	GOSSIP_ICON_TAXI,TEAM_NONE},
+		{MENU,  "|TInterface/ICONS/Achievement_Zone_Mulgore_01:35:35|t|cFFcc6633风景传送",				TPMENU+0x510,	GOSSIP_ICON_TAXI,TEAM_NONE},
+        {MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“女士们”",					TPMENU+0x2180,	GOSSIP_ICON_BATTLE},
 		},
 
 	[TPMENU+0x20]={--各种族出生地
-			{TP, "|TInterface/ICONS/Achievement_Zone_ElwynnForest:35:35|t人类出生地",		0,		-8949.95,	-132.493,	83.5312,	0,			TEAM_ALLIANCE},
-			{TP, "|TInterface/ICONS/Achievement_Zone_DunMorogh:35:35|t矮人出生地",		0,		-6240.32,	331.033,	382.758,	6.1,		TEAM_ALLIANCE},
-			{TP, "|TInterface/ICONS/Achievement_Zone_DunMorogh:35:35|t侏儒出生地",		0,		-6240,		331,		383,		0,			TEAM_ALLIANCE},
+			{TP, "|TInterface/ICONS/Achievement_Zone_ElwynnForest:35:35|t人类出生地",		    0,		-8949.95,	-132.493,	83.5312,	0,			TEAM_ALLIANCE},
+			{TP, "|TInterface/ICONS/Achievement_Zone_DunMorogh:35:35|t矮人出生地",		        0,		-6240.32,	331.033,	382.758,	6.1,		TEAM_ALLIANCE},
+			{TP, "|TInterface/ICONS/Achievement_Zone_DunMorogh:35:35|t侏儒出生地",		        0,		-6240,		331,		383,		0,			TEAM_ALLIANCE},
 			{TP, "|TInterface/ICONS/Achievement_Zone_UnGoroCrater_01:35:35|t暗夜精灵出生地",	1,		10311.3,	832.463,	1326.41,	5.6,		TEAM_ALLIANCE},
-			{TP, "|TInterface/ICONS/Achievement_Zone_AzuremystIsle_01:35:35|t德莱尼出生地",	530,	-3961.64,	-13931.2,	100.615,	2,			TEAM_ALLIANCE},
-			{TP, "|TInterface/ICONS/Achievement_Zone_Durotar:35:35|t兽人出生地",		1,		-618.518,	-4251.67,	38.718,		0,			TEAM_HORDE},
-			{TP, "|TInterface/ICONS/Achievement_Zone_Barrens_01:35:35|t巨魔出生地",		1,		-618.518,	-4251.67,	38.7,		4.747,		TEAM_HORDE},
-			{TP, "|TInterface/ICONS/Achievement_Zone_Mulgore_01:35:35|t牛头人出生地",	1,		-2917.58,	-257.98,	52.9968,	0,			TEAM_HORDE},
+			{TP, "|TInterface/ICONS/Achievement_Zone_AzuremystIsle_01:35:35|t德莱尼出生地",	    530,	-3961.64,	-13931.2,	100.615,	2,			TEAM_ALLIANCE},
+			{TP, "|TInterface/ICONS/Achievement_Zone_Durotar:35:35|t兽人出生地",		        1,		-618.518,	-4251.67,	38.718,		0,			TEAM_HORDE},
+			{TP, "|TInterface/ICONS/Achievement_Zone_Barrens_01:35:35|t巨魔出生地",		        1,		-618.518,	-4251.67,	38.7,		4.747,		TEAM_HORDE},
+			{TP, "|TInterface/ICONS/Achievement_Zone_Mulgore_01:35:35|t牛头人出生地",	        1,		-2917.58,	-257.98,	52.9968,	0,			TEAM_HORDE},
 			{TP, "|TInterface/ICONS/Achievement_Zone_TirisfalGlades_01:35:35|t亡灵出生地",		0,		1676.71,	1678.31,	121.67,		2.70526,	TEAM_HORDE},
-			{TP, "|TInterface/ICONS/Achievement_Zone_Ghostlands:35:35|t血精灵出生地",	530,	10349.6,	-6357.29,	33.4026,	5.31605,	TEAM_HORDE},
+			{TP, "|TInterface/ICONS/Achievement_Zone_Ghostlands:35:35|t血精灵出生地",	        530,	10349.6,	-6357.29,	33.4026,	5.31605,	TEAM_HORDE},
 			{TP, "|cFF006400[中立]|r|TInterface/ICONS/Achievement_Zone_EasternPlaguelands:35:35|t死亡骑士出生地",	609,	2355.84,	-5664.77,	426.028,	3.65997,	TEAM_NONE,	55,	0},
 			 {MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
 		},
@@ -2884,11 +3286,11 @@ local Menu={--菜单页面
 		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC联盟主城",							TPMENU+0x30,	GOSSIP_ICON_TAXI,TEAM_ALLIANCE},
 		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC部落主城",							TPMENU+0x80,	GOSSIP_ICON_TAXI, TEAM_HORDE},
 		{MENU,	"|TInterface/ICONS/spell_arcane_teleportsilvermoon:35:35|t|cff9932CC中立主城",							TPMENU+0x10,	GOSSIP_ICON_TAXI ,TEAM_NONE},
-		 {MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
+		 --{MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
 		},
 		
         [TPMENU+0x30]={--联盟主城
-            {MENU, "|TInterface/ICONS/Spell_Arcane_Portalstormwind:35:35|t|cff0000ff暴风城", 	TPMENU+0x40,	GOSSIP_ICON_TAXI,TEAM_ALLIANCE},
+            {MENU, "|TInterface/ICONS/Spell_Arcane_Portalstormwind:35:35|t|cff0000ff暴风城", 	    TPMENU+0x40,	GOSSIP_ICON_TAXI,TEAM_ALLIANCE},
 			{MENU, "|TInterface/ICONS/Achievement_Zone_Ironforge:35:35|t|cff0000ff铁炉堡",			TPMENU+0x50,	GOSSIP_ICON_TAXI,	TEAM_ALLIANCE},
 			{MENU, "|TInterface/ICONS/Achievement_Zone_Darnassus:35:35|t|cff0000ff达纳苏斯",		TPMENU+0x60,	GOSSIP_ICON_TAXI,	TEAM_ALLIANCE},
 			{MENU, "|TInterface/ICONS/Spell_Arcane_TeleportExodar:35:35|t|cff0000ff埃索达",			TPMENU+0x70,	GOSSIP_ICON_TAXI,	TEAM_ALLIANCE},
@@ -2911,7 +3313,7 @@ local Menu={--菜单页面
 		{TP, "|TInterface/ICONS/Spell_Arcane_Portalstormwind:35:35|t|cff0000ff暴风城--已宰的羔羊",		 0, -8960.11, 1007.08, 122.025, 0.585,  TEAM_ALLIANCE},
 		{TP, "|TInterface/ICONS/Spell_Arcane_Portalstormwind:35:35|t|cff0000ff暴风城--巫师圣殿",		 0, -9005.53, 867.86, 129.692, 0.585,  TEAM_ALLIANCE},
 		{TP, "|TInterface/ICONS/Spell_Arcane_Portalstormwind:35:35|t|cff0000ff暴风城--暴风城港口",		 0, -8473.2177, 1233.303, 5.2302, 1.5059,  TEAM_ALLIANCE},
-		{MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
+		--{MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
 	},
 	    [TPMENU+0x50]={--铁炉堡
 	    {TP, "|TInterface/ICONS/Achievement_Zone_Ironforge:35:35|t|cff0000ff铁炉堡--大煅炉",		0, -4791.691, -1117.180, 498.807, 2.2204,   TEAM_ALLIANCE},
@@ -2933,7 +3335,7 @@ local Menu={--菜单页面
 	    {TP, "|TInterface/ICONS/Achievement_Zone_Darnassus:35:35|t|cff0000ff达纳苏斯--神殿花园区",		1,9934.518, 2501.518, 1317.825,1.0924,   TEAM_ALLIANCE},
 	    {TP, "|TInterface/ICONS/Achievement_Zone_Darnassus:35:35|t|cff0000ff达纳苏斯--月神殿",		1,9688.63, 2525.97, 1335.38,2.78897,   TEAM_ALLIANCE},
 	    {TP, "|TInterface/ICONS/Achievement_Zone_Darnassus:35:35|t|cff0000ff达纳苏斯--战士区",		1,9950.94, 2279.22, 1341.39,2.78897,   TEAM_ALLIANCE},
-	    {MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
+	    --{MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
 	},
 
 	    [TPMENU+0x70]={--埃索达
@@ -2942,7 +3344,7 @@ local Menu={--菜单页面
 	    {TP, "|TInterface/ICONS/Spell_Arcane_TeleportExodar:35:35|t|cff0000ff埃索达--圣光地窖",		530,-4077.37, -11422.1, -141.457,1.108,   TEAM_ALLIANCE},
 	    {TP, "|TInterface/ICONS/Spell_Arcane_TeleportExodar:35:35|t|cff0000ff埃索达--贸易区",		530,-4233.98, -11708.623, -143.658,4.0453,   TEAM_ALLIANCE},
 	    {TP, "|TInterface/ICONS/Spell_Arcane_TeleportExodar:35:35|t|cff0000ff埃索达--纳鲁王座下层",		530,-3890.48, -11646.6, -310.942,1.108,   TEAM_ALLIANCE},
-	    {MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
+	    --{MENU, "上一页", TPMENU+0x30,GOSSIP_ICON_TAXI},
 	},
 
 	
@@ -2963,7 +3365,7 @@ local Menu={--菜单页面
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalOrgrimmar:35:35|t|cffff0000奥格瑞玛--暗影裂口",		1,		1803.45, -4392.86, -18.1602,		2.14362,	TEAM_HORDE},
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalOrgrimmar:35:35|t|cffff0000奥格瑞玛--格罗玛什堡垒",		1,		1920.938, -4145.206, 40.629,		1.64,	TEAM_HORDE},
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalOrgrimmar:35:35|t|cffff0000奥格瑞玛--传说大厅",		1,		1659.058, -4205.261, 55.437,	1.079,	TEAM_HORDE},
-	{MENU, "上一页", TPMENU+0x80,GOSSIP_ICON_TAXI},
+	--{MENU, "上一页", TPMENU+0x80,GOSSIP_ICON_TAXI},
 	},
 	[TPMENU+0xa0]={--幽暗城
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalUndercity:35:35|t|cffff0000幽暗城--洛丹伦废墟",			0,		1835.05, 238.602, 60.3228, 	3.08,	TEAM_HORDE},
@@ -2974,7 +3376,7 @@ local Menu={--菜单页面
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalUndercity:35:35|t|cffff0000幽暗城--皇家区",			0,		1302.38, 359.112, -67.2968,     3.08,	TEAM_HORDE},
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalUndercity:35:35|t|cffff0000幽暗城--盗贼区",			0,		 1501.65, 147.634, -60.0877,    3.08,	TEAM_HORDE},
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalUndercity:35:35|t|cffff0000幽暗城--下水道",			0,		 1671, 734.324, 79.9641,     3.08,	TEAM_HORDE},
-	{MENU, "上一页", TPMENU+0x80,GOSSIP_ICON_TAXI},
+	--{MENU, "上一页", TPMENU+0x80,GOSSIP_ICON_TAXI},
 	},
 	[TPMENU+0xb0]={--雷霆崖
 	{TP, "|TInterface/ICONS/Spell_Arcane_PortalThunderBluff:35:35|t|cffff0000雷霆崖--中心区",			1,		-1210.163, -62.944, 157.750,	4.70,	TEAM_HORDE},
@@ -3003,7 +3405,9 @@ local Menu={--菜单页面
 			{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Barrens_01:35:35|t棘齿城",	1,		-955.219,	-3678.92,	8.29946,	0,			TEAM_NONE,	10,	0},
 			{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Tanaris_01:35:35|t加基森",	1,		-7168.77,	-3786.97,	8.499,	2.964,			TEAM_NONE,	30,	0},
 			{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Winterspring:35:35|t永望镇",	1,		6714.520,	-4667.69,	720.951,	0.232,	TEAM_NONE,	55,	0},--永望镇这么重要也不加一个？
-			 {MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
+            {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永恒岛",	606,		-651,-4666,7,606,	TEAM_NONE,	35,	0},
+            {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永春台",	1000,		-1050.044,-3081.2029,14.87,1000,	TEAM_NONE,	35,	0},--.go xyz -1050.044 -3081.2029 14.87 1000
+			 --{MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
 		},
 
 	   [TPMENU+0x220]={--东部王国
@@ -4924,15 +5328,15 @@ local Menu={--菜单页面
 	},
 
 	[TPDRMENU+0x30]={--巫妖王之怒地下城★
-		{TP, "|TInterface/ICONS/Achievement_Reputation_WyrmrestTemple:32:32|t[|cFFFF6600团队|r]|ce600008B黑曜石圣殿",	571,	3472.43,	264.923,	-120.146,	3.27923,	TEAM_NONE,	80,	100000},
-		{TP, "|TInterface/ICONS/achievement_dungeon_nexusraid_heroic:32:32|t[|cFFFF6600团队|r]|ce600008B永恒之眼",	                        571,	3784.17,	7028.84,	161.258,	5.79993,	TEAM_NONE,	80,	100000},
-		{TP, "|TInterface/ICONS/achievement_boss_amnennar_the_coldbringer:32:32|t[|cFFFF6600团队|r]|ce600008B纳克萨玛斯",	571,	3668.72,	-1262.46,	243.622,	4.785,		TEAM_NONE,	80,	100000},
-		{TP, "|TInterface/ICONS/INV_EssenceOfWintergrasp:32:32|t[|cFFFF6600团队|r]|ce600008B阿尔卡冯的宝库",            571,	5453.72,	2840.79,	421.28,		0.01,		TEAM_NONE,	80,	100000},
-		{TP, "|TInterface/ICONS/Achievement_Dungeon_UlduarRaid_Misc_03:32:32|t[|cFFFF6600团队|r]|ce600008B奥杜尔",		571,	9222.88,	-1113.59,	1216.12,	6.27549,	TEAM_NONE,	80,	100000},
-		{TP, "|TInterface/ICONS/Achievement_Boss_Onyxia:32:32|t[|cFFFF6600团队|r]|ce600008B奥妮克希亚的巢穴",              1,	-4708.27,	-3727.64,	54.5589,	3.72786,	TEAM_NONE,	80,	100000},
-		{TP, "|TInterface/ICONS/INV_Shield_72:32:32|t[|cFFFF6600团队|r]|ce600008B十字军的试炼",                           571,	8515.61,	714.153,	558.248,	1.57753,	TEAM_NONE,	80,	100000},
-		{TP, "|TInterface/ICONS/Achievement_Dungeon_Icecrown_IcecrownEntrance:32:32|t[|cFFFF6600团队|r]|ce600008B冰冠堡垒",	571,	5855.22,	2102.03,	635.991,	3.57899,	TEAM_NONE,	80,	100000},
-		{TP, "|TInterface/ICONS/spell_shadow_twilight:32:32|t[|cFFFF6600团队|r]|ce600008B红玉圣殿",	571,	3590.09,	210.77,		-120.05,	5.38,	TEAM_NONE,	80,	100000},
+		{TP, "|TInterface/ICONS/Achievement_Reputation_WyrmrestTemple:32:32|t[|cFFFF6600团队|r]|ce600008B黑曜石圣殿",	571,	3472.43,	264.923,	-120.146,	3.27923,	TEAM_NONE,	80,	0},
+		{TP, "|TInterface/ICONS/achievement_dungeon_nexusraid_heroic:32:32|t[|cFFFF6600团队|r]|ce600008B永恒之眼",	                        571,	3784.17,	7028.84,	161.258,	5.79993,	TEAM_NONE,	80,	0},
+		{TP, "|TInterface/ICONS/achievement_boss_amnennar_the_coldbringer:32:32|t[|cFFFF6600团队|r]|ce600008B纳克萨玛斯",	571,	3668.72,	-1262.46,	243.622,	4.785,		TEAM_NONE,	80,	0},
+		{TP, "|TInterface/ICONS/INV_EssenceOfWintergrasp:32:32|t[|cFFFF6600团队|r]|ce600008B阿尔卡冯的宝库",            571,	5453.72,	2840.79,	421.28,		0.01,		TEAM_NONE,	80,	0},
+		{TP, "|TInterface/ICONS/Achievement_Dungeon_UlduarRaid_Misc_03:32:32|t[|cFFFF6600团队|r]|ce600008B奥杜尔",		571,	9222.88,	-1113.59,	1216.12,	6.27549,	TEAM_NONE,	80,	0},
+		{TP, "|TInterface/ICONS/Achievement_Boss_Onyxia:32:32|t[|cFFFF6600团队|r]|ce600008B奥妮克希亚的巢穴",              1,	-4708.27,	-3727.64,	54.5589,	3.72786,	TEAM_NONE,	80,	0},
+		{TP, "|TInterface/ICONS/INV_Shield_72:32:32|t[|cFFFF6600团队|r]|ce600008B十字军的试炼",                           571,	8515.61,	714.153,	558.248,	1.57753,	TEAM_NONE,	80,	0},
+		{TP, "|TInterface/ICONS/Achievement_Dungeon_Icecrown_IcecrownEntrance:32:32|t[|cFFFF6600团队|r]|ce600008B冰冠堡垒",	571,	5855.22,	2102.03,	635.991,	3.57899,	TEAM_NONE,	80,	0},
+		{TP, "|TInterface/ICONS/spell_shadow_twilight:32:32|t[|cFFFF6600团队|r]|ce600008B红玉圣殿",	571,	3590.09,	210.77,		-120.05,	5.38,	TEAM_NONE,	80,	0},
 		{TP, "|TInterface/ICONS/achievement_dungeon_utgardekeep_heroic:32:32|t乌特加德城堡",	571,	1203.41,	-4868.59,	41.2486,	0.283237,	TEAM_NONE,	65,	100000},
 	    {TP, "|TInterface/ICONS/achievement_dungeon_utgardepinnacle_heroic:32:32|t乌特加德之巅",	571,	1267.24,	-4857.3,	215.764,	3.22768,	TEAM_NONE,	75,	100000},
 	    {TP, "|TInterface/ICONS/achievement_dungeon_nexus80_heroic:32:32|t魔环",			571,	3782.89,	6965.23,	105.088,	6.14194,	TEAM_NONE,	66,	100000},
@@ -4945,10 +5349,10 @@ local Menu={--菜单页面
 	    {TP, "|TInterface/ICONS/Achievement_Zone_StormPeaks_11:32:32|t岩石大厅",		571,	8922.12,	-1009.16,	1039.56,	1.57044,	TEAM_NONE,	72,	100000},
 	    {TP, "|TInterface/ICONS/Achievement_Zone_StormPeaks_12:32:32|t闪电大厅",		571,	9136.52,	-1311.81,	1066.29,	5.19113,	TEAM_NONE,	75,	100000},
 	    {TP, "|TInterface/ICONS/Achievement_Dungeon_CoTStratholme_Heroic:32:32|t时光之穴：净化斯坦索姆",	1,		-8756.39,	-4440.68,	-199.489,	4.66289,	TEAM_NONE,	75,	100000},
-		{TP, "|TInterface/ICONS/Achievement_Reputation_ArgentChampion:32:32|t冠军的试炼",		571,	8590.95,	791.792,	558.235,	3.13127,	TEAM_NONE,	80,	100000},
-	    {TP, "|TInterface/ICONS/achievement_dungeon_icecrown_forgeofsouls:32:32|t冰封大殿：灵魂洪炉",        571,5664.647949,2011.475830,798.041565,5.360321,  TEAM_NONE,	80,	100000},
-	    {TP, "|TInterface/ICONS/achievement_dungeon_icecrown_pitofsaron:32:32|t冰封大殿：萨隆矿坑",        571,5601.859863,2018.421387,798.041382,3.777744,  TEAM_NONE,	80,	100000},
-	    {TP, "|TInterface/ICONS/achievement_dungeon_icecrown_hallsofreflection:32:32|t冰封大殿：映像大厅",        571,5630.525391,1989.808960,799.252686,4.629903,  TEAM_NONE,	80,	100000},
+		{TP, "|TInterface/ICONS/Achievement_Reputation_ArgentChampion:32:32|t冠军的试炼",		571,	8590.95,	791.792,	558.235,	3.13127,	TEAM_NONE,	80,	0},
+	    {TP, "|TInterface/ICONS/achievement_dungeon_icecrown_forgeofsouls:32:32|t冰封大殿：灵魂洪炉",        571,5664.647949,2011.475830,798.041565,5.360321,  TEAM_NONE,	80,	0},
+	    {TP, "|TInterface/ICONS/achievement_dungeon_icecrown_pitofsaron:32:32|t冰封大殿：萨隆矿坑",        571,5601.859863,2018.421387,798.041382,3.777744,  TEAM_NONE,	80,	0},
+	    {TP, "|TInterface/ICONS/achievement_dungeon_icecrown_hallsofreflection:32:32|t冰封大殿：映像大厅",        571,5630.525391,1989.808960,799.252686,4.629903,  TEAM_NONE,	80,	0},
 	},
 	
 	[TPDRMENU+0x40]={--野外BOSS传送
@@ -5571,7 +5975,7 @@ function Stone.SelectGossip(event, player, item, sender, intid, code, menu_id)
 end
 
 --RegisterPlayerEvent(7, guaiwuDQ)--暂时不想使用杀怪给气功点模块
-RegisterPlayerEvent(13, LevelDQ)--升级给武功点
+--RegisterPlayerEvent(13, LevelDQ)--升级给武功点 --暂时注释
 
 RegisterItemGossipEvent(itemEntry, 1, Stone.ShowGossip)
 RegisterItemGossipEvent(itemEntry, 2, Stone.SelectGossip)
