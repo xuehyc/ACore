@@ -55,6 +55,11 @@
           "name": "MYSQL_LIBRARY",
           "value": "D:/Program Files/MySQL/MySQL Server 8.0/lib/libmysql.lib",
           "type": "FILEPATH"
+        },
+        {
+          "name": "WITHOUT_GIT",
+          "value": "True",
+          "type": "BOOL"
         }
       ]
     }
