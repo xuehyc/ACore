@@ -8,7 +8,7 @@
 
 # Enable or disable AI Playerbot
 # 启用或禁用智能玩家机器人
-AiPlayerbot.Enabled = 0
+AiPlayerbot.Enabled = 1
 
 # Enable random bot system
 # 启用随机机器人系统
@@ -70,7 +70,7 @@ AiPlayerbot.RandomBotMaxLevel = 80
 # 为随机机器人创建的账号
 AiPlayerbot.RandomBotAccountPrefix = "rndbot"
 # 随机智能机器人的账号前缀
-AiPlayerbot.RandomBotAccountCount = 1
+AiPlayerbot.RandomBotAccountCount = 200
 # 随机智能机器人的账号数量(默认:200)
 
 # Random bot guild count
