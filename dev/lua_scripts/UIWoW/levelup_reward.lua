@@ -26,6 +26,9 @@ if(oldLevel==80) then
 else if(oldLevel==81) then
     --此处为预防81级回退80级出现多余提示
     --此功能使用于满级升级奖励天赋点模块
+
+else if(oldLevel>80) then   --级别超出最大限制,以防使用GM命令,出现超出等级,无法正常获取奖励
+ player:SetLevel("80")   --重置为80级    
 else
     player:ModifyMoney(oldLevel*1000)
 
@@ -38,6 +41,7 @@ else
     --player:SendBroadcastMessage("恭喜你升级了,奖励你一些金币.")
     player:SendBroadcastMessage("恭喜你升级了,奖励你"..((oldLevel*1000)/10000).."金币.")
     --player:SendBroadcastMessage("升级奖励1金")
+    end
       end
     end
 end
