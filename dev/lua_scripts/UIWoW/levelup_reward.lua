@@ -15,8 +15,6 @@ if(oldLevel==80) then
     if(talent_count:GetUInt32(0)>80)then--如果已学天赋大于80
         player:ModifyMoney(1000*10000)  --奖励1000金币
         player:SendBroadcastMessage("恭喜你满级后再次升级,奖励你1000金币")
-        return   --退出本循环
-    
     else
         freeTalentPointAmt = player:GetFreeTalentPoints()
         player:SetLevel("80")   --重置为80级    --之前此处有BUG,一旦用命令升级到80,就无法回退其他等级,现在有否未测试
