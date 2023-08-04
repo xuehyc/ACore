@@ -9,10 +9,20 @@ function levelup_reward(event, player, oldLevel)    --升级奖励金币
 local maxlevel_talentpoints = 2                     --满级后升级奖励天赋点
 
 if(oldLevel==80) then
-    freeTalentPointAmt = player:GetFreeTalentPoints()
-    player:SetLevel("80")   --重置为80级    --之前此处有BUG,一旦用命令升级到80,就无法回退其他等级,现在有否未测试
-    player:SetFreeTalentPoints(freeTalentPointAmt+maxlevel_talentpoints)
-    player:SendBroadcastMessage("恭喜你满级后再次升级,奖励你"..maxlevel_talentpoints.."点天赋点.")
+
+    local talent_count=CharDBQuery("SELECT count(*) FROM character_talent WHERE guid="..player:GetGUIDLow()..";")	--查询已学天赋数量          
+	        
+    if(talent_count:GetUInt32(0)>80)then--如果已学天赋大于80
+        player:ModifyMoney(1000*10000)  --奖励1000金币
+        player:SendBroadcastMessage("恭喜你满级后再次升级,奖励你1000金币")
+        return   --退出本循环
+    
+    else
+        freeTalentPointAmt = player:GetFreeTalentPoints()
+        player:SetLevel("80")   --重置为80级    --之前此处有BUG,一旦用命令升级到80,就无法回退其他等级,现在有否未测试
+        player:SetFreeTalentPoints(freeTalentPointAmt+maxlevel_talentpoints)
+        player:SendBroadcastMessage("恭喜你满级后再次升级,奖励你"..maxlevel_talentpoints.."点天赋点.")
+    end
 
 else if(oldLevel==81) then
     --此处为预防81级回退80级出现多余提示
@@ -29,8 +39,9 @@ else
     --player:SendBroadcastMessage("恭喜你升级了,奖励你一些金币.")
     player:SendBroadcastMessage("恭喜你升级了,奖励你"..((oldLevel*1000)/10000).."金币.")
     --player:SendBroadcastMessage("升级奖励1金")
+        end
+    end
 end
-end
-end
+
 RegisterPlayerEvent(13, levelup_reward)
 print('levelup_reward module loaded.') 
