@@ -1,6 +1,6 @@
 ﻿--print('levelup_reward module loading...')
 
-function levelup_reward(event, player, oldLevel)    --升级奖励金币
+function levelup_reward(event, player, oldLevel,pet)    --升级奖励金币
 --player:ModifyMoney(10000) --奖励1金,原版
 
 --oldLevel=getuint32(oldLevel)--报错
@@ -16,6 +16,7 @@ if(oldLevel==80) then
         player:ModifyMoney(1000*10000)  --奖励1000金币
         player:SendBroadcastMessage("恭喜你满级后再次升级,奖励你1000金币")
         player:SetLevel("80")   --重置为80级    --之前此处有BUG,一旦用命令升级到80,就无法回退其他等级,现在有否未测试
+        pet:SetFreeTalentPoints("22")
     else
         freeTalentPointAmt = player:GetFreeTalentPoints()
         player:SetLevel("80")   --重置为80级    
