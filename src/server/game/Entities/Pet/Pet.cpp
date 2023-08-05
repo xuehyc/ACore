@@ -2194,21 +2194,23 @@ void Pet::resetTalentsForAllPetsOf(Player* owner, Pet* onlinePet /*= nullptr*/)
 
 void Pet::InitTalentForLevel()
 {
-    uint8 level = GetLevel();
-    uint32 talentPointsForLevel = GetMaxTalentPointsForLevel(level);
+    //tmp
+    // 防止对后加脚本干扰,暂时禁用
+    //uint8 level = GetLevel();
+    //uint32 talentPointsForLevel = GetMaxTalentPointsForLevel(level);
 
-    Unit* owner = GetOwner();
-    if (!owner || owner->GetTypeId() != TYPEID_PLAYER)
-        return;
+    //Unit* owner = GetOwner();
+    //if (!owner || owner->GetTypeId() != TYPEID_PLAYER)
+    //    return;
 
-    // Reset talents in case low level (on level down) or wrong points for level (hunter can unlearn TP increase talent)
-    if (talentPointsForLevel == 0 || m_usedTalentCount > talentPointsForLevel)
-        resetTalents(); // Remove all talent points
+    //// Reset talents in case low level (on level down) or wrong points for level (hunter can unlearn TP increase talent)
+    //if (talentPointsForLevel == 0 || m_usedTalentCount > talentPointsForLevel)
+    //    resetTalents(); // Remove all talent points
 
-    SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);
+    //SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);
 
-    if (!m_loading)
-        owner->ToPlayer()->SendTalentsInfoData(true);
+    //if (!m_loading)
+    //    owner->ToPlayer()->SendTalentsInfoData(true);
 }
 
 uint8 Pet::GetMaxTalentPointsForLevel(uint8 level)
