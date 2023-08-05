@@ -63,7 +63,7 @@
         },
         {
           "name": "WITH_DYNAMIC_LINKING",
-          "value": "True",
+          "value": "False",
           "type": "BOOL"
         }
       ]
