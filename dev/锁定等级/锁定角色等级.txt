@@ -1,0 +1,11 @@
+
+本帖最后由 shinyatime 于 2023-8-3 09:55 编辑
+
+
+1、进入MySQL的character库，备份characters角色表数据；
+
+2、执行update characters set playerFlags = 33554944 where guid = 你的角色guid;
+批量锁定使用update characters set playerFlags = 33554944 where guid in (guid1, guid2, guid3);
+
+
+经对比,与AZ不符
