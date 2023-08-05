@@ -60,6 +60,11 @@
           "name": "WITHOUT_GIT",
           "value": "True",
           "type": "BOOL"
+        },
+        {
+          "name": "WITH_DYNAMIC_LINKING",
+          "value": "True",
+          "type": "BOOL"
         }
       ]
     }
