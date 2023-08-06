@@ -3,7 +3,7 @@
 ////#include "../../../../../deps/acelite/ace/Synch_Traits.h"
 //extern std::unordered_map<uint32, float> PlayerDropRateMap;
 //
-//////连杀////
+////连杀////
 //struct KillerStreakTemplate
 //{
 //	uint32 rewId;
