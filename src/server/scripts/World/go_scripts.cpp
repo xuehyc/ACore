@@ -92,7 +92,7 @@ public:
         {
             if (Creature* cr = go->SummonCreature(28105, 6708.7f, 5115.45f, -18.3f, 0.7f, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 30000))
             {
-                cr->Yell("我的宝藏！你不能从塔尔特克那里偷东西，愚蠢的大舌头叛徒。塔尔特克和讨厌的龙要杀了你！你真傻", LANG_UNIVERSAL);
+                cr->Yell("�ҵı��أ��㲻�ܴ������ؿ�����͵�������޴��Ĵ���ͷ��ͽ�������ؿ˺��������Ҫɱ���㣡����ɵ", LANG_UNIVERSAL);
                 cr->AI()->AttackStart(pPlayer);
             }
         }
@@ -1093,7 +1093,7 @@ enum DalaranCrystal
     QUEST_TELE_CRYSTAL_FLAG     = 12845
 };
 
-#define GO_TELE_TO_DALARAN_CRYSTAL_FAILED   "在达拉然的传送水晶至少使用一次之前，无法使用此传送水晶。"
+#define GO_TELE_TO_DALARAN_CRYSTAL_FAILED   "�ڴ���Ȼ�Ĵ���ˮ������ʹ��һ��֮ǰ���޷�ʹ�ô˴���ˮ����"
 
 class go_tele_to_dalaran_crystal : public GameObjectScript
 {
@@ -1135,9 +1135,9 @@ public:
 
 #define GOSSIP_FEL_CRYSTALFORGE_TEXT 31000
 #define GOSSIP_FEL_CRYSTALFORGE_ITEM_TEXT_RETURN 31001
-#define GOSSIP_FEL_CRYSTALFORGE_ITEM_1 "以 10 个埃匹希斯碎片的价格购买 1 个不稳定的野兽合剂"
-#define GOSSIP_FEL_CRYSTALFORGE_ITEM_5 "以 50 个埃匹希斯碎片的价格购买 5 个不稳定的野兽合剂"
-#define GOSSIP_FEL_CRYSTALFORGE_ITEM_RETURN "使用邪能水晶熔炉进行另一次购买。"
+#define GOSSIP_FEL_CRYSTALFORGE_ITEM_1 "�� 10 ����ƥϣ˹��Ƭ�ļ۸��� 1 �����ȶ���Ұ�޺ϼ�"
+#define GOSSIP_FEL_CRYSTALFORGE_ITEM_5 "�� 50 ����ƥϣ˹��Ƭ�ļ۸��� 5 �����ȶ���Ұ�޺ϼ�"
+#define GOSSIP_FEL_CRYSTALFORGE_ITEM_RETURN "ʹ��а��ˮ����¯������һ�ι���"
 
 enum FelCrystalforge
 {
@@ -1194,9 +1194,9 @@ public:
 
 #define GOSSIP_BASHIR_CRYSTALFORGE_TEXT 31100
 #define GOSSIP_BASHIR_CRYSTALFORGE_ITEM_TEXT_RETURN 31101
-#define GOSSIP_BASHIR_CRYSTALFORGE_ITEM_1 "以 10 个埃匹希斯碎片的价格购买 1 个不稳定的巫师合剂"
-#define GOSSIP_BASHIR_CRYSTALFORGE_ITEM_5 "以 50 个埃匹希斯碎片的价格购买 5 个不稳定的巫师合剂"
-#define GOSSIP_BASHIR_CRYSTALFORGE_ITEM_RETURN "使用巴什伊尔水晶熔炉进行另一次购买。"
+#define GOSSIP_BASHIR_CRYSTALFORGE_ITEM_1 "�� 10 ����ƥϣ˹��Ƭ�ļ۸��� 1 �����ȶ�����ʦ�ϼ�"
+#define GOSSIP_BASHIR_CRYSTALFORGE_ITEM_5 "�� 50 ����ƥϣ˹��Ƭ�ļ۸��� 5 �����ȶ�����ʦ�ϼ�"
+#define GOSSIP_BASHIR_CRYSTALFORGE_ITEM_RETURN "ʹ�ð�ʲ����ˮ����¯������һ�ι���"
 
 enum BashirCrystalforge
 {
@@ -1612,19 +1612,17 @@ public:
 ## go_amberpine_outhouse
 ######*/
 
-#define GOSSIP_USE_OUTHOUSE "上厕所。"
 #define GO_ANDERHOLS_SLIDER_CIDER_NOT_FOUND "未找到任务物品安德霍尔的泻药"
 
 enum AmberpineOuthouse
 {
-    ITEM_ANDERHOLS_SLIDER_CIDER     = 37247,
-    NPC_OUTHOUSE_BUNNY              = 27326,
     QUEST_DOING_YOUR_DUTY           = 12227,
     SPELL_INDISPOSED                = 53017,
+    SPELL_INDISPOSED_II             = 48324,
     SPELL_INDISPOSED_III            = 48341,
-    SPELL_CREATE_AMBERSEEDS         = 48330,
     GOSSIP_OUTHOUSE_INUSE           = 12775,
-    GOSSIP_OUTHOUSE_VACANT          = 12779
+    GOSSIP_OUTHOUSE_VACANT          = 12779,
+    GOSSIP_USE_OUTHOUSE             = 9492,
 };
 
 class go_amberpine_outhouse : public GameObjectScript
@@ -1637,7 +1635,7 @@ public:
         QuestStatus status = player->GetQuestStatus(QUEST_DOING_YOUR_DUTY);
         if (status == QUEST_STATUS_INCOMPLETE || status == QUEST_STATUS_COMPLETE || status == QUEST_STATUS_REWARDED)
         {
-            AddGossipItemFor(player, GOSSIP_ICON_CHAT, GOSSIP_USE_OUTHOUSE, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
+            AddGossipItemFor(player, GOSSIP_USE_OUTHOUSE, 0, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
             SendGossipMenuFor(player, GOSSIP_OUTHOUSE_VACANT, go->GetGUID());
         }
         else
@@ -1646,21 +1644,15 @@ public:
         return true;
     }
 
-    bool OnGossipSelect(Player* player, GameObject* go, uint32 /*sender*/, uint32 action) override
+    bool OnGossipSelect(Player* player, GameObject* /*go*/, uint32 /*sender*/, uint32 action) override
     {
         ClearGossipMenuFor(player);
         if (action == GOSSIP_ACTION_INFO_DEF + 1)
         {
             CloseGossipMenuFor(player);
-            Creature* target = GetClosestCreatureWithEntry(player, NPC_OUTHOUSE_BUNNY, 3.0f);
-            if (target)
-            {
-                target->AI()->SetData(1, player->getGender());
-                go->CastSpell(target, SPELL_INDISPOSED_III);
-            }
-            go->CastSpell(player, SPELL_INDISPOSED);
-            if (player->HasItemCount(ITEM_ANDERHOLS_SLIDER_CIDER))
-                player->CastSpell(player, SPELL_CREATE_AMBERSEEDS, true);
+            player->CastSpell(player, SPELL_INDISPOSED);
+            player->CastSpell(player, SPELL_INDISPOSED_II);
+            player->CastSpell(player, SPELL_INDISPOSED_III);
             return true;
         }
         else

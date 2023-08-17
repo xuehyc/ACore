@@ -823,7 +823,6 @@ void AddSC_terokkar_forest()
 
     // Theirs
     new npc_unkor_the_ruthless();
-    new npc_rotting_forest_rager();
     new npc_isla_starmane();
     new go_skull_pile();
     new npc_slim();

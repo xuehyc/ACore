@@ -950,6 +950,14 @@ MaxArenaPoints = 10000
 StartArenaPoints = 0
 
 #
+#   Arena.LegacyArenaPoints
+#        Description: Use arena point calculation from TBC for season 1 - 5 when rating is less or equal to 1500
+#        Default:     1 - (Enabled)
+#                     0 - (Disabled)
+
+Arena.LegacyArenaPoints = 0
+
+#
 #    RecruitAFriend.MaxLevel
 #        Description: Highest level up to which a character can benefit from the Recruit-A-Friend
 #                     experience multiplier.
@@ -3053,13 +3061,24 @@ Arena.GamesRequired = 10
 Arena.QueueAnnouncer.Enable = 0
 
 #
-#    Battleground.QueueAnnouncer.PlayerOnly
-#        Description: Battleground queue announcement type.
+#    Arena.QueueAnnouncer.PlayerOnly
+#        Description: Arena queue announcement type.
 #        Default:     0 - (System message, Anyone can see it)
 #                     1 - (Private, Only queued players can see it)
 #
 
 Arena.QueueAnnouncer.PlayerOnly = 0
+
+#
+#    Arena.QueueAnnouncer.Detail
+#        Description: The amount of detail to announce on teams queued for arenas.
+#        Default:     3 - (Announce the team's name and rating)
+#                     2 - (Announce only the team's name)
+#                     1 - (Announce only the team's rating)
+#                     0 - (Do not announce any information about the teams)
+#
+
+Arena.QueueAnnouncer.Detail = 3
 
 #
 #    Arena.ArenaSeason.ID
@@ -4209,13 +4228,16 @@ NpcBot.Botgiver.FilterRaces = 0
 NpcBot.BaseFollowDistance = 50
 
 #
-#    NpcBot.XpReduction
-#        Description: XP percent penalty for each bot used starting with second.
-#        Example:     3 bots, xp reduction is 20: ((3-1)*20) = 40%, 60% exp gained only.
+#    NpcBot.XpReduction.Amount
+#    NpcBot.XpReduction.StartingNumber
+#        Description: XP percent penalty for each bot used starting with <StartingNumber>.
+#        Example:     3 bots, reduction is 20, start is 2: ((3-(2-1))*20) = 40%, 60% exp gained.
 #        Note:        Maximum overall xp reduction is 90%.
-#        Default:     0
+#        Default:     0 - (NpcBot.XpReduction.Amount)
+#                     2 - (NpcBot.XpReduction.StartingNumber)
 
-NpcBot.XpReduction = 0
+NpcBot.XpReduction.Amount         = 0
+NpcBot.XpReduction.StartingNumber = 2
 
 #
 #    NpcBot.HealTargetIconMask
@@ -4599,6 +4621,15 @@ NpcBot.WanderingBots.Continents.Maps = 0,1,530,571
 #                     1 - (Enable)
 
 NpcBot.WanderingBots.BG.Enable = 0
+
+#
+#    NpcBot.WanderingBots.BG.CapLevel
+#        Description: Enforce BG bot maximum level limit set by Expansion and MaxPlayerLevel
+#                     config paramter values.
+#        Default:     0 - (Disabled)
+#                     1 - (Enable)
+
+NpcBot.WanderingBots.BG.CapLevel = 0
 
 #
 #    NpcBot.WanderingBots.BG.TargetTeamPlayersCount.<BGTYPE>
