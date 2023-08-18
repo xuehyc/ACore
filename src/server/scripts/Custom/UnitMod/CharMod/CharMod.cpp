@@ -1,201 +1,201 @@
-﻿//#pragma execution_character_set("utf-8")
-//#include "CharMod.h"
-//#include "../../FunctionCollection/FunctionCollection.h"
-//#include "../../Switch/Switch.h"
-//#include "../../Requirement/Requirement.h"
-//
-//std::vector<CharStatTemplate> CharStatVec;
-//std::vector<StaticStatTemplate> StaticStatVec;
-//std::vector<uint32> AltClassSpellVec;
-//
-//void CharMod::Load()
-//{
-//	CharStatVec.clear();
-//	QueryResult result = WorldDatabase.Query(
-//		//		0			1			2			3			4			5			6				7			8
-//		"SELECT 职业索引,物理伤害PVP倍率,法术伤害PVP倍率,治疗效果PVP倍率,护甲值上限,躲闪百分比上限,招架百分比上限,格挡百分比上限,爆击百分比上限,"
-//		//		9			10				11			12				13				14				15				16			17				18				19				20			21
-//		"额外精神转法伤, 额外精神转治疗, 额外智力转法伤, 额外智力转治疗, 额外力量转攻强, 额外敏捷转攻强, 额外精神转攻强, 额外智力转攻强, 额外力量转法伤, 额外敏捷转法伤, 额外力量转治疗, 额外敏捷转治疗,减伤百分比,"
-//		//		22			23				24				25		26			27		28			29				30
-//		"物理伤害PVE倍率,法术伤害PVE倍率,治疗效果PVE倍率,急速等级上限,生命值上限,法力值上限,物理伤害上限,法术伤害上限,治疗效果上限 FROM _属性调整_职业");
-//
-//	if (result)
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			CharStatTemplate CharStatTemp;
-//			CharStatTemp.classIndex		= fields[0].Get<uint8>();
-//			CharStatTemp.meleePVPDmgMod	= fields[1].Get<float>();
-//			CharStatTemp.spellPVPDmgMod	= fields[2].Get<float>();
-//			CharStatTemp.healPVPMod		= fields[3].Get<float>();
-//			CharStatTemp.armorLimit		= fields[4].Get<float>();
-//			CharStatTemp.dodgeLimit		= fields[5].Get<float>();
-//			CharStatTemp.parryLimit		= fields[6].Get<float>();
-//			CharStatTemp.blockLimit		= fields[7].Get<float>();
-//			CharStatTemp.critLimit		= fields[8].Get<float>();
-//			CharStatTemp.spirit2SP		= fields[9].Get<float>();
-//			CharStatTemp.spirit2Heal	= fields[10].Get<float>();
-//			CharStatTemp.intellect2SP	= fields[11].Get<float>();
-//			CharStatTemp.intellect2Heal = fields[12].Get<float>();
-//			CharStatTemp.strength2AP	= fields[13].Get<float>();
-//			CharStatTemp.agility2AP		= fields[14].Get<float>();
-//
-//			CharStatTemp.spirit2AP		= fields[15].Get<float>();
-//			CharStatTemp.intellect2AP	= fields[16].Get<float>();
-//			CharStatTemp.strength2SP	= fields[17].Get<float>();
-//			CharStatTemp.agility2SP		= fields[18].Get<float>();
-//			CharStatTemp.strength2Heal	= fields[19].Get<float>();
-//			CharStatTemp.agility2Heal	= fields[20].Get<float>();
-//
-//			CharStatTemp.reduceDmgMod	= fields[21].Get<float>();
-//
-//			CharStatTemp.meleePVEDmgMod = fields[22].Get<float>();
-//			CharStatTemp.spellPVEDmgMod = fields[23].Get<float>();
-//			CharStatTemp.healPVEMod		= fields[24].Get<float>();
-//
-//			CharStatTemp.hasteLimit		= fields[25].Get<uint32>();
-//			CharStatTemp.hpLimit		= fields[26].Get<uint32>();
-//			CharStatTemp.manaLimit		= fields[27].Get<uint32>();
-//			CharStatTemp.meleeDmgLimit	= fields[28].Get<uint32>();
-//			CharStatTemp.spellDmgLimit	= fields[29].Get<uint32>();
-//			CharStatTemp.healLimit		= fields[30].Get<uint32>();
-//
-//			CharStatVec.push_back(CharStatTemp);
-//		} while (result->NextRow());
-//	}
-//
-//	StaticStatVec.clear();
-//
-//	AltClassSpellVec.clear();
-//	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
-//		"SELECT 技能ID FROM __转职保留技能" :
-//		"SELECT spellid FROM _alt_class_spells"))
-//	{
-//		do
-//		{
-//			Field* fields = result->Fetch();
-//			AltClassSpellVec.push_back(fields[0].Get<uint32>());
-//		} while (result->NextRow());
-//	}
-//	
-//
-//	SessionMap const& smap = sWorld->GetAllSessions();
-//	for (SessionMap::const_iterator i = smap.begin(); i != smap.end(); ++i)
-//		if (Player* player = i->second->GetPlayer())
-//		{
-//			ModLimit(player);
-//			ModStats(player);
-//		}	
-//}
-//
-//float CharMod::GetLimit(StatLimitTypes type, uint8 classIndex)
-//{
-//	uint32 len = CharStatVec.size();
-//	for (size_t i = 0; i < len; i++)
-//	{
-//		if (classIndex == CharStatVec[i].classIndex)
-//		{
-//			switch (type)
-//			{
-//			case LIMIT_ARMOR:
-//				return CharStatVec[i].armorLimit;
-//			case LIMIT_DODGE:
-//				return CharStatVec[i].dodgeLimit;
-//			case LIMIT_PARRY:
-//				return CharStatVec[i].parryLimit;
-//			case LIMIT_BLOCK:
-//				return CharStatVec[i].blockLimit;
-//			case LIMIT_CRIT:
-//				return CharStatVec[i].critLimit;
-//			case LIMIT_HASTE:
-//				return CharStatVec[i].hasteLimit;
-//			case LIMIT_HP:
-//				return CharStatVec[i].hpLimit;
-//			case LIMIT_MANA:
-//				return CharStatVec[i].manaLimit;
-//			case LIMIT_MELEEDMG:
-//				return CharStatVec[i].meleeDmgLimit;
-//			case LIMIT_SPELLDMG:
-//				return CharStatVec[i].spellDmgLimit;
-//			case LIMIT_HEAL:
-//				return CharStatVec[i].healLimit;
-//			}
-//		}
-//	}
-//	return 1000000.0f;
-//}
-//
-//float CharMod::GetMod(StatModTypes type, uint8 classIndex)
-//{
-//	uint32 len = CharStatVec.size();
-//	for (size_t i = 0; i < len; i++)
-//	{
-//		if (classIndex == CharStatVec[i].classIndex)
-//		{
-//			switch (type)
-//			{
-//			case CHAR_MOD_PVP_MELEE_DMG:
-//				return CharStatVec[i].meleePVPDmgMod;
-//			case CHAR_MOD_PVP_SPELL_DMG:
-//				return CharStatVec[i].spellPVPDmgMod;
-//			case CHAR_MOD_PVP_HEAL:
-//				return CharStatVec[i].healPVPMod;
-//			case CHAR_MOD_PVE_MELEE_DMG:
-//				return CharStatVec[i].meleePVEDmgMod;
-//			case CHAR_MOD_PVE_SPELL_DMG:
-//				return CharStatVec[i].spellPVEDmgMod;
-//			case CHAR_MOD_PVE_HEAL:
-//				return CharStatVec[i].healPVEMod;
-//			case CHAR_MOD_REDUCE_DMG:
-//				return CharStatVec[i].reduceDmgMod;
-//			}
-//		}
-//	}
-//	return 1.0f;
-//}
-//
-//float CharMod::GetValue(SwitchStatTypes type, uint8 classIndex)
-//{
-//	uint32 len = CharStatVec.size();
-//	for (size_t i = 0; i < len; i++)
-//	{
-//		if (classIndex == CharStatVec[i].classIndex)
-//		{
-//			switch (type)
-//			{
-//			case SWITCH_SPIRIT2SP:
-//				return CharStatVec[i].spirit2SP;
-//			case SWITCH_SPIRIT2HEAL:
-//				return CharStatVec[i].spirit2Heal;
-//			case SWITCH_INTELLECT2SP:
-//				return CharStatVec[i].intellect2SP;
-//			case SWITCH_INTELLECT2HEAL:
-//				return CharStatVec[i].intellect2Heal;
-//			case SWITCH_STRENGTH2AP:
-//				return CharStatVec[i].strength2AP;
-//			case SWITCH_AGILITY2AP:
-//				return CharStatVec[i].agility2AP;
-//
-//			case SWITCH_SPIRIT2AP:
-//				return  CharStatVec[i].spirit2AP;
-//			case SWITCH_INTELLECT2AP:
-//				return  CharStatVec[i].intellect2AP;
-//			case SWITCH_STRENGTH2SP:
-//				return  CharStatVec[i].strength2SP;
-//			case SWITCH_AGILITY2SP:
-//				return  CharStatVec[i].agility2SP;
-//			case SWITCH_STRENGTH2HEAL:
-//				return  CharStatVec[i].strength2Heal;
-//			case SWITCH_AGILITY2HEAL:
-//				return  CharStatVec[i].agility2Heal;
-//
-//			}
-//		}
-//	}
-//	return 0.0f;
-//}
-//
+﻿#pragma execution_character_set("utf-8")
+#include "CharMod.h"
+#include "../../FunctionCollection/FunctionCollection.h"
+#include "../../Switch/Switch.h"
+#include "../../Requirement/Requirement.h"
+
+std::vector<CharStatTemplate> CharStatVec;
+std::vector<StaticStatTemplate> StaticStatVec;
+std::vector<uint32> AltClassSpellVec;
+
+void CharMod::Load()
+{
+	CharStatVec.clear();
+	QueryResult result = WorldDatabase.Query(
+		//		0			1			2			3			4			5			6				7			8
+		"SELECT 职业索引,物理伤害PVP倍率,法术伤害PVP倍率,治疗效果PVP倍率,护甲值上限,躲闪百分比上限,招架百分比上限,格挡百分比上限,爆击百分比上限,"
+		//		9			10				11			12				13				14				15				16			17				18				19				20			21
+		"额外精神转法伤, 额外精神转治疗, 额外智力转法伤, 额外智力转治疗, 额外力量转攻强, 额外敏捷转攻强, 额外精神转攻强, 额外智力转攻强, 额外力量转法伤, 额外敏捷转法伤, 额外力量转治疗, 额外敏捷转治疗,减伤百分比,"
+		//		22			23				24				25		26			27		28			29				30
+		"物理伤害PVE倍率,法术伤害PVE倍率,治疗效果PVE倍率,急速等级上限,生命值上限,法力值上限,物理伤害上限,法术伤害上限,治疗效果上限 FROM _属性调整_职业");
+
+	if (result)
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			CharStatTemplate CharStatTemp;
+			CharStatTemp.classIndex		= fields[0].Get<uint8>();
+			CharStatTemp.meleePVPDmgMod	= fields[1].Get<float>();
+			CharStatTemp.spellPVPDmgMod	= fields[2].Get<float>();
+			CharStatTemp.healPVPMod		= fields[3].Get<float>();
+			CharStatTemp.armorLimit		= fields[4].Get<float>();
+			CharStatTemp.dodgeLimit		= fields[5].Get<float>();
+			CharStatTemp.parryLimit		= fields[6].Get<float>();
+			CharStatTemp.blockLimit		= fields[7].Get<float>();
+			CharStatTemp.critLimit		= fields[8].Get<float>();
+			CharStatTemp.spirit2SP		= fields[9].Get<float>();
+			CharStatTemp.spirit2Heal	= fields[10].Get<float>();
+			CharStatTemp.intellect2SP	= fields[11].Get<float>();
+			CharStatTemp.intellect2Heal = fields[12].Get<float>();
+			CharStatTemp.strength2AP	= fields[13].Get<float>();
+			CharStatTemp.agility2AP		= fields[14].Get<float>();
+
+			CharStatTemp.spirit2AP		= fields[15].Get<float>();
+			CharStatTemp.intellect2AP	= fields[16].Get<float>();
+			CharStatTemp.strength2SP	= fields[17].Get<float>();
+			CharStatTemp.agility2SP		= fields[18].Get<float>();
+			CharStatTemp.strength2Heal	= fields[19].Get<float>();
+			CharStatTemp.agility2Heal	= fields[20].Get<float>();
+
+			CharStatTemp.reduceDmgMod	= fields[21].Get<float>();
+
+			CharStatTemp.meleePVEDmgMod = fields[22].Get<float>();
+			CharStatTemp.spellPVEDmgMod = fields[23].Get<float>();
+			CharStatTemp.healPVEMod		= fields[24].Get<float>();
+
+			CharStatTemp.hasteLimit		= fields[25].Get<uint32>();
+			CharStatTemp.hpLimit		= fields[26].Get<uint32>();
+			CharStatTemp.manaLimit		= fields[27].Get<uint32>();
+			CharStatTemp.meleeDmgLimit	= fields[28].Get<uint32>();
+			CharStatTemp.spellDmgLimit	= fields[29].Get<uint32>();
+			CharStatTemp.healLimit		= fields[30].Get<uint32>();
+
+			CharStatVec.push_back(CharStatTemp);
+		} while (result->NextRow());
+	}
+
+	StaticStatVec.clear();
+
+	AltClassSpellVec.clear();
+	if (result = WorldDatabase.Query(sWorld->getBoolConfig(CONFIG_ZHCN_DB) ? 
+		"SELECT 技能ID FROM __转职保留技能" :
+		"SELECT spellid FROM _alt_class_spells"))
+	{
+		do
+		{
+			Field* fields = result->Fetch();
+			AltClassSpellVec.push_back(fields[0].Get<uint32>());
+		} while (result->NextRow());
+	}
+	
+
+	SessionMap const& smap = sWorld->GetAllSessions();
+	for (SessionMap::const_iterator i = smap.begin(); i != smap.end(); ++i)
+		if (Player* player = i->second->GetPlayer())
+		{
+			ModLimit(player);
+			ModStats(player);
+		}	
+}
+
+float CharMod::GetLimit(StatLimitTypes type, uint8 classIndex)
+{
+	uint32 len = CharStatVec.size();
+	for (size_t i = 0; i < len; i++)
+	{
+		if (classIndex == CharStatVec[i].classIndex)
+		{
+			switch (type)
+			{
+			case LIMIT_ARMOR:
+				return CharStatVec[i].armorLimit;
+			case LIMIT_DODGE:
+				return CharStatVec[i].dodgeLimit;
+			case LIMIT_PARRY:
+				return CharStatVec[i].parryLimit;
+			case LIMIT_BLOCK:
+				return CharStatVec[i].blockLimit;
+			case LIMIT_CRIT:
+				return CharStatVec[i].critLimit;
+			case LIMIT_HASTE:
+				return CharStatVec[i].hasteLimit;
+			case LIMIT_HP:
+				return CharStatVec[i].hpLimit;
+			case LIMIT_MANA:
+				return CharStatVec[i].manaLimit;
+			case LIMIT_MELEEDMG:
+				return CharStatVec[i].meleeDmgLimit;
+			case LIMIT_SPELLDMG:
+				return CharStatVec[i].spellDmgLimit;
+			case LIMIT_HEAL:
+				return CharStatVec[i].healLimit;
+			}
+		}
+	}
+	return 1000000.0f;
+}
+
+float CharMod::GetMod(StatModTypes type, uint8 classIndex)
+{
+	uint32 len = CharStatVec.size();
+	for (size_t i = 0; i < len; i++)
+	{
+		if (classIndex == CharStatVec[i].classIndex)
+		{
+			switch (type)
+			{
+			case CHAR_MOD_PVP_MELEE_DMG:
+				return CharStatVec[i].meleePVPDmgMod;
+			case CHAR_MOD_PVP_SPELL_DMG:
+				return CharStatVec[i].spellPVPDmgMod;
+			case CHAR_MOD_PVP_HEAL:
+				return CharStatVec[i].healPVPMod;
+			case CHAR_MOD_PVE_MELEE_DMG:
+				return CharStatVec[i].meleePVEDmgMod;
+			case CHAR_MOD_PVE_SPELL_DMG:
+				return CharStatVec[i].spellPVEDmgMod;
+			case CHAR_MOD_PVE_HEAL:
+				return CharStatVec[i].healPVEMod;
+			case CHAR_MOD_REDUCE_DMG:
+				return CharStatVec[i].reduceDmgMod;
+			}
+		}
+	}
+	return 1.0f;
+}
+
+float CharMod::GetValue(SwitchStatTypes type, uint8 classIndex)
+{
+	uint32 len = CharStatVec.size();
+	for (size_t i = 0; i < len; i++)
+	{
+		if (classIndex == CharStatVec[i].classIndex)
+		{
+			switch (type)
+			{
+			case SWITCH_SPIRIT2SP:
+				return CharStatVec[i].spirit2SP;
+			case SWITCH_SPIRIT2HEAL:
+				return CharStatVec[i].spirit2Heal;
+			case SWITCH_INTELLECT2SP:
+				return CharStatVec[i].intellect2SP;
+			case SWITCH_INTELLECT2HEAL:
+				return CharStatVec[i].intellect2Heal;
+			case SWITCH_STRENGTH2AP:
+				return CharStatVec[i].strength2AP;
+			case SWITCH_AGILITY2AP:
+				return CharStatVec[i].agility2AP;
+
+			case SWITCH_SPIRIT2AP:
+				return  CharStatVec[i].spirit2AP;
+			case SWITCH_INTELLECT2AP:
+				return  CharStatVec[i].intellect2AP;
+			case SWITCH_STRENGTH2SP:
+				return  CharStatVec[i].strength2SP;
+			case SWITCH_AGILITY2SP:
+				return  CharStatVec[i].agility2SP;
+			case SWITCH_STRENGTH2HEAL:
+				return  CharStatVec[i].strength2Heal;
+			case SWITCH_AGILITY2HEAL:
+				return  CharStatVec[i].agility2Heal;
+
+			}
+		}
+	}
+	return 0.0f;
+}
+
 //int32 CharMod::GetExtraSP(Player* player)
 //{
 //	float intellectValue = player->GetTotalStatValue(Stats(STAT_INTELLECT));
@@ -205,6 +205,7 @@
 //
 //	return int32(player->p_sp + intellectValue * player->p_intellect2SP + spiritValue * player->p_spirit2SP + strengthValue * player->p_strength2SP + agilityValue * player->p_agility2SP);
 //}
+// 
 //int32 CharMod::GetExtraAP(Player* player)
 //{
 //	float strengthValue = player->GetTotalStatValue(Stats(STAT_STRENGTH));
@@ -298,67 +299,67 @@
 //
 //	player->UpdateAllStats();
 //}
-//
-//
-//bool CharMod::CheckFamily(Player* player, uint32 SpellFamily)
-//{
-//	switch (player->getClass())
-//	{
-//	case CLASS_WARRIOR:
-//		return SpellFamily == SPELLFAMILY_WARRIOR;
-//	case CLASS_PALADIN:
-//		return SpellFamily == SPELLFAMILY_PALADIN;
-//	case CLASS_HUNTER:
-//		return SpellFamily == SPELLFAMILY_HUNTER;
-//	case CLASS_ROGUE:
-//		return SpellFamily == SPELLFAMILY_ROGUE;
-//	case CLASS_PRIEST:
-//		return SpellFamily == SPELLFAMILY_PRIEST;
-//	case CLASS_DEATH_KNIGHT:
-//		return SpellFamily == SPELLFAMILY_DEATHKNIGHT;
-//	case CLASS_SHAMAN:
-//		return SpellFamily == SPELLFAMILY_SHAMAN;
-//	case CLASS_MAGE:
-//		return SpellFamily == SPELLFAMILY_MAGE;
-//	case CLASS_WARLOCK:
-//		return SpellFamily == SPELLFAMILY_WARLOCK;
-//	case CLASS_DRUID:
-//		return SpellFamily == SPELLFAMILY_DRUID;
-//	}
-//
-//	return false;
-//}
-//
-//bool CharMod::CheckSkill(SpellInfo const* spellInfo)
-//{
-//	return
-//		spellInfo->IsAbilityOfSkillType(SKILL_ALCHEMY) ||			//炼金
-//		spellInfo->IsAbilityOfSkillType(SKILL_BLACKSMITHING) ||		//锻造
-//		spellInfo->IsAbilityOfSkillType(SKILL_COOKING) ||			//烹饪
-//		spellInfo->IsAbilityOfSkillType(SKILL_ENCHANTING) ||		//附魔
-//		spellInfo->IsAbilityOfSkillType(SKILL_ENGINEERING) ||		//工程
-//		spellInfo->IsAbilityOfSkillType(SKILL_FIRST_AID) ||			//急救
-//		spellInfo->IsAbilityOfSkillType(SKILL_HERBALISM) ||			//草药
-//		spellInfo->IsAbilityOfSkillType(SKILL_LEATHERWORKING) ||	//制皮
-//		spellInfo->IsAbilityOfSkillType(SKILL_INSCRIPTION) ||		//铭文
-//		spellInfo->IsAbilityOfSkillType(SKILL_TAILORING) ||			//裁缝
-//		spellInfo->IsAbilityOfSkillType(SKILL_MINING) ||			//挖矿
-//		spellInfo->IsAbilityOfSkillType(SKILL_FISHING) ||			//钓鱼
-//		spellInfo->IsAbilityOfSkillType(SKILL_SKINNING) ||			//剥皮
-//		spellInfo->IsAbilityOfSkillType(SKILL_JEWELCRAFTING) ||		//珠宝
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_HORSE) ||		//骑术
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_WOLF) ||
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_TIGER) ||
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_RAM) ||
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_RAPTOR) ||
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_MECHANOSTRIDER) ||
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_UNDEAD_HORSE) ||
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_KODO) ||
-//		spellInfo->IsAbilityOfSkillType(SKILL_RIDING) ||
-//		spellInfo->HasAura(SPELL_AURA_MOUNTED) ||					//坐骑
-//		spellInfo->IsAbilityOfSkillType(SKILL_COMPANIONS);			//小宠物
-//}
-//
+
+
+bool CharMod::CheckFamily(Player* player, uint32 SpellFamily)
+{
+	switch (player->getClass())
+	{
+	case CLASS_WARRIOR:
+		return SpellFamily == SPELLFAMILY_WARRIOR;
+	case CLASS_PALADIN:
+		return SpellFamily == SPELLFAMILY_PALADIN;
+	case CLASS_HUNTER:
+		return SpellFamily == SPELLFAMILY_HUNTER;
+	case CLASS_ROGUE:
+		return SpellFamily == SPELLFAMILY_ROGUE;
+	case CLASS_PRIEST:
+		return SpellFamily == SPELLFAMILY_PRIEST;
+	case CLASS_DEATH_KNIGHT:
+		return SpellFamily == SPELLFAMILY_DEATHKNIGHT;
+	case CLASS_SHAMAN:
+		return SpellFamily == SPELLFAMILY_SHAMAN;
+	case CLASS_MAGE:
+		return SpellFamily == SPELLFAMILY_MAGE;
+	case CLASS_WARLOCK:
+		return SpellFamily == SPELLFAMILY_WARLOCK;
+	case CLASS_DRUID:
+		return SpellFamily == SPELLFAMILY_DRUID;
+	}
+
+	return false;
+}
+
+bool CharMod::CheckSkill(SpellInfo const* spellInfo)
+{
+	return
+		spellInfo->IsAbilityOfSkillType(SKILL_ALCHEMY) ||			//炼金
+		spellInfo->IsAbilityOfSkillType(SKILL_BLACKSMITHING) ||		//锻造
+		spellInfo->IsAbilityOfSkillType(SKILL_COOKING) ||			//烹饪
+		spellInfo->IsAbilityOfSkillType(SKILL_ENCHANTING) ||		//附魔
+		spellInfo->IsAbilityOfSkillType(SKILL_ENGINEERING) ||		//工程
+		spellInfo->IsAbilityOfSkillType(SKILL_FIRST_AID) ||			//急救
+		spellInfo->IsAbilityOfSkillType(SKILL_HERBALISM) ||			//草药
+		spellInfo->IsAbilityOfSkillType(SKILL_LEATHERWORKING) ||	//制皮
+		spellInfo->IsAbilityOfSkillType(SKILL_INSCRIPTION) ||		//铭文
+		spellInfo->IsAbilityOfSkillType(SKILL_TAILORING) ||			//裁缝
+		spellInfo->IsAbilityOfSkillType(SKILL_MINING) ||			//挖矿
+		spellInfo->IsAbilityOfSkillType(SKILL_FISHING) ||			//钓鱼
+		spellInfo->IsAbilityOfSkillType(SKILL_SKINNING) ||			//剥皮
+		spellInfo->IsAbilityOfSkillType(SKILL_JEWELCRAFTING) ||		//珠宝
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_HORSE) ||		//骑术
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_WOLF) ||
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_TIGER) ||
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_RAM) ||
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_RAPTOR) ||
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_MECHANOSTRIDER) ||
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_UNDEAD_HORSE) ||
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING_KODO) ||
+		spellInfo->IsAbilityOfSkillType(SKILL_RIDING) ||
+		spellInfo->HasAura(SPELL_AURA_MOUNTED) ||					//坐骑
+		spellInfo->IsAbilityOfSkillType(SKILL_COMPANIONS);			//小宠物
+}
+
 //void CharMod::ModClass(Player* player, uint8 targetClass)
 //{
 //	CloseGossipMenuFor(player);
@@ -421,79 +422,79 @@
 //	sWorld->UpdateGlobalPlayerData(player->GetGUID().GetCounter(), PLAYER_UPDATE_DATA_CLASS, "", 0, 0, 0, targetClass);
 //	player->GetSession()->KickPlayer();
 //}
-//
-//std::string CharMod::GetClassName1(uint32 _class)
-//{
-//	switch (_class)
-//	{
-//	case CLASS_WARRIOR:
-//		return "[战士]";
-//	case CLASS_PALADIN:
-//		return "[圣骑士]";
-//	case CLASS_HUNTER:
-//		return "[猎人]";
-//	case CLASS_ROGUE:
-//		return "[盗贼]";
-//	case CLASS_PRIEST:
-//		return "[牧师]";
-//	case CLASS_DEATH_KNIGHT:
-//		return "[死亡骑士]";
-//	case CLASS_SHAMAN:
-//		return "[萨满祭司]";
-//	case CLASS_MAGE:
-//		return "[法师]";
-//	case CLASS_WARLOCK:
-//		return "[术士]";
-//	case CLASS_DRUID:
-//		return "[德鲁伊]";
-//	default:
-//		return "";
-//	}
-//}
-//
-//void CharMod::AddGossip(Player* player, Object* obj)
-//{
-//	uint8 race = player->getRace();
-//	uint8 _class = player->getClass();
-//
-//	for (size_t i = CLASS_WARRIOR; i <= CLASS_DRUID; i++)
-//	{
-//		if (i == 10 || _class == i)
-//			continue;
-//
-//		PlayerInfo const* info = sObjectMgr->GetPlayerInfo(race, i);
-//
-//		if (!info)
-//			continue;
-//
-//		std::string name = GetClassName1(i);
-//		AddGossipItemFor(player,0, "转职 -> " + name, SENDER_ALT_CLASS, i, sReq->Notice(player, sSwitch->GetValue(ST_ALT_CLASS), "转职为", name), 0, false);
-//	}
-//
-//	if (obj->ToCreature())
-//		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
-//	else
-//		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
-//}
-//
-//class CharModPlayerScript : public PlayerScript
-//{
-//public:
-//	CharModPlayerScript() : PlayerScript("CharModPlayerScript") {}
-//
-//	void OnLogin(Player* player)
-//	{
-//		sCharMod->ModLimit(player);
-//	}
-//
-//	void OnMapChanged(Player* player) 
-//	{
-//		sCharMod->ModStats(player);
-//	}
-//};
-//
-//
-//void AddSC_CharModPlayerScript()
-//{
-//	new CharModPlayerScript();
-//}
+
+std::string CharMod::GetClassName1(uint32 _class)
+{
+	switch (_class)
+	{
+	case CLASS_WARRIOR:
+		return "[战士]";
+	case CLASS_PALADIN:
+		return "[圣骑士]";
+	case CLASS_HUNTER:
+		return "[猎人]";
+	case CLASS_ROGUE:
+		return "[盗贼]";
+	case CLASS_PRIEST:
+		return "[牧师]";
+	case CLASS_DEATH_KNIGHT:
+		return "[死亡骑士]";
+	case CLASS_SHAMAN:
+		return "[萨满祭司]";
+	case CLASS_MAGE:
+		return "[法师]";
+	case CLASS_WARLOCK:
+		return "[术士]";
+	case CLASS_DRUID:
+		return "[德鲁伊]";
+	default:
+		return "";
+	}
+}
+
+void CharMod::AddGossip(Player* player, Object* obj)
+{
+	uint8 race = player->getRace();
+	uint8 _class = player->getClass();
+
+	for (size_t i = CLASS_WARRIOR; i <= CLASS_DRUID; i++)
+	{
+		if (i == 10 || _class == i)
+			continue;
+
+		PlayerInfo const* info = sObjectMgr->GetPlayerInfo(race, i);
+
+		if (!info)
+			continue;
+
+		std::string name = GetClassName1(i);
+		AddGossipItemFor(player,0, "转职 -> " + name, SENDER_ALT_CLASS, i, sReq->Notice(player, sSwitch->GetValue(ST_ALT_CLASS), "转职为", name), 0, false);
+	}
+
+	if (obj->ToCreature())
+		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
+	else
+		SendGossipMenuFor(player,DEFAULT_GOSSIP_MESSAGE, obj->GetGUID());
+}
+
+class CharModPlayerScript : public PlayerScript
+{
+public:
+	CharModPlayerScript() : PlayerScript("CharModPlayerScript") {}
+
+	void OnLogin(Player* player)
+	{
+		sCharMod->ModLimit(player);
+	}
+
+	void OnMapChanged(Player* player) 
+	{
+		sCharMod->ModStats(player);
+	}
+};
+
+
+void AddSC_CharModPlayerScript()
+{
+	new CharModPlayerScript();
+}
