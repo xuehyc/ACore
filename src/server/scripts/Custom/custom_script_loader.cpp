@@ -19,12 +19,12 @@
 // void MyExampleScript()
 
 void AddSC_npc_1v1arena();
-void AddSC_VIP_LOGIN();
+//void AddSC_VIP_LOGIN();
 // The name of this function should match:
 // void Add${NameOfDirectory}Scripts()
 void AddCustomScripts()
 {
     // MyExampleScript()
     AddSC_npc_1v1arena();
-    AddSC_VIP_LOGIN();
+    //AddSC_VIP_LOGIN();
 }
