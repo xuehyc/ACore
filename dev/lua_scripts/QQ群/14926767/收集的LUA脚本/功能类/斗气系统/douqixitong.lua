@@ -74,7 +74,7 @@ local function Douqi_AddGoss(event, player, item, target,intid)
 	else
 	    player:GossipClearMenu()
 	    player:SaveToDB()
-	    player:GossipMenuAddItem(8,"|CFF00FFFF热血江湖气功点数系统-当前角色可分配气功点数|r：\n（|CFFFF0000"..math.modf(douqizhi:GetUInt32(2)*5+douqizhi:GetUInt32(3)*5+douqizhi:GetUInt32(4)*5+douqizhi:GetUInt32(5)*5+douqizhi:GetUInt32(6)*5+douqizhi:GetUInt32(7)*5+douqizhi:GetUInt32(8)*5).."/"..douqizhi:GetUInt32(1).."|r）\n(已分配点数/共剩余点数)\n消耗|CFFFF0000"..xiaofeicount.."|r点斗气值.提升|CFFFF0000"..shuxingcount.."|r点属性|r\n|cff0000ff点击下列对应菜单可提升角色的属性",1,0)
+	    player:GossipMenuAddItem(8,"|CFFAA0000欢迎使用斗气系统|r\n(已分配点数/共剩余点数)\n（|CFFAA00AA"..math.modf(douqizhi:GetUInt32(2)+douqizhi:GetUInt32(3)+douqizhi:GetUInt32(4)+douqizhi:GetUInt32(5)+douqizhi:GetUInt32(6)+douqizhi:GetUInt32(7)+douqizhi:GetUInt32(8)).."/"..douqizhi:GetUInt32(1).."|r）\n消耗|CFFFF0000"..xiaofeicount.."|r点斗气值.提升|CFFFF0000"..shuxingcount.."|r点属性|r\n|cff0000ff点击下列对应菜单可提升角色的属性",1,0)
 	    player:GossipMenuAddItem(5,"当前-|cFF009933力量:|r [|CFFFF0000"..douqizhi:GetUInt32(2).."|r] ---|cff0000ff确认|r",1,1)		
 	    player:GossipMenuAddItem(5,"当前-|cFF009933敏捷:|r [|CFFFF0000"..douqizhi:GetUInt32(3).."|r] ---|cff0000ff确认|r",1,2)	
 	    player:GossipMenuAddItem(5,"当前-|cFF009933耐力:|r [|CFFFF0000"..douqizhi:GetUInt32(4).."|r] ---|cff0000ff确认|r",1,3)	
@@ -98,7 +98,7 @@ local function Douqi_seleGoss(event,player,item,target,intid)
     elseif 	intid==9 then
         if (player:HasItem(czitem,czitemcount)) then
             CharDBExecute("DELETE FROM characters_douqi WHERE guid="..player:GetGUIDLow()..";")
-			CharDBExecute("insert into characters_douqi VALUES ("..player:GetGUIDLow()..", "..math.modf(douqizhi:GetUInt32(2)*5+douqizhi:GetUInt32(3)*5+douqizhi:GetUInt32(4)*5+douqizhi:GetUInt32(5)*5+douqizhi:GetUInt32(6)*5+douqizhi:GetUInt32(7)*5+douqizhi:GetUInt32(8)*5)+douqizhi:GetUInt32(1)..", 0, 0, 0, 0, 0, 0, 0);")		
+			CharDBExecute("insert into characters_douqi VALUES ("..player:GetGUIDLow()..", "..math.modf(douqizhi:GetUInt32(2)+douqizhi:GetUInt32(3)+douqizhi:GetUInt32(4)+douqizhi:GetUInt32(5)+douqizhi:GetUInt32(6)+douqizhi:GetUInt32(7)+douqizhi:GetUInt32(8))+douqizhi:GetUInt32(1)..", 0, 0, 0, 0, 0, 0, 0);")		
 		    player:RemoveItem(czitem,czitemcount)
 			player:RemoveAura(spell_liliang)
 			player:RemoveAura(spell_minjie)
