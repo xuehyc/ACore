@@ -403,7 +403,7 @@ local function Douqi_AddGoss(event, player, item, target,intid)
 	    player:GossipMenuAddItem(5,"当前-|cFF009933攻强:|r [|CFFFF0000"..douqizhi:GetUInt32(7).."|r] ---|cff0000ff确认|r",1,6)	
 	    player:GossipMenuAddItem(5,"当前-|cFF009933法强:|r [|CFFFF0000"..douqizhi:GetUInt32(8).."|r] ---|cff0000ff确认|r",1,7)
         player:GossipMenuAddItem(0,"|cff0000ff每种属性可分配62500次\n62500 * "..shuxingcount.." = "..math.modf(62500*shuxingcount).."|r",1,8)	
-	    player:GossipMenuAddItem(0,"|cFFA50000重置斗气值|r",1,9,false,"确定重置吗？\n需要消耗："..GetItemLink(czitem).." x "..czitemcount.."")
+	    --player:GossipMenuAddItem(0,"|cFFA50000重置斗气值|r",1,9,false,"确定重置吗？\n需要消耗："..GetItemLink(czitem).." x "..czitemcount.."")
 	    player:GossipSendMenu(1, item)
 	end
 end
@@ -2560,6 +2560,7 @@ local Menu={--菜单页面
         --{MENU, "|TInterface/ICONS/bbl:32:32|t|c00722FFF芭芭拉",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--芭芭拉    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
         {MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF原神",	                        MMENU+0x50,		GOSSIP_ICON_TALK},--原神    
         {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF我叫MT",	            MMENU+0x90,		GOSSIP_ICON_TALK},--原神
+        {MENU, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t|c00722FFF斗气",            MMENU+0x100,		GOSSIP_ICON_TALK},--热血江湖程序图标
         
         --需要补充的:守望先锋,大菠萝,
         --{FUNC, "|TInterface/ICONS/ys_app:32:32|t播放影片", 	                    ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
@@ -2764,6 +2765,11 @@ local Menu={--菜单页面
     [MMENU+0x90]={--我叫MT主界面
 	    {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF变身",		                            MMENU+0x70,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
         {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t清除变身", 	                                    ST.DeMorph,	    GOSSIP_ICON_TRAINER},
+    },
+
+    [MMENU+0x100]={--斗气界面
+	    {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF变身",		                            MMENU+0x70,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t加点", 	                                    Douqi_AddGoss,	    GOSSIP_ICON_TRAINER},
     },
 
 	[MMENU+0x110]={--召唤商业技能设施
