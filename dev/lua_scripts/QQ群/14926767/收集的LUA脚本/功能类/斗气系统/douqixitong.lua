@@ -9,10 +9,10 @@ local itemEntry     =90000       --物品ID.惯例是带使用性质的 --取消
 local guaiwu        ={1488,40419,40417};  --斗气值怪物ID--自己设置,目前未设置  --40419,自行添加,红玉圣殿里的小怪
 local czitem        =33470      --重置需要的物品    --原先为65501    --33470 霜纹布
 local czitemcount   =5          --重置需要的物品数量,根据热血江湖的设置可以使用长白山参来洗点,小长白山参一次只能洗1点 小长白丹(100元宝)大长白丹(400元宝)都可以洗气功点
-local douqizhiCount =1000       --每杀一只怪获得斗气值的数量
+local douqizhiCount =1       --每杀一只怪获得斗气值的数量 --默认1000
 local douqizhiCount_level =1    --每升一级获得斗气值的数量,根据热血江湖系统,35级前获得1点,之后获得两点
-local xiaofeicount  =5          --加点消费的斗气值数量,原先为5000
-local shuxingcount  =1000       --每次加点增加的属性值（请注意..这儿的值跟DBC是相关联的）
+local xiaofeicount  =10          --加点消费的斗气值数量,原先为5000
+local shuxingcount  =1       --每次加点增加的属性值（请注意..这儿的值跟DBC是相关联的）--默认 1000
 
 local spell_liliang     =99901  --力量
 local spell_liliangup   =99902
@@ -74,7 +74,7 @@ local function Douqi_AddGoss(event, player, item, target,intid)
 	else
 	    player:GossipClearMenu()
 	    player:SaveToDB()
-	    player:GossipMenuAddItem(8,"|CFF00FFFF热血江湖气功点数系统-当前角色可分配气功点数|r：\n（|CFFFF0000"..math.modf(douqizhi:GetUInt32(2)*5+douqizhi:GetUInt32(3)*5+douqizhi:GetUInt32(4)*5+douqizhi:GetUInt32(5)*5+douqizhi:GetUInt32(6)*5+douqizhi:GetUInt32(7)*5+douqizhi:GetUInt32(8)*5).."/"..douqizhi:GetUInt32(1).."|r）\n(已分配点数/共剩余点数)\n消耗|CFFFF0000"..xiaofeicount.."|r点斗气值.提升|CFFFF00001000|r点属性|r\n|cff0000ff点击下列对应菜单可提升角色的属性",1,0)
+	    player:GossipMenuAddItem(8,"|CFF00FFFF热血江湖气功点数系统-当前角色可分配气功点数|r：\n（|CFFFF0000"..math.modf(douqizhi:GetUInt32(2)*5+douqizhi:GetUInt32(3)*5+douqizhi:GetUInt32(4)*5+douqizhi:GetUInt32(5)*5+douqizhi:GetUInt32(6)*5+douqizhi:GetUInt32(7)*5+douqizhi:GetUInt32(8)*5).."/"..douqizhi:GetUInt32(1).."|r）\n(已分配点数/共剩余点数)\n消耗|CFFFF0000"..xiaofeicount.."|r点斗气值.提升|CFFFF0000"..shuxingcount.."|r点属性|r\n|cff0000ff点击下列对应菜单可提升角色的属性",1,0)
 	    player:GossipMenuAddItem(5,"当前-|cFF009933力量:|r [|CFFFF0000"..douqizhi:GetUInt32(2).."|r] ---|cff0000ff确认|r",1,1)		
 	    player:GossipMenuAddItem(5,"当前-|cFF009933敏捷:|r [|CFFFF0000"..douqizhi:GetUInt32(3).."|r] ---|cff0000ff确认|r",1,2)	
 	    player:GossipMenuAddItem(5,"当前-|cFF009933耐力:|r [|CFFFF0000"..douqizhi:GetUInt32(4).."|r] ---|cff0000ff确认|r",1,3)	
