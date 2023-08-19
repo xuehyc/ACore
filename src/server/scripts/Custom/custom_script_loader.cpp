@@ -18,8 +18,13 @@
 // This is where scripts' loading functions should be declared:
 // void MyExampleScript()
 
-void AddSC_npc_1v1arena();
-//void AddSC_VIP_LOGIN();
+void AddSC_npc_1v1arena();  //1V1竞技场
+//void AddSC_VIP_LOGIN();   //VIP登录模块
+void AddSC_ZoneAura();      //区域BUFF
+
+
+
+ 
 // The name of this function should match:
 // void Add${NameOfDirectory}Scripts()
 void AddCustomScripts()
@@ -27,4 +32,5 @@ void AddCustomScripts()
     // MyExampleScript()
     AddSC_npc_1v1arena();
     //AddSC_VIP_LOGIN();
+    AddSC_ZoneAura();
 }
