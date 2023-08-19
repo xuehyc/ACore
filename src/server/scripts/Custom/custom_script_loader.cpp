@@ -21,7 +21,7 @@
 void AddSC_npc_1v1arena();  //1V1竞技场
 //void AddSC_VIP_LOGIN();   //VIP登录模块
 void AddSC_ZoneAura();      //区域BUFF
-void AddSC_StatPoints();      //斗气模块
+//void AddSC_StatPoints();      //斗气模块
 
 
  
@@ -33,5 +33,5 @@ void AddCustomScripts()
     AddSC_npc_1v1arena();
     //AddSC_VIP_LOGIN();
     AddSC_ZoneAura();
-    AddSC_StatPoints();
+    //AddSC_StatPoints();
 }
