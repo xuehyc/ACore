@@ -404,7 +404,8 @@ local function Douqi_AddGoss(event, player, item, target,intid)
 	    player:GossipMenuAddItem(5,"当前-|cFF009933法强:|r [|CFFFF0000"..douqizhi:GetUInt32(8).."|r] ---|cff0000ff确认|r",1,7)
         player:GossipMenuAddItem(0,"|cff0000ff每种属性可分配62500次\n62500 * "..shuxingcount.." = "..math.modf(62500*shuxingcount).."|r",1,8)	
 	    --player:GossipMenuAddItem(0,"|cFFA50000重置斗气值|r",1,9,false,"确定重置吗？\n需要消耗："..GetItemLink(czitem).." x "..czitemcount.."")
-	    player:GossipSendMenu(1, item)
+        
+        player:GossipSendMenu(1, item)
 	end
 end
 
