@@ -2561,7 +2561,7 @@ local Menu={--菜单页面
         --{MENU, "|TInterface/ICONS/bbl:32:32|t|c00722FFF芭芭拉",	                        MMENU+0x40,		GOSSIP_ICON_TALK},--芭芭拉    --cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别   //尝试调用朱元璋的icon --芭芭拉  //此条需朱元璋客户端
         {MENU, "|TInterface/ICONS/ys_app:32:32|t|c00722FFF原神",	                        MMENU+0x50,		GOSSIP_ICON_TALK},--原神    
         {MENU, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t|c00722FFF我叫MT",	            MMENU+0x90,		GOSSIP_ICON_TALK},--原神
-        {MENU, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t|c00722FFF斗气",            MMENU+0x100,		GOSSIP_ICON_TALK},--热血江湖程序图标
+        --{MENU, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t|c00722FFF斗气",            MMENU+0x100,		GOSSIP_ICON_TALK},--热血江湖程序图标
         
         --需要补充的:守望先锋,大菠萝,
         --{FUNC, "|TInterface/ICONS/ys_app:32:32|t播放影片", 	                    ST.PlayMovie,	GOSSIP_ICON_TRAINER},--失败
