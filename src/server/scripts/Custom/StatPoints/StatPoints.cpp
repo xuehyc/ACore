@@ -217,29 +217,29 @@ void StatPoints::AddGosip(Player* player, Object* obj)
 	AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_total.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF);
 
 	if (stat_muil[Player::StatPointsTypes::SPT_STMAMINA] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_stamina.str(), GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF);// , oss_stamina.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_stamina.str(), GOSSIP_SENDER_MAIN + 1, GOSSIP_ACTION_INFO_DEF, oss_stamina.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_AGILITY] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_agility.str(), GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF);// , oss_agility.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_agility.str(), GOSSIP_SENDER_MAIN + 2, GOSSIP_ACTION_INFO_DEF, oss_agility.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_STRENGTH] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_strength.str(), GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF);// , oss_strength.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_strength.str(), GOSSIP_SENDER_MAIN + 3, GOSSIP_ACTION_INFO_DEF, oss_strength.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_INTELLECT] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_intellect.str(), GOSSIP_SENDER_MAIN + 4, GOSSIP_ACTION_INFO_DEF);// , oss_intellect.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_intellect.str(), GOSSIP_SENDER_MAIN + 4, GOSSIP_ACTION_INFO_DEF, oss_intellect.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_SPIRIT] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_spirit.str(), GOSSIP_SENDER_MAIN + 5, GOSSIP_ACTION_INFO_DEF);// , oss_spirit.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_spirit.str(), GOSSIP_SENDER_MAIN + 5, GOSSIP_ACTION_INFO_DEF, oss_spirit.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_HIT] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_hit.str(), GOSSIP_SENDER_MAIN + 6, GOSSIP_ACTION_INFO_DEF);// , oss_hit.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_hit.str(), GOSSIP_SENDER_MAIN + 6, GOSSIP_ACTION_INFO_DEF, oss_hit.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_CRIT] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_crit.str(), GOSSIP_SENDER_MAIN + 7, GOSSIP_ACTION_INFO_DEF);// , oss_crit.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_crit.str(), GOSSIP_SENDER_MAIN + 7, GOSSIP_ACTION_INFO_DEF, oss_crit.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_HASTE] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_haste.str(), GOSSIP_SENDER_MAIN + 8, GOSSIP_ACTION_INFO_DEF);// , oss_haste.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_haste.str(), GOSSIP_SENDER_MAIN + 8, GOSSIP_ACTION_INFO_DEF, oss_haste.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_AP] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_ap.str(), GOSSIP_SENDER_MAIN + 9, GOSSIP_ACTION_INFO_DEF);// , oss_ap.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_ap.str(), GOSSIP_SENDER_MAIN + 9, GOSSIP_ACTION_INFO_DEF, oss_ap.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_APE] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_ape.str(), GOSSIP_SENDER_MAIN + 10, GOSSIP_ACTION_INFO_DEF);// , oss_ape.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_ape.str(), GOSSIP_SENDER_MAIN + 10, GOSSIP_ACTION_INFO_DEF, oss_ape.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_SP] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_sp.str(), GOSSIP_SENDER_MAIN + 11, GOSSIP_ACTION_INFO_DEF);// , oss_sp.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_sp.str(), GOSSIP_SENDER_MAIN + 11, GOSSIP_ACTION_INFO_DEF, oss_sp.str(), 0, false);
 	if (stat_muil[Player::StatPointsTypes::SPT_SPE] > 0)
-		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_spe.str(), GOSSIP_SENDER_MAIN + 12, GOSSIP_ACTION_INFO_DEF);// , oss_spe.str(), 0, false);
+		AddGossipItemFor(player,GOSSIP_ICON_CHAT, oss_cur_spe.str(), GOSSIP_SENDER_MAIN + 12, GOSSIP_ACTION_INFO_DEF, oss_spe.str(), 0, false);
 
 	if (obj->ToCreature())
 		SendGossipMenuFor(player,obj->GetEntry(), obj->GetGUID());
@@ -334,10 +334,10 @@ public:
 		sStatPoints->UpdateDB(player);
 	}
 
-	//void OnCreatureKill(Player* player, Creature* /*killed*/)
-	//{
-	//	player->stat_points[Player::StatPointsTypes::SPT_TOTLAL]++;
-	//}
+	void OnCreatureKill(Player* player, Creature* /*killed*/)
+	{
+		player->stat_points[Player::StatPointsTypes::SPT_TOTLAL]++;
+	}
 };
 
 class NPCStatPoints : public CreatureScript
@@ -373,12 +373,6 @@ public:
 		return true;
 	}
 };
-
-void AddSC_StatPoints()
-{
-	new StatPoints_PlayerScript();
-	new NPCStatPoints();
-}
 
 
 void StatPoints::OpenPanel(Player* player)
@@ -566,4 +560,11 @@ void StatPoints::Des(Player* player, uint32 id)
 	Apply(player, true);
 	UpdateDB(player);
 	OpenPanel(player);
+}
+
+
+void AddSC_StatPoints()
+{
+    new StatPoints_PlayerScript();
+    new NPCStatPoints();
 }
