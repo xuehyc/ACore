@@ -24,10 +24,10 @@ local spell_zhili       =99907  --智力
 local spell_zhiliup     =99908
 local spell_jingshen    =99909  --精神
 local spell_jingshenup  =99910
-local spell_gongqiang   =98001  --攻强
-local spell_gongqiangup =98003
-local spell_faqiang     =98002  --法强
-local spell_faqiangup   =98004
+local spell_gongqiang   =99911  --攻强  --98001
+local spell_gongqiangup =99912          --98003
+local spell_faqiang     =99913  --法强  --98002
+local spell_faqiangup   =99914          --98004
 
 local douqizhi=nil
 
