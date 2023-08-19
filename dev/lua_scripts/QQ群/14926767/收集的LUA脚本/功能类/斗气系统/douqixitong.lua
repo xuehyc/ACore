@@ -7,7 +7,7 @@ print(">>Script: douqixitong.lua Loading...OK")
 
 local itemEntry     =90000       --物品ID.惯例是带使用性质的 --取消使用   --79001,原先 --6948,炉石  90000 后加的炉石 名称为回城符
 local guaiwu        ={1488,40419,40417};  --斗气值怪物ID--自己设置,目前未设置  --40419,自行添加,红玉圣殿里的小怪
-local czitem        =65501      --重置需要的物品
+local czitem        =33470      --重置需要的物品    --原先为65501    --33470 霜纹布
 local czitemcount   =5          --重置需要的物品数量,根据热血江湖的设置可以使用长白山参来洗点,小长白山参一次只能洗1点 小长白丹(100元宝)大长白丹(400元宝)都可以洗气功点
 local douqizhiCount =1000       --每杀一只怪获得斗气值的数量
 local douqizhiCount_level =1    --每升一级获得斗气值的数量,根据热血江湖系统,35级前获得1点,之后获得两点
@@ -83,7 +83,7 @@ local function Douqi_AddGoss(event, player, item, target,intid)
 	    player:GossipMenuAddItem(5,"当前-|cFF009933攻强:|r [|CFFFF0000"..douqizhi:GetUInt32(7).."|r] ---|cff0000ff确认|r",1,6)	
 	    player:GossipMenuAddItem(5,"当前-|cFF009933法强:|r [|CFFFF0000"..douqizhi:GetUInt32(8).."|r] ---|cff0000ff确认|r",1,7)
         player:GossipMenuAddItem(0,"|cff0000ff每种属性可分配62500次\n62500 * "..shuxingcount.." = "..math.modf(62500*shuxingcount).."|r",1,8)	
-	    --player:GossipMenuAddItem(0,"|cFFA50000重置斗气值|r",1,9,false,"确定重置吗？\n需要消耗："..GetItemLink(czitem).." x "..czitemcount.."")
+	    player:GossipMenuAddItem(0,"|cFFA50000重置斗气值|r",1,9,false,"确定重置吗？\n需要消耗："..GetItemLink(czitem).." x "..czitemcount.."")
 	    player:GossipSendMenu(1, item)
 	end
 end
