@@ -250,10 +250,10 @@ local function Douqi_seleGoss(event,player,item,target,intid)
 	end		
 end
 		
---RegisterPlayerEvent(7, guaiwuDQ)--暂时不想使用杀怪给斗气模块
+RegisterPlayerEvent(7, guaiwuDQ)--杀怪给斗气模块
 RegisterPlayerEvent(13, LevelDQ)
 RegisterItemGossipEvent(itemEntry, 1, Douqi_AddGoss)
---RegisterItemGossipEvent(itemEntry, 2, Douqi_seleGoss)
+RegisterItemGossipEvent(itemEntry, 2, Douqi_seleGoss)
 
 
 
