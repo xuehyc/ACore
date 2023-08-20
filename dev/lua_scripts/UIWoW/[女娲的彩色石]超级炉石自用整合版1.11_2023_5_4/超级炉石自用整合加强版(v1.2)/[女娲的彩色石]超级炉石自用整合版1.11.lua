@@ -1340,53 +1340,53 @@ end
         --原神变身系列开始
 
 
-        function ST.Morph_45600(player)
-            player:SetDisplayId("45602") 
+        function ST.Morph_1345600(player)
+            player:SetDisplayId("1345602") 
 		end
 
 
 
-         function ST.Morph_45601(player)
-            player:SetDisplayId("45601") 
+         function ST.Morph_1345601(player)
+            player:SetDisplayId("1345601") 
 		end
 
-         function ST.Morph_45602(player)
-            player:SetDisplayId("45602") 
+         function ST.Morph_1345602(player)
+            player:SetDisplayId("1345602") 
 		end
 
-         function ST.Morph_45603(player)
-            player:SetDisplayId("45603") 
+         function ST.Morph_1345603(player)
+            player:SetDisplayId("1345603") 
 		end
 
-         function ST.Morph_45604(player)
-            player:SetDisplayId("45604") 
+         function ST.Morph_1345604(player)
+            player:SetDisplayId("1345604") 
 		end
 
-         function ST.Morph_45605(player)
-            player:SetDisplayId("45605") 
+         function ST.Morph_1345605(player)
+            player:SetDisplayId("1345605") 
 		end
 
-         function ST.Morph_45606(player)
-            player:SetDisplayId("45606") 
+         function ST.Morph_1345606(player)
+            player:SetDisplayId("1345606") 
 		end
 
-         function ST.Morph_45607(player)
-            player:SetDisplayId("45607") 
+         function ST.Morph_1345607(player)
+            player:SetDisplayId("1345607") 
 		end
 
-         function ST.Morph_45608(player)
-            player:SetDisplayId("45608") 
+         function ST.Morph_1345608(player)
+            player:SetDisplayId("1345608") 
 		end
-         function ST.Morph_45609(player)
-            player:SetDisplayId("45609") 
+         function ST.Morph_1345609(player)
+            player:SetDisplayId("1345609") 
 		end
-         function ST.Morph_45610(player)
-            player:SetDisplayId("45610") 
+         function ST.Morph_1345610(player)
+            player:SetDisplayId("1345610") 
 		end
-        function ST.Morph_45611(player)--变身45611 --原神系列(蓝衣红袜)
+        function ST.Morph_1345611(player)--变身45611 --原神系列(蓝衣红袜)
 			--Unit:DeMorph()
             --player::SetDisplayId(45611)
-            player:SetDisplayId("45611") --成功啦!哈哈!
+            player:SetDisplayId("1345611") --成功啦!哈哈!
             --RunCommand(".morph target 45611")
             --RunCommand("additem 123456")
             --Global:RunCommand('.gm fly on')
@@ -1397,190 +1397,190 @@ end
 
         --我叫MT系列开始
 
-       function ST.Morph_45612(player)
-        player:SetDisplayId("45612") 
+       function ST.Morph_1345612(player)
+        player:SetDisplayId("1345612") 
 	   end
 
-       function ST.Morph_45613(player)
-            player:SetDisplayId("45613") 
+       function ST.Morph_1345613(player)
+            player:SetDisplayId("1345613") 
 	   end
 
-        function ST.Morph_45614(player)
-            player:SetDisplayId("45614") 
+        function ST.Morph_1345614(player)
+            player:SetDisplayId("1345614") 
 	    end
-        function ST.Morph_45615(player)
-            player:SetDisplayId("45615") 
+        function ST.Morph_1345615(player)
+            player:SetDisplayId("1345615") 
 	    end
-        function ST.Morph_45616(player)
-            player:SetDisplayId("45616") 
-	    end
-
-        function ST.Morph_45617(player)
-            player:SetDisplayId("45617") 
-		end
-
-        function ST.Morph_45618(player)
-            player:SetDisplayId("45618") 
-		end
-
-        function ST.Morph_45619(player)
-            player:SetDisplayId("45619") 
-		end
-
-        function ST.Morph_45620(player)
-            player:SetDisplayId("45620") 
-		end
-
-        function ST.Morph_45621(player)
-            player:SetDisplayId("45621") 
-		end
-
-
-        function ST.Morph_45622(player)
-            player:SetDisplayId("45622") 
-		end
-
-        function ST.Morph_45623(player)
-            player:SetDisplayId("45623") 
-		end
-        function ST.Morph_45624(player)
-            player:SetDisplayId("45624") 
-		end
-        function ST.Morph_45625(player)
-            player:SetDisplayId("45625") 
-		end
-        function ST.Morph_45626(player)
-            player:SetDisplayId("45626") 
-		end
-        function ST.Morph_45627(player)
-            player:SetDisplayId("45627") 
-		end
-        function ST.Morph_45628(player)
-            player:SetDisplayId("45628") 
-		end
-        function ST.Morph_45629(player)
-            player:SetDisplayId("45629") 
-		end
-        function ST.Morph_45630(player)
-            player:SetDisplayId("45630") 
-		end
-        function ST.Morph_45631(player)
-            player:SetDisplayId("45631") 
-		end
-        function ST.Morph_45632(player)
-            player:SetDisplayId("45632") 
-		end
-        function ST.Morph_45633(player)
-            player:SetDisplayId("45633") 
-		end
-        function ST.Morph_45634(player)
-            player:SetDisplayId("45634") 
-		end
-        function ST.Morph_45635(player)
-            player:SetDisplayId("45635") 
+        function ST.Morph_1345616(player)
+            player:SetDisplayId("1345616") 
 	    end
 
-        function ST.Morph_45636(player)
-            player:SetDisplayId("45636") 
+        function ST.Morph_1345617(player)
+            player:SetDisplayId("1345617") 
+		end
+
+        function ST.Morph_1345618(player)
+            player:SetDisplayId("1345618") 
+		end
+
+        function ST.Morph_1345619(player)
+            player:SetDisplayId("1345619") 
+		end
+
+        function ST.Morph_1345620(player)
+            player:SetDisplayId("1345620") 
+		end
+
+        function ST.Morph_1345621(player)
+            player:SetDisplayId("1345621") 
+		end
+
+
+        function ST.Morph_1345622(player)
+            player:SetDisplayId("1345622") 
+		end
+
+        function ST.Morph_1345623(player)
+            player:SetDisplayId("1345623") 
+		end
+        function ST.Morph_1345624(player)
+            player:SetDisplayId("1345624") 
+		end
+        function ST.Morph_1345625(player)
+            player:SetDisplayId("1345625") 
+		end
+        function ST.Morph_1345626(player)
+            player:SetDisplayId("1345626") 
+		end
+        function ST.Morph_1345627(player)
+            player:SetDisplayId("1345627") 
+		end
+        function ST.Morph_1345628(player)
+            player:SetDisplayId("1345628") 
+		end
+        function ST.Morph_1345629(player)
+            player:SetDisplayId("1345629") 
+		end
+        function ST.Morph_1345630(player)
+            player:SetDisplayId("1345630") 
+		end
+        function ST.Morph_1345631(player)
+            player:SetDisplayId("1345631") 
+		end
+        function ST.Morph_1345632(player)
+            player:SetDisplayId("1345632") 
+		end
+        function ST.Morph_1345633(player)
+            player:SetDisplayId("1345633") 
+		end
+        function ST.Morph_1345634(player)
+            player:SetDisplayId("1345634") 
+		end
+        function ST.Morph_1345635(player)
+            player:SetDisplayId("1345635") 
 	    end
-        function ST.Morph_45637(player)
-            player:SetDisplayId("45637") 
+
+        function ST.Morph_1345636(player)
+            player:SetDisplayId("1345636") 
 	    end
-        function ST.Morph_45638(player)
-            player:SetDisplayId("45638") 
+        function ST.Morph_1345637(player)
+            player:SetDisplayId("1345637") 
 	    end
-        function ST.Morph_45639(player)
-            player:SetDisplayId("45639") 
+        function ST.Morph_1345638(player)
+            player:SetDisplayId("1345638") 
 	    end
-        function ST.Morph_45640(player)
-            player:SetDisplayId("45640") 
+        function ST.Morph_1345639(player)
+            player:SetDisplayId("1345639") 
 	    end
-        function ST.Morph_45641(player)
-            player:SetDisplayId("45641") 
+        function ST.Morph_1345640(player)
+            player:SetDisplayId("1345640") 
 	    end
-        function ST.Morph_45642(player)
-            player:SetDisplayId("45642") 
+        function ST.Morph_1345641(player)
+            player:SetDisplayId("1345641") 
 	    end
-        function ST.Morph_45643(player)
-            player:SetDisplayId("45643") 
+        function ST.Morph_1345642(player)
+            player:SetDisplayId("1345642") 
 	    end
-        function ST.Morph_45644(player)
-            player:SetDisplayId("45644") 
+        function ST.Morph_1345643(player)
+            player:SetDisplayId("1345643") 
 	    end
-        function ST.Morph_45645(player)
-            player:SetDisplayId("45645") 
+        function ST.Morph_1345644(player)
+            player:SetDisplayId("1345644") 
 	    end
-        function ST.Morph_45646(player)
-            player:SetDisplayId("45646") 
+        function ST.Morph_1345645(player)
+            player:SetDisplayId("1345645") 
 	    end
-        function ST.Morph_45647(player)
-            player:SetDisplayId("45647") 
+        function ST.Morph_1345646(player)
+            player:SetDisplayId("1345646") 
 	    end
-        function ST.Morph_45648(player)
-            player:SetDisplayId("45648") 
+        function ST.Morph_1345647(player)
+            player:SetDisplayId("1345647") 
 	    end
-        function ST.Morph_45649(player)
-            player:SetDisplayId("45649") 
+        function ST.Morph_1345648(player)
+            player:SetDisplayId("1345648") 
 	    end
-        function ST.Morph_45650(player)
-            player:SetDisplayId("45650") 
+        function ST.Morph_1345649(player)
+            player:SetDisplayId("1345649") 
 	    end
-        function ST.Morph_45651(player)
-            player:SetDisplayId("45651") 
+        function ST.Morph_1345650(player)
+            player:SetDisplayId("1345650") 
 	    end
-        function ST.Morph_45652(player)
-            player:SetDisplayId("45652") 
+        function ST.Morph_1345651(player)
+            player:SetDisplayId("1345651") 
 	    end
-        function ST.Morph_45653(player)
-            player:SetDisplayId("45653") 
+        function ST.Morph_1345652(player)
+            player:SetDisplayId("1345652") 
 	    end
-        function ST.Morph_45654(player)
-            player:SetDisplayId("45654") 
+        function ST.Morph_1345653(player)
+            player:SetDisplayId("1345653") 
 	    end
-        function ST.Morph_45655(player)
-            player:SetDisplayId("45655") 
+        function ST.Morph_1345654(player)
+            player:SetDisplayId("1345654") 
 	    end
-        function ST.Morph_45656(player)
-            player:SetDisplayId("45656") 
+        function ST.Morph_1345655(player)
+            player:SetDisplayId("1345655") 
 	    end
-        function ST.Morph_45657(player)
-            player:SetDisplayId("45657") 
+        function ST.Morph_1345656(player)
+            player:SetDisplayId("1345656") 
 	    end
-        function ST.Morph_45658(player)
-            player:SetDisplayId("45658") 
+        function ST.Morph_1345657(player)
+            player:SetDisplayId("1345657") 
 	    end
-        function ST.Morph_45659(player)
-            player:SetDisplayId("45659") 
+        function ST.Morph_1345658(player)
+            player:SetDisplayId("1345658") 
 	    end
-        function ST.Morph_45660(player)
-            player:SetDisplayId("45660") 
+        function ST.Morph_1345659(player)
+            player:SetDisplayId("1345659") 
 	    end
-        function ST.Morph_45661(player)
-            player:SetDisplayId("45661") 
+        function ST.Morph_1345660(player)
+            player:SetDisplayId("1345660") 
+	    end
+        function ST.Morph_1345661(player)
+            player:SetDisplayId("1345661") 
 	    end
 
         --我叫MT系列开始
 
-        --function ST.Morph_45662(player)
-          --  player:SetDisplayId("45662") 
+        --function ST.Morph_1345662(player)
+          --  player:SetDisplayId("1345662") 
 	    --end
---        function ST.Morph_45654(player)
-  --          player:SetDisplayId("45654") 
+--        function ST.Morph_1345654(player)
+  --          player:SetDisplayId("1345654") 
 	--    end
-      ----  function ST.Morph_45654(player)
-          --  player:SetDisplayId("45654") 
+      ----  function ST.Morph_1345654(player)
+          --  player:SetDisplayId("1345654") 
 	    --end
-        --function ST.Morph_45654(player)
-    --        player:SetDisplayId("45654") 
+        --function ST.Morph_1345654(player)
+    --        player:SetDisplayId("1345654") 
 	--    end
-   --     function ST.Morph_45654(player)
-    --        player:SetDisplayId("45654") 
+   --     function ST.Morph_1345654(player)
+    --        player:SetDisplayId("1345654") 
 	  --  end
-  --      function ST.Morph_45654(player)
-    --        player:SetDisplayId("45654") 
+  --      function ST.Morph_1345654(player)
+    --        player:SetDisplayId("1345654") 
 	--    end
-     --   function ST.Morph_45654(player)
-    --        player:SetDisplayId("45654") 
+     --   function ST.Morph_1345654(player)
+    --        player:SetDisplayId("1345654") 
 	 --   end
 
 
@@ -2650,75 +2650,75 @@ local Menu={--菜单页面
 	},
 
     [MMENU+0x60]={--原神_变身_芭芭拉的衣橱    此角色应为芭芭拉_双马尾
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣短筒蓝袜",          ST.Morph_45600,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒红袜", 	        ST.Morph_45601,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒红袜", 	        ST.Morph_45602,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒白袜", 	        ST.Morph_45603,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣无袜", 	            ST.Morph_45604,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣蒙眼黑色毛袜", 	    ST.Morph_45605,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣长筒毛袜", 	        ST.Morph_45606,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣红裙摆长筒白袜", 	ST.Morph_45607,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣黑裙摆长筒彩虹袜", 	ST.Morph_45608,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆长筒黑袜",ST.Morph_45609,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆无袜", 	ST.Morph_45610,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆彩虹袜", 	ST.Morph_45611,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣短筒蓝袜",          ST.Morph_1345600,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒红袜", 	        ST.Morph_1345601,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒红袜", 	        ST.Morph_1345602,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣长筒白袜", 	        ST.Morph_1345603,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣无袜", 	            ST.Morph_1345604,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣蒙眼黑色毛袜", 	    ST.Morph_1345605,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t黑衣长筒毛袜", 	        ST.Morph_1345606,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣红裙摆长筒白袜", 	ST.Morph_1345607,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t白衣黑裙摆长筒彩虹袜", 	ST.Morph_1345608,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆长筒黑袜",ST.Morph_1345609,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆无袜", 	ST.Morph_1345610,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/ys_app:32:32|t彩虹上衣黑裙摆彩虹袜", 	ST.Morph_1345611,	GOSSIP_ICON_TRAINER},--成功
 	},
 
     [MMENU+0x70]={--我叫MT_变身_第1页
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t长白发清凉女",       ST.Morph_45612,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗夜男", 	        ST.Morph_45613,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t古装血小贱", 	    ST.Morph_45614,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吸血鬼血小贱", 	    ST.Morph_45615,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角帽血小贱", 	    ST.Morph_45616,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t暴毙烤迪克", 	    ST.Morph_45617,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t严实板甲男", 	    ST.Morph_45618,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t大小姐", 	        ST.Morph_45619,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t呆贼", 	            ST.Morph_45620,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t术士大妈", 	        ST.Morph_45621,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t羽装大小姐", 	    ST.Morph_45622,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装大小姐", 	    ST.Morph_45623,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t神棍德", 	        ST.Morph_45624,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t地中海", 	        ST.Morph_45625,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t女德", 	            ST.Morph_45626,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装方砖叔", 	    ST.Morph_45627,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗黑装方砖叔", 	    ST.Morph_45628,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t法丝", 	            ST.Morph_45629,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角装会长", 	    ST.Morph_45630,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t板甲会长", 	        ST.Morph_45631,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_45632,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吉安娜", 	        ST.Morph_45633,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装劣人", 	        ST.Morph_45634,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝装劣人", 	        ST.Morph_45635,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装劣人", 	        ST.Morph_45636,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t阴谋者", 	        ST.Morph_45637,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t长白发清凉女",       ST.Morph_1345612,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗夜男", 	        ST.Morph_1345613,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t古装血小贱", 	    ST.Morph_1345614,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吸血鬼血小贱", 	    ST.Morph_1345615,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角帽血小贱", 	    ST.Morph_1345616,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/rxjh_app_ico_32_32:32:32|t暴毙烤迪克", 	    ST.Morph_1345617,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t严实板甲男", 	    ST.Morph_1345618,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t大小姐", 	        ST.Morph_1345619,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t呆贼", 	            ST.Morph_1345620,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t术士大妈", 	        ST.Morph_1345621,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t羽装大小姐", 	    ST.Morph_1345622,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装大小姐", 	    ST.Morph_1345623,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t神棍德", 	        ST.Morph_1345624,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t地中海", 	        ST.Morph_1345625,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t女德", 	            ST.Morph_1345626,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装方砖叔", 	    ST.Morph_1345627,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗黑装方砖叔", 	    ST.Morph_1345628,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t法丝", 	            ST.Morph_1345629,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t尖角装会长", 	    ST.Morph_1345630,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t板甲会长", 	        ST.Morph_1345631,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t狩猎装会长", 	    ST.Morph_1345632,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t吉安娜", 	        ST.Morph_1345633,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装劣人", 	        ST.Morph_1345634,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝装劣人", 	        ST.Morph_1345635,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装劣人", 	        ST.Morph_1345636,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t阴谋者", 	        ST.Morph_1345637,	GOSSIP_ICON_TRAINER},--成功
         {MENU, "|TInterface/ICONS/Achievement_PVP_A_01:32:32|t下一页",          MMENU+0x80,GOSSIP_ICON_BATTLE},
     },
 
     [MMENU+0x80]={--我叫MT_变身_第2页
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装美铝", 	            ST.Morph_45638,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装美铝", 	            ST.Morph_45639,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t亮装美铝", 	            ST.Morph_45640,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|tMT", 	                ST.Morph_45641,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装牧尸", 	            ST.Morph_45642,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装双马尾血精灵",       ST.Morph_45643,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装双马尾血精灵",       ST.Morph_45644,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装尖角女德", 	        ST.Morph_45645,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝黄装开花尖角女德",     ST.Morph_45646,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t野兽装女德", 	        ST.Morph_45647,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装女贼", 	            ST.Morph_45648,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗红装女贼", 	        ST.Morph_45649,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t骷髅蓝装女贼", 	        ST.Morph_45650,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t粉红清凉仙女", 	ST.Morph_45651,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t麒麟臂男", 	    ST.Morph_45652,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝金法师装女", 	        ST.Morph_45653,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t傻馒", 	                ST.Morph_45654,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t飞虎", 	                ST.Morph_45655,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t丝袜长袍血精灵法师", 	ST.Morph_45656,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金色尖角短袍血精灵法师", ST.Morph_45657,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装血精灵法师", 	    ST.Morph_45658,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装野德新之助", 	    ST.Morph_45659,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装长披风野德新之助",   ST.Morph_45660,	GOSSIP_ICON_TRAINER},--成功
-        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t马驹", 	        ST.Morph_45661,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装美铝", 	            ST.Morph_1345638,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装美铝", 	            ST.Morph_1345639,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t亮装美铝", 	            ST.Morph_1345640,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|tMT", 	                ST.Morph_1345641,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装牧尸", 	            ST.Morph_1345642,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装双马尾血精灵",       ST.Morph_1345643,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗装双马尾血精灵",       ST.Morph_1345644,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装尖角女德", 	        ST.Morph_1345645,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝黄装开花尖角女德",     ST.Morph_1345646,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t野兽装女德", 	        ST.Morph_1345647,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t红装女贼", 	            ST.Morph_1345648,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t暗红装女贼", 	        ST.Morph_1345649,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t骷髅蓝装女贼", 	        ST.Morph_1345650,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t粉红清凉仙女", 	ST.Morph_1345651,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t麒麟臂男", 	    ST.Morph_1345652,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t蓝金法师装女", 	        ST.Morph_1345653,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t傻馒", 	                ST.Morph_1345654,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t飞虎", 	                ST.Morph_1345655,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t丝袜长袍血精灵法师", 	ST.Morph_1345656,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金色尖角短袍血精灵法师", ST.Morph_1345657,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t绿装血精灵法师", 	    ST.Morph_1345658,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t白装野德新之助", 	    ST.Morph_1345659,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/wjmt_logo_128_128:32:32|t金装长披风野德新之助",   ST.Morph_1345660,	GOSSIP_ICON_TRAINER},--成功
+        {FUNC, "|TInterface/ICONS/inv_jewelry_talisman_12:32:32|t马驹", 	        ST.Morph_1345661,	GOSSIP_ICON_TRAINER},--成功
         {MENU, "|TInterface/ICONS/achievement_pvp_h_11:32:32|t上一页",              MMENU+0x70,GOSSIP_ICON_BATTLE},
         --45662 初音未来
         --45663 鱼人宝宝车队
