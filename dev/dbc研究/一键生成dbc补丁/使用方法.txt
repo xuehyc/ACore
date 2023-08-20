@@ -1,0 +1,32 @@
+来源:https://uiwow.com/forum.php?mod=viewthread&tid=12174&highlight=item.dbc%E7%94%9F%E6%88%90&extra=#pid388988
+
+
+挺久以前写的,因为每次要生成物品的问号补丁挺烦的.所以就弄了个这个
+使用之前自己改一下脚本里的生成路径,在最后一行.文件名[item.dbc.csv]不要改
+select sqlgenerate from _tmp_dbc ORDER BY id into outfile 'e://item.dbc.csv';
+复制代码
+
+
+食用方法:
+用navicat连接数据库
+进入world库,导入sql脚本或者按F6复制脚本内容后按回车
+进入生成路径找到item.dbc.csv, 用鼠标把生成的item.dbc.csv文件拖动到DBCUtil.exe, 就会生成item.dbc了
+下面的步骤选一个
+把item.dbc复制到客户端目录下的DBFilesClient里,如果没这个文件夹就新建一个,需要wow.exe支持直接加载根目录下的内容.
+找一个mpq补丁,用诸如MPQEditor的工具打开mpq补丁,如果里面没有DBFilesClient就新建一个,如果有就进入并把item.dbc放进去就可以了
+自己新建一个新的mpq然后按照上面的在mpq里新建DBFilesClient文件夹再把item.dbc放进去.
+没了
+
+
+sql脚本
+ 生成item.dbc.csv.sql.zip (236.88 KB, 下载次数: 177, 售价: 5 DKP)
+
+DBCUtil
+ DBCUtil.zip (866.76 KB, 下载次数: 157, 售价: 1 DKP)
+
+支持直接加载目录下文件的wow.exe
+ wow.zip (3.33 MB, 下载次数: 100, 售价: 1 DKP)
+
+用这里提供的wow的话可以把生成目录改到游戏目录下的DBFilesClient里那样每次生成只需要拖到DBCUtil生成一下就行了
+
+运行脚本前需要先删除item.dbc.csv, 因为不能用sql脚本删掉,只能自行删去,不删的话会提示文件已存在运行失败的.
