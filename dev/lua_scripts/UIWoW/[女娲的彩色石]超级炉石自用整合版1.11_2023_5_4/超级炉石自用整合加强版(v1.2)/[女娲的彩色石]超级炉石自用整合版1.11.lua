@@ -5284,7 +5284,7 @@ local Menu={--菜单页面
 		{MENU,  "|TInterface/ICONS/Achievement_Arena_2v2_7:32:32|t|cFF9932CC战场传送",						TPDRMENU+0x50,	GOSSIP_ICON_BATTLE},
 	},
 
-	[TPDRMENU+0x10]={--经典旧世界副本
+	[TPDRMENU+0x110]={--经典旧世界副本  --经典旧世界副本第二页
         {TP, "|TInterface/ICONS/achievement_boss_hakkar:32:32|t[|cFFFF6600团队|r]|cFFCC0033祖尔格拉布",		0,		-11916.7,	-1215.72,	92.289,		4.72454,	TEAM_NONE,	50,	100000},
 		{TP, "|TInterface/ICONS/achievement_boss_ragnaros:32:32|t[|cFFFF6600团队|r]|cFFCC0033熔火之心",		230,	1126.64,	-459.94,	-102.535,	3.46095,	TEAM_NONE,	50,	100000},--倒数第2个参数,为进入等级
 		{TP, "|TInterface/ICONS/achievement_boss_nefarion:32:32|t[|cFFFF6600团队|r]|cFFCC0033黑翼之巢",		229,	152.451,	-474.881,	116.84,		0.001073,	TEAM_NONE,	60,	100000},
@@ -5298,9 +5298,9 @@ local Menu={--菜单页面
 		{TP, "|TInterface/ICONS/inv_misc_herb_06:32:32|t厄运之槌：扭木广场(东区)",		1,-3784.76, 938.231, 161.026, 6.2292,	TEAM_NONE,	45,	20000},
 		{TP, "|TInterface/ICONS/achievement_leader_tyrande_whisperwind:32:32|t厄运之槌：中心花园(西区)",		1,-3756.799805,1249.621460,160.267349,6.150632,	TEAM_NONE,	45,	20000},
 		{TP, "|TInterface/ICONS/achievement_reputation_ogre:32:32|t厄运之槌：戈多克议会(北区)",		1,-3520.181152,1087.36621,161.082703,4.626010,	TEAM_NONE,	45,	20000},
-		{MENU, "|TInterface/ICONS/Achievement_PVP_A_01:32:32|t下一页", TPDRMENU+0x110,GOSSIP_ICON_BATTLE},
+		
 	},
-	[TPDRMENU+0x110]={--经典旧世界副本第二页
+	[TPDRMENU+0x10]={--经典旧世界副本第一页
 		{TP, "|TInterface/ICONS/spell_shadow_summonfelguard:32:32|t怒焰裂谷",		1,		1811.78,	-4410.5,	-18.4704,	5.20165,	TEAM_NONE,	8,	1000},
 		{TP, "|TInterface/ICONS/Achievement_Boss_EdwinVancleef:32:32|t死亡矿井",		0,		-11209.6,	1666.54,	24.6974,	1.42053,	TEAM_NONE,	10,	1000},
 		{TP, "|TInterface/ICONS/achievement_boss_mutanus_the_devourer:32:32|t哀嚎洞穴",		1,		-731.607,	-2218.39,	17.0281,	2.78486,	TEAM_NONE,	10,	20000},
@@ -5322,6 +5322,7 @@ local Menu={--菜单页面
 		{TP, "|TInterface/ICONS/inv_jewelcrafting_nobletopaz_02:32:32|t玛拉顿(橙门)",			1,-1457.13, 2616.56, 76.426, 3.14898,	TEAM_NONE,	30,	20000},
 		{TP, "|TInterface/ICONS/achievement_boss_princesstheradras:32:32|t玛拉顿(瀑布)",			1,-1370.99, 2908.43, 73.604,  2.38576,	TEAM_NONE,	30,	20000},
 		{TP, "|TInterface/ICONS/achievement_boss_shadeoferanikus:32:32|t沉没的神庙",		0,		-10177.9,	-3994.9,	-111.239,	6.01885,	TEAM_NONE,	35,	20000},
+        {MENU, "|TInterface/ICONS/Achievement_PVP_A_01:32:32|t下一页", TPDRMENU+0x110,GOSSIP_ICON_BATTLE},
 	},
 	[TPDRMENU+0x20]={--燃烧的远征地下城★
 		{TP, "|TInterface/ICONS/inv_misc_key_07:32:32|t[|cFFFF6600团队|r]|cFF32CD32卡拉赞(后门)",			0,-11035.567383,-2002.803467,92.971786,2.166898,	TEAM_NONE,	68,	100000},
