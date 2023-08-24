@@ -1,5 +1,7 @@
 ﻿--https://uiwow.com/thread-17445-1-1.html?_dsign=380b398c
 --.go zon 0 0 1000 --偶然发现的新地方
+
+-- 怪物 448 霍格
 --[[信息：
 	[女娲的彩色石]超级炉石  （Teleport stone）
 	修改日期：2023-04-30
@@ -2632,9 +2634,9 @@ local Menu={--菜单页面
     [MMENU+0x40]={--魔兽世界主界面
 		{MENU, "|TInterface/ICONS/inv_misc_food_15:32:32|t|c00722FFF便捷功能",		                        MMENU+0x10,		GOSSIP_ICON_TALK},--cFF7FFF00,原先颜色太不明显,cFF7FFFFF比绿色稍微浅一些,但是还不太容易看清楚,c007FFFFF和上一个颜色没啥区别 
         {MENU, "|TInterface/ICONS/achievement_zone_icecrown_01:32:32|t|cffe60000副本传送", 	                TPDRMENU,		GOSSIP_ICON_TAXI},        
-        --{MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送_原版", 	                        TPMENU+0x01,			GOSSIP_ICON_TAXI},        
+        --{MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送_原版", 	                    TPMENU+0x01,			GOSSIP_ICON_TAXI},        
         {MENU, "|TInterface/ICONS/inv_misc_map02:32:32|t|cff8B4513地图传送", 	                            TPMENU+0x3220,			GOSSIP_ICON_TAXI},--天蓝版(细致坐标与再分类)
-        {MENU, "|TInterface/ICONS/Journey_to_the_East_app_ico:32:32|t|c00722FFF特色地图",	    MMENU+0x130,		GOSSIP_ICON_TALK},--东游记
+        {MENU, "|TInterface/ICONS/Journey_to_the_East_app_ico:32:32|t|c00722FFF特色地图",	                TPMENU+0x1230,		GOSSIP_ICON_TALK},--东游记
 		{MENU, "|TInterface/ICONS/INV_Misc_Rune_01:32:32|t|cff0070d0炉石功能", 	                            TBMENU,	        GOSSIP_ICON_TAXI,},
 		{MENU, "|TInterface/ICONS/inv_misc_ogrepinata:32:32|t|cFF9932CC技能训练|r", 	                    SKLMENU,	    GOSSIP_ICON_TRAINER},
 		{MENU, "|TInterface/ICONS/Achievement_Boss_Nexus_Prince_Shaffar:32:32|t|cFF32CD99幻化功能|r",		MMENU+0x20,		GOSSIP_ICON_TABARD},
@@ -3275,13 +3277,20 @@ local Menu={--菜单页面
         {MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“女士们”",					TPMENU+0x2180,	GOSSIP_ICON_BATTLE},
 		},
 
-[TPMENU+0x130]={--特色地图
-		{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永恒岛",	606,		-651,-4666,7,606,	TEAM_NONE,	35,	0},
-        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永春台",	1000,		-1050.044,-3081.2029,14.87,1000,	TEAM_NONE,	35,	0},--.go xyz -1050.044 -3081.2029 14.87 1000
-        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t开发地图",	573,		0,0,0,573,	TEAM_NONE,	35,	0},
-        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t废土MOD",	606,		1437,-930,-6,606,	TEAM_NONE,	35,	0},
-        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t大战霍格",	1,		228.03926,-1032.172729,91.666771,1,	TEAM_NONE,	35,	0},
+[TPMENU+0x1230]={--特色地图
+        --{MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“特色地图2级菜单-暂用”",					TPMENU+0x1130,	GOSSIP_ICON_BATTLE},
+		{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永恒岛",	606,		-651,-4666,7,606,	TEAM_NONE,	1,	0},--注意末尾的1,表示等级
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永春台",	1000,		-1050.044,-3081.2029,14.87,1000,	TEAM_NONE,	1,	0},--.go xyz -1050.044 -3081.2029 14.87 1000
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t开发地图",	573,		0,0,0,573,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t废土MOD",	606,		1437,-930,-6,606,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t大战霍格",	1,		228.03926,-1032.172729,91.666771,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t激战饥饿者",	1,		833.812256,-469.130310,232.366806,1,	TEAM_NONE,	1,	0},
+        
 		},
+
+[TPMENU+0x1130]={--特色地图内部 待用
+        
+    },
 
 	[TPMENU+0x20]={--各种族出生地
 			{TP, "|TInterface/ICONS/Achievement_Zone_ElwynnForest:35:35|t人类出生地",		    0,		-8949.95,	-132.493,	83.5312,	0,			TEAM_ALLIANCE},
