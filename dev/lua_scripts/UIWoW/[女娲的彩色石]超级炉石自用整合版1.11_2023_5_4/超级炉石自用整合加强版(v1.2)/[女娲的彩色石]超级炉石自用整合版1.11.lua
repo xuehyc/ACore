@@ -3416,6 +3416,7 @@ local Menu={--菜单页面
             {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永春台",	1000,		-1050.044,-3081.2029,14.87,1000,	TEAM_NONE,	35,	0},--.go xyz -1050.044 -3081.2029 14.87 1000
             {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t开发地图",	573,		0,0,0,573,	TEAM_NONE,	35,	0},
             {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t废土MOD",	606,		1437,-930,-6,606,	TEAM_NONE,	35,	0},
+            {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t大战霍格",	1,		228.03926,-1032.172729,91.666771,1,	TEAM_NONE,	35,	0},
 			 --{MENU, "上一页", TPMENU,GOSSIP_ICON_TAXI},
 		},
 
