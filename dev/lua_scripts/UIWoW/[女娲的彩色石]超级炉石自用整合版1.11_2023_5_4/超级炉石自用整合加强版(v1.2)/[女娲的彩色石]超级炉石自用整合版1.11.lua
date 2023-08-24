@@ -1,7 +1,8 @@
 ﻿--https://uiwow.com/thread-17445-1-1.html?_dsign=380b398c
 --.go zon 0 0 1000 --偶然发现的新地方
 
--- 怪物 448 霍格
+-- 怪物 448 霍格 11级
+-- 饥饿者 11520 16级
 --[[信息：
 	[女娲的彩色石]超级炉石  （Teleport stone）
 	修改日期：2023-04-30
@@ -3285,7 +3286,8 @@ local Menu={--菜单页面
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t废土MOD",	606,		1437,-930,-6,606,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t大战霍格",	1,		228.03926,-1032.172729,91.666771,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t激战饥饿者",	1,		833.812256,-469.130310,232.366806,1,	TEAM_NONE,	1,	0},
-        
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t对抗范克里夫",	1,		-30.489733,284.531525,179.983871,1,	TEAM_NONE,	1,	0},
+
 		},
 
 [TPMENU+0x1130]={--特色地图内部 待用
