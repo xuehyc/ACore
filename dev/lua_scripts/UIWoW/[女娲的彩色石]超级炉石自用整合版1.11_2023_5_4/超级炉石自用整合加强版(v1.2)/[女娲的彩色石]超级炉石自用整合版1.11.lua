@@ -3289,11 +3289,8 @@ local Menu={--菜单页面
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t大战霍格",	1,		228.03926,-1032.172729,91.666771,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t激战饥饿者",	1,		833.812256,-469.130310,232.366806,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t对抗范克里夫",	1,		-30.489733,284.531525,179.983871,1,	TEAM_NONE,	1,	0},
-        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t吞噬者别跑",	1,		-185.369583,362 690369,36.703732,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t吞噬者别跑",	1,		-185.369583,362.690369,36.703732,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t恐怖阿鲁高",	1,		-380.597687,336.992310,129.700378,1,	TEAM_NONE,	1,	0},
-
-
-
 
         },
 
