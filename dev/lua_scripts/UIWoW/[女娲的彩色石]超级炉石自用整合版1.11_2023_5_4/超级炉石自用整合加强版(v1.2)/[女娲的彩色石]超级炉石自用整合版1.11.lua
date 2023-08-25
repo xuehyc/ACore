@@ -1,12 +1,7 @@
 ﻿--https://uiwow.com/thread-17445-1-1.html?_dsign=380b398c
 --.go zon 0 0 1000 --偶然发现的新地方
 
--- 怪物 448 霍格 11级
--- 饥饿者 11520 16级
--- 范克里夫 639 17级
--- 吞噬者 3654 20级
--- 阿鲁高 4275 21级
--- 阿库麦尔 4829 24级
+
 --[[信息：
 	[女娲的彩色石]超级炉石  （Teleport stone）
 	修改日期：2023-04-30
@@ -3282,6 +3277,22 @@ local Menu={--菜单页面
         {MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“女士们”",					TPMENU+0x2180,	GOSSIP_ICON_BATTLE},
 		},
 
+
+
+
+-- 怪物 448 霍格 11级 野外
+-- 饥饿者 11520 16级 怒焰裂谷
+-- 范克里夫 639 17级 死亡矿井
+-- 吞噬者 3654 20级 哀嚎洞穴
+-- 阿鲁高 4275 21级 影牙城堡
+-- 阿库麦尔 4829 24级 黑暗深渊
+-- 巴基尔·斯瑞德     1716 25级 暴风城监狱                      -- 哈姆霍克 1717 25级 暴风城监狱  --错误,不是最终boss
+-- 卡尔加·刺肋 4421 27级 剃刀沼泽
+-- 寒冰之王亚门纳尔 7358 剃刀高地
+-- 机械师瑟玛普拉格7800 28级 罗莫瑞根
+-- 血法师萨尔诺斯(血色修道院1号)
+-- 奥法师杜安(血色修道院2号)
+-- 赫洛德(血色修道院3号)
 [TPMENU+0x1230]={--特色地图
         --{MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“特色地图2级菜单-暂用”",					TPMENU+0x1130,	GOSSIP_ICON_BATTLE},
 		{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永恒岛",	606,		-651,-4666,7,606,	TEAM_NONE,	1,	0},--注意末尾的1,表示等级
@@ -3294,7 +3305,21 @@ local Menu={--菜单页面
         --{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t吞噬者别跑",	1,		-185.369583,362.690369,36.703732,1,	TEAM_NONE,	1,	0},--跑掉了
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t恐怖阿鲁高",	1,		-380.597687,336.992310,129.700378,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t群战阿库麦尔",	1,		107.828300,818.605408,188.297760,1,	TEAM_NONE,	1,	0},
-        
+        --{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t挑战战哈姆霍克",	1,		129.166016,1065.337036,247.585922,1,	TEAM_NONE,	1,	0}, --非最终BOSS,暂时隐藏
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t巴基尔·斯瑞德",	1,		316.414429,743.202332,68.750061,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t卡尔加·刺肋",	1,		222.500229,903.721008,249.784210,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t寒冰之王亚门纳尔",	1,		229.153900,852.121094,249.461533,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t机械师瑟玛普拉格",	1,		320.362946,681.559082,68.750031,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t血法师萨尔诺斯(血色修道院1号)",	1,		354.131531,973.556274,193.109360,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t奥法师杜安(血色修道院2号)",	1,		402.770630,1003.684937,195.801193,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t赫洛德(血色修道院3号)",	1,		468.794250,910.225281,178.871613,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t怀特迈恩与莫格莱尼(血色修道院4,5号)",	1,		438.514862,869.901306,178.871536,1,	TEAM_NONE,	1,	0},
+
+     
+
+
+
+
 
         },
 
