@@ -3314,8 +3314,15 @@ local Menu={--菜单页面
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t奥法师杜安(血色修道院2号)",	1,		402.770630,1003.684937,195.801193,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t赫洛德(血色修道院3号)",	1,		468.794250,910.225281,178.871613,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t怀特迈恩与莫格莱尼(血色修道院4,5号)",	1,		438.514862,869.901306,178.871536,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t奥达曼(阿扎达斯)与祖尔法拉克BOSS(乌克兹·沙顶)",	1,		699.009399,792.993591,178.871567,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t公主在等你",	1,		585.931213,981.283264,94.560020,1,	TEAM_NONE,	1,	0},
+        --{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t伊兰尼库斯之影",	1,		798.623291,1141.473633,210.538910,1,	TEAM_NONE,	1,	0},--怪物跑掉了
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t索瑞森大帝",	1,		172.232254,526.816589,107.318291,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t维姆萨拉克",	1,		204.156860,469.349518,210.363708,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t达基萨斯将军",	1,		403.767914,28.031759,368.545776,1,	TEAM_NONE,	1,	0},
+        
 
-     
+      
 
 
 
