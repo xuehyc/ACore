@@ -1193,7 +1193,7 @@ MaxPrimaryTradeSkill = 2
 #        Default:     9
 
 MinPetitionSigns = 0
-#½±Àø¹¤»áĞèÒªµÄ×îÉÙÇ©Ãû
+#          Òª      Ç©  
 
 #
 #    MaxGroupXPDistance
@@ -3952,7 +3952,7 @@ AuctionHouse.SearchTimeout = 1000
 Appender.Console=1,4,1,"1 9 3 6 5 8"
 Appender.Server=2,5,0,Server.log,w
 #Appender.GM=2,5,15,gm_%s.log
-#È¡ÏûGMÈÕÖ¾
+#È¡  GM  Ö¾
 Appender.DBErrors=2,5,1,DBErrors.log
 # Appender.DB=3,5,0
 
@@ -4201,7 +4201,7 @@ NpcBot.Enable = 1
 #        Default:     1
 #        Max:         39
 
-NpcBot.MaxBots = 39
+NpcBot.MaxBots = 79
 
 #
 #    NpcBot.MaxBotsPerClass
@@ -4686,31 +4686,31 @@ NpcBot.HK.Rate.Honor = 1.0
 ###################################################################################################
 
 
-#¿ØÖÆÌ¨¾­³£±¨Not enough random bot accounts available. Need *(ÊıÁ¿,Ö®Ç°Í¨³£ÊÇ6,ÒòÎªÎÒ°ÑplayerbotÕËºÅÊıÁ¿ÉèÎª1) more!!
-#ÎªÁË¼õÉÙ¸ÉÈÅ,Ìí¼ÓÁËÏÂÃæÕâ¸ö²ÎÊı,ÉèÎª1,Ôò²»ÏÔÊ¾ÌáÊ¾
+#    Ì¨      Not enough random bot accounts available. Need *(    ,Ö®Ç°Í¨    6,  Îª Ò° playerbot Ëº       Îª1) more!!
+#Îª Ë¼  Ù¸   ,                ,  Îª1,    Ê¾  Ê¾
 Playerbot.Announce.Not_enough_random_bot_accounts_available.disable=1
-#ºóĞø·¢ÏÖÕı³£Æô¶¯ºó,»¹ÊÇ»á±¨,ĞèÒªÔÚ¿ØÖÆÌ¨ÖØĞÂ¼ÓÔØÅäÖÃ(reload conf)
+#                 ,   Ç»á±¨,  Òª Ú¿   Ì¨   Â¼       (reload conf)
 
-#Ğ¡»µ²¿·Ö
+#Ğ¡      
 
 ###################################################################################################
 # 1V1 ARENA CONFIG
 #
-#     Arena.1v1.Enable    1v1¾º¼¼³¡¿ª¹Ø
-#    Arena.1v1.Event   1v1¾º¼¼³¡ÊÂ¼şID ÊÂ¼ş¿ªÆôÊ±ºò¿ÉÒÔÅÅ¶Ó ÊÂ¼ş½áÊøµÄÊ±ºò×Ô¶¯½áËã
-#    Arena1v1.Announcer  ÅÅ¶Ó¹«¸æ
-#    Arena1v1.MinLevel  ²ÎÓë×îµÍµÈ¼¶
-#    Arena1v1.Costs  ¾º¼¼³¡¶ÓÎé´´½¨ĞèÇó¶àÉÙÍ­±Ò
-#    Arena1v1.VendorRating  ¿ªÆôºó1v1ÆÀ¼¶½«ÓÃÓÚ¼ÆËã×î¸ß¸öÈËÆÀ¼¶  ¿ÉÒÔ¹ºÂòÉÌµêºìÉ«¾º¼¼³¡ÏÔÊ¾ĞèÇóµÄ×°±¸.
+#     Arena.1v1.Enable    1v1          
+#    Arena.1v1.Event   1v1       Â¼ ID  Â¼     Ê±      Å¶   Â¼       Ê±   Ô¶     
+#    Arena1v1.Announcer   Å¶Ó¹   
+#    Arena1v1.MinLevel        ÍµÈ¼ 
+#    Arena1v1.Costs           é´´         Í­  
+#    Arena1v1.VendorRating       1v1         Ú¼     ß¸            Ô¹    Ìµ  É«        Ê¾     ×°  .
 #    Arena1v1.ArenaPointsMulti
-#        Description: µÈ¼¶Îª1500µÄ5v5¾º¼¼³¡ÍÅ¶ÓÃ¿ÖÜ½«»ñµÃ344µãÊı.
-#                           ÏàÍ¬ÆÀ¼¶µÄ3v3½«»ñµÃ302µãÊı£¨5V5*0.88£©
-#                           2v2 ½«»ñµÃ 261 µãÊı (5v5 * 0.76)
-#                           1v1 ½«»ñµÃ 167 µãÊı (5v5 * 0.64)
-#    Arena1v1.BlockForbiddenTalents  1v1¾º¼¼³¡½øÈë¼ì²âÌì¸³
-#    Arena1v1.ForbiddenTalentsIDs   ¼ì²âÊÇ·ñ¼ÓÁË±»½ûÖ¹µÄÌì¸³  ²é¿´ TalentTab.dbcµÄID
-#                                                      Ä¬ÈÏ¸ñÊ½(,¸ô¿ª):     "201,202,382,362,282,383,163"
-#    Arena1v1.ForbiddenTalentpoints = 35  ÖÎÁÆÌì¸³»òÕßÌ¹¿ËÌì¸³ÖĞ¼Óµã³¬¹ı¶àÉÙ¾Í½ûÖ¹½øÈë
+#        Description:  È¼ Îª1500  5v5       Å¶ Ã¿ Ü½    344    .
+#                             Í¬      3v3     302      5V5*0.88  
+#                           2v2       261      (5v5 * 0.76)
+#                           1v1       167      (5v5 * 0.64)
+#    Arena1v1.BlockForbiddenTalents  1v1             ì¸³
+#    Arena1v1.ForbiddenTalentsIDs       Ç·   Ë±   Ö¹   ì¸³   é¿´ TalentTab.dbc  ID
+#                                                      Ä¬ Ï¸ Ê½(,   ):     "201,202,382,362,282,383,163"
+#    Arena1v1.ForbiddenTalentpoints = 35       ì¸³    Ì¹   ì¸³ Ğ¼Óµã³¬     Ù¾Í½ Ö¹    
 #
 ###################################################################################################
 Arena.1v1.Enable = 1
