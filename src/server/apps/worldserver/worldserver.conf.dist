@@ -4201,7 +4201,7 @@ NpcBot.Enable = 1
 #        Default:     1
 #        Max:         39
 
-NpcBot.MaxBots = 79
+NpcBot.MaxBots = 39
 
 #
 #    NpcBot.MaxBotsPerClass
