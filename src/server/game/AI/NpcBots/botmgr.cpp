@@ -822,7 +822,8 @@ uint8 BotMgr::GetNpcBotXpReductionStartingNumber()
 
 uint8 BotMgr::GetMaxNpcBots()
 {
-    return _maxNpcBots <= MAXRAIDSIZE - 1 ? _maxNpcBots : MAXRAIDSIZE - 1;
+    //return _maxNpcBots <= MAXRAIDSIZE - 1 ? _maxNpcBots : MAXRAIDSIZE - 1;//org
+    return _maxNpcBots <= MAXRAIDSIZE+40 - 1 ? _maxNpcBots : MAXRAIDSIZE+40 - 1;//tmp,I add,to make the bots limit to 79
 }
 
 int32 BotMgr::GetBotInfoPacketsLimit()
