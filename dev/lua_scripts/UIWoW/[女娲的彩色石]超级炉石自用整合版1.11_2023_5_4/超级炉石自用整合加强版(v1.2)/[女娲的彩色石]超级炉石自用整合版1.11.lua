@@ -3320,9 +3320,20 @@ local Menu={--菜单页面
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t索瑞森大帝",	1,		172.232254,526.816589,107.318291,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t维姆萨拉克",	1,		204.156860,469.349518,210.363708,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t达基萨斯将军",	1,		403.767914,28.031759,368.545776,1,	TEAM_NONE,	1,	0},
+        --TBC开始,↑经典旧世未结束
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t无疤者奥摩尔",	1,		454.065979,54.097912,297.549774,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t击碎者克里丹",	1,		560.733215,153.110580,207.376099,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t夸格米拉",	1,		398.582703,143.565979,173.164352,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t黑色阔步者",	1,		643.408264,-292.186218,455.174500,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t节点亲王沙法儿",	1,		-9498.080078,1641.960205,19.301010,1,	TEAM_NONE,	1,	0},
+
+
+
+
         
 
       
+
 
 
 
