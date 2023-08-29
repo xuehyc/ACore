@@ -3327,10 +3327,10 @@ local Menu={--菜单页面
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t黑色阔步者",	1,		643.408264,-292.186218,455.174500,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t节点亲王沙法儿",	1,		-9498.080078,1641.960205,19.301010,1,	TEAM_NONE,	1,	0},
 
-
-
-
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t阿努巴拉克",	1,		-9729.539062,1556.975830,19.617790,1,	TEAM_NONE,	1,	0},
         
+
+       
 
       
 
