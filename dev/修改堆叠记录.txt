@@ -1,3 +1,10 @@
 UPDATE `item_template` SET stackable = 200 where stackable =20 ;
+
 Query OK, 3364 rows affected
 Rows matched: 3364  Changed: 3364  Warnings: 0
+
+
+UPDATE `item_template` SET stackable = 2000 where stackable>1 ;
+
+Query OK, 5363 rows affected
+Rows matched: 5363  Changed: 5363  Warnings: 0
