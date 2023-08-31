@@ -3293,7 +3293,7 @@ local Menu={--菜单页面
 -- 血法师萨尔诺斯(血色修道院1号)
 -- 奥法师杜安(血色修道院2号)
 -- 赫洛德(血色修道院3号)
-[TPMENU+0x1230]={--特色地图
+[TPMENU+0x1230]={--特色地图 第一页
         --{MENU,  "|TInterface/ICONS/inv_valentinescandy:32:32|t|cFFFF70B8“特色地图2级菜单-暂用”",					TPMENU+0x1130,	GOSSIP_ICON_BATTLE},
 		{TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永恒岛",	606,		-651,-4666,7,606,	TEAM_NONE,	1,	0},--注意末尾的1,表示等级
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t永春台",	1000,		-1050.044,-3081.2029,14.87,1000,	TEAM_NONE,	1,	0},--.go xyz -1050.044 -3081.2029 14.87 1000
@@ -3326,20 +3326,36 @@ local Menu={--菜单页面
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t夸格米拉",	1,		398.582703,143.565979,173.164352,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t黑色阔步者",	1,		643.408264,-292.186218,455.174500,1,	TEAM_NONE,	1,	0},
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t节点亲王沙法儿",	1,		-9498.080078,1641.960205,19.301010,1,	TEAM_NONE,	1,	0},
-
         {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t阿努巴拉克",	1,		-9729.539062,1556.975830,19.617790,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t蜘蛛墓地",	1,		-9857.578125,1486.539307,19.301258,1,	TEAM_NONE,	1,	0},
+        {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t熔火巨人(熔火之心声望1)",	1,		-9856.050781,1300.887695,21.112980,1,	TEAM_NONE,	1,	0},
         
-
-       
-
-      
-
-
-
-
-
+	    {MENU, "下一页", TPMENU+0x1330,GOSSIP_ICON_TAXI},
+        --上方需要转移到第2页
 
         },
+
+                
+
+[TPMENU+0x1330]={--特色地图 第二页
+    {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t基赫纳斯(熔火之心声望2)",	1,		-9880.164062,1833.623535,33.964596,1,	TEAM_NONE,	1,	0},
+    {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t焚化者(熔火之心声望3)",	1,		-9833.865234,2085.145996,16.385721,1,	TEAM_NONE,	1,	0},
+
+    {TP, "|cFF006400[中立]|r |TInterface/ICONS/Achievement_Zone_Stranglethorn_01:35:35|t瑞文戴尔男爵(刷DK马,声望)",	1,		-9492.961914,1808.166992,40.812351,1,	TEAM_NONE,	1,	0},
+
+
+
+
+
+
+
+
+
+    {MENU, "上一页", TPMENU+0x1230,GOSSIP_ICON_TAXI},
+    },
+
+
+
 
 [TPMENU+0x1130]={--特色地图内部 待用
         
@@ -4497,7 +4513,7 @@ local Menu={--菜单页面
 	{TP, "|TInterface/ICONS/Achievement_Zone_Feralas:35:35|t菲拉斯--低地荒野",			1,		-4303.95, -447.877, 31.1955,	2.90655,	TEAM_NONE,	40,	0},
 	{TP, "|TInterface/ICONS/Achievement_Zone_Feralas:35:35|t菲拉斯--被遗忘的海岸",			1,		-4347.16, 2298.17, 6.47156,	2.90655,	TEAM_NONE,	40,	0},
 	{MENU, "上一页", TPMENU+0x3c0,GOSSIP_ICON_TAXI},
-	    {MENU, "下一页", TPMENU+0x1490,GOSSIP_ICON_TAXI},
+	{MENU, "下一页", TPMENU+0x1490,GOSSIP_ICON_TAXI},
 	},
 	[TPMENU+0x1490]={--菲拉斯
 	{TP, "|TInterface/ICONS/Achievement_Zone_Feralas:35:35|t菲拉斯--恐怖图腾南营地",			1,		-4492.569, 766.771, 67.728,	2.42,	TEAM_NONE,	40,	0},
