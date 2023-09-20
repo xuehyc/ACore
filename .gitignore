@@ -114,3 +114,4 @@ compile_commands.json
 *.mpq
 /client/WoW_3.3.5_12340/Data/zhCN/Interface/Cinematics
 /client/WoW_3.3.5_12340/Errors
+/client/WoW_3.3.5_12340/Logs
