@@ -111,3 +111,5 @@ local.properties
 .cache
 compile_commands.json
 /client/WoW_3.3.5_12340/Cache/WDB/zhCN
+*.mpq
+/client/WoW_3.3.5_12340/Data/zhCN/Interface/Cinematics
