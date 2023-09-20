@@ -1,0 +1,9 @@
+## Interface: 30300
+## Author: Lockslap
+## Title: |cffA11313E|r|cffC4C4C4lvUI|r |cffA11313R|r|cffC4C4C4aid|r |cffA11313M|r|cffC4C4C4arkers|r
+## Version: 4.24
+## Notes: Adds a small raid marker bar below the minimap.
+## RequiredDeps: ElvUI
+
+Locales.lua
+ElvUI_RaidMarkers.lua

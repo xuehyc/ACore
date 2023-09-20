@@ -1,0 +1,12 @@
+## Interface: 30300
+## Author: Bunny, Azilroka, Sortokk
+## Version: 1.02
+## Title: |cffA11313E|r|cffC4C4C4lvUI|r |cffA11313A|r|cffC4C4C4dd|r|cffA11313O|r|cffC4C4C4n|r |cffA11313S|r|cffC4C4C4kins|r
+## Notes: AddOn skins for ElvUI :)
+## RequiredDeps: ElvUI
+
+Locales\Load_Locales.xml
+Settings\Load_Settings.xml
+Core.lua
+Skins\Load_Skins.xml
+Modules\Load_Modules.xml

@@ -1,0 +1,10 @@
+﻿## Interface: 30300
+## Title: |cFF00B0E8ez|rCollections|cFF00B0E8[试衣间]|r
+## Title-ruRU: |cFF00B0E8ez|rCollections|cFF00B0E8 [Примерочная]|r
+## Notes: 增加了新功能试衣间UI界面。
+## Notes-ruRU: Добавлеяет поддержку новых возможностей в интерфейс Примерочной
+## Author: ZEUStiger
+## Dependencies: ezCollections
+## X-Part-Of: ezCollections
+
+..\ezCollections\Interface\FrameXML\DressUpFrames.xml

@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: MyID
+## Author: Altf4
+## Version: 1.3.5（Base版）
+## Notes-zhCN: DIY的“法术/物品/宏/生物/雕文法术/成就/任务/声望等级/图标路径 ...等ID” 的显示插件
+
+MyID.lua
