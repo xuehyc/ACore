@@ -1,0 +1,3 @@
+<componentinfo format="1">
+    <component name="wow-data" version="9285" />
+</componentinfo>
