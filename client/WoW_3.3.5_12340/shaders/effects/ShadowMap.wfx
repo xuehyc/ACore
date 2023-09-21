@@ -1,0 +1,41 @@
+Effect(ShadowMapRender, 1)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod);
+			AlphaOp0(Mod);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 1)
+		{
+			VertexShader(ShadowMap);
+			PixelShader(ShadowMap);
+			RenderStateI(Culling, false, true);
+		}
+	}
+}
+
+Effect(ShadowMapRenderSL, 1)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod);
+			AlphaOp0(Mod);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 1)
+		{
+			VertexShader(ShadowMap);
+			PixelShader(ShadowMapSL);
+			RenderStateI(Culling, false, true);
+		}
+	}
+}

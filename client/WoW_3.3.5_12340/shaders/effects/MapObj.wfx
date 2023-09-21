@@ -1,0 +1,143 @@
+//Particle shaders - move to another file.
+Effect(Particle, 1)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod);
+			AlphaOp0(Mod);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 1)
+		{
+			VertexShader(Diffuse_T1);
+			PixelShader(Combiners_Mod);
+		}
+	}
+}
+
+//MapObj shaders
+Effect(MapObjDiffuse, 1)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod2x);
+			AlphaOp0(Mod);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 1)
+		{
+			VertexShader(MapObjDiffuse_T1);
+			PixelShader(MapObjDiffuse);
+		}
+	}
+}
+
+Effect(MapObjOpaque, 1)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod2x);
+			AlphaOp0(PassThru);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 1)
+		{
+			VertexShader(MapObjDiffuse_T1);
+			PixelShader(MapObjOpaque);
+		}
+	}
+}
+
+Effect(MapObjSpecular, 1)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod2x);
+			AlphaOp0(PassThru);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 1)
+		{
+			VertexShader(MapObjSpecular_T1);
+			PixelShader(MapObjSpecular);
+			Specular(1.0, 1.0, 1.0, 14.0);
+		}
+	}
+}
+
+Effect(MapObjMetal, 1)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod2x);
+			AlphaOp0(PassThru);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 1)
+		{
+			VertexShader(MapObjSpecular_T1);
+			PixelShader(MapObjMetal);
+			Specular(1.0, 1.0, 1.0, 14.0);
+		}
+	}
+}
+
+Effect(MapObjEnv, 2)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod2x);
+			AlphaOp0(PassThru);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 2)
+		{
+			VertexShader(MapObjDiffuse_T1_Refl);
+			PixelShader(MapObjEnv);
+		}
+	}
+}
+
+Effect(MapObjEnvMetal, 2)
+{
+	FixedFunc()
+	{
+		Pass(Default, 1)
+		{
+			ColorOp0(Mod2x);
+			AlphaOp0(PassThru);
+		}
+	}
+	Shader()
+	{
+		Pass(Default, 2)
+		{
+			VertexShader(MapObjDiffuse_T1_Refl);
+			PixelShader(MapObjEnvMetal);
+		}
+	}
+}
