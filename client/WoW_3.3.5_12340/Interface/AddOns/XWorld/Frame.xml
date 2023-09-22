@@ -1,0 +1,36 @@
+<Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Frame.lua" />
+	<AnimationGroup looping="NONE">
+		<Scripts>
+			<OnLoad>
+				AnimationGroup1_OnLoad()
+			</OnLoad>
+		</Scripts>
+	</AnimationGroup>
+	<Frame name="Frame1" inherits="BackdropTemplate" parent="UIParent" toplevel="true" enableMouse="true">
+		<Size x="200" y="200" />
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<KeyValues>
+			<KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" keyType="string" type="global" />
+		</KeyValues>
+	</Frame>
+	<Texture file="E:\资源库\热血江湖\140组动态称号合集\称号1\01_出入道门\0-00001.png">
+		<Size x="208" y="43" />
+		<Anchors>
+			<Anchor x="49" y="-152" point="TOPLEFT" />
+		</Anchors>
+		<TexCoords left="0" right="1" top="0" bottom="1" />
+		<Gradient>
+			<MinColor />
+			<MaxColor r="1" g="1" b="1" />
+		</Gradient>
+	</Texture>
+	<Cooldown inherits="CooldownFrameTemplate">
+		<Size x="134" y="17" />
+		<Anchors>
+			<Anchor x="58" y="-64" point="TOPLEFT" />
+		</Anchors>
+	</Cooldown>
+</Ui>
