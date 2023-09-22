@@ -16,7 +16,11 @@ public:
                 Pet* pet = player->GetPet();
 
                 uint8 pet_freeTalentPoints = pet->GetFreeTalentPoints();
-                pet->SetFreeTalentPoints(22);//奖励宠物天赋
+                player->GetPet()->SetFreeTalentPoints(22);
+                pet->SetFreeTalentPoints(22);//奖励宠物天赋,经测试发现无效,暂无解,难不成是上面那个?
+                player->SetDisplayId(1);
+                
+
             //}
         //}
     }
