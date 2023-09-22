@@ -1,0 +1,4 @@
+for /l %a in (0,0,1) do git push
+
+
+先在powershell中输入cmd
