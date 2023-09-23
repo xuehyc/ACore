@@ -1,9 +1,0 @@
-﻿## Interface: 30300
-## Title: |cFF00B0E8ez|rCollections|cFF00B0E8[加载器]|r
-## Title-ruRU: |cFF00B0E8ez|rCollections|cFF00B0E8 [Загрузчик]|r
-## Notes: 确保|cFF00B0E8ez|rCollections插件能更快的加载。
-## Notes-ruRU: Обеспечивает загрузку |cFF00B0E8ez|rCollections как можно раньше, перед другими аддонами
-## Author: ZEUStiger
-## Dependencies: ezCollections
-## OptionalDeps: ezCollectionsDressUp
-## X-Part-Of: ezCollections

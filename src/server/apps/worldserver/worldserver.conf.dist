@@ -71,6 +71,8 @@ RealmID = 1
 
 DataDir = "D:\Program Files (x86)\WOWDIY\ACore\client\WoW_3.3.5_12340"
 
+#DataDir = "E:\World of Warcraft"
+
 #
 #    LogsDir
 #        Description: Logs directory setting.

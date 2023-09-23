@@ -1,6 +1,0 @@
-## Title: rxjh
-## Version: 1.0
-## Author: 小女孩
-## Interface: 30300
-
-Frame.xml

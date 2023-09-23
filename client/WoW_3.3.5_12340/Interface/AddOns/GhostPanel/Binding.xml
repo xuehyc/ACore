@@ -1,5 +1,0 @@
-﻿<Bindings>
-  <Binding name="LEGACYPANEL" description="LEGACYPANEL" header="LEGACYPANEL">
-    LegacyPanel_Toggle();
-  </Binding>
-</Bindings>

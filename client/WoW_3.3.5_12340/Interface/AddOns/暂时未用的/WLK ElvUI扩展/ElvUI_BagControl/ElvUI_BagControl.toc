@@ -1,9 +1,0 @@
-## Interface: 30300
-## Author: Doc309
-## Version: 2.1
-## Title: |cffA11313E|r|cffC4C4C4lvUI|r |cffA11313B|r|cffC4C4C4ag|r |cffA11313C|r|cffC4C4C4ontrol|r
-## Notes: ElvUI Plugin Framework.
-## RequiredDeps: ElvUI
-
-ElvUI_BagControl.lua
-Locales.lua
